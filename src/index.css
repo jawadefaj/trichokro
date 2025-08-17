@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Electric Rickshaw Company Design System - Bangladesh */
 
 @layer base {
   :root {
@@ -17,24 +15,37 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Electric Green Theme */
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 71% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Electric Blue Accent */
+    --secondary: 210 100% 12%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 222.2 84% 4.9%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 142 71% 45%;
+
+    /* Custom Design Tokens */
+    --gradient-hero: linear-gradient(135deg, hsl(142 71% 45%), hsl(210 100% 12%));
+    --gradient-electric: linear-gradient(90deg, hsl(142 71% 45%), hsl(43 96% 56%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(142 71% 97%));
+    
+    --shadow-electric: 0 10px 30px -10px hsl(142 71% 45% / 0.3);
+    --shadow-glow: 0 0 40px hsl(142 71% 55% / 0.4);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
