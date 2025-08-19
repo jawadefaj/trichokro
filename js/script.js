@@ -47,3 +47,40 @@ document.addEventListener('click', (e) => {
   style.textContent = `@keyframes tri-ripple{ to{ transform:scale(4); opacity:0; } }`;
   document.head.appendChild(style);
 })();
+
+// ===== Language Switching =====
+document.addEventListener('DOMContentLoaded', () => {
+  const languageSwitcher = document.getElementById('language-switcher');
+  const translatableElements = document.querySelectorAll('[data-lang]');
+
+  const setLanguage = async (lang) => {
+    document.documentElement.lang = lang;
+    localStorage.setItem('trichokro-lang', lang);
+    languageSwitcher.value = lang;
+
+    try {
+      const response = await fetch(`language/${lang}.json`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${lang}.json`);
+      }
+      const translations = await response.json();
+
+      translatableElements.forEach(el => {
+        const key = el.getAttribute('data-lang');
+        if (translations[key]) {
+          el.innerHTML = translations[key];
+        }
+      });
+    } catch (error) {
+      console.error('Error setting language:', error);
+    }
+  };
+
+  languageSwitcher.addEventListener('change', (e) => {
+    setLanguage(e.target.value);
+  });
+
+  // Set initial language
+  const savedLang = localStorage.getItem('trichokro-lang') || 'en';
+  setLanguage(savedLang);
+});

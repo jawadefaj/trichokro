@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap');
 /* ===== TriChokro v2 — Product-aligned Theme ===== */
 
 /* Reset */
@@ -25,6 +26,10 @@ body{
   background: linear-gradient(180deg, var(--bg), #0c1320 40%, #0b0f16 100%);
   color: var(--text);
   line-height: 1.6;
+}
+
+html[lang="bn"] body {
+  font-family: 'Hind Siliguri', sans-serif;
 }
 
 /* Layout helpers */
@@ -57,6 +62,24 @@ body{
   transition: var(--transition);
 }
 .nav-link:hover{ color:var(--text); background: rgba(255,255,255,.05); }
+
+.nav-actions { display: flex; align-items: center; gap: .75rem; }
+.language-switcher {
+  background: rgba(255,255,255,.05);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: .5rem .75rem;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right .5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em;
+  padding-right: 2rem;
+}
+
 
 .cta{ background: linear-gradient(90deg, var(--primary), var(--primary-2)); color:#0b0f16; font-weight:700; border:none; padding:.6rem 1rem; border-radius:9999px; cursor:pointer; transition: var(--transition); box-shadow: var(--glow); }
 .cta:hover{ transform: translateY(-2px); }

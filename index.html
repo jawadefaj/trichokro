@@ -13,26 +13,32 @@
     <div class="container inner">
       <div class="logo"><span class="dot"></span>TriChokro</div>
       <nav class="nav-links">
-        <button class="nav-link" onclick="scrollToSection('home')">Home</button>
-        <button class="nav-link" onclick="scrollToSection('highlights')">Highlights</button>
-        <button class="nav-link" onclick="scrollToSection('about')">About</button>
-        <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+        <button class="nav-link" onclick="scrollToSection('home')" data-lang="nav_home">Home</button>
+        <button class="nav-link" onclick="scrollToSection('highlights')" data-lang="nav_highlights">Highlights</button>
+        <button class="nav-link" onclick="scrollToSection('about')" data-lang="nav_about">About</button>
+        <button class="nav-link" onclick="scrollToSection('contact')" data-lang="nav_contact">Contact</button>
       </nav>
-      <button class="cta small" onclick="scrollToSection('contact')">Get Quote</button>
+      <div class="nav-actions">
+        <select id="language-switcher" class="language-switcher">
+          <option value="en">English</option>
+          <option value="bn">বাংলা</option>
+        </select>
+        <button class="cta small" onclick="scrollToSection('contact')" data-lang="get_quote">Get Quote</button>
+      </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section id="home" class="hero">
     <div class="container hero-inner">
-      <h1>Angular. Efficient. <span class="gradient">All-Electric.</span></h1>
-      <p class="mt-2">
+      <h1 data-lang="hero_title">Angular. Efficient. <span class="gradient">All-Electric.</span></h1>
+      <p class="mt-2" data-lang="hero_subtitle">
         A lightweight three-wheeler built for Bangladesh — engineered frames, smart electrics, and
         ultra-low running costs. Drive further, charge faster, and earn more with TriChokro.
       </p>
       <div class="hero-actions">
-        <a class="btn primary" onclick="scrollToSection('highlights')">Explore Highlights</a>
-        <a class="btn outline" onclick="scrollToSection('contact')">Book a Demo</a>
+        <a class="btn primary" onclick="scrollToSection('highlights')" data-lang="explore_highlights">Explore Highlights</a>
+        <a class="btn outline" onclick="scrollToSection('contact')" data-lang="book_demo">Book a Demo</a>
       </div>
     </div>
   </section>
@@ -40,82 +46,82 @@
   <!-- HIGHLIGHTS (Benefits + Features combined, 9 cards) -->
   <section id="highlights" class="section">
     <div class="container">
-      <h2 class="section-title">Highlights that matter</h2>
-      <p class="section-sub mb-8 subtitle">
+      <h2 class="section-title" data-lang="highlights_title">Highlights that matter</h2>
+      <p class="section-sub mb-8 subtitle" data-lang="highlights_subtitle">
         We combined real-world driver benefits with the product features behind them — nine essentials in a clean 3×3 grid.
       </p>
 
       <div class="grid grid-3 highlight-list">
         <article class="card">
           <div class="icon">🌱</div>
-          <span class="kicker">Zero Emissions</span>
-          <h3>Clean & Quiet</h3>
-          <p>Battery-electric drivetrain produces no tailpipe emissions and keeps neighborhoods quieter.</p>
-          <span class="badge">Eco</span>
+          <span class="kicker" data-lang="zero_emissions_kicker">Zero Emissions</span>
+          <h3 data-lang="zero_emissions_title">Clean & Quiet</h3>
+          <p data-lang="zero_emissions_text">Battery-electric drivetrain produces no tailpipe emissions and keeps neighborhoods quieter.</p>
+          <span class="badge" data-lang="zero_emissions_badge">Eco</span>
         </article>
 
         <article class="card">
           <div class="icon">💰</div>
-          <span class="kicker">Up to 70% Savings</span>
-          <h3>Lower Running Cost</h3>
-          <p>Electricity beats fuel. Fewer moving parts means less service and more time on the road.</p>
-          <span class="badge">Taka</span>
+          <span class="kicker" data-lang="savings_kicker">Up to 70% Savings</span>
+          <h3 data-lang="savings_title">Lower Running Cost</h3>
+          <p data-lang="savings_text">Electricity beats fuel. Fewer moving parts means less service and more time on the road.</p>
+          <span class="badge" data-lang="savings_badge">Taka</span>
         </article>
 
         <article class="card">
           <div class="icon">🔋</div>
-          <span class="kicker">120+ km per charge</span>
-          <h3>Work a Full Day</h3>
-          <p>Optimized battery pack and controller deliver dependable range, even under load.</p>
-          <span class="badge">Range</span>
+          <span class="kicker" data-lang="range_kicker">120+ km per charge</span>
+          <h3 data-lang="range_title">Work a Full Day</h3>
+          <p data-lang="range_text">Optimized battery pack and controller deliver dependable range, even under load.</p>
+          <span class="badge" data-lang="range_badge">Range</span>
         </article>
 
         <article class="card">
           <div class="icon">⚡</div>
-          <span class="kicker">~4 hrs typical</span>
-          <h3>Fast Charging</h3>
-          <p>Top up quickly during breaks and get back to earning sooner.</p>
-          <span class="badge">Speed</span>
+          <span class="kicker" data-lang="charging_kicker">~4 hrs typical</span>
+          <h3 data-lang="charging_title">Fast Charging</h3>
+          <p data-lang="charging_text">Top up quickly during breaks and get back to earning sooner.</p>
+          <span class="badge" data-lang="charging_badge">Speed</span>
         </article>
 
         <article class="card">
           <div class="icon">🛠️</div>
-          <span class="kicker">Fewer moving parts</span>
-          <h3>Low Maintenance</h3>
-          <p>Brushless motor + sealed components = predictable service and lower lifetime cost.</p>
-          <span class="badge">Service</span>
+          <span class="kicker" data-lang="maintenance_kicker">Fewer moving parts</span>
+          <h3 data-lang="maintenance_title">Low Maintenance</h3>
+          <p data-lang="maintenance_text">Brushless motor + sealed components = predictable service and lower lifetime cost.</p>
+          <span class="badge" data-lang="maintenance_badge">Service</span>
         </article>
 
         <article class="card">
           <div class="icon">📟</div>
-          <span class="kicker">Smart Dashboard</span>
-          <h3>Data at a Glance</h3>
-          <p>Digital speed, state-of-charge, and trip info keep you in control all day.</p>
-          <span class="badge">Smart</span>
+          <span class="kicker" data-lang="dashboard_kicker">Smart Dashboard</span>
+          <h3 data-lang="dashboard_title">Data at a Glance</h3>
+          <p data-lang="dashboard_text">Digital speed, state-of-charge, and trip info keep you in control all day.</p>
+          <span class="badge" data-lang="dashboard_badge">Smart</span>
         </article>
 
         <article class="card">
           <div class="icon">🛡️</div>
-          <span class="kicker">LED + Braking</span>
-          <h3>Safety First</h3>
-          <p>High-visibility LED lighting, strong chassis geometry, and brake assist improve confidence.</p>
-          <span class="badge">Safe</span>
+          <span class="kicker" data-lang="safety_kicker">LED + Braking</span>
+          <h3 data-lang="safety_title">Safety First</h3>
+          <p data-lang="safety_text">High-visibility LED lighting, strong chassis geometry, and brake assist improve confidence.</p>
+          <span class="badge" data-lang="safety_badge">Safe</span>
         </article>
 
         <article class="card">
           <div class="icon">💺</div>
-          <span class="kicker">Ergonomic Layout</span>
-          <h3>Comfort & Utility</h3>
-          <p>Cushioned seating, weather protection options, and useful storage for daily work.</p>
-          <span class="badge">Comfort</span>
+          <span class="kicker" data-lang="comfort_kicker">Ergonomic Layout</span>
+          <h3 data-lang="comfort_title">Comfort & Utility</h3>
+          <p data-lang="comfort_text">Cushioned seating, weather protection options, and useful storage for daily work.</p>
+          <span class="badge" data-lang="comfort_badge">Comfort</span>
         </article>
 
         <article class="card">
           <div class="icon">🤝</div>
-          <span class="kicker">Local Support</span>
-          <h3>Service & Financing</h3>
-          <p>Warranty-backed batteries, easy parts availability, and financing guidance from our team.</p>
-          <span class="badge">Support</span>
+          <span class="kicker" data-lang="support_kicker">Local Support</span>
+          <h3 data-lang="support_title">Service & Financing</h3>
+          <p data-lang="support_text">Warranty-backed batteries, easy parts availability, and financing guidance from our team.</p>
+          <span class="badge" data-lang="support_badge">Support</span>
         </article>
       </div>
     </div>
@@ -124,15 +130,15 @@
   <!-- ABOUT -->
   <section id="about" class="section">
     <div class="container">
-      <h2 class="section-title">About TriChokro</h2>
-      <p class="section-sub mb-8">
+      <h2 class="section-title" data-lang="about_title">About TriChokro</h2>
+      <p class="section-sub mb-8" data-lang="about_subtitle">
         Built by engineers and drivers working together. We obsess over practical details — from frame geometry to charging routines.
       </p>
 
       <div class="grid grid-2 about-cards mb-8">
         <div class="card">
-          <h4>Our Mission</h4>
-          <p>
+          <h4 data-lang="mission_title">Our Mission</h4>
+          <p data-lang="mission_text">
             Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient
             three-wheelers that raise driver income and reduce city pollution. We design for real streets,
             real loads, and real economics.
@@ -140,23 +146,23 @@
         </div>
 
         <div class="card">
-          <h4>Our Team</h4>
-          <p>
+          <h4 data-lang="team_title">Our Team</h4>
+          <p data-lang="team_text">
             A small, focused group of mechanical, electronics, and operations specialists from
             Bangladesh’s startup and manufacturing ecosystem.
           </p>
           <div class="team-list">
-            <span class="team-chip">Vehicle Design</span>
-            <span class="team-chip">Battery & BMS</span>
-            <span class="team-chip">Manufacturing</span>
-            <span class="team-chip">Field Support</span>
+            <span class="team-chip" data-lang="team_chip_1">Vehicle Design</span>
+            <span class="team-chip" data-lang="team_chip_2">Battery & BMS</span>
+            <span class="team-chip" data-lang="team_chip_3">Manufacturing</span>
+            <span class="team-chip" data-lang="team_chip_4">Field Support</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h4 class="mb-2">Our Journey</h4>
-        <p>
+        <h4 class="mb-2" data-lang="journey_title">Our Journey</h4>
+        <p data-lang="journey_text">
           We began in 2022 with a simple idea: the everyday three-wheeler could be lighter, safer,
           and cheaper to operate. Early prototypes taught us what mattered most to drivers — range,
           charging time, and comfort. In 2023 we piloted our first fleet, iterating on chassis weldments,
@@ -172,23 +178,24 @@
   <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="container">
-      <h2 class="section-title">Get in touch</h2>
-      <p class="section-sub mb-8">Book a demo, discuss fleet needs, or request financing options.</p>
+      <h2 class="section-title" data-lang="contact_title">Get in touch</h2>
+      <p class="section-sub mb-8" data-lang="contact_subtitle">Book a demo, discuss fleet needs, or request financing options.</p>
       <div class="grid grid-3">
         <div class="card">
-          <h3>Visit</h3>
-          <p>123 Green Avenue, Dhanmondi, Dhaka 1205</p>
-          <a class="btn mt-6" href="#">Get Directions</a>
+          <h3 data-lang="visit_title">Visit</h3>
+          <p data-lang="visit_text">123 Green Avenue, Dhanmondi, Dhaka 1205</p>
+          <a class="btn mt-6" href="#" data-lang="visit_button">Get Directions</a>
         </div>
         <div class="card">
-          <h3>Call</h3>
-          <p>+880 1700 123456 · 8AM–8PM</p>
-          <a class="btn mt-6" href="tel:+8801700123456">Call Now</a>
+          <h3 data-lang="call_title">Call</h3>
+          <p data-lang="call_text">+880 1700 123456 · 8AM–8PM</p>
+          <a class="btn mt-6" href="tel:+8801700123456" data-lang="call_button">Call Now</a>
         </div>
         <div class="card">
-          <h3>WhatsApp</h3>
-          <p>+880 1700 123456 — quick responses and media support.</p>
-          <a class="btn mt-6" href="#">Chat on WhatsApp</a>
+.
+          <h3 data-lang="whatsapp_title">WhatsApp</h3>
+          <p data-lang="whatsapp_text">+880 1700 123456 — quick responses and media support.</p>
+          <a class="btn mt-6" href="#" data-lang="whatsapp_button">Chat on WhatsApp</a>
         </div>
       </div>
     </div>
@@ -197,8 +204,8 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="brand">⚡ TriChokro</div>
-      <div class="mt-2">© 2025 TriChokro. All rights reserved.</div>
+      <div class="brand" data-lang="footer_brand">⚡ TriChokro</div>
+      <div class="mt-2" data-lang="footer_copyright">© 2025 TriChokro. All rights reserved.</div>
     </div>
   </footer>
 
