@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRide Bangladesh - Electric Rickshaw Revolution</title>
+    <meta name="description" content="Leading Bangladesh's electric revolution with eco-friendly, cost-effective auto rickshaws. Clean energy, maximum savings, zero emissions.">
+    <meta name="keywords" content="electric rickshaw, bangladesh, eco-friendly transport, electric vehicle, auto rickshaw, green transport">
+    <meta name="author" content="EcoRide Bangladesh">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EcoRide Bangladesh - Electric Rickshaw Revolution">
+    <meta property="og:description" content="Leading Bangladesh's electric revolution with eco-friendly, cost-effective auto rickshaws. Clean energy, maximum savings, zero emissions.">
+    <meta property="og:image" content="./src/assets/hero-rickshaw.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="EcoRide Bangladesh - Electric Rickshaw Revolution">
+    <meta property="twitter:description" content="Leading Bangladesh's electric revolution with eco-friendly, cost-effective auto rickshaws. Clean energy, maximum savings, zero emissions.">
+    <meta property="twitter:image" content="./src/assets/hero-rickshaw.jpg">
+
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color System */
+            --background: hsl(0, 0%, 100%);
+            --foreground: hsl(222.2, 84%, 4.9%);
+            --card: hsl(0, 0%, 100%);
+            --card-foreground: hsl(222.2, 84%, 4.9%);
+            --primary: hsl(142, 71%, 45%);
+            --primary-foreground: hsl(0, 0%, 100%);
+            --primary-glow: hsl(142, 71%, 55%);
+            --secondary: hsl(210, 100%, 12%);
+            --secondary-foreground: hsl(0, 0%, 100%);
+            --muted: hsl(210, 40%, 96.1%);
+            --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+            --accent: hsl(43, 96%, 56%);
+            --accent-foreground: hsl(222.2, 84%, 4.9%);
+            --border: hsl(214.3, 31.8%, 91.4%);
+            
+            /* Gradients */
+            --gradient-hero: linear-gradient(135deg, hsl(142, 71%, 45%), hsl(210, 100%, 12%));
+            --gradient-electric: linear-gradient(90deg, hsl(142, 71%, 45%), hsl(43, 96%, 56%));
+            --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(142, 71%, 97%));
+            
+            /* Shadows */
+            --shadow-electric: 0 10px 30px -10px hsl(142, 71%, 45%, 0.3);
+            --shadow-glow: 0 0 40px hsl(142, 71%, 55%, 0.4);
+            
+            /* Transitions */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Typography */
+        h1 { font-size: 3rem; font-weight: 700; line-height: 1.2; }
+        h2 { font-size: 2.5rem; font-weight: 700; line-height: 1.3; }
+        h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.4; }
+        p { font-size: 1rem; line-height: 1.6; }
+
+        @media (min-width: 640px) {
+            h1 { font-size: 4rem; }
+            h2 { font-size: 3rem; }
+        }
+
+        @media (min-width: 1024px) {
+            h1 { font-size: 5rem; }
+            h2 { font-size: 3.5rem; }
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-electric);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-electric);
+            transform: translateY(-8px);
+        }
+
+        /* Badge Styles */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .badge-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        /* Layout Classes */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+        @media (min-width: 768px) {
+            .md\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .md\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+            .md\\:flex { display: flex; }
+            .md\\:hidden { display: none; }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .lg\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary); }
+        .text-muted { color: var(--muted-foreground); }
+        .bg-gradient-hero { background: var(--gradient-hero); }
+        .bg-gradient-electric { background: var(--gradient-electric); }
+        .bg-gradient-subtle { background: var(--gradient-subtle); }
+        .opacity-80 { opacity: 0.8; }
+        .opacity-90 { opacity: 0.9; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .z-10 { z-index: 10; }
+        .z-50 { z-index: 50; }
+        .rounded-lg { border-radius: var(--radius); }
+        .rounded-full { border-radius: 9999px; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+        .backdrop-blur { backdrop-filter: blur(16px); }
+        .overflow-hidden { overflow: hidden; }
+        .object-cover { object-fit: cover; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .min-h-screen { min-height: 100vh; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-8 > * + * { margin-left: 2rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-16 { gap: 4rem; }
+        .hidden { display: none; }
+        .block { display: block; }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Styles */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+            opacity: 0.8;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 1rem;
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-gradient-text {
+            display: block;
+            background: var(--gradient-electric);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .hero-title { font-size: 4rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .hero-buttons { flex-direction: row; justify-content: center; }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title { font-size: 5rem; }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-mouse {
+            width: 1.5rem;
+            height: 2.5rem;
+            border: 2px solid white;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .scroll-dot {
+            width: 0.25rem;
+            height: 0.75rem;
+            background: white;
+            border-radius: 0.125rem;
+            margin-top: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40%, 43% { transform: translateX(-50%) translateY(-30px); }
+            70% { transform: translateX(-50%) translateY(-15px); }
+            90% { transform: translateX(-50%) translateY(-4px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            max-width: 48rem;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 640px) {
+            .section-title { font-size: 3rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .section-title { font-size: 3.5rem; }
+        }
+
+        /* Spec Tag */
+        .spec-tag {
+            background: rgba(var(--primary), 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+
+        /* Feature Card Special */
+        .feature-card {
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-glow);
+            padding: 1.5rem;
+            border: 1px solid rgba(var(--primary), 0.2);
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stats-label {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-year {
+            flex-shrink: 0;
+            width: 4rem;
+            height: 4rem;
+            background: var(--gradient-electric);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Images */
+        .responsive-img {
+            width: 100%;
+            height: 24rem;
+            object-fit: cover;
+            border-radius: var(--radius);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--radius);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-decoration {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .cta-decoration-1 {
+            top: 1rem;
+            right: 1rem;
+            width: 5rem;
+            height: 5rem;
+        }
+
+        .cta-decoration-2 {
+            bottom: 1rem;
+            left: 1rem;
+            width: 4rem;
+            height: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">⚡ EcoRide</div>
+            
+            <div class="nav-links">
+                <button class="nav-link" onclick="scrollToSection('home')">Home</button>
+                <button class="nav-link" onclick="scrollToSection('benefits')">Benefits</button>
+                <button class="nav-link" onclick="scrollToSection('features')">Features</button>
+                <button class="nav-link" onclick="scrollToSection('about')">About</button>
+                <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+            </div>
+            
+            <button class="btn btn-primary" onclick="scrollToSection('contact')">Get Quote</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <img src="./src/assets/hero-rickshaw.jpg" alt="Modern electric rickshaw in Bangladesh">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">
+                The Future of 
+                <span class="hero-gradient-text">Green Transport</span>
+            </h1>
+            <p class="hero-subtitle">
+                Leading Bangladesh's electric revolution with eco-friendly, cost-effective auto rickshaws. 
+                Clean energy, maximum savings, zero emissions.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-lg btn-white">Get Your Electric Rickshaw</button>
+                <button class="btn btn-lg btn-outline" style="border-color: white; color: white;">Learn More</button>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section bg-gradient-subtle">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge mb-4">Why Choose Electric?</div>
+                <h2 class="section-title">
+                    Revolutionary Benefits for
+                    <span class="block text-primary">Smart Drivers</span>
+                </h2>
+                <p class="section-subtitle">
+                    Join thousands of drivers already saving money and protecting the environment 
+                    with our cutting-edge electric rickshaw technology.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌱</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3>Eco-Friendly</h3>
+                        <span class="badge badge-outline">100% Electric</span>
+                    </div>
+                    <p class="text-muted">Zero emissions, clean energy transportation for a greener Bangladesh</p>
+                </div>
+                
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💰</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3>Cost Effective</h3>
+                        <span class="badge badge-outline">70% Savings</span>
+                    </div>
+                    <p class="text-muted">Save up to 70% on fuel costs with our efficient electric technology</p>
+                </div>
+                
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔋</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3>Long Range</h3>
+                        <span class="badge badge-outline">120+ KM Range</span>
+                    </div>
+                    <p class="text-muted">Advanced battery technology providing 120+ km range on single charge</p>
+                </div>
+                
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3>Fast Charging</h3>
+                        <span class="badge badge-outline">4 Hour Charge</span>
+                    </div>
+                    <p class="text-muted">Quick 4-hour charging time gets you back on the road faster</p>
+                </div>
+                
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛠️</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3>Low Maintenance</h3>
+                        <span class="badge badge-outline">90% Less Service</span>
+                    </div>
+                    <p class="text-muted">Electric motors require minimal maintenance compared to fuel engines</p>
+                </div>
+                
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏆</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <h3>Government Approved</h3>
+                        <span class="badge badge-outline">Certified</span>
+                    </div>
+                    <p class="text-muted">Fully licensed and approved by Bangladesh transport authorities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="grid lg:grid-cols-2 gap-16" style="align-items: center;">
+                <!-- Content -->
+                <div>
+                    <h2 class="section-title text-left mb-6">
+                        Engineered for
+                        <span class="block text-primary">Excellence</span>
+                    </h2>
+                    <p class="section-subtitle text-left mb-8">
+                        Every EcoRide electric rickshaw is built with premium components and 
+                        cutting-edge technology to deliver superior performance, comfort, and reliability.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="card feature-card">
+                            <h3 class="mb-2">Advanced Battery Technology</h3>
+                            <p class="text-muted mb-4">Lithium-ion batteries with intelligent power management system</p>
+                            <div>
+                                <span class="spec-tag">120+ km range</span>
+                                <span class="spec-tag">4-hour fast charging</span>
+                                <span class="spec-tag">5-year warranty</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <h3 class="mb-2">Smart Dashboard</h3>
+                            <p class="text-muted mb-4">Digital display showing speed, battery level, and trip information</p>
+                            <div>
+                                <span class="spec-tag">Digital speedometer</span>
+                                <span class="spec-tag">Battery indicator</span>
+                                <span class="spec-tag">Trip meter</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <h3 class="mb-2">Safety Features</h3>
+                            <p class="text-muted mb-4">Built-in safety systems for driver and passenger protection</p>
+                            <div>
+                                <span class="spec-tag">LED headlights</span>
+                                <span class="spec-tag">Brake assist</span>
+                                <span class="spec-tag">Safety indicators</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <h3 class="mb-2">Comfort Design</h3>
+                            <p class="text-muted mb-4">Ergonomic seating and weather protection for all conditions</p>
+                            <div>
+                                <span class="spec-tag">Cushioned seats</span>
+                                <span class="spec-tag">Weather cover</span>
+                                <span class="spec-tag">Storage space</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <button class="btn btn-lg btn-primary">View Specifications</button>
+                    </div>
+                </div>
+                
+                <!-- Image -->
+                <div class="relative">
+                    <div class="relative overflow-hidden rounded-lg">
+                        <img src="./src/assets/fleet-rickshaws.jpg" alt="Electric rickshaw fleet showcasing modern design" class="responsive-img">
+                        <div style="position: absolute; inset: 0; background: var(--gradient-electric); opacity: 0.2;"></div>
+                    </div>
+                    
+                    <!-- Floating Stats -->
+                    <div class="stats-card" style="position: absolute; bottom: -1.5rem; left: -1.5rem;">
+                        <div class="stats-number">500+</div>
+                        <div class="stats-label">Happy Drivers</div>
+                    </div>
+                    
+                    <div class="stats-card" style="position: absolute; top: -1.5rem; right: -1.5rem;">
+                        <div class="stats-number">2+</div>
+                        <div class="stats-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-gradient-subtle">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge mb-4">Our Story</div>
+                <h2 class="section-title">
+                    Driving Bangladesh's
+                    <span class="block text-primary">Electric Future</span>
+                </h2>
+                <p class="section-subtitle">
+                    EcoRide is pioneering the electric vehicle revolution in Bangladesh. Founded by local entrepreneurs 
+                    with a passion for sustainable transport, we're committed to providing affordable, reliable, 
+                    and environmentally friendly transportation solutions.
+                </p>
+            </div>
+
+            <!-- Mission & Vision -->
+            <div class="grid md:grid-cols-2 mb-16">
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
+                    <h3 class="mb-4">Our Mission</h3>
+                    <p class="text-muted">
+                        To revolutionize urban transportation in Bangladesh by making electric vehicles 
+                        accessible, affordable, and reliable for every driver and passenger.
+                    </p>
+                </div>
+                
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔮</div>
+                    <h3 class="mb-4">Our Vision</h3>
+                    <p class="text-muted">
+                        A cleaner, greener Bangladesh where electric vehicles are the standard, 
+                        contributing to better air quality and economic prosperity for all.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div style="max-width: 48rem; margin: 0 auto;">
+                <h3 class="text-center mb-12" style="font-size: 2rem; font-weight: 700;">Our Journey</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-content">
+                        <h4>Company Founded</h4>
+                        <p class="text-muted">Started with a vision for green transportation</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h4>First Fleet Launch</h4>
+                        <p class="text-muted">Introduced 100 electric rickshaws in Dhaka</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h4>Expansion</h4>
+                        <p class="text-muted">Growing across Bangladesh with 500+ vehicles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge mb-4">Get Started Today</div>
+                <h2 class="section-title">
+                    Ready to Go
+                    <span class="block text-primary">Electric?</span>
+                </h2>
+                <p class="section-subtitle">
+                    Join the electric revolution today. Contact us for test drives, financing options, 
+                    and exclusive launch offers. Our team is ready to help you make the switch.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 mb-12">
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📍</div>
+                    <h3 class="mb-4">Visit Our Showroom</h3>
+                    <div class="space-y-2 mb-6">
+                        <p class="text-muted">123 Green Avenue</p>
+                        <p class="text-muted">Dhanmondi, Dhaka 1205</p>
+                        <p class="text-muted">Bangladesh</p>
+                    </div>
+                    <button class="btn btn-outline w-full">Get Directions</button>
+                </div>
+                
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📞</div>
+                    <h3 class="mb-4">Call Us Today</h3>
+                    <div class="space-y-2 mb-6">
+                        <p class="text-muted">+880 1700 123456</p>
+                        <p class="text-muted">+880 2 9876543</p>
+                        <p class="text-muted">Available 8AM - 8PM</p>
+                    </div>
+                    <button class="btn btn-outline w-full">Call Now</button>
+                </div>
+                
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
+                    <h3 class="mb-4">WhatsApp Support</h3>
+                    <div class="space-y-2 mb-6">
+                        <p class="text-muted">+880 1700 123456</p>
+                        <p class="text-muted">Quick responses</p>
+                        <p class="text-muted">Send photos & questions</p>
+                    </div>
+                    <button class="btn btn-outline w-full">Chat on WhatsApp</button>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <div style="position: relative; z-index: 10;">
+                    <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem;">
+                        Special Launch Offer - Save ৳50,000!
+                    </h3>
+                    <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; max-width: 32rem; margin-left: auto; margin-right: auto;">
+                        Limited time offer for the first 100 customers. Includes free installation, 
+                        warranty, and 6 months free maintenance.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-lg btn-white">Book Test Drive</button>
+                        <button class="btn btn-lg btn-outline" style="border-color: white; color: white;">Download Brochure</button>
+                    </div>
+                </div>
+                
+                <div class="cta-decoration cta-decoration-1"></div>
+                <div class="cta-decoration cta-decoration-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">⚡ EcoRide</div>
+            <p class="footer-text">
+                © 2024 EcoRide Bangladesh. All rights reserved. | Leading the electric revolution.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+            }
+        });
+
+        // Add hover effects to cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // Add click handlers for buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Add ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
