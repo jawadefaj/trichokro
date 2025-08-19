@@ -157,6 +157,96 @@ html[lang="bn"] body {
   background: rgba(255,255,255,.04); border:1px solid var(--border); border-radius: 9999px; padding:.4rem .7rem; font-size:.9rem;
 }
 
+/* About Accordion */
+.about-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.accordion-item {
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+}
+
+.accordion-header h4 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.accordion-arrow {
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+  background-size: contain;
+  transition: transform .3s ease;
+}
+
+.accordion-item.is-open .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-item.is-open .accordion-content {
+  max-height: 1000px; /* Adjust as needed */
+  transition: max-height 1s ease-in-out;
+  padding-top: 1rem;
+}
+
+.team-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 1024px){
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.team-member-card {
+  text-align: center;
+}
+
+.team-member-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.team-member-card h5 {
+  margin-bottom: .25rem;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.team-member-card p {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
 /* Footer */
 .footer{ border-top:1px solid var(--border); padding: 2rem 0 3rem; color: var(--muted); }
 .footer .brand{ color: var(--text); font-weight:800; }

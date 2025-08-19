@@ -135,42 +135,86 @@
         Built by engineers and drivers working together. We obsess over practical details — from frame geometry to charging routines.
       </p>
 
-      <div class="grid grid-2 about-cards mb-8">
-        <div class="card">
-          <h4 data-lang="mission_title">Our Mission</h4>
-          <p data-lang="mission_text">
-            Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient
-            three-wheelers that raise driver income and reduce city pollution. We design for real streets,
-            real loads, and real economics.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 data-lang="team_title">Our Team</h4>
-          <p data-lang="team_text">
-            A small, focused group of mechanical, electronics, and operations specialists from
-            Bangladesh’s startup and manufacturing ecosystem.
-          </p>
-          <div class="team-list">
-            <span class="team-chip" data-lang="team_chip_1">Vehicle Design</span>
-            <span class="team-chip" data-lang="team_chip_2">Battery & BMS</span>
-            <span class="team-chip" data-lang="team_chip_3">Manufacturing</span>
-            <span class="team-chip" data-lang="team_chip_4">Field Support</span>
+      <div class="about-accordion">
+        <!-- Mission Section -->
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <h4 data-lang="mission_title">Our Mission</h4>
+            <div class="accordion-arrow"></div>
+          </button>
+          <div class="accordion-content">
+            <p data-lang="mission_text">
+              Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient
+              three-wheelers that raise driver income and reduce city pollution. We design for real streets,
+              real loads, and real economics.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <h4 class="mb-2" data-lang="journey_title">Our Journey</h4>
-        <p data-lang="journey_text">
-          We began in 2022 with a simple idea: the everyday three-wheeler could be lighter, safer,
-          and cheaper to operate. Early prototypes taught us what mattered most to drivers — range,
-          charging time, and comfort. In 2023 we piloted our first fleet, iterating on chassis weldments,
-          suspension tuning, and the battery-controller pairing. By 2024, those lessons became a
-          production-ready platform: angular composite panels for robustness, a smart dash for clarity,
-          and serviceable modules for roadside uptime. Today, TriChokro vehicles carry passengers across
-          cities while we continue refining every kilometer of the experience.
-        </p>
+        <!-- Team Section -->
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <h4 data-lang="team_title">Our Team</h4>
+            <div class="accordion-arrow"></div>
+          </button>
+          <div class="accordion-content">
+            <p data-lang="team_text" class="mb-4">
+              A small, focused group of mechanical, electronics, and operations specialists from
+              Bangladesh’s startup and manufacturing ecosystem.
+            </p>
+            <div class="grid grid-3 team-grid">
+              <div class="team-member-card">
+                <img src="src/assets/person.png" alt="Team Member 1">
+                <h5 data-lang="team_member_1_name">Fatema Ahmed</h5>
+                <p data-lang="team_member_1_title">Lead Engineer</p>
+              </div>
+              <div class="team-member-card">
+                <img src="src/assets/person.png" alt="Team Member 2">
+                <h5 data-lang="team_member_2_name">Rahim Khan</h5>
+                <p data-lang="team_member_2_title">Operations Head</p>
+              </div>
+              <div class="team-member-card">
+                <img src="src/assets/person.png" alt="Team Member 3">
+                <h5 data-lang="team_member_3_name">Sultana Begum</h5>
+                <p data-lang="team_member_3_title">Battery Specialist</p>
+              </div>
+              <div class="team-member-card">
+                <img src="src/assets/person.png" alt="Team Member 4">
+                <h5 data-lang="team_member_4_name">Jamal Uddin</h5>
+                <p data-lang="team_member_4_title">Vehicle Designer</p>
+              </div>
+              <div class="team-member-card">
+                <img src="src/assets/person.png" alt="Team Member 5">
+                <h5 data-lang="team_member_5_name">Nadia Chowdhury</h5>
+                <p data-lang="team_member_5_title">Field Support</p>
+              </div>
+              <div class="team-member-card">
+                <img src="src/assets/person.png" alt="Team Member 6">
+                <h5 data-lang="team_member_6_name">Kamal Hasan</h5>
+                <p data-lang="team_member_6_title">Manufacturing Lead</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Journey Section -->
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <h4 data-lang="journey_title">Our Journey</h4>
+            <div class="accordion-arrow"></div>
+          </button>
+          <div class="accordion-content">
+            <p data-lang="journey_text">
+              We began in 2022 with a simple idea: the everyday three-wheeler could be lighter, safer,
+              and cheaper to operate. Early prototypes taught us what mattered most to drivers — range,
+              charging time, and comfort. In 2023 we piloted our first fleet, iterating on chassis weldments,
+              suspension tuning, and the battery-controller pairing. By 2024, those lessons became a
+              production-ready platform: angular composite panels for robustness, a smart dash for clarity,
+              and serviceable modules for roadside uptime. Today, TriChokro vehicles carry passengers across
+              cities while we continue refining every kilometer of the experience.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

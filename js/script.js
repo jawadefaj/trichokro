@@ -83,4 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set initial language
   const savedLang = localStorage.getItem('trichokro-lang') || 'en';
   setLanguage(savedLang);
+
+  // Accordion functionality
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const accordionItem = header.parentElement;
+      accordionItem.classList.toggle('is-open');
+    });
+  });
 });
