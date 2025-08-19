@@ -1,400 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TriChokro — Electric Rickshaw Revolution</title>
-    <meta name="description" content="TriChokro is leading Bangladesh's electric revolution with eco-friendly, cost-effective auto rickshaws. Clean energy, maximum savings, zero emissions." />
-    <meta name="keywords" content="TriChokro, electric rickshaw, bangladesh, eco-friendly transport, electric vehicle, auto rickshaw, green transport" />
-    <meta name="author" content="TriChokro" />
-    <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TriChokro — Electric Rickshaw Revolution</title>
+  <meta name="description" content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort.">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-content">
-            <div class="logo">⚡ TriChokro</div>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container inner">
+      <div class="logo"><span class="dot"></span>TriChokro</div>
+      <nav class="nav-links">
+        <button class="nav-link" onclick="scrollToSection('home')">Home</button>
+        <button class="nav-link" onclick="scrollToSection('highlights')">Highlights</button>
+        <button class="nav-link" onclick="scrollToSection('about')">About</button>
+        <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+      </nav>
+      <button class="cta small" onclick="scrollToSection('contact')">Get Quote</button>
+    </div>
+  </header>
 
-            <div class="nav-links">
-                <button class="nav-link" onclick="scrollToSection('home')">Home</button>
-                <button class="nav-link" onclick="scrollToSection('benefits')">Benefits</button>
-                <button class="nav-link" onclick="scrollToSection('features')">Features</button>
-                <button class="nav-link" onclick="scrollToSection('about')">About</button>
-                <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
-            </div>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-inner">
+      <h1>Angular. Efficient. <span class="gradient">All-Electric.</span></h1>
+      <p class="mt-2">
+        A lightweight three-wheeler built for Bangladesh — engineered frames, smart electrics, and
+        ultra-low running costs. Drive further, charge faster, and earn more with TriChokro.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" onclick="scrollToSection('highlights')">Explore Highlights</a>
+        <a class="btn outline" onclick="scrollToSection('contact')">Book a Demo</a>
+      </div>
+    </div>
+  </section>
 
-            <button class="btn btn-primary" onclick="scrollToSection('contact')">Get Quote</button>
+  <!-- HIGHLIGHTS (Benefits + Features combined, 9 cards) -->
+  <section id="highlights" class="section">
+    <div class="container">
+      <h2 class="section-title">Highlights that matter</h2>
+      <p class="section-sub mb-8 subtitle">
+        We combined real-world driver benefits with the product features behind them — nine essentials in a clean 3×3 grid.
+      </p>
+
+      <div class="grid grid-3 highlight-list">
+        <article class="card">
+          <div class="icon">🌱</div>
+          <span class="kicker">Zero Emissions</span>
+          <h3>Clean & Quiet</h3>
+          <p>Battery-electric drivetrain produces no tailpipe emissions and keeps neighborhoods quieter.</p>
+          <span class="badge">Eco</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">💰</div>
+          <span class="kicker">Up to 70% Savings</span>
+          <h3>Lower Running Cost</h3>
+          <p>Electricity beats fuel. Fewer moving parts means less service and more time on the road.</p>
+          <span class="badge">Taka</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">🔋</div>
+          <span class="kicker">120+ km per charge</span>
+          <h3>Work a Full Day</h3>
+          <p>Optimized battery pack and controller deliver dependable range, even under load.</p>
+          <span class="badge">Range</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">⚡</div>
+          <span class="kicker">~4 hrs typical</span>
+          <h3>Fast Charging</h3>
+          <p>Top up quickly during breaks and get back to earning sooner.</p>
+          <span class="badge">Speed</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">🛠️</div>
+          <span class="kicker">Fewer moving parts</span>
+          <h3>Low Maintenance</h3>
+          <p>Brushless motor + sealed components = predictable service and lower lifetime cost.</p>
+          <span class="badge">Service</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">📟</div>
+          <span class="kicker">Smart Dashboard</span>
+          <h3>Data at a Glance</h3>
+          <p>Digital speed, state-of-charge, and trip info keep you in control all day.</p>
+          <span class="badge">Smart</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">🛡️</div>
+          <span class="kicker">LED + Braking</span>
+          <h3>Safety First</h3>
+          <p>High-visibility LED lighting, strong chassis geometry, and brake assist improve confidence.</p>
+          <span class="badge">Safe</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">💺</div>
+          <span class="kicker">Ergonomic Layout</span>
+          <h3>Comfort & Utility</h3>
+          <p>Cushioned seating, weather protection options, and useful storage for daily work.</p>
+          <span class="badge">Comfort</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">🤝</div>
+          <span class="kicker">Local Support</span>
+          <h3>Service & Financing</h3>
+          <p>Warranty-backed batteries, easy parts availability, and financing guidance from our team.</p>
+          <span class="badge">Support</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About TriChokro</h2>
+      <p class="section-sub mb-8">
+        Built by engineers and drivers working together. We obsess over practical details — from frame geometry to charging routines.
+      </p>
+
+      <div class="grid grid-2 about-cards mb-8">
+        <div class="card">
+          <h4>Our Mission</h4>
+          <p>
+            Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient
+            three-wheelers that raise driver income and reduce city pollution. We design for real streets,
+            real loads, and real economics.
+          </p>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg">
-            <img src="./src/assets/tirik.jpg" alt="TriChokro modern electric rickshaw in Bangladesh" />
-            <div class="hero-overlay"></div>
+        <div class="card">
+          <h4>Our Team</h4>
+          <p>
+            A small, focused group of mechanical, electronics, and operations specialists from
+            Bangladesh’s startup and manufacturing ecosystem.
+          </p>
+          <div class="team-list">
+            <span class="team-chip">Vehicle Design</span>
+            <span class="team-chip">Battery & BMS</span>
+            <span class="team-chip">Manufacturing</span>
+            <span class="team-chip">Field Support</span>
+          </div>
         </div>
+      </div>
 
-        <div class="hero-content">
-            <h1 class="hero-title">
-                The Future of
-                <span class="hero-gradient-text">Green Transport</span>
-            </h1>
-            <p class="hero-subtitle">
-                TriChokro is leading Bangladesh's electric revolution with eco-friendly, cost-effective auto rickshaws.
-                Clean energy, maximum savings, zero emissions.
-            </p>
-            <div class="hero-buttons">
-                <button class="btn btn-lg btn-white" onclick="scrollToSection('contact')">Get Your Electric Rickshaw</button>
-                <button class="btn btn-lg btn-outline" style="border-color: white; color: white;" onclick="scrollToSection('features')">Learn More</button>
-            </div>
+      <div class="card">
+        <h4 class="mb-2">Our Journey</h4>
+        <p>
+          We began in 2022 with a simple idea: the everyday three-wheeler could be lighter, safer,
+          and cheaper to operate. Early prototypes taught us what mattered most to drivers — range,
+          charging time, and comfort. In 2023 we piloted our first fleet, iterating on chassis weldments,
+          suspension tuning, and the battery-controller pairing. By 2024, those lessons became a
+          production-ready platform: angular composite panels for robustness, a smart dash for clarity,
+          and serviceable modules for roadside uptime. Today, TriChokro vehicles carry passengers across
+          cities while we continue refining every kilometer of the experience.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Get in touch</h2>
+      <p class="section-sub mb-8">Book a demo, discuss fleet needs, or request financing options.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Visit</h3>
+          <p>123 Green Avenue, Dhanmondi, Dhaka 1205</p>
+          <a class="btn mt-6" href="#">Get Directions</a>
         </div>
-
-        <div class="scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-dot"></div>
-            </div>
+        <div class="card">
+          <h3>Call</h3>
+          <p>+880 1700 123456 · 8AM–8PM</p>
+          <a class="btn mt-6" href="tel:+8801700123456">Call Now</a>
         </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="section bg-gradient-subtle">
-        <div class="container">
-            <div class="section-header">
-                <div class="badge mb-4">Why Choose Electric?</div>
-                <h2 class="section-title">
-                    Revolutionary Benefits for
-                    <span class="block text-primary">Smart Drivers</span>
-                </h2>
-                <p class="section-subtitle">
-                    Join thousands of drivers already saving money and protecting the environment
-                    with our cutting-edge electric rickshaw technology.
-                </p>
-            </div>
-
-            <!-- Force 3 columns (2 rows with 6 cards) on md and up -->
-            <div class="grid grid-cols-1 md:grid-cols-3">
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌱</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                        <h3>Eco-Friendly</h3>
-                        <span class="badge badge-outline">100% Electric</span>
-                    </div>
-                    <p class="text-muted">Zero emissions, clean energy transportation for a greener Bangladesh</p>
-                </div>
-
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💰</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                        <h3>Cost Effective</h3>
-                        <span class="badge badge-outline">70% Savings</span>
-                    </div>
-                    <p class="text-muted">Save up to 70% on fuel costs with our efficient electric technology</p>
-                </div>
-
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔋</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                        <h3>Long Range</h3>
-                        <span class="badge badge-outline">120+ KM Range</span>
-                    </div>
-                    <p class="text-muted">Advanced battery technology providing 120+ km range on single charge</p>
-                </div>
-
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                        <h3>Fast Charging</h3>
-                        <span class="badge badge-outline">4 Hour Charge</span>
-                    </div>
-                    <p class="text-muted">Quick 4-hour charging time gets you back on the road faster</p>
-                </div>
-
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛠️</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                        <h3>Low Maintenance</h3>
-                        <span class="badge badge-outline">90% Less Service</span>
-                    </div>
-                    <p class="text-muted">Electric motors require minimal maintenance compared to fuel engines</p>
-                </div>
-
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏆</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                        <h3>Government Approved</h3>
-                        <span class="badge badge-outline">Certified</span>
-                    </div>
-                    <p class="text-muted">Fully licensed and approved by Bangladesh transport authorities</p>
-                </div>
-            </div>
+        <div class="card">
+          <h3>WhatsApp</h3>
+          <p>+880 1700 123456 — quick responses and media support.</p>
+          <a class="btn mt-6" href="#">Chat on WhatsApp</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Features Section (Collapsible) -->
-    <section id="features" class="section">
-        <div class="container">
-            <div class="grid lg:grid-cols-2 gap-16" style="align-items: center;">
-                <!-- Left: Heading + Accordion -->
-                <div>
-                    <h2 class="section-title text-left mb-6">
-                        Engineered for Excellence
-                    </h2>
-                    <p class="section-subtitle text-left mb-8">
-                        Every TriChokro electric rickshaw is built with premium components and
-                        cutting-edge technology to deliver superior performance, comfort, and reliability.
-                    </p>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="brand">⚡ TriChokro</div>
+      <div class="mt-2">© 2025 TriChokro. All rights reserved.</div>
+    </div>
+  </footer>
 
-                    <div class="accordion" id="features-accordion">
-                        <!-- Battery -->
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" id="acc-battery" aria-controls="panel-battery" aria-expanded="false">
-                                    <span>Advanced Battery Technology</span>
-                                    <span class="accordion-icon" aria-hidden="true"></span>
-                                </button>
-                            </h3>
-                            <div id="panel-battery" class="accordion-panel" role="region" aria-labelledby="acc-battery">
-                                <p class="text-muted mb-4">Lithium-ion batteries with intelligent power management system.</p>
-                                <div>
-                                    <span class="spec-tag">120+ km range</span>
-                                    <span class="spec-tag">4-hour fast charging</span>
-                                    <span class="spec-tag">5-year warranty</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dashboard -->
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" id="acc-dashboard" aria-controls="panel-dashboard" aria-expanded="false">
-                                    <span>Smart Dashboard</span>
-                                    <span class="accordion-icon" aria-hidden="true"></span>
-                                </button>
-                            </h3>
-                            <div id="panel-dashboard" class="accordion-panel" role="region" aria-labelledby="acc-dashboard">
-                                <p class="text-muted mb-4">Digital display showing speed, battery level, and trip information.</p>
-                                <div>
-                                    <span class="spec-tag">Digital speedometer</span>
-                                    <span class="spec-tag">Battery indicator</span>
-                                    <span class="spec-tag">Trip meter</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Safety -->
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" id="acc-safety" aria-controls="panel-safety" aria-expanded="false">
-                                    <span>Safety Features</span>
-                                    <span class="accordion-icon" aria-hidden="true"></span>
-                                </button>
-                            </h3>
-                            <div id="panel-safety" class="accordion-panel" role="region" aria-labelledby="acc-safety">
-                                <p class="text-muted mb-4">Built-in safety systems for driver and passenger protection.</p>
-                                <div>
-                                    <span class="spec-tag">LED headlights</span>
-                                    <span class="spec-tag">Brake assist</span>
-                                    <span class="spec-tag">Safety indicators</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Comfort -->
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" id="acc-comfort" aria-controls="panel-comfort" aria-expanded="false">
-                                    <span>Comfort Design</span>
-                                    <span class="accordion-icon" aria-hidden="true"></span>
-                                </button>
-                            </h3>
-                            <div id="panel-comfort" class="accordion-panel" role="region" aria-labelledby="acc-comfort">
-                                <p class="text-muted mb-4">Ergonomic seating and weather protection for all conditions.</p>
-                                <div>
-                                    <span class="spec-tag">Cushioned seats</span>
-                                    <span class="spec-tag">Weather cover</span>
-                                    <span class="spec-tag">Storage space</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 2rem;">
-                        <button class="btn btn-lg btn-primary" onclick="scrollToSection('contact')">View Specifications</button>
-                    </div>
-                </div>
-
-                <!-- Right: Image + Stats -->
-                <!-- <div class="relative">
-                    <div class="relative overflow-hidden rounded-lg">
-                        <img src="./src/assets/fleet-rickshaws.jpg" alt="TriChokro electric rickshaw fleet showcasing modern design" class="responsive-img" />
-                        <div style="position: absolute; inset: 0; background: var(--gradient-electric); opacity: 0.2;"></div>
-                    </div>
-
-                    <div class="stats-card" style="position: absolute; bottom: -1.5rem; left: -1.5rem;">
-                        <div class="stats-number">500+</div>
-                        <div class="stats-label">Happy Drivers</div>
-                    </div>
-
-                    <div class="stats-card" style="position: absolute; top: -1.5rem; right: -1.5rem;">
-                        <div class="stats-number">2+</div>
-                        <div class="stats-label">Years Experience</div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section bg-gradient-subtle">
-        <div class="container">
-            <div class="section-header">
-                <div class="badge mb-4">Our Story</div>
-                <h2 class="section-title">
-                    Driving Bangladesh's
-                    <span class="block text-primary">Electric Future</span>
-                </h2>
-                <p class="section-subtitle">
-                    TriChokro is pioneering the electric vehicle revolution in Bangladesh. Founded by local entrepreneurs
-                    with a passion for sustainable transport, we're committed to providing affordable, reliable,
-                    and environmentally friendly transportation solutions.
-                </p>
-            </div>
-
-            <!-- Mission & Vision -->
-            <div class="grid md:grid-cols-2 mb-16">
-                <div class="card text-center">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
-                    <h3 class="mb-4">Our Mission</h3>
-                    <p class="text-muted">
-                        To revolutionize urban transportation in Bangladesh by making electric vehicles
-                        accessible, affordable, and reliable for every driver and passenger.
-                    </p>
-                </div>
-
-                <div class="card text-center">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔮</div>
-                    <h3 class="mb-4">Our Vision</h3>
-                    <p class="text-muted">
-                        A cleaner, greener Bangladesh where electric vehicles are the standard,
-                        contributing to better air quality and economic prosperity for all.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline -->
-            <div style="max-width: 48rem; margin: 0 auto;">
-                <h3 class="text-center mb-12" style="font-size: 2rem; font-weight: 700;">Our Journey</h3>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2022</div>
-                    <div class="timeline-content">
-                        <h4>Company Founded</h4>
-                        <p class="text-muted">Started with a vision for green transportation</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2023</div>
-                    <div class="timeline-content">
-                        <h4>First Fleet Launch</h4>
-                        <p class="text-muted">Introduced 100 electric rickshaws in Dhaka</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2024</div>
-                    <div class="timeline-content">
-                        <h4>Expansion</h4>
-                        <p class="text-muted">Growing across Bangladesh with 500+ vehicles</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="section-header">
-                <div class="badge mb-4">Get Started Today</div>
-                <h2 class="section-title">
-                    Ready to Go
-                    <span class="block text-primary">Electric?</span>
-                </h2>
-                <p class="section-subtitle">
-                    Join the electric revolution today. Contact us for test drives, financing options,
-                    and exclusive launch offers. Our team is ready to help you make the switch.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 mb-12">
-                <div class="card text-center">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📍</div>
-                    <h3 class="mb-4">Visit Our Showroom</h3>
-                    <div class="space-y-2 mb-6">
-                        <p class="text-muted">123 Green Avenue</p>
-                        <p class="text-muted">Dhanmondi, Dhaka 1205</p>
-                        <p class="text-muted">Bangladesh</p>
-                    </div>
-                    <button class="btn btn-outline w-full">Get Directions</button>
-                </div>
-
-                <div class="card text-center">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📞</div>
-                    <h3 class="mb-4">Call Us Today</h3>
-                    <div class="space-y-2 mb-6">
-                        <p class="text-muted">+880 1700 123456</p>
-                        <p class="text-muted">+880 2 9876543</p>
-                        <p class="text-muted">Available 8AM - 8PM</p>
-                    </div>
-                    <button class="btn btn-outline w-full">Call Now</button>
-                </div>
-
-                <div class="card text-center">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
-                    <h3 class="mb-4">WhatsApp Support</h3>
-                    <div class="space-y-2 mb-6">
-                        <p class="text-muted">+880 1700 123456</p>
-                        <p class="text-muted">Quick responses</p>
-                        <p class="text-muted">Send photos & questions</p>
-                    </div>
-                    <button class="btn btn-outline w-full">Chat on WhatsApp</button>
-                </div>
-            </div>
-
-            <!-- CTA Section
-            <div class="cta-section">
-                <div style="position: relative; z-index: 10;">
-                    <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem;">
-                        Special Launch Offer - Save ৳50,000!
-                    </h3>
-                    <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; max-width: 32rem; margin-left: auto; margin-right: auto;">
-                        Limited time offer for the first 100 customers. Includes free installation,
-                        warranty, and 6 months free maintenance.
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-lg btn-white">Book Test Drive</button>
-                        <button class="btn btn-lg btn-outline" style="border-color: white; color: white;">Download Brochure</button>
-                    </div>
-                </div>
-
-                <div class="cta-decoration cta-decoration-1"></div>
-                <div class="cta-decoration cta-decoration-2"></div>
-            </div> -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">⚡ TriChokro</div>
-            <p class="footer-text">
-                © 2024 TriChokro. All rights reserved. | Leading the electric revolution.
-            </p>
-        </div>
-    </footer>
-
-    <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
