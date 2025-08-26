@@ -6,12 +6,24 @@
   <title>TriChokro — Electric Rickshaw Revolution</title>
   <meta name="description" content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort.">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="src/assets/Tri-chokro-removebg-preview.png">
+  <style>
+    .logo img {
+      background: transparent !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      /* Remove any default background */
+    }
+  </style>
 </head>
 <body>
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container inner">
-      <div class="logo"><span class="dot"></span>TriChokro</div>
+      <div class="logo" style="display: flex; align-items: center; background: transparent;">
+        <img src="src/assets/Tri-chokro-removebg-preview.png" alt="TriChokro Logo" style="height: 40px; width: auto; margin-right: 10px; background: transparent;">
+        TriChokro
+      </div>
       <nav class="nav-links">
         <button class="nav-link" onclick="scrollToSection('home')" data-lang="nav_home">Home</button>
         <button class="nav-link" onclick="scrollToSection('highlights')" data-lang="nav_highlights">Highlights</button>
@@ -236,10 +248,9 @@
           <a class="btn mt-6" href="tel:+8801700123456" data-lang="call_button">Call Now</a>
         </div>
         <div class="card">
-.
-          <h3 data-lang="whatsapp_title">WhatsApp</h3>
-          <p data-lang="whatsapp_text">+880 1700 123456 — quick responses and media support.</p>
-          <a class="btn mt-6" href="#" data-lang="whatsapp_button">Chat on WhatsApp</a>
+          <h3 data-lang="whatsapp_title">Email</h3>
+          <p data-lang="whatsapp_text">trichokro.bd@gmail.com</p>
+          <a class="btn mt-6" href="mailto:trichokro.bd@gmail.com" data-lang="whatsapp_button">Send Email</a>
         </div>
       </div>
     </div>
