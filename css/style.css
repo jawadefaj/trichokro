@@ -48,9 +48,21 @@ html[lang="bn"] body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   z-index: 40;
+  transition: background .25s ease, box-shadow .25s ease; /* Add transition for smooth change */
+}
+.navbar.scrolled {
+  background: rgba(15, 23, 42, .75);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
 }
 .navbar .inner{ height:100%; display:flex; align-items:center; justify-content:space-between; }
-.logo{ font-weight:800; letter-spacing:.2px; color:var(--text); display:flex; align-items:center; gap:.5rem; }
+.logo{ font-weight:800; letter-spacing:.2px; color:var(--text); display:flex; align-items:center; gap:.5rem; background: transparent; }
+.logo img {
+  height: 40px;
+  width: auto;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
 .logo .dot{ width:10px; height:10px; border-radius:50%; background: var(--primary); box-shadow: 0 0 12px var(--primary); }
 .nav-links{ display:none; gap: 1.25rem; }
 @media (min-width: 768px){ .nav-links{ display:flex; } }
@@ -81,7 +93,7 @@ html[lang="bn"] body {
 }
 
 
-.cta{ background: linear-gradient(90deg, var(--primary), var(--primary-2)); color:#0b0f16; font-weight:700; border:none; padding:.6rem 1rem; border-radius:9999px; cursor:pointer; transition: var(--transition); box-shadow: var(--glow); }
+.cta{ position: relative; overflow: hidden; background: linear-gradient(90deg, var(--primary), var(--primary-2)); color:#0b0f16; font-weight:700; border:none; padding:.6rem 1rem; border-radius:9999px; cursor:pointer; transition: var(--transition); box-shadow: var(--glow); }
 .cta:hover{ transform: translateY(-2px); }
 
 /* Hero */
@@ -256,3 +268,20 @@ html[lang="bn"] body {
 .mt-2{ margin-top:.5rem; } .mt-4{ margin-top:1rem; } .mt-6{ margin-top:1.5rem; } .mt-8{ margin-top:2rem; }
 .mb-2{ margin-bottom:.5rem; } .mb-4{ margin-bottom:1rem; } .mb-6{ margin-bottom:1.5rem; } .mb-8{ margin-bottom:2rem; } .mb-12{ margin-bottom:3rem; }
 .w-full{ width:100%; }
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .35);
+  transform: scale(0);
+  pointer-events: none;
+  animation: tri-ripple .6s linear;
+}
+
+@keyframes tri-ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
