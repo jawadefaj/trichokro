@@ -78,5 +78,19 @@
   "whatsapp_text": "trichokro.bd@gmail.com",
   "whatsapp_button": "Send Email",
   "footer_brand": "TriChokro",
-  "footer_copyright": "© 2025 TriChokro. All rights reserved."
+  "footer_copyright": "© 2025 TriChokro. All rights reserved.",
+  "nav_comparison": "Comparison",
+  "comparison_title": "Comparison with Alternatives",
+  "comparison_spec": "Specification",
+  "comparison_pedal": "Pedal Rickshaw",
+  "comparison_auto": "Auto Rickshaw",
+  "comparison_cng": "CNG",
+  "comparison_trichokro": "TriChokro",
+  "spec_suspension": "Suspension",
+  "spec_carbon": "Carbon Emission",
+  "spec_brake": "Brake",
+  "spec_cost": "Cost",
+  "spec_seat": "Seat Capacity",
+  "spec_comfort": "Comfort and Suspension",
+  "spec_safety": "Safety"
 }

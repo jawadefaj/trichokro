@@ -78,5 +78,19 @@
   "whatsapp_text": "+৮৮০ ১৭০০ ১২৩৪৫৬ — দ্রুত প্রতিক্রিয়া এবং মিডিয়া সমর্থন।",
   "whatsapp_button": "হোয়াটসঅ্যাপে চ্যাট করুন",
   "footer_brand": "⚡ ত্রিচক্র",
-  "footer_copyright": "© ২০২৫ ত্রিচক্র। সর্বস্বত্ব সংরক্ষিত।"
+  "footer_copyright": "© ২০২৫ ত্রিচক্র। সর্বস্বত্ব সংরক্ষিত।",
+  "nav_comparison": "তুলনা",
+  "comparison_title": "বিকল্পগুলির সাথে তুলনা",
+  "comparison_spec": "স্পেসিফিকেশন",
+  "comparison_pedal": "পেডেল রিকশা",
+  "comparison_auto": "অটো রিকশা",
+  "comparison_cng": "সিএনজি",
+  "comparison_trichokro": "ত্রিচক্র",
+  "spec_suspension": "সাসপেনশন",
+  "spec_carbon": "কার্বন নির্গমন",
+  "spec_brake": "ব্রেক",
+  "spec_cost": "খরচ",
+  "spec_seat": "আসন ক্ষমতা",
+  "spec_comfort": "আরাম ও সাসপেনশন",
+  "spec_safety": "নিরাপত্তা"
 }
