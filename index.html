@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TriChokro — Trambulance & Electric Rickshaw Revolution</title>
-  <meta name="description" content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
+  <title>TriChokro — Trambulance: Electric Three-Wheeled Ambulance</title>
+  <meta name="description"
+    content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
+  <meta name="keywords"
+    content="electric rickshaw, three-wheeler, Bangladesh, Trambulance, electric ambulance, clean energy, low cost, sustainable transport">
+  <meta name="author" content="TriChokro">
+  <meta property="og:title" content="TriChokro — Trambulance: Electric Three-Wheeled Ambulance">
+  <meta property="og:description"
+    content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
+  <meta property="og:image" content="src/assets/trambulance.png">
+  <meta property="og:url" content="https://trichokro.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TriChokro — Trambulance: Electric Three-Wheeled Ambulance">
+  <meta name="twitter:description"
+    content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
+  <meta name="twitter:image" content="src/assets/trambulance.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TriChokro",
+    "url": "https://trichokro.com",
+    "logo": "src/assets/logo_icon.png",
+    "description": "TriChokro designs modern electric three-wheelers in Bangladesh, focusing on clean energy and low running costs.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+880-1700-123456",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://www.facebook.com/trichokro",
+      "https://www.linkedin.com/company/trichokro"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Trambulance",
+    "description": "An electric three-wheeled ambulance designed for rapid response in Bangladesh's urban and rural areas.",
+    "image": "src/assets/trambulance.png",
+    "brand": {
+      "@type": "Brand",
+      "name": "TriChokro"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "BDT",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="src/assets/logo_icon.png">
 </head>
+
 <body>
   <!-- NAVBAR -->
   <header class="navbar">
@@ -20,7 +74,8 @@
         <button class="nav-link" onclick="scrollToSection('home')" data-lang="nav_home">Home</button>
         <button class="nav-link" onclick="scrollToSection('highlights')" data-lang="nav_highlights">Highlights</button>
         <button class="nav-link" onclick="scrollToSection('about')" data-lang="nav_about">About</button>
-        <button class="nav-link" onclick="scrollToSection('trambulance')" data-lang="nav_trambulance">Trambulance</button>
+        <button class="nav-link" onclick="scrollToSection('trambulance')"
+          data-lang="nav_trambulance">Trambulance</button>
         <button class="nav-link" onclick="scrollToSection('contact')" data-lang="nav_contact">Contact</button>
       </nav>
       <div class="nav-actions">
@@ -36,26 +91,61 @@
   <!-- HERO -->
   <section id="home" class="hero">
     <div class="container hero-inner">
-      <h1 data-lang="hero_title">Angular. Efficient. <span class="gradient">All-Electric.</span></h1>
+      <h1 data-lang="hero_title">Trambulance: <span class="gradient">Electric Ambulance Revolution</span></h1>
       <p class="mt-2" data-lang="hero_subtitle">
-        A lightweight three-wheeler built for Bangladesh — engineered frames, smart electrics, and
-        ultra-low running costs. Drive further, charge faster, and earn more with TriChokro.<br>
-        <span class="highlight-announce"><strong>New: Trambulance — a three-wheeled electric ambulance for urgent care needs.</strong></span>
+        The newest addition to TriChokro's fleet — a fully electric three-wheeled ambulance designed for rapid response
+        in Bangladesh's urban and rural areas. Zero emissions, low cost, and medical-grade comfort.<br>
+        <span class="highlight-announce"><strong>Compact, maneuverable, and ready for urgent care.</strong></span>
       </p>
       <div class="hero-actions">
-        <a class="btn primary" onclick="scrollToSection('highlights')" data-lang="explore_highlights">Explore Highlights</a>
-        <a class="btn outline" onclick="scrollToSection('trambulance')" data-lang="explore_trambulance">See Trambulance</a>
+        <a class="btn primary" onclick="scrollToSection('trambulance')" data-lang="explore_trambulance">Explore
+          Trambulance</a>
+        <a class="btn outline" onclick="scrollToSection('highlights')" data-lang="explore_highlights">See Highlights</a>
         <a class="btn outline" onclick="scrollToSection('contact')" data-lang="book_demo">Book a Demo</a>
       </div>
     </div>
   </section>
+
+  <!-- TRAMBULANCE SECTION -->
+  <section id="trambulance" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang="trambulance_title">Trambulance — Three-Wheeled Ambulance</h2>
+      <div class="flex trambulance-features">
+        <ul class="feature-list">
+          <p class="section-sub mb-8 subtitle" data-lang="trambulance_subtitle">
+            TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of
+            Bangladesh.
+            Its compact size, maneuverability, and low running cost make it ideal for rapid response in busy city
+            streets or
+            rural roads.
+          </p>
+          <li data-lang="trambulance_feat1"><strong>All-Electric Powertrain:</strong> Zero emissions and quiet
+            operation.</li>
+          <li data-lang="trambulance_feat2"><strong>Medical-Grade Interior:</strong> Equipped for patient safety and
+            comfort.</li>
+          <li data-lang="trambulance_feat3"><strong>Stretcher Space:</strong> Designed to carry one patient and one
+            attendant.</li>
+          <li data-lang="trambulance_feat4"><strong>Easy Access:</strong> Wide doors for quick loading and unloading.
+          </li>
+          <li data-lang="trambulance_feat5"><strong>Urban & Rural Ready:</strong> Compact build to navigate traffic
+            and narrow lanes.</li>
+          <li data-lang="trambulance_feat6"><strong>Low Operating Cost:</strong> Minimal charging and maintenance
+            expenses.</li>
+        </ul>
+        <img src="src/assets/trambulance.png" alt="Trambulance - Three-wheeled Ambulance"
+          style="max-width:500px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.10);display:block;margin:0 auto;">
+      </div>
+    </div>
+  </section>
+  <!-- /TRAMBULANCE SECTION -->
 
   <!-- HIGHLIGHTS (Benefits + Features combined, 9 cards) -->
   <section id="highlights" class="section">
     <div class="container">
       <h2 class="section-title" data-lang="highlights_title">Highlights that matter</h2>
       <p class="section-sub mb-8 subtitle" data-lang="highlights_subtitle">
-        We combined real-world driver benefits with the product features behind them — nine essentials in a clean 3×3 grid.
+        We combined real-world driver benefits with the product features behind them — nine essentials in a clean 3×3
+        grid.
       </p>
 
       <div class="grid grid-3 highlight-list">
@@ -63,7 +153,8 @@
           <div class="icon">🌱</div>
           <span class="kicker" data-lang="zero_emissions_kicker">Zero Emissions</span>
           <h3 data-lang="zero_emissions_title">Clean & Quiet</h3>
-          <p data-lang="zero_emissions_text">Battery-electric drivetrain produces no tailpipe emissions and keeps neighborhoods quieter.</p>
+          <p data-lang="zero_emissions_text">Battery-electric drivetrain produces no tailpipe emissions and keeps
+            neighborhoods quieter.</p>
           <span class="badge" data-lang="zero_emissions_badge">Eco</span>
         </article>
 
@@ -71,7 +162,8 @@
           <div class="icon">💰</div>
           <span class="kicker" data-lang="savings_kicker">Up to 70% Savings</span>
           <h3 data-lang="savings_title">Lower Running Cost</h3>
-          <p data-lang="savings_text">Electricity beats fuel. Fewer moving parts means less service and more time on the road.</p>
+          <p data-lang="savings_text">Electricity beats fuel. Fewer moving parts means less service and more time on the
+            road.</p>
           <span class="badge" data-lang="savings_badge">Taka</span>
         </article>
 
@@ -95,7 +187,8 @@
           <div class="icon">🛠️</div>
           <span class="kicker" data-lang="maintenance_kicker">Fewer moving parts</span>
           <h3 data-lang="maintenance_title">Low Maintenance</h3>
-          <p data-lang="maintenance_text">Brushless motor + sealed components = predictable service and lower lifetime cost.</p>
+          <p data-lang="maintenance_text">Brushless motor + sealed components = predictable service and lower lifetime
+            cost.</p>
           <span class="badge" data-lang="maintenance_badge">Service</span>
         </article>
 
@@ -111,7 +204,8 @@
           <div class="icon">🛡️</div>
           <span class="kicker" data-lang="safety_kicker">LED + Braking</span>
           <h3 data-lang="safety_title">Safety First</h3>
-          <p data-lang="safety_text">High-visibility LED lighting, strong chassis geometry, and brake assist improve confidence.</p>
+          <p data-lang="safety_text">High-visibility LED lighting, strong chassis geometry, and brake assist improve
+            confidence.</p>
           <span class="badge" data-lang="safety_badge">Safe</span>
         </article>
 
@@ -119,7 +213,8 @@
           <div class="icon">💺</div>
           <span class="kicker" data-lang="comfort_kicker">Ergonomic Layout</span>
           <h3 data-lang="comfort_title">Comfort & Utility</h3>
-          <p data-lang="comfort_text">Cushioned seating, weather protection options, and useful storage for daily work.</p>
+          <p data-lang="comfort_text">Cushioned seating, weather protection options, and useful storage for daily work.
+          </p>
           <span class="badge" data-lang="comfort_badge">Comfort</span>
         </article>
 
@@ -127,49 +222,21 @@
           <div class="icon">🤝</div>
           <span class="kicker" data-lang="support_kicker">Local Support</span>
           <h3 data-lang="support_title">Service & Financing</h3>
-          <p data-lang="support_text">Warranty-backed batteries, easy parts availability, and financing guidance from our team.</p>
+          <p data-lang="support_text">Warranty-backed batteries, easy parts availability, and financing guidance from
+            our team.</p>
           <span class="badge" data-lang="support_badge">Support</span>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- TRAMBULANCE SECTION -->
-  <section id="trambulance" class="section">
-    <div class="container">
-      <h2 class="section-title" data-lang="trambulance_title">Trambulance — Three-Wheeled Ambulance</h2>
-      <p class="section-sub mb-8 subtitle" data-lang="trambulance_subtitle">
-        TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of Bangladesh. Its compact size, maneuverability, and low running cost make it ideal for rapid response in busy city streets or rural roads.
-      </p>
-      <div class="grid grid-2 trambulance-features">
-        <div>
-          <ul class="feature-list">
-            <li data-lang="trambulance_feat1"><strong>All-Electric Powertrain:</strong> Zero emissions and quiet operation.</li>
-            <li data-lang="trambulance_feat2"><strong>Medical-Grade Interior:</strong> Equipped for patient safety and comfort.</li>
-            <li data-lang="trambulance_feat3"><strong>Stretcher Space:</strong> Designed to carry one patient and one attendant.</li>
-            <li data-lang="trambulance_feat4"><strong>Easy Access:</strong> Wide doors for quick loading and unloading.</li>
-            <li data-lang="trambulance_feat5"><strong>Urban & Rural Ready:</strong> Compact build to navigate traffic and narrow lanes.</li>
-            <li data-lang="trambulance_feat6"><strong>Low Operating Cost:</strong> Minimal charging and maintenance expenses.</li>
-          </ul>
-        </div>
-        <div class="trambulance-img-holder" style="display: flex; align-items: center; justify-content: center;">
-          <img src="src/assets/trambulance.png" alt="Trambulance - Three-wheeled Ambulance" style="max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.10);">
-        </div>
-      </div>
-      <p class="mt-8 trambulance-cta" data-lang="trambulance_cta">
-        Interested in deploying Trambulance for your clinic or organization?
-        <a class="link" href="#" onclick="scrollToSection('contact')">Contact us</a> to learn more or book a demo.
-      </p>
-    </div>
-  </section>
-  <!-- /TRAMBULANCE SECTION -->
-
   <!-- ABOUT -->
   <section id="about" class="section">
     <div class="container">
       <h2 class="section-title" data-lang="about_title">About TriChokro</h2>
       <p class="section-sub mb-8 subtitle" data-lang="about_subtitle">
-        Built by engineers and drivers working together. We obsess over practical details — from frame geometry to charging routines.
+        Built by engineers and drivers working together. We obsess over practical details — from frame geometry to
+        charging routines.
       </p>
 
       <div class="about-accordion">
@@ -260,7 +327,8 @@
   <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title" data-lang="contact_title">Get in touch</h2>
-      <p class="section-sub mb-8 subtitle" data-lang="contact_subtitle">Book a demo, discuss fleet needs, or request financing options.</p>
+      <p class="section-sub mb-8 subtitle" data-lang="contact_subtitle">Book a demo, discuss fleet needs, or request
+        financing options.</p>
       <div class="grid grid-3">
         <div class="card">
           <h3 data-lang="visit_title">Visit</h3>
@@ -291,4 +359,5 @@
 
   <script src="js/script.js"></script>
 </body>
+
 </html>
