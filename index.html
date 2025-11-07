@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TriChokro — Electric Rickshaw Revolution</title>
-  <meta name="description" content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort.">
+  <title>TriChokro-Trambulance — Electric Rickshaw Revolution</title>
+  <meta name="description" content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="src/assets/logo_icon.png">
 </head>
@@ -20,6 +20,7 @@
         <button class="nav-link" onclick="scrollToSection('home')" data-lang="nav_home">Home</button>
         <button class="nav-link" onclick="scrollToSection('highlights')" data-lang="nav_highlights">Highlights</button>
         <button class="nav-link" onclick="scrollToSection('about')" data-lang="nav_about">About</button>
+        <button class="nav-link" onclick="scrollToSection('trambulance')" data-lang="nav_trambulance">Trambulance</button>
         <button class="nav-link" onclick="scrollToSection('contact')" data-lang="nav_contact">Contact</button>
       </nav>
       <div class="nav-actions">
@@ -38,10 +39,12 @@
       <h1 data-lang="hero_title">Angular. Efficient. <span class="gradient">All-Electric.</span></h1>
       <p class="mt-2" data-lang="hero_subtitle">
         A lightweight three-wheeler built for Bangladesh — engineered frames, smart electrics, and
-        ultra-low running costs. Drive further, charge faster, and earn more with TriChokro.
+        ultra-low running costs. Drive further, charge faster, and earn more with TriChokro.<br>
+        <strong>New: Trambulance — a three-wheeled electric ambulance for urgent care needs.</strong>
       </p>
       <div class="hero-actions">
         <a class="btn primary" onclick="scrollToSection('highlights')" data-lang="explore_highlights">Explore Highlights</a>
+        <a class="btn outline" onclick="scrollToSection('trambulance')" data-lang="explore_trambulance">See Trambulance</a>
         <a class="btn outline" onclick="scrollToSection('contact')" data-lang="book_demo">Book a Demo</a>
       </div>
     </div>
@@ -130,6 +133,36 @@
       </div>
     </div>
   </section>
+
+  <!-- TRAMBULANCE SECTION -->
+  <section id="trambulance" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang="trambulance_title">Trambulance — Three-Wheeled Ambulance</h2>
+      <p class="section-sub mb-8" data-lang="trambulance_subtitle">
+        TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of Bangladesh. Its compact size, maneuverability, and low running cost make it ideal for rapid response in busy city streets or rural roads.<br><br>
+        <strong>Key Features:</strong>
+      </p>
+      <div class="grid grid-2 trambulance-features">
+        <div>
+          <ul>
+            <li data-lang="trambulance_feat1"><b>All-Electric Powertrain:</b> Zero emissions and quiet operation.</li>
+            <li data-lang="trambulance_feat2"><b>Medical-Grade Interior:</b> Equipped for patient safety and comfort.</li>
+            <li data-lang="trambulance_feat3"><b>Stretcher Space:</b> Designed to carry one patient and one attendant.</li>
+            <li data-lang="trambulance_feat4"><b>Easy Access:</b> Wide doors for quick loading and unloading.</li>
+            <li data-lang="trambulance_feat5"><b>Urban & Rural Ready:</b> Compact build to navigate traffic and narrow lanes.</li>
+            <li data-lang="trambulance_feat6"><b>Low Operating Cost:</b> Minimal charging and maintenance expenses.</li>
+          </ul>
+        </div>
+        <div>
+          <img src="src/assets/trambulance.png" alt="Trambulance - Three-wheeled Ambulance" style="max-width:100%;border-radius:10px;">
+        </div>
+      </div>
+      <p class="mt-8" data-lang="trambulance_cta">
+        Interested in deploying Trambulance for your clinic or organization? <a href="#" onclick="scrollToSection('contact')">Contact us</a> to learn more or book a demo.
+      </p>
+    </div>
+  </section>
+  <!-- /TRAMBULANCE SECTION -->
 
   <!-- ABOUT -->
   <section id="about" class="section">
