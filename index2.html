@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trichokro -3 | Electric Vehicle</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        /* Custom Glowing Text Effect for Hero Title */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.5), 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Hero Background */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1626885616335-5207c4270d47?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Card Hover Effects */
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Search -->
+                <div class="flex items-center flex-1">
+                    <a href="#" class="flex-shrink-0 flex items-center gap-2">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="font-bold text-2xl brand-font tracking-tight text-gray-900">TriChokro</span>
+                    </a>
+                    
+                    <!-- Search Bar (Hidden on mobile) -->
+                    <div class="hidden md:flex ml-10 relative w-64">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <i class="fa-solid fa-search"></i>
+                        </span>
+                        <input type="text" class="w-full py-2 pl-10 pr-4 bg-gray-100 border-none rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Search models...">
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-green-600 font-semibold px-3 py-2 rounded-md bg-green-50">Home</a>
+                    <a href="#products" class="text-gray-600 hover:text-green-600 font-medium transition">Products</a>
+                    <a href="#features" class="text-gray-600 hover:text-green-600 font-medium transition">Features</a>
+                    <a href="#about" class="text-gray-600 hover:text-green-600 font-medium transition">About Us</a>
+                </div>
+
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4 ml-6">
+                    <button class="text-gray-600 hover:text-green-600 font-medium">Sign up</button>
+                    <button class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-full font-medium transition shadow-lg shadow-green-500/30">Log In</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-green-600 bg-green-50">Home</a>
+                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50">Products</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50">Features</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50">About Us</a>
+                <div class="mt-4 flex flex-col space-y-2 px-3">
+                    <button class="w-full text-center py-2 border border-green-500 text-green-600 rounded-lg">Sign up</button>
+                    <button class="w-full text-center py-2 bg-green-500 text-white rounded-lg">Log In</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-[85vh] w-full flex items-center hero-bg overflow-hidden">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl">
+                <!-- Product Title with Green Glow -->
+                <h1 class="text-6xl md:text-8xl font-bold text-white mb-4 glow-text tracking-wide">
+                    Trichokro <span class="text-green-400">-3</span>
+                </h1>
+                
+                <p class="text-xl md:text-3xl text-gray-200 mb-8 font-light tracking-wide">
+                    Ensure your safety
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="bg-green-500 hover:bg-green-600 text-white text-lg font-semibold px-8 py-3 rounded-full transition transform hover:scale-105 shadow-lg shadow-green-500/40">
+                        Buy Product
+                    </button>
+                    <button class="bg-transparent hover:bg-white/10 text-white border-2 border-white text-lg font-semibold px-8 py-3 rounded-full transition backdrop-blur-sm">
+                        Learn More
+                    </button>
+                </div>
+
+                <!-- Carousel Dots Mockup -->
+                <div class="mt-12 flex space-x-2">
+                    <span class="w-3 h-3 bg-green-500 rounded-full cursor-pointer"></span>
+                    <span class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-white"></span>
+                    <span class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-white"></span>
+                    <span class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer hover:bg-white"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Floating Element -->
+        <div class="absolute bottom-10 right-10 hidden lg:block">
+            <div class="bg-black/60 backdrop-blur-md p-6 rounded-2xl border border-gray-600 max-w-xs text-white">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fa-solid fa-leaf text-green-400 text-xl"></i>
+                    <h4 class="font-bold">Eco Friendly</h4>
+                </div>
+                <p class="text-sm text-gray-300">100% Electric drivetrain designed for the future of Bangladesh.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Trichokro?</h2>
+                <div class="w-24 h-1 bg-green-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Zero Emissions</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Clean & Quiet</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Battery-electric drivetrain produces no tailpipe emissions and keeps neighborhoods quieter.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-battery-full"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Longer Battery Life</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Work a Full Day</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Bangladesh's one of the best lead acid battery pack deliver longer km range than any other manufacturer.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Cost Efficient</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Lower Running Cost</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Electricity beats fuel. Fewer moving parts means less friction loss and more time on the road with less penny.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Best Braking System</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Uses Hydraulic Disk</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Hand Brake, Foot Brake and Brake Control on Handle - This triple setup gives driver full control over the vehicle.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Best Suspension</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">High Comfort Arch</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        MacPherson suspension and the combination of coil and leaf springs provide proper structural integrity and passenger comfort.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Retractable Hood</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Aerodynamic Design</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Passengers enjoy open roof and closed roof within seconds through retractable hood system which lowers air drag.
+                    </p>
+                </div>
+
+                <!-- Feature 7 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-regular fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">LED + Braking</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Safety First</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        High-visibility LED lighting, strong chassis geometry, and brake assist improve confidence.
+                    </p>
+                </div>
+
+                <!-- Feature 8 -->
+                <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ergonomic Layout</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Comfort & Utility</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Cushioned seating, weather protection options, and useful storage for daily work.
+                    </p>
+                </div>
+
+                 <!-- Feature 9 -->
+                 <div class="feature-card p-8 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Local Support</h3>
+                    <h4 class="text-sm font-semibold text-green-600 mb-3 uppercase tracking-wider">Service & Financing</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Warranty-backed batteries, easy parts availability, and financing guidance from our team.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold mb-2">Explore all vehicles</h2>
+                    <p class="text-gray-400">Find the perfect electric vehicle for your needs.</p>
+                </div>
+                <a href="#" class="text-green-400 hover:text-green-300 font-semibold mt-4 md:mt-0 flex items-center gap-2">
+                    View Full Catalog <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-green-500/20 transition duration-300">
+                    <div class="h-48 bg-gray-700 relative overflow-hidden group">
+                        <!-- Placeholder for Vehicle Image -->
+                        <img src="https://images.unsplash.com/photo-1596732386121-50e556447814?q=80&w=2070&auto=format&fit=crop" alt="Trichokro-1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">New</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4">Trichokro-1</h3>
+                        <div class="flex justify-between items-center mb-6 text-sm text-gray-300">
+                            <div class="flex flex-col">
+                                <span class="text-gray-500 uppercase text-xs">Starts From</span>
+                                <span class="font-bold text-white text-lg">1.5 Lakh</span>
+                            </div>
+                            <div class="h-8 w-px bg-gray-600"></div>
+                            <div class="flex flex-col text-right">
+                                <span class="text-gray-500 uppercase text-xs">Mileage</span>
+                                <span class="font-bold text-white text-lg">80 km</span>
+                            </div>
+                        </div>
+                        <button class="w-full py-3 border border-green-500 text-green-400 font-semibold rounded-lg hover:bg-green-500 hover:text-white transition">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-gray-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-green-500/20 transition duration-300">
+                    <div class="h-48 bg-gray-700 relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1519669018440-276c2438c823?q=80&w=2047&auto=format&fit=crop" alt="Trumbulance" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4">Trumbulance</h3>
+                        <div class="flex justify-between items-center mb-6 text-sm text-gray-300">
+                            <div class="flex flex-col">
+                                <span class="text-gray-500 uppercase text-xs">Service</span>
+                                <span class="font-bold text-white text-lg">Medical</span>
+                            </div>
+                            <div class="h-8 w-px bg-gray-600"></div>
+                            <div class="flex flex-col text-right">
+                                <span class="text-gray-500 uppercase text-xs">Availability</span>
+                                <span class="font-bold text-white text-lg">24/7</span>
+                            </div>
+                        </div>
+                        <button class="w-full py-3 border border-green-500 text-green-400 font-semibold rounded-lg hover:bg-green-500 hover:text-white transition">View Details</button>
+                    </div>
+                </div>
+                
+                 <!-- Card 3 -->
+                 <div class="bg-gray-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-green-500/20 transition duration-300 border-2 border-dashed border-gray-700 flex flex-col justify-center items-center p-6 text-center">
+                    <div class="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 mb-4">
+                        <i class="fa-solid fa-plus text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-300 mb-2">Coming Soon</h3>
+                    <p class="text-sm text-gray-500">New models arriving in 2026.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-bolt text-sm"></i>
+                        </div>
+                        <span class="font-bold text-xl brand-font text-gray-900">TriChokro</span>
+                    </a>
+                    <p class="text-gray-500 mb-6 max-w-sm">
+                        Revolutionizing transportation in Bangladesh with clean, safe, and efficient electric vehicles.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-green-500 transition"><i class="fa-brands fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-500 transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-500 transition"><i class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-500 transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-green-600 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-green-600 transition">Our Products</a></li>
+                        <li><a href="#" class="hover:text-green-600 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-green-600 transition">Technology</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot mt-1 text-green-500"></i>
+                            <span>Department of Mechanical Engineering, BUET, Dhaka-1000</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-green-500"></i>
+                            <span>info@trichokro.bd</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-green-500"></i>
+                            <span>+880 1700 000000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">&copy; 2026 Bangladesh University of Engineering & Technology. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-gray-900">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-900">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                }
+            });
+        }, observerOptions);
+
+        // Select all cards to animate
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.classList.add('transition', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
