@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TriChokro Automotives - Electric TriWheeler R&D</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
     <style>
         /* --- MAIN GLOBAL STYLES --- */
         body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; }
         
-        /* Main Theme Background */
         .main-theme-bg {
             background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #022c22);
             background-size: 400% 400%;
@@ -38,18 +44,12 @@
         @keyframes neon-pulse { 0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); } 50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; } }
         @keyframes drive-by { 0% { transform: translateX(-100vw) skewX(-10deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(100vw) skewX(-10deg); opacity: 0; } }
         
-        /* New Animations for Trambulance Page */
-        @keyframes blob { 0% { transform: translate(0px, 0px) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } 100% { transform: translate(0px, 0px) scale(1); } }
-        @keyframes pulse-slow { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.05); } }
-        
         .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
         .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
         .animate-spin-slow { animation: spin-slow 8s linear infinite; }
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
         .animate-neon-pulse { animation: neon-pulse 3s infinite ease-in-out; }
-        .animate-blob { animation: blob 10s infinite; }
-        .animate-pulse-slow { animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
         .bg-gradient-animate { background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8), rgba(6, 78, 59, 0.4)); background-size: 200% 200%; animation: gradient-flow 8s ease infinite; }
         .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out, box-shadow 0.3s ease; }
@@ -90,6 +90,356 @@
         @keyframes shine { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
         .btn-deep-gradient { background-image: linear-gradient(to right, #065f46, #34d399); transition: all 0.3s ease; }
         .btn-deep-gradient:hover { background-image: linear-gradient(to right, #047857, #6ee7b7); }
+
+        /* CONTACT CARD STYLES */
+        :root {
+            --card-text-white: #ffffff;
+            --card-text-dark: #333333;
+            --card-font-main: 'Poppins', sans-serif;
+            --card-font-serif: 'Playfair Display', serif;
+            --card-accent-color: #8da356;
+        }
+
+        #contact-view {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: var(--card-font-main);
+            overflow-x: hidden;
+            perspective: 1000px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2000;
+        }
+
+        .contact-card-container {
+            display: flex;
+            flex-direction: row;
+            background-color: white;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 480px;
+            opacity: 0;
+            animation: cardEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, floatCard 6s ease-in-out infinite 1s;
+            position: relative;
+        }
+
+        .card-left {
+            background: linear-gradient(-45deg, #0f2013, #1a3c22, #0d2e18, #264d2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--card-text-white);
+            flex: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .card-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            animation: slowRotate 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .card-left > * { z-index: 1; }
+
+        .header-initials {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.8);
+            animation: fadeInDown 0.8s ease-out 0.2s backwards;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease-out 0.3s backwards;
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin: 10px 0 30px 0;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            animation: fadeInDown 0.8s ease-out 0.4s backwards;
+        }
+        
+        .profile-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: #8da356;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-left:hover .profile-title::after { width: 120%; }
+
+        .logo-container {
+            width: 110px;
+            height: 110px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: zoomIn 0.8s backwards 0.5s;
+        }
+        
+        .card-left:hover .logo-container { transform: scale(1.15) rotate(5deg); }
+
+        .logo-svg { width: 100%; height: 100%; overflow: visible; }
+
+        .ring-outer {
+            transform-origin: 50px 50px;
+            animation: spin 15s linear infinite;
+            stroke: #2ecc71;
+            stroke-width: 6;
+            stroke-linecap: round;
+            fill: none;
+            filter: drop-shadow(0 0 5px rgba(46, 204, 113, 0.4));
+        }
+
+        .ring-inner {
+            transform-origin: 50px 50px;
+            animation: spinReverse 10s linear infinite;
+            stroke: #27ae60;
+            stroke-width: 5;
+            stroke-linecap: round;
+            fill: none;
+            opacity: 0.7;
+        }
+
+        .lightning-bolt {
+            fill: #3498db;
+            filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.6));
+            animation: pulseBolt 3s ease-in-out infinite;
+            transform-origin: 50px 50px;
+        }
+
+        .company-name {
+            font-family: var(--card-font-serif);
+            font-size: 2rem;
+            color: #d4e1c6;
+            margin: 5px 0;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .company-contact {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            font-family: monospace;
+            animation: fadeInUp 0.8s ease-out 0.7s backwards;
+        }
+
+        .card-divider {
+            background: linear-gradient(to bottom, #7da340, #9dbf58, #b5d67a, #7da340);
+            background-size: 100% 300%;
+            animation: gradientBG 8s ease infinite;
+            width: 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 40px 0;
+            z-index: 2;
+            margin-left: -20px;
+            border-top-right-radius: 50% 10%;
+            border-bottom-right-radius: 50% 10%;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .icon-circle {
+            color: white;
+            font-size: 1.1rem;
+            transition: transform 0.4s ease;
+        }
+
+        .icon-box:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+        
+        .icon-box:hover .icon-circle { transform: rotate(360deg); }
+
+        .card-right {
+            flex: 5;
+            background-color: white;
+            padding: 40px 40px 40px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            color: var(--card-text-dark);
+        }
+
+        .info-group {
+            border-bottom: 1px solid #eee;
+            padding: 10px 10px 10px 0;
+            margin-bottom: 10px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            border-left: 3px solid transparent;
+            border-radius: 0 8px 8px 0;
+            animation: slideInRight 0.6s ease-out forwards;
+            cursor: default;
+        }
+
+        .info-group:nth-child(1) { animation-delay: 0.8s; }
+        .info-group:nth-child(2) { animation-delay: 0.9s; }
+        .info-group:nth-child(3) { animation-delay: 1.0s; }
+        .info-group:nth-child(4) { border-bottom: none; animation-delay: 1.1s; }
+
+        .info-group:hover {
+            transform: translateX(15px);
+            background: linear-gradient(to right, rgba(141, 163, 86, 0.1), transparent);
+            padding-left: 15px;
+            border-left-color: var(--card-accent-color);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+            margin: 5px 0;
+            display: block;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+        
+        .info-group:hover .info-text { color: #000; }
+
+        .buet-highlight {
+            font-weight: 700;
+            color: #1a3c22;
+        }
+
+        /* Card Animations */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes spinReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+        @keyframes pulseBolt {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(52, 152, 219, 0.4)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(52, 152, 219, 0.8)); }
+        }
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .contact-card-container {
+                flex-direction: column;
+                width: 95%;
+                height: auto;
+                min-height: auto;
+                animation: cardEntrance 1s ease-out forwards;
+            }
+            .card-left { padding: 40px 20px; border-radius: 16px 16px 0 0; }
+            .card-divider { width: 100%; height: 60px; flex-direction: row; margin-left: 0; border-radius: 0; padding: 5px 0; background-size: 300% 100%; }
+            .icon-box { margin: 0 5px; }
+            .card-right { padding: 30px 20px; text-align: center; }
+            .info-group { align-items: center; display: flex; flex-direction: column; border-left: none; padding-left: 0; }
+            .info-group:hover { transform: translateY(-5px); padding-left: 0; background: rgba(141, 163, 86, 0.05); border-radius: 8px; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        .close-btn:hover { transform: scale(1.1); background: #eee; }
 
         /* Utility Helpers */
         .hidden { display: none !important; }
@@ -198,20 +548,13 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                     <div class="hidden md:flex items-center space-x-8">
-                        <a href="#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">Product Models<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        
-                        <!-- UPDATED LINK TO TRIGGER SUBPAGE -->
-                        <button onclick="switchView('trambulance')" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">
-                            Trambulance
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-                        </button>
-
+                        <a href="#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">HOME<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">PRODUCT MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <button onclick="switchView('trambulance')" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">TRAMBULANCE<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></button>
                         <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">USP<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">Notice Board<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.55s">Impact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="#contact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.6s">About Us<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <button class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.7s">Contact</button>
+                        <a href="#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">NOTICE BOARD<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="#contact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.6s">ABOUT US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <button onclick="openContact('rownak')" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.7s">Contact</button>
                     </div>
                     <div class="md:hidden">
                         <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive animate-float-subtle"><i data-lucide="menu" class="w-7 h-7"></i></button>
@@ -220,10 +563,10 @@
             </div>
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
                 <div class="px-4 py-4 space-y-3 flex flex-col">
-                    <a href="#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Home</a>
-                    <a href="#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Products</a>
-                    <button onclick="switchView('trambulance')" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Trambulance</button>
-                    <button class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2">Book Demo</button>
+                    <a href="#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
+                    <a href="#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
+                    <button onclick="switchView('trambulance')" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</button>
+                    <button onclick="openContact('rownak')" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2">Contact</button>
                 </div>
             </div>
         </nav>
@@ -299,7 +642,6 @@
                                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">Capacity</span><span class="text-emerald-400 font-bold">1+1 Stretcher</span></div>
                                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">Siren</span><span class="text-white font-bold">Integrated</span></div>
                             </div>
-                            <!-- UPDATED TO SWITCH VIEW -->
                             <button onclick="switchView('trambulance')" class="interactive transition-trigger w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors">Contact Sales</button>
                         </div>
                     </div>
@@ -315,7 +657,6 @@
             </div>
         </section>
 
-        <!-- Trambulance Features (Summary) - UPDATED IMAGE -->
         <section id="trambulance" class="py-24 bg-slate-950/80 relative overflow-hidden border-t border-slate-900">
             <div class="absolute inset-0 z-0 opacity-10" style="background-image: linear-gradient(to right, #34d399 1px, transparent 1px), linear-gradient(to bottom, #34d399 1px, transparent 1px); background-size: 40px 40px;"></div>
             <div class="container mx-auto px-4 relative z-10">
@@ -327,7 +668,6 @@
                         <button onclick="switchView('trambulance')" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">Learn More</button>
                     </div>
                     <div class="relative interactive uplift-on-hover animate-float-slow">
-                        <!-- REPLACED STATIC IMAGE WITH MOVING GRAPHIC -->
                         <div class="relative w-full h-full min-h-[300px] flex items-center justify-center">
                             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-emerald-600/20 blur-[60px] rounded-full"></div>
                             <svg viewBox="0 0 600 350" class="w-full h-auto drop-shadow-2xl relative z-10" xmlns="http://www.w3.org/2000/svg">
@@ -439,17 +779,13 @@
                     <div class="md:w-1/3">
                         <h2 class="text-3xl font-bold text-white mb-6">About Us</h2>
                         <div class="space-y-2" id="about-tabs">
-                            <button onclick="switchTab(0)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover">Mission</button>
-                            <button onclick="switchTab(1)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">The Team</button>
+                            <button onclick="switchTab(0)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover">The Team</button>
+                            <button onclick="switchTab(1)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">Mission</button>
                             <button onclick="switchTab(2)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">Our Journey</button>
                         </div>
                     </div>
                     <div class="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px] bg-gradient-animate" id="tab-content">
-                        <div class="animate-fade-in-up">
-                            <h3 class="text-2xl font-bold text-white mb-4">Cleaner Mobility for Everyone</h3>
-                            <p class="text-slate-400 leading-relaxed mb-6">Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.</p>
-                            <div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"We obsess over practical details — from frame geometry to charging routines."</p></div>
-                        </div>
+                        <!-- Dynamic Content Loaded Here -->
                     </div>
                 </div>
             </div>
@@ -515,25 +851,30 @@
             <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
         </div>
 
-        <!-- Trambulance Nav -->
+        <!-- Trambulance Nav (UNIFIED) -->
         <nav class="fixed w-full z-50 top-0 left-0 bg-slate-950/70 backdrop-blur-lg border-b border-white/5 transition-all duration-300">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="flex items-center gap-2 cursor-pointer" onclick="switchView('main')">
-                    <div class="w-8 h-8 bg-gradient-to-tr from-purple-500 to-red-500 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20">T</div>
-                    <span class="text-xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">TRAMBULANCE</span>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="switchView('main')">
+                        <div class="relative w-10 h-10 flex items-center justify-center">
+                            <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
+                            <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#" onclick="switchView('main'); setTimeout(() => document.getElementById('home').scrollIntoView(), 100)" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">HOME<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="#tramb-tech" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">PRODUCT MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <button class="interactive transition-trigger text-purple-400 font-bold text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">TRAMBULANCE</button>
+                        <a href="#tramb-solution" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">USP<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="#tramb-impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">NOTICE BOARD<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="#tramb-app" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">ABOUT US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <button onclick="openContact('rownak')" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle">Contact</button>
+                    </div>
+                    <div class="md:hidden">
+                        <button onclick="switchView('main')" class="text-white hover:text-emerald-400 interactive animate-float-subtle">Back</button>
+                    </div>
                 </div>
-                
-                <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-400">
-                    <a href="#tramb-home" class="hover:text-white transition-colors">Problem</a>
-                    <a href="#tramb-solution" class="hover:text-white transition-colors">Solution</a>
-                    <a href="#tramb-tech" class="hover:text-white transition-colors">Tech</a>
-                    <a href="#tramb-app" class="hover:text-white transition-colors">App</a>
-                    <a href="#tramb-impact" class="hover:text-white transition-colors">Impact</a>
-                </div>
-
-                <button onclick="switchView('main')" class="bg-white text-slate-950 px-5 py-2 rounded-full font-bold text-xs hover:bg-purple-50 transition-all hover:scale-105">
-                    Back to Main Site
-                </button>
             </div>
         </nav>
 
@@ -819,6 +1160,81 @@
     </div>
     <!-- END TRAMBULANCE VIEW -->
 
+    <!-- ########################### BUSINESS CARD SUB-PAGE VIEW ########################### -->
+    <div id="contact-view" class="hidden">
+        <button onclick="switchView('main')" class="close-btn" title="Back to Site">
+            <i class="fas fa-arrow-left text-slate-900"></i>
+        </button>
+        <div class="contact-card-container">
+            <!-- Left Panel: Identity -->
+            <div class="card-left">
+                <div class="header-initials" id="card-initials">A A M</div>
+                <h1 class="profile-name" id="card-name">Rownak Shahriar Ruhan</h1>
+                <div class="profile-title" id="card-title">Founder</div>
+
+                <!-- Animated SVG Logo -->
+                <div class="logo-container">
+                    <svg class="logo-svg" viewBox="0 0 100 100">
+                        <!-- Outer Rotating Ring -->
+                        <path class="ring-outer" d="M 85 50 A 35 35 0 1 1 50 15" />
+                        
+                        <!-- Inner Rotating Ring (Reverse) -->
+                        <path class="ring-inner" d="M 50 85 A 35 35 0 0 0 85 50" />
+                        
+                        <!-- Pulsing Lightning Bolt -->
+                        <polygon class="lightning-bolt" points="55,25 35,55 50,55 40,80 65,45 50,45" />
+                    </svg>
+                </div>
+
+                <div class="company-name">TriChokro</div>
+                <div class="company-contact">
+                    trichokro.bd@gmail.com<br>
+                    www.trichokro.com
+                </div>
+            </div>
+
+            <!-- Middle Divider with Icons -->
+            <div class="card-divider">
+                <div class="icon-box" title="Phone">
+                    <i class="fas fa-phone icon-circle"></i>
+                </div>
+                <div class="icon-box" title="Email">
+                    <i class="fas fa-envelope icon-circle"></i>
+                </div>
+                <div class="icon-box" title="Address">
+                    <i class="fas fa-home icon-circle"></i>
+                </div>
+                <div class="icon-box" title="Education">
+                    <i class="fas fa-graduation-cap icon-circle"></i>
+                </div>
+            </div>
+
+            <!-- Right Panel: Details -->
+            <div class="card-right">
+                <div class="info-group">
+                    <span class="info-text" id="card-phone1">+8801714844677</span>
+                    <span class="info-text" id="card-phone2">+8801402667477</span>
+                </div>
+
+                <div class="info-group">
+                    <span class="info-text" id="card-email1">rownakshahriarruhan@gmail.com</span>
+                    <span class="info-text" id="card-email2">2010105@me.buet.ac.bd</span>
+                </div>
+
+                <div class="info-group">
+                    <span class="info-text">Kazi Nazrul Islam Hall</span>
+                    <span class="info-text">BUET, Palashi, Dhaka-1000</span>
+                </div>
+
+                <div class="info-group">
+                    <span class="info-text">Dept of Mechanical Engineering</span>
+                    <span class="info-text buet-highlight">Bangladesh University of<br>Engineering & Technology (BUET)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END BUSINESS CARD VIEW -->
+
     <script>
         lucide.createIcons();
         document.addEventListener('DOMContentLoaded', () => {
@@ -843,13 +1259,20 @@
                 }
             }, 30);
             startFloatingEmojis();
+            
+            // Initialize default tab (TEAM)
+            switchTab(0);
         });
 
         // VIEW SWITCHING LOGIC
         function switchView(viewName) {
             const mainView = document.getElementById('main-view');
             const trambView = document.getElementById('trambulance-view');
+            const contactView = document.getElementById('contact-view');
             
+            // Close contact view
+            contactView.classList.add('hidden');
+
             // Trigger transition car animation
             triggerCarLoading();
 
@@ -857,15 +1280,98 @@
                 if (viewName === 'trambulance') {
                     mainView.classList.add('hidden');
                     trambView.classList.remove('hidden');
-                    // Re-initialize icons for new view content if needed (sometimes needed for dynamic content, but static html is fine)
                     lucide.createIcons(); 
                     window.scrollTo(0, 0);
-                } else {
+                } else if (viewName === 'main') {
                     trambView.classList.add('hidden');
                     mainView.classList.remove('hidden');
                     window.scrollTo(0, 0);
+                } else if (viewName === 'contact') {
+                    // This case is handled by openContact, but just in case
+                    openContact('rownak');
                 }
-            }, 800); // Wait for car animation to cover screen
+            }, 800); 
+        }
+
+        // --- DYNAMIC CONTACT CARD SYSTEM ---
+        const teamData = {
+            rownak: {
+                initials: "R S R",
+                name: "Rownak Shahriar Ruhan",
+                title: "Founder & CEO",
+                phone1: "+880 1714 844677",
+                phone2: "+880 1402 667477",
+                email1: "rownakshahriarruhan@gmail.com",
+                email2: "2010105@me.buet.ac.bd"
+            },
+            abdul: {
+                initials: "A J",
+                name: "Abdul Jawad",
+                title: "CMO & Treasurer",
+                phone1: "+880 1700 000001",
+                phone2: "+880 1400 000001",
+                email1: "abdul.jawad@gmail.com",
+                email2: "2010106@me.buet.ac.bd"
+            },
+            ishraq: {
+                initials: "I R",
+                name: "Ishraq Rafid",
+                title: "Chief Logistics & Architect",
+                phone1: "+880 1700 000002",
+                phone2: "+880 1400 000002",
+                email1: "ishraq.rafid@gmail.com",
+                email2: "2010107@me.buet.ac.bd"
+            },
+            hasan: {
+                initials: "H M",
+                name: "Hasan Mahmud",
+                title: "Chief Operation Officer",
+                phone1: "+880 1700 000003",
+                phone2: "+880 1400 000003",
+                email1: "hasan.mahmud@gmail.com",
+                email2: "2010108@me.buet.ac.bd"
+            },
+            mijanur: {
+                initials: "M R",
+                name: "Mijanur Rahman",
+                title: "HR & Investment",
+                phone1: "+880 1700 000004",
+                phone2: "+880 1400 000004",
+                email1: "mijanur.rahman@gmail.com",
+                email2: "2010109@me.buet.ac.bd"
+            },
+            tomal: {
+                initials: "T K",
+                name: "Tomal Kirtonia",
+                title: "Head of Designing",
+                phone1: "+880 1700 000005",
+                phone2: "+880 1400 000005",
+                email1: "tomal.kirtonia@gmail.com",
+                email2: "2010110@me.buet.ac.bd"
+            }
+        };
+
+        function openContact(memberKey) {
+            const member = teamData[memberKey] || teamData['rownak']; // Default to Rownak
+            
+            // Populate Data
+            document.getElementById('card-initials').innerText = member.initials;
+            document.getElementById('card-name').innerText = member.name;
+            document.getElementById('card-title').innerText = member.title;
+            document.getElementById('card-phone1').innerText = member.phone1;
+            document.getElementById('card-phone2').innerText = member.phone2;
+            document.getElementById('card-email1').innerText = member.email1;
+            document.getElementById('card-email2').innerText = member.email2;
+
+            // Show View
+            const contactView = document.getElementById('contact-view');
+            const mainView = document.getElementById('main-view');
+            const trambView = document.getElementById('trambulance-view');
+            
+            mainView.classList.add('hidden');
+            trambView.classList.add('hidden');
+            contactView.classList.remove('hidden');
+            window.scrollTo(0, 0);
         }
 
         const cursor = document.getElementById('custom-cursor');
@@ -933,9 +1439,59 @@
             });
         }
 
+        // Updated Tabs Data: TEAM IS FIRST (INDEX 0)
         const tabsData = [
+            { 
+                // The Team HTML (Now first) - Added onclick events to open cards
+                html: `<div class="animate-fade-in-up">
+                    <h3 class="text-2xl font-bold text-white mb-6">Meet the Innovators</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        <div onclick="openContact('rownak')" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128" alt="CEO">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
+                            <p class="text-emerald-400 text-xs">CEO</p>
+                        </div>
+                        <div onclick="openContact('abdul')" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Abdul+Jawad&background=10b981&color=fff&size=128" alt="CMO">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4>
+                            <p class="text-emerald-400 text-xs">CMO & Treasurer</p>
+                        </div>
+                        <div onclick="openContact('ishraq')" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Ishraq+Rafid&background=10b981&color=fff&size=128" alt="Logistics">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4>
+                            <p class="text-emerald-400 text-xs">Chief Logistics & Architect</p>
+                        </div>
+                         <div onclick="openContact('hasan')" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Hasan+Mahmud&background=10b981&color=fff&size=128" alt="COO">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Hasan Mahmud</h4>
+                            <p class="text-emerald-400 text-xs">Chief Operation Officer</p>
+                        </div>
+                         <div onclick="openContact('mijanur')" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="HR">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4>
+                            <p class="text-emerald-400 text-xs">HR & Investment</p>
+                        </div>
+                         <div onclick="openContact('tomal')" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Design">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4>
+                            <p class="text-emerald-400 text-xs">Head of Designing</p>
+                        </div>
+                    </div>
+                </div>` 
+            },
             { title: "Cleaner Mobility for Everyone", text: "Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.", quote: "We obsess over practical details — from frame geometry to charging routines." },
-            { html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-6">Meet the Innovators</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-6"><div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128" alt="CEO"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4><p class="text-emerald-400 text-xs">CEO</p></div><div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Abdul+Jawad&background=10b981&color=fff&size=128" alt="CMO"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4><p class="text-emerald-400 text-xs">CMO & Treasurer</p></div><div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Ishraq+Rafid&background=10b981&color=fff&size=128" alt="Logistics"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4><p class="text-emerald-400 text-xs">Chief Logistics & Architect</p></div><div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Hasan+Mahmud&background=10b981&color=fff&size=128" alt="COO"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Hasan Mahmud</h4><p class="text-emerald-400 text-xs">Chief Operation Officer</p></div><div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="HR"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4><p class="text-emerald-400 text-xs">HR & Investment</p></div><div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Design"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4><p class="text-emerald-400 text-xs">Head of Designing</p></div></div></div>` },
             { html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">From Prototype to Production</h3><ul class="space-y-6 border-l border-slate-700 ml-2 pl-6"><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span><span class="text-emerald-400 font-bold text-sm block mb-1">2022</span><p class="text-slate-400 text-sm">Began with a simple idea: lighter, safer three-wheelers.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2023</span><p class="text-slate-400 text-sm">Piloted first fleet, iterating on chassis and suspension.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2024</span><p class="text-slate-400 text-sm">Production-ready platform with angular composite panels.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">Today</span><p class="text-slate-400 text-sm">TriChokro vehicles carry passengers across cities daily.</p></li></ul></div>` }
         ];
 
@@ -946,7 +1502,9 @@
                 if (i === index) { btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover"; }
                 else { btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover"; }
             });
-            if (index === 0) { contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[0].title}</h3><p class="text-slate-400 leading-relaxed mb-6">${tabsData[0].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[0].quote}"</p></div></div>`; }
+            if (index === 1) { // Mission (Index 1 now)
+                contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[1].title}</h3><p class="text-slate-400 leading-relaxed mb-6">${tabsData[1].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[1].quote}"</p></div></div>`; 
+            }
             else { contentDiv.innerHTML = tabsData[index].html; }
         }
         
