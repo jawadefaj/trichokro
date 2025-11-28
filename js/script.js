@@ -1,4 +1,4 @@
-// ===== TriChokro v2 JS =====
+// ===== TriChokro v3 JS =====
 
 // Smooth scroll to section by ID
 function scrollToSection(id){
@@ -38,7 +38,7 @@ document.addEventListener('click', (e) => {
   setTimeout(() => ripple.remove(), 650);
 });
 
-// ===== Language Switching =====
+// ===== Language Switching & Animations =====
 document.addEventListener('DOMContentLoaded', () => {
   const languageSwitcher = document.getElementById('language-switcher');
   const translatableElements = document.querySelectorAll('[data-lang]');
@@ -51,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const response = await fetch(`language/${lang}.json`);
       if (!response.ok) {
-        throw new Error(`Failed to fetch ${lang}.json`);
+        // If fetch fails (e.g. local file system without server), just log it
+        console.warn(`Failed to fetch ${lang}.json. This is expected if running locally without a server.`);
+        return;
       }
       const translations = await response.json();
 
@@ -62,17 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     } catch (error) {
-      console.error('Error setting language:', error);
+      console.warn('Language file not loaded:', error);
     }
   };
 
-  languageSwitcher.addEventListener('change', (e) => {
-    setLanguage(e.target.value);
-  });
-
-  // Set initial language
-  const savedLang = localStorage.getItem('trichokro-lang') || 'en';
-  setLanguage(savedLang);
+  if(languageSwitcher){
+      languageSwitcher.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
+      });
+      // Set initial language
+      const savedLang = localStorage.getItem('trichokro-lang') || 'en';
+      setLanguage(savedLang);
+  }
 
   // Accordion functionality
   const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -82,4 +85,32 @@ document.addEventListener('DOMContentLoaded', () => {
       accordionItem.classList.toggle('is-open');
     });
   });
+
+  // ===== Scroll Animations =====
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+
+        // Handle Bar Chart Animations
+        // If the observed element contains bars (like .chart-container)
+        const bars = entry.target.querySelectorAll('.bar[data-height]');
+        bars.forEach(bar => {
+            // Apply the height from data attribute
+            bar.style.height = bar.getAttribute('data-height');
+        });
+
+        // Stop observing once visible
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const animatedElements = document.querySelectorAll('.animate-on-scroll');
+  animatedElements.forEach(el => observer.observe(el));
 });
