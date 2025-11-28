@@ -1,283 +1,792 @@
-<!DOCTYPE html>
-<html lang="en">
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Zap, 
+  Battery, 
+  ShieldCheck, 
+  Wind, 
+  Activity, 
+  Users, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Menu, 
+  X, 
+  ArrowRight, 
+  ChevronDown,
+  Gauge,
+  Leaf,
+  Wrench,
+  Truck,
+  PenTool
+} from 'lucide-react';
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TriChokro — Advanced Electric Mobility</title>
-  <meta name="description"
-    content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="src/assets/logo_icon.png">
-  <!-- Font Awesome for Icons (using CDN for simplicity as seen in index2) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+/**
+ * TriChokro Official Website - Interactive Edition
+ * * Updates:
+ * - Custom "Car" Cursor (Three-wheeler SVG)
+ * - Animated Floating Background Objects
+ * - Enhanced Parallax Effects
+ * - Global "Cursor: None" Styling
+ */
 
-<body>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container inner">
-      <div class="logo">
-        <i class="fa-solid fa-bolt text-primary"></i>
-        TriChokro
-      </div>
-      <nav class="nav-links">
-        <button class="nav-link" onclick="scrollToSection('home')" data-lang="nav_home">Home</button>
-        <button class="nav-link" onclick="scrollToSection('technology')" data-lang="nav_tech">Technology</button>
-        <button class="nav-link" onclick="scrollToSection('savings')" data-lang="nav_savings">Efficiency</button>
-        <button class="nav-link" onclick="scrollToSection('trambulance')" data-lang="nav_trambulance">Trambulance</button>
-        <button class="nav-link" onclick="window.location.href='index2.html'" data-lang="nav_newPage">Next Gen (v3)</button>
-      </nav>
-      <div class="nav-actions">
-        <select id="language-switcher" class="language-switcher">
-          <option value="en">EN</option>
-          <option value="bn">BN</option>
-        </select>
-        <button class="cta small" onclick="scrollToSection('contact')" data-lang="get_quote">Get Quote</button>
+// --- Global Styles & Keyframes ---
+const globalStyles = `
+  body {
+    cursor: none; /* Hide default cursor */
+  }
+  
+  /* Ensure links/buttons show the pointer state visually via our custom cursor */
+  a, button, .interactive {
+    cursor: none; 
+  }
+
+  /* Float Animation */
+  @keyframes float-slow {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  @keyframes float-medium {
+    0% { transform: translate(0px, 0px) rotate(0deg); }
+    33% { transform: translate(30px, -50px) rotate(45deg); }
+    66% { transform: translate(-20px, 20px) rotate(-10deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
+  }
+
+  @keyframes drift {
+    from { transform: translateX(-100px); }
+    to { transform: translateX(100vw); }
+  }
+
+  .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+  .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
+`;
+
+// --- Components ---
+
+// 1. Custom Car Cursor
+const CustomCursor = () => {
+  const cursorRef = useRef(null);
+  
+  useEffect(() => {
+    const moveCursor = (e) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+      }
+    };
+
+    const addHoverState = () => cursorRef.current?.classList.add('scale-150', 'bg-emerald-500/20');
+    const removeHoverState = () => cursorRef.current?.classList.remove('scale-150', 'bg-emerald-500/20');
+
+    window.addEventListener('mousemove', moveCursor);
+    
+    // Add hover listeners to clickable elements
+    const clickables = document.querySelectorAll('a, button, input, .group');
+    clickables.forEach(el => {
+      el.addEventListener('mouseenter', addHoverState);
+      el.addEventListener('mouseleave', removeHoverState);
+    });
+
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      clickables.forEach(el => {
+        el.removeEventListener('mouseenter', addHoverState);
+        el.removeEventListener('mouseleave', removeHoverState);
+      });
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={cursorRef} 
+      className="fixed pointer-events-none z-[9999] transition-transform duration-100 ease-out flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
+      style={{ width: '40px', height: '40px' }}
+    >
+      {/* Visual Cursor Ring */}
+      <div className="absolute inset-0 rounded-full border border-emerald-400 opacity-50 transition-all duration-300"></div>
+      
+      {/* The Car Icon (SVG) */}
+      <div className="relative z-10 text-emerald-400 transform -rotate-12">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+            <circle cx="7" cy="17" r="3" />
+            <circle cx="17" cy="17" r="3" />
+            <path d="M14 10l-2-3h-5l-1 3" fill="none" stroke="currentColor" strokeWidth="2"/>
+        </svg>
       </div>
     </div>
-  </header>
+  );
+};
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="container hero-inner">
-      <h1 data-lang="hero_title">Future of <span class="gradient">Urban Mobility</span></h1>
-      <p data-lang="hero_subtitle">
-        Engineered for Bangladesh. The TriChokro platform delivers superior range, safety, and profitability for drivers.
-        Experience the quiet revolution.
-      </p>
-      <div class="hero-actions">
-        <a class="btn primary" onclick="scrollToSection('trambulance')" data-lang="explore_trambulance">
-          Explore Trambulance
-        </a>
-        <a class="btn outline" onclick="scrollToSection('technology')" data-lang="explore_tech">
-          View Specs
-        </a>
+// 2. Navigation Bar
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'Our Products', href: '#products' },
+    { name: 'Trambulance', href: '#trambulance' },
+    { name: 'Features', href: '#features' },
+    { name: 'About', href: '#about' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+      scrolled ? 'bg-slate-900/90 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+            <div className="relative w-10 h-10 flex items-center justify-center">
+               <div className="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
+               <Zap size={24} className="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12" />
+            </div>
+            <span className="text-2xl font-bold text-white tracking-tight font-sans">
+              Tri<span className="text-emerald-400">Chokro</span>
+            </span>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a 
+                key={link.name} 
+                href={link.href} 
+                className="text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
+            <button className="bg-emerald-500 hover:bg-emerald-600 text-slate-900 px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">
+              Book Demo
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-emerald-400">
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div className={`md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-4 py-4 space-y-3 flex flex-col">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href} 
+              onClick={() => setIsOpen(false)}
+              className="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium"
+            >
+              {link.name}
+            </a>
+          ))}
+          <button className="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2">
+            Book Demo
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+// 3. Interactive Tilt Card Component
+const TiltCard = ({ children, className = "" }) => {
+  const cardRef = useRef(null);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -8; // Increased tilt intensity
+    const rotateY = ((x - centerX) / centerX) * 8;
+
+    setRotation({ x: rotateX, y: rotateY });
+    setOpacity(1);
+    
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  const handleMouseLeave = () => {
+    setRotation({ x: 0, y: 0 });
+    setOpacity(0);
+  };
+
+  return (
+    <div 
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear ${className}`}
+      style={{
+        transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+      }}
+    >
+      <div 
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(52, 211, 153, 0.15), transparent 40%)`
+        }}
+      />
+      <div className="relative z-10 h-full">
+        {children}
       </div>
     </div>
-  </section>
+  );
+};
 
-  <!-- SAVINGS / GRAPH SECTION -->
-  <section id="savings" class="section graph-section">
-    <div class="container">
-      <div class="text-center mb-8">
-        <h2 class="section-title" data-lang="savings_title">Unmatched Efficiency</h2>
-        <p class="section-sub" style="margin: 0 auto;">Maximize your earnings with significantly lower daily operating costs.</p>
+// 4. Hero Section with Moving Objects
+const Hero = () => {
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMove = (e) => {
+      setOffset({
+        x: (e.clientX / window.innerWidth - 0.5) * 40, // Increased movement range
+        y: (e.clientY / window.innerHeight - 0.5) * 40
+      });
+    };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
+  }, []);
+
+  return (
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-20">
+      {/* Moving Background Layer */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+        
+        {/* Floating Animated Blobs */}
+        <div 
+          className="absolute w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[100px] -top-20 -left-20 animate-float-slow"
+          style={{ transform: `translate(${offset.x * -1}px, ${offset.y * -1}px)` }}
+        ></div>
+        <div 
+          className="absolute w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] bottom-0 right-0 animate-float-medium"
+          style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}
+        ></div>
+
+        {/* Moving Icons / Debris */}
+        <div className="absolute top-1/4 left-1/4 text-emerald-500/20 animate-float-medium">
+             <Leaf size={48} />
+        </div>
+        <div className="absolute top-1/3 right-1/4 text-blue-500/20 animate-float-slow" style={{ animationDelay: '1s'}}>
+             <Zap size={64} />
+        </div>
+        <div className="absolute bottom-1/4 left-1/3 text-slate-700/50 animate-float-medium" style={{ animationDelay: '2s'}}>
+             <Wrench size={40} />
+        </div>
+        
+        {/* Technical Grid Pattern Overlay */}
+        <div 
+          className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"
+          style={{
+            transform: `translate(${offset.x * -0.5}px, ${offset.y * -0.5}px) perspective(1000px) rotateX(10deg)`
+          }}
+        ></div>
       </div>
 
-      <div class="grid grid-2">
-        <div>
-          <h3 class="mb-4">Daily Operational Cost (BDT)</h3>
-          <p class="mb-8" style="color: var(--muted)">
-            Comparing fuel costs for a standard 100km daily route. TriChokro's electric powertrain reduces energy expenses by up to 90%.
+      <div className="container mx-auto px-4 z-10 relative">
+        <div className="max-w-4xl mx-auto text-center" style={{ transform: `translate(${offset.x * 0.2}px, ${offset.y * 0.2}px)` }}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700 text-emerald-400 mb-8 animate-fade-in-up backdrop-blur-sm hover:scale-105 transition-transform">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+            <span className="text-sm font-semibold tracking-wide">Introducing the All-New Trambulance</span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
+            Next Gen <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 relative">
+                Electric Mobility
+                {/* Underline Animation */}
+                <svg className="absolute w-full h-3 -bottom-1 left-0 text-emerald-500 opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
+                </svg>
+            </span>
+            <br />For Bangladesh
+          </h1>
+
+          <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Zero emissions, hydraulic safety, and premium comfort. TriChokro engineers the future of urban transport.
           </p>
-          <ul style="list-style: none; color: var(--muted);">
-            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> No oil changes required</li>
-            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> Minimal brake wear (Regenerative Braking)</li>
-            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> 5-Year Battery Warranty available</li>
-          </ul>
-        </div>
 
-        <div class="chart-container">
-          <!-- Graph Bars -->
-          <div class="bar-group">
-            <span class="bar-value">550৳</span>
-            <div class="bar secondary" style="height: 90%;"></div>
-            <span class="bar-label">Petrol CNG</span>
-          </div>
-          <div class="bar-group">
-            <span class="bar-value">480৳</span>
-            <div class="bar secondary" style="height: 78%;"></div>
-            <span class="bar-label">Diesel</span>
-          </div>
-          <div class="bar-group">
-            <span class="bar-value text-primary">50৳</span>
-            <div class="bar primary" style="height: 15%;"></div>
-            <span class="bar-label" style="color: #fff;">TriChokro</span>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2">
+              Explore Vehicles <ArrowRight size={20} />
+            </button>
+            <button className="px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md">
+              Watch The Film
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- TECHNOLOGY SPECS -->
-  <section id="technology" class="section">
-    <div class="container">
-      <h2 class="section-title" data-lang="tech_title">Platform Specifications</h2>
-      <p class="section-sub mb-8">Built on our modular EV platform designed for durability and ease of maintenance.</p>
-
-      <div class="grid grid-2" style="align-items: center;">
-        <img src="src/assets/trambulance.png" alt="Chassis Diagram" style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow);">
-
-        <table class="specs-table">
-          <tbody>
-            <tr>
-              <th><i class="fa-solid fa-motorcycle"></i> Powertrain</th>
-              <td>1200W Brushless DC Motor (Waterproof IP67)</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-battery-full"></i> Battery</th>
-              <td>60V 120Ah Deep Cycle / LiFePO4 Option</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-gauge-high"></i> Performance</th>
-              <td>Top Speed: 45 km/h | Range: 120+ km</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-weight-hanging"></i> Capacity</th>
-              <td>Payload: 600kg | Seating: Driver + 4</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-plug"></i> Charging</th>
-              <td>Fast Charge (3-4 hrs) | Standard (6-8 hrs)</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-shield-halved"></i> Safety</th>
-              <td>Hydraulic Disc Brakes, Reinforced Roll Cage</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">
+        <ChevronDown size={32} />
       </div>
-    </div>
-  </section>
+    </section>
+  );
+};
 
-  <!-- HIGHLIGHTS (GRID) -->
-  <section id="highlights" class="section">
-    <div class="container">
-      <h2 class="section-title">Core Features</h2>
-      <div class="grid grid-3 highlight-list">
+// 5. Products Section
+const Products = () => {
+  return (
+    <section id="products" className="py-24 bg-slate-900 relative">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Fleet</h2>
+            <div className="h-1 w-24 bg-emerald-500 rounded-full"></div>
+            <p className="text-slate-400 mt-4 max-w-lg">
+              Engineered for the unique demands of Bangladesh's roads. Durable, efficient, and 100% electric.
+            </p>
+          </div>
+          <a href="#" className="hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0">
+            View Full Specifications <ArrowRight size={18} />
+          </a>
+        </div>
 
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-leaf"></i></div>
-          <h3>Zero Emissions</h3>
-          <p>100% electric drive means no tailpipe pollution, contributing to cleaner air in our cities.</p>
-        </article>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Product 1: Trichokro-3 */}
+          <TiltCard className="group">
+            <div className="relative h-64 overflow-hidden bg-slate-800">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1626885616335-5207c4270d47?q=80&w=2070&auto=format&fit=crop" 
+                alt="TriChokro-3" 
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 saturate-0 group-hover:saturate-100"
+              />
+              <div className="absolute top-4 right-4 z-20 bg-emerald-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                Flagship
+              </div>
+            </div>
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-white mb-2">TriChokro - 3</h3>
+              <p className="text-slate-400 text-sm mb-6">The ultimate passenger EV. Hydraulic braking, MacPherson suspension, and retractable hood.</p>
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                  <span className="text-slate-500 text-xs uppercase block mb-1">Range</span>
+                  <span className="text-emerald-400 font-bold">120 km</span>
+                </div>
+                <div className="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                  <span className="text-slate-500 text-xs uppercase block mb-1">Charge</span>
+                  <span className="text-white font-bold">4 Hours</span>
+                </div>
+              </div>
+              
+              <button className="w-full py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition-colors">
+                Configure Yours
+              </button>
+            </div>
+          </TiltCard>
 
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-wallet"></i></div>
-          <h3>High Profitability</h3>
-          <p>Save over 15,000 BDT monthly on fuel and maintenance compared to CNG vehicles.</p>
-        </article>
+          {/* Product 2: Trambulance */}
+          <TiltCard className="group ring-1 ring-emerald-500/30">
+            <div className="relative h-64 overflow-hidden bg-slate-800">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+              {/* Technical Sketch Background mimic */}
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581093583449-ed25cb53a60b?q=80&w=2070&auto=format&fit=crop')] bg-cover opacity-20 animate-pulse"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2070&auto=format&fit=crop" 
+                alt="Trambulance" 
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale hover:grayscale-0 relative z-10"
+              />
+              <div className="absolute top-4 right-4 z-20 bg-white text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                <Activity size={12} /> Medical
+              </div>
+            </div>
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-white mb-2">Trambulance</h3>
+              <p className="text-slate-400 text-sm mb-6">Rapid response three-wheeled ambulance. Access narrow lanes with medical-grade interior.</p>
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                  <span className="text-slate-500 text-xs uppercase block mb-1">Capacity</span>
+                  <span className="text-emerald-400 font-bold">1+1 Stretcher</span>
+                </div>
+                <div className="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                  <span className="text-slate-500 text-xs uppercase block mb-1">Siren</span>
+                  <span className="text-white font-bold">Integrated</span>
+                </div>
+              </div>
+              
+              <button className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-colors">
+                Contact Sales
+              </button>
+            </div>
+          </TiltCard>
 
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-road"></i></div>
-          <h3>Adaptive Suspension</h3>
-          <p>Tuned specifically for rural and urban road conditions in Bangladesh for maximum comfort.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-tablet-screen-button"></i></div>
-          <h3>Smart Dashboard</h3>
-          <p>Digital display with real-time range estimation, speed, and battery health monitoring.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-tools"></i></div>
-          <h3>Modular Design</h3>
-          <p>Easy-to-replace body panels and components reduce downtime during repairs.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-          <h3>Financing Support</h3>
-          <p>We partner with local banks to provide easy installment plans for new drivers.</p>
-        </article>
-
+           {/* Product 3: Cargo (Coming Soon) */}
+           <TiltCard className="group border-dashed border-2 border-slate-700 bg-transparent">
+            <div className="h-full flex flex-col items-center justify-center p-8 min-h-[400px]">
+              <div className="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-slate-500 mb-6 group-hover:text-emerald-400 group-hover:bg-slate-700 transition-colors animate-float-medium">
+                <Truck size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-300 mb-2">TriChokro Cargo</h3>
+              <p className="text-slate-500 text-center text-sm mb-8">Heavy duty logistics solution for urban delivery.</p>
+              <div className="px-4 py-2 bg-slate-800 rounded-full text-xs font-bold text-emerald-500 uppercase tracking-widest">
+                Coming 2026
+              </div>
+            </div>
+          </TiltCard>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  );
+};
 
-  <!-- TRAMBULANCE SECTION -->
-  <section id="trambulance" class="section" style="background: linear-gradient(to bottom, var(--bg), var(--surface));">
-    <div class="container">
-      <div class="grid grid-2" style="align-items: center;">
-        <div>
-          <h2 class="section-title">The Trambulance</h2>
-          <h4 style="color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Rapid Response Unit</h4>
-          <p class="mb-4" style="color: var(--muted); font-size: 1.1rem;">
-            A purpose-built electric ambulance designed to navigate narrow alleyways where traditional ambulances cannot reach.
+// 6. Trambulance Feature Deep Dive
+const TrambulanceFeatures = () => {
+  const features = [
+    { icon: <Leaf className="text-emerald-400" />, title: "Zero Emissions", desc: "Clean & Quiet operation suitable for residential zones." },
+    { icon: <Activity className="text-red-400" />, title: "Medical Grade", desc: "Equipped for patient safety with dedicated stretcher space." },
+    { icon: <MapPin className="text-blue-400" />, title: "Urban Ready", desc: "Compact build to navigate traffic jams and narrow rural lanes." },
+    { icon: <Battery className="text-yellow-400" />, title: "Low Cost", desc: "Minimal charging costs compared to fuel ambulances." },
+  ];
+
+  return (
+    <section id="trambulance" className="py-24 bg-slate-950 relative overflow-hidden border-t border-slate-900">
+      {/* Background: Blueprint Grid simulating 'image_fd24dc.jpg' */}
+      <div 
+        className="absolute inset-0 z-0 opacity-10"
+        style={{
+            backgroundImage: `
+                linear-gradient(to right, #34d399 1px, transparent 1px),
+                linear-gradient(to bottom, #34d399 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+        }}
+      ></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">
+              Emergency Response Vehicle
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              The <span className="text-emerald-400">Trambulance</span>.<br />
+              Saving Lives, Sustainably.
+            </h2>
+            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+              TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of Bangladesh. Its compact size allows it to reach patients where traditional ambulances cannot.
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {features.map((f, i) => (
+                <div key={i} className="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group cursor-none">
+                  <div className="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">{f.icon}</div>
+                  <div>
+                    <h4 className="text-white font-bold mb-1">{f.title}</h4>
+                    <p className="text-slate-500 text-sm leading-snug">{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="relative">
+            {/* Design/Sketch Overlay Container */}
+            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-emerald-900/20 border border-slate-800 bg-slate-900 group">
+              {/* This mimics the Technical drawing 'image_fd24dc.jpg' */}
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop')] bg-cover opacity-30 mix-blend-overlay grayscale"></div>
+              
+              <img 
+                 src="https://images.unsplash.com/photo-1519003300449-424adfae4cca?q=80&w=2141&auto=format&fit=crop"
+                 alt="Trambulance Technical"
+                 className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-slate-900 via-transparent to-transparent"></div>
+              
+              {/* Technical Annotations Overlay with Float */}
+              <div className="absolute top-8 right-8 bg-slate-900/80 backdrop-blur border border-slate-700 px-4 py-2 rounded-lg animate-float-slow">
+                 <span className="text-emerald-400 text-xs font-mono">FIG 2.1: CHASSIS</span>
+              </div>
+              
+              <div className="absolute bottom-8 left-8 right-8">
+                 <div className="flex items-center justify-between border-t border-slate-700 pt-6">
+                    <div>
+                        <span className="block text-slate-500 text-xs uppercase mb-1">Top Speed</span>
+                        <span className="text-2xl font-bold text-white">45 <span className="text-sm font-normal text-slate-500">km/h</span></span>
+                    </div>
+                    <div>
+                        <span className="block text-slate-500 text-xs uppercase mb-1">Payload</span>
+                        <span className="text-2xl font-bold text-white">400 <span className="text-sm font-normal text-slate-500">kg</span></span>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-slate-900 animate-spin-slow">
+                        <PenTool size={24} fill="currentColor" />
+                    </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// 7. Features Grid
+const FeatureHighlights = () => {
+  const highlights = [
+    { icon: <Wind />, title: "Aerodynamic Hood", desc: "Retractable roof design lowers air drag and adapts to weather instantly." },
+    { icon: <ShieldCheck />, title: "Hydraulic Disk Brakes", desc: "Triple setup (Hand, Foot, Handle) gives driver full control." },
+    { icon: <Gauge />, title: "Smart Dashboard", desc: "Digital speed, state-of-charge, and trip info keep you in control." },
+    { icon: <Wrench />, title: "MacPherson Suspension", desc: "Coil and leaf spring combination for structural integrity." },
+    { icon: <Battery />, title: "Extended Battery", desc: "Bangladesh's best lead acid pack delivering longer range." },
+    { icon: <Users />, title: "Ergonomic Layout", desc: "Cushioned seating and useful storage for daily work." },
+  ];
+
+  return (
+    <section id="features" className="py-24 bg-slate-900">
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
+          <p className="text-slate-400">
+            We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency.
           </p>
-          <ul style="list-style: none; margin-bottom: 2rem;">
-            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Stretcher & Oxygen Support</li>
-            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Attendant Seating</li>
-            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Emergency Siren & Lighting</li>
-          </ul>
-          <a class="btn primary" href="#contact">Inquire Now</a>
         </div>
-        <div>
-           <img src="src/assets/trambulance.png" alt="Trambulance" style="width:100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow);">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {highlights.map((item, idx) => (
+            <div key={idx} className="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300">
+              <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg">
+                {item.icon}
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">{item.title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
+    </section>
+  );
+};
+
+// 8. About & Team Accordion
+const About = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  
+  const tabs = [
+    { id: 0, label: "Mission" },
+    { id: 1, label: "The Team" },
+    { id: 2, label: "Our Journey" }
+  ];
+
+  const content = [
+    // Mission
+    <div className="animate-fade-in">
+        <h3 className="text-2xl font-bold text-white mb-4">Cleaner Mobility for Everyone</h3>
+        <p className="text-slate-400 leading-relaxed mb-6">
+            Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.
+        </p>
+        <div className="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl">
+            <p className="text-emerald-100 italic">"We obsess over practical details — from frame geometry to charging routines."</p>
+        </div>
+    </div>,
+    // Team
+    <div className="animate-fade-in">
+        <h3 className="text-2xl font-bold text-white mb-6">Meet the Innovators</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {[
+                { name: "Rownak Shahriar Ruhan", role: "CEO" },
+                { name: "Abdul Jawad", role: "CMO & Treasurer" },
+                { name: "Ishraq Rafid", role: "Chief Logistics & Architect" },
+                { name: "Hasan Mahmud", role: "Chief Operation Officer" },
+                { name: "Mijanur Rahman", role: "HR & Investment" },
+                { name: "Tomal Kirtonia", role: "Head of Designing" }
+            ].map((member, i) => (
+                <div key={i} className="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none">
+                    <div className="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                        <img src={`https://ui-avatars.com/api/?name=${member.name}&background=10b981&color=fff&size=128`} alt={member.name} />
+                    </div>
+                    <h4 className="text-white font-bold text-sm leading-tight mb-1">{member.name}</h4>
+                    <p className="text-emerald-400 text-xs">{member.role}</p>
+                </div>
+            ))}
+        </div>
+    </div>,
+    // Journey
+    <div className="animate-fade-in">
+        <h3 className="text-2xl font-bold text-white mb-4">From Prototype to Production</h3>
+        <ul className="space-y-6 border-l border-slate-700 ml-2 pl-6">
+            <li className="relative">
+                <span className="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span>
+                <span className="text-emerald-400 font-bold text-sm block mb-1">2022</span>
+                <p className="text-slate-400 text-sm">Began with a simple idea: lighter, safer three-wheelers.</p>
+            </li>
+            <li className="relative">
+                <span className="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
+                <span className="text-white font-bold text-sm block mb-1">2023</span>
+                <p className="text-slate-400 text-sm">Piloted first fleet, iterating on chassis and suspension.</p>
+            </li>
+            <li className="relative">
+                <span className="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
+                <span className="text-white font-bold text-sm block mb-1">2024</span>
+                <p className="text-slate-400 text-sm">Production-ready platform with angular composite panels.</p>
+            </li>
+            <li className="relative">
+                <span className="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
+                <span className="text-white font-bold text-sm block mb-1">Today</span>
+                <p className="text-slate-400 text-sm">TriChokro vehicles carry passengers across cities daily.</p>
+            </li>
+        </ul>
     </div>
-  </section>
+  ];
 
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <div class="container text-center">
-      <h2 class="section-title">Get in Touch</h2>
-      <p class="section-sub" style="margin: 0 auto 3rem;">Ready to upgrade your fleet? Contact us for a demo.</p>
-
-      <div class="grid grid-3">
-        <div class="card text-center">
-          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-location-dot"></i></div>
-          <h3>Visit Us</h3>
-          <p>123 Green Avenue, Dhanmondi<br>Dhaka 1205</p>
-        </div>
-        <div class="card text-center">
-          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-phone"></i></div>
-          <h3>Call Us</h3>
-          <p>+880 1700 123456<br>Sun-Thu, 9am - 6pm</p>
-        </div>
-        <div class="card text-center">
-          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-envelope"></i></div>
-          <h3>Email Us</h3>
-          <p>sales@trichokro.com<br>support@trichokro.com</p>
+  return (
+    <section id="about" className="py-24 bg-slate-950">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row gap-12">
+            <div className="md:w-1/3">
+                <h2 className="text-3xl font-bold text-white mb-6">About Us</h2>
+                <div className="space-y-2">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium ${
+                                activeTab === tab.id 
+                                ? "bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20" 
+                                : "bg-transparent text-slate-400 hover:bg-slate-800"
+                            }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+            <div className="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px]">
+                {content[activeTab]}
+            </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  );
+};
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="grid grid-4" style="gap: 2rem;">
-        <div>
-          <div class="footer-brand"><i class="fa-solid fa-bolt text-primary"></i> TriChokro</div>
-          <p style="color: var(--muted); font-size: 0.9rem;">
-            Redefining three-wheeler transport with sustainable technology.
-          </p>
-        </div>
-        <div>
-          <h4 style="color: #fff; margin-bottom: 1rem;">Products</h4>
-          <ul style="list-style: none; color: var(--muted); line-height: 2;">
-            <li>Passenger EV</li>
-            <li>Cargo EV</li>
-            <li>Trambulance</li>
-          </ul>
-        </div>
-        <div>
-          <h4 style="color: #fff; margin-bottom: 1rem;">Company</h4>
-          <ul style="list-style: none; color: var(--muted); line-height: 2;">
-            <li>About Us</li>
-            <li>Careers</li>
-            <li>News</li>
-          </ul>
-        </div>
-        <div>
-          <h4 style="color: #fff; margin-bottom: 1rem;">Connect</h4>
-          <div style="display: flex; gap: 1rem; font-size: 1.2rem;">
-            <a href="#" class="text-primary"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="text-primary"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" class="text-primary"><i class="fa-brands fa-twitter"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="text-center mt-4" style="border-top: 1px solid var(--border); padding-top: 2rem; color: var(--muted); font-size: 0.8rem;">
-        &copy; 2025 TriChokro Ltd. All rights reserved.
-      </div>
-    </div>
-  </footer>
+// 9. Contact Section
+const Contact = () => {
+    return (
+        <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 to-blue-950 text-white relative">
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-16 border border-slate-700 shadow-2xl">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
+                        <p className="text-slate-400">Book a demo, discuss fleet needs, or request financing options.</p>
+                    </div>
 
-  <script src="js/script.js"></script>
-</body>
-</html>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group">
+                            <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                                <MapPin />
+                            </div>
+                            <h3 className="font-bold mb-2">Visit Us</h3>
+                            <p className="text-slate-400 text-sm">Kazi Nazrul Islam, BUET<br/>Dept of Mechanical Eng.<br/>Dhaka-1000</p>
+                        </div>
+                        <div className="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group">
+                            <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                                <Phone />
+                            </div>
+                            <h3 className="font-bold mb-2">Call Us</h3>
+                            <p className="text-slate-400 text-sm">+880 1714 844677<br/>9AM – 6PM</p>
+                        </div>
+                        <div className="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group">
+                            <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                                <Mail />
+                            </div>
+                            <h3 className="font-bold mb-2">Email</h3>
+                            <p className="text-slate-400 text-xs break-words">rownakshahriarruhan@gmail.com<br/>trichokro.bd@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div className="mt-12 text-center">
+                        <form className="max-w-md mx-auto space-y-4">
+                            <input type="email" placeholder="Enter your email" className="w-full px-6 py-4 bg-slate-950 border border-slate-700 rounded-xl focus:outline-none focus:border-emerald-500 text-white placeholder-slate-600 transition-colors" />
+                            <button className="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20">
+                                Subscribe for Updates
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+// 10. Footer
+const Footer = () => {
+    return (
+        <footer className="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
+            <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
+                    <div className="flex items-center gap-2">
+                         <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-slate-900">
+                             <Zap size={18} fill="currentColor" />
+                         </div>
+                         <span className="text-xl font-bold text-white">TriChokro</span>
+                    </div>
+                    <div className="flex gap-8 text-slate-400 text-sm">
+                        <a href="#" className="hover:text-emerald-400 transition-colors">Products</a>
+                        <a href="#" className="hover:text-emerald-400 transition-colors">Technology</a>
+                        <a href="#" className="hover:text-emerald-400 transition-colors">Support</a>
+                        <a href="#" className="hover:text-emerald-400 transition-colors">Privacy</a>
+                    </div>
+                </div>
+                <div className="text-center text-slate-600 text-xs">
+                    &copy; 2026 Bangladesh University of Engineering & Technology. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+// --- Main App Component ---
+
+export default function App() {
+  return (
+    <>
+      <style>{globalStyles}</style>
+      <div className="bg-slate-950 text-slate-200 font-sans selection:bg-emerald-500 selection:text-white cursor-none">
+        <CustomCursor />
+        <Navbar />
+        <Hero />
+        <Products />
+        <TrambulanceFeatures />
+        <FeatureHighlights />
+        <About />
+        <Contact />
+        <Footer />
+      </div>
+    </>
+  );
+}
