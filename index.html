@@ -4,87 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TriChokro — Trambulance: Electric Three-Wheeled Ambulance</title>
+  <title>TriChokro — Advanced Electric Mobility</title>
   <meta name="description"
     content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
-  <meta name="keywords"
-    content="electric rickshaw, three-wheeler, Bangladesh, Trambulance, electric ambulance, clean energy, low cost, sustainable transport">
-  <meta name="author" content="TriChokro">
-  <meta property="og:title" content="TriChokro — Trambulance: Electric Three-Wheeled Ambulance">
-  <meta property="og:description"
-    content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
-  <meta property="og:image" content="src/assets/trambulance.png">
-  <meta property="og:url" content="https://trichokro.com">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TriChokro — Trambulance: Electric Three-Wheeled Ambulance">
-  <meta name="twitter:description"
-    content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
-  <meta name="twitter:image" content="src/assets/trambulance.png">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "TriChokro",
-    "url": "https://trichokro.com",
-    "logo": "src/assets/logo_icon.png",
-    "description": "TriChokro designs modern electric three-wheelers in Bangladesh, focusing on clean energy and low running costs.",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+880-1700-123456",
-      "contactType": "customer service"
-    },
-    "sameAs": [
-      "https://www.facebook.com/trichokro",
-      "https://www.linkedin.com/company/trichokro"
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Trambulance",
-    "description": "An electric three-wheeled ambulance designed for rapid response in Bangladesh's urban and rural areas.",
-    "image": "src/assets/trambulance.png",
-    "brand": {
-      "@type": "Brand",
-      "name": "TriChokro"
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "BDT",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-  </script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="src/assets/logo_icon.png">
+  <!-- Font Awesome for Icons (using CDN for simplicity as seen in index2) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
   <!-- NAVBAR -->
-    
   <header class="navbar">
     <div class="container inner">
       <div class="logo">
-        <img src="src/assets/logo_icon.png" alt="TriChokro Logo">
+        <i class="fa-solid fa-bolt text-primary"></i>
         TriChokro
       </div>
       <nav class="nav-links">
-
         <button class="nav-link" onclick="scrollToSection('home')" data-lang="nav_home">Home</button>
-        <button class="nav-link" onclick="scrollToSection('highlights')" data-lang="nav_highlights">Highlights</button>
-        <button class="nav-link" onclick="scrollToSection('about')" data-lang="nav_about">About</button>
-        <button class="nav-link" onclick="scrollToSection('trambulance')"
-          data-lang="nav_trambulance">Trambulance</button>
-        <button class="nav-link" onclick="scrollToSection('contact')" data-lang="nav_contact">Contact</button>
-        <button class="nav-link" onclick="window.location.href='index2.html'" data-lang="nav_newPage"> New Page</button>
+        <button class="nav-link" onclick="scrollToSection('technology')" data-lang="nav_tech">Technology</button>
+        <button class="nav-link" onclick="scrollToSection('savings')" data-lang="nav_savings">Efficiency</button>
+        <button class="nav-link" onclick="scrollToSection('trambulance')" data-lang="nav_trambulance">Trambulance</button>
+        <button class="nav-link" onclick="window.location.href='index2.html'" data-lang="nav_newPage">Next Gen (v3)</button>
       </nav>
       <div class="nav-actions">
         <select id="language-switcher" class="language-switcher">
-          <option value="en">English</option>
-          <option value="bn">বাংলা</option>
+          <option value="en">EN</option>
+          <option value="bn">BN</option>
         </select>
         <button class="cta small" onclick="scrollToSection('contact')" data-lang="get_quote">Get Quote</button>
       </div>
@@ -94,233 +41,171 @@
   <!-- HERO -->
   <section id="home" class="hero">
     <div class="container hero-inner">
-      <h1 data-lang="hero_title">Trambulance: <span class="gradient">Electric Ambulance Revolution</span></h1>
-      <p class="mt-2" data-lang="hero_subtitle">
-        The newest addition to TriChokro's fleet — a fully electric three-wheeled ambulance designed for rapid response
-        in Bangladesh's urban and rural areas. Zero emissions, low cost, and medical-grade comfort.<br>
-        <span class="highlight-announce"><strong>Compact, maneuverable, and ready for urgent care.</strong></span>
+      <h1 data-lang="hero_title">Future of <span class="gradient">Urban Mobility</span></h1>
+      <p data-lang="hero_subtitle">
+        Engineered for Bangladesh. The TriChokro platform delivers superior range, safety, and profitability for drivers.
+        Experience the quiet revolution.
       </p>
       <div class="hero-actions">
-        <a class="btn primary" onclick="scrollToSection('trambulance')" data-lang="explore_trambulance">Explore
-          Trambulance</a>
-        <a class="btn outline" onclick="scrollToSection('highlights')" data-lang="explore_highlights">See Highlights</a>
-        <a class="btn outline" onclick="scrollToSection('contact')" data-lang="book_demo">Book a Demo</a>
+        <a class="btn primary" onclick="scrollToSection('trambulance')" data-lang="explore_trambulance">
+          Explore Trambulance
+        </a>
+        <a class="btn outline" onclick="scrollToSection('technology')" data-lang="explore_tech">
+          View Specs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAVINGS / GRAPH SECTION -->
+  <section id="savings" class="section graph-section">
+    <div class="container">
+      <div class="text-center mb-8">
+        <h2 class="section-title" data-lang="savings_title">Unmatched Efficiency</h2>
+        <p class="section-sub" style="margin: 0 auto;">Maximize your earnings with significantly lower daily operating costs.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div>
+          <h3 class="mb-4">Daily Operational Cost (BDT)</h3>
+          <p class="mb-8" style="color: var(--muted)">
+            Comparing fuel costs for a standard 100km daily route. TriChokro's electric powertrain reduces energy expenses by up to 90%.
+          </p>
+          <ul style="list-style: none; color: var(--muted);">
+            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> No oil changes required</li>
+            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> Minimal brake wear (Regenerative Braking)</li>
+            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> 5-Year Battery Warranty available</li>
+          </ul>
+        </div>
+
+        <div class="chart-container">
+          <!-- Graph Bars -->
+          <div class="bar-group">
+            <span class="bar-value">550৳</span>
+            <div class="bar secondary" style="height: 90%;"></div>
+            <span class="bar-label">Petrol CNG</span>
+          </div>
+          <div class="bar-group">
+            <span class="bar-value">480৳</span>
+            <div class="bar secondary" style="height: 78%;"></div>
+            <span class="bar-label">Diesel</span>
+          </div>
+          <div class="bar-group">
+            <span class="bar-value text-primary">50৳</span>
+            <div class="bar primary" style="height: 15%;"></div>
+            <span class="bar-label" style="color: #fff;">TriChokro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY SPECS -->
+  <section id="technology" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang="tech_title">Platform Specifications</h2>
+      <p class="section-sub mb-8">Built on our modular EV platform designed for durability and ease of maintenance.</p>
+
+      <div class="grid grid-2" style="align-items: center;">
+        <img src="src/assets/trambulance.png" alt="Chassis Diagram" style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow);">
+
+        <table class="specs-table">
+          <tbody>
+            <tr>
+              <th><i class="fa-solid fa-motorcycle"></i> Powertrain</th>
+              <td>1200W Brushless DC Motor (Waterproof IP67)</td>
+            </tr>
+            <tr>
+              <th><i class="fa-solid fa-battery-full"></i> Battery</th>
+              <td>60V 120Ah Deep Cycle / LiFePO4 Option</td>
+            </tr>
+            <tr>
+              <th><i class="fa-solid fa-gauge-high"></i> Performance</th>
+              <td>Top Speed: 45 km/h | Range: 120+ km</td>
+            </tr>
+            <tr>
+              <th><i class="fa-solid fa-weight-hanging"></i> Capacity</th>
+              <td>Payload: 600kg | Seating: Driver + 4</td>
+            </tr>
+            <tr>
+              <th><i class="fa-solid fa-plug"></i> Charging</th>
+              <td>Fast Charge (3-4 hrs) | Standard (6-8 hrs)</td>
+            </tr>
+            <tr>
+              <th><i class="fa-solid fa-shield-halved"></i> Safety</th>
+              <td>Hydraulic Disc Brakes, Reinforced Roll Cage</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS (GRID) -->
+  <section id="highlights" class="section">
+    <div class="container">
+      <h2 class="section-title">Core Features</h2>
+      <div class="grid grid-3 highlight-list">
+
+        <article class="card">
+          <div class="icon"><i class="fa-solid fa-leaf"></i></div>
+          <h3>Zero Emissions</h3>
+          <p>100% electric drive means no tailpipe pollution, contributing to cleaner air in our cities.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon"><i class="fa-solid fa-wallet"></i></div>
+          <h3>High Profitability</h3>
+          <p>Save over 15,000 BDT monthly on fuel and maintenance compared to CNG vehicles.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon"><i class="fa-solid fa-road"></i></div>
+          <h3>Adaptive Suspension</h3>
+          <p>Tuned specifically for rural and urban road conditions in Bangladesh for maximum comfort.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon"><i class="fa-solid fa-tablet-screen-button"></i></div>
+          <h3>Smart Dashboard</h3>
+          <p>Digital display with real-time range estimation, speed, and battery health monitoring.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon"><i class="fa-solid fa-tools"></i></div>
+          <h3>Modular Design</h3>
+          <p>Easy-to-replace body panels and components reduce downtime during repairs.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <h3>Financing Support</h3>
+          <p>We partner with local banks to provide easy installment plans for new drivers.</p>
+        </article>
+
       </div>
     </div>
   </section>
 
   <!-- TRAMBULANCE SECTION -->
-  <section id="trambulance" class="section">
+  <section id="trambulance" class="section" style="background: linear-gradient(to bottom, var(--bg), var(--surface));">
     <div class="container">
-      <h2 class="section-title" data-lang="trambulance_title">Trambulance — Three-Wheeled Ambulance</h2>
-      <div class="flex trambulance-features">
-        <ul class="feature-list">
-          <p class="section-sub mb-8 subtitle" data-lang="trambulance_subtitle">
-            TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of
-            Bangladesh.
-            Its compact size, maneuverability, and low running cost make it ideal for rapid response in busy city
-            streets or
-            rural roads.
+      <div class="grid grid-2" style="align-items: center;">
+        <div>
+          <h2 class="section-title">The Trambulance</h2>
+          <h4 style="color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Rapid Response Unit</h4>
+          <p class="mb-4" style="color: var(--muted); font-size: 1.1rem;">
+            A purpose-built electric ambulance designed to navigate narrow alleyways where traditional ambulances cannot reach.
           </p>
-          <li data-lang="trambulance_feat1"><strong>All-Electric Powertrain:</strong> Zero emissions and quiet
-            operation.</li>
-          <li data-lang="trambulance_feat2"><strong>Medical-Grade Interior:</strong> Equipped for patient safety and
-            comfort.</li>
-          <li data-lang="trambulance_feat3"><strong>Stretcher Space:</strong> Designed to carry one patient and one
-            attendant.</li>
-          <li data-lang="trambulance_feat4"><strong>Easy Access:</strong> Wide doors for quick loading and unloading.
-          </li>
-          <li data-lang="trambulance_feat5"><strong>Urban & Rural Ready:</strong> Compact build to navigate traffic
-            and narrow lanes.</li>
-          <li data-lang="trambulance_feat6"><strong>Low Operating Cost:</strong> Minimal charging and maintenance
-            expenses.</li>
-        </ul>
-        <img src="src/assets/trambulance.png" alt="Trambulance - Three-wheeled Ambulance"
-          style="max-width:500px;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.10);display:block;margin:0 auto;">
-      </div>
-    </div>
-  </section>
-  <!-- /TRAMBULANCE SECTION -->
-
-  <!-- HIGHLIGHTS (Benefits + Features combined, 9 cards) -->
-  <section id="highlights" class="section">
-    <div class="container">
-      <h2 class="section-title" data-lang="highlights_title">Highlights that matter</h2>
-      <p class="section-sub mb-8 subtitle" data-lang="highlights_subtitle">
-        We combined real-world driver benefits with the product features behind them — nine essentials in a clean 3×3
-        grid.
-      </p>
-
-      <div class="grid grid-3 highlight-list">
-        <article class="card">
-          <div class="icon">🌱</div>
-          <span class="kicker" data-lang="zero_emissions_kicker">Zero Emissions</span>
-          <h3 data-lang="zero_emissions_title">Clean & Quiet</h3>
-          <p data-lang="zero_emissions_text">Battery-electric drivetrain produces no tailpipe emissions and keeps
-            neighborhoods quieter.</p>
-          <span class="badge" data-lang="zero_emissions_badge">Eco</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">💰</div>
-          <span class="kicker" data-lang="savings_kicker">Up to 70% Savings</span>
-          <h3 data-lang="savings_title">Lower Running Cost</h3>
-          <p data-lang="savings_text">Electricity beats fuel. Fewer moving parts means less service and more time on the
-            road.</p>
-          <span class="badge" data-lang="savings_badge">Taka</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">🔋</div>
-          <span class="kicker" data-lang="range_kicker">120+ km per charge</span>
-          <h3 data-lang="range_title">Work a Full Day</h3>
-          <p data-lang="range_text">Optimized battery pack and controller deliver dependable range, even under load.</p>
-          <span class="badge" data-lang="range_badge">Range</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">⚡</div>
-          <span class="kicker" data-lang="charging_kicker">~4 hrs typical</span>
-          <h3 data-lang="charging_title">Fast Charging</h3>
-          <p data-lang="charging_text">Top up quickly during breaks and get back to earning sooner.</p>
-          <span class="badge" data-lang="charging_badge">Speed</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">🛠️</div>
-          <span class="kicker" data-lang="maintenance_kicker">Fewer moving parts</span>
-          <h3 data-lang="maintenance_title">Low Maintenance</h3>
-          <p data-lang="maintenance_text">Brushless motor + sealed components = predictable service and lower lifetime
-            cost.</p>
-          <span class="badge" data-lang="maintenance_badge">Service</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">📟</div>
-          <span class="kicker" data-lang="dashboard_kicker">Smart Dashboard</span>
-          <h3 data-lang="dashboard_title">Data at a Glance</h3>
-          <p data-lang="dashboard_text">Digital speed, state-of-charge, and trip info keep you in control all day.</p>
-          <span class="badge" data-lang="dashboard_badge">Smart</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">🛡️</div>
-          <span class="kicker" data-lang="safety_kicker">LED + Braking</span>
-          <h3 data-lang="safety_title">Safety First</h3>
-          <p data-lang="safety_text">High-visibility LED lighting, strong chassis geometry, and brake assist improve
-            confidence.</p>
-          <span class="badge" data-lang="safety_badge">Safe</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">💺</div>
-          <span class="kicker" data-lang="comfort_kicker">Ergonomic Layout</span>
-          <h3 data-lang="comfort_title">Comfort & Utility</h3>
-          <p data-lang="comfort_text">Cushioned seating, weather protection options, and useful storage for daily work.
-          </p>
-          <span class="badge" data-lang="comfort_badge">Comfort</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">🤝</div>
-          <span class="kicker" data-lang="support_kicker">Local Support</span>
-          <h3 data-lang="support_title">Service & Financing</h3>
-          <p data-lang="support_text">Warranty-backed batteries, easy parts availability, and financing guidance from
-            our team.</p>
-          <span class="badge" data-lang="support_badge">Support</span>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2 class="section-title" data-lang="about_title">About TriChokro</h2>
-      <p class="section-sub mb-8 subtitle" data-lang="about_subtitle">
-        Built by engineers and drivers working together. We obsess over practical details — from frame geometry to
-        charging routines.
-      </p>
-
-      <div class="about-accordion">
-        <!-- Mission Section -->
-        <div class="accordion-item">
-          <button class="accordion-header">
-            <h4 data-lang="mission_title">Our Mission</h4>
-            <div class="accordion-arrow"></div>
-          </button>
-          <div class="accordion-content">
-            <p data-lang="mission_text">
-              Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient
-              three-wheelers that raise driver income and reduce city pollution. We design for real streets,
-              real loads, and real economics.
-            </p>
-          </div>
+          <ul style="list-style: none; margin-bottom: 2rem;">
+            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Stretcher & Oxygen Support</li>
+            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Attendant Seating</li>
+            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Emergency Siren & Lighting</li>
+          </ul>
+          <a class="btn primary" href="#contact">Inquire Now</a>
         </div>
-
-        <!-- Team Section -->
-        <div class="accordion-item">
-          <button class="accordion-header">
-            <h4 data-lang="team_title">Our Team</h4>
-            <div class="accordion-arrow"></div>
-          </button>
-          <div class="accordion-content">
-            <p data-lang="team_text" class="mb-4">
-              A small, focused group of mechanical, electronics, and operations specialists from
-              Bangladesh’s startup and manufacturing ecosystem.
-            </p>
-            <div class="grid grid-3 team-grid">
-              <div class="team-member-card">
-                <img src="src/assets/person.png" alt="Team Member 1">
-                <h5 data-lang="team_member_1_name">Fatema Ahmed</h5>
-                <p data-lang="team_member_1_title">Lead Engineer</p>
-              </div>
-              <div class="team-member-card">
-                <img src="src/assets/person.png" alt="Team Member 2">
-                <h5 data-lang="team_member_2_name">Rahim Khan</h5>
-                <p data-lang="team_member_2_title">Operations Head</p>
-              </div>
-              <div class="team-member-card">
-                <img src="src/assets/person.png" alt="Team Member 3">
-                <h5 data-lang="team_member_3_name">Sultana Begum</h5>
-                <p data-lang="team_member_3_title">Battery Specialist</p>
-              </div>
-              <div class="team-member-card">
-                <img src="src/assets/person.png" alt="Team Member 4">
-                <h5 data-lang="team_member_4_name">Jamal Uddin</h5>
-                <p data-lang="team_member_4_title">Vehicle Designer</p>
-              </div>
-              <div class="team-member-card">
-                <img src="src/assets/person.png" alt="Team Member 5">
-                <h5 data-lang="team_member_5_name">Nadia Chowdhury</h5>
-                <p data-lang="team_member_5_title">Field Support</p>
-              </div>
-              <div class="team-member-card">
-                <img src="src/assets/person.png" alt="Team Member 6">
-                <h5 data-lang="team_member_6_name">Kamal Hasan</h5>
-                <p data-lang="team_member_6_title">Manufacturing Lead</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Journey Section -->
-        <div class="accordion-item">
-          <button class="accordion-header">
-            <h4 data-lang="journey_title">Our Journey</h4>
-            <div class="accordion-arrow"></div>
-          </button>
-          <div class="accordion-content">
-            <p data-lang="journey_text">
-              We began in 2022 with a simple idea: the everyday three-wheeler could be lighter, safer,
-              and cheaper to operate. Early prototypes taught us what mattered most to drivers — range,
-              charging time, and comfort. In 2023 we piloted our first fleet, iterating on chassis weldments,
-              suspension tuning, and the battery-controller pairing. By 2024, those lessons became a
-              production-ready platform: angular composite panels for robustness, a smart dash for clarity,
-              and serviceable modules for roadside uptime. Today, TriChokro vehicles carry passengers across
-              cities while we continue refining every kilometer of the experience.
-            </p>
-          </div>
+        <div>
+           <img src="src/assets/trambulance.png" alt="Trambulance" style="width:100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow);">
         </div>
       </div>
     </div>
@@ -328,25 +213,25 @@
 
   <!-- CONTACT -->
   <section id="contact" class="section">
-    <div class="container">
-      <h2 class="section-title" data-lang="contact_title">Get in touch</h2>
-      <p class="section-sub mb-8 subtitle" data-lang="contact_subtitle">Book a demo, discuss fleet needs, or request
-        financing options.</p>
+    <div class="container text-center">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub" style="margin: 0 auto 3rem;">Ready to upgrade your fleet? Contact us for a demo.</p>
+
       <div class="grid grid-3">
-        <div class="card">
-          <h3 data-lang="visit_title">Visit</h3>
-          <p data-lang="visit_text">123 Green Avenue, Dhanmondi, Dhaka 1205</p>
-          <a class="btn mt-6" href="#" data-lang="visit_button">Get Directions</a>
+        <div class="card text-center">
+          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-location-dot"></i></div>
+          <h3>Visit Us</h3>
+          <p>123 Green Avenue, Dhanmondi<br>Dhaka 1205</p>
         </div>
-        <div class="card">
-          <h3 data-lang="call_title">Call</h3>
-          <p data-lang="call_text">+880 1700 123456 · 8AM–8PM</p>
-          <a class="btn mt-6" href="tel:+8801700123456" data-lang="call_button">Call Now</a>
+        <div class="card text-center">
+          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-phone"></i></div>
+          <h3>Call Us</h3>
+          <p>+880 1700 123456<br>Sun-Thu, 9am - 6pm</p>
         </div>
-        <div class="card">
-          <h3 data-lang="email_title">Email</h3>
-          <p data-lang="email_text">trichokro.bd@gmail.com</p>
-          <a class="btn mt-6" href="mailto:trichokro.bd@gmail.com" data-lang="email_button">Send Email</a>
+        <div class="card text-center">
+          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-envelope"></i></div>
+          <h3>Email Us</h3>
+          <p>sales@trichokro.com<br>support@trichokro.com</p>
         </div>
       </div>
     </div>
@@ -355,8 +240,41 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="brand" data-lang="footer_brand">⚡ TriChokro</div>
-      <div class="mt-2" data-lang="footer_copyright">© 2025 TriChokro. All rights reserved.</div>
+      <div class="grid grid-4" style="gap: 2rem;">
+        <div>
+          <div class="footer-brand"><i class="fa-solid fa-bolt text-primary"></i> TriChokro</div>
+          <p style="color: var(--muted); font-size: 0.9rem;">
+            Redefining three-wheeler transport with sustainable technology.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #fff; margin-bottom: 1rem;">Products</h4>
+          <ul style="list-style: none; color: var(--muted); line-height: 2;">
+            <li>Passenger EV</li>
+            <li>Cargo EV</li>
+            <li>Trambulance</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #fff; margin-bottom: 1rem;">Company</h4>
+          <ul style="list-style: none; color: var(--muted); line-height: 2;">
+            <li>About Us</li>
+            <li>Careers</li>
+            <li>News</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #fff; margin-bottom: 1rem;">Connect</h4>
+          <div style="display: flex; gap: 1rem; font-size: 1.2rem;">
+            <a href="#" class="text-primary"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="text-primary"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" class="text-primary"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4" style="border-top: 1px solid var(--border); padding-top: 2rem; color: var(--muted); font-size: 0.8rem;">
+        &copy; 2025 TriChokro Ltd. All rights reserved.
+      </div>
     </div>
   </footer>
 
