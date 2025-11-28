@@ -1,283 +1,767 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TriChokro — Advanced Electric Mobility</title>
-  <meta name="description"
-    content="TriChokro designs modern electric three-wheelers in Bangladesh. Clean energy, low running cost, and premium comfort. Now introducing Trambulance—an electric three-wheeled ambulance.">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="src/assets/logo_icon.png">
-  <!-- Font Awesome for Icons (using CDN for simplicity as seen in index2) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriChokro - Interactive Electric Mobility</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* --- Global Styles & Keyframes --- */
+        body {
+            cursor: none; /* Hide default cursor */
+            overflow-x: hidden;
+            background-color: #020617; /* slate-950 */
+            font-family: 'Inter', sans-serif;
+            color: #e2e8f0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Ensure links/buttons show the pointer state visually via our custom cursor */
+        a, button, .interactive, input, .group {
+            cursor: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes float-slow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes float-medium {
+            0% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(45deg); }
+            66% { transform: translate(-20px, 20px) rotate(-10deg); }
+            100% { transform: translate(0px, 0px) rotate(0deg); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+        .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+        .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
+
+        /* Tilt Card Styles */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+        
+        /* Cursor Styles */
+        #custom-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        
+        #custom-cursor.hovered {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(16, 185, 129, 0.2);
+            border-color: transparent;
+        }
+
+        .selection-emerald::selection {
+            background-color: #10b981;
+            color: white;
+        }
+    </style>
 </head>
+<body class="selection-emerald">
 
-<body>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container inner">
-      <div class="logo">
-        <i class="fa-solid fa-bolt text-primary"></i>
-        TriChokro
-      </div>
-      <nav class="nav-links">
-        <button class="nav-link" onclick="scrollToSection('home')" data-lang="nav_home">Home</button>
-        <button class="nav-link" onclick="scrollToSection('technology')" data-lang="nav_tech">Technology</button>
-        <button class="nav-link" onclick="scrollToSection('savings')" data-lang="nav_savings">Efficiency</button>
-        <button class="nav-link" onclick="scrollToSection('trambulance')" data-lang="nav_trambulance">Trambulance</button>
-        <button class="nav-link" onclick="window.location.href='index2.html'" data-lang="nav_newPage">Next Gen (v3)</button>
-      </nav>
-      <div class="nav-actions">
-        <select id="language-switcher" class="language-switcher">
-          <option value="en">EN</option>
-          <option value="bn">BN</option>
-        </select>
-        <button class="cta small" onclick="scrollToSection('contact')" data-lang="get_quote">Get Quote</button>
-      </div>
+    <!-- Custom Car Cursor -->
+    <div id="custom-cursor" class="fixed pointer-events-none z-[9999] transition-transform duration-100 ease-out flex items-center justify-center w-10 h-10">
+        <!-- Ring -->
+        <div class="absolute inset-0 rounded-full border border-emerald-400 opacity-50 transition-all duration-300" id="cursor-ring"></div>
+        <!-- Car SVG -->
+        <div class="relative z-10 text-emerald-400 transform -rotate-12">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                <circle cx="7" cy="17" r="3" />
+                <circle cx="17" cy="17" r="3" />
+                <path d="M14 10l-2-3h-5l-1 3" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </div>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="container hero-inner">
-      <h1 data-lang="hero_title">Future of <span class="gradient">Urban Mobility</span></h1>
-      <p data-lang="hero_subtitle">
-        Engineered for Bangladesh. The TriChokro platform delivers superior range, safety, and profitability for drivers.
-        Experience the quiet revolution.
-      </p>
-      <div class="hero-actions">
-        <a class="btn primary" onclick="scrollToSection('trambulance')" data-lang="explore_trambulance">
-          Explore Trambulance
-        </a>
-        <a class="btn outline" onclick="scrollToSection('technology')" data-lang="explore_tech">
-          View Specs
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
+                    <div class="relative w-10 h-10 flex items-center justify-center">
+                        <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
+                        <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-white tracking-tight font-sans">
+                        Tri<span class="text-emerald-400">Chokro</span>
+                    </span>
+                </div>
 
-  <!-- SAVINGS / GRAPH SECTION -->
-  <section id="savings" class="section graph-section">
-    <div class="container">
-      <div class="text-center mb-8 animate-on-scroll">
-        <h2 class="section-title" data-lang="savings_title">Unmatched Efficiency</h2>
-        <p class="section-sub" style="margin: 0 auto;">Maximize your earnings with significantly lower daily operating costs.</p>
-      </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                        Our Products
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#trambulance" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                        Trambulance
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                        Features
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <button class="interactive bg-emerald-500 hover:bg-emerald-600 text-slate-900 px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">
+                        Book Demo
+                    </button>
+                </div>
 
-      <div class="grid grid-2">
-        <div class="animate-on-scroll">
-          <h3 class="mb-4">Daily Operational Cost (BDT)</h3>
-          <p class="mb-8" style="color: var(--muted)">
-            Comparing fuel costs for a standard 100km daily route. TriChokro's electric powertrain reduces energy expenses by up to 90%.
-          </p>
-          <ul style="list-style: none; color: var(--muted);">
-            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> No oil changes required</li>
-            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> Minimal brake wear (Regenerative Braking)</li>
-            <li class="mb-2"><i class="fa-solid fa-check text-primary"></i> 5-Year Battery Warranty available</li>
-          </ul>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="chart-container animate-on-scroll delay-100">
-          <!-- Graph Bars -->
-          <div class="bar-group">
-            <span class="bar-value">550 BDT</span>
-            <div class="bar secondary" data-height="90%"></div>
-            <span class="bar-label">Petrol CNG</span>
-          </div>
-          <div class="bar-group">
-            <span class="bar-value">480 BDT</span>
-            <div class="bar secondary" data-height="78%"></div>
-            <span class="bar-label">Diesel</span>
-          </div>
-          <div class="bar-group">
-            <span class="bar-value text-primary">50 BDT</span>
-            <div class="bar primary" data-height="15%"></div>
-            <span class="bar-label" style="color: #fff;">TriChokro</span>
-          </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0">
+            <div class="px-4 py-4 space-y-3 flex flex-col">
+                <a href="#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Home</a>
+                <a href="#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Products</a>
+                <a href="#trambulance" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Trambulance</a>
+                <button class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2">Book Demo</button>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- TECHNOLOGY SPECS -->
-  <section id="technology" class="section">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll" data-lang="tech_title">Platform Specifications</h2>
-      <p class="section-sub mb-8 animate-on-scroll">Built on our modular EV platform designed for durability and ease of maintenance.</p>
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-20">
+        <!-- Moving Background Layer -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+            
+            <!-- Animated Blobs (Parallax managed via JS) -->
+            <div id="blob-1" class="absolute w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[100px] -top-20 -left-20 animate-float-slow transition-transform duration-100 ease-out"></div>
+            <div id="blob-2" class="absolute w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] bottom-0 right-0 animate-float-medium transition-transform duration-100 ease-out"></div>
 
-      <div class="grid grid-2" style="align-items: center;">
-        <img src="src/assets/trambulance.png" alt="Chassis Diagram" class="animate-on-scroll" style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow);">
+            <!-- Floating Icons -->
+            <div class="absolute top-1/4 left-1/4 text-emerald-500/20 animate-float-medium">
+                <i data-lucide="leaf" class="w-12 h-12"></i>
+            </div>
+            <div class="absolute top-1/3 right-1/4 text-blue-500/20 animate-float-slow" style="animation-delay: 1s">
+                <i data-lucide="zap" class="w-16 h-16"></i>
+            </div>
+            <div class="absolute bottom-1/4 left-1/3 text-slate-700/50 animate-float-medium" style="animation-delay: 2s">
+                <i data-lucide="wrench" class="w-10 h-10"></i>
+            </div>
 
-        <table class="specs-table animate-on-scroll delay-100">
-          <tbody>
-            <tr>
-              <th><i class="fa-solid fa-motorcycle"></i> Powertrain</th>
-              <td>1200W Brushless DC Motor (Waterproof IP67)</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-battery-full"></i> Battery</th>
-              <td>60V 120Ah Deep Cycle / LiFePO4 Option</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-gauge-high"></i> Performance</th>
-              <td>Top Speed: 45 km/h | Range: 120+ km</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-weight-hanging"></i> Capacity</th>
-              <td>Payload: 600kg | Seating: Driver + 4</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-plug"></i> Charging</th>
-              <td>Fast Charge (3-4 hrs) | Standard (6-8 hrs)</td>
-            </tr>
-            <tr>
-              <th><i class="fa-solid fa-shield-halved"></i> Safety</th>
-              <td>Hydraulic Disc Brakes, Reinforced Roll Cage</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- HIGHLIGHTS (GRID) -->
-  <section id="highlights" class="section">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll">Core Features</h2>
-      <div class="grid grid-3 highlight-list">
-
-        <article class="card animate-on-scroll">
-          <div class="icon"><i class="fa-solid fa-leaf"></i></div>
-          <h3>Zero Emissions</h3>
-          <p>100% electric drive means no tailpipe pollution, contributing to cleaner air in our cities.</p>
-        </article>
-
-        <article class="card animate-on-scroll delay-100">
-          <div class="icon"><i class="fa-solid fa-wallet"></i></div>
-          <h3>High Profitability</h3>
-          <p>Save over 15,000 BDT monthly on fuel and maintenance compared to CNG vehicles.</p>
-        </article>
-
-        <article class="card animate-on-scroll delay-200">
-          <div class="icon"><i class="fa-solid fa-road"></i></div>
-          <h3>Adaptive Suspension</h3>
-          <p>Tuned specifically for rural and urban road conditions in Bangladesh for maximum comfort.</p>
-        </article>
-
-        <article class="card animate-on-scroll">
-          <div class="icon"><i class="fa-solid fa-tablet-screen-button"></i></div>
-          <h3>Smart Dashboard</h3>
-          <p>Digital display with real-time range estimation, speed, and battery health monitoring.</p>
-        </article>
-
-        <article class="card animate-on-scroll delay-100">
-          <div class="icon"><i class="fa-solid fa-tools"></i></div>
-          <h3>Modular Design</h3>
-          <p>Easy-to-replace body panels and components reduce downtime during repairs.</p>
-        </article>
-
-        <article class="card animate-on-scroll delay-200">
-          <div class="icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-          <h3>Financing Support</h3>
-          <p>We partner with local banks to provide easy installment plans for new drivers.</p>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TRAMBULANCE SECTION -->
-  <section id="trambulance" class="section" style="background: linear-gradient(to bottom, var(--bg), var(--surface));">
-    <div class="container">
-      <div class="grid grid-2" style="align-items: center;">
-        <div class="animate-on-scroll">
-          <h2 class="section-title">The Trambulance</h2>
-          <h4 style="color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Rapid Response Unit</h4>
-          <p class="mb-4" style="color: var(--muted); font-size: 1.1rem;">
-            A purpose-built electric ambulance designed to navigate narrow alleyways where traditional ambulances cannot reach.
-          </p>
-          <ul style="list-style: none; margin-bottom: 2rem;">
-            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Stretcher & Oxygen Support</li>
-            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Attendant Seating</li>
-            <li class="mb-2"><i class="fa-solid fa-circle-check text-primary"></i> Emergency Siren & Lighting</li>
-          </ul>
-          <a class="btn primary" href="#contact">Inquire Now</a>
+            <!-- Grid Overlay -->
+            <div id="hero-grid" class="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:40px_40px] transition-transform duration-100 ease-out"></div>
         </div>
-        <div class="animate-on-scroll delay-100">
-           <img src="src/assets/trambulance.png" alt="Trambulance" style="width:100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow);">
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <div class="container text-center">
-      <h2 class="section-title animate-on-scroll">Get in Touch</h2>
-      <p class="section-sub animate-on-scroll" style="margin: 0 auto 3rem;">Ready to upgrade your fleet? Contact us for a demo.</p>
+        <div id="hero-content" class="container mx-auto px-4 z-10 relative text-center transition-transform duration-100 ease-out">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700 text-emerald-400 mb-8 animate-fade-in-up backdrop-blur-sm hover:scale-105 transition-transform interactive">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span class="text-sm font-semibold tracking-wide">Introducing the All-New Trambulance</span>
+            </div>
 
-      <div class="grid grid-3">
-        <div class="card text-center animate-on-scroll">
-          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-location-dot"></i></div>
-          <h3>Visit Us</h3>
-          <p>123 Green Avenue, Dhanmondi<br>Dhaka 1205</p>
-        </div>
-        <div class="card text-center animate-on-scroll delay-100">
-          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-phone"></i></div>
-          <h3>Call Us</h3>
-          <p>+880 1700 123456<br>Sun-Thu, 9am - 6pm</p>
-        </div>
-        <div class="card text-center animate-on-scroll delay-200">
-          <div class="icon" style="margin: 0 auto 1rem;"><i class="fa-solid fa-envelope"></i></div>
-          <h3>Email Us</h3>
-          <p>sales@trichokro.com<br>support@trichokro.com</p>
-        </div>
-      </div>
-    </div>
-  </section>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
+                Next Gen <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 relative">
+                    Electric Mobility
+                    <svg class="absolute w-full h-3 -bottom-1 left-0 text-emerald-500 opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="2" fill="none" />
+                    </svg>
+                </span>
+                <br />For Bangladesh
+            </h1>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="grid grid-4" style="gap: 2rem;">
-        <div>
-          <div class="footer-brand"><i class="fa-solid fa-bolt text-primary"></i> TriChokro</div>
-          <p style="color: var(--muted); font-size: 0.9rem;">
-            Redefining three-wheeler transport with sustainable technology.
-          </p>
-        </div>
-        <div>
-          <h4 style="color: #fff; margin-bottom: 1rem;">Products</h4>
-          <ul style="list-style: none; color: var(--muted); line-height: 2;">
-            <li>Passenger EV</li>
-            <li>Cargo EV</li>
-            <li>Trambulance</li>
-          </ul>
-        </div>
-        <div>
-          <h4 style="color: #fff; margin-bottom: 1rem;">Company</h4>
-          <ul style="list-style: none; color: var(--muted); line-height: 2;">
-            <li>About Us</li>
-            <li>Careers</li>
-            <li>News</li>
-          </ul>
-        </div>
-        <div>
-          <h4 style="color: #fff; margin-bottom: 1rem;">Connect</h4>
-          <div style="display: flex; gap: 1rem; font-size: 1.2rem;">
-            <a href="#" class="text-primary"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="text-primary"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" class="text-primary"><i class="fa-brands fa-twitter"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="text-center mt-4" style="border-top: 1px solid var(--border); padding-top: 2rem; color: var(--muted); font-size: 0.8rem;">
-        &copy; 2025 TriChokro Ltd. All rights reserved.
-      </div>
-    </div>
-  </footer>
+            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Zero emissions, hydraulic safety, and premium comfort. TriChokro engineers the future of urban transport.
+            </p>
 
-  <script src="js/script.js"></script>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="interactive px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2">
+                    Explore Vehicles <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+                <button class="interactive px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md">
+                    Watch The Film
+                </button>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">
+            <i data-lucide="chevron-down" class="w-8 h-8"></i>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-24 bg-slate-900 relative">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Fleet</h2>
+                    <div class="h-1 w-24 bg-emerald-500 rounded-full"></div>
+                    <p class="text-slate-400 mt-4 max-w-lg">
+                        Engineered for the unique demands of Bangladesh's roads. Durable, efficient, and 100% electric.
+                    </p>
+                </div>
+                <a href="#" class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0">
+                    View Full Specifications <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1: Trichokro-3 -->
+                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear">
+                    <div class="relative h-64 overflow-hidden bg-slate-800">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1626885616335-5207c4270d47?q=80&w=2070&auto=format&fit=crop" alt="TriChokro-3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 saturate-0 group-hover:saturate-100">
+                        <div class="absolute top-4 right-4 z-20 bg-emerald-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Flagship</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">TriChokro - 3</h3>
+                        <p class="text-slate-400 text-sm mb-6">The ultimate passenger EV. Hydraulic braking, MacPherson suspension, and retractable hood.</p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                                <span class="text-slate-500 text-xs uppercase block mb-1">Range</span>
+                                <span class="text-emerald-400 font-bold">120 km</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                                <span class="text-slate-500 text-xs uppercase block mb-1">Charge</span>
+                                <span class="text-white font-bold">4 Hours</span>
+                            </div>
+                        </div>
+                        <button class="interactive w-full py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition-colors">Configure Yours</button>
+                    </div>
+                </div>
+
+                <!-- Product 2: Trambulance -->
+                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear ring-1 ring-emerald-500/30">
+                    <div class="relative h-64 overflow-hidden bg-slate-800">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581093583449-ed25cb53a60b?q=80&w=2070&auto=format&fit=crop')] bg-cover opacity-20 animate-pulse"></div>
+                        <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2070&auto=format&fit=crop" alt="Trambulance" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale hover:grayscale-0 relative z-10">
+                        <div class="absolute top-4 right-4 z-20 bg-white text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                            <i data-lucide="activity" class="w-3 h-3"></i> Medical
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Trambulance</h3>
+                        <p class="text-slate-400 text-sm mb-6">Rapid response three-wheeled ambulance. Access narrow lanes with medical-grade interior.</p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                                <span class="text-slate-500 text-xs uppercase block mb-1">Capacity</span>
+                                <span class="text-emerald-400 font-bold">1+1 Stretcher</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors">
+                                <span class="text-slate-500 text-xs uppercase block mb-1">Siren</span>
+                                <span class="text-white font-bold">Integrated</span>
+                            </div>
+                        </div>
+                        <button class="interactive w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-colors">Contact Sales</button>
+                    </div>
+                </div>
+
+                <!-- Product 3: Cargo -->
+                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-transparent border-dashed border-2 border-slate-700 transition-transform duration-100 ease-linear">
+                    <div class="h-full flex flex-col items-center justify-center p-8 min-h-[400px]">
+                        <div class="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-slate-500 mb-6 group-hover:text-emerald-400 group-hover:bg-slate-700 transition-colors animate-float-medium">
+                            <i data-lucide="truck" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-300 mb-2">TriChokro Cargo</h3>
+                        <p class="text-slate-500 text-center text-sm mb-8">Heavy duty logistics solution for urban delivery.</p>
+                        <div class="px-4 py-2 bg-slate-800 rounded-full text-xs font-bold text-emerald-500 uppercase tracking-widest">
+                            Coming 2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trambulance Features -->
+    <section id="trambulance" class="py-24 bg-slate-950 relative overflow-hidden border-t border-slate-900">
+        <div class="absolute inset-0 z-0 opacity-10" style="background-image: linear-gradient(to right, #34d399 1px, transparent 1px), linear-gradient(to bottom, #34d399 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">
+                        Emergency Response Vehicle
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        The <span class="text-emerald-400">Trambulance</span>.<br />
+                        Saving Lives, Sustainably.
+                    </h2>
+                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                        TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of Bangladesh. Its compact size allows it to reach patients where traditional ambulances cannot.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Feature Items -->
+                        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                            <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-emerald-400"><i data-lucide="leaf"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Zero Emissions</h4>
+                                <p class="text-slate-500 text-sm leading-snug">Clean & Quiet operation suitable for residential zones.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                            <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-red-400"><i data-lucide="activity"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Medical Grade</h4>
+                                <p class="text-slate-500 text-sm leading-snug">Equipped for patient safety with dedicated stretcher space.</p>
+                            </div>
+                        </div>
+                         <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                            <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-blue-400"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Urban Ready</h4>
+                                <p class="text-slate-500 text-sm leading-snug">Compact build to navigate traffic jams and narrow lanes.</p>
+                            </div>
+                        </div>
+                         <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                            <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-yellow-400"><i data-lucide="battery"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Low Cost</h4>
+                                <p class="text-slate-500 text-sm leading-snug">Minimal charging costs compared to fuel ambulances.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative interactive">
+                    <div class="relative aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-emerald-900/20 border border-slate-800 bg-slate-900 group">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop')] bg-cover opacity-30 mix-blend-overlay grayscale"></div>
+                        <img src="https://images.unsplash.com/photo-1519003300449-424adfae4cca?q=80&w=2141&auto=format&fit=crop" alt="Trambulance Technical" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 via-transparent to-transparent"></div>
+                        
+                        <div class="absolute top-8 right-8 bg-slate-900/80 backdrop-blur border border-slate-700 px-4 py-2 rounded-lg animate-float-slow">
+                            <span class="text-emerald-400 text-xs font-mono">FIG 2.1: CHASSIS</span>
+                        </div>
+                        
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <div class="flex items-center justify-between border-t border-slate-700 pt-6">
+                                <div>
+                                    <span class="block text-slate-500 text-xs uppercase mb-1">Top Speed</span>
+                                    <span class="text-2xl font-bold text-white">45 <span class="text-sm font-normal text-slate-500">km/h</span></span>
+                                </div>
+                                <div>
+                                    <span class="block text-slate-500 text-xs uppercase mb-1">Payload</span>
+                                    <span class="text-2xl font-bold text-white">400 <span class="text-sm font-normal text-slate-500">kg</span></span>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-slate-900 animate-spin-slow">
+                                    <i data-lucide="pen-tool" class="w-6 h-6"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section id="features" class="py-24 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
+                <p class="text-slate-400">
+                    We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Highlight 1 -->
+                <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive">
+                    <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg">
+                        <i data-lucide="wind" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Aerodynamic Hood</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Retractable roof design lowers air drag and adapts to weather instantly.</p>
+                </div>
+                 <!-- Highlight 2 -->
+                 <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive">
+                    <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Hydraulic Disk Brakes</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Triple setup (Hand, Foot, Handle) gives driver full control.</p>
+                </div>
+                 <!-- Highlight 3 -->
+                 <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive">
+                    <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg">
+                        <i data-lucide="gauge" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Smart Dashboard</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Digital speed, state-of-charge, and trip info keep you in control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Team -->
+    <section id="about" class="py-24 bg-slate-950">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/3">
+                    <h2 class="text-3xl font-bold text-white mb-6">About Us</h2>
+                    <div class="space-y-2" id="about-tabs">
+                        <button onclick="switchTab(0)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive">Mission</button>
+                        <button onclick="switchTab(1)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive">The Team</button>
+                        <button onclick="switchTab(2)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive">Our Journey</button>
+                    </div>
+                </div>
+                <div class="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px]" id="tab-content">
+                    <!-- Default Content (Mission) -->
+                    <div class="animate-fade-in-up">
+                        <h3 class="text-2xl font-bold text-white mb-4">Cleaner Mobility for Everyone</h3>
+                        <p class="text-slate-400 leading-relaxed mb-6">
+                            Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.
+                        </p>
+                        <div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl">
+                            <p class="text-emerald-100 italic">"We obsess over practical details — from frame geometry to charging routines."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-gradient-to-br from-slate-900 to-blue-950 text-white relative">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-16 border border-slate-700 shadow-2xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
+                    <p class="text-slate-400">Book a demo, discuss fleet needs, or request financing options.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive">
+                        <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Visit Us</h3>
+                        <p class="text-slate-400 text-sm">Kazi Nazrul Islam, BUET<br/>Dept of Mechanical Eng.<br/>Dhaka-1000</p>
+                    </div>
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive">
+                        <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Call Us</h3>
+                        <p class="text-slate-400 text-sm">+880 1714 844677<br/>9AM – 6PM</p>
+                    </div>
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive">
+                        <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Email</h3>
+                        <p class="text-slate-400 text-xs break-words">rownakshahriarruhan@gmail.com<br/>trichokro.bd@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <form class="max-w-md mx-auto space-y-4">
+                        <input type="email" placeholder="Enter your email" class="w-full px-6 py-4 bg-slate-950 border border-slate-700 rounded-xl focus:outline-none focus:border-emerald-500 text-white placeholder-slate-600 transition-colors interactive" />
+                        <button class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20 interactive">
+                            Subscribe for Updates
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-slate-900">
+                        <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">TriChokro</span>
+                </div>
+                <div class="flex gap-8 text-slate-400 text-sm">
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Products</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Technology</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Support</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Privacy</a>
+                </div>
+            </div>
+            <div class="text-center text-slate-600 text-xs">
+                &copy; 2026 Bangladesh University of Engineering & Technology. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // 1. Initialize Icons
+        lucide.createIcons();
+
+        // 2. Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        const cursorRing = document.getElementById('cursor-ring');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const interactives = document.querySelectorAll('.interactive, a, button, input');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hovered'); // Handled by CSS mixin logic or transform
+                // Manually applying scale via class since Tailwind doesn't handle dynamic complex mix-blend well in all contexts without config
+                cursorRing.classList.add('scale-150', 'bg-emerald-500/20');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorRing.classList.remove('scale-150', 'bg-emerald-500/20');
+            });
+        });
+
+        // 3. Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3');
+                navbar.classList.remove('py-5', 'bg-transparent');
+            } else {
+                navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3');
+                navbar.classList.add('py-5', 'bg-transparent');
+            }
+        });
+
+        // 4. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                mobileMenu.classList.add('max-h-96', 'opacity-100');
+            } else {
+                mobileMenu.classList.add('max-h-0', 'opacity-0');
+                mobileMenu.classList.remove('max-h-96', 'opacity-100');
+            }
+        });
+
+        // 5. Parallax Hero Effect
+        const heroContent = document.getElementById('hero-content');
+        const heroGrid = document.getElementById('hero-grid');
+        const blob1 = document.getElementById('blob-1');
+        const blob2 = document.getElementById('blob-2');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 40;
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            
+            if(heroContent) heroContent.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            if(heroGrid) heroGrid.style.transform = `translate(${x * -0.5}px, ${y * -0.5}px) perspective(1000px) rotateX(10deg)`;
+            if(blob1) blob1.style.transform = `translate(${x * -1}px, ${y * -1}px)`;
+            if(blob2) blob2.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // 6. 3D Tilt Card Effect
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                
+                // Optional: Glow effect can be added here if we had the glow element selected
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+
+        // 7. Tabs System
+        const tabsData = [
+            {
+                title: "Cleaner Mobility for Everyone",
+                text: "Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.",
+                quote: "We obsess over practical details — from frame geometry to charging routines."
+            },
+            {
+                // HTML String for Team
+                html: `
+                <div class="animate-fade-in-up">
+                    <h3 class="text-2xl font-bold text-white mb-6">Meet the Innovators</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128" alt="CEO">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
+                            <p class="text-emerald-400 text-xs">CEO</p>
+                        </div>
+                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Abdul+Jawad&background=10b981&color=fff&size=128" alt="CMO">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4>
+                            <p class="text-emerald-400 text-xs">CMO & Treasurer</p>
+                        </div>
+                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Ishraq+Rafid&background=10b981&color=fff&size=128" alt="Logistics">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4>
+                            <p class="text-emerald-400 text-xs">Chief Logistics & Architect</p>
+                        </div>
+                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Hasan+Mahmud&background=10b981&color=fff&size=128" alt="COO">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Hasan Mahmud</h4>
+                            <p class="text-emerald-400 text-xs">Chief Operation Officer</p>
+                        </div>
+                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="HR">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4>
+                            <p class="text-emerald-400 text-xs">HR & Investment</p>
+                        </div>
+                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
+                                <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Design">
+                            </div>
+                            <h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4>
+                            <p class="text-emerald-400 text-xs">Head of Designing</p>
+                        </div>
+                    </div>
+                </div>`
+            },
+            {
+                // HTML String for Journey
+                 html: `
+                 <div class="animate-fade-in-up">
+                    <h3 class="text-2xl font-bold text-white mb-4">From Prototype to Production</h3>
+                    <ul class="space-y-6 border-l border-slate-700 ml-2 pl-6">
+                        <li class="relative">
+                            <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span>
+                            <span class="text-emerald-400 font-bold text-sm block mb-1">2022</span>
+                            <p class="text-slate-400 text-sm">Began with a simple idea: lighter, safer three-wheelers.</p>
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
+                            <span class="text-white font-bold text-sm block mb-1">2023</span>
+                            <p class="text-slate-400 text-sm">Piloted first fleet, iterating on chassis and suspension.</p>
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
+                            <span class="text-white font-bold text-sm block mb-1">2024</span>
+                            <p class="text-slate-400 text-sm">Production-ready platform with angular composite panels.</p>
+                        </li>
+                         <li class="relative">
+                            <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
+                            <span class="text-white font-bold text-sm block mb-1">Today</span>
+                            <p class="text-slate-400 text-sm">TriChokro vehicles carry passengers across cities daily.</p>
+                        </li>
+                    </ul>
+                </div>`
+            }
+        ];
+
+        function switchTab(index) {
+            const btns = document.querySelectorAll('.tab-btn');
+            const contentDiv = document.getElementById('tab-content');
+            
+            // Update Buttons
+            btns.forEach((btn, i) => {
+                if (i === index) {
+                    btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive";
+                } else {
+                    btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive";
+                }
+            });
+
+            // Update Content
+            if (index === 0) {
+                contentDiv.innerHTML = `
+                    <div class="animate-fade-in-up">
+                        <h3 class="text-2xl font-bold text-white mb-4">${tabsData[0].title}</h3>
+                        <p class="text-slate-400 leading-relaxed mb-6">${tabsData[0].text}</p>
+                        <div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl">
+                            <p class="text-emerald-100 italic">"${tabsData[0].quote}"</p>
+                        </div>
+                    </div>`;
+            } else {
+                contentDiv.innerHTML = tabsData[index].html;
+            }
+        }
+    </script>
 </body>
 </html>
