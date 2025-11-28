@@ -9,10 +9,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
         /* --- Global Styles & Keyframes --- */
@@ -22,6 +25,16 @@
             background-color: #020617; /* slate-950 */
             font-family: 'Inter', sans-serif;
             color: #e2e8f0;
+            /* Fluid moving gradient background */
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #022c22);
+            background-size: 400% 400%;
+            animation: gradient-flow 15s ease infinite;
+        }
+
+        /* Hide scrollbar during loading */
+        body.loading {
+            overflow: hidden;
+            height: 100vh;
         }
 
         h1, h2, h3, h4 {
@@ -45,10 +58,21 @@
             border-radius: 4px;
         }
 
-        /* Animations */
+        /* --- Animations --- */
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
         @keyframes float-slow {
             0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
             100% { transform: translateY(0px) rotate(0deg); }
         }
 
@@ -58,10 +82,23 @@
             66% { transform: translate(-20px, 20px) rotate(-10deg); }
             100% { transform: translate(0px, 0px) rotate(0deg); }
         }
+        
+        @keyframes float-upward {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
 
         @keyframes spin-slow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+        
+        /* Continuous Smooth Spin */
+        @keyframes spin-continuous {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         @keyframes fade-in-up {
@@ -69,55 +106,393 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Neon Glow Animation for Nav */
+        @keyframes neon-pulse {
+            0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); }
+            50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; }
+        }
+
+        /* Car Drive By Animation */
+        @keyframes drive-by {
+            0% { transform: translateX(-100vw) skewX(-10deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(100vw) skewX(-10deg); opacity: 0; }
+        }
+
+        .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
         .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
         .animate-spin-slow { animation: spin-slow 8s linear infinite; }
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
+        .animate-neon-pulse { animation: neon-pulse 3s infinite ease-in-out; }
+        
+        /* Moving Gradient Background Class for Cards */
+        .bg-gradient-animate {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8), rgba(6, 78, 59, 0.4));
+            background-size: 200% 200%;
+            animation: gradient-flow 8s ease infinite;
+        }
 
         /* Tilt Card Styles */
         .tilt-card {
             transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
         }
         
-        /* Cursor Styles */
+        /* Uplift Effect on Hover */
+        .uplift-on-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .uplift-on-hover:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15);
+        }
+        
+        /* --- Car Wheel Cursor Styles --- */
         #custom-cursor {
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-            mix-blend-mode: difference;
+            will-change: transform;
         }
         
-        #custom-cursor.hovered {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(16, 185, 129, 0.2);
-            border-color: transparent;
+        /* The Wheel Container */
+        #cursor-wheel {
+            transition: all 0.1s ease-out;
+            filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
+        }
+
+        /* Hover state: Wheel spins faster or glows */
+        #custom-cursor.hovered #cursor-wheel {
+            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.8));
+            transform: scale(1.2);
         }
 
         .selection-emerald::selection {
             background-color: #10b981;
             color: white;
         }
+
+        /* --- Typography Loader --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .loader-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Floating Emojis Container */
+        #emoji-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .floating-emoji {
+            position: absolute;
+            bottom: -50px;
+            font-size: 24px;
+            opacity: 0;
+            animation: float-upward linear forwards;
+        }
+
+        /* --- Speedometer Overlay --- */
+        #speed-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 99999; /* Top most */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s ease;
+            overflow: hidden;
+        }
+        
+        #speed-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .speed-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 50px,
+                rgba(16, 185, 129, 0.1) 50px,
+                rgba(16, 185, 129, 0.1) 52px
+            );
+            animation: rush 0.2s linear infinite;
+        }
+        
+        .speedy-car {
+            position: absolute;
+            bottom: 20%;
+            left: -300px;
+            width: 300px;
+            color: #10b981;
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+            opacity: 0;
+        }
+
+        #speed-overlay.active .speedy-car {
+            animation: drive-by 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes rush {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100px); }
+        }
+
+        /* --- AI Chat Widget --- */
+        #ai-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+
+        #ai-chat-window {
+            width: 350px;
+            height: 500px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #ai-chat-window.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            max-width: 85%;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            padding: 10px 14px;
+            border-radius: 12px;
+            word-wrap: break-word;
+        }
+
+        .chat-message.ai {
+            background: rgba(16, 185, 129, 0.1);
+            color: #e2e8f0;
+            border-bottom-left-radius: 2px;
+            align-self: flex-start;
+            border-left: 2px solid #10b981;
+        }
+
+        .chat-message.user {
+            background: #10b981;
+            color: #020617;
+            border-bottom-right-radius: 2px;
+            align-self: flex-end;
+            font-weight: 500;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .sparkle-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .sparkle-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        /* New Deep Gradient Button Class */
+        .btn-deep-gradient {
+            background-image: linear-gradient(to right, #065f46, #34d399); /* emerald-800 to emerald-400 */
+            transition: all 0.3s ease;
+        }
+        .btn-deep-gradient:hover {
+            background-image: linear-gradient(to right, #047857, #6ee7b7); /* emerald-700 to emerald-300 */
+        }
     </style>
 </head>
-<body class="selection-emerald">
+<body class="selection-emerald loading">
 
-    <!-- Custom Car Cursor -->
-    <div id="custom-cursor" class="fixed pointer-events-none z-[9999] transition-transform duration-100 ease-out flex items-center justify-center w-10 h-10">
-        <!-- Ring -->
-        <div class="absolute inset-0 rounded-full border border-emerald-400 opacity-50 transition-all duration-300" id="cursor-ring"></div>
-        <!-- Car SVG -->
-        <div class="relative z-10 text-emerald-400 transform -rotate-12">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-                <circle cx="7" cy="17" r="3" />
-                <circle cx="17" cy="17" r="3" />
-                <path d="M14 10l-2-3h-5l-1 3" fill="none" stroke="currentColor" stroke-width="2"/>
+    <!-- Speedometer Buffer Overlay -->
+    <div id="speed-overlay">
+        <div class="speed-lines"></div>
+        
+        <!-- Speedy Car Graphic -->
+        <div class="speedy-car">
+            <svg viewBox="0 0 200 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 40 L40 40 L50 20 L120 20 L140 40 L180 40 L180 50 L10 50 Z" opacity="0.8"/>
+                <circle cx="45" cy="50" r="10" fill="#34d399"/>
+                <circle cx="145" cy="50" r="10" fill="#34d399"/>
+                <path d="M185 45 H200" stroke="#34d399" stroke-width="2"/>
+                <path d="M185 40 H210" stroke="#34d399" stroke-width="2"/>
             </svg>
         </div>
+
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
+                <span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
+            </div>
+            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">Accelerating</div>
+        </div>
+    </div>
+
+    <!-- Typography Based Buffering Loader -->
+    <div id="loader">
+        <div class="relative w-full max-w-lg px-8">
+            <!-- Large Percentage Number -->
+            <div class="text-[120px] md:text-[180px] font-bold text-slate-800 leading-none select-none relative overflow-hidden">
+                <span id="load-percent" class="relative z-10 text-transparent bg-clip-text bg-gradient-to-b from-emerald-400 to-slate-900">00</span>
+                <!-- Reflection/Water effect on text -->
+                <span id="load-percent-reflection" class="absolute top-0 left-0 text-slate-800 opacity-20 transform scale-y-[-1] origin-bottom blur-sm">00</span>
+            </div>
+
+            <!-- Status Text -->
+            <div class="flex justify-between items-end mt-4 border-t border-emerald-500/30 pt-4">
+                <div class="loader-text text-emerald-500 text-xs md:text-sm tracking-widest uppercase flex flex-col gap-1">
+                    <span id="load-status">System Check...</span>
+                    <span class="text-slate-500 text-[10px]">TriChokro OS v3.1</span>
+                </div>
+                <div class="flex gap-1">
+                    <div class="w-2 h-2 bg-emerald-500 animate-pulse"></div>
+                    <div class="w-2 h-2 bg-emerald-500 animate-pulse" style="animation-delay: 0.1s"></div>
+                    <div class="w-2 h-2 bg-emerald-500 animate-pulse" style="animation-delay: 0.2s"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Emojis Background -->
+    <div id="emoji-container"></div>
+
+    <!-- Custom Car Wheel Cursor -->
+    <div id="custom-cursor" class="flex items-center justify-center w-0 h-0">
+        <div id="cursor-wheel" class="relative z-10 text-emerald-400 transform -translate-x-1/2 -translate-y-1/2">
+            <!-- Alloy Wheel SVG -->
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="animate-[spin-continuous_6s_linear_infinite]">
+                <!-- Tire Outer -->
+                <circle cx="12" cy="12" r="10" stroke-width="2" />
+                <!-- Tire Tread Detail (Dashed effect simulated) -->
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+                <!-- Rim/Spokes -->
+                <circle cx="12" cy="12" r="3" fill="rgba(16, 185, 129, 0.2)" />
+                <path d="M12 5v4" />
+                <path d="M12 15v4" />
+                <path d="M5 12h4" />
+                <path d="M15 12h4" />
+                <path d="M19 19l-3-3" />
+                <path d="M19 5l-3 3" />
+                <path d="M5 19l3-3" />
+                <path d="M5 5l3 3" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div id="ai-widget">
+        <!-- Chat Window -->
+        <div id="ai-chat-window">
+            <!-- Header -->
+            <div class="p-4 border-b border-emerald-500/20 bg-slate-900/80 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+                        <i data-lucide="bot" class="w-5 h-5 text-slate-900"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white text-sm font-bold">TriChokro Pilot</h4>
+                        <span class="text-xs text-emerald-400 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Online
+                        </span>
+                    </div>
+                </div>
+                <button id="close-chat" class="text-slate-400 hover:text-white interactive">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto flex flex-col gap-2">
+                <!-- Initial Welcome Message -->
+                <div class="chat-message ai">
+                    Hello! I'm your AI Pilot. ✨<br>
+                    Ask me about our EV specs, range estimations for trips, or basic troubleshooting!
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 border-t border-emerald-500/20 bg-slate-900/80">
+                <form id="chat-form" class="relative flex items-center gap-2">
+                    <input type="text" id="chat-input" placeholder="Plan a trip to Sylhet..." class="w-full bg-slate-800/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors interactive">
+                    <button type="submit" class="p-2 bg-emerald-500 rounded-full text-slate-900 hover:bg-emerald-400 transition-colors interactive">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button id="ai-fab" class="sparkle-btn w-14 h-14 bg-emerald-600 hover:bg-emerald-500 rounded-full shadow-2xl shadow-emerald-500/40 flex items-center justify-center text-white transition-all transform hover:scale-110 interactive group">
+            <i data-lucide="sparkles" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
+        </button>
     </div>
 
     <!-- Navigation -->
@@ -125,7 +500,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
+                <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle" onclick="window.scrollTo(0,0)">
                     <div class="relative w-10 h-10 flex items-center justify-center">
                         <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
                         <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
@@ -137,38 +512,38 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                    <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">
                         Home
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                    <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">
                         Our Products
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#trambulance" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                    <a href="#trambulance" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">
                         Trambulance
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                    <a href="#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">
                         Features
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                    <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">
                         About
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#contact" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group">
+                    <a href="#contact" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.6s">
                         Contact
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <button class="interactive bg-emerald-500 hover:bg-emerald-600 text-slate-900 px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">
+                    <button class="interactive btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.7s">
                         Book Demo
                     </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive">
+                    <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive animate-float-subtle">
                         <i data-lucide="menu" class="w-7 h-7"></i>
                     </button>
                 </div>
@@ -176,7 +551,7 @@
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0">
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
             <div class="px-4 py-4 space-y-3 flex flex-col">
                 <a href="#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Home</a>
                 <a href="#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Products</a>
@@ -195,15 +570,19 @@
             <!-- Animated Blobs (Parallax managed via JS) -->
             <div id="blob-1" class="absolute w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[100px] -top-20 -left-20 animate-float-slow transition-transform duration-100 ease-out"></div>
             <div id="blob-2" class="absolute w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] bottom-0 right-0 animate-float-medium transition-transform duration-100 ease-out"></div>
+            
+            <!-- Extra Geometric Shapes -->
+            <div class="absolute top-10 right-20 w-32 h-32 border-2 border-emerald-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+            <div class="absolute bottom-20 left-10 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[35px] border-b-emerald-500/10 animate-float-slow"></div>
 
             <!-- Floating Icons -->
-            <div class="absolute top-1/4 left-1/4 text-emerald-500/20 animate-float-medium">
+            <div class="absolute top-1/4 left-1/4 text-emerald-500/20 animate-float-medium interactive uplift-on-hover">
                 <i data-lucide="leaf" class="w-12 h-12"></i>
             </div>
-            <div class="absolute top-1/3 right-1/4 text-blue-500/20 animate-float-slow" style="animation-delay: 1s">
+            <div class="absolute top-1/3 right-1/4 text-blue-500/20 animate-float-slow interactive uplift-on-hover" style="animation-delay: 1s">
                 <i data-lucide="zap" class="w-16 h-16"></i>
             </div>
-            <div class="absolute bottom-1/4 left-1/3 text-slate-700/50 animate-float-medium" style="animation-delay: 2s">
+            <div class="absolute bottom-1/4 left-1/3 text-slate-700/50 animate-float-medium interactive uplift-on-hover" style="animation-delay: 2s">
                 <i data-lucide="wrench" class="w-10 h-10"></i>
             </div>
 
@@ -212,7 +591,7 @@
         </div>
 
         <div id="hero-content" class="container mx-auto px-4 z-10 relative text-center transition-transform duration-100 ease-out">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700 text-emerald-400 mb-8 animate-fade-in-up backdrop-blur-sm hover:scale-105 transition-transform interactive">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700 text-emerald-400 mb-8 animate-fade-in-up backdrop-blur-sm hover:scale-105 transition-transform interactive uplift-on-hover bg-gradient-animate">
                 <span class="relative flex h-3 w-3">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -235,10 +614,10 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button class="interactive px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2">
+                <button class="interactive px-8 py-4 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2 uplift-on-hover">
                     Explore Vehicles <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </button>
-                <button class="interactive px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md">
+                <button class="interactive px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md uplift-on-hover bg-gradient-animate">
                     Watch The Film
                 </button>
             </div>
@@ -250,7 +629,7 @@
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="py-24 bg-slate-900 relative">
+    <section id="products" class="py-24 bg-slate-900/50 relative">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16">
                 <div>
@@ -260,14 +639,14 @@
                         Engineered for the unique demands of Bangladesh's roads. Durable, efficient, and 100% electric.
                     </p>
                 </div>
-                <a href="#" class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0">
+                <a href="#" class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0 uplift-on-hover">
                     View Full Specifications <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Product 1: Trichokro-3 -->
-                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear">
+                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover bg-gradient-animate">
                     <div class="relative h-64 overflow-hidden bg-slate-800">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
                         <img src="https://images.unsplash.com/photo-1626885616335-5207c4270d47?q=80&w=2070&auto=format&fit=crop" alt="TriChokro-3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 saturate-0 group-hover:saturate-100">
@@ -291,7 +670,7 @@
                 </div>
 
                 <!-- Product 2: Trambulance -->
-                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear ring-1 ring-emerald-500/30">
+                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear ring-1 ring-emerald-500/30 uplift-on-hover bg-gradient-animate">
                     <div class="relative h-64 overflow-hidden bg-slate-800">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
                         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581093583449-ed25cb53a60b?q=80&w=2070&auto=format&fit=crop')] bg-cover opacity-20 animate-pulse"></div>
@@ -313,12 +692,12 @@
                                 <span class="text-white font-bold">Integrated</span>
                             </div>
                         </div>
-                        <button class="interactive w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-colors">Contact Sales</button>
+                        <button class="interactive w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors">Contact Sales</button>
                     </div>
                 </div>
 
                 <!-- Product 3: Cargo -->
-                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-transparent border-dashed border-2 border-slate-700 transition-transform duration-100 ease-linear">
+                <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-transparent border-dashed border-2 border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover">
                     <div class="h-full flex flex-col items-center justify-center p-8 min-h-[400px]">
                         <div class="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-slate-500 mb-6 group-hover:text-emerald-400 group-hover:bg-slate-700 transition-colors animate-float-medium">
                             <i data-lucide="truck" class="w-8 h-8"></i>
@@ -335,7 +714,7 @@
     </section>
 
     <!-- Trambulance Features -->
-    <section id="trambulance" class="py-24 bg-slate-950 relative overflow-hidden border-t border-slate-900">
+    <section id="trambulance" class="py-24 bg-slate-950/80 relative overflow-hidden border-t border-slate-900">
         <div class="absolute inset-0 z-0 opacity-10" style="background-image: linear-gradient(to right, #34d399 1px, transparent 1px), linear-gradient(to bottom, #34d399 1px, transparent 1px); background-size: 40px 40px;"></div>
         
         <div class="container mx-auto px-4 relative z-10">
@@ -354,28 +733,28 @@
 
                     <div class="grid sm:grid-cols-2 gap-6">
                         <!-- Feature Items -->
-                        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive uplift-on-hover bg-gradient-animate">
                             <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-emerald-400"><i data-lucide="leaf"></i></div>
                             <div>
                                 <h4 class="text-white font-bold mb-1">Zero Emissions</h4>
                                 <p class="text-slate-500 text-sm leading-snug">Clean & Quiet operation suitable for residential zones.</p>
                             </div>
                         </div>
-                        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive uplift-on-hover bg-gradient-animate">
                             <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-red-400"><i data-lucide="activity"></i></div>
                             <div>
                                 <h4 class="text-white font-bold mb-1">Medical Grade</h4>
                                 <p class="text-slate-500 text-sm leading-snug">Equipped for patient safety with dedicated stretcher space.</p>
                             </div>
                         </div>
-                         <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                         <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive uplift-on-hover bg-gradient-animate">
                             <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-blue-400"><i data-lucide="map-pin"></i></div>
                             <div>
                                 <h4 class="text-white font-bold mb-1">Urban Ready</h4>
                                 <p class="text-slate-500 text-sm leading-snug">Compact build to navigate traffic jams and narrow lanes.</p>
                             </div>
                         </div>
-                         <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive">
+                         <div class="flex gap-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-slate-800 hover:border-emerald-500/30 transition-colors group interactive uplift-on-hover bg-gradient-animate">
                             <div class="shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300 text-yellow-400"><i data-lucide="battery"></i></div>
                             <div>
                                 <h4 class="text-white font-bold mb-1">Low Cost</h4>
@@ -385,7 +764,7 @@
                     </div>
                 </div>
                 
-                <div class="relative interactive">
+                <div class="relative interactive uplift-on-hover">
                     <div class="relative aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-emerald-900/20 border border-slate-800 bg-slate-900 group">
                         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop')] bg-cover opacity-30 mix-blend-overlay grayscale"></div>
                         <img src="https://images.unsplash.com/photo-1519003300449-424adfae4cca?q=80&w=2141&auto=format&fit=crop" alt="Trambulance Technical" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
@@ -417,7 +796,7 @@
     </section>
 
     <!-- Feature Highlights -->
-    <section id="features" class="py-24 bg-slate-900">
+    <section id="features" class="py-24 bg-slate-900/50">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
@@ -428,7 +807,7 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Highlight 1 -->
-                <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive">
+                <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
                     <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg">
                         <i data-lucide="wind" class="w-6 h-6"></i>
                     </div>
@@ -436,7 +815,7 @@
                     <p class="text-slate-400 text-sm leading-relaxed">Retractable roof design lowers air drag and adapts to weather instantly.</p>
                 </div>
                  <!-- Highlight 2 -->
-                 <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive">
+                 <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
                     <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg">
                         <i data-lucide="shield-check" class="w-6 h-6"></i>
                     </div>
@@ -444,7 +823,7 @@
                     <p class="text-slate-400 text-sm leading-relaxed">Triple setup (Hand, Foot, Handle) gives driver full control.</p>
                 </div>
                  <!-- Highlight 3 -->
-                 <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive">
+                 <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
                     <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg">
                         <i data-lucide="gauge" class="w-6 h-6"></i>
                     </div>
@@ -456,18 +835,18 @@
     </section>
 
     <!-- About & Team -->
-    <section id="about" class="py-24 bg-slate-950">
+    <section id="about" class="py-24 bg-slate-950/80">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row gap-12">
                 <div class="md:w-1/3">
                     <h2 class="text-3xl font-bold text-white mb-6">About Us</h2>
                     <div class="space-y-2" id="about-tabs">
-                        <button onclick="switchTab(0)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive">Mission</button>
-                        <button onclick="switchTab(1)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive">The Team</button>
-                        <button onclick="switchTab(2)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive">Our Journey</button>
+                        <button onclick="switchTab(0)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover">Mission</button>
+                        <button onclick="switchTab(1)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">The Team</button>
+                        <button onclick="switchTab(2)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">Our Journey</button>
                     </div>
                 </div>
-                <div class="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px]" id="tab-content">
+                <div class="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px] bg-gradient-animate" id="tab-content">
                     <!-- Default Content (Mission) -->
                     <div class="animate-fade-in-up">
                         <h3 class="text-2xl font-bold text-white mb-4">Cleaner Mobility for Everyone</h3>
@@ -487,28 +866,28 @@
     <section id="contact" class="py-24 bg-gradient-to-br from-slate-900 to-blue-950 text-white relative">
         <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
         <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-16 border border-slate-700 shadow-2xl">
+            <div class="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-16 border border-slate-700 shadow-2xl bg-gradient-animate">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
                     <p class="text-slate-400">Book a demo, discuss fleet needs, or request financing options.</p>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive">
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
                         <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
                             <i data-lucide="map-pin"></i>
                         </div>
                         <h3 class="font-bold mb-2">Visit Us</h3>
                         <p class="text-slate-400 text-sm">Kazi Nazrul Islam, BUET<br/>Dept of Mechanical Eng.<br/>Dhaka-1000</p>
                     </div>
-                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive">
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
                         <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
                             <i data-lucide="phone"></i>
                         </div>
                         <h3 class="font-bold mb-2">Call Us</h3>
                         <p class="text-slate-400 text-sm">+880 1714 844677<br/>9AM – 6PM</p>
                     </div>
-                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive">
+                    <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
                         <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
                             <i data-lucide="mail"></i>
                         </div>
@@ -519,8 +898,8 @@
 
                 <div class="mt-12 text-center">
                     <form class="max-w-md mx-auto space-y-4">
-                        <input type="email" placeholder="Enter your email" class="w-full px-6 py-4 bg-slate-950 border border-slate-700 rounded-xl focus:outline-none focus:border-emerald-500 text-white placeholder-slate-600 transition-colors interactive" />
-                        <button class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20 interactive">
+                        <input type="email" placeholder="Enter your email" class="w-full px-6 py-4 bg-slate-950 border border-slate-700 rounded-xl focus:outline-none focus:border-emerald-500 text-white placeholder-slate-600 transition-colors interactive uplift-on-hover" />
+                        <button class="w-full py-4 btn-deep-gradient text-white font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20 interactive uplift-on-hover">
                             Subscribe for Updates
                         </button>
                     </form>
@@ -540,10 +919,10 @@
                     <span class="text-xl font-bold text-white">TriChokro</span>
                 </div>
                 <div class="flex gap-8 text-slate-400 text-sm">
-                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Products</a>
-                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Technology</a>
-                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Support</a>
-                    <a href="#" class="hover:text-emerald-400 transition-colors interactive">Privacy</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Products</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Technology</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Support</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Privacy</a>
                 </div>
             </div>
             <div class="text-center text-slate-600 text-xs">
@@ -552,33 +931,96 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Interactions -->
+    <!-- JavaScript for Interactions & Gemini -->
     <script>
         // 1. Initialize Icons
         lucide.createIcons();
 
-        // 2. Custom Cursor Logic
-        const cursor = document.getElementById('custom-cursor');
-        const cursorRing = document.getElementById('cursor-ring');
+        // 2. Typography Loading Sequence
+        document.addEventListener('DOMContentLoaded', () => {
+            const percentEl = document.getElementById('load-percent');
+            const percentReflectEl = document.getElementById('load-percent-reflection');
+            const statusEl = document.getElementById('load-status');
+            const loader = document.getElementById('loader');
+            const body = document.body;
+            
+            let progress = 0;
+            const statusMessages = [
+                "CALIBRATING HYDRAULICS", 
+                "CONNECTING POWER GRID", 
+                "OPTIMIZING BATTERY", 
+                "LOADING ASSETS", 
+                "SYSTEM READY"
+            ];
+            
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 5) + 1;
+                
+                if (progress > 100) progress = 100;
+                
+                // Format with leading zero
+                const display = progress < 10 ? `0${progress}` : `${progress}`;
+                percentEl.innerText = display;
+                percentReflectEl.innerText = display;
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+                // Update status message based on progress chunks
+                const msgIndex = Math.min(Math.floor(progress / 20), 4);
+                statusEl.innerText = statusMessages[msgIndex];
+                
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        loader.style.pointerEvents = 'none';
+                        body.classList.remove('loading');
+                    }, 500);
+                }
+            }, 30); // Speed of counter
+            
+            // Start emoji floating loop
+            startFloatingEmojis();
         });
 
+        // 3. Custom Cursor Logic (Car Wheel)
+        const cursor = document.getElementById('custom-cursor');
+        const cursorWheel = document.getElementById('cursor-wheel');
+        
+        let mouseX = -100;
+        let mouseY = -100;
+        let cursorX = -100;
+        let cursorY = -100;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Smooth cursor animation loop
+        function animateCursor() {
+            // Easing/Lag effect for fluid feel
+            const speed = 0.15; // Slightly slower for heavier feel
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+
+            // Apply transform using translate3d for GPU acceleration
+            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Handle Hover States
         const interactives = document.querySelectorAll('.interactive, a, button, input');
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hovered'); // Handled by CSS mixin logic or transform
-                // Manually applying scale via class since Tailwind doesn't handle dynamic complex mix-blend well in all contexts without config
-                cursorRing.classList.add('scale-150', 'bg-emerald-500/20');
+                cursor.classList.add('hovered');
             });
             el.addEventListener('mouseleave', () => {
-                cursorRing.classList.remove('scale-150', 'bg-emerald-500/20');
+                cursor.classList.remove('hovered');
             });
         });
 
-        // 3. Navbar Scroll Effect
+        // 4. Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
@@ -590,7 +1032,7 @@
             }
         });
 
-        // 4. Mobile Menu Toggle
+        // 5. Mobile Menu Toggle
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         let isMenuOpen = false;
@@ -606,7 +1048,7 @@
             }
         });
 
-        // 5. Parallax Hero Effect
+        // 6. Parallax Hero Effect
         const heroContent = document.getElementById('hero-content');
         const heroGrid = document.getElementById('hero-grid');
         const blob1 = document.getElementById('blob-1');
@@ -622,7 +1064,7 @@
             if(blob2) blob2.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        // 6. 3D Tilt Card Effect
+        // 7. 3D Tilt Card Effect
         const tiltCards = document.querySelectorAll('.tilt-card');
         
         tiltCards.forEach(card => {
@@ -637,8 +1079,6 @@
                 const rotateY = ((x - centerX) / centerX) * 8;
                 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                
-                // Optional: Glow effect can be added here if we had the glow element selected
             });
             
             card.addEventListener('mouseleave', () => {
@@ -646,7 +1086,7 @@
             });
         });
 
-        // 7. Tabs System
+        // 8. Tabs System
         const tabsData = [
             {
                 title: "Cleaner Mobility for Everyone",
@@ -659,42 +1099,42 @@
                 <div class="animate-fade-in-up">
                     <h3 class="text-2xl font-bold text-white mb-6">Meet the Innovators</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover">
                             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                                 <img src="https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128" alt="CEO">
                             </div>
                             <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
                             <p class="text-emerald-400 text-xs">CEO</p>
                         </div>
-                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover">
                             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                                 <img src="https://ui-avatars.com/api/?name=Abdul+Jawad&background=10b981&color=fff&size=128" alt="CMO">
                             </div>
                             <h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4>
                             <p class="text-emerald-400 text-xs">CMO & Treasurer</p>
                         </div>
-                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                        <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover">
                             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                                 <img src="https://ui-avatars.com/api/?name=Ishraq+Rafid&background=10b981&color=fff&size=128" alt="Logistics">
                             </div>
                             <h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4>
                             <p class="text-emerald-400 text-xs">Chief Logistics & Architect</p>
                         </div>
-                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover">
                             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                                 <img src="https://ui-avatars.com/api/?name=Hasan+Mahmud&background=10b981&color=fff&size=128" alt="COO">
                             </div>
                             <h4 class="text-white font-bold text-sm leading-tight mb-1">Hasan Mahmud</h4>
                             <p class="text-emerald-400 text-xs">Chief Operation Officer</p>
                         </div>
-                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover">
                             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                                 <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="HR">
                             </div>
                             <h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4>
                             <p class="text-emerald-400 text-xs">HR & Investment</p>
                         </div>
-                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive">
+                         <div class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-none interactive uplift-on-hover">
                             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                                 <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Design">
                             </div>
@@ -742,9 +1182,9 @@
             // Update Buttons
             btns.forEach((btn, i) => {
                 if (i === index) {
-                    btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive";
+                    btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover";
                 } else {
-                    btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive";
+                    btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover";
                 }
             });
 
@@ -762,6 +1202,211 @@
                 contentDiv.innerHTML = tabsData[index].html;
             }
         }
+        
+        // 9. Floating Emojis Logic (Updated)
+        function startFloatingEmojis() {
+            const container = document.getElementById('emoji-container');
+            const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡']; // Added variety
+            const maxEmojis = 20;
+            let currentEmojis = 0;
+
+            function createEmoji() {
+                if (currentEmojis >= maxEmojis) return;
+
+                const emoji = document.createElement('div');
+                emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.classList.add('floating-emoji');
+                
+                // Random positioning
+                const left = Math.random() * 100;
+                emoji.style.left = `${left}vw`;
+                
+                // Random duration
+                const duration = Math.random() * 10 + 10; // 10-20s
+                emoji.style.animationDuration = `${duration}s`;
+                
+                // Random size
+                const size = Math.random() * 20 + 15; // 15-35px
+                emoji.style.fontSize = `${size}px`;
+
+                container.appendChild(emoji);
+                currentEmojis++;
+
+                // Remove after animation
+                emoji.addEventListener('animationend', () => {
+                    emoji.remove();
+                    currentEmojis--;
+                });
+            }
+
+            // Create new emoji slightly faster
+            setInterval(createEmoji, 1200);
+            
+            // Initial batch
+            for(let i=0; i<8; i++) setTimeout(createEmoji, i * 400);
+        }
+
+        // 10. Speedometer Buffer Effect
+        const speedOverlay = document.getElementById('speed-overlay');
+        const speedCounter = document.getElementById('speed-counter');
+        let speedInterval;
+
+        document.addEventListener('click', (e) => {
+            // Ignore clicks inside the chat widget to prevent annoying resets while chatting
+            if (e.target.closest('#ai-widget')) return;
+
+            speedOverlay.classList.add('active');
+            
+            let speed = 0;
+            clearInterval(speedInterval);
+            
+            // Gradual acceleration logic (simulating 0-100 curve)
+            // Starts fast then slows slightly or just linear ramp
+            speedInterval = setInterval(() => {
+                // Increment by smaller amounts for smoother transition
+                if(speed < 60) speed += 3;
+                else if(speed < 90) speed += 2;
+                else speed += 1;
+
+                if(speed >= 100) {
+                    speed = 100;
+                    speedCounter.innerText = speed;
+                    clearInterval(speedInterval);
+                    setTimeout(() => {
+                        speedOverlay.classList.remove('active');
+                    }, 300); // Slight pause at 100km/h
+                } else {
+                    speedCounter.innerText = speed;
+                }
+            }, 20); // Fast updates (20ms)
+        });
+
+
+        // 11. Gemini AI Chat Integration
+        const aiFab = document.getElementById('ai-fab');
+        const aiChatWindow = document.getElementById('ai-chat-window');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // Toggle Chat Window
+        let isChatOpen = false;
+        aiFab.addEventListener('click', () => {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                aiChatWindow.classList.add('open');
+                // Hide FAB when open on mobile maybe? For now just keep it simple
+            } else {
+                aiChatWindow.classList.remove('open');
+            }
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            isChatOpen = false;
+            aiChatWindow.classList.remove('open');
+        });
+
+        // Gemini API Configuration
+        const apiKey = ""; // API Key handled by environment
+
+        async function getGeminiResponse(userText) {
+            // Add Loading Indicator
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'chat-message ai flex gap-1 items-center';
+            loadingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: userText
+                            }]
+                        }],
+                        systemInstruction: {
+                            parts: [{
+                                text: `You are the "TriChokro AI Pilot", an intelligent assistant for a Bangladeshi Electric Vehicle company. 
+                                
+                                Your Capabilities:
+                                1. **Trip Planning**: Users will ask if they can go from Location A to Location B. You must estimate the distance (assume straight line or rough road distance logic if exact unknown) and compare it to the **TriChokro-3's range of 120km**.
+                                   - If distance < 100km: "Yes! You can make this trip on a single charge. 🔋"
+                                   - If distance > 100km: "This trip exceeds your single-charge range. Plan a charging stop! ⚡"
+                                
+                                2. **Mechanic / Diagnostics**: Users may describe sounds or issues.
+                                   - "Squeaking sound": Suggest checking the **Hydraulic Disk Brakes**.
+                                   - "Bumpy ride": Suggest checking the **MacPherson Strut Suspension**.
+                                   - "Won't start": Suggest checking the **Lithium Battery connection**.
+                                
+                                3. **Product Specs**:
+                                   - TriChokro-3: 120km range, 4h charge time, Passenger vehicle.
+                                   - Trambulance: Medical EV, Stretcher capacity, Siren included.
+                                   - Cargo: Logistics vehicle (Coming 2026).
+                                
+                                Tone: Professional, Helpful, Futuristic. Use emojis like ⚡, 🔋, 🛠️, 🚗.
+                                Keep responses concise (under 50 words) suitable for a chat window.`
+                            }]
+                        }
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Remove loader
+                chatMessages.removeChild(loadingDiv);
+
+                if (data.candidates && data.candidates[0].content) {
+                    const aiText = data.candidates[0].content.parts[0].text;
+                    // Format bold text for HTML
+                    const formattedText = marked.parse(aiText);
+                    addMessage(formattedText, 'ai');
+                } else {
+                    addMessage("I'm having trouble connecting to the satellite. Try again? 📡", 'ai');
+                }
+
+            } catch (error) {
+                chatMessages.removeChild(loadingDiv);
+                addMessage("System Offline. Please check your connection. ⚠️", 'ai');
+                console.error(error);
+            }
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `chat-message ${sender}`;
+            // If AI, text is HTML (parsed markdown). If user, text is plain.
+            if (sender === 'ai') {
+                div.innerHTML = text;
+            } else {
+                div.textContent = text;
+            }
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // Add User Message
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            // Call Gemini
+            getGeminiResponse(text);
+        });
+
     </script>
 </body>
 </html>
