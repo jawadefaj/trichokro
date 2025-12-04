@@ -56,7 +56,9 @@
 
     <style>
         /* --- MAIN GLOBAL STYLES --- */
-        body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; }
+        /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
+        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; }
+        a, button, .interactive, input, .group { cursor: pointer; }
         
         .main-theme-bg {
             background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #022c22);
@@ -578,7 +580,7 @@
     <div id="emoji-container"></div>
 
     <!-- Cursor -->
-    <div id="custom-cursor" class="flex items-center justify-center w-0 h-0">
+    <!-- <div id="custom-cursor" class="flex items-center justify-center w-0 h-0">
         <div id="cursor-wheel" class="relative z-10 text-emerald-400 transform -translate-x-1/2 -translate-y-1/2">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="animate-[spin-continuous_6s_linear_infinite]">
                 <circle cx="12" cy="12" r="10" stroke-width="2" />
@@ -588,7 +590,7 @@
                 <path d="M19 19l-3-3" /><path d="M19 5l-3 3" /><path d="M5 19l3-3" /><path d="M5 5l3 3" />
             </svg>
         </div>
-    </div>
+    </div> -->
 
     <!-- AI Widget -->
     <div id="ai-widget">
