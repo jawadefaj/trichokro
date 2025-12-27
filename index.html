@@ -888,7 +888,7 @@
             if (index === 2) { // Mission (Index 2 now)
                 contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[2].title}</h3>
                 <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10">
-                <p class="text-slate-400 leading-relaxed mb-6">${tabsData[2].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[2].quote}"</p></div></div>`;
+                <p class="text-slate-400 leading-relaxed mb-6">${tabsData[2].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[2].quote}"</p></div></div>`; 
             }
             else { contentDiv.innerHTML = tabsData[index].html; }
         }
@@ -948,7 +948,7 @@
                 }
             });
         }, observerOptions);
-
+        
         document.querySelectorAll('.reveal-on-scroll').forEach(el => { observer.observe(el); });
     </script>
 </body>
