@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#020617">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>TriChokro Automotives - Electric TriWheeler R&D</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -88,6 +91,9 @@
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
         .animate-neon-pulse { animation: neon-pulse 3s infinite ease-in-out; }
 
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
+
         .bg-gradient-animate { background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8), rgba(6, 78, 59, 0.4)); background-size: 200% 200%; animation: gradient-flow 8s ease infinite; }
         .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out, box-shadow 0.3s ease; }
         .uplift-on-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -151,7 +157,7 @@
     <!-- Loader -->
     <div id="loader">
         <div class="relative w-full max-w-lg px-8">
-            <div class="text-[120px] md:text-[180px] font-bold text-slate-800 leading-none select-none relative overflow-hidden">
+            <div class="text-6xl md:text-[180px] font-bold text-slate-800 leading-none select-none relative overflow-hidden">
                 <span id="load-percent" class="relative z-10 text-transparent bg-clip-text bg-gradient-to-b from-emerald-400 to-slate-900">00</span>
                 <span id="load-percent-reflection" class="absolute top-0 left-0 text-slate-800 opacity-20 transform scale-y-[-1] origin-bottom blur-sm">00</span>
             </div>
@@ -241,7 +247,7 @@
 
         <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
             <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                <div class="absolute inset-0 bg-[url('https://pin.it/7kWAfh1qt')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
                 <div id="blob-1" class="absolute w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[100px] -top-20 -left-20 animate-float-slow transition-transform duration-100 ease-out"></div>
                 <div id="blob-2" class="absolute w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] bottom-0 right-0 animate-float-medium transition-transform duration-100 ease-out"></div>
                 <div class="absolute top-10 right-20 w-32 h-32 border-2 border-emerald-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
@@ -256,7 +262,7 @@
                     <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span></span>
                     <span class="text-sm font-semibold tracking-wide">A Startup of BUET Students & Alumni Since 2024</span>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
+                <h1 class="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 relative"> TriChokro<svg class="absolute w-full h-3 -bottom-1 left-0 text-emerald-500 opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="2" fill="none" /></svg></span>
                     <br />Next Gen Electric Mobility For LMICs
                 </h1>
@@ -271,7 +277,7 @@
 
         <section id="products" class="py-24 bg-slate-900/50 relative">
             <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-on-scroll">
                     <div>
                         <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Designs & Products</h2>
                         <div class="h-1 w-24 bg-emerald-500 rounded-full"></div>
@@ -281,7 +287,7 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- TriChokro-3 Card updated with switchView -->
-                    <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover bg-gradient-animate">
+                    <div class="reveal-on-scroll tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover bg-gradient-animate">
                         <div class="relative h-64 overflow-hidden bg-slate-800">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
                             <img src="src/assets/rickshaw.jpg" alt="TriChokro-3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 saturate-0 group-hover:saturate-100">
@@ -299,7 +305,7 @@
                         </div>
                     </div>
                     
-                    <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear ring-1 ring-emerald-500/30 uplift-on-hover bg-gradient-animate">
+                    <div class="reveal-on-scroll tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear ring-1 ring-emerald-500/30 uplift-on-hover bg-gradient-animate" style="transition-delay: 100ms;">
                         <div class="relative h-64 overflow-hidden bg-slate-800">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
                             <div class="absolute inset-0 bg-[url('https://unsplash.com/photos/a-white-van-is-speeding-down-a-city-road-a_CaCtLQTsI')] bg-cover opacity-20 animate-pulse"></div>
@@ -317,7 +323,7 @@
                             <a href="trambulance.html" class="interactive transition-trigger w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors block text-center">Detailed Spec</a>
                         </div>
                     </div>
-                    <div class="tilt-card interactive group relative overflow-hidden rounded-2xl bg-transparent border-dashed border-2 border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover">
+                    <div class="reveal-on-scroll tilt-card interactive group relative overflow-hidden rounded-2xl bg-transparent border-dashed border-2 border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover" style="transition-delay: 200ms;">
                         <div class="h-full flex flex-col items-center justify-center p-8 min-h-[400px]">
                             <div class="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-slate-500 mb-6 group-hover:text-emerald-400 group-hover:bg-slate-700 transition-colors animate-float-medium"><i data-lucide="truck" class="w-8 h-8"></i></div>
                             <h3 class="text-2xl font-bold text-slate-300 mb-2">TriChokro Cargo</h3>
@@ -410,37 +416,37 @@
 
         <section id="features" class="py-24 bg-slate-900/50">
             <div class="container mx-auto px-4">
-                <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
                     <p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="wind" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Aerodynamic Retractable Hood</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">Retractable roof design lowers air drag and adapts to weather instantly.</p>
                     </div>
-                    <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 100ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Hydraulic Disk Brakes</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">Triple setup of Disk Brake (Hand, Foot, Handle) gives driver full control.</p>
                     </div>
-                    <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 200ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Industrial Suspension</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">MacPherson suspension, along with leaf and coil springs, ensures comfort on wheels.</p>
                     </div>
-                    <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 300ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Truss Chassis</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">The optimized chassis features compact dimensions for improved maneuverability in narrow lanes through SolidWorks and Ansys.</p>
                     </div>
-                     <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
+                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 400ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Eco Friendly Battery</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">We chose Lithium Iron Phosphate (LiFePO₄) batteries over Lead-Acid and Lithium-ion batteries due to cost-effectiveness, longer lifecycle, and minimal environmental impact.</p>
                     </div>
-                       <div class="bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
+                       <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 500ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Superior Structure</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">Design and Dimensions are optimized for 35% more Load Capacity and More passengers with same footprint.</p>
@@ -451,23 +457,23 @@
 
         <section id="impact" class="py-24 bg-gradient-to-t from-slate-950 to-slate-900 relative">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
+                <div class="text-center mb-16 reveal-on-scroll">
                     <h2 class="text-3xl font-bold text-white mb-4">Why TriChokro?</h2>
                     <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
                     <p class="text-slate-400 mt-4 max-w-xl mx-auto">Driving the future of sustainable transportation with tangible benefits for drivers and the environment.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover">
+                    <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover">
                         <div class="text-4xl font-bold text-white mb-2">60%</div>
                         <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">Cost Reduction</div>
                         <p class="text-slate-400 text-sm leading-relaxed">Compared to traditional combustion engines, our EVs drastically cut daily operational costs, putting more money in drivers' pockets.</p>
                     </div>
-                    <div class="bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover">
+                    <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover" style="transition-delay: 100ms;">
                         <div class="text-4xl font-bold text-white mb-2">0 Emission</div>
                         <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">Better World for future</div>
                         <p class="text-slate-400 text-sm leading-relaxed">Zero tailpipe emissions mean cleaner air for our cities and a healthier future for the next generation.</p>
                     </div>
-                    <div class="bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover">
+                    <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover" style="transition-delay: 200ms;">
                         <div class="text-4xl font-bold text-white mb-2">3x</div>
                         <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">Safer Structure & Braking</div>
                         <p class="text-slate-400 text-sm leading-relaxed">Our triple hydraulic disk brake system provides superior stopping power, significantly reducing accident risks on busy roads.</p>
@@ -880,7 +886,9 @@
                 else { btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover"; }
             });
             if (index === 2) { // Mission (Index 2 now)
-                contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[2].title}</h3><p class="text-slate-400 leading-relaxed mb-6">${tabsData[2].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[2].quote}"</p></div></div>`; 
+                contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[2].title}</h3>
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10">
+                <p class="text-slate-400 leading-relaxed mb-6">${tabsData[2].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[2].quote}"</p></div></div>`;
             }
             else { contentDiv.innerHTML = tabsData[index].html; }
         }
@@ -930,6 +938,18 @@
                 card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)'; });
             });
         }
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => { observer.observe(el); });
     </script>
 </body>
 </html>
