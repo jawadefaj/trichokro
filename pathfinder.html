@@ -72,25 +72,54 @@
 </head>
 <body class="font-sans antialiased selection:bg-brand-green selection:text-brand-dark" style="background-color: #0a192f; color: #8892b0;">
     
-         <!-- Navbar (Pathfinder Specific) -->
-         <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-brand-dark/90 border-b border-white/5">
+        <!-- Unified Nav -->
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-brand-dark/90 backdrop-blur-lg border-b border-white/5 py-3">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-20 items-center">
-                    <div class="flex items-center cursor-pointer">
-                        <a href="index.html">
-                        <span class="text-3xl font-display font-bold text-brand-heading tracking-widest" style="color: #e6f1ff">TRI<span class="text-brand-green" style="color: #64ffda">CHOKRO</span></span>
-                        </a>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+                        <div class="relative w-10 h-10 flex items-center justify-center">
+                            <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
+                            <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                     <div class="hidden md:flex items-center space-x-8">
-                        <a href="#pathfinder-problem" class="text-sm font-mono text-brand-text hover:text-brand-green transition" style="color: #ccd6f6"><span class="text-brand-green" style="color: #64ffda">01.</span> Problem</a>
-                        <a href="#pathfinder-solution" class="text-sm font-mono text-brand-text hover:text-brand-green transition" style="color: #ccd6f6"><span class="text-brand-green" style="color: #64ffda">02.</span> Solution</a>
-                        <a href="#pathfinder-models" class="text-sm font-mono text-brand-text hover:text-brand-green transition" style="color: #ccd6f6"><span class="text-brand-green" style="color: #64ffda">03.</span> Models</a>
-                        <a href="#pathfinder-business" class="text-sm font-mono text-brand-text hover:text-brand-green transition" style="color: #ccd6f6"><span class="text-brand-green" style="color: #64ffda">04.</span> Business</a>
-                        <a href="index.html" class="border border-brand-green text-brand-green px-6 py-2 rounded text-sm font-mono hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">Back to Mainpage</a>
+                        <a href="index.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">HOME<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">PRODUCT MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="trambulance.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">TRAMBULANCE<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index.html#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">USP<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">NOTICE BOARD<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index.html#contact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.6s">ABOUT US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.7s">Contact</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive animate-float-subtle"><i data-lucide="menu" class="w-7 h-7"></i></button>
                     </div>
                 </div>
             </div>
+            <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
+                <div class="px-4 py-4 space-y-3 flex flex-col">
+                    <a href="index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
+                    <a href="index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
+                    <a href="trambulance.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</a>
+                    <a href="contact.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
+                </div>
+            </div>
         </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(menuBtn && mobileMenu) {
+                    let isMenuOpen = false;
+                    menuBtn.addEventListener('click', () => {
+                        isMenuOpen = !isMenuOpen;
+                        if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
+                        else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
+                    });
+                }
+            });
+        </script>
 
         <!-- Hero Section -->
         <section class="hero-bg min-h-screen flex items-center pt-20" style="background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%); position: relative; overflow: hidden;">
@@ -453,5 +482,16 @@
             </div>
         </section>
 
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div>
+    <script>
+        document.addEventListener("mousemove", e => {
+            const gradient = document.getElementById("cursor-gradient");
+            if(gradient) {
+                gradient.style.setProperty("--x", e.clientX + "px");
+                gradient.style.setProperty("--y", e.clientY + "px");
+            }
+        });
+        lucide.createIcons();
+    </script>
 </body>
 </html>

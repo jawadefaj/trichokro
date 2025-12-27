@@ -10,6 +10,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Icons & Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
         /* CONTACT CARD STYLES */
@@ -359,10 +361,41 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="close-btn" title="Back to Site">
-        <i class="fas fa-arrow-left text-slate-900"></i>
-    </a>
-    <div class="contact-card-container">
+    <!-- Unified Nav -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-lg border-b border-slate-200 py-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+                    <div class="relative w-10 h-10 flex items-center justify-center">
+                        <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
+                        <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-slate-800 tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#home" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">HOME</a>
+                    <a href="index.html#products" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">PRODUCT MODELS</a>
+                    <a href="trambulance.html" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">TRAMBULANCE</a>
+                    <a href="index.html#features" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">USP</a>
+                    <a href="index.html#about" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">NOTICE BOARD</a>
+                    <a href="index.html#contact" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">ABOUT US</a>
+                    <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-800 hover:text-emerald-600 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-t border-slate-200 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0">
+            <div class="px-4 py-4 space-y-3 flex flex-col">
+                <a href="index.html#home" class="block text-slate-600 hover:text-emerald-600 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
+                <a href="index.html#products" class="block text-slate-600 hover:text-emerald-600 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
+                <a href="trambulance.html" class="text-left w-full block text-slate-600 hover:text-emerald-600 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</a>
+                <a href="contact.html?id=rownak" class="w-full bg-emerald-500 text-white py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <div class="contact-card-container" style="margin-top: 80px;">
         <!-- Left Panel: Identity -->
         <div class="card-left">
             <div class="header-initials" id="card-initials">A A M</div>
@@ -543,6 +576,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
             const memberKey = getParameterByName('id') || 'rownak';
             const member = teamData[memberKey] || teamData['rownak'];
             
@@ -553,6 +587,28 @@
             document.getElementById('card-phone2').innerText = member.phone2;
             document.getElementById('card-email1').innerText = member.email1;
             document.getElementById('card-email2').innerText = member.email2;
+
+            // Mobile menu logic
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(menuBtn && mobileMenu) {
+                let isMenuOpen = false;
+                menuBtn.addEventListener('click', () => {
+                    isMenuOpen = !isMenuOpen;
+                    if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
+                    else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
+                });
+            }
+        });
+    </script>
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div>
+    <script>
+        document.addEventListener("mousemove", e => {
+            const gradient = document.getElementById("cursor-gradient");
+            if(gradient) {
+                gradient.style.setProperty("--x", e.clientX + "px");
+                gradient.style.setProperty("--y", e.clientY + "px");
+            }
         });
     </script>
 </body>
