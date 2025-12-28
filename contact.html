@@ -544,6 +544,7 @@
         });
     </script>
     <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
+    <div class="watermark-overlay" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: multiply;"></div>
     <script> 
         document.addEventListener("mousemove", e => { 
             const gradient = document.getElementById("cursor-gradient"); 

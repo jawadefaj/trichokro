@@ -106,10 +106,14 @@
             border-color: #64ffda;
             box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
         }
+
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-gold-primary selection:text-black" style="background-color: #050a14; color: #cdd6f4;">
     
+        <div class="watermark-overlay"></div>
+
         <!-- Background Canvas -->
         <div id="canvas-container">
             <canvas id="neural-canvas"></canvas>
@@ -120,10 +124,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
-                        <div class="relative w-10 h-10 flex items-center justify-center">
-                            <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
-                            <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
-                        </div>
+                        <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]">
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                     <div class="hidden md:flex items-center space-x-8">
@@ -192,7 +193,7 @@
                             <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-gold-primary rounded-full group-hover:w-96 group-hover:h-96 -ml-2 -mt-2" style="background-color: #d4af37;"></span>
                             <span class="relative">View CV</span>
                         </a>
-                        <a href="https://linkedin.com/in/rownakshahriarruhan" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors px-4 py-3">
+                        <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors px-4 py-3">
                             <i class="fab fa-linkedin text-xl"></i> <span class="cinzel-font text-sm">LinkedIn</span>
                         </a>
                     </div>
