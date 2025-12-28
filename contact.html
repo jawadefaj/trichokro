@@ -339,63 +339,16 @@
             .info-group { align-items: center; display: flex; flex-direction: column; border-left: none; padding-left: 0; }
             .info-group:hover { transform: translateY(-5px); padding-left: 0; background: rgba(141, 163, 86, 0.05); border-radius: 8px; }
         }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 10;
-            transition: all 0.3s;
-        }
-        .close-btn:hover { transform: scale(1.1); background: #eee; }
     </style>
 </head>
 <body>
-    <!-- Unified Nav -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-lg border-b border-slate-200 py-3">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
-                    <div class="relative w-10 h-10 flex items-center justify-center">
-                        <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
-                        <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
-                    </div>
-                    <span class="text-2xl font-bold text-slate-800 tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html#home" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">HOME</a>
-                    <a href="index.html#products" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">PRODUCT MODELS</a>
-                    <a href="trambulance.html" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">TRAMBULANCE</a>
-                    <a href="index.html#features" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">USP</a>
-                    <a href="index.html#about" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">NOTICE BOARD</a>
-                    <a href="index.html#contact" class="interactive transition-trigger text-slate-600 hover:text-emerald-600 font-medium text-sm uppercase tracking-wide transition-colors relative group">ABOUT US</a>
-                    <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-slate-800 hover:text-emerald-600 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-t border-slate-200 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0">
-            <div class="px-4 py-4 space-y-3 flex flex-col">
-                <a href="index.html#home" class="block text-slate-600 hover:text-emerald-600 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
-                <a href="index.html#products" class="block text-slate-600 hover:text-emerald-600 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
-                <a href="trambulance.html" class="text-left w-full block text-slate-600 hover:text-emerald-600 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</a>
-                <a href="contact.html?id=rownak" class="w-full bg-emerald-500 text-white py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
-            </div>
-        </div>
-    </nav>
-    <div class="contact-card-container" style="margin-top: 80px;">
+    <!-- Back Button (Replaces Navigation) -->
+    <a href="javascript:history.back()" class="fixed top-6 left-6 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
+        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+        <span class="font-medium font-sans">Back</span>
+    </a>
+
+    <div class="contact-card-container">
         <!-- Left Panel: Identity -->
         <div class="card-left">
             <div class="header-initials" id="card-initials">A A M</div>
@@ -431,11 +384,14 @@
             <div class="icon-box" title="Email">
                 <i class="fas fa-envelope icon-circle"></i>
             </div>
+            <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="icon-box" title="LinkedIn">
+                <i class="fab fa-linkedin icon-circle"></i>
+            </a>
+            <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" class="icon-box" title="Facebook">
+                <i class="fab fa-facebook icon-circle"></i>
+            </a>
             <div class="icon-box" title="Address">
                 <i class="fas fa-home icon-circle"></i>
-            </div>
-            <div class="icon-box" title="Education">
-                <i class="fas fa-graduation-cap icon-circle"></i>
             </div>
         </div>
 
@@ -585,18 +541,6 @@
             document.getElementById('card-phone2').innerText = member.phone2;
             document.getElementById('card-email1').innerText = member.email1;
             document.getElementById('card-email2').innerText = member.email2;
-
-            // Mobile menu logic
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if(menuBtn && mobileMenu) {
-                let isMenuOpen = false;
-                menuBtn.addEventListener('click', () => {
-                    isMenuOpen = !isMenuOpen;
-                    if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
-                    else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
-                });
-            }
         });
     </script>
     <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
@@ -611,4 +555,3 @@
     </script>
 </body>
 </html>
-
