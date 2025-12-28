@@ -99,6 +99,8 @@
         .uplift-on-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .uplift-on-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15); }
         
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+
         #loader { position: fixed; inset: 0; background: #020617; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-in-out; }
         .loader-text { font-family: 'JetBrains Mono', monospace; }
         #emoji-container { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -196,6 +198,7 @@
         </div>
     </div>
 
+    <div class="watermark-overlay"></div>
     <div id="emoji-container"></div>
 
     <!-- AI Widget -->
@@ -236,10 +239,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
-                        <div class="relative w-10 h-10 flex items-center justify-center">
-                            <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
-                            <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-6 h-6"></i>
-                        </div>
+                        <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                     <div class="hidden md:flex items-center space-x-8">
@@ -444,8 +444,8 @@
         <section id="features" class="py-24 bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
-                    <p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence 🛠️</h2>
+                    <p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh 🇧🇩</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
@@ -632,10 +632,7 @@
             
             <!-- Updated Footer Logo -->
             <div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
-                <div class="relative w-8 h-8 flex items-center justify-center">
-                    <div class="absolute inset-0 border-2 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 border-l-emerald-500 animate-spin-slow"></div>
-                    <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 transform -rotate-12 w-4 h-4"></i>
-                </div>
+                <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]">
                 <span class="text-xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
             </div>
             
