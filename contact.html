@@ -33,6 +33,7 @@
             font-family: var(--card-font-main);
             overflow-x: hidden;
             perspective: 1000px;
+            touch-action: manipulation;
         }
 
         .contact-card-container {
@@ -342,6 +343,25 @@
     </style>
 </head>
 <body>
+    <!-- Hamburger Menu (Mobile Only) -->
+    <div class="fixed top-6 right-6 z-[60] md:hidden">
+        <button id="mobile-menu-btn" class="p-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[55] bg-slate-900/95 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none flex flex-col items-center justify-center space-y-8">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-emerald-400 transition-colors">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="index.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">HOME</a>
+        <a href="index.html#about" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">ABOUT US</a>
+        <a href="trambulance.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">TRAMBULANCE</a>
+        <a href="index.html#products" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">PRODUCTS</a>
+        <a href="founder.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">FOUNDERS</a>
+    </div>
+
     <!-- Back Button (Replaces Navigation) -->
     <a href="javascript:history.back()" class="fixed top-6 left-6 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
         <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
@@ -560,6 +580,20 @@
             document.getElementById('card-email2').innerText = member.email2;
             if (member.dept) {
                 document.getElementById('card-dept').innerText = member.dept;
+            }
+
+            // Mobile Menu Logic
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn && mobileMenu && closeMenuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                });
+                closeMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                });
             }
         });
     </script>
