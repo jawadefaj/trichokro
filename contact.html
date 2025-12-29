@@ -348,6 +348,13 @@
         <span class="font-medium font-sans">Back</span>
     </a>
 
+    <!-- Floating Background Objects -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-900/10 rounded-full blur-[100px] animate-pulse" style="animation-duration: 8s;"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-emerald-900/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s; animation-duration: 10s;"></div>
+        <div class="absolute top-[40%] left-[40%] w-[30%] h-[30%] bg-lime-900/10 rounded-full blur-[80px] animate-pulse" style="animation-delay: 4s; animation-duration: 12s;"></div>
+    </div>
+
     <div class="contact-card-container">
         <!-- Left Panel: Identity -->
         <div class="card-left">
@@ -413,7 +420,7 @@
             </div>
 
             <div class="info-group">
-                <span class="info-text">Dept of Mechanical Engineering</span>
+                <span class="info-text" id="card-dept">Dept of Mechanical Engineering</span>
                 <span class="info-text buet-highlight">Bangladesh University of<br>Engineering & Technology (BUET)</span>
             </div>
         </div>
@@ -501,13 +508,23 @@
                 email2: "2310132@me.buet.ac.bd",
             },
             rakibul: {
-                initials: "D S", 
+                initials: "R H S",
                 name: "Rakibul Hasan Shanto",
-                title: "COO",
+                title: "Junior Associate",
                 phone1: "N/A",
                 phone2: "N/A",
                 email1: "N/A",
                 email2: "N/A",
+            },
+            farhan: {
+                initials: "F S",
+                name: "Farhan Saddique",
+                title: "Junior Associate",
+                phone1: "N/A",
+                phone2: "N/A",
+                email1: "N/A",
+                email2: "N/A",
+                dept: "Dept of Biomedical Engineering"
             },
             ehsanSir: {
                 initials: "M E",
@@ -541,6 +558,9 @@
             document.getElementById('card-phone2').innerText = member.phone2;
             document.getElementById('card-email1').innerText = member.email1;
             document.getElementById('card-email2').innerText = member.email2;
+            if (member.dept) {
+                document.getElementById('card-dept').innerText = member.dept;
+            }
         });
     </script>
     <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
