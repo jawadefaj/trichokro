@@ -20,17 +20,17 @@ async def run():
         await page.screenshot(path='index_footer_check.png')
         print("Captured index_footer_check.png")
 
-        # Verify founder.html footer
-        print(f"Checking founder.html...")
-        await page.goto(f'file://{cwd}/founder.html')
+        # Verify index.html footer
+        print(f"Checking index.html...")
+        await page.goto(f'file://{cwd}/index.html')
         await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
         await page.wait_for_timeout(1000)
         await page.screenshot(path='founder_footer_check.png')
         print("Captured founder_footer_check.png")
 
-        # Verify contact.html buttons
-        print(f"Checking contact.html...")
-        await page.goto(f'file://{cwd}/contact.html?id=rownak') # Use an ID to trigger rendering if needed
+        # Verify index.html buttons
+        print(f"Checking index.html...")
+        await page.goto(f'file://{cwd}/index.html?id=rownak') # Use an ID to trigger rendering if needed
         # Wait for potential JS rendering
         await page.wait_for_timeout(1000)
         await page.screenshot(path='contact_check.png')
