@@ -1,79 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Privacy Policy | Trichokro</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Privacy Policy for Trichokro" />
+<meta charset="UTF-8">
+<title>Privacy Policy | Trichokro</title>
+
+<meta name="description" content="Privacy Policy of Trichokro.com — Created by Rownak Shahriar Ruhan with AI." />
+<meta name="author" content="Rownak Shahriar Ruhan & AI" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --blue:#38bdf8;
+  --green:#22c55e;
+  --deep:#020617;
+  --glass:rgba(255,255,255,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,50%),
+    rgba(34,197,94,.18), transparent 38%),
+    linear-gradient(135deg,#020617,#021e2a,#020617);
+  color:#e6faff;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+/* UI */
+.back-btn{
+  position:fixed;
+  top:26px;
+  left:26px;
+  padding:12px 20px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  color:#fff;
+  text-decoration:none;
+  font-size:.9rem;
+  box-shadow:0 14px 35px rgba(0,0,0,.45);
+  z-index:10;
+  transition:.3s ease;
+}
+.back-btn:hover{transform:translateY(-3px) scale(1.05)}
+
+.cursor-light{
+  position:fixed;
+  width:130px;height:130px;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(56,189,248,.22),
+    rgba(34,197,94,.12),
+    transparent 70%);
+  filter:blur(26px);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:9;
+}
+
+/* Background layers */
+.glow{
+  position:fixed;
+  width:480px;height:480px;
+  background:radial-gradient(circle,var(--blue),var(--green));
+  filter:blur(160px);
+  opacity:.45;
+  animation:float 18s ease-in-out infinite;
+  z-index:-1;
+}
+.glow.alt{top:55%;left:60%;animation-delay:-9s}
+
+@keyframes float{
+  50%{transform:translateY(-140px)}
+}
+
+.emoji{
+  position:fixed;
+  font-size:1.4rem;
+  opacity:.22;
+  animation:rise linear infinite;
+  z-index:-1;
+}
+@keyframes rise{
+  from{transform:translateY(110vh)}
+  to{transform:translateY(-20vh)}
+}
+
+/* Content */
+.parallax-wrap{perspective:1200px}
+
+.parallax-layer{
+  transform-style:preserve-3d;
+  transition:transform .18s cubic-bezier(.25,.46,.45,.94);
+  will-change:transform;
+}
+
+.container{
+  max-width:960px;
+  margin:120px auto 140px;
+  padding:70px;
+  background:var(--glass);
+  backdrop-filter:blur(28px);
+  border-radius:32px;
+  box-shadow:0 55px 160px rgba(0,0,0,.7);
+}
+
+h1{
+  font-size:3rem;
+  background:linear-gradient(90deg,var(--blue),var(--green));
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:26px;
+}
+
+h2{
+  color:#7dd3fc;
+  margin:40px 0 14px;
+}
+
+p{
+  line-height:1.9;
+  color:#d9f3ff;
+  margin-bottom:18px;
+}
+
+.founder{
+  margin-top:40px;
+  padding:28px;
+  background:rgba(2,15,23,.55);
+  border-radius:22px;
+}
+
+footer{
+  margin-top:40px;
+  opacity:.75;
+  font-size:.9rem;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
 </head>
 
-<body class="bg-brand-dark text-brand-text font-sans antialiased overflow-x-hidden">
+<body>
 
-  <!-- Ambient gradient background -->
-  <div class="fixed inset-0 -z-10">
-    <div class="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand-light to-brand-lighter"></div>
-    <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand-green/10 rounded-full blur-[120px] animate-spin-slow"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-green/5 rounded-full blur-[140px]"></div>
+<a href="index.html" class="back-btn">← Home</a>
+<div class="cursor-light"></div>
+
+<div class="glow"></div>
+<div class="glow alt"></div>
+
+<div class="emoji" style="left:18%;animation-duration:28s">🌊</div>
+<div class="emoji" style="left:48%;animation-duration:32s">✨</div>
+<div class="emoji" style="left:72%;animation-duration:30s">🌿</div>
+
+<div class="parallax-wrap">
+  <div class="container parallax-layer">
+    <h1>Privacy Policy</h1>
+
+    <p>
+      Trichokro.com respects privacy as a core principle of digital creativity.
+      We do not collect personal information unless explicitly provided.
+    </p>
+
+    <p>
+      Anonymous technical data may be used only to improve performance,
+      accessibility, and interaction quality.
+    </p>
+
+    <h2>Responsible Data Use</h2>
+    <p>
+      No data is sold, shared, or distributed to third parties.
+      User interactions remain private and secure.
+    </p>
+
+    <div class="founder">
+      <h2>About the Founder</h2>
+      <p>
+        <strong>Rownak Shahriar Ruhan</strong> is the founder and creative mind
+        behind Trichokro. His work focuses on blending motion, depth,
+        and human-centered design with artificial intelligence.
+      </p>
+    </div>
+
+    <footer>
+      Created by Rownak Shahriar Ruhan with Artificial Intelligence.
+    </footer>
   </div>
+</div>
 
-  <main class="max-w-5xl mx-auto px-6 py-28">
+<script>
+const body = document.body;
+const cursor = document.querySelector('.cursor-light');
+const card = document.querySelector('.parallax-layer');
 
-    <section class="relative bg-brand-greenDim/80 backdrop-blur-2xl rounded-[2.5rem] p-12 md:p-16 shadow-[0_40px_120px_rgba(0,0,0,0.6)] border border-brand-green/15 animate-fadeIn">
+document.addEventListener('mousemove', e => {
+  body.style.setProperty('--mx', e.clientX + 'px');
+  body.style.setProperty('--my', e.clientY + 'px');
 
-      <!-- subtle top accent -->
-      <div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-brand-green/40 to-transparent"></div>
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
 
-      <h1 class="text-4xl md:text-5xl font-display text-brand-heading tracking-tight mb-4">
-        Privacy Policy
-      </h1>
-
-      <p class="text-sm text-brand-text/60 mb-14">
-        Last updated · January 2025
-      </p>
-
-      <p class="mb-8 text-lg">
-        At <span class="text-brand-green font-medium">Trichokro</span>, privacy is not an afterthought —
-        it is foundational. This policy explains how information is collected, used, and protected
-        across <span class="font-medium">trichokro.com</span>.
-      </p>
-
-      <h2 class="text-xl text-brand-heading mt-12 mb-4">Information Collection</h2>
-      <p>
-        We collect personal information only when you choose to provide it, such as through
-        contact forms or direct communication.
-      </p>
-
-      <h2 class="text-xl text-brand-heading mt-12 mb-4">Purpose of Use</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Improving site experience and performance</li>
-        <li>Responding to inquiries</li>
-        <li>Ensuring system security and integrity</li>
-      </ul>
-
-      <h2 class="text-xl text-brand-heading mt-12 mb-4">Cookies & Tracking</h2>
-      <p>
-        Cookies may be used for functionality and analytics. You retain full control
-        through your browser settings.
-      </p>
-
-      <h2 class="text-xl text-brand-heading mt-12 mb-4">Third-Party Services</h2>
-      <p>
-        Trusted third-party services may be used for hosting, analytics, or monitoring,
-        each governed by their respective privacy standards.
-      </p>
-
-      <h2 class="text-xl text-brand-heading mt-12 mb-4">Data Security</h2>
-      <p>
-        We employ modern safeguards to protect data against unauthorized access,
-        alteration, or misuse.
-      </p>
-
-      <footer class="mt-20 text-center text-sm text-brand-text/50">
-        © 2025 Trichokro · Privacy with intent
-      </footer>
-
-    </section>
-  </main>
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * -10;
+  card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});
+</script>
 
 </body>
 </html>
