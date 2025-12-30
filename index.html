@@ -1175,30 +1175,7 @@
         
         document.querySelectorAll('.reveal-on-scroll').forEach(el => { observer.observe(el); });
 
-        // Gallery Logic
-        const galleryTrack = document.getElementById('gallery-track');
-        const prevBtn = document.getElementById('gallery-prev');
-        const nextBtn = document.getElementById('gallery-next');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const lightboxClose = document.getElementById('lightbox-close');
-        
-        // Dynamic Gallery Loading
-        let galleryImages = [];
-        let currentIndex = 0;
-        let galleryInterval;
-
-        function checkImage(url) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url;
-            });
-        }
-
-        const galleryTrack = document.getElementById('galleryTrack');
+     const galleryTrack = document.getElementById('galleryTrack');
 const lightbox = document.getElementById('lightbox');
 const lightboxTrack = document.getElementById('lightboxTrack');
 const lightboxClose = document.getElementById('lightboxClose');
@@ -1206,11 +1183,12 @@ const lightboxClose = document.getElementById('lightboxClose');
 const SLIDES_PATH = 'src/assets/slideshow/';
 let images = [];
 let currentIndex = 0;
+let autoTimer = null;
+let isAutoScrolling = false;
 
-/* ===== Load images automatically =====
-   Requires slideshow.json in the folder:
-   ["image1.jpg","truck.png","factory.webp"]
-*/
+/* =========================
+   INIT
+========================= */
 async function initGallery() {
   try {
     const res = await fetch(`${SLIDES_PATH}slideshow.json`);
@@ -1222,39 +1200,95 @@ async function initGallery() {
 
   renderGallery();
   renderLightbox();
+  startAutoSlide();
 }
 
-/* ===== Render Gallery ===== */
+/* =========================
+   RENDER
+========================= */
 function renderGallery() {
   galleryTrack.innerHTML = '';
-
   images.forEach((img, i) => {
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
-    slide.innerHTML = `
-      <img src="${SLIDES_PATH}${img}" alt="${img}">
-    `;
+    slide.innerHTML = `<img src="${SLIDES_PATH}${img}" alt="${img}" />`;
     slide.onclick = () => openLightbox(i);
     galleryTrack.appendChild(slide);
   });
 }
 
-/* ===== Render Lightbox ===== */
 function renderLightbox() {
   lightboxTrack.innerHTML = '';
-
   images.forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'lightbox-slide';
     slide.innerHTML = `
-      <img src="${SLIDES_PATH}${img}">
+      <img src="${SLIDES_PATH}${img}" />
       <div class="lightbox-caption">${img}</div>
     `;
     lightboxTrack.appendChild(slide);
   });
 }
 
-/* ===== Open / Close ===== */
+/* =========================
+   AUTO SLIDE (3s per image)
+========================= */
+function startAutoSlide() {
+  stopAutoSlide();
+
+  autoTimer = setInterval(() => {
+    if (isAutoScrolling) return;
+
+    isAutoScrolling = true;
+    currentIndex = (currentIndex + 1) % images.length;
+
+    galleryTrack.scrollTo({
+      left: currentIndex * galleryTrack.clientWidth,
+      behavior: 'smooth'
+    });
+
+    // allow scroll to finish before next change
+    setTimeout(() => {
+      isAutoScrolling = false;
+    }, 700); // smooth scroll duration buffer
+
+  }, 3000); // ✅ EXACTLY 3 seconds per image
+}
+
+function stopAutoSlide() {
+  clearInterval(autoTimer);
+}
+
+/* =========================
+   SCROLL SYNC (NO SKIPPING)
+========================= */
+let scrollTimeout;
+galleryTrack.addEventListener(
+  'scroll',
+  () => {
+    if (isAutoScrolling) return;
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      currentIndex = Math.round(
+        galleryTrack.scrollLeft / galleryTrack.clientWidth
+      );
+    }, 80);
+  },
+  { passive: true }
+);
+
+/* =========================
+   PAUSE ON TOUCH / DRAG
+========================= */
+galleryTrack.addEventListener('touchstart', stopAutoSlide, { passive: true });
+galleryTrack.addEventListener('touchend', startAutoSlide, { passive: true });
+galleryTrack.addEventListener('pointerdown', stopAutoSlide);
+galleryTrack.addEventListener('pointerup', startAutoSlide);
+
+/* =========================
+   LIGHTBOX
+========================= */
 function openLightbox(index) {
   currentIndex = index;
   lightbox.classList.remove('hidden');
@@ -1263,11 +1297,13 @@ function openLightbox(index) {
     lightboxTrack.scrollLeft =
       index * lightboxTrack.clientWidth;
   });
+  stopAutoSlide();
 }
 
 function closeLightbox() {
   lightbox.classList.add('opacity-0');
   setTimeout(() => lightbox.classList.add('hidden'), 300);
+  startAutoSlide();
 }
 
 lightboxClose.onclick = closeLightbox;
@@ -1275,36 +1311,11 @@ lightbox.onclick = e => {
   if (e.target === lightbox) closeLightbox();
 };
 
-/* ===== Sync caption on swipe ===== */
-lightboxTrack.addEventListener(
-  'scroll',
-  () => {
-    currentIndex = Math.round(
-      lightboxTrack.scrollLeft /
-        lightboxTrack.clientWidth
-    );
-  },
-  { passive: true }
-);
-
+/* =========================
+   START
+========================= */
 initGallery();
-    
-    <!-- Back to Top Button -->
-    <div id="back-to-top" class="fixed bottom-10 left-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-12 h-12 bg-slate-800/80 backdrop-blur-sm border border-emerald-500/30 text-emerald-400 rounded-full flex items-center justify-center hover:bg-emerald-500 hover:text-slate-900 transition-all shadow-lg hover:shadow-emerald-500/20 group">
-            <i data-lucide="arrow-up" class="w-6 h-6 group-hover:-translate-y-1 transition-transform"></i>
-        </button>
-    </div>
 
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
-    <script> 
-        document.addEventListener("mousemove", e => { 
-            const gradient = document.getElementById("cursor-gradient"); 
-            if(gradient) { 
-                gradient.style.setProperty("--x", e.clientX + "px"); 
-                gradient.style.setProperty("--y", e.clientY + "px"); 
-            } 
-        }); 
 const backToTopBtn = document.getElementById('back-to-top');
 
 let visible = false;
