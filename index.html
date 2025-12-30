@@ -69,9 +69,10 @@
         body.loading { overflow: hidden; height: 100vh; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
         a, button, .interactive, input, .group { cursor: pointer; }
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 14px; }
         ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 7px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.6), inset 0 0 10px rgba(16, 185, 129, 0.3); }
+        ::-webkit-scrollbar-thumb:hover { box-shadow: 0 0 20px rgba(16, 185, 129, 0.9), inset 0 0 15px rgba(16, 185, 129, 0.5); }
 
         /* Animations */
         @keyframes gradient-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
@@ -709,10 +710,18 @@
             <div class="container mx-auto px-4 relative z-10">
                 <div class="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-16 border border-slate-700 shadow-2xl bg-gradient-animate">
                     <div class="text-center mb-12"><h2 class="text-4xl font-bold mb-4">Get in Touch</h2><p class="text-slate-400">Book a demo, discuss fleet needs, Collab or have a meeting.</p></div>
-                    <div class="grid md:grid-cols-3 gap-8">
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover cursor-pointer" onclick="openBookMeetingModal()">
+                            <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="calendar"></i></div>
+                            <h3 class="font-bold mb-2">Book Meeting</h3><p class="text-slate-400 text-sm">Schedule a Google Meet<br/>with our team</p>
+                        </div>
                         <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
                             <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="map-pin"></i></div>
-                            <h3 class="font-bold mb-2">Visit</h3><p class="text-slate-400 text-sm">Kazi Nazrul Islam, BUET<br/>or ME Building, BUET<br/>Dhaka-1000</p>
+                            <h3 class="font-bold mb-2">Visit</h3>
+                            <p class="text-slate-400 text-sm mb-4">Kazi Nazrul Islam, BUET<br/>or ME Building, BUET<br/>Dhaka-1000</p>
+                            <a href="https://www.google.com/maps/search/BUET+Kazi+Nazrul+Islam+Dhaka/@23.7259,90.3658,15z" target="_blank" rel="noopener noreferrer" class="inline-block bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-400 px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-emerald-500/30">
+                                <i data-lucide="navigation" class="w-4 h-4 inline mr-2"></i>Get Direction
+                            </a>
                         </div>
                         <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
                             <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="phone"></i></div>
