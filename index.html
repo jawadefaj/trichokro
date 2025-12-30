@@ -745,10 +745,16 @@
             </div>
             
             <div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
-                <a href="#products" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Products</a>
-                <a href="#contact" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Contacts</a>
-                <a href="#contact" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Support</a>
-                <a href="#about" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Privacy</a>
+                <div class="relative">
+                    <a href="#" onclick="toggleProductsMenu()" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer">Products</a>
+                    <div id="products-menu" class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg">
+                        <a href="trambulance.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">Trambulance</a>
+                        <a href="pathfinder.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">Pathfinder</a>
+                    </div>
+                </div>
+                <a href="founder.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Contacts</a>
+                <a href="privacy.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Privacy</a>
+                <a href="metadata.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Meta Data</a>
             </div>
         </div>
         
