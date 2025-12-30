@@ -131,6 +131,26 @@
         .btn-deep-gradient { background-image: linear-gradient(to right, #065f46, #34d399); transition: all 0.3s ease; }
         .btn-deep-gradient:hover { background-image: linear-gradient(to right, #047857, #6ee7b7); }
 
+        .back-to-top-btn {
+            position: relative;
+            transition: all 0.3s ease;
+            animation: back-to-top-glow 3s ease-in-out infinite;
+        }
+        @keyframes back-to-top-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.6), 0 0 35px rgba(16, 185, 129, 0.4); }
+        }
+        .back-to-top-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.8), 0 0 50px rgba(16, 185, 129, 0.5);
+        }
+        .back-to-top-btn i {
+            transition: transform 0.3s ease;
+        }
+        .back-to-top-btn:hover i {
+            transform: translateY(-5px) rotate(15deg);
+        }
+
         /* Marquee Animation */
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -479,7 +499,7 @@
                 </div>
                 
                 <div class="gallery-slider relative w-full max-w-5xl mx-auto h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-700 group">
-                    <div id="gallery-track" class="flex h-full transition-transform duration-500 ease-out will-change-transform">
+                    <div id="gallery-track" class="flex h-full transition-transform duration-700 ease-in-out will-change-transform">
                         <!-- Images injected by JS -->
                     </div>
                     
@@ -768,7 +788,7 @@
             let progress = 0;
             const statusMessages = ["CALIBRATING HYDRAULICS", "CONNECTING POWER GRID", "OPTIMIZING BATTERY", "LOADING ASSETS", "SYSTEM READY"];
             const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 5) + 1;
+                progress += Math.floor(Math.random() * 6) + 3;
                 if (progress > 100) progress = 100;
                 const display = progress < 10 ? `0${progress}` : `${progress}`;
                 percentEl.innerText = display;
@@ -788,8 +808,8 @@
 
         function startFloatingEmojis() {
             const container = document.getElementById('emoji-container');
-            const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡'];
-            const maxEmojis = 20;
+            const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡', '🤖', '💻', '🔌', '⚙️', '🛠️', '🚗', '🔧', '⚡', '🔋', '🌱'];
+            const maxEmojis = 40;
             let currentEmojis = 0;
             function createEmoji() {
                 if (currentEmojis >= maxEmojis) return;
