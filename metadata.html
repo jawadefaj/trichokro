@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Metadata & Credits | Trichokro</title>
+
+<meta name="description" content="Metadata, authorship, and creative credits for Trichokro.com." />
+<meta name="author" content="Rownak Shahriar Ruhan & AI" />
+<meta name="generator" content="Human + Artificial Intelligence" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* Same core system as privacy page */
+:root{
+  --blue:#38bdf8;
+  --green:#22c55e;
+  --deep:#020617;
+  --glass:rgba(255,255,255,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,'Segoe UI',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,50%),
+    rgba(34,197,94,.18), transparent 38%),
+    linear-gradient(135deg,#020617,#052e2b,#020617);
+  color:#e6fffb;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+.back-btn{
+  position:fixed;
+  top:26px;
+  left:26px;
+  padding:12px 20px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  color:#fff;
+  text-decoration:none;
+  font-size:.9rem;
+  box-shadow:0 14px 35px rgba(0,0,0,.45);
+  z-index:10;
+}
+
+.cursor-light{
+  position:fixed;
+  width:130px;height:130px;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(56,189,248,.22),
+    rgba(34,197,94,.12),
+    transparent 70%);
+  filter:blur(26px);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+}
+
+.glow{
+  position:fixed;
+  width:480px;height:480px;
+  background:radial-gradient(circle,var(--blue),var(--green));
+  filter:blur(160px);
+  opacity:.45;
+  animation:float 18s ease-in-out infinite;
+  z-index:-1;
+}
+.glow.alt{top:55%;left:60%;animation-delay:-9s}
+
+@keyframes float{
+  50%{transform:translateY(-140px)}
+}
+
+.parallax-wrap{perspective:1200px}
+
+.parallax-layer{
+  transform-style:preserve-3d;
+  transition:transform .18s ease;
+}
+
+.card{
+  max-width:880px;
+  margin:120px auto 140px;
+  padding:70px;
+  background:var(--glass);
+  backdrop-filter:blur(28px);
+  border-radius:32px;
+  box-shadow:0 55px 160px rgba(0,0,0,.7);
+}
+
+h1{
+  font-size:3rem;
+  background:linear-gradient(90deg,var(--blue),var(--green));
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:32px;
+}
+
+.section{
+  margin-top:32px;
+  padding:28px;
+  background:rgba(2,15,23,.55);
+  border-radius:22px;
+}
+
+p{
+  font-size:1.05rem;
+  line-height:1.9;
+  color:#d1fae5;
+}
+
+.signature{
+  margin-top:42px;
+  opacity:.8;
+  font-size:.95rem;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">← Home</a>
+<div class="cursor-light"></div>
+
+<div class="glow"></div>
+<div class="glow alt"></div>
+
+<div class="parallax-wrap">
+  <div class="card parallax-layer">
+    <h1>Metadata & Credits</h1>
+
+    <div class="section">
+      <p><strong>Website:</strong> Trichokro.com</p>
+      <p><strong>Founder & Creator:</strong> Rownak Shahriar Ruhan</p>
+      <p><strong>Creation Model:</strong> Human creativity × Artificial Intelligence</p>
+    </div>
+
+    <div class="section">
+      <p>
+        Trichokro is an experimental digital platform exploring immersive
+        interaction, motion-driven design, and expressive modern web aesthetics.
+      </p>
+    </div>
+
+    <div class="section">
+      <p>
+        Every visual system reflects harmony between
+        human intuition and machine intelligence.
+      </p>
+    </div>
+
+    <div class="signature">
+      Designed & authored by Rownak Shahriar Ruhan — enhanced with AI.
+    </div>
+  </div>
+</div>
+
+<script>
+const body = document.body;
+const cursor = document.querySelector('.cursor-light');
+const card = document.querySelector('.parallax-layer');
+
+document.addEventListener('mousemove', e => {
+  body.style.setProperty('--mx', e.clientX + 'px');
+  body.style.setProperty('--my', e.clientY + 'px');
+
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+
+  const x = (e.clientX / window.innerWidth - 0.5) * 8;
+  const y = (e.clientY / window.innerHeight - 0.5) * -8;
+  card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});
+</script>
+
+</body>
+</html>
