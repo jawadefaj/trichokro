@@ -57,7 +57,7 @@
     <style>
         /* --- MAIN GLOBAL STYLES --- */
         /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
-        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
+        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; -webkit-overflow-scrolling: touch; }
         a, button, .interactive, input, .group { cursor: pointer; }
         
         .main-theme-bg {
@@ -85,12 +85,7 @@
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes neon-pulse { 0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); } 50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; } }
         @keyframes drive-by { 0% { transform: translateX(-100vw) skewX(-10deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(100vw) skewX(-10deg); opacity: 0; } }
-        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); } 50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); } }
-        @keyframes slide-in-left { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slide-in-right { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-
+        
         .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
         .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
@@ -107,7 +102,7 @@
         .uplift-on-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15); }
         
         .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
-        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.png'); background-repeat: no-repeat; background-position: center; background-size: 85%; opacity: 0.5; pointer-events: none; z-index: 1; mix-blend-mode: overlay; }
+        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.png'); background-repeat: no-repeat; background-position: center; background-size: 40%; opacity: 0.035; pointer-events: none; z-index: 0; mix-blend-mode: screen; filter: blur(6px) saturate(0.8); }
 
         #loader { position: fixed; inset: 0; background: #020617; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-in-out; }
         .loader-text { font-family: 'JetBrains Mono', monospace; }
@@ -177,6 +172,24 @@
         }
         .marquee-content:hover {
             animation-play-state: paused;
+        }
+
+        /* Mobile touch fixes */
+        @media (max-width: 768px) {
+            #cursor-gradient { display: none !important; }
+            .watermark-logo { pointer-events: none !important; z-index: -1 !important; }
+            .watermark-overlay { display: none !important; }
+            #hero-grid { pointer-events: none !important; }
+            .tilt-card { transform: none !important; }
+            * { -webkit-tap-highlight-color: transparent; }
+        }
+        
+        /* Ensure all interactive elements work on touch */
+        a, button, .interactive, input, select, textarea, [onclick] {
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         /* Utility Helpers */
@@ -703,7 +716,6 @@
                             <button onclick="switchTab(5)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">Achievements</button>
 
                         </div>
-                    </div>
                     <div class="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px] bg-gradient-animate" id="tab-content">
                         <!-- Dynamic Content Loaded Here -->
                     </div>
@@ -1074,39 +1086,7 @@
 </div>`
         },
    {
-        title: "Junior Associates",
-        html:
-`<div class="animate-fade-in-up">
-    <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Junior Associates</h3>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="contact.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
-            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-                <img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury">
-            </div>
-            <h4 class="text-white font-bold text-sm leading-tight mb-1">Maxudur Rahman Chowdhury</h4>
-            <p class="text-emerald-400 text-xs">Head of Communications</p>
-        </a>
-        
-        <a href="contact.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
-            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-                <img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto">
-            </div>
-            <h4 class="text-white font-bold text-sm leading-tight mb-1">Rakibul Hasan Shanto</h4>
-            <p class="text-emerald-400 text-xs">Manufacturing Executive</p>
-        </a>
-
-        <a href="contact.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
-            <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-                <img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique">
-            </div>
-            <h4 class="text-white font-bold text-sm leading-tight mb-1">Farhan Saddique</h4>
-            <p class="text-emerald-400 text-xs">Junior Associate</p>
-            <p class="text-slate-500 text-[10px] mt-1">BUET BME '23</p>
-        </a>
-    </div>
-</div>`
-   },
-            { title: "Cleaner Mobility for Everyone", text: "Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.", quote: "We obsess over practical details — from frame geometry to charging routines." },
+        title: "Cleaner Mobility for Everyone", text: "Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.", quote: "We obsess over practical details — from frame geometry to charging routines." },
             { title: "From Prototype to Production", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">From Prototype to Production</h3><ul class="space-y-6 border-l border-slate-700 ml-2 pl-6"><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span><span class="text-emerald-400 font-bold text-sm block mb-1">2022</span><p class="text-slate-400 text-sm">Began with a simple idea: lighter, safer three-wheelers.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2023</span><p class="text-slate-400 text-sm">Piloted first fleet, iterating on chassis and suspension.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2024</span><p class="text-slate-400 text-sm">Production-ready platform with angular composite panels.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">Today</span><p class="text-slate-400 text-sm">TriChokro vehicles carry passengers across cities daily.</p></li></ul></div>` },
             
         {
@@ -1368,7 +1348,7 @@
         </button>
     </div>
 
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(400px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.08), transparent 80%); mix-blend-mode: screen;"></div> 
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300 hidden md:block" style="background: radial-gradient(400px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.08), transparent 80%); mix-blend-mode: screen;"></div> 
     <script> 
         document.addEventListener("mousemove", e => { 
             const gradient = document.getElementById("cursor-gradient"); 
