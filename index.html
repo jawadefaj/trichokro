@@ -102,6 +102,7 @@
         .uplift-on-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15); }
         
         .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.png'); background-repeat: no-repeat; background-position: center; background-size: 40%; opacity: 0.035; pointer-events: none; z-index: 0; mix-blend-mode: screen; filter: blur(6px) saturate(0.8); }
 
         #loader { position: fixed; inset: 0; background: #020617; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-in-out; }
         .loader-text { font-family: 'JetBrains Mono', monospace; }
@@ -264,7 +265,7 @@
                         <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
-                    <div class="hidden md:flex items-center space-x-8">
+                    <div class="flex items-center space-x-8">
                         <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">HOME<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">ABOUT US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s">ENGINEERING<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
@@ -301,6 +302,7 @@
                     <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-transparent to-slate-900"></div>
                 </div>
                 <div class="absolute inset-0 bg-[url('https://pin.it/7kWAfh1qt')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+                <div class="watermark-logo"></div>
                 <div id="blob-1" class="absolute w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[100px] -top-20 -left-20 animate-float-slow transition-transform duration-100 ease-out"></div>
                 <div id="blob-2" class="absolute w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] bottom-0 right-0 animate-float-medium transition-transform duration-100 ease-out"></div>
                 <div class="absolute top-10 right-20 w-32 h-32 border-2 border-emerald-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
