@@ -751,7 +751,7 @@
         </div>
     </div>
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-        <p class="text-slate-600 text-sm">All right reserved, TriChokro 2026</p>
+        <p class="text-slate-600 text-sm">Developed by Ruhan & Jules; All right reserved, TriChokro 2026</p>
     </div>
 </footer>
     </div> 
@@ -1334,14 +1334,42 @@
         }); 
 
         // Back to top visibility
-        const backToTopBtn = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
-            } else {
-                backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
-            }
-        });
+       const backToTopBtn = document.getElementById('back-to-top');
+
+// subtle UI sound
+const whoosh = new Audio('/sounds/whoosh.mp3');
+whoosh.volume = 0.25;
+
+let visible = false;
+
+window.addEventListener('scroll', () => {
+  const shouldShow = window.scrollY > 300;
+
+  if (shouldShow && !visible) {
+    backToTopBtn.classList.remove(
+      'opacity-0',
+      'pointer-events-none',
+      'translate-y-8',
+      'scale-90'
+    );
+
+    whoosh.currentTime = 0;
+    whoosh.play();
+
+    visible = true;
+  }
+
+  if (!shouldShow && visible) {
+    backToTopBtn.classList.add(
+      'opacity-0',
+      'pointer-events-none',
+      'translate-y-8',
+      'scale-90'
+    );
+
+    visible = false;
+  }
+});
     </script>
 </body>
 </html>
