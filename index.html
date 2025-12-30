@@ -1506,15 +1506,19 @@
                  return;
             }
 
-            // Render Images
+            // Render Images with captions
             galleryImages.forEach((src, index) => {
                 const div = document.createElement('div');
                 div.className = 'min-w-full h-full relative flex-shrink-0 cursor-pointer'; 
-                // Add onclick to open lightbox
-                div.onclick = () => openLightbox(src, `Gallery Image ${index + 1}`);
+                // Extract photo name from path
+                const photoName = src.split('/').pop().split('.')[0];
+                div.onclick = () => openLightbox(src, photoName);
                 div.innerHTML = `
-                    <img src="${src}" class="w-full h-full object-cover select-none" alt="Gallery Image ${index + 1}">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60 hover:opacity-40 transition-opacity"></div>
+                    <img src="${src}" class="w-full h-full object-cover select-none" alt="${photoName}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-70 hover:opacity-50 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <p class="text-lg font-semibold tracking-wide drop-shadow-lg">${photoName.replace(/-/g, ' ').toUpperCase()}</p>
+                    </div>
                 `;
                 galleryTrack.appendChild(div);
             });
@@ -1563,8 +1567,8 @@
             updateGalleryPosition();
         }
 
-        function startGalleryAutoSlide() {
-            galleryInterval = setInterval(nextSlide, 2000);
+               function startGalleryAutoSlide() {
+            galleryInterval = setInterval(nextSlide, 3000);
         }
         
         function stopGalleryAutoSlide() {
@@ -1631,6 +1635,16 @@
                 backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
             }
         });
+                // Scroll to Bottom Button - visible only when NOT at bottom
+        const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+        window.addEventListener('scroll', () => {
+            const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
+            if (!isAtBottom && window.scrollY > 300) {
+                scrollToBottomBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+            } else {
+                scrollToBottomBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+            }
+        });
     </script>
     <!-- Add this JavaScript before the closing </script> tag (before line 1380) */
 
@@ -1666,5 +1680,11 @@ window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
 // Initial call
 updateScrollProgress();
+    <!-- Top to Bottom Button (visible only at bottom) -->
+    <div id="scroll-to-bottom" class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
+        <button onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
+            <span class="text-xl">⬇️</span>
+        </button>
+    </div>
 </body>
 </html>
