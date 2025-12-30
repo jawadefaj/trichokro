@@ -1198,124 +1198,97 @@
             });
         }
 
-        async function initGallery() {
-            // Attempt to load images 1.jpg through 10.jpg
-            for (let i = 1; i <= 10; i++) {
-                const src = `src/assets/slideshow/${i}.jpg`;
-                const exists = await checkImage(src);
-                if (exists) {
-                    galleryImages.push(src);
-                }
-            }
+        const galleryTrack = document.getElementById('galleryTrack');
+const lightbox = document.getElementById('lightbox');
+const lightboxTrack = document.getElementById('lightboxTrack');
+const lightboxClose = document.getElementById('lightboxClose');
 
-            // Fallback if detection fails or is empty
-            if(galleryImages.length === 0) {
-                galleryImages = [
-                    'src/assets/slideshow/1.jpg',
-                    'src/assets/slideshow/2.jpg',
-                    'src/assets/slideshow/3.jpg',
-                    'src/assets/slideshow/4.jpg'
-                ];
-            }
+const SLIDES_PATH = 'src/assets/slideshow/';
+let images = [];
+let currentIndex = 0;
 
-            if(galleryImages.length === 0) {
-                 document.getElementById('gallery').style.display = 'none';
-                 return;
-            }
+/* ===== Load images automatically =====
+   Requires slideshow.json in the folder:
+   ["image1.jpg","truck.png","factory.webp"]
+*/
+async function initGallery() {
+  try {
+    const res = await fetch(`${SLIDES_PATH}slideshow.json`);
+    images = await res.json();
+  } catch {
+    document.getElementById('gallery').style.display = 'none';
+    return;
+  }
 
-            // Render Images
-            galleryImages.forEach((src, index) => {
-                const div = document.createElement('div');
-                div.className = 'min-w-full h-full relative flex-shrink-0 cursor-pointer'; 
-                // Add onclick to open lightbox
-                div.onclick = () => openLightbox(src, `Gallery Image ${index + 1}`);
-                div.innerHTML = `
-                    <img src="${src}" class="w-full h-full object-cover select-none" alt="Gallery Image ${index + 1}">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60 hover:opacity-40 transition-opacity"></div>
-                `;
-                galleryTrack.appendChild(div);
-            });
+  renderGallery();
+  renderLightbox();
+}
 
-            startGalleryAutoSlide();
-        }
+/* ===== Render Gallery ===== */
+function renderGallery() {
+  galleryTrack.innerHTML = '';
 
-        function openLightbox(src, caption) {
-            lightboxImg.src = src;
-            lightboxCaption.textContent = caption;
-            lightbox.classList.remove('hidden');
-            // Small delay to allow display:block to apply before opacity transition
-            requestAnimationFrame(() => {
-                lightbox.classList.remove('opacity-0');
-            });
-            stopGalleryAutoSlide();
-        }
+  images.forEach((img, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'gallery-slide';
+    slide.innerHTML = `
+      <img src="${SLIDES_PATH}${img}" alt="${img}">
+    `;
+    slide.onclick = () => openLightbox(i);
+    galleryTrack.appendChild(slide);
+  });
+}
 
-        function closeLightbox() {
-            lightbox.classList.add('opacity-0');
-            setTimeout(() => {
-                lightbox.classList.add('hidden');
-                lightboxImg.src = '';
-            }, 300);
-            startGalleryAutoSlide();
-        }
+/* ===== Render Lightbox ===== */
+function renderLightbox() {
+  lightboxTrack.innerHTML = '';
 
-        if(lightboxClose) {
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', (e) => {
-                if(e.target === lightbox) closeLightbox();
-            });
-        }
+  images.forEach(img => {
+    const slide = document.createElement('div');
+    slide.className = 'lightbox-slide';
+    slide.innerHTML = `
+      <img src="${SLIDES_PATH}${img}">
+      <div class="lightbox-caption">${img}</div>
+    `;
+    lightboxTrack.appendChild(slide);
+  });
+}
 
-        function updateGalleryPosition() {
-            galleryTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
+/* ===== Open / Close ===== */
+function openLightbox(index) {
+  currentIndex = index;
+  lightbox.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    lightbox.classList.remove('opacity-0');
+    lightboxTrack.scrollLeft =
+      index * lightboxTrack.clientWidth;
+  });
+}
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % galleryImages.length;
-            updateGalleryPosition();
-        }
+function closeLightbox() {
+  lightbox.classList.add('opacity-0');
+  setTimeout(() => lightbox.classList.add('hidden'), 300);
+}
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-            updateGalleryPosition();
-        }
+lightboxClose.onclick = closeLightbox;
+lightbox.onclick = e => {
+  if (e.target === lightbox) closeLightbox();
+};
 
-        function startGalleryAutoSlide() {
-            galleryInterval = setInterval(nextSlide, 2000);
-        }
-        
-        function stopGalleryAutoSlide() {
-            clearInterval(galleryInterval);
-        }
+/* ===== Sync caption on swipe ===== */
+lightboxTrack.addEventListener(
+  'scroll',
+  () => {
+    currentIndex = Math.round(
+      lightboxTrack.scrollLeft /
+        lightboxTrack.clientWidth
+    );
+  },
+  { passive: true }
+);
 
-        if(prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => { stopGalleryAutoSlide(); prevSlide(); startGalleryAutoSlide(); });
-            nextBtn.addEventListener('click', () => { stopGalleryAutoSlide(); nextSlide(); startGalleryAutoSlide(); });
-            
-            // Touch support
-            let touchStartX = 0;
-            let touchEndX = 0;
-            const slider = document.querySelector('.gallery-slider');
-            
-            slider.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-                stopGalleryAutoSlide();
-            }, {passive: true});
-
-            slider.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-                startGalleryAutoSlide();
-            }, {passive: true});
-
-            function handleSwipe() {
-                if (touchEndX < touchStartX - 50) nextSlide();
-                if (touchEndX > touchStartX + 50) prevSlide();
-            }
-        }
-
-        initGallery();
-    </script>
+initGallery();
+    
     <!-- Back to Top Button -->
     <div id="back-to-top" class="fixed bottom-10 left-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-12 h-12 bg-slate-800/80 backdrop-blur-sm border border-emerald-500/30 text-emerald-400 rounded-full flex items-center justify-center hover:bg-emerald-500 hover:text-slate-900 transition-all shadow-lg hover:shadow-emerald-500/20 group">
