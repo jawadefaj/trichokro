@@ -57,7 +57,17 @@
     <style>
         /* --- MAIN GLOBAL STYLES --- */
         /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
-        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
+        body { 
+            cursor: default; 
+            overflow-x: hidden; 
+            background-color: #020617; 
+            font-family: 'Inter', sans-serif; 
+            color: #e2e8f0; 
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         a, button, .interactive, input, .group { cursor: pointer; }
         
         .main-theme-bg {
@@ -97,6 +107,12 @@
         .animate-spin-slow { animation: spin-slow 8s linear infinite; }
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
         .animate-neon-pulse { animation: neon-pulse 3s infinite ease-in-out; }
+        .animate-shimmer { animation: shimmer 2s infinite; }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-slide-down { animation: slide-down 0.6s ease-out; }
+        .animate-scale-in { animation: scale-in 0.5s ease-out; }
+        .animate-rotate-center { animation: rotate-center 4s linear infinite; }
+        .animate-border-glow { animation: border-glow 2.5s ease-in-out infinite; }
 
         .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
@@ -179,8 +195,209 @@
             animation-play-state: paused;
         }
 
-        /* Utility Helpers */
-        .hidden { display: none !important; }
+        /* ============================================
+           COMPREHENSIVE MOBILE & DESKTOP OPTIMIZATION
+           ============================================ */
+
+        /* 1. Enhanced Global Styles with Mobile Support */
+        body { 
+            cursor: default; 
+            overflow-x: hidden; 
+            background-color: #020617; 
+            font-family: 'Inter', sans-serif; 
+            color: #e2e8f0; 
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 2. Add NEW ANIMATIONS for more motion (keep all existing ones) */
+        @keyframes shimmer { 
+            0% { background-position: -1000px 0; } 
+            100% { background-position: 1000px 0; } 
+        }
+        @keyframes glow-pulse { 
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3)); } 
+            50% { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.7)); } 
+        }
+        @keyframes slide-down {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scale-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes rotate-center {
+            0% { transform: rotateZ(0deg); }
+            50% { transform: rotateZ(180deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+        @keyframes border-glow {
+            0%, 100% { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 5px rgba(16, 185, 129, 0.2); }
+            50% { border-color: rgba(16, 185, 129, 0.8); box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
+        }
+
+        /* 3. Animation Classes */
+        .animate-shimmer { animation: shimmer 2s infinite; }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-slide-down { animation: slide-down 0.6s ease-out; }
+        .animate-scale-in { animation: scale-in 0.5s ease-out; }
+        .animate-rotate-center { animation: rotate-center 4s linear infinite; }
+        .animate-border-glow { animation: border-glow 2.5s ease-in-out infinite; }
+
+        /* 4. Mobile Optimizations */
+        @media (max-width: 768px) {
+            /* Disable heavy animations on mobile for performance */
+            .tilt-card { transform-style: flat !important; }
+            .uplift-on-hover:hover { transform: scale(1.02) !important; }
+            
+            /* Simplify animations on mobile */
+            .animate-float-medium { animation: float-medium 8s ease-in-out infinite; }
+            .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+            
+            /* Touch-friendly spacing */
+            button, a, .interactive { 
+                min-height: 44px; 
+                min-width: 44px;
+                padding: 12px 16px;
+            }
+            
+            /* Reduce navbar padding on mobile */
+            nav { padding: 12px 0 !important; }
+            nav .max-w-7xl { padding: 0 12px !important; }
+            
+            /* Mobile-friendly text sizes */
+            h1 { font-size: 2rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            
+            /* Disable complex transforms */
+            #hero-grid { opacity: 0.03 !important; }
+            .watermark-logo { opacity: 0.3 !important; z-index: -1 !important; pointer-events: none !important; }
+            
+            /* Hide mouse-only elements */
+            #cursor-gradient { display: none !important; }
+            
+            /* Improve scroll performance */
+            * { will-change: auto; }
+            [data-animate] { will-change: opacity; }
+        }
+
+        /* 5. Desktop Enhanced Animations and Interactions */
+        @media (min-width: 769px) {
+            /* Enable full animations on desktop */
+            .card { animation: scale-in 0.6s ease-out; }
+            .interactive:hover { animation: glow-pulse 0.6s ease-in-out; }
+            
+            /* Smooth transitions for desktop */
+            * { transition: background-color 0.3s ease; }
+            
+            /* Enhanced hover states */
+            a:hover, button:hover { transform: translateY(-2px); }
+        }
+
+        /* 6. Touch-Friendly Interactive Elements */
+        .interactive, [onclick], button, a {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
+            -webkit-user-select: none;
+            padding: min(0.5rem, 4vw);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .interactive:active {
+            transform: scale(0.98);
+            opacity: 0.8;
+        }
+
+        /* 7. Responsive Container Optimizations */
+        .container {
+            padding: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .container { padding: 24px; }
+        }
+
+        @media (min-width: 1024px) {
+            .container { padding: 32px; }
+        }
+
+        /* 8. Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* 9. Enhanced Loading Performance */
+        img {
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        video {
+            will-change: transform;
+        }
+
+        /* 10. Mobile Navigation Improvements */
+        @media (max-width: 768px) {
+            #mobile-menu {
+                max-height: 100vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            #mobile-menu a {
+                display: block;
+                padding: 16px;
+                min-height: 48px;
+                border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            }
+        }
+
+        /* 11. Improved Scrolling Behavior */
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* 12. Better Touch States for Buttons */
+        @media (hover: none) and (pointer: coarse) {
+            /* Mobile-specific touch states */
+            button:active, a:active, .interactive:active {
+                background-color: rgba(16, 185, 129, 0.2);
+                transform: scale(0.97);
+            }
+        }
+
+        /* 13. Viewport Meta Optimization */
+        @viewport {
+            width: device-width;
+            zoom: 1;
+        }
+
+        /* 14. Additional Motion Effects */
+        .slide-up {
+            animation: slide-down 0.5s ease-out reverse;
+        }
+
+        .fade-in-slow {
+            animation: fade-in-up 1.2s ease-out;
+        }
+
+        .bounce-on-load {
+            animation: bounce-soft 1s ease-out;
+        }
+
+        .glow-on-hover:hover {
+            animation: glow-pulse 1s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="selection-emerald loading">
@@ -586,7 +803,7 @@
                             <div class="w-12 h-12 bg-slate-700 rounded-full overflow-hidden border border-emerald-500/50">
                                 <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128'" alt="Rownak Shahriar Ruhan">
                             </div>
-                            <div>
+                                                       <div>
                                 <div class="text-white font-bold">Rownak Shahriar Ruhan</div>
                                 <div class="text-emerald-400 text-sm">Founder, TriChokro</div>
                             </div>
