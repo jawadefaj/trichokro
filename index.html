@@ -455,16 +455,28 @@
                  <h2 class="text-3xl font-bold text-white mb-4 text-center">Gallery</h2>
                  <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
             </div>
-            <div class="gallery-slider relative w-full h-[500px] overflow-hidden group">
-                 <div id="gallery-track" class="flex transition-transform duration-[1000ms] ease-in-out h-full">
-                      <!-- Images injected here -->
-                 </div>
-                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none"></div>
-                 
-                 <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/50 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"><i data-lucide="chevron-left"></i></button>
-                 <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/50 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"><i data-lucide="chevron-right"></i></button>
+            <!-- 3:2 Aspect Ratio Container -->
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="gallery-slider relative w-full aspect-[3/2] overflow-hidden group rounded-2xl shadow-2xl border border-slate-800">
+                     <div id="gallery-track" class="flex transition-transform duration-[1000ms] ease-in-out h-full cursor-pointer">
+                          <!-- Images injected here -->
+                     </div>
+                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none"></div>
+                     
+                     <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/50 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10"><i data-lucide="chevron-left"></i></button>
+                     <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/50 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10"><i data-lucide="chevron-right"></i></button>
+                </div>
             </div>
         </section>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="fixed inset-0 z-[10002] bg-black/95 hidden flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+            <button id="lightbox-close" class="absolute top-6 right-6 text-slate-400 hover:text-white interactive"><i data-lucide="x" class="w-8 h-8"></i></button>
+            <div class="relative max-w-5xl max-h-[85vh] w-full">
+                <img id="lightbox-img" src="" class="w-full h-full object-contain rounded-lg shadow-2xl shadow-emerald-500/10">
+            </div>
+            <p id="lightbox-caption" class="text-white mt-4 text-lg font-mono tracking-widest text-center"></p>
+        </div>
 
         <section id="features" class="py-24 bg-slate-900/50">
             <div class="container mx-auto px-4">
@@ -1119,42 +1131,68 @@
         const galleryTrack = document.getElementById('gallery-track');
         const prevBtn = document.getElementById('gallery-prev');
         const nextBtn = document.getElementById('gallery-next');
-        let galleryImages = [];
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        
+        // Explicitly defined images as requested
+        const galleryImages = [
+            'src/assets/slideshow/1.jpg',
+            'src/assets/slideshow/2.jpg',
+            'src/assets/slideshow/3.jpg'
+        ];
+        
         let currentIndex = 0;
         let galleryInterval;
 
-        async function initGallery() {
-            // Try to load images 1.jpg to 10.jpg from slideshow folder
-            for(let i=1; i<=10; i++) {
-                const img = new Image();
-                img.src = `src/assets/slideshow/${i}.jpg`;
-                try {
-                    await new Promise((resolve, reject) => {
-                        img.onload = () => { galleryImages.push(img.src); resolve(); };
-                        img.onerror = () => { resolve(); }; // Skip if not found
-                    });
-                } catch(e) {}
-            }
-            
+        function initGallery() {
             if(galleryImages.length === 0) {
-                 // Fallback or hide
-                 console.log("No images found in slideshow folder.");
                  document.getElementById('gallery').style.display = 'none';
                  return;
             }
 
             // Render Images
-            galleryImages.forEach(src => {
+            galleryImages.forEach((src, index) => {
                 const div = document.createElement('div');
                 div.className = 'min-w-full h-full relative flex-shrink-0';
+                // Add onclick to open lightbox
+                div.onclick = () => openLightbox(src, `Gallery Image ${index + 1}`);
                 div.innerHTML = `
-                    <img src="${src}" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                    <img src="${src}" class="w-full h-full object-cover select-none" alt="Gallery Image ${index + 1}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60 hover:opacity-40 transition-opacity"></div>
                 `;
                 galleryTrack.appendChild(div);
             });
 
             startGalleryAutoSlide();
+        }
+
+        function openLightbox(src, caption) {
+            lightboxImg.src = src;
+            lightboxCaption.textContent = caption;
+            lightbox.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            requestAnimationFrame(() => {
+                lightbox.classList.remove('opacity-0');
+            });
+            stopGalleryAutoSlide();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+            }, 300);
+            startGalleryAutoSlide();
+        }
+
+        if(lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) closeLightbox();
+            });
         }
 
         function updateGalleryPosition() {
