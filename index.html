@@ -1175,195 +1175,173 @@
         
         document.querySelectorAll('.reveal-on-scroll').forEach(el => { observer.observe(el); });
 
-     const galleryTrack = document.getElementById('galleryTrack');
-const lightbox = document.getElementById('lightbox');
-const lightboxTrack = document.getElementById('lightboxTrack');
-const lightboxClose = document.getElementById('lightboxClose');
+        // Gallery Logic
+        const galleryTrack = document.getElementById('gallery-track');
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        
+        // Dynamic Gallery Loading
+        let galleryImages = [];
+        let currentIndex = 0;
+        let galleryInterval;
 
-const SLIDES_PATH = 'src/assets/slideshow/';
-let images = [];
-let currentIndex = 0;
-let autoTimer = null;
-let isAutoScrolling = false;
+        function checkImage(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
 
-/* =========================
-   INIT
-========================= */
-async function initGallery() {
-  try {
-    const res = await fetch(`${SLIDES_PATH}slideshow.json`);
-    images = await res.json();
-  } catch {
-    document.getElementById('gallery').style.display = 'none';
-    return;
-  }
+        async function initGallery() {
+            // Attempt to load images 1.jpg through 10.jpg
+            for (let i = 1; i <= 10; i++) {
+                const src = `src/assets/slideshow/${i}.jpg`;
+                const exists = await checkImage(src);
+                if (exists) {
+                    galleryImages.push(src);
+                }
+            }
 
-  renderGallery();
-  renderLightbox();
-  startAutoSlide();
-}
+            // Fallback if detection fails or is empty
+            if(galleryImages.length === 0) {
+                galleryImages = [
+                    'src/assets/slideshow/1.jpg',
+                    'src/assets/slideshow/2.jpg',
+                    'src/assets/slideshow/3.jpg',
+                    'src/assets/slideshow/4.jpg'
+                ];
+            }
 
-/* =========================
-   RENDER
-========================= */
-function renderGallery() {
-  galleryTrack.innerHTML = '';
-  images.forEach((img, i) => {
-    const slide = document.createElement('div');
-    slide.className = 'gallery-slide';
-    slide.innerHTML = `<img src="${SLIDES_PATH}${img}" alt="${img}" />`;
-    slide.onclick = () => openLightbox(i);
-    galleryTrack.appendChild(slide);
-  });
-}
+            if(galleryImages.length === 0) {
+                 document.getElementById('gallery').style.display = 'none';
+                 return;
+            }
 
-function renderLightbox() {
-  lightboxTrack.innerHTML = '';
-  images.forEach(img => {
-    const slide = document.createElement('div');
-    slide.className = 'lightbox-slide';
-    slide.innerHTML = `
-      <img src="${SLIDES_PATH}${img}" />
-      <div class="lightbox-caption">${img}</div>
-    `;
-    lightboxTrack.appendChild(slide);
-  });
-}
+            // Render Images
+            galleryImages.forEach((src, index) => {
+                const div = document.createElement('div');
+                div.className = 'min-w-full h-full relative flex-shrink-0 cursor-pointer'; 
+                // Add onclick to open lightbox
+                div.onclick = () => openLightbox(src, `Gallery Image ${index + 1}`);
+                div.innerHTML = `
+                    <img src="${src}" class="w-full h-full object-cover select-none" alt="Gallery Image ${index + 1}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60 hover:opacity-40 transition-opacity"></div>
+                `;
+                galleryTrack.appendChild(div);
+            });
 
-/* =========================
-   AUTO SLIDE (3s per image)
-========================= */
-function startAutoSlide() {
-  stopAutoSlide();
+            startGalleryAutoSlide();
+        }
 
-  autoTimer = setInterval(() => {
-    if (isAutoScrolling) return;
+        function openLightbox(src, caption) {
+            lightboxImg.src = src;
+            lightboxCaption.textContent = caption;
+            lightbox.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            requestAnimationFrame(() => {
+                lightbox.classList.remove('opacity-0');
+            });
+            stopGalleryAutoSlide();
+        }
 
-    isAutoScrolling = true;
-    currentIndex = (currentIndex + 1) % images.length;
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+            }, 300);
+            startGalleryAutoSlide();
+        }
 
-    galleryTrack.scrollTo({
-      left: currentIndex * galleryTrack.clientWidth,
-      behavior: 'smooth'
-    });
+        if(lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) closeLightbox();
+            });
+        }
 
-    // allow scroll to finish before next change
-    setTimeout(() => {
-      isAutoScrolling = false;
-    }, 700); // smooth scroll duration buffer
+        function updateGalleryPosition() {
+            galleryTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
 
-  }, 3000); // ✅ EXACTLY 3 seconds per image
-}
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            updateGalleryPosition();
+        }
 
-function stopAutoSlide() {
-  clearInterval(autoTimer);
-}
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateGalleryPosition();
+        }
 
-/* =========================
-   SCROLL SYNC (NO SKIPPING)
-========================= */
-let scrollTimeout;
-galleryTrack.addEventListener(
-  'scroll',
-  () => {
-    if (isAutoScrolling) return;
+        function startGalleryAutoSlide() {
+            galleryInterval = setInterval(nextSlide, 2000);
+        }
+        
+        function stopGalleryAutoSlide() {
+            clearInterval(galleryInterval);
+        }
 
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      currentIndex = Math.round(
-        galleryTrack.scrollLeft / galleryTrack.clientWidth
-      );
-    }, 80);
-  },
-  { passive: true }
-);
+        if(prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => { stopGalleryAutoSlide(); prevSlide(); startGalleryAutoSlide(); });
+            nextBtn.addEventListener('click', () => { stopGalleryAutoSlide(); nextSlide(); startGalleryAutoSlide(); });
+            
+            // Touch support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const slider = document.querySelector('.gallery-slider');
+            
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopGalleryAutoSlide();
+            }, {passive: true});
 
-/* =========================
-   PAUSE ON TOUCH / DRAG
-========================= */
-galleryTrack.addEventListener('touchstart', stopAutoSlide, { passive: true });
-galleryTrack.addEventListener('touchend', startAutoSlide, { passive: true });
-galleryTrack.addEventListener('pointerdown', stopAutoSlide);
-galleryTrack.addEventListener('pointerup', startAutoSlide);
+            slider.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startGalleryAutoSlide();
+            }, {passive: true});
 
-/* =========================
-   LIGHTBOX
-========================= */
-function openLightbox(index) {
-  currentIndex = index;
-  lightbox.classList.remove('hidden');
-  requestAnimationFrame(() => {
-    lightbox.classList.remove('opacity-0');
-    lightboxTrack.scrollLeft =
-      index * lightboxTrack.clientWidth;
-  });
-  stopAutoSlide();
-}
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) nextSlide();
+                if (touchEndX > touchStartX + 50) prevSlide();
+            }
+        }
 
-function closeLightbox() {
-  lightbox.classList.add('opacity-0');
-  setTimeout(() => lightbox.classList.add('hidden'), 300);
-  startAutoSlide();
-}
+        initGallery();
+    </script>
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="fixed bottom-10 left-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-12 h-12 bg-slate-800/80 backdrop-blur-sm border border-emerald-500/30 text-emerald-400 rounded-full flex items-center justify-center hover:bg-emerald-500 hover:text-slate-900 transition-all shadow-lg hover:shadow-emerald-500/20 group">
+            <i data-lucide="arrow-up" class="w-6 h-6 group-hover:-translate-y-1 transition-transform"></i>
+        </button>
+    </div>
 
-lightboxClose.onclick = closeLightbox;
-lightbox.onclick = e => {
-  if (e.target === lightbox) closeLightbox();
-};
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
+    <script> 
+        document.addEventListener("mousemove", e => { 
+            const gradient = document.getElementById("cursor-gradient"); 
+            if(gradient) { 
+                gradient.style.setProperty("--x", e.clientX + "px"); 
+                gradient.style.setProperty("--y", e.clientY + "px"); 
+            } 
+        }); 
 
-/* =========================
-   START
-========================= */
-initGallery();
-
-const backToTopBtn = document.getElementById('back-to-top');
-
-let visible = false;
-
-window.addEventListener('scroll', () => {
-  const shouldShow = window.scrollY > 300;
-
-  if (shouldShow && !visible) {
-    backToTopBtn.classList.remove(
-      'opacity-0',
-      'pointer-events-none',
-      'translate-y-8',
-      'scale-90'
-    );
-    visible = true;
-  }
-
-  if (!shouldShow && visible) {
-    backToTopBtn.classList.add(
-      'opacity-0',
-      'pointer-events-none',
-      'translate-y-8',
-      'scale-90'
-    );
-    visible = false;
-  }
-});
-
-backToTopBtn.addEventListener('click', () => {
-  backToTopBtn.classList.add('launch');
-
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-
-  // Reset after animation
-  setTimeout(() => {
-    backToTopBtn.classList.remove('launch');
-    backToTopBtn.classList.add(
-      'opacity-0',
-      'pointer-events-none',
-      'translate-y-8',
-      'scale-90'
-    );
-    visible = false;
-  }, 600);
-});
+        // Back to top visibility
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+            }
+        });
     </script>
 </body>
 </html>
