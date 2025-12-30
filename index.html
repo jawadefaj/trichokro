@@ -366,7 +366,7 @@
                             <p class="text-slate-500 text-center text-sm mb-8">Heavy duty logistics solution for urban delivery.</p>
                             <div class="px-4 py-2 bg-slate-800 rounded-full text-xs font-bold text-emerald-500 uppercase tracking-widest">Coming 2026</div>
                             
-                            <a href="javascript:void(0)" onclick="alert('Configuration tool coming soon! 🛠️')" class="interactive w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors block text-center mt-8">Configure Yours</a>
+                            <a href="javascript:void(0)" onclick="alert('Configuration tool coming soon!')" class="interactive w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors block text-center mt-8">Configure Yours</a>
                         </div>
                     </div>
                 </div>
@@ -469,6 +469,29 @@
             </div>
             <p id="lightbox-caption" class="text-white mt-4 text-lg font-mono tracking-widest text-center"></p>
         </div>
+
+        <!-- Gallery Section Moved Here -->
+        <section id="gallery" class="py-24 bg-slate-900 relative overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl font-bold text-white mb-4">Gallery</h2>
+                    <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+                </div>
+                
+                <div class="gallery-slider relative w-full max-w-5xl mx-auto h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-700 group">
+                    <div id="gallery-track" class="flex h-full transition-transform duration-500 ease-out will-change-transform">
+                        <!-- Images injected by JS -->
+                    </div>
+                    
+                    <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-900/50 hover:bg-emerald-500 text-white hover:text-slate-900 rounded-full flex items-center justify-center transition-all backdrop-blur-md opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 duration-300 interactive z-10"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                    <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-900/50 hover:bg-emerald-500 text-white hover:text-slate-900 rounded-full flex items-center justify-center transition-all backdrop-blur-md opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 duration-300 interactive z-10"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+                    
+                    <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-white text-xs font-mono tracking-widest border border-white/10">
+                        TriChokro Moments
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="features" class="py-24 bg-slate-900/50">
             <div class="container mx-auto px-4">
@@ -879,7 +902,7 @@
         
     <a href="contact.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
-            <img src="src/assets/rownak_full.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
+            <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
         <p class="text-emerald-400 text-xs">Founder</p>
@@ -946,28 +969,61 @@
             <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Our Expert Counsel</h3>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
-        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Dr+Md+Ehsan&background=10b981&color=fff&size=128" alt="Dr. Md. Ehsan">
+    <a href="contact.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
+            <img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Dr. Md. Ehsan</h4>
         <p class="text-emerald-400 text-xs">Advisor & Mentor</p>
+        
+        <!-- Hover Popup -->
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+            <div class="rounded-lg overflow-hidden relative">
+                <img src="src/assets/founders/ehsan.jpg" class="w-full h-auto object-cover">
+                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
+                    <p class="text-white text-xs font-bold text-center">Dr. Md. Ehsan</p>
+                </div>
+            </div>
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-r border-b border-emerald-500 transform rotate-45"></div>
+        </div>
     </a>
     
-    <a href="contact.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
-        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Abdul+Jawad&background=10b981&color=fff&size=128" alt="Abdul Jawad">
+    <a href="contact.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
+            <img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4>
         <p class="text-emerald-400 text-xs">Vehicle Advisor</p>
+        
+        <!-- Hover Popup -->
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+            <div class="rounded-lg overflow-hidden relative">
+                <img src="src/assets/founders/jawad.jpg" class="w-full h-auto object-cover">
+                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
+                    <p class="text-white text-xs font-bold text-center">Abdul Jawad</p>
+                </div>
+            </div>
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-r border-b border-emerald-500 transform rotate-45"></div>
+        </div>
     </a>
     
-    <a href="contact.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
-        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Ishraq+Rafid&background=10b981&color=fff&size=128" alt="Ishraq Rafid">
+    <a href="contact.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
+            <img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4>
         <p class="text-emerald-400 text-xs">Architectural Advisor</p>
+        
+        <!-- Hover Popup -->
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+            <div class="rounded-lg overflow-hidden relative">
+                <img src="src/assets/founders/ishraq.jpg" class="w-full h-auto object-cover">
+                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
+                    <p class="text-white text-xs font-bold text-center">Ishraq Rafid</p>
+                </div>
+            </div>
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-r border-b border-emerald-500 transform rotate-45"></div>
+        </div>
     </a>
     </div>    
 </div>`
@@ -1128,17 +1184,40 @@
         const lightboxCaption = document.getElementById('lightbox-caption');
         const lightboxClose = document.getElementById('lightbox-close');
         
-        // Explicitly defined images as requested
-        const galleryImages = [
-            'src/assets/slideshow/1.jpg',
-            'src/assets/slideshow/2.jpg',
-            'src/assets/slideshow/3.jpg'
-        ];
-        
+        // Dynamic Gallery Loading
+        let galleryImages = [];
         let currentIndex = 0;
         let galleryInterval;
 
-        function initGallery() {
+        function checkImage(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+
+        async function initGallery() {
+            // Attempt to load images 1.jpg through 10.jpg
+            for (let i = 1; i <= 10; i++) {
+                const src = `src/assets/slideshow/${i}.jpg`;
+                const exists = await checkImage(src);
+                if (exists) {
+                    galleryImages.push(src);
+                }
+            }
+
+            // Fallback if detection fails or is empty
+            if(galleryImages.length === 0) {
+                galleryImages = [
+                    'src/assets/slideshow/1.jpg',
+                    'src/assets/slideshow/2.jpg',
+                    'src/assets/slideshow/3.jpg',
+                    'src/assets/slideshow/4.jpg'
+                ];
+            }
+
             if(galleryImages.length === 0) {
                  document.getElementById('gallery').style.display = 'none';
                  return;
@@ -1147,7 +1226,7 @@
             // Render Images
             galleryImages.forEach((src, index) => {
                 const div = document.createElement('div');
-                div.className = 'min-w-full h-full relative flex-shrink-0';
+                div.className = 'min-w-full h-full relative flex-shrink-0 cursor-pointer'; 
                 // Add onclick to open lightbox
                 div.onclick = () => openLightbox(src, `Gallery Image ${index + 1}`);
                 div.innerHTML = `
