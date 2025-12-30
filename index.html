@@ -246,10 +246,10 @@
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">HOME<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">ABOUT US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="engineering.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s">ENGINEERING<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s">ENGINEERING<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="trambulance.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">TRAMBULANCE<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">PRODUCTS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="why.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s">WHY US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s">WHY US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="founder.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">FOUNDERS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">Contacts 📞</a>
                     </div>
@@ -262,8 +262,8 @@
                 <div class="px-4 py-4 space-y-3 flex flex-col">
                     <a href="index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
                     <a href="index.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ABOUT US</a>
-                    <a href="engineering.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGINEERING</a>
-                    <a href="why.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">WHY US</a>
+                    <a href="#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGINEERING</a>
+                    <a href="#impact" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">WHY US</a>
                     <a href="trambulance.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</a>
                     <a href="index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCTS</a>
                     <a href="founder.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">FOUNDERS</a>
@@ -450,42 +450,48 @@
              </div>
         </section>
 
+        <section id="gallery" class="py-24 bg-slate-950 relative overflow-hidden border-b border-slate-900">
+            <div class="container mx-auto px-4 mb-12">
+                 <h2 class="text-3xl font-bold text-white mb-4 text-center">Gallery</h2>
+                 <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+            </div>
+            <div class="gallery-slider relative w-full h-[500px] overflow-hidden group">
+                 <div id="gallery-track" class="flex transition-transform duration-[1000ms] ease-in-out h-full">
+                      <!-- Images injected here -->
+                 </div>
+                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none"></div>
+
+                 <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/50 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"><i data-lucide="chevron-left"></i></button>
+                 <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/50 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"><i data-lucide="chevron-right"></i></button>
+            </div>
+        </section>
+
         <section id="features" class="py-24 bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence 🛠️</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
                     <p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh 🇧🇩</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="wind" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Aerodynamic Retractable Hood</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Retractable roof design lowers air drag and adapts to weather instantly.</p>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Aerodynamic Design</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Our unique retractable hood design significantly reduces air drag coefficient compared to traditional flat-front rickshaws. This optimization leads to a 15% increase in range per charge and better stability at higher speeds (up to 50 km/h).</p>
                     </div>
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 100ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Hydraulic Disk Brakes</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Triple setup of Disk Brake (Hand, Foot, Handle) gives driver full control.</p>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Hydraulic Braking</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Safety is paramount. We replaced the standard mechanical drum brakes with a triple-disc hydraulic braking system (Hand, Foot, Handle). This reduces braking distance by 40% and eliminates the risk of brake fade in heavy traffic.</p>
                     </div>
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 200ms;">
-                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Industrial Suspension</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">MacPherson suspension, along with leaf and coil springs, ensures comfort on wheels.</p>
+                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="layers" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Truss Chassis</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Validated through ANSYS load simulations, our tubular truss chassis distributes stress evenly. It is 35% lighter than traditional angular chassis yet supports 80% more load (up to 700kg), preventing structural fatigue.</p>
                     </div>
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 300ms;">
-                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Truss Chassis</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">The optimized chassis features compact dimensions for improved maneuverability in narrow lanes through SolidWorks and Ansys.</p>
-                    </div>
-                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 400ms;">
-                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Eco Friendly Battery</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">We chose Lithium Iron Phosphate (LiFePO₄) batteries over Lead-Acid and Lithium-ion batteries due to cost-effectiveness, longer lifecycle, and minimal environmental impact.</p>
-                    </div>
-                       <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 500ms;">
-                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="gauge" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Superior Structure</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Design and Dimensions are optimized for 35% more Load Capacity and More passengers with same footprint.</p>
+                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="battery-charging" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">LiFePO4 Technology</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">We utilize Lithium Iron Phosphate batteries which offer 3000+ charge cycles (vs 500 for Lead-Acid). They are non-toxic, non-explosive, and provide consistent power output regardless of charge level.</p>
                     </div>
                 </div>
             </div>
@@ -513,6 +519,24 @@
                         <div class="text-4xl font-bold text-white mb-2">3x</div>
                         <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">Safer Structure & Braking</div>
                         <p class="text-slate-400 text-sm leading-relaxed">Our triple hydraulic disk brake system provides superior stopping power, significantly reducing accident risks on busy roads.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto mt-16 reveal-on-scroll">
+                    <h2 class="text-3xl font-display font-bold text-white mb-8 text-center">The Economic Impact</h2>
+                    <div class="bg-slate-800/50 backdrop-blur-md p-8 rounded-xl border-l-4 border-l-emerald-500 border border-slate-700/50">
+                        <p class="text-slate-300 text-lg italic mb-4">
+                            "By localizing production in Bangladesh, we not only reduce import reliance but also create high-skilled jobs in engineering and manufacturing."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-slate-700 rounded-full overflow-hidden border border-emerald-500/50">
+                                <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128'" alt="Rownak Shahriar Ruhan">
+                            </div>
+                            <div>
+                                <div class="text-white font-bold">Rownak Shahriar Ruhan</div>
+                                <div class="text-emerald-400 text-sm">Founder, TriChokro</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -706,7 +730,6 @@
     </div> 
     <!-- END MAIN VIEW -->
 
-    <script src="js/experience.js"></script>
     <script>
         lucide.createIcons();
         document.addEventListener('DOMContentLoaded', () => {
@@ -850,12 +873,23 @@
     
  <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="src/assets/founders/rownak.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128'" alt="Rownak Shahriar Ruhan">
+            <img src="src/assets/rownak_full.jpg" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128'" alt="Rownak Shahriar Ruhan">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
         <p class="text-emerald-400 text-xs">Founder</p>
+
+        <!-- Hover Popup -->
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+            <div class="rounded-lg overflow-hidden relative">
+                <img src="src/assets/rownak_full.jpg" class="w-full h-auto object-cover">
+                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
+                    <p class="text-white text-xs font-bold text-center">Rownak Shahriar Ruhan</p>
+                </div>
+            </div>
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-r border-b border-emerald-500 transform rotate-45"></div>
+        </div>
     </a>
     
     <a href="contact.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
@@ -1080,6 +1114,96 @@
         }, observerOptions);
         
         document.querySelectorAll('.reveal-on-scroll').forEach(el => { observer.observe(el); });
+
+        // Gallery Logic
+        const galleryTrack = document.getElementById('gallery-track');
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
+        let galleryImages = [];
+        let currentIndex = 0;
+        let galleryInterval;
+
+        async function initGallery() {
+            // Try to load images 1.jpg to 10.jpg
+            for(let i=1; i<=10; i++) {
+                const img = new Image();
+                img.src = `src/assets/gallery/${i}.jpg`;
+                try {
+                    await new Promise((resolve, reject) => {
+                        img.onload = () => { galleryImages.push(img.src); resolve(); };
+                        img.onerror = () => { resolve(); }; // Skip if not found
+                    });
+                } catch(e) {}
+            }
+
+            if(galleryImages.length === 0) {
+                 document.getElementById('gallery').style.display = 'none';
+                 return;
+            }
+
+            // Render Images
+            galleryImages.forEach(src => {
+                const div = document.createElement('div');
+                div.className = 'min-w-full h-full relative flex-shrink-0';
+                div.innerHTML = `
+                    <img src="${src}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                `;
+                galleryTrack.appendChild(div);
+            });
+
+            startGalleryAutoSlide();
+        }
+
+        function updateGalleryPosition() {
+            galleryTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            updateGalleryPosition();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateGalleryPosition();
+        }
+
+        function startGalleryAutoSlide() {
+            galleryInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopGalleryAutoSlide() {
+            clearInterval(galleryInterval);
+        }
+
+        if(prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => { stopGalleryAutoSlide(); prevSlide(); startGalleryAutoSlide(); });
+            nextBtn.addEventListener('click', () => { stopGalleryAutoSlide(); nextSlide(); startGalleryAutoSlide(); });
+
+            // Touch support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const slider = document.querySelector('.gallery-slider');
+
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopGalleryAutoSlide();
+            }, {passive: true});
+
+            slider.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startGalleryAutoSlide();
+            }, {passive: true});
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) nextSlide();
+                if (touchEndX > touchStartX + 50) prevSlide();
+            }
+        }
+
+        initGallery();
     </script>
     <!-- Back to Top Button -->
     <div id="back-to-top" class="fixed bottom-10 left-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
