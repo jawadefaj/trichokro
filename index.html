@@ -85,7 +85,12 @@
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes neon-pulse { 0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); } 50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; } }
         @keyframes drive-by { 0% { transform: translateX(-100vw) skewX(-10deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(100vw) skewX(-10deg); opacity: 0; } }
-        
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); } 50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); } }
+        @keyframes slide-in-left { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slide-in-right { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
         .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
         .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
@@ -102,7 +107,7 @@
         .uplift-on-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15); }
         
         .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
-        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.png'); background-repeat: no-repeat; background-position: center; background-size: 40%; opacity: 0.035; pointer-events: none; z-index: 0; mix-blend-mode: screen; filter: blur(6px) saturate(0.8); }
+        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.png'); background-repeat: no-repeat; background-position: center; background-size: 85%; opacity: 0.5; pointer-events: none; z-index: 1; mix-blend-mode: overlay; }
 
         #loader { position: fixed; inset: 0; background: #020617; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-in-out; }
         .loader-text { font-family: 'JetBrains Mono', monospace; }
@@ -1363,7 +1368,7 @@
         </button>
     </div>
 
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(400px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.08), transparent 80%); mix-blend-mode: screen;"></div> 
     <script> 
         document.addEventListener("mousemove", e => { 
             const gradient = document.getElementById("cursor-gradient"); 
