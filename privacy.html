@@ -10,55 +10,40 @@
 
 <style>
 :root{
+  --navy:#050b1a;
+  --navy2:#0a1633;
   --blue:#38bdf8;
-  --green:#22c55e;
-  --deep:#020617;
   --glass:rgba(255,255,255,.08);
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui,'Segoe UI',sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,'Segoe UI',sans-serif}
 
 body{
   min-height:100vh;
   background:
     radial-gradient(circle at var(--mx,50%) var(--my,50%),
-    rgba(34,197,94,.18), transparent 38%),
-    linear-gradient(135deg,#020617,#021e2a,#020617);
-  color:#e6faff;
+      rgba(56,189,248,.18), transparent 38%),
+    linear-gradient(135deg,var(--navy),var(--navy2),var(--navy));
+  color:#eaf2ff;
   overflow-x:hidden;
   overflow-y:auto;
 }
 
 /* UI */
 .back-btn{
-  position:fixed;
-  top:26px;
-  left:26px;
-  padding:12px 20px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--blue),var(--green));
-  color:#fff;
-  text-decoration:none;
-  font-size:.9rem;
-  box-shadow:0 14px 35px rgba(0,0,0,.45);
-  z-index:10;
-  transition:.3s ease;
+  position:fixed;top:26px;left:26px;
+  padding:12px 20px;border-radius:999px;
+  background:rgba(255,255,255,.12);
+  color:#fff;text-decoration:none;
+  backdrop-filter:blur(12px);z-index:10;
 }
-.back-btn:hover{transform:translateY(-3px) scale(1.05)}
 
 .cursor-light{
   position:fixed;
-  width:130px;height:130px;
-  border-radius:50%;
+  width:130px;height:130px;border-radius:50%;
   background:radial-gradient(circle,
     rgba(56,189,248,.22),
-    rgba(34,197,94,.12),
+    rgba(56,189,248,.1),
     transparent 70%);
   filter:blur(26px);
   pointer-events:none;
@@ -66,88 +51,83 @@ body{
   z-index:9;
 }
 
-/* Background layers */
+/* Floating glow */
 .glow{
   position:fixed;
   width:480px;height:480px;
-  background:radial-gradient(circle,var(--blue),var(--green));
+  background:radial-gradient(circle,#38bdf8,#1e3a8a);
   filter:blur(160px);
   opacity:.45;
-  animation:float 18s ease-in-out infinite;
+  animation:float 16s ease-in-out infinite;
   z-index:-1;
 }
-.glow.alt{top:55%;left:60%;animation-delay:-9s}
+.glow.alt{top:55%;left:60%;animation-delay:-8s}
+@keyframes float{50%{transform:translateY(-140px)}}
 
-@keyframes float{
-  50%{transform:translateY(-140px)}
-}
-
+/* 🔥 ENHANCED FLOATING EMOJIS */
 .emoji{
   position:fixed;
-  font-size:1.4rem;
-  opacity:.22;
-  animation:rise linear infinite;
+  font-size:1.6rem;
+  opacity:.35;
+  animation:energyFloat linear infinite;
   z-index:-1;
-}
-@keyframes rise{
-  from{transform:translateY(110vh)}
-  to{transform:translateY(-20vh)}
+  filter:drop-shadow(0 0 8px rgba(56,189,248,.4));
 }
 
-/* Content */
+@keyframes energyFloat{
+  from{
+    transform:translateY(120vh) translateX(0) rotate(0deg);
+  }
+  to{
+    transform:translateY(-30vh) translateX(80px) rotate(360deg);
+  }
+}
+
+/* Parallax */
 .parallax-wrap{perspective:1200px}
-
 .parallax-layer{
   transform-style:preserve-3d;
   transition:transform .18s cubic-bezier(.25,.46,.45,.94);
-  will-change:transform;
 }
 
+/* Scroll reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:.8s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+
+/* Content */
 .container{
   max-width:960px;
-  margin:120px auto 140px;
+  margin:140px auto 160px;
   padding:70px;
   background:var(--glass);
   backdrop-filter:blur(28px);
-  border-radius:32px;
-  box-shadow:0 55px 160px rgba(0,0,0,.7);
+  border-radius:28px;
+  box-shadow:0 40px 120px rgba(0,0,0,.7);
 }
 
 h1{
   font-size:3rem;
-  background:linear-gradient(90deg,var(--blue),var(--green));
+  background:linear-gradient(90deg,#eaf2ff,#7dd3fc);
   -webkit-background-clip:text;
   color:transparent;
-  margin-bottom:26px;
+  margin-bottom:30px;
 }
 
-h2{
-  color:#7dd3fc;
-  margin:40px 0 14px;
-}
-
-p{
-  line-height:1.9;
-  color:#d9f3ff;
-  margin-bottom:18px;
-}
+h2{color:#9ddcff;margin:40px 0 16px}
+p{line-height:1.9;color:#dce8ff;margin-bottom:18px}
 
 .founder{
   margin-top:40px;
   padding:28px;
-  background:rgba(2,15,23,.55);
-  border-radius:22px;
+  background:rgba(5,11,26,.7);
+  border-radius:20px;
 }
 
-footer{
-  margin-top:40px;
-  opacity:.75;
-  font-size:.9rem;
-}
-
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-}
+footer{margin-top:40px;font-size:.9rem;opacity:.75}
 </style>
 </head>
 
@@ -159,61 +139,71 @@ footer{
 <div class="glow"></div>
 <div class="glow alt"></div>
 
-<div class="emoji" style="left:18%;animation-duration:28s">🌊</div>
-<div class="emoji" style="left:48%;animation-duration:32s">✨</div>
-<div class="emoji" style="left:72%;animation-duration:30s">🌿</div>
+<!-- ⚡ ENERGY / TECH / EV EMOJIS -->
+<div class="emoji" style="left:5%;animation-duration:14s">⚡</div>
+<div class="emoji" style="left:12%;animation-duration:16s">🔋</div>
+<div class="emoji" style="left:20%;animation-duration:15s">🚗</div>
+<div class="emoji" style="left:28%;animation-duration:17s">🤖</div>
+<div class="emoji" style="left:36%;animation-duration:14s">🧠</div>
+<div class="emoji" style="left:44%;animation-duration:16s">🔌</div>
+<div class="emoji" style="left:52%;animation-duration:15s">🌐</div>
+<div class="emoji" style="left:60%;animation-duration:17s">🚀</div>
+<div class="emoji" style="left:68%;animation-duration:14s">📡</div>
+<div class="emoji" style="left:76%;animation-duration:16s">⚙️</div>
+<div class="emoji" style="left:84%;animation-duration:15s">🔬</div>
+<div class="emoji" style="left:92%;animation-duration:17s">🛰️</div>
 
 <div class="parallax-wrap">
   <div class="container parallax-layer">
-    <h1>Privacy Policy</h1>
+    <h1 class="reveal">Privacy Policy</h1>
 
-    <p>
+    <p class="reveal">
       Trichokro.com respects privacy as a core principle of digital creativity.
       We do not collect personal information unless explicitly provided.
     </p>
 
-    <p>
+    <p class="reveal">
       Anonymous technical data may be used only to improve performance,
       accessibility, and interaction quality.
     </p>
 
-    <h2>Responsible Data Use</h2>
-    <p>
-      No data is sold, shared, or distributed to third parties.
-      User interactions remain private and secure.
-    </p>
-
-    <div class="founder">
+    <div class="founder reveal">
       <h2>About the Founder</h2>
       <p>
-        <strong>Rownak Shahriar Ruhan</strong> is the founder and creative mind
-        behind Trichokro. His work focuses on blending motion, depth,
-        and human-centered design with artificial intelligence.
+        <strong>Rownak Shahriar Ruhan</strong> is the creator and visionary behind
+        Trichokro, blending technology, motion, and AI-driven design.
       </p>
     </div>
 
-    <footer>
+    <footer class="reveal">
       Created by Rownak Shahriar Ruhan with Artificial Intelligence.
     </footer>
   </div>
 </div>
 
 <script>
-const body = document.body;
-const cursor = document.querySelector('.cursor-light');
-const card = document.querySelector('.parallax-layer');
+const body=document.body;
+const cursor=document.querySelector('.cursor-light');
+const card=document.querySelector('.parallax-layer');
+const reveals=document.querySelectorAll('.reveal');
 
-document.addEventListener('mousemove', e => {
-  body.style.setProperty('--mx', e.clientX + 'px');
-  body.style.setProperty('--my', e.clientY + 'px');
+document.addEventListener('mousemove',e=>{
+  body.style.setProperty('--mx',e.clientX+'px');
+  body.style.setProperty('--my',e.clientY+'px');
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
 
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top  = e.clientY + 'px';
-
-  const x = (e.clientX / window.innerWidth - 0.5) * 10;
-  const y = (e.clientY / window.innerHeight - 0.5) * -10;
-  card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+  const x=(e.clientX/window.innerWidth-.5)*10;
+  const y=(e.clientY/window.innerHeight-.5)*-10;
+  card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
 });
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+},{threshold:.15});
+reveals.forEach(el=>observer.observe(el));
 </script>
 
 </body>
