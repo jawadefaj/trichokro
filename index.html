@@ -874,8 +874,8 @@
  <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
     <a href="contact.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
-        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="src/assets/rownak_full.jpg" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128'" alt="Rownak Shahriar Ruhan">
+        <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
+            <img src="src/assets/rownak_full.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
         <p class="text-emerald-400 text-xs">Founder</p>
@@ -1124,10 +1124,10 @@
         let galleryInterval;
 
         async function initGallery() {
-            // Try to load images 1.jpg to 10.jpg
+            // Try to load images 1.jpg to 10.jpg from slideshow folder
             for(let i=1; i<=10; i++) {
                 const img = new Image();
-                img.src = `src/assets/gallery/${i}.jpg`;
+                img.src = `src/assets/slideshow/${i}.jpg`;
                 try {
                     await new Promise((resolve, reject) => {
                         img.onload = () => { galleryImages.push(img.src); resolve(); };
@@ -1137,6 +1137,8 @@
             }
             
             if(galleryImages.length === 0) {
+                 // Fallback or hide
+                 console.log("No images found in slideshow folder.");
                  document.getElementById('gallery').style.display = 'none';
                  return;
             }
