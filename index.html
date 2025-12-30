@@ -1332,13 +1332,7 @@
                 gradient.style.setProperty("--y", e.clientY + "px"); 
             } 
         }); 
-
-        // Back to top visibility
-       const backToTopBtn = document.getElementById('back-to-top');
-
-// subtle UI sound
-const whoosh = new Audio('/sounds/whoosh.mp3');
-whoosh.volume = 0.25;
+const backToTopBtn = document.getElementById('back-to-top');
 
 let visible = false;
 
@@ -1352,10 +1346,6 @@ window.addEventListener('scroll', () => {
       'translate-y-8',
       'scale-90'
     );
-
-    whoosh.currentTime = 0;
-    whoosh.play();
-
     visible = true;
   }
 
@@ -1366,9 +1356,29 @@ window.addEventListener('scroll', () => {
       'translate-y-8',
       'scale-90'
     );
-
     visible = false;
   }
+});
+
+backToTopBtn.addEventListener('click', () => {
+  backToTopBtn.classList.add('launch');
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+  // Reset after animation
+  setTimeout(() => {
+    backToTopBtn.classList.remove('launch');
+    backToTopBtn.classList.add(
+      'opacity-0',
+      'pointer-events-none',
+      'translate-y-8',
+      'scale-90'
+    );
+    visible = false;
+  }, 600);
 });
     </script>
 </body>
