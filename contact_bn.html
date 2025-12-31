@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Contact - TriChokro</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Icons & Libraries -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -18,8 +18,8 @@
         :root {
             --card-text-white: #ffffff;
             --card-text-dark: #333333;
-            --card-font-main: 'Poppins', sans-serif;
-            --card-font-serif: 'Playfair Display', serif;
+            --card-font-main: 'Hind Siliguri', 'Poppins', sans-serif;
+            --card-font-serif: 'Hind Siliguri', 'Playfair Display', serif;
             --card-accent-color: #8da356;
         }
 
@@ -355,22 +355,22 @@
         <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-emerald-400 transition-colors">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="index.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">HOME</a>
-        <a href="index.html#about" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">ABOUT US</a>
-        <a href="trambulance.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">TRAMBULANCE</a>
-        <a href="index.html#products" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">PRODUCTS</a>
-        <a href="founder.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">FOUNDERS</a>
+        <a href="index_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">হোম</a>
+        <a href="index_bn.html#about" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">আমাদের সম্পর্কে</a>
+        <a href="trambulance_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">ট্রাম্বুলেন্স</a>
+        <a href="index_bn.html#products" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">পণ্য</a>
+        <a href="founder_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">প্রতিষ্ঠাতা</a>
     </div>
 
     <!-- Back Button (Replaces Navigation) -->
     <a href="javascript:history.back()" class="fixed top-6 left-6 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
         <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
-        <span class="font-medium font-sans">Back</span>
+        <span class="font-medium font-sans">ফিরে যান</span>
     </a>
 
     <!-- Language Toggle -->
-    <a href="contact_bn.html" class="fixed top-6 left-32 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
-        <span class="font-medium font-sans">বাংলা</span>
+    <a href="contact.html" class="fixed top-6 left-32 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
+        <span class="font-medium font-sans">ENGLISH</span>
     </a>
 
     <!-- Floating Background Objects -->
@@ -401,7 +401,7 @@
                 </svg>
             </div>
 
-            <div class="company-name">TriChokro</div>
+            <div class="company-name">ত্রিচক্র</div>
             <div class="company-contact">
                 trichokro.automotives@gmail.com<br>
                 www.trichokro.com
@@ -440,13 +440,13 @@
             </div>
 
             <div class="info-group">
-                <span class="info-text">Kazi Nazrul Islam Hall</span>
-                <span class="info-text">BUET, Palashi, Dhaka-1000</span>
+                <span class="info-text">কাজী নজরুল ইসলাম হল</span>
+                <span class="info-text">বুয়েট, পলাশী, ঢাকা-১০০০</span>
             </div>
 
             <div class="info-group">
-                <span class="info-text" id="card-dept">Dept of Mechanical Engineering</span>
-                <span class="info-text buet-highlight">Bangladesh University of<br>Engineering & Technology (BUET)</span>
+                <span class="info-text" id="card-dept">মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ</span>
+                <span class="info-text buet-highlight">বাংলাদেশ প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়<br>(বুয়েট)</span>
             </div>
         </div>
     </div>
@@ -455,103 +455,103 @@
         const teamData = {
             rownak: {
                 initials: "A A M",
-                name: "Rownak Shahriar Ruhan",
-                title: "Founder & CEO",
-                phone1: "+880 1714 844677",
-                phone2: "+880 1402 667477",
+                name: "রওনক শাহরিয়ার রুহান",
+                title: "প্রতিষ্ঠাতা ও সিইও",
+                phone1: "+৮৮০ ১৭১৪ ৮৪৪৬৭৭",
+                phone2: "+৮৮০ ১৪০২ ৬৬৭৪৭৭",
                 email1: "rownakshahriarruhan@gmail.com",
                 email2: "2010105@me.buet.ac.bd"
             },
             abdul: {
-                initials: "Dr.",
-                name: "Abdul Jawad",
-                title: "Vehicle Adviser",
+                initials: "ড.",
+                name: "আব্দুল জাওয়াদ",
+                title: "যানবাহন উপদেষ্টা",
                 email1: "jawadefaj006@gmail.com",
             },
             ishraq: {
                 initials: "I R",
-                name: "Ishraq Rafid",
-                title: "Architectural Adviser",
+                name: "ইশরাক রাফিদ",
+                title: "স্থাপত্য উপদেষ্টা",
                 email1: "ishraq.rafid@gmail.com",
             },
             hasan: {
                 initials: "H M",
-                name: "Hasan Mahmud",
-                title: "Operation Executive",
-                phone1: "+8801726855767",
-                phone2: "+8801867114883",
+                name: "হাসান মাহমুদ",
+                title: "অপারেশন এক্সিকিউটিভ",
+                phone1: "+৮৮০ ১৭২৬ ৮৫৫৭৬৭",
+                phone2: "+৮৮০ ১৮৬৭ ১১৪৮৮৩",
                 email1: "mhmhasanmahmud2@gmail.com",
                 email2: "2010061@me.buet.ac.bd"
             },
             mijanur: {
                 initials: "M R",
-                name: "Mijanur Rahman",
-                title: "HR",
-                phone1: "+880 1720917572",
-                phone2: "+880 1868233965",
+                name: "মিজানুর রহমান",
+                title: "এইচআর",
+                phone1: "+৮৮০ ১৭২০ ৯১৭৫৭২",
+                phone2: "+৮৮০ ১৮৬৮ ২৩৩৯৬৫",
                 email1: "mijankutubi65@gmail.com",
                 email2: "1910109@me.buet.ac.bd"
             },
             tomal: {
                 initials: "T K",
-                name: "Tomal Kirtonia",
-                title: "Head of Design",
-                phone1: "+880 1624762952",
+                name: "তমাল কীর্তনীয়া",
+                title: "ডিজাইন প্রধান",
+                phone1: "+৮৮০ ১৬২৪ ৭৬২৯৫২",
                 email1: "kirttoniatomal@gmail.com",
                 email2: "2010110@me.buet.ac.bd"
             },
             tahsif: {
                 initials: "T I T", 
-                name: "Tawhidul Islam Tahsif",
-                title: "Lead Designer",
-                phone1: "+880 1405 492960",
+                name: "তাওহিদুল ইসলাম তাহসিফ",
+                title: "লিড ডিজাইনার",
+                phone1: "+৮৮০ ১৪০৫ ৪৯২৯৬০",
                 phone2: "",
                 email1: "tawhidul.tahsif@gmail.com",
                 email2: "2110153@me.buet.ac.bd",
             },
             shwadhin: {
                 initials: "D S", 
-                name: "Dipto Muzumder Swadhin",
-                title: "Operation Executive",
-                phone1: "+880 1867145642",
-                phone2: "+880 1521557920",
+                name: "দীপ্ত মজুমদার স্বাধীন",
+                title: "অপারেশন এক্সিকিউটিভ",
+                phone1: "+৮৮০ ১৮৬৭ ১৪৫৬৪২",
+                phone2: "+৮৮০ ১৫২১ ৫৫৭৯২০",
                 email1: "diptoswadhin0026@gmail.com",
                 email2: "2010073@me.buet.ac.bd",
             },
             maxud: {
                 initials: "M R C", 
-                name: "Maxudur Rahman Chowdhury",
-                title: "Public Relation Lead",
-                phone1: "+880 1676 793982",
+                name: "মাকসুদুর রহমান চৌধুরী",
+                title: "জনসংযোগ প্রধান",
+                phone1: "+৮৮০ ১৬৭৬ ৭৯৩৯৮২",
                 phone2: "",
                 email1: "m.rahman.chw@gmail.com",
                 email2: "2310132@me.buet.ac.bd",
             },
             rakibul: {
                 initials: "R H S", 
-                name: "Rakibul Hasan Shanto",
-                title: "Operation Associate",
-                phone1: "+880 1939134201",
-                phone2: "+880 1608783901",
+                name: "রাকিবুল হাসান শান্ত",
+                title: "অপারেশন অ্যাসোসিয়েট",
+                phone1: "+৮৮০ ১৯৩৯ ১৩৪২০১",
+                phone2: "+৮৮০ ১৬০৮ ৭৮৩৯০১",
                 email1: "2010125@me.buet.ac.bd",
                 email2: "",
             },
             farhan: {
                 initials: "F S",
-                name: "Farhan Saddique",
-                title: "Junior Associate",
-                phone1: "+880 1577037357",
+                name: "ফারহান সাদিক",
+                title: "জুনিয়র অ্যাসোসিয়েট",
+                phone1: "+৮৮০ ১৫৭৭ ০৩৭৩৫৭",
                 phone2: "",
                 email1: "farhan.bme027@gmail.com",
                 email2: "",
-                dept: "Dept of Biomedical Engineering"
+                dept: "বায়োমেডিকেল ইঞ্জিনিয়ারিং বিভাগ"
             },
             ehsanSir: {
-                initials: "Dr.",
-                name: "Prof Md. Ehsan",
-                title: "Advisor & Mentor",
-                phone1: "+880 1711 446564",
-                phone2: "880-2-8613046 (Fax)",
+                initials: "ড.",
+                name: "অধ্যাপক মোঃ এহসান",
+                title: "উপদেষ্টা ও পরামর্শদাতা",
+                phone1: "+৮৮০ ১৭১১ ৪৪৬৫৬৪",
+                phone2: "৮৮০-২-৮৬১৩০৪৬ (ফ্যাক্স)",
                 email1: "ehsan@me.buet.ac.bd",
                 email2: ""
             },
