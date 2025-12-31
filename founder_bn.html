@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founder - TriChokro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons & Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP for Founder Page Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a192f',       // Deep Navy for Pathfinder
+                            light: '#112240',      // Lighter Navy
+                            lighter: '#233554',    // Even lighter
+                            green: '#64ffda',      // Neon Green accent
+                            greenDim: 'rgba(100, 255, 218, 0.1)',
+                            text: '#ccd6f6',       // Light gray text
+                            heading: '#e6f1ff',    // White heading text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Inter', 'Roboto', 'sans-serif'],
+                        display: ['Hind Siliguri', 'Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Hind Siliguri', 'Cormorant Garamond', 'serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 15s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- MAIN GLOBAL STYLES --- */
+        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Hind Siliguri', 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
+        a, button, .interactive, input, .group { cursor: pointer; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
+
+        /* Founder Page Specifics */
+        :root {
+            --bg-deep: #050a14;
+            --gold-primary: #d4af37;
+            --gold-muted: #aa8c2c;
+            --teal-accent: #2dd4bf;
+        }
+
+        .text-gold { color: var(--gold-primary); }
+        .text-teal { color: var(--teal-accent); }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        }
+
+        .resume-paper {
+            font-family: 'Inter', sans-serif;
+            color: #1a202c;
+            background-color: #ffffff;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Glassmorphism for Pathfinder Subpage Cards */
+        .glass-card {
+            background: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card:hover {
+            border-color: #64ffda;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+        }
+
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-gold-primary selection:text-black" style="background-color: #050a14; color: #cdd6f4;">
+
+        <div class="watermark-overlay"></div>
+
+        <!-- Background Canvas -->
+        <div id="canvas-container">
+            <canvas id="neural-canvas"></canvas>
+        </div>
+
+        <!-- Unified Nav -->
+        <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-[#050a14]/90 backdrop-blur-lg border-b border-white/5 py-3">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+                        <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]">
+                        <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8" style="font-family: 'Hind Siliguri', 'Cinzel', serif;">
+                        <a href="index_bn.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">হোম<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_bn.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">আমাদের সম্পর্কে<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="trambulance_bn.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">ট্রাম্বুলেন্স<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_bn.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">মডেল<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="founder_bn.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">প্রতিষ্ঠাতা<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="founder.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.55s">ENGLISH<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="contact_bn.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">যোগাযোগ</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
+                <div class="px-4 py-4 space-y-3 flex flex-col">
+                    <a href="index_bn.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">হোম</a>
+                    <a href="index_bn.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">পণ্যের মডেল</a>
+                    <a href="trambulance_bn.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ট্রাম্বুলেন্স</a>
+                    <a href="founder.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
+                    <a href="contact_bn.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">যোগাযোগ</a>
+                </div>
+            </div>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(menuBtn && mobileMenu) {
+                    let isMenuOpen = false;
+                    menuBtn.addEventListener('click', () => {
+                        isMenuOpen = !isMenuOpen;
+                        if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
+                        else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
+                    });
+                }
+            });
+        </script>
+
+        <!-- Hero Section -->
+        <section id="founder-about" class="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-gold-primary/5 rounded-full blur-3xl" style="background-color: rgba(212, 175, 55, 0.05);"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal-accent/5 rounded-full blur-3xl" style="background-color: rgba(45, 212, 191, 0.05);"></div>
+
+            <div class="max-w-5xl w-full z-10">
+                <div class="space-y-6">
+                    <p class="text-teal cinzel-font tracking-[0.2em] text-sm animate-fade-in-up" style="color: #2dd4bf;">প্রফেশনাল পোর্টফোলিও</p>
+                    <h1 class="text-5xl md:text-8xl font-bold text-white tracking-tight cinzel-font animate-fade-in-up delay-100 leading-none">
+                        রওনক <br> <span class="text-gray-500">শাহরিয়ার</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-primary to-yellow-200" style="background-image: linear-gradient(to right, #d4af37, #fef08a); -webkit-background-clip: text; background-clip: text; color: transparent;">রুহান</span>
+                    </h1>
+
+                    <div class="max-w-2xl border-l-2 border-gold-primary/30 pl-6 mt-8 animate-fade-in-up delay-200" style="border-color: rgba(212, 175, 55, 0.3);">
+                        <p class="serif-text text-2xl md:text-3xl text-gray-300 italic leading-relaxed">
+                            "অটোমোবাইল ইঞ্জিনিয়ারিং, এনইভি এবং উৎপাদনে <span class="text-white not-italic font-semibold">উদ্ভাবন</span> এবং <span class="text-white not-italic font-semibold">উদ্যোক্তা</span> মানসিকতার মাধ্যমে মনোনিবেশী।"
+                        </p>
+                    </div>
+
+                    <p class="mt-6 max-w-xl text-muted text-lg leading-relaxed animate-fade-in-up delay-300 font-light" style="color: #94a3b8;">
+                        <strong class="text-teal" style="color: #2dd4bf;">ত্রিচক্র</strong> এর প্রতিষ্ঠাতা। বুয়েটের মেকানিক্যাল ইঞ্জিনিয়ারিং ছাত্র। যান্ত্রিক জ্ঞান এবং ব্যবসায়িক কৌশলের সংমিশ্রণে গতিশীলতা খাতে বিপ্লব ঘটাতে চান। বাংলাদেশে প্রথম এ-জেড স্থানীয়ভাবে উৎপাদিত গাড়ি শিল্প প্রতিষ্ঠার লক্ষ্য।
+                    </p>
+
+                    <div class="pt-10 flex gap-6 animate-fade-in-up delay-400">
+                        <a href="#cv" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-none border border-gold-primary text-gold-primary font-cinzel font-bold tracking-widest hover:text-black transition-colors" style="border-color: #d4af37; color: #d4af37;">
+                            <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-gold-primary rounded-full group-hover:w-96 group-hover:h-96 -ml-2 -mt-2" style="background-color: #d4af37;"></span>
+                            <span class="relative">সিভি দেখুন</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors px-4 py-3">
+                            <i class="fab fa-linkedin text-xl"></i> <span class="cinzel-font text-sm">LinkedIn</span>
+                        </a>
+                         <a href="https://www.facebook.com/rownakshahriarruhan">
+                            <i class="fab fa-facebook text-xl"></i> <span class="cinzel-font text-sm">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Ventures (Combined for flow) -->
+        <section id="founder-experience" class="py-24 px-6 relative">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="section-heading text-3xl md:text-4xl font-bold text-white cinzel-font flex items-center mb-12">
+                    <span class="text-gold mr-3" style="color: #d4af37;">০১.</span> পেশাগত অভিজ্ঞতা
+                    <span class="flex-1 h-px bg-gradient-to-r from-gold-primary to-transparent ml-6 opacity-50" style="background: linear-gradient(90deg, #d4af37, transparent);"></span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Venture 1 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-bolt text-9xl text-gold" style="color: #d4af37;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">২০২৫ - বর্তমান</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">ত্রিচক্র ⚡</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">প্রতিষ্ঠাতা ও সিইও</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            ইলেকট্রিক ইজি বাইক, ট্রাই-হুইলার তৈরির জন্য একটি সরকারি অর্থায়িত স্টার্টআপের নেতৃত্ব দিচ্ছেন। এটি ঢাকা এবং বিরামপুর, দিনাজপুরে অবস্থিত একটি নিবন্ধিত আরএন্ডডি কোম্পানি। "ট্রাম্বুলেন্স" এর আরএন্ডডি এবং ইউআইএইচপি কোহর্ট এবং SOfE চ্যাম্পিয়নশিপের মাধ্যমে সীড ফান্ডিং এবং স্বীকৃতি অর্জনে নেতৃত্ব দিচ্ছেন।
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">স্টার্টআপ নেতৃত্ব</span>
+                            <span class="border border-white/10 px-2 py-1">ইভি ডিজাইন</span>
+                            <span class="border border-white/10 px-2 py-1">সরকারি অর্থায়ন</span>
+                        </div>
+                    </div>
+
+                    <!-- Venture 2 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-industry text-9xl text-teal" style="color: #2dd4bf;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">নভেম্বর ২০২৫ - বর্তমান</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">বিওয়াইডি বাংলাদেশ 🚗</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">১ মাসের ইন্টার্নশিপ ট্রেইনি</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            একটি বৈশ্বিক ইভি জায়ান্টের কার্যক্রমে নিমগ্ন। প্রযুক্তিগত দিক, উৎপাদন অপ্টিমাইজেশন, সাপ্লাই চেইন লজিস্টিকস এবং বাংলাদেশ বাজারের মধ্যে ব্যবসায়িক কৌশলে মনোনিবেশ করা।
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">সাপ্লাই চেইন</span>
+                            <span class="border border-white/10 px-2 py-1">ম্যানুফ্যাকচারিং</span>
+                            <span class="border border-white/10 px-2 py-1">এনইভি টেকনোলজি</span>
+                        </div>
+                    </div>
+                    <!-- Venture 3 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-industry text-9xl text-teal" style="color: #2dd4bf;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">নভেম্বর ২০২৫ - বর্তমান</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">রহিম আফরোজ ব্যাটারি ও অ্যাকুমুলেটর 🚗</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">একাডেমিক ইন্টার্নশিপ</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            গভীর বাজার ধারণা তাদের পণ্যের সিদ্ধান্ত এবং বাংলাদেশের ব্যাটারি খাতে দীর্ঘমেয়াদী আধিপত্য চালায়। লিড এসিড ব্যাটারি প্রযুক্তি এবং এই খাতে বাংলাদেশের অগ্রগতি সম্পর্কে শিখেছি।
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">সাপ্লাই চেইন</span>
+                            <span class="border border-white/10 px-2 py-1">ব্যাটারি প্রযুক্তি</span>
+                            <span class="border border-white/10 px-2 py-1">রক্ষণাবেক্ষণ পদ্ধতি</span>
+                        </div>
+                    </div>
+
+
+                    <!-- Venture 3 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-camera-retro text-9xl text-purple-400"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">২০২১ - বর্তমান</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">রনোগ্রাফ 📷</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">প্রতিষ্ঠাতা ও প্রধান ফটোগ্রাফার</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            ঢাকায় একটি ক্রিয়েটিভ এজেন্সি প্রতিষ্ঠা করেছি যা হাই-এন্ড অনন্য ফটোগ্রাফি সমাধান প্রদান করে। বুয়েটে ৪০০+ শিক্ষার্থীকে ভিজ্যুয়াল আর্ট এবং পোস্ট-প্রসেসিং কৌশলে মেন্টরিং করেছি।
+                        </p>
+                    </div>
+
+                    <!-- Venture 4 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-globe-asia text-9xl text-blue-400"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">২০১৬ - বর্তমান</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">উইকিমিডিয়া বিডি 🌐</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">এক্সিকিউটিভ মেম্বার, রিভিউয়ার</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            বাংলা ও ইংরেজি উইকিপিডিয়ার জন্য রিভিউয়ার, রোলব্যাকার এবং জুরি মেম্বার হিসেবে মুক্ত জ্ঞান আন্দোলনে অবদান রাখছি।
+                        </p>
+                    </div>
+<!-- Venture 3 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-industry text-9xl text-teal" style="color: #2dd4bf;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">নভেম্বর ২০২৫ - বর্তমান</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">অংকুর ইন্টারন্যাশনাল</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">প্রজেক্ট ডিরেক্টর এবং মেম্বার</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            অংকুর ইন্টারন্যাশনাল ২০০৭ সালের ২৮ মার্চ প্রতিষ্ঠিত হয়, যার লক্ষ্য স্থানীয় এবং আন্তর্জাতিকভাবে দরিদ্র শিশু এবং মায়েদের সহায়তা করা। পোর্টল্যান্ড, ওরেগনে সদর দপ্তর, সংস্থাটি বাহ্যিক শাখা অফিস ছাড়াই কেন্দ্রীয়ভাবে কাজ করে। বুয়েট শিক্ষার্থীদের সহযোগিতায়, অংকুর ইন্টারন্যাশনাল শীতকালীন কম্বল বিতরণ, ঢাকায় ক্ষুধার্তদের জন্য খাদ্য কর্মসূচি এবং স্বল্প আয়ের কর্মীদের সহায়তার জন্য সরঞ্জাম সরবরাহ সহ অসংখ্য মানবিক উদ্যোগ পরিচালনা করেছে।
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">সাপ্লাই চেইন</span>
+                            <span class="border border-white/10 px-2 py-1">ব্যাটারি প্রযুক্তি</span>
+                            <span class="border border-white/10 px-2 py-1">রক্ষণাবেক্ষণ পদ্ধতি</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full CV Section -->
+        <section id="cv" class="py-24 px-4 bg-resume-bg resume-bg" style="background-color: #1e293b; background-image: radial-gradient(#334155 1px, transparent 1px); background-size: 20px 20px;">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white cinzel-font mb-4">জীবনবৃত্তান্ত 📜</h2>
+                    <p class="text-gray-400 serif-text text-xl italic">তার পেশাগত ইতিহাসের এক ঝলক</p>
+                </div>
+
+                <!-- Resume Paper Container -->
+                <div class="resume-paper max-w-[210mm] min-h-0 bg-white text-slate-800 shadow-2xl overflow-hidden mx-auto relative">
+
+                    <!-- START OF RESUME CONTENT -->
+                    <div class="flex flex-col md:flex-row h-full">
+
+                        <!-- Sidebar (Dark) -->
+                        <div class="w-full md:w-[35%] bg-[#1a202c] text-white p-8 flex flex-col">
+
+                            <!-- Header -->
+                            <div class="mb-10">
+                                <h1 class="text-3xl font-bold leading-none mb-3 font-sans uppercase tracking-tight">রওনক<br>শাহরিয়ার<br>রুহান</h1>
+                                <p class="text-blue-400 font-medium text-sm">মেকানিক্যাল ইঞ্জিনিয়ারিং ছাত্র (বুয়েট)</p>
+                                <p class="text-gray-400 text-xs mt-1">অটোমোবাইল ইঞ্জিনিয়ারিংয়ে মেজর</p>
+                                <p class="text-gray-400 text-xs italic">প্রতিষ্ঠাতা, ত্রিচক্র</p>
+                            </div>
+
+                            <!-- Contact -->
+                            <div class="mb-10 text-sm space-y-3 font-light">
+                                <div class="flex items-center"><i class="fas fa-phone w-6 text-blue-400"></i> +৮৮০ ১৭১৪ ৮৪৪৬৭৭</div>
+                                <div class="flex items-center"><i class="fas fa-envelope w-6 text-blue-400"></i> rownakshahriarruhan@gmail.com</div>
+                                <div class="flex items-start"><i class="fas fa-map-marker-alt w-6 mt-1 text-blue-400"></i> কাজী নজরুল ইসলাম হল, বুয়েট, ঢাকা-১০০০</div>
+                                <div class="flex items-center"><i class="fas fa-globe w-6 text-blue-400"></i> www.trichokro.com</div>
+                            </div>
+
+                            <!-- Education -->
+                            <div class="mb-10">
+                                <h3 class="text-blue-400 font-bold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2 text-sm">শিক্ষা 🎓</h3>
+
+                                <div class="mb-6">
+                                    <h4 class="font-bold text-white">বিএসসি ইন মেকানিক্যাল ইঞ্জিনিয়ারিং</h4>
+                                    <p class="text-gray-300 text-sm">বুয়েট (২০২১-২০২৬)</p>
+                                    <p class="text-xs text-gray-400">৪র্থ বর্ষ, শেষ সেমিস্টার</p>
+                                </div>
+
+                                <div class="mb-6">
+                                    <h4 class="font-bold text-white">উচ্চ মাধ্যমিক সার্টিফিকেট</h4>
+                                    <p class="text-gray-300 text-sm">নটর ডেম কলেজ (২০১৮-২০২০)</p>
+                                    <p class="text-xs text-gray-400">জিপিএ-৫ সহ বৃত্তি</p>
+                                    <p class="text-xs text-gray-500">বিজ্ঞান গ্রুপ-১</p>
+                                </div>
+
+                                <div class="mb-6">
+                                    <h4 class="font-bold text-white">মাধ্যমিক স্কুল সার্টিফিকেট</h4>
+                                    <p class="text-gray-300 text-sm">আদর্শ উচ্চ বিদ্যালয় (২০১৩-২০১৮)</p>
+                                    <p class="text-xs text-gray-400">জিপিএ-৫, ট্যালেন্টপুল বৃত্তি</p>
+                                    <p class="text-xs text-gray-500">২০১৪ স্টুডেন্ট অফ দ্য ইয়ার</p>
+                                </div>
+                            </div>
+
+                            <!-- Skills -->
+                            <div class="mb-10">
+                                <h3 class="text-blue-400 font-bold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2 text-sm">সফটওয়্যার দক্ষতা 💻</h3>
+                                <ul class="text-sm space-y-2 font-light">
+                                    <li class="flex justify-between"><span>SolidWorks</span> <span class="text-blue-400">●●●○</span></li>
+                                    <li class="flex justify-between"><span>Ansys</span> <span class="text-blue-400">●●●○</span></li>
+                                    <li class="flex justify-between"><span>MATLAB</span> <span class="text-blue-400">●●○○</span></li>
+                                    <li class="flex justify-between"><span>Adobe Suite</span> <span class="text-blue-400">●●●○</span></li>
+                                    <li class="flex justify-between"><span>MS Office</span> <span class="text-blue-400">●●●●</span></li>
+                                </ul>
+                            </div>
+
+                            <!-- Soft Skills -->
+                             <div class="mb-10">
+                                <h3 class="text-blue-400 font-bold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2 text-sm">দক্ষতা 🛠️</h3>
+                                <ul class="text-sm space-y-2 list-disc list-inside text-gray-300">
+                                    <li>হার্ডওয়্যার ম্যানুফ্যাকচারিং</li>
+                                    <li>উৎপাদন অপ্টিমাইজেশন</li>
+                                    <li>ব্যবসায়িক বিশ্লেষণ</li>
+                                    <li>অটোমোবাইল ইঞ্জিনিয়ারিং</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Main Content (Light) -->
+                        <div class="w-full md:w-[65%] p-8 md:p-12 text-gray-800 bg-white">
+
+                            <!-- Profile Summary -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">প্রোফাইল 👤</h2>
+                                <p class="text-sm leading-relaxed text-justify text-gray-600">
+                                    যানবাহন ডিজাইন, চ্যাসিসের কাঠামোগত বিশ্লেষণ এবং এনইভি অপারেশনাল দক্ষতায় অভিজ্ঞ। 'ট্রাম্বুলেন্স' (ইন্টারন্যাশনাল অর্গানাইজেশন অফ মেকানিক্যাল ইঞ্জিনিয়ার্স (IMechE) দ্বারা আয়োজিত স্পিক আউট ফর ইঞ্জিনিয়ার্স (SofE) এর আন্তর্জাতিক প্রতিযোগিতায় জাতীয় চ্যাম্পিয়ন) এবং 'ত্রিচক্র' (UIHP-BUET-RISE কোহর্ট চ্যাম্পিয়ন, সীড ফান্ডিং সুরক্ষিত, উৎপাদনের বাণিজ্যিক রোডম্যাপ নেতৃত্বাধীন) সহ পুরস্কার বিজয়ী প্রকল্পগুলির সাথে অভিজ্ঞ উদ্ভাবক। বিওয়াইডিতে টেকসই গতিশীলতা এগিয়ে নিতে প্রযুক্তিগত দক্ষতা এবং প্রমাণিত প্রকল্পের সাফল্য প্রয়োগ করতে উৎসাহী।
+                                </p>
+                            </div>
+
+                            <!-- Achievements -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">অর্জনসমূহ 🏆</h2>
+
+                                <div class="mb-6">
+                                    <div class="flex justify-between items-baseline">
+                                        <h3 class="font-bold text-gray-800">জাতীয় চ্যাম্পিয়ন | SOfE</h3>
+                                        <span class="text-xs font-bold text-blue-600">নভেম্বর ২০২৫</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mb-2 italic">ইঞ্জিনিয়ারদের জন্য কথা বলা (IMechE)</p>
+                                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                        <li>প্রজেক্ট ট্রাম্বুলেন্স: একটি দক্ষতার সাথে ডিজাইন করা, সাশ্রয়ী মূল্যের তিন চাকার ব্যাটারি চালিত অ্যাম্বুলেন্স উদ্ভাবন।</li>
+                                        <li>Ansys-এ অ্যারোডাইনামিক এবং লোড সিমুলেশন সহ SolidWorks/SketchUp-এ 3D ডিজাইন পরিচালনা।</li>
+                                        <li>উদ্ভাবনী চ্যাসিস এবং অ্যারোডাইনামিক অরিগামি অনুপ্রাণিত হুড সিস্টেম প্রশংসা অর্জন করেছে।</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-6">
+                                    <div class="flex justify-between items-baseline">
+                                        <h3 class="font-bold text-gray-800">বুয়েট চ্যাম্পিয়ন | UIHP</h3>
+                                        <span class="text-xs font-bold text-blue-600">জুলাই ২০২৫</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mb-2 italic">বিশ্ববিদ্যালয় উদ্ভাবন হাব প্রোগ্রাম (আইসিটি বিভাগ)</p>
+                                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                        <li>প্রজেক্ট ত্রিচক্র: একটি উন্নত এবং সাশ্রয়ী মূল্যের অটো-রিকশা মডেল তৈরি করেছে। প্রফেসর এহসানের বুয়েট-বিপিইআরসি ইজি বাইক প্রকল্প দ্বারা অনুপ্রাণিত।</li>
+                                        <li>প্রোটোটাইপ তৈরি; মেট্রোসেম অটোমোবাইলের সহায়তায় ব্যাপক উত্পাদন চুক্তি চলছে।</li>
+                                        <li>বুয়েট অ্যালামনাই এবং বিনিয়োগকারীদের কাছ থেকে তহবিল সুরক্ষিত।</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Entrepreneurial -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">উদ্যোক্তা অভিজ্ঞতা 💼</h2>
+                                <div class="mb-4">
+                                    <div class="flex justify-between items-baseline">
+                                        <h3 class="font-bold text-gray-800">ত্রিচক্র</h3>
+                                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">প্রতিষ্ঠাতা ও সিইও</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mb-2">নিবন্ধিত ম্যানুফ্যাকচারিং স্টার্টআপ (বিআইডিএ এবং সরকারি লাইসেন্স)</p>
+                                    <p class="text-sm text-gray-600">
+                                        অধ্যাপক ডঃ মোঃ এহসানের নির্দেশনায় প্রতিষ্ঠিত। পিএইচডি হোল্ডার সহ ৮ সদস্যের একটি দলের নেতৃত্ব দিচ্ছেন। সফলভাবে ট্রেড লাইসেন্স প্রাপ্ত।
+                                        <br><span class="text-xs italic mt-1 block">সহযোগীরা: অধ্যাপক ডঃ মোঃ এহসান (বুয়েট), আব্দুল জাওয়াদ (পিএইচডি, ইউসিএসসি), ইশরাক রাফিদ (এমএস, জার্মানি)।</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Work Experience -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">কাজের অভিজ্ঞতা</h2>
+
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-bold text-gray-800 text-sm">বিওয়াইডি বাংলাদেশ</h4>
+                                            <span class="text-xs text-gray-500">২০২১, ২০২৩</span>
+                                        </div>
+                                        <p class="text-xs text-blue-600">ইন্ডাস্ট্রিয়াল ট্রেনিং</p>
+                                        <p class="text-sm text-gray-600 mt-1">ম্যানুফ্যাকচারিং, বিজনেস এবং সাপ্লাই চেইনের উপর ১ মাসের প্রশিক্ষণ।</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">রহিম আফরোজ ব্যাটারি</h4>
+                                        <p class="text-xs text-blue-600">একাডেমিক ইন্টার্নশিপ</p>
+                                        <p class="text-sm text-gray-600 mt-1">ব্যাটারি ম্যানুফ্যাকচারিং এবং রক্ষণাবেক্ষণ।</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-bold text-gray-800 text-sm">উইকিমিডিয়া বাংলাদেশ</h4>
+                                            <span class="text-xs text-gray-500">২০১৬-বর্তমান</span>
+                                        </div>
+                                        <p class="text-xs text-blue-600">এক্সিকিউটিভ মেম্বার</p>
+                                        <p class="text-sm text-gray-600 mt-1">বাংলা/ইংরেজি উইকিপিডিয়ার জন্য রিভিউয়ার, রোলব্যাকার, জুরি।</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">রনোগ্রাফ</h4>
+                                        <p class="text-xs text-blue-600">প্রতিষ্ঠাতা ও প্রধান ফটোগ্রাফার</p>
+                                        <p class="text-sm text-gray-600 mt-1">ফটোগ্রাফিক এজেন্সি এবং নির্দেশাবলী (২০২৪)।</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">অংকুর ইন্টারন্যাশনাল</h4>
+                                        <p class="text-xs text-blue-600">পাব্লিসিটি সেক্রেটারি এবং প্রজেক্ট হেড</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">প্রহরান্ত</h4>
+                                        <p class="text-xs text-blue-600">প্রধান সম্পাদক ও কৌশলবিদ</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <!-- References -->
+                             <div>
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">রেফারেন্স 🤝</h2>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <p class="font-bold text-gray-800">ডঃ মোঃ এহসান</p>
+                                        <p class="text-xs text-gray-500">অধ্যাপক, মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ, বুয়েট</p>
+                                        <p class="text-xs text-blue-600">ehsan@me.buet.ac.bd</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">ডঃ আব্দুল জাওয়াদ</p>
+                                        <p class="text-xs text-gray-500">পিএইচডি, ইউসি সান্তা ক্রুজ</p>
+                                        <p class="text-xs text-blue-600">abjawad@ucsc.edu</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">ডঃ শাহেরিন চৌধুরী</p>
+                                        <p class="text-xs text-gray-500">সহযোগী অধ্যাপক, মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ, বুয়েট</p>
+                                        <p class="text-xs text-blue-600">shahereen@me.buet.ac.bd</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END OF RESUME CONTENT -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <span class="cinzel-font text-2xl font-bold text-white block mb-6">RS Ruhan<span class="text-gold" style="color: #d4af37;">.</span></span>
+                <div class="flex justify-center gap-8 mb-8">
+                    <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="text-gray-500 hover:text-gold transition-colors text-xl" style="color: #d4af37;"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" class="text-gray-500 hover:text-gold transition-colors text-xl" style="color: #d4af37;"><i class="fab fa-facebook"></i></a>
+                    <a href="mailto:rownakshahriarruhan@gmail.com" class="text-gray-500 hover:text-gold transition-colors text-xl" style="color: #d4af37;"><i class="fas fa-envelope"></i></a>
+                </div>
+                <p class="text-gray-600 text-sm font-light tracking-wide">&copy; 2026, Rownak Shahriar Ruhan. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    <script>
+        // FOUNDER PAGE ANIMATIONS (Initializes only when view opens)
+        function initFounderAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.gs-reveal').forEach(elem => {
+                gsap.from(elem, {
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+        }
+
+        // PARTICLE CANVAS LOGIC FOR FOUNDER PAGE
+        function initParticleCanvas() {
+            const canvas = document.getElementById('neural-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            // Config: Slower, more elegant
+            const particleCount = 40;
+            const connectionDistance = 200;
+            const mouseDistance = 250;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.2; // Slower speed
+                    this.vy = (Math.random() - 0.5) * 0.2;
+                    this.size = Math.random() * 1.5 + 0.5; // Smaller stars
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = '#aa8c2c'; // Gold dust
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            let mouse = { x: null, y: null };
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.x;
+                mouse.y = e.y;
+            });
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                particles.forEach((p, index) => {
+                    p.update();
+                    p.draw();
+
+                    for (let j = index; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < connectionDistance) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(170, 140, 44, ${0.15 * (1 - distance / connectionDistance)})`; // Subtle gold lines
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+
+                    if (mouse.x != null) {
+                        const dx = p.x - mouse.x;
+                        const dy = p.y - mouse.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < mouseDistance) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(45, 212, 191, ${0.1 * (1 - distance / mouseDistance)})`; // Teal interaction
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+             initFounderAnimations();
+             initParticleCanvas();
+        });
+    </script>
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div>
+    <script>
+        document.addEventListener("mousemove", e => {
+            const gradient = document.getElementById("cursor-gradient");
+            if(gradient) {
+                gradient.style.setProperty("--x", e.clientX + "px");
+                gradient.style.setProperty("--y", e.clientY + "px");
+            }
+        });
+    </script>
+</body>
+</html>
