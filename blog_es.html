@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ব্লগ | ত্রিচক্র</title>
+<title>Blog | Trichokro</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* =====================
@@ -34,7 +33,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Hind Siliguri', system-ui,'Segoe UI',sans-serif;
+  font-family:system-ui,'Segoe UI',sans-serif;
 }
 
 body{
@@ -226,8 +225,9 @@ h1{
 
 <body>
 
-<a href="index_bn.html" class="back-btn">← হোম</a>
-<a href="blog_bn.html" class="theme-toggle" style="text-decoration:none; display:flex; align-items:center; justify-content:center; width:auto; height:auto;">ENGLISH</a>
+<a href="index_es.html" class="back-btn">← Home</a>
+<a href="blog_bn.html" class="back-btn" style="left: 120px;">বাংলা</a>
+<button class="theme-toggle">🌙</button>
 <div class="cursor-light"></div>
 
 <!-- EMOJIS (JS RANDOMIZES MOTION) -->
@@ -244,7 +244,7 @@ h1{
 
   <!-- LIST -->
   <div id="listView">
-    <h1 class="reveal">ব্লগ</h1>
+    <h1 class="reveal">Blog</h1>
     <div class="blog-grid" id="blogList"></div>
   </div>
 
@@ -299,18 +299,18 @@ document.querySelectorAll('.emoji').forEach(e=>{
    ===================== */
 const posts={
   ev:{
-    title:"ইভি এবং শক্তির ভবিষ্যত",
+    title:"Future of EV & Energy",
     image:"src/assets/blog/ev.jpg",
-    tags:["ইভি","শক্তি","প্রযুক্তি"],
+    tags:["EV","Energy","Tech"],
     content:`
-# ইভি এবং শক্তির ভবিষ্যত
+# Future of EV & Energy
 
 ![EV](src/assets/blog/ev.jpg)
 
-বৈদ্যুতিক যানবাহন গতিশীলতাকে নতুনভাবে সংজ্ঞায়িত করছে।
+Electric vehicles are redefining mobility.
 
-## কেন এটি গুরুত্বপূর্ণ
-শক্তি সিস্টেম, এআই এবং ডিজাইন একত্রিত হচ্ছে।
+## Why it matters
+Energy systems, AI, and design are converging.
 `
   }
 };
@@ -346,7 +346,7 @@ Object.keys(posts).forEach(k=>{
    OPEN POST
    ===================== */
 function openPost(k){
-  history.pushState({k},'',`blog_bn.html?post=${k}`);
+  history.pushState({k},'',`blog.html?post=${k}`);
   document.getElementById('listView').classList.add('hidden');
   document.getElementById('postView').classList.remove('hidden');
   document.getElementById('postContent').innerHTML='<p>'+md(posts[k].content)+'</p>';
