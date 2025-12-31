@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Privacy Policy | Trichokro</title>
+<title>Política de Privacidad | Trichokro</title>
 
-<meta name="description" content="Privacy Policy of Trichokro.com — Created by Rownak Shahriar Ruhan with AI." />
-<meta name="author" content="Rownak Shahriar Ruhan & AI" />
+<meta name="description" content="Política de Privacidad de Trichokro.com — Creado por Rownak Shahriar Ruhan con IA." />
+<meta name="author" content="Rownak Shahriar Ruhan & IA" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Icons & Libraries -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
@@ -37,6 +39,42 @@ body{
   color:#fff;text-decoration:none;
   backdrop-filter:blur(12px);z-index:10;
 }
+
+.lang-btn {
+    position: fixed; top: 26px; left: 140px;
+    padding: 12px 20px; border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+    color: #fff; text-decoration: none;
+    backdrop-filter: blur(12px); z-index: 10;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 60px; left: 140px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 100px;
+    border-radius: 12px;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+}
+
+.dropdown-content a {
+    color: #eaf2ff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.show { display: block; }
 
 .cursor-light{
   position:fixed;
@@ -133,8 +171,36 @@ footer{margin-top:40px;font-size:.9rem;opacity:.75}
 
 <body>
 
-<a href="index_es.html" class="back-btn">← Home</a>
-<a href="privacy_bn.html" class="back-btn" style="left: 140px;">বাংলা</a>
+<a href="index_es.html" class="back-btn">← Inicio</a>
+
+<div class="lang-btn" onclick="toggleDropdown()">ES <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i></div>
+<div id="langDropdown" class="dropdown-content">
+    <a href="privacy.html">EN</a>
+    <a href="privacy_bn.html">BN</a>
+    <a href="privacy_de.html">DE</a>
+    <a href="privacy_es.html" style="color: #38bdf8;">ES</a>
+    <a href="privacy_zh.html">ZH</a>
+    <a href="privacy_ja.html">JA</a>
+</div>
+
+<script>
+function toggleDropdown() {
+    document.getElementById("langDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.lang-btn') && !event.target.closest('.lang-btn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
 <div class="cursor-light"></div>
 
 <div class="glow"></div>
@@ -156,28 +222,28 @@ footer{margin-top:40px;font-size:.9rem;opacity:.75}
 
 <div class="parallax-wrap">
   <div class="container parallax-layer">
-    <h1 class="reveal">Privacy Policy</h1>
+    <h1 class="reveal">Política de Privacidad</h1>
 
     <p class="reveal">
-      Trichokro.com respects privacy as a core principle of digital creativity.
-      We do not collect personal information unless explicitly provided.
+      Trichokro.com respeta la privacidad como un principio fundamental de la creatividad digital.
+      No recopilamos información personal a menos que se proporcione explícitamente.
     </p>
 
     <p class="reveal">
-      Anonymous technical data may be used only to improve performance,
-      accessibility, and interaction quality.
+      Los datos técnicos anónimos pueden utilizarse únicamente para mejorar el rendimiento,
+      la accesibilidad y la calidad de la interacción.
     </p>
 
     <div class="founder reveal">
-      <h2>About the Founder</h2>
+      <h2>Sobre el Fundador</h2>
       <p>
-        <strong>Rownak Shahriar Ruhan</strong> is the creator and visionary behind
-        Trichokro, blending technology, motion, and AI-driven design.
+        <strong>Rownak Shahriar Ruhan</strong> es el creador y visionario detrás de
+        Trichokro, combinando tecnología, movimiento y diseño impulsado por IA.
       </p>
     </div>
 
     <footer class="reveal">
-      Created by Rownak Shahriar Ruhan with Artificial Intelligence.
+      Creado por Rownak Shahriar Ruhan con Inteligencia Artificial.
     </footer>
   </div>
 </div>

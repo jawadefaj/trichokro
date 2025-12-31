@@ -11,7 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons & Libraries -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -61,7 +61,7 @@
             cursor: default; 
             overflow-x: hidden; 
             background-color: #020617; 
-            font-family: 'Hind Siliguri', 'Inter', sans-serif; 
+            font-family: 'Tiro Bangla', 'Hind Siliguri', 'Inter', sans-serif; 
             color: #e2e8f0; 
             touch-action: manipulation;
             -webkit-overflow-scrolling: touch;
@@ -204,7 +204,7 @@
             cursor: default; 
             overflow-x: hidden; 
             background-color: #020617; 
-            font-family: 'Hind Siliguri', 'Inter', sans-serif; 
+            font-family: 'Tiro Bangla', 'Hind Siliguri', 'Inter', sans-serif; 
             color: #e2e8f0; 
             touch-action: manipulation;
             -webkit-overflow-scrolling: touch;
@@ -326,7 +326,7 @@
             .container { padding: 32px; }
         }
 
-        /* 8. Performance Optimizations */
+        /* 8. পারফরম্যান্স Optimizations */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -335,7 +335,7 @@
             }
         }
 
-        /* 9. Enhanced Loading Performance */
+        /* 9. Enhanced Loading পারফরম্যান্স */
         img {
             will-change: transform;
             backface-visibility: hidden;
@@ -470,7 +470,7 @@
             <div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
                 <span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
             </div>
-            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">Accelerating</div>
+            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">গতি বৃদ্ধি হচ্ছে</div>
         </div>
     </div>
 
@@ -483,8 +483,8 @@
             </div>
             <div class="flex justify-between items-end mt-4 border-t border-emerald-500/30 pt-4">
                 <div class="loader-text text-emerald-500 text-xs md:text-sm tracking-widest uppercase flex flex-col gap-1">
-                    <span id="load-status">System Check...</span>
-                    <span class="text-slate-500 text-[10px]">TriChokro by Rownak Shahriar Ruhan</span>
+                    <span id="load-status">সিস্টেম চেক...</span>
+                    <span class="text-slate-500 text-[10px]">রওনক শাহরিয়ার রুহানের ত্রিচক্র</span>
                 </div>
                 <div class="flex gap-1">
                     <div class="w-2 h-2 bg-emerald-500 animate-pulse"></div>
@@ -516,11 +516,11 @@
                 <button id="close-chat" class="text-slate-400 hover:text-white interactive"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div id="chat-messages" class="flex-1 p-4 overflow-y-auto flex flex-col gap-2">
-                <div class="chat-message ai">Hello! I'm your TriChokro Pilot.<br>Ask me about our EV specs, range estimations for trips, or basic troubleshooting!</div>
+                <div class="chat-message ai">হ্যালো! আমি আপনার ত্রিচক্র পাইলট।<br>আমাদের ইভি স্পেকস, ট্রিপের জন্য রেঞ্জ এস্টিমেশন, বা বেসিক ট্রাবলশুটিং সম্পর্কে আমাকে জিজ্ঞাসা করুন!</div>
             </div>
             <div class="p-4 border-t border-emerald-500/20 bg-slate-900/80">
                 <form id="chat-form" class="relative flex items-center gap-2">
-                    <input type="text" id="chat-input" placeholder="Plan a trip to Sylhet..." class="w-full bg-slate-800/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors interactive">
+                    <input type="text" id="chat-input" placeholder="সিলেট ভ্রমণের পরিকল্পনা করুন..." class="w-full bg-slate-800/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors interactive">
                     <button type="submit" class="p-2 bg-emerald-500 rounded-full text-slate-900 hover:bg-emerald-400 transition-colors interactive"><i data-lucide="send" class="w-4 h-4"></i></button>
                 </form>
             </div>
@@ -540,7 +540,7 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                    <div class="hidden md:flex items-center space-x-8"
-     style="font-family: 'Hind Siliguri', 'Cinzel', serif;">
+     style="font-family: 'Tiro Bangla', 'Hind Siliguri', 'Cinzel', serif;">
 
   <a href="#home"
      class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
@@ -759,10 +759,10 @@
             <div class="container mx-auto px-4 relative z-10">
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
                     <div>
-                        <div class="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">Emergency Response Ambulance</div>
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"><span class="text-emerald-400">Trambulance</span>.<br />Saving Lives with Sustainably.</h2>
-                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of Bangladesh. Its compact size allows it to reach patients where traditional ambulances cannot.</p>
-                        <a href="trambulance_bn.html" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">Trambulance's Site 🚑</a>
+                        <div class="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">জরুরী পরিষেবা অ্যাম্বুলেন্স</div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"><span class="text-emerald-400">Trambulance</span>.<br />টেকসইভাবে জীবন বাঁচানো।</h2>
+                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">ত্রিচক্র ট্রাম্বুলেন্স হলো বাংলাদেশের অনন্য চাহিদার জন্য ডিজাইন করা একটি সম্পূর্ণ বৈদ্যুতিক, তিন চাকার অ্যাম্বুলেন্স। এর ছোট আকারের কারণে এটি এমন জায়গায় রোগীদের কাছে পৌঁছাতে পারে যেখানে প্রথাগত অ্যাম্বুলেন্স পারে না।</p>
+                        <a href="trambulance_bn.html" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">ট্রাম্বুলেন্স সাইট 🚑</a>
                     </div>
                     <div class="relative interactive uplift-on-hover animate-float-slow">
                         <!-- UPDATED IMAGE: Father Holding Son -->
@@ -770,8 +770,8 @@
                              <img src="src/assets/Perspective_1.jpg" alt="Father and Son - Safety" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
                              <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                              <div class="absolute bottom-6 left-6">
-                                 <p class="text-white font-cinzel text-lg font-bold">Protecting Futures</p>
-                                 <p class="text-emerald-400 text-sm">Safe. Reliable. Fast.</p>
+                                 <p class="text-white font-cinzel text-lg font-bold">ভবিষ্যৎ সুরক্ষা</p>
+                                 <p class="text-emerald-400 text-sm">নিরাপদ। নির্ভরযোগ্য। দ্রুত।</p>
                              </div>
                         </div>
                     </div>
@@ -783,15 +783,15 @@
         <section id="founder-preview" class="py-24 bg-gradient-to-br from-brand-dark to-slate-900 relative border-t border-slate-800">
              <div class="container mx-auto px-4">
                 <div class="flex flex-col items-center text-center">
-                    <span class="text-gold font-cinzel tracking-[0.3em] text-sm mb-4">Take appointment for a meeting with our Founder</span>
+                    <span class="text-gold font-cinzel tracking-[0.3em] text-sm mb-4">আমাদের প্রতিষ্ঠাতার সাথে সাক্ষাতের জন্য অ্যাপয়েন্টমেন্ট নিন</span>
                     <h2 class="text-4xl md:text-6xl font-bold text-white font-cinzel mb-6">Rownak Shahriar Ruhan</h2>
                     <p class="text-slate-400 max-w-2xl mb-10 text-lg font-light leading-relaxed">
-                        The mind behind TriChokro. Merging Automobile Engineering with entrepreneurial spirit to redefine urban mobility in Bangladesh.
+                        ত্রিচক্রের নেপথ্যের কারিগর। অটোমোবাইল ইঞ্জিনিয়ারিং এবং উদ্যোক্তা মানসিকতার সমন্বয়ে বাংলাদেশের শহুরে যাতায়াত ব্যবস্থাকে নতুন রূপ দিচ্ছেন।
                     </p>
                     
                     <a href="founder_bn.html" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-none border border-gold text-gold font-cinzel font-bold tracking-widest hover:text-black transition-colors duration-300" target="_blank">
                         <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-gold rounded-full group-hover:w-96 group-hover:h-96 -ml-2 -mt-2"></span>
-                        <span class="relative z-10">View Portfolio</span>
+                        <span class="relative z-10">পোর্টফোলিও দেখুন</span>
                     </a>
                 </div>
              </div>
@@ -817,7 +817,7 @@
             <p id="lightbox-caption" class="text-white mt-4 text-lg font-mono tracking-widest text-center"></p>
         </div>
 
-        <!-- Gallery Section Moved Here -->
+        <!-- গ্যালারি Section Moved Here -->
         <section id="gallery" class="py-24 bg-slate-900 relative overflow-hidden">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16 reveal-on-scroll">
@@ -1139,7 +1139,7 @@
                     <iframe
                         class="absolute inset-0 w-full h-full rounded-2xl"
                         src="https://www.youtube.com/embed/7Uzam6XvLgY"
-                        title="Trambulance Pitch Video"
+                        title="ট্রাম্বুলেন্স পিচ ভিডিও"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>
@@ -1149,10 +1149,10 @@
                 <!-- Text -->
                 <div class="p-5 bg-slate-900/60 backdrop-blur">
                     <h3 class="text-white font-semibold text-sm tracking-wide">
-                        Trambulance Pitch Video
+                        ট্রাম্বুলেন্স পিচ ভিডিও
                     </h3>
                     <p class="text-slate-400 text-xs mt-2">
-                        Experience the smooth performance of our flagship model
+                        আমাদের ফ্ল্যাগশিপ মডেলের মসৃণ পারফরম্যান্স অভিজ্ঞতা নিন
                     </p>
                 </div>
             </div>
@@ -1166,7 +1166,7 @@
                     <iframe
                         class="absolute inset-0 w-full h-full rounded-2xl"
                         src="https://www.youtube.com/embed/K5gdsmmMgA8"
-                        title="TriChokro Pathfinder Team"
+                        title="ত্রিচক্র পাথফাইন্ডার টিম"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>
@@ -1175,10 +1175,10 @@
 
                 <div class="p-5 bg-slate-900/60 backdrop-blur">
                     <h3 class="text-white font-semibold text-sm tracking-wide">
-                        TriChokro Pathfinder Team
+                        ত্রিচক্র পাথফাইন্ডার টিম
                     </h3>
                     <p class="text-slate-400 text-xs mt-2">
-                        Learn about our innovative triple hydraulic braking system
+                        আমাদের উদ্ভাবনী ট্রিপল হাইড্রোলিক ব্রেকিং সিস্টেম সম্পর্কে জানুন
                     </p>
                 </div>
             </div>
@@ -1192,7 +1192,7 @@
                     <iframe
                         class="absolute inset-0 w-full h-full rounded-2xl"
                         src="https://www.youtube.com/embed/oUWmBn8RAqA"
-                        title="UIHP Pitch Deck"
+                        title="UIHP পিচ ডেক"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>
@@ -1201,10 +1201,10 @@
 
                 <div class="p-5 bg-slate-900/60 backdrop-blur">
                     <h3 class="text-white font-semibold text-sm tracking-wide">
-                        UIHP Pitch Deck
+                        UIHP পিচ ডেক
                     </h3>
                     <p class="text-slate-400 text-xs mt-2">
-                        See how TriChokro brings safe, suitable services to everyone
+                        দেখুন কিভাবে ত্রিচক্র সবার জন্য নিরাপদ, উপযুক্ত সেবা নিয়ে আসে
                     </p>
                 </div>
             </div>
@@ -1275,7 +1275,7 @@
             const loader = document.getElementById('loader');
             const body = document.body;
             let progress = 0;
-            const statusMessages = ["CALIBRATING HYDRAULICS", "CONNECTING POWER GRID", "OPTIMIZING BATTERY", "LOADING ASSETS", "SYSTEM READY"];
+            const statusMessages = ["হাইড্রোলিক্স ক্যালিব্রেট হচ্ছে", "পাওয়ার গ্রিড সংযোগ হচ্ছে", "ব্যাটারি অপ্টিমাইজ হচ্ছে", "অ্যাসেট লোড হচ্ছে", "সিস্টেম প্রস্তুত"];
             const interval = setInterval(() => {
                 progress += Math.floor(Math.random() * 6) + 3;
                 if (progress > 100) progress = 100;
@@ -1365,7 +1365,7 @@
             loadingDiv.className = 'chat-message ai flex gap-1 items-center';
             loadingDiv.innerHTML = `<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>`;
             chatMessages.appendChild(loadingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatMessages.scrollTop = chatMessages.scrollউচ্চতা;
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
                     method: 'POST',
@@ -1387,7 +1387,7 @@
             div.className = `chat-message ${sender}`;
             if (sender === 'ai') { div.innerHTML = text; } else { div.textContent = text; }
             chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatMessages.scrollTop = chatMessages.scrollউচ্চতা;
         }
 
         chatForm.addEventListener('submit', (e) => {
@@ -1645,8 +1645,8 @@
         const blob1 = document.getElementById('blob-1');
         const blob2 = document.getElementById('blob-2');
         document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 40;
-            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            const x = (e.clientX / window.innerপ্রস্থ - 0.5) * 40;
+            const y = (e.clientY / window.innerউচ্চতা - 0.5) * 40;
             if(heroContent) heroContent.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
             if(heroGrid) heroGrid.style.transform = `translate(${x * -0.5}px, ${y * -0.5}px) perspective(1000px) rotateX(10deg)`;
             if(blob1) blob1.style.transform = `translate(${x * -1}px, ${y * -1}px)`;
@@ -1683,7 +1683,7 @@
         
         document.querySelectorAll('.reveal-on-scroll').forEach(el => { observer.observe(el); });
 
-        // Gallery Logic
+        // গ্যালারি Logic
         const galleryTrack = document.getElementById('gallery-track');
         const prevBtn = document.getElementById('gallery-prev');
         const nextBtn = document.getElementById('gallery-next');
@@ -1692,7 +1692,7 @@
         const lightboxCaption = document.getElementById('lightbox-caption');
         const lightboxClose = document.getElementById('lightbox-close');
         
-        // Dynamic Gallery Loading
+        // Dynamic গ্যালারি Loading
         let galleryImages = [];
         let currentIndex = 0;
         let galleryInterval;
@@ -1706,7 +1706,7 @@
             });
         }
 
-        async function initGallery() {
+        async function initগ্যালারি() {
             // Attempt to load images 1.jpg through 10.jpg
             for (let i = 1; i <= 10; i++) {
                 const src = `src/assets/slideshow/${i}.jpg`;
@@ -1748,7 +1748,7 @@
                 galleryTrack.appendChild(div);
             });
 
-            startGalleryAutoSlide();
+            startগ্যালারিAutoSlide();
         }
 
         function openLightbox(src, caption) {
@@ -1759,7 +1759,7 @@
             requestAnimationFrame(() => {
                 lightbox.classList.remove('opacity-0');
             });
-            stopGalleryAutoSlide();
+            stopগ্যালারিAutoSlide();
         }
 
         function closeLightbox() {
@@ -1768,7 +1768,7 @@
                 lightbox.classList.add('hidden');
                 lightboxImg.src = '';
             }, 300);
-            startGalleryAutoSlide();
+            startগ্যালারিAutoSlide();
         }
 
         if(lightboxClose) {
@@ -1778,31 +1778,31 @@
             });
         }
 
-        function updateGalleryPosition() {
+        function updateগ্যালারিPosition() {
             galleryTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
         function nextSlide() {
             currentIndex = (currentIndex + 1) % galleryImages.length;
-            updateGalleryPosition();
+            updateগ্যালারিPosition();
         }
 
         function prevSlide() {
             currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-            updateGalleryPosition();
+            updateগ্যালারিPosition();
         }
 
-               function startGalleryAutoSlide() {
+               function startগ্যালারিAutoSlide() {
             galleryInterval = setInterval(nextSlide, 3000);
         }
         
-        function stopGalleryAutoSlide() {
+        function stopগ্যালারিAutoSlide() {
             clearInterval(galleryInterval);
         }
 
         if(prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => { stopGalleryAutoSlide(); prevSlide(); startGalleryAutoSlide(); });
-            nextBtn.addEventListener('click', () => { stopGalleryAutoSlide(); nextSlide(); startGalleryAutoSlide(); });
+            prevBtn.addEventListener('click', () => { stopগ্যালারিAutoSlide(); prevSlide(); startগ্যালারিAutoSlide(); });
+            nextBtn.addEventListener('click', () => { stopগ্যালারিAutoSlide(); nextSlide(); startগ্যালারিAutoSlide(); });
             
             // Touch support
             let touchStartX = 0;
@@ -1811,13 +1811,13 @@
             
             slider.addEventListener('touchstart', e => {
                 touchStartX = e.changedTouches[0].screenX;
-                stopGalleryAutoSlide();
+                stopগ্যালারিAutoSlide();
             }, {passive: true});
 
             slider.addEventListener('touchend', e => {
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
-                startGalleryAutoSlide();
+                startগ্যালারিAutoSlide();
             }, {passive: true});
 
             function handleSwipe() {
@@ -1826,7 +1826,7 @@
             }
         }
 
-        initGallery();
+        initগ্যালারি();
     </script>
     <!-- Back to Top Button -->
     <div id="back-to-top" class="fixed bottom-10 left-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
@@ -1863,7 +1863,7 @@
                 // Scroll to Bottom Button - visible only when NOT at bottom
         const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
         window.addEventListener('scroll', () => {
-            const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
+            const isAtBottom = (window.innerউচ্চতা + window.scrollY) >= (document.documentElement.scrollউচ্চতা - 100);
             if (!isAtBottom && window.scrollY > 300) {
                 scrollToBottomBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
             } else {
@@ -1879,8 +1879,8 @@ function updateScrollProgress() {
     const scrollIcon = document.getElementById('scroll-icon');
     
     const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) : 0;
+    const docউচ্চতা = document.documentElement.scrollউচ্চতা - window.innerউচ্চতা;
+    const scrollPercent = docউচ্চতা > 0 ? (scrollTop / docউচ্চতা) : 0;
     
     // Apply smooth easing: fast at start, slow at end (easeOutQuad)
     const easedPercent = scrollPercent < 0.5 
@@ -1907,7 +1907,7 @@ window.addEventListener('scroll', updateScrollProgress, { passive: true });
 updateScrollProgress();
     <!-- Top to Bottom Button (visible only at bottom) -->
     <div id="scroll-to-bottom" class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
-        <button onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
+        <button onclick="window.scrollTo({top: document.documentElement.scrollউচ্চতা, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
             <span class="text-xl">⬇️</span>
         </button>
     </div>

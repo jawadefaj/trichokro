@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Privacy Policy | Trichokro</title>
+<title>Datenschutzrichtlinie | Trichokro</title>
 
-<meta name="description" content="Privacy Policy of Trichokro.com — Created by Rownak Shahriar Ruhan with AI." />
-<meta name="author" content="Rownak Shahriar Ruhan & AI" />
+<meta name="description" content="Datenschutzrichtlinie von Trichokro.com — Erstellt von Rownak Shahriar Ruhan mit KI." />
+<meta name="author" content="Rownak Shahriar Ruhan & KI" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Icons & Libraries -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
@@ -37,6 +39,42 @@ body{
   color:#fff;text-decoration:none;
   backdrop-filter:blur(12px);z-index:10;
 }
+
+.lang-btn {
+    position: fixed; top: 26px; left: 140px;
+    padding: 12px 20px; border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+    color: #fff; text-decoration: none;
+    backdrop-filter: blur(12px); z-index: 10;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 60px; left: 140px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 100px;
+    border-radius: 12px;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+}
+
+.dropdown-content a {
+    color: #eaf2ff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.show { display: block; }
 
 .cursor-light{
   position:fixed;
@@ -133,14 +171,48 @@ footer{margin-top:40px;font-size:.9rem;opacity:.75}
 
 <body>
 
-<a href="index_de.html" class="back-btn">← Home</a>
-<a href="privacy_bn.html" class="back-btn" style="left: 140px;">বাংলা</a>
+<a href="index_de.html" class="back-btn">← Startseite</a>
+
+<div class="lang-btn" onclick="toggleDropdown()">DE <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i></div>
+<div id="langDropdown" class="dropdown-content">
+    <a href="privacy.html">EN</a>
+    <a href="privacy_bn.html">BN</a>
+    <a href="privacy_de.html" style="color: #38bdf8;">DE</a>
+    <a href="privacy_es.html">ES</a>
+    <a href="privacy_zh.html">ZH</a>
+    <a href="privacy_ja.html">JA</a>
+</div>
+
+<script>
+function toggleDropdown() {
+    document.getElementById("langDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.lang-btn') && !event.target.closest('.lang-btn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
 <div class="cursor-light"></div>
 
 <div class="glow"></div>
 <div class="glow alt"></div>
 
-<!-- ⚡ ENERGY / TECH / EV EMOJIS -->
+<!-- ⚡ ENERGY / TECH / EV EMOJIS (Kept as is per style, but user said "explicitly avoiding emojis for these elements" in floating background objects... wait. 
+The memory says "User prefers elegant design utilizing fluid, floating animated objects... explicitly avoiding emojis for these elements".
+However, this file `privacy.html` explicitly uses emojis in the source I just read. 
+"use the font "Tiro Bangla"for Bangla translated page. keep everything same , effects, experience just add html file of those langaugae translated."
+The user instruction to "keep everything same" for translated pages likely overrides the general preference memory for these specific existing pages unless I am refactoring them. 
+I will keep them for now to match the "keep everything same" instruction for translation, but I should probably change them to shapes if I were strictly following the "no emoji" rule. 
+Given "keep everything same", I will leave them as emojis here since the original had them. -->
 <div class="emoji" style="left:5%;animation-duration:14s">⚡</div>
 <div class="emoji" style="left:12%;animation-duration:16s">🔋</div>
 <div class="emoji" style="left:20%;animation-duration:15s">🚗</div>
@@ -156,28 +228,28 @@ footer{margin-top:40px;font-size:.9rem;opacity:.75}
 
 <div class="parallax-wrap">
   <div class="container parallax-layer">
-    <h1 class="reveal">Privacy Policy</h1>
+    <h1 class="reveal">Datenschutzrichtlinie</h1>
 
     <p class="reveal">
-      Trichokro.com respects privacy as a core principle of digital creativity.
-      We do not collect personal information unless explicitly provided.
+      Trichokro.com respektiert die Privatsphäre als ein Grundprinzip der digitalen Kreativität.
+      Wir sammeln keine persönlichen Daten, es sei denn, diese werden ausdrücklich bereitgestellt.
     </p>
 
     <p class="reveal">
-      Anonymous technical data may be used only to improve performance,
-      accessibility, and interaction quality.
+      Anonyme technische Daten dürfen nur zur Verbesserung der Leistung,
+      Zugänglichkeit und Interaktionsqualität verwendet werden.
     </p>
 
     <div class="founder reveal">
-      <h2>About the Founder</h2>
+      <h2>Über den Gründer</h2>
       <p>
-        <strong>Rownak Shahriar Ruhan</strong> is the creator and visionary behind
-        Trichokro, blending technology, motion, and AI-driven design.
+        <strong>Rownak Shahriar Ruhan</strong> ist der Schöpfer und Visionär hinter
+        Trichokro, der Technologie, Bewegung und KI-gesteuertes Design verbindet.
       </p>
     </div>
 
     <footer class="reveal">
-      Created by Rownak Shahriar Ruhan with Artificial Intelligence.
+      Erstellt von Rownak Shahriar Ruhan mit Künstlicher Intelligenz.
     </footer>
   </div>
 </div>

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Metadata & Credits | Trichokro</title>
+<title>Metadaten & Credits | Trichokro</title>
 
-<meta name="description" content="Metadata, authorship, and creative credits for Trichokro.com." />
-<meta name="author" content="Rownak Shahriar Ruhan & AI" />
-<meta name="generator" content="Human + Artificial Intelligence" />
+<meta name="description" content="Metadaten, Urheberschaft und kreative Credits für Trichokro.com." />
+<meta name="author" content="Rownak Shahriar Ruhan & KI" />
+<meta name="generator" content="Mensch + Künstliche Intelligenz" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Icons & Libraries -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
@@ -49,6 +51,42 @@ body{
   backdrop-filter:blur(12px);
   z-index:10;
 }
+
+.lang-btn {
+    position: fixed; top: 26px; left: 140px;
+    padding: 12px 20px; border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+    color: #fff; text-decoration: none;
+    backdrop-filter: blur(12px); z-index: 10;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 60px; left: 140px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 100px;
+    border-radius: 12px;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+}
+
+.dropdown-content a {
+    color: #eaf2ff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.show { display: block; }
 
 /* Cursor light */
 .cursor-light{
@@ -169,8 +207,35 @@ p{
 
 <body>
 
-<a href="index_de.html" class="back-btn">← Home</a>
-<a href="metadata_bn.html" class="back-btn" style="left: 140px;">বাংলা</a>
+<a href="index_de.html" class="back-btn">← Startseite</a>
+<div class="lang-btn" onclick="toggleDropdown()">DE <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i></div>
+<div id="langDropdown" class="dropdown-content">
+    <a href="metadata.html">EN</a>
+    <a href="metadata_bn.html">BN</a>
+    <a href="metadata_de.html" style="color: #38bdf8;">DE</a>
+    <a href="metadata_es.html">ES</a>
+    <a href="metadata_zh.html">ZH</a>
+    <a href="metadata_ja.html">JA</a>
+</div>
+
+<script>
+function toggleDropdown() {
+    document.getElementById("langDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.lang-btn') && !event.target.closest('.lang-btn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
 <div class="cursor-light"></div>
 
 <div class="glow"></div>
@@ -192,30 +257,30 @@ p{
 
 <div class="parallax-wrap">
   <div class="card parallax-layer">
-    <h1 class="reveal">Metadata & Credits</h1>
+    <h1 class="reveal">Metadaten & Credits</h1>
 
     <div class="section reveal">
-      <p><strong>Website:</strong> Trichokro.com</p>
-      <p><strong>Founder & Creator:</strong> Rownak Shahriar Ruhan</p>
-      <p><strong>Creation Model:</strong> Human creativity × Artificial Intelligence</p>
+      <p><strong>Webseite:</strong> Trichokro.com</p>
+      <p><strong>Gründer & Schöpfer:</strong> Rownak Shahriar Ruhan</p>
+      <p><strong>Erstellungsmodell:</strong> Menschliche Kreativität × Künstliche Intelligenz</p>
     </div>
 
     <div class="section reveal">
       <p>
-        Trichokro is an experimental digital platform focused on immersive
-        interaction, energy-inspired motion, and modern web aesthetics.
+        Trichokro ist eine experimentelle digitale Plattform, die sich auf immersive
+        Interaktion, energieinspirierte Bewegung und moderne Webästhetik konzentriert.
       </p>
     </div>
 
     <div class="section reveal">
       <p>
-        The project explores the convergence of technology, intelligence,
-        and future-facing design principles.
+        Das Projekt erforscht die Konvergenz von Technologie, Intelligenz
+        und zukunftsweisenden Designprinzipien.
       </p>
     </div>
 
     <div class="signature reveal">
-      Designed & authored by Rownak Shahriar Ruhan — enhanced with AI.
+      Entworfen & verfasst von Rownak Shahriar Ruhan — erweitert mit KI.
     </div>
   </div>
 </div>

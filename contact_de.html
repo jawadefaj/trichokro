@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Contact - TriChokro</title>
+    <title>Kontakt - TriChokro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -369,26 +369,19 @@
     </a>
 
     <!-- Language Toggle -->
-    
-            <div class="fixed top-6 left-32 z-50">
-                
-    <div class="relative group z-[10002] inline-block">
-        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
-            <i class="fas fa-globe"></i> <span id="current-lang">DE</span> <i class="fas fa-chevron-down text-xs"></i>
+    <div class="fixed top-6 left-32 z-50 relative group">
+        <button class="flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
+            <span class="font-medium font-sans">DE</span>
         </button>
-        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
-    <a href="contact.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
-<a href="contact_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
-<a href="contact_de.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">DE</a>
-<a href="contact_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
-<a href="contact_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
-<a href="contact_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
-
+        <div class="absolute left-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+            <a href="contact.html?id=rownak" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+            <a href="contact_bn.html?id=rownak" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
+            <a href="contact_de.html?id=rownak" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">DE</a>
+            <a href="contact_es.html?id=rownak" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+            <a href="contact_zh.html?id=rownak" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
+            <a href="contact_ja.html?id=rownak" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
         </div>
     </div>
-    
-            </div>
-            
 
     <!-- Floating Background Objects -->
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
@@ -402,7 +395,7 @@
         <div class="card-left">
             <div class="header-initials" id="card-initials">A A M</div>
             <h1 class="profile-name" id="card-name">Rownak Shahriar Ruhan</h1>
-            <div class="profile-title" id="card-title">Founder</div>
+            <div class="profile-title" id="card-title">Gründer</div>
 
             <!-- Animated SVG Logo -->
             <div class="logo-container">
@@ -462,8 +455,8 @@
             </div>
 
             <div class="info-group">
-                <span class="info-text" id="card-dept">Dept of Mechanical Engineering</span>
-                <span class="info-text buet-highlight">Bangladesh University of<br>Engineering & Technology (BUET)</span>
+                <span class="info-text" id="card-dept">Abteilung für Maschinenbau</span>
+                <span class="info-text buet-highlight">Universität für Ingenieurwesen<br>und Technologie Bangladesch (BUET)</span>
             </div>
         </div>
     </div>
@@ -473,7 +466,7 @@
             rownak: {
                 initials: "A A M",
                 name: "Rownak Shahriar Ruhan",
-                title: "Founder & CEO",
+                title: "Gründer & CEO",
                 phone1: "+880 1714 844677",
                 phone2: "+880 1402 667477",
                 email1: "rownakshahriarruhan@gmail.com",
@@ -482,19 +475,19 @@
             abdul: {
                 initials: "Dr.",
                 name: "Abdul Jawad",
-                title: "Vehicle Adviser",
+                title: "Fahrzeugberater",
                 email1: "jawadefaj006@gmail.com",
             },
             ishraq: {
                 initials: "I R",
                 name: "Ishraq Rafid",
-                title: "Architectural Adviser",
+                title: "Architekturberater",
                 email1: "ishraq.rafid@gmail.com",
             },
             hasan: {
                 initials: "H M",
                 name: "Hasan Mahmud",
-                title: "Operation Executive",
+                title: "COO",
                 phone1: "+8801726855767",
                 phone2: "+8801867114883",
                 email1: "mhmhasanmahmud2@gmail.com",
@@ -512,7 +505,7 @@
             tomal: {
                 initials: "T K",
                 name: "Tomal Kirtonia",
-                title: "Head of Design",
+                title: "Designleiter",
                 phone1: "+880 1624762952",
                 email1: "kirttoniatomal@gmail.com",
                 email2: "2010110@me.buet.ac.bd"
@@ -529,7 +522,7 @@
             shwadhin: {
                 initials: "D S", 
                 name: "Dipto Muzumder Swadhin",
-                title: "Operation Executive",
+                title: "COO",
                 phone1: "+880 1867145642",
                 phone2: "+880 1521557920",
                 email1: "diptoswadhin0026@gmail.com",
@@ -538,7 +531,7 @@
             maxud: {
                 initials: "M R C", 
                 name: "Maxudur Rahman Chowdhury",
-                title: "Public Relation Lead",
+                title: "PR-Leiter",
                 phone1: "+880 1676 793982",
                 phone2: "",
                 email1: "m.rahman.chw@gmail.com",
@@ -547,7 +540,7 @@
             rakibul: {
                 initials: "R H S", 
                 name: "Rakibul Hasan Shanto",
-                title: "Operation Associate",
+                title: "Produktionsleiter",
                 phone1: "+880 1939134201",
                 phone2: "+880 1608783901",
                 email1: "2010125@me.buet.ac.bd",
@@ -561,12 +554,12 @@
                 phone2: "",
                 email1: "farhan.bme027@gmail.com",
                 email2: "",
-                dept: "Dept of Biomedical Engineering"
+                dept: "Abteilung für Biomedizintechnik"
             },
             ehsanSir: {
                 initials: "Dr.",
                 name: "Prof Md. Ehsan",
-                title: "Advisor & Mentor",
+                title: "Berater & Mentor",
                 phone1: "+880 1711 446564",
                 phone2: "880-2-8613046 (Fax)",
                 email1: "ehsan@me.buet.ac.bd",
