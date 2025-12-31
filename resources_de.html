@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ডাউনলোড ও রিসোর্স - ত্রিচক্র</title>
+    <title>Downloads & Resources - TriChokro</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
@@ -16,8 +16,8 @@
                         slate: { 800: '#1e293b', 900: '#0f172a', 950: '#020617' }
                     },
                     fontFamily: {
-                        sans: ['Hind Siliguri', 'Inter', 'sans-serif'],
-                        display: ['Hind Siliguri', 'Cinzel', 'serif']
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Cinzel', 'serif']
                     }
                 }
             }
@@ -32,20 +32,22 @@
 
     <nav class="py-6 border-b border-slate-800 bg-slate-950/80 backdrop-blur-md fixed w-full z-50">
         <div class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index_bn.html" class="flex items-center gap-2 group">
-                <i data-lucide="arrow-left" class="text-emerald-400 group-hover:-translate-x-1 transition-transform"></i>
-                <span class="font-bold text-white group-hover:text-emerald-400 transition-colors">হোমে ফিরে যান</span>
-            </a>
-            <div class="font-display font-bold text-xl text-white">ত্রি<span class="text-emerald-400">চক্র</span> রিসোর্স</div>
-            <a href="resources_bn.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-full text-sm font-medium transition-colors border border-slate-700">ENGLISH</a>
+            <div class="flex items-center gap-6">
+                <a href="index_de.html" class="flex items-center gap-2 group">
+                    <i data-lucide="arrow-left" class="text-emerald-400 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-bold text-white group-hover:text-emerald-400 transition-colors">Zurück zur Startseite</span>
+                </a>
+                <a href="resources_bn.html" class="px-4 py-1 bg-slate-800 hover:bg-slate-700 text-white rounded-full text-sm font-bold transition-colors">বাংলা</a>
+            </div>
+            <div class="font-display font-bold text-xl text-white">Tri<span class="text-emerald-400">Chokro</span> Resources</div>
         </div>
     </nav>
 
     <main class="flex-grow pt-32 pb-16 px-4">
         <div class="container mx-auto max-w-4xl">
             <div class="text-center mb-16">
-                <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">পাবলিক ফাইল</h1>
-                <p class="text-slate-400">অফিসিয়াল নথি, স্পেসিফিকেশন এবং কোম্পানির প্রোফাইল ডাউনলোড করুন।</p>
+                <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">Public Files</h1>
+                <p class="text-slate-400">Download official documents, specifications, and company profiles.</p>
             </div>
 
             <div class="grid gap-6">
@@ -56,12 +58,12 @@
                             <i data-lucide="file-text" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">কোম্পানি প্রোফাইল</h3>
-                            <p class="text-slate-500 text-sm">অফিসিয়াল কোম্পানি ওভারভিউ এবং ভিশন স্টেটমেন্ট।</p>
+                            <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Company Profile</h3>
+                            <p class="text-slate-500 text-sm">Official company overview and vision statement.</p>
                         </div>
                     </div>
                     <a href="src/assets/pdf/company_profile.pdf" target="_blank" class="px-6 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold rounded-full transition-colors flex items-center gap-2">
-                        ডাউনলোড <i data-lucide="download" class="w-4 h-4"></i>
+                        Download <i data-lucide="download" class="w-4 h-4"></i>
                     </a>
                 </div>
 
@@ -72,12 +74,12 @@
                             <i data-lucide="book-open" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">পণ্য ক্যাটালগ ২০২৫</h3>
-                            <p class="text-slate-500 text-sm">পাথফাইন্ডার এবং ট্রাম্বুলেন্সের বিস্তারিত স্পেসিফিকেশন।</p>
+                            <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Product Catalog 2025</h3>
+                            <p class="text-slate-500 text-sm">Detailed specifications for Pathfinder and Trambulance.</p>
                         </div>
                     </div>
                     <a href="src/assets/pdf/product_catalog.pdf" target="_blank" class="px-6 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold rounded-full transition-colors flex items-center gap-2">
-                        ডাউনলোড <i data-lucide="download" class="w-4 h-4"></i>
+                        Download <i data-lucide="download" class="w-4 h-4"></i>
                     </a>
                 </div>
             </div>
@@ -85,7 +87,7 @@
     </main>
 
     <footer class="py-8 border-t border-slate-800 text-center text-slate-500 text-sm">
-        &copy; ২০২৬ ত্রিচক্র। সর্বস্বত্ব সংরক্ষিত।
+        &copy; 2026 TriChokro. All rights reserved.
     </footer>
 
     <script>

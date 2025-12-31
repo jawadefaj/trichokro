@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Founder - TriChokro</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icons & Libraries -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- GSAP for Founder Page Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -57,14 +57,14 @@
         /* --- MAIN GLOBAL STYLES --- */
         body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
         a, button, .interactive, input, .group { cursor: pointer; }
-        
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
-        
+
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
-        
+
         /* Founder Page Specifics */
         :root {
             --bg-deep: #050a14;
@@ -75,7 +75,7 @@
 
         .text-gold { color: var(--gold-primary); }
         .text-teal { color: var(--teal-accent); }
-        
+
         #canvas-container {
             position: fixed;
             top: 0;
@@ -86,7 +86,7 @@
             pointer-events: none;
             background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
         }
-        
+
         .resume-paper {
             font-family: 'Inter', sans-serif;
             color: #1a202c;
@@ -111,7 +111,7 @@
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-gold-primary selection:text-black" style="background-color: #050a14; color: #cdd6f4;">
-    
+
         <div class="watermark-overlay"></div>
 
         <!-- Background Canvas -->
@@ -128,36 +128,36 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                     <div class="hidden md:flex items-center space-x-8">
-                        <a href="index.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">HOME<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="index.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">ABOUT US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="trambulance.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">TRAMBULANCE<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="index.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="founder.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">FOUNDERS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_es.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">INICIO<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_es.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">NOSOTROS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="trambulance_es.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">TRAMBULANCIA<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_es.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="founder_es.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">FUNDADORES<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 
-                        <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">Contacts</a>
+                        <a href="contact_es.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">Contacts</a>
 
     <div class="relative group z-[10002]">
         <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1">
-            <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down text-xs"></i>
+            <i class="fas fa-globe"></i> <span id="current-lang">ES</span> <i class="fas fa-chevron-down text-xs"></i>
         </button>
         <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
-    <a href="founder.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+    <a href="founder_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
 <a href="founder_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
 <a href="founder_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
-<a href="founder_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+<a href="founder_es.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">ES</a>
 <a href="founder_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
 <a href="founder_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
 
 
     <div class="relative group z-[10002] inline-block">
         <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
-            <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down text-xs"></i>
+            <i class="fas fa-globe"></i> <span id="current-lang">ES</span> <i class="fas fa-chevron-down text-xs"></i>
         </button>
         <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
-    <a href="founder.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+    <a href="founder.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
 <a href="founder_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
 <a href="founder_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
-<a href="founder_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+<a href="founder_es.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">ES</a>
 <a href="founder_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
 <a href="founder_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
 
@@ -173,10 +173,10 @@
             </div>
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
                 <div class="px-4 py-4 space-y-3 flex flex-col">
-                    <a href="index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
-                    <a href="index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
-                    <a href="trambulance.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</a>
-                    <a href="contact.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
+                    <a href="index_es.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">INICIO</a>
+                    <a href="index_es.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
+                    <a href="trambulance_es.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCIA</a>
+                    <a href="contact_es.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
                     <a href="founder_bn.html" class="w-full text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium block text-center">বাংলা</a>
                 </div>
             </div>
@@ -208,15 +208,15 @@
                     <h1 class="text-5xl md:text-8xl font-bold text-white tracking-tight cinzel-font animate-fade-in-up delay-100 leading-none">
                         ROWNAK <br> <span class="text-gray-500">SHAHRIAR</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-primary to-yellow-200" style="background-image: linear-gradient(to right, #d4af37, #fef08a); -webkit-background-clip: text; background-clip: text; color: transparent;">RUHAN</span>
                     </h1>
-                    
+
                     <div class="max-w-2xl border-l-2 border-gold-primary/30 pl-6 mt-8 animate-fade-in-up delay-200" style="border-color: rgba(212, 175, 55, 0.3);">
                         <p class="serif-text text-2xl md:text-3xl text-gray-300 italic leading-relaxed">
                             "Focused in Automobile Engineering | NEV | Manufacturing through <span class="text-white not-italic font-semibold">innovation</span> and <span class="text-white not-italic font-semibold">entrepreneurship</span>."
                         </p>
                     </div>
-                    
+
                     <p class="mt-6 max-w-xl text-muted text-lg leading-relaxed animate-fade-in-up delay-300 font-light" style="color: #94a3b8;">
-                        Founder of <strong class="text-teal" style="color: #2dd4bf;">TriChokro</strong>. Mechanical Engineering Student at BUET. 
+                        Founder of <strong class="text-teal" style="color: #2dd4bf;">TriChokro</strong>. Mechanical Engineering Student at BUET.
                         Merging mechanical knowledge with business strategy to revolutionize mobility Sector. Aims to established A-Z locally produced first car industry in Bangladesh.
                     </p>
 
@@ -245,7 +245,7 @@
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
+
                     <!-- Venture 1 -->
                     <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
                         <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -356,13 +356,13 @@
 
                 <!-- Resume Paper Container -->
                 <div class="resume-paper max-w-[210mm] min-h-0 bg-white text-slate-800 shadow-2xl overflow-hidden mx-auto relative">
-                    
+
                     <!-- START OF RESUME CONTENT -->
                     <div class="flex flex-col md:flex-row h-full">
 
                         <!-- Sidebar (Dark) -->
                         <div class="w-full md:w-[35%] bg-[#1a202c] text-white p-8 flex flex-col">
-                            
+
                             <!-- Header -->
                             <div class="mb-10">
                                 <h1 class="text-3xl font-bold leading-none mb-3 font-sans uppercase tracking-tight">Rownak<br>Shahriar<br>Ruhan</h1>
@@ -382,7 +382,7 @@
                             <!-- Education -->
                             <div class="mb-10">
                                 <h3 class="text-blue-400 font-bold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2 text-sm">Education 🎓</h3>
-                                
+
                                 <div class="mb-6">
                                     <h4 class="font-bold text-white">B.Sc. in Mechanical Engineering</h4>
                                     <p class="text-gray-300 text-sm">BUET (2021-2026)</p>
@@ -430,7 +430,7 @@
 
                         <!-- Main Content (Light) -->
                         <div class="w-full md:w-[65%] p-8 md:p-12 text-gray-800 bg-white">
-                            
+
                             <!-- Profile Summary -->
                             <div class="mb-10">
                                 <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Profile 👤</h2>
@@ -442,7 +442,7 @@
                             <!-- Achievements -->
                             <div class="mb-10">
                                 <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Achievements 🏆</h2>
-                                
+
                                 <div class="mb-6">
                                     <div class="flex justify-between items-baseline">
                                         <h3 class="font-bold text-gray-800">National Champion | SofE</h3>
@@ -489,7 +489,7 @@
                             <!-- Work Experience -->
                             <div class="mb-10">
                                 <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Work Experience</h2>
-                                
+
                                 <div class="grid grid-cols-1 gap-4">
                                     <div class="border-l-4 border-gray-200 pl-4">
                                         <div class="flex justify-between">
@@ -600,9 +600,9 @@
             const ctx = canvas.getContext('2d');
             let width, height;
             let particles = [];
-            
+
             // Config: Slower, more elegant
-            const particleCount = 40; 
+            const particleCount = 40;
             const connectionDistance = 200;
             const mouseDistance = 250;
 
@@ -621,15 +621,15 @@
                     this.vy = (Math.random() - 0.5) * 0.2;
                     this.size = Math.random() * 1.5 + 0.5; // Smaller stars
                 }
-                
+
                 update() {
                     this.x += this.vx;
                     this.y += this.vy;
-                    
+
                     if (this.x < 0 || this.x > width) this.vx *= -1;
                     if (this.y < 0 || this.y > height) this.vy *= -1;
                 }
-                
+
                 draw() {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -650,17 +650,17 @@
 
             function animate() {
                 ctx.clearRect(0, 0, width, height);
-                
+
                 particles.forEach((p, index) => {
                     p.update();
                     p.draw();
-                    
+
                     for (let j = index; j < particles.length; j++) {
                         const p2 = particles[j];
                         const dx = p.x - p2.x;
                         const dy = p.y - p2.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        
+
                         if (distance < connectionDistance) {
                             ctx.beginPath();
                             ctx.strokeStyle = `rgba(170, 140, 44, ${0.15 * (1 - distance / connectionDistance)})`; // Subtle gold lines
@@ -675,7 +675,7 @@
                         const dx = p.x - mouse.x;
                         const dy = p.y - mouse.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        
+
                         if (distance < mouseDistance) {
                             ctx.beginPath();
                             ctx.strokeStyle = `rgba(45, 212, 191, ${0.1 * (1 - distance / mouseDistance)})`; // Teal interaction
@@ -686,7 +686,7 @@
                         }
                     }
                 });
-                
+
                 requestAnimationFrame(animate);
             }
             animate();
@@ -697,15 +697,15 @@
              initParticleCanvas();
         });
     </script>
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
-    <script> 
-        document.addEventListener("mousemove", e => { 
-            const gradient = document.getElementById("cursor-gradient"); 
-            if(gradient) { 
-                gradient.style.setProperty("--x", e.clientX + "px"); 
-                gradient.style.setProperty("--y", e.clientY + "px"); 
-            } 
-        }); 
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div>
+    <script>
+        document.addEventListener("mousemove", e => {
+            const gradient = document.getElementById("cursor-gradient");
+            if(gradient) {
+                gradient.style.setProperty("--x", e.clientX + "px");
+                gradient.style.setProperty("--y", e.clientY + "px");
+            }
+        });
     </script>
 </body>
 </html>

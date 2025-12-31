@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trambulance - TriChokro</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icons & Libraries -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -51,9 +51,9 @@
 
     <style>
         /* --- MAIN GLOBAL STYLES --- */
-        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
+        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Noto Sans JP', system-ui, sans-serif; }
         a, button, .interactive, input, .group { cursor: pointer; }
-        
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
@@ -65,11 +65,11 @@
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes neon-pulse { 0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); } 50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; } }
-        
+
         /* New Animations for Trambulance Page */
         @keyframes blob { 0% { transform: translate(0px, 0px) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } 100% { transform: translate(0px, 0px) scale(1); } }
         @keyframes pulse-slow { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.05); } }
-        
+
         .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
         .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
         .animate-spin-slow { animation: spin-slow 8s linear infinite; }
@@ -81,6 +81,7 @@
         .btn-deep-gradient { background-image: linear-gradient(to right, #065f46, #34d399); transition: all 0.3s ease; }
         .btn-deep-gradient:hover { background-image: linear-gradient(to right, #047857, #6ee7b7); }
     </style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="min-h-screen bg-slate-950 font-sans text-slate-100 overflow-x-hidden selection:bg-purple-500 selection:text-white">
 
@@ -104,39 +105,39 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                     <div class="hidden md:flex items-center space-x-8">
-                        <a href="index.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">HOME<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="index.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">PRODUCT MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="trambulance.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">TRAMBULANCE<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="index.html#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">USP<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="index.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">NOTICE BOARD<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="index.html#contact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.6s">ABOUT US<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_ja.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">ホーム<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_ja.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">PRODUCT MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="trambulance_ja.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">トランビュランス<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_ja.html#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">USP<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_ja.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">NOTICE BOARD<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_ja.html#contact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.6s">私たちについて<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
                         <a href="trambulance_bn.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.65s">বাংলা<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-                        <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.7s">Contact</a>
+                        <a href="contact_ja.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.7s">Contact</a>
 
     <div class="relative group z-[10002]">
         <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1">
-            <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down text-xs"></i>
+            <i class="fas fa-globe"></i> <span id="current-lang">JA</span> <i class="fas fa-chevron-down text-xs"></i>
         </button>
         <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
-    <a href="trambulance.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+    <a href="trambulance_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
 <a href="trambulance_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
 <a href="trambulance_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
 <a href="trambulance_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
 <a href="trambulance_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
-<a href="trambulance_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
+<a href="trambulance_ja.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">JA</a>
 
 
     <div class="relative group z-[10002] inline-block">
         <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
-            <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down text-xs"></i>
+            <i class="fas fa-globe"></i> <span id="current-lang">JA</span> <i class="fas fa-chevron-down text-xs"></i>
         </button>
         <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
-    <a href="trambulance.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+    <a href="trambulance.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
 <a href="trambulance_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
 <a href="trambulance_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
 <a href="trambulance_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
 <a href="trambulance_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
-<a href="trambulance_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
+<a href="trambulance_ja.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">JA</a>
 
         </div>
     </div>
@@ -150,10 +151,10 @@
             </div>
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
                 <div class="px-4 py-4 space-y-3 flex flex-col">
-                    <a href="index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
-                    <a href="index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
-                    <a href="trambulance.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</a>
-                    <a href="contact.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
+                    <a href="index_ja.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ホーム</a>
+                    <a href="index_ja.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCT MODELS</a>
+                    <a href="trambulance_ja.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">トランビュランス</a>
+                    <a href="contact_ja.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
                     <a href="trambulance_bn.html" class="w-full text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium block text-center">বাংলা</a>
                 </div>
             </div>
@@ -215,7 +216,7 @@
                     <path d="M180,240 L550,240 L550,260 L180,260 Z" fill="#1e293b" />
                     <rect x="180" y="240" width="370" height="20" fill="#cbd5e1" />
                     <rect x="180" y="255" width="370" height="5" fill="#ef4444" class="animate-pulse" />
-                    <text x="450" y="235" font-family="Arial" font-weight="bold" font-size="16" fill="#7f1d1d" text-anchor="middle" letter-spacing="1">TRAMBULANCE</text>
+                    <text x="450" y="235" font-family="Arial" font-weight="bold" font-size="16" fill="#7f1d1d" text-anchor="middle" letter-spacing="1">トランビュランス</text>
                     <g class="group-hover:-translate-y-1 transition-transform duration-500">
                         <path d="M220,130 L250,240 L220,240 Z" fill="url(#hoodGrad)" stroke="#94a3b8" />
                         <path d="M250,130 L280,240 L250,240 Z" fill="#e2e8f0" stroke="#94a3b8" />
@@ -242,7 +243,7 @@
                     <line x1="100" y1="260" x2="115" y2="200" stroke="#0f172a" stroke-width="4" />
                     <g class="origin-[340px_260px] animate-spin-slow">
                         <circle cx="340" cy="260" r="32" fill="#0f172a" stroke="#334155" stroke-width="2" />
-                        <circle cx="340" cy="260" r="20" fill="#eab308" stroke="#ca8a04" stroke-width="6" /> 
+                        <circle cx="340" cy="260" r="20" fill="#eab308" stroke="#ca8a04" stroke-width="6" />
                         <path d="M340,260 L340,228" stroke="#0f172a" stroke-width="2"/>
                         <path d="M340,260 L368,274" stroke="#0f172a" stroke-width="2"/>
                         <path d="M340,260 L312,274" stroke="#0f172a" stroke-width="2"/>
@@ -257,10 +258,10 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div>
-                        <h2 class="text-sm font-bold text-red-400 uppercase tracking-widest mb-2">The Crisis</h2>
+                        <h2 class="text-sm font-bold text-red-400 uppercase tracking-widest mb-2">危機</h2>
                         <h3 class="text-4xl md:text-5xl font-bold mb-6">Why current ambulances <br/><span class="text-slate-500">fail us.</span></h3>
                         <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-                            In Puran Dhaka, traffic paralyzes large vans. In rural areas, muddy roads are impassable. 
+                            In Puran Dhaka, traffic paralyzes large vans. In rural areas, muddy roads are impassable.
                             Traditional ambulances cost <span class="text-white font-bold">4-5 Million BDT</span> and are often unavailable.
                         </p>
                         <div class="space-y-4">
@@ -351,7 +352,7 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
                     <div>
-                        <h2 class="text-sm font-bold text-purple-400 uppercase tracking-widest mb-2">Engineering Excellence</h2>
+                        <h2 class="text-sm font-bold text-purple-400 uppercase tracking-widest mb-2">卓越した技術</h2>
                         <h3 class="text-4xl font-bold">Built for Durability & Safety</h3>
                     </div>
                     <p class="text-slate-400 text-sm max-w-md text-right">
@@ -465,15 +466,15 @@
     <script>
         lucide.createIcons();
     </script>
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
-    <script> 
-        document.addEventListener("mousemove", e => { 
-            const gradient = document.getElementById("cursor-gradient"); 
-            if(gradient) { 
-                gradient.style.setProperty("--x", e.clientX + "px"); 
-                gradient.style.setProperty("--y", e.clientY + "px"); 
-            } 
-        }); 
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div>
+    <script>
+        document.addEventListener("mousemove", e => {
+            const gradient = document.getElementById("cursor-gradient");
+            if(gradient) {
+                gradient.style.setProperty("--x", e.clientX + "px");
+                gradient.style.setProperty("--y", e.clientY + "px");
+            }
+        });
     </script>
 </body>
 </html>
