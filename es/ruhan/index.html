@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founder - TriChokro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons & Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP for Founder Page Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a192f',       // Deep Navy for Pathfinder
+                            light: '#112240',      // Lighter Navy
+                            lighter: '#233554',    // Even lighter
+                            green: '#64ffda',      // Neon Green accent
+                            greenDim: 'rgba(100, 255, 218, 0.1)',
+                            text: '#ccd6f6',       // Light gray text
+                            heading: '#e6f1ff',    // White heading text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Roboto', 'sans-serif'],
+                        display: ['Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 15s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- MAIN GLOBAL STYLES --- */
+        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
+        a, button, .interactive, input, .group { cursor: pointer; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
+        
+        /* Founder Page Specifics */
+        :root {
+            --bg-deep: #050a14;
+            --gold-primary: #d4af37;
+            --gold-muted: #aa8c2c;
+            --teal-accent: #2dd4bf;
+        }
+
+        .text-gold { color: var(--gold-primary); }
+        .text-teal { color: var(--teal-accent); }
+        
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        }
+        
+        .resume-paper {
+            font-family: 'Inter', sans-serif;
+            color: #1a202c;
+            background-color: #ffffff;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Glassmorphism for Pathfinder Subpage Cards */
+        .glass-card {
+            background: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card:hover {
+            border-color: #64ffda;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+        }
+
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('../../src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+    </style>
+<style>:root { --accent-color: #FFC400; }</style>
+</head>
+<body class="font-sans antialiased selection:bg-gold-primary selection:text-black" style="background-color: #050a14; color: #cdd6f4;">
+    
+        <div class="watermark-overlay"></div>
+
+        <!-- Background Canvas -->
+        <div id="canvas-container">
+            <canvas id="neural-canvas"></canvas>
+        </div>
+
+        <!-- Unified Nav -->
+        <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-[#050a14]/90 backdrop-blur-lg border-b border-white/5 py-3">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+                        <img src="../../src/assets/logo_new.png" alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]">
+                        <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="../home/index.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">INICIO<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="../home/index.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">NOSOTROS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="../trambulance/index.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">TRAMBULANCIA<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="../home/index.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">MODELS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="../ruhan/index.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">FUNDADORES<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        
+                        <a href="../contact/index.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">Contacts</a>
+                    
+    <div class="relative group z-[10002]">
+        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1">
+            <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+    <a href="../ruhan/index.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+
+
+
+
+
+
+        
+    <div class="relative group z-[10002] inline-block">
+        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
+            <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+    <a href="../ruhan/index.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+
+
+
+
+
+
+        
+    <div class="relative group z-[10002] inline-block">
+        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
+            <i class="fas fa-globe"></i> <span>ES</span> <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+    <a href="../../en/ruhan/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+<a href="../../bn/ruhan/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
+<a href="../../de/ruhan/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
+<a href="../../es/ruhan/index.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+<a href="../../zh/ruhan/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
+<a href="../../ja/ruhan/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
+</div></div></div>
+    </div>
+    </div>
+    </div>
+    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
+                <div class="px-4 py-4 space-y-3 flex flex-col">
+                    <a href="../home/index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">INICIO</a>
+                    <a href="../home/index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">MODELOS DE PRODUCTOS</a>
+                    <a href="../trambulance/index.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCIA</a>
+                    <a href="../contact/index.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">Contact</a>
+                    <a href="founder_bn.html" class="w-full text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium block text-center">বাংলা</a>
+                </div>
+            </div>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(menuBtn && mobileMenu) {
+                    let isMenuOpen = false;
+                    menuBtn.addEventListener('click', () => {
+                        isMenuOpen = !isMenuOpen;
+                        if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
+                        else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
+                    });
+                }
+            });
+        </script>
+
+        <!-- Hero Section -->
+        <section id="founder-about" class="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-gold-primary/5 rounded-full blur-3xl" style="background-color: rgba(212, 175, 55, 0.05);"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal-accent/5 rounded-full blur-3xl" style="background-color: rgba(45, 212, 191, 0.05);"></div>
+
+            <div class="max-w-5xl w-full z-10">
+                <div class="space-y-6">
+                    <p class="text-teal cinzel-font tracking-[0.2em] text-sm animate-fade-in-up" style="color: #2dd4bf;">Portafolio Profesional de</p>
+                    <h1 class="text-5xl md:text-8xl font-bold text-white tracking-tight cinzel-font animate-fade-in-up delay-100 leading-none">
+                        ROWNAK <br> <span class="text-gray-500">SHAHRIAR</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-primary to-yellow-200" style="background-image: linear-gradient(to right, #d4af37, #fef08a); -webkit-background-clip: text; background-clip: text; color: transparent;">RUHAN</span>
+                    </h1>
+                    
+                    <div class="max-w-2xl border-l-2 border-gold-primary/30 pl-6 mt-8 animate-fade-in-up delay-200" style="border-color: rgba(212, 175, 55, 0.3);">
+                        <p class="serif-text text-2xl md:text-3xl text-gray-300 italic leading-relaxed">
+                            "Focused in Automobile Engineering | NEV | Manufactura through <span class="text-white not-italic font-semibold">innovation</span> and <span class="text-white not-italic font-semibold">entrepreneurship</span>."
+                        </p>
+                    </div>
+                    
+                    <p class="mt-6 max-w-xl text-muted text-lg leading-relaxed animate-fade-in-up delay-300 font-light" style="color: #94a3b8;">
+                        Founder of <strong class="text-teal" style="color: #2dd4bf;">TriChokro</strong>. Mechanical Engineering Student at BUET. 
+                        Merging mechanical knowledge with business strategy to revolutionize mobility Sector. Aims to established A-Z locally produced first car industry in Bangladesh.
+                    </p>
+
+                    <div class="pt-10 flex gap-6 animate-fade-in-up delay-400">
+                        <a href="#cv" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-none border border-gold-primary text-gold-primary font-cinzel font-bold tracking-widest hover:text-black transition-colors" style="border-color: #d4af37; color: #d4af37;">
+                            <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-gold-primary rounded-full group-hover:w-96 group-hover:h-96 -ml-2 -mt-2" style="background-color: #d4af37;"></span>
+                            <span class="relative">Ver Currículum</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors px-4 py-3">
+                            <i class="fab fa-linkedin text-xl"></i> <span class="cinzel-font text-sm">LinkedIn</span>
+                        </a>
+                         <a href="https://www.facebook.com/rownakshahriarruhan">
+                            <i class="fab fa-facebook text-xl"></i> <span class="cinzel-font text-sm">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Ventures (Combined for flow) -->
+        <section id="founder-experience" class="py-24 px-6 relative">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="section-heading text-3xl md:text-4xl font-bold text-white cinzel-font flex items-center mb-12">
+                    <span class="text-gold mr-3" style="color: #d4af37;">01.</span> Experiencia Profesional
+                    <span class="flex-1 h-px bg-gradient-to-r from-gold-primary to-transparent ml-6 opacity-50" style="background: linear-gradient(90deg, #d4af37, transparent);"></span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Venture 1 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-bolt text-9xl text-gold" style="color: #d4af37;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">2025 - Present</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">TriChokro ⚡</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">Fundador y CEO</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Leading a government-funded startup to manufacture electric Easy Bikes, Tri-wheeler. It is a registered R&D company based in Dhaka and Birampur, Dinajpur. Spearheading the R&D of the "Trambulance" and securing seed funding and recognition through the UIHP cohort and SofE championship.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">Liderazgo de Startup</span>
+                            <span class="border border-white/10 px-2 py-1">Diseño de VE</span>
+                            <span class="border border-white/10 px-2 py-1">Financiado por el Gobierno</span>
+                        </div>
+                    </div>
+
+                    <!-- Venture 2 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-industry text-9xl text-teal" style="color: #2dd4bf;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">Nov 2025 - Presente</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">BYD Bangladesh 🚗</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">Pasante de 1 mes</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Immersed in the operations of a global EV giant. Focusing on technical aspects, manufacturing optimization, supply chain logistics, and business strategy within the Bangladesh market.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">Cadena de Suministro</span>
+                            <span class="border border-white/10 px-2 py-1">Manufactura</span>
+                            <span class="border border-white/10 px-2 py-1">NEV Technology</span>
+                        </div>
+                    </div>
+                    <!-- Venture 3 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-industry text-9xl text-teal" style="color: #2dd4bf;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">Nov 2025 - Presente</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">Baterías y Acumuladores Rahim Afrooz 🚗</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">Pasantía Académica</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Deep market understanding drives their product decisions and long‑term dominance in Bangladesh's Battery Sectors. Learned Lead Acid Tecnología de Baterías and Advancement of Bangladesh'in this sector.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">Cadena de Suministro</span>
+                            <span class="border border-white/10 px-2 py-1">Tecnología de Baterías</span>
+                            <span class="border border-white/10 px-2 py-1">Procedimiento de Mantenimiento</span>
+                        </div>
+                    </div>
+
+
+                    <!-- Venture 3 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-camera-retro text-9xl text-purple-400"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">2021 - Presente</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">Ronograph 📷</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">Fundador y Fotógrafo Principal</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Founded a creative agency delivering high-end unique photography solution in Dhaka, Bangladesh. Mentored 400+ students in visual arts and post-processing techniques in BUET.
+                        </p>
+                    </div>
+
+                    <!-- Venture 4 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-globe-asia text-9xl text-blue-400"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">2016 - Presente</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">Wikimedia BD 🌐</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">Miembro Ejecutivo, Revisor</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Contributing to the open knowledge movement as a Reviewer, Rollbacker, and Jury member of several events for Bangla & English Wikipedia.
+                        </p>
+                    </div>
+<!-- Venture 3 -->
+                    <div class="glass-card p-8 relative overflow-hidden group gs-reveal" style="background: rgba(12, 20, 35, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15);">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-industry text-9xl text-teal" style="color: #2dd4bf;"></i>
+                        </div>
+                        <span class="text-teal cinzel-font text-xs tracking-widest" style="color: #2dd4bf;">Nov 2025 - Presente</span>
+                        <h3 class="text-2xl font-bold text-white mt-2 mb-1">Ankur International</h3>
+                        <p class="text-gold text-sm uppercase tracking-wide mb-6" style="color: #d4af37;">Project Director and Member</p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Ankur International was established on March 28, 2007, with a mission to support destitute children and mothers, both locally and internationally. Headquartered in Portland, Oregon, the organization operates centrally without external branch offices. In collaboration with BUET students, Ankur International has conducted numerous humanitarian initiatives, including winter blanket distributions, food programs for the hungry in Dhaka, and providing tools to support low-income workers.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-gold-muted" style="color: #aa8c2c;">
+                            <span class="border border-white/10 px-2 py-1">Cadena de Suministro</span>
+                            <span class="border border-white/10 px-2 py-1">Tecnología de Baterías</span>
+                            <span class="border border-white/10 px-2 py-1">Procedimiento de Mantenimiento</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full CV Section -->
+        <section id="cv" class="py-24 px-4 bg-resume-bg resume-bg" style="background-color: #1e293b; background-image: radial-gradient(#334155 1px, transparent 1px); background-size: 20px 20px;">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white cinzel-font mb-4">Currículum Vitae 📜</h2>
+                    <p class="text-gray-400 serif-text text-xl italic">Un vistazo a su historia profesional</p>
+                </div>
+
+                <!-- Resume Paper Container -->
+                <div class="resume-paper max-w-[210mm] min-h-0 bg-white text-slate-800 shadow-2xl overflow-hidden mx-auto relative">
+                    
+                    <!-- START OF RESUME CONTENT -->
+                    <div class="flex flex-col md:flex-row h-full">
+
+                        <!-- Sidebar (Dark) -->
+                        <div class="w-full md:w-[35%] bg-[#1a202c] text-white p-8 flex flex-col">
+                            
+                            <!-- Header -->
+                            <div class="mb-10">
+                                <h1 class="text-3xl font-bold leading-none mb-3 font-sans uppercase tracking-tight">Rownak<br>Shahriar<br>Ruhan</h1>
+                                <p class="text-blue-400 font-medium text-sm">Estudiante de Ingeniería Mecánica (BUET)</p>
+                                <p class="text-gray-400 text-xs mt-1">Especialidad en Ingeniería Automotriz</p>
+                                <p class="text-gray-400 text-xs italic">Founder, TriChokro</p>
+                            </div>
+
+                            <!-- Contact -->
+                            <div class="mb-10 text-sm space-y-3 font-light">
+                                <div class="flex items-center"><i class="fas fa-phone w-6 text-blue-400"></i> +880 1714 844677</div>
+                                <div class="flex items-center"><i class="fas fa-envelope w-6 text-blue-400"></i> rownakshahriarruhan@gmail.com</div>
+                                <div class="flex items-start"><i class="fas fa-map-marker-alt w-6 mt-1 text-blue-400"></i> Kazi Nazrul Islam Hall, BUET, Dhaka-1000</div>
+                                <div class="flex items-center"><i class="fas fa-globe w-6 text-blue-400"></i> www.trichokro.com</div>
+                            </div>
+
+                            <!-- Education -->
+                            <div class="mb-10">
+                                <h3 class="text-blue-400 font-bold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2 text-sm">Educación 🎓</h3>
+                                
+                                <div class="mb-6">
+                                    <h4 class="font-bold text-white">Licenciatura en Ingeniería Mecánica</h4>
+                                    <p class="text-gray-300 text-sm">BUET (2021-2026)</p>
+                                    <p class="text-xs text-gray-400">4º Año, Último Semestre</p>
+                                </div>
+
+                                <div class="mb-6">
+                                    <h4 class="font-bold text-white">Certificado de Secundaria Superior</h4>
+                                    <p class="text-gray-300 text-sm">Notre Dame College (2018-2020)</p>
+                                    <p class="text-xs text-gray-400">GPA-5 con Beca</p>
+                                    <p class="text-xs text-gray-500">Grupo de Ciencias-1</p>
+                                </div>
+
+                                <div class="mb-6">
+                                    <h4 class="font-bold text-white">Certificado de Escuela Secundaria</h4>
+                                    <p class="text-gray-300 text-sm">Adarsha High School (2013-2018)</p>
+                                    <p class="text-xs text-gray-400">GPA-5, Beca Talentpool</p>
+                                    <p class="text-xs text-gray-500">Estudiante del Año 2014</p>
+                                </div>
+                            </div>
+
+                            <!-- Skills -->
+                            <div class="mb-10">
+                                <h3 class="text-blue-400 font-bold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2 text-sm">Habilidades de Software 💻</h3>
+                                <ul class="text-sm space-y-2 font-light">
+                                    <li class="flex justify-between"><span>SolidWorks</span> <span class="text-blue-400">●●●○</span></li>
+                                    <li class="flex justify-between"><span>Ansys</span> <span class="text-blue-400">●●●○</span></li>
+                                    <li class="flex justify-between"><span>MATLAB</span> <span class="text-blue-400">●●○○</span></li>
+                                    <li class="flex justify-between"><span>Adobe Suite</span> <span class="text-blue-400">●●●○</span></li>
+                                    <li class="flex justify-between"><span>MS Office</span> <span class="text-blue-400">●●●●</span></li>
+                                </ul>
+                            </div>
+
+                            <!-- Soft Skills -->
+                             <div class="mb-10">
+                                <h3 class="text-blue-400 font-bold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2 text-sm">Experiencia 🛠️</h3>
+                                <ul class="text-sm space-y-2 list-disc list-inside text-gray-300">
+                                    <li>Fabricación de Hardware</li>
+                                    <li>Optimización de Producción</li>
+                                    <li>Análisis de Negocios</li>
+                                    <li>Automobile Engineering</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Main Content (Light) -->
+                        <div class="w-full md:w-[65%] p-8 md:p-12 text-gray-800 bg-white">
+                            
+                            <!-- Profile Summary -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Perfil 👤</h2>
+                                <p class="text-sm leading-relaxed text-justify text-gray-600">
+                                    Expertise in vehicle design, structural analysis of chassis, and NEV operational efficiency. Experienced innovator with award-winning projects, including 'Trambulance' (National Champion, International Competition of Speak out for Engineers (SofE) by International Organization of Mechanical Engineers (IMechE)) and 'TriChokro' (UIHP-BUET-RISE Cohort Champion, secured seed funding, led commercial roadmap to production). Passionate about applying technical skills and proven project success to advance sustainable mobility at BYD.
+                                </p>
+                            </div>
+
+                            <!-- Achievements -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Logros 🏆</h2>
+                                
+                                <div class="mb-6">
+                                    <div class="flex justify-between items-baseline">
+                                        <h3 class="font-bold text-gray-800">Campeón Nacional | SofE</h3>
+                                        <span class="text-xs font-bold text-blue-600">Nov 2025</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mb-2 italic">Speak Out for Engineers (IMechE)</p>
+                                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                        <li>Proyecto Trambulance: Innovación de una ambulancia eléctrica de tres ruedas, diseñada eficientemente y asequible.</li>
+                                        <li>Realizó diseño 3D en SolidWorks/SketchUp con simulaciones aerodinámicas y de carga en Ansys.</li>
+                                        <li>El chasis innovador y el sistema de capota inspirado en Origami aerodinámico obtuvieron reconocimiento.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-6">
+                                    <div class="flex justify-between items-baseline">
+                                        <h3 class="font-bold text-gray-800">Campeón BUET | UIHP</h3>
+                                        <span class="text-xs font-bold text-blue-600">Julio 2025</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mb-2 italic">Programa de Centro de Innovación Universitaria (División TIC)</p>
+                                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                        <li>Proyecto TriChokro: Desarrolló un modelo de Auto-Rickshaw mejorado y asequible. Inspirado en el Proyecto Easy Bike BUET-BPERC del Prof. Ehsan.</li>
+                                        <li>Prototipo construido; acuerdo de producción en masa en progreso con la ayuda de Metrocem Automobile.</li>
+                                        <li>Financiación asegurada de exalumnos e inversores de BUET.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Entrepreneurial -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Experiencia Emprendedora 💼</h2>
+                                <div class="mb-4">
+                                    <div class="flex justify-between items-baseline">
+                                        <h3 class="font-bold text-gray-800">TriChokro</h3>
+                                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Fundador y CEO</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mb-2">Startup de Manufactura Registrada (BIDA y Licencia Gubernamental)</p>
+                                    <p class="text-sm text-gray-600">
+                                        Founded under guidance of Prof. Md. Ehsan. Leading an 8-member team including Ph.D. holders. Successfully obtained Trade License.
+                                        <br><span class="text-xs italic mt-1 block">Colaboradores: Prof. Md. Ehsan (BUET), Abdul Jawad (PhD, UCSC), Ishraq Rafid (MS, Alemania).</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Work Experience -->
+                            <div class="mb-10">
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Experiencia Laboral</h2>
+                                
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-bold text-gray-800 text-sm">BYD Bangladesh</h4>
+                                            <span class="text-xs text-gray-500">2021, 2023</span>
+                                        </div>
+                                        <p class="text-xs text-blue-600">Formación Industrial</p>
+                                        <p class="text-sm text-gray-600 mt-1">1 mes de capacitación en Manufactura, Negocios y Cadena de Suministro.</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">Batería Rahim Afrooz</h4>
+                                        <p class="text-xs text-blue-600">Pasantía Académica</p>
+                                        <p class="text-sm text-gray-600 mt-1">Fabricación y Mantenimiento de Baterías.</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-bold text-gray-800 text-sm">Wikimedia Bangladesh</h4>
+                                            <span class="text-xs text-gray-500">2016-Present</span>
+                                        </div>
+                                        <p class="text-xs text-blue-600">Miembro Ejecutivo</p>
+                                        <p class="text-sm text-gray-600 mt-1">Revisor, Reversor, Jurado para Wikipedia en Bangla/Inglés.</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">Ronograph</h4>
+                                        <p class="text-xs text-blue-600">Fundador y Fotógrafo Principal</p>
+                                        <p class="text-sm text-gray-600 mt-1">Agencia fotográfica e instrucción (2024).</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">Ankur International</h4>
+                                        <p class="text-xs text-blue-600">Secretario de Publicidad y Jefe de Proyecto</p>
+                                    </div>
+
+                                    <div class="border-l-4 border-gray-200 pl-4">
+                                        <h4 class="font-bold text-gray-800 text-sm">Prohoranto</h4>
+                                        <p class="text-xs text-blue-600">Chief Editor & Strategist</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <!-- References -->
+                             <div>
+                                <h2 class="text-xl font-bold uppercase tracking-wide text-gray-800 border-b-2 border-blue-600 pb-2 mb-4">Referencias 🤝</h2>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <p class="font-bold text-gray-800">Dr. Md. Ehsan</p>
+                                        <p class="text-xs text-gray-500">Profesor, Departamento de Ingeniería Mecánica, BUET</p>
+                                        <p class="text-xs text-blue-600">ehsan@me.buet.ac.bd</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Dr. Abdul Jawad</p>
+                                        <p class="text-xs text-gray-500">PhD, UC Santa Cruz</p>
+                                        <p class="text-xs text-blue-600">abjawad@ucsc.edu</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Dr. Shahereen Chowdhury</p>
+                                        <p class="text-xs text-gray-500">Profesor Asociado, Departamento de Ingeniería Mecánica, BUET</p>
+                                        <p class="text-xs text-blue-600">shahereen@me.buet.ac.bd</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END OF RESUME CONTENT -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <span class="cinzel-font text-2xl font-bold text-white block mb-6">RS Ruhan<span class="text-gold" style="color: #d4af37;">.</span></span>
+                <div class="flex justify-center gap-8 mb-8">
+                    <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="text-gray-500 hover:text-gold transition-colors text-xl" style="color: #d4af37;"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" class="text-gray-500 hover:text-gold transition-colors text-xl" style="color: #d4af37;"><i class="fab fa-facebook"></i></a>
+                    <a href="mailto:rownakshahriarruhan@gmail.com" class="text-gray-500 hover:text-gold transition-colors text-xl" style="color: #d4af37;"><i class="fas fa-envelope"></i></a>
+                </div>
+                <p class="text-gray-600 text-sm font-light tracking-wide">&copy; 2026, Rownak Shahriar Ruhan. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    <script>
+        // FOUNDER PAGE ANIMATIONS (Initializes only when view opens)
+        function initFounderAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.gs-reveal').forEach(elem => {
+                gsap.from(elem, {
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+        }
+
+        // PARTICLE CANVAS LOGIC FOR FOUNDER PAGE
+        function initParticleCanvas() {
+            const canvas = document.getElementById('neural-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            
+            // Config: Slower, more elegant
+            const particleCount = 40; 
+            const connectionDistance = 200;
+            const mouseDistance = 250;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.2; // Slower speed
+                    this.vy = (Math.random() - 0.5) * 0.2;
+                    this.size = Math.random() * 1.5 + 0.5; // Smaller stars
+                }
+                
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = '#aa8c2c'; // Gold dust
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            let mouse = { x: null, y: null };
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.x;
+                mouse.y = e.y;
+            });
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                
+                particles.forEach((p, index) => {
+                    p.update();
+                    p.draw();
+                    
+                    for (let j = index; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < connectionDistance) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(170, 140, 44, ${0.15 * (1 - distance / connectionDistance)})`; // Subtle gold lines
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+
+                    if (mouse.x != null) {
+                        const dx = p.x - mouse.x;
+                        const dy = p.y - mouse.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < mouseDistance) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(45, 212, 191, ${0.1 * (1 - distance / mouseDistance)})`; // Teal interaction
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+             initFounderAnimations();
+             initParticleCanvas();
+        });
+    </script>
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
+    <script> 
+        document.addEventListener("mousemove", e => { 
+            const gradient = document.getElementById("cursor-gradient"); 
+            if(gradient) { 
+                gradient.style.setProperty("--x", e.clientX + "px"); 
+                gradient.style.setProperty("--y", e.clientY + "px"); 
+            } 
+        }); 
+    </script>
+</body>
+</html>

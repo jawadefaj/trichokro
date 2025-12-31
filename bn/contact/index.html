@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Contact - TriChokro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Icons & Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* CONTACT CARD STYLES */
+        :root {
+            --card-text-white: #ffffff;
+            --card-text-dark: #333333;
+            --card-font-main: 'Hind Siliguri', 'Poppins', sans-serif;
+            --card-font-serif: 'Hind Siliguri', 'Playfair Display', serif;
+            --card-accent-color: #8da356;
+        }
+
+        body {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: var(--card-font-main);
+            overflow-x: hidden;
+            perspective: 1000px;
+            touch-action: manipulation;
+        }
+
+        .contact-card-container {
+            display: flex;
+            flex-direction: row;
+            background-color: white;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 480px;
+            opacity: 0;
+            animation: cardEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, floatCard 6s ease-in-out infinite 1s;
+            position: relative;
+        }
+
+        .card-left {
+            background: linear-gradient(-45deg, #0f2013, #1a3c22, #0d2e18, #264d2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--card-text-white);
+            flex: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .card-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            animation: slowRotate 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .card-left > * { z-index: 1; }
+
+        .header-initials {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.8);
+            animation: fadeInDown 0.8s ease-out 0.2s backwards;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease-out 0.3s backwards;
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin: 10px 0 30px 0;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            animation: fadeInDown 0.8s ease-out 0.4s backwards;
+        }
+        
+        .profile-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: #8da356;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-left:hover .profile-title::after { width: 120%; }
+
+        .logo-container {
+            width: 110px;
+            height: 110px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: zoomIn 0.8s backwards 0.5s;
+        }
+        
+        .card-left:hover .logo-container { transform: scale(1.15) rotate(5deg); }
+
+        .logo-svg { width: 100%; height: 100%; overflow: visible; }
+
+        .ring-outer {
+            transform-origin: 50px 50px;
+            animation: spin 15s linear infinite;
+            stroke: #2ecc71;
+            stroke-width: 6;
+            stroke-linecap: round;
+            fill: none;
+            filter: drop-shadow(0 0 5px rgba(46, 204, 113, 0.4));
+        }
+
+        .ring-inner {
+            transform-origin: 50px 50px;
+            animation: spinReverse 10s linear infinite;
+            stroke: #27ae60;
+            stroke-width: 5;
+            stroke-linecap: round;
+            fill: none;
+            opacity: 0.7;
+        }
+
+        .lightning-bolt {
+            fill: #3498db;
+            filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.6));
+            animation: pulseBolt 3s ease-in-out infinite;
+            transform-origin: 50px 50px;
+        }
+
+        .company-name {
+            font-family: var(--card-font-serif);
+            font-size: 2rem;
+            color: #d4e1c6;
+            margin: 5px 0;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .company-contact {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            font-family: monospace;
+            animation: fadeInUp 0.8s ease-out 0.7s backwards;
+        }
+
+        .card-divider {
+            background: linear-gradient(to bottom, #7da340, #9dbf58, #b5d67a, #7da340);
+            background-size: 100% 300%;
+            animation: gradientBG 8s ease infinite;
+            width: 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 40px 0;
+            z-index: 2;
+            margin-left: -20px;
+            border-top-right-radius: 50% 10%;
+            border-bottom-right-radius: 50% 10%;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .icon-circle {
+            color: white;
+            font-size: 1.1rem;
+            transition: transform 0.4s ease;
+        }
+
+        .icon-box:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+        
+        .icon-box:hover .icon-circle { transform: rotate(360deg); }
+
+        .card-right {
+            flex: 5;
+            background-color: white;
+            padding: 40px 40px 40px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            color: var(--card-text-dark);
+        }
+
+        .info-group {
+            border-bottom: 1px solid #eee;
+            padding: 10px 10px 10px 0;
+            margin-bottom: 10px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            border-left: 3px solid transparent;
+            border-radius: 0 8px 8px 0;
+            animation: slideInRight 0.6s ease-out forwards;
+            cursor: default;
+        }
+
+        .info-group:nth-child(1) { animation-delay: 0.8s; }
+        .info-group:nth-child(2) { animation-delay: 0.9s; }
+        .info-group:nth-child(3) { animation-delay: 1.0s; }
+        .info-group:nth-child(4) { border-bottom: none; animation-delay: 1.1s; }
+
+        .info-group:hover {
+            transform: translateX(15px);
+            background: linear-gradient(to right, rgba(141, 163, 86, 0.1), transparent);
+            padding-left: 15px;
+            border-left-color: var(--card-accent-color);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+            margin: 5px 0;
+            display: block;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+        
+        .info-group:hover .info-text { color: #000; }
+
+        .buet-highlight {
+            font-weight: 700;
+            color: #1a3c22;
+        }
+
+        /* Card Animations */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes spinReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+        @keyframes pulseBolt {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(52, 152, 219, 0.4)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(52, 152, 219, 0.8)); }
+        }
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .contact-card-container {
+                flex-direction: column;
+                width: 95%;
+                height: auto;
+                min-height: auto;
+                animation: cardEntrance 1s ease-out forwards;
+            }
+            .card-left { padding: 40px 20px; border-radius: 16px 16px 0 0; }
+            .card-divider { width: 100%; height: 60px; flex-direction: row; margin-left: 0; border-radius: 0; padding: 5px 0; background-size: 300% 100%; }
+            .icon-box { margin: 0 5px; }
+            .card-right { padding: 30px 20px; text-align: center; }
+            .info-group { align-items: center; display: flex; flex-direction: column; border-left: none; padding-left: 0; }
+            .info-group:hover { transform: translateY(-5px); padding-left: 0; background: rgba(141, 163, 86, 0.05); border-radius: 8px; }
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>:root { --accent-color: #006a4e; --font-main: 'Tiro Bangla', serif; } body, h1, h2, h3, h4, .font-display, .font-sans { font-family: var(--font-main) !important; }</style>
+</head>
+<body>
+    <!-- Hamburger Menu (Mobile Only) -->
+    <div class="fixed top-6 right-6 z-[60] md:hidden">
+        <button id="mobile-menu-btn" class="p-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[55] bg-slate-900/95 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none flex flex-col items-center justify-center space-y-8">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-emerald-400 transition-colors">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="index_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">হোম</a>
+        <a href="index_bn.html#about" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">আমাদের সম্পর্কে</a>
+        <a href="trambulance_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">ট্রাম্বুলেন্স</a>
+        <a href="index_bn.html#products" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">পণ্য</a>
+        <a href="founder_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">প্রতিষ্ঠাতা</a>
+    </div>
+
+    <!-- Back Button (Replaces Navigation) -->
+    <a href="javascript:history.back()" class="fixed top-6 left-6 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
+        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+        <span class="font-medium font-sans">ফিরে যান</span>
+    </a>
+
+    <!-- Language Toggle -->
+    
+            <div class="fixed top-6 left-32 z-50">
+                
+    <div class="relative group z-[10002] inline-block">
+        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
+            <i class="fas fa-globe"></i> <span id="current-lang">BN</span> <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+    <a href="../contact/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+<a href="contact_bn.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">BN</a>
+<a href="contact_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
+<a href="contact_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+<a href="contact_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
+<a href="contact_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
+
+        </div>
+    </div>
+    
+            </div>
+            
+
+    <!-- Floating Background Objects -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-900/10 rounded-full blur-[100px] animate-pulse" style="animation-duration: 8s;"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-emerald-900/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s; animation-duration: 10s;"></div>
+        <div class="absolute top-[40%] left-[40%] w-[30%] h-[30%] bg-lime-900/10 rounded-full blur-[80px] animate-pulse" style="animation-delay: 4s; animation-duration: 12s;"></div>
+    </div>
+
+    <div class="contact-card-container">
+        <!-- Left Panel: Identity -->
+        <div class="card-left">
+            <div class="header-initials" id="card-initials">A A M</div>
+            <h1 class="profile-name" id="card-name">Rownak Shahriar Ruhan</h1>
+            <div class="profile-title" id="card-title">Founder</div>
+
+            <!-- Animated SVG Logo -->
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <!-- Outer Rotating Ring -->
+                    <path class="ring-outer" d="M 85 50 A 35 35 0 1 1 50 15" />
+                    
+                    <!-- Inner Rotating Ring (Reverse) -->
+                    <path class="ring-inner" d="M 50 85 A 35 35 0 0 0 85 50" />
+                    
+                    <!-- Pulsing Lightning Bolt -->
+                    <polygon class="lightning-bolt" points="55,25 35,55 50,55 40,80 65,45 50,45" />
+                </svg>
+            </div>
+
+            <div class="company-name">ত্রিচক্র</div>
+            <div class="company-contact">
+                trichokro.automotives@gmail.com<br>
+                www.trichokro.com
+            </div>
+        </div>
+
+        <!-- Middle Divider with Icons -->
+        <div class="card-divider">
+            <div class="icon-box" title="Phone">
+                <i class="fas fa-phone icon-circle"></i>
+            </div>
+            <div class="icon-box" title="Email">
+                <i class="fas fa-envelope icon-circle"></i>
+            </div>
+            <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="icon-box" title="LinkedIn">
+                <i class="fab fa-linkedin icon-circle"></i>
+            </a>
+            <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" class="icon-box" title="Facebook">
+                <i class="fab fa-facebook icon-circle"></i>
+            </a>
+            <div class="icon-box" title="Address">
+                <i class="fas fa-home icon-circle"></i>
+            </div>
+        </div>
+
+        <!-- Right Panel: Details -->
+        <div class="card-right">
+            <div class="info-group">
+                <span class="info-text" id="card-phone1">+8801714844677</span>
+                <span class="info-text" id="card-phone2">+8801402667477</span>
+            </div>
+
+            <div class="info-group">
+                <span class="info-text" id="card-email1">rownakshahriarruhan@gmail.com</span>
+                <span class="info-text" id="card-email2">2010105@me.buet.ac.bd</span>
+            </div>
+
+            <div class="info-group">
+                <span class="info-text">কাজী নজরুল ইসলাম হল</span>
+                <span class="info-text">বুয়েট, পলাশী, ঢাকা-১০০০</span>
+            </div>
+
+            <div class="info-group">
+                <span class="info-text" id="card-dept">মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ</span>
+                <span class="info-text buet-highlight">বাংলাদেশ প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়<br>(বুয়েট)</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const teamData = {
+            rownak: {
+                initials: "A A M",
+                name: "রওনক শাহরিয়ার রুহান",
+                title: "প্রতিষ্ঠাতা ও সিইও",
+                phone1: "+৮৮০ ১৭১৪ ৮৪৪৬৭৭",
+                phone2: "+৮৮০ ১৪০২ ৬৬৭৪৭৭",
+                email1: "rownakshahriarruhan@gmail.com",
+                email2: "2010105@me.buet.ac.bd"
+            },
+            abdul: {
+                initials: "ড.",
+                name: "আব্দুল জাওয়াদ",
+                title: "যানবাহন উপদেষ্টা",
+                email1: "jawadefaj006@gmail.com",
+            },
+            ishraq: {
+                initials: "I R",
+                name: "ইশরাক রাফিদ",
+                title: "স্থাপত্য উপদেষ্টা",
+                email1: "ishraq.rafid@gmail.com",
+            },
+            hasan: {
+                initials: "H M",
+                name: "হাসান মাহমুদ",
+                title: "অপারেশন এক্সিকিউটিভ",
+                phone1: "+৮৮০ ১৭২৬ ৮৫৫৭৬৭",
+                phone2: "+৮৮০ ১৮৬৭ ১১৪৮৮৩",
+                email1: "mhmhasanmahmud2@gmail.com",
+                email2: "2010061@me.buet.ac.bd"
+            },
+            mijanur: {
+                initials: "M R",
+                name: "মিজানুর রহমান",
+                title: "এইচআর",
+                phone1: "+৮৮০ ১৭২০ ৯১৭৫৭২",
+                phone2: "+৮৮০ ১৮৬৮ ২৩৩৯৬৫",
+                email1: "mijankutubi65@gmail.com",
+                email2: "1910109@me.buet.ac.bd"
+            },
+            tomal: {
+                initials: "T K",
+                name: "তমাল কীর্তনীয়া",
+                title: "ডিজাইন প্রধান",
+                phone1: "+৮৮০ ১৬২৪ ৭৬২৯৫২",
+                email1: "kirttoniatomal@gmail.com",
+                email2: "2010110@me.buet.ac.bd"
+            },
+            tahsif: {
+                initials: "T I T", 
+                name: "তাওহিদুল ইসলাম তাহসিফ",
+                title: "লিড ডিজাইনার",
+                phone1: "+৮৮০ ১৪০৫ ৪৯২৯৬০",
+                phone2: "",
+                email1: "tawhidul.tahsif@gmail.com",
+                email2: "2110153@me.buet.ac.bd",
+            },
+            shwadhin: {
+                initials: "D S", 
+                name: "দীপ্ত মজুমদার স্বাধীন",
+                title: "অপারেশন এক্সিকিউটিভ",
+                phone1: "+৮৮০ ১৮৬৭ ১৪৫৬৪২",
+                phone2: "+৮৮০ ১৫২১ ৫৫৭৯২০",
+                email1: "diptoswadhin0026@gmail.com",
+                email2: "2010073@me.buet.ac.bd",
+            },
+            maxud: {
+                initials: "M R C", 
+                name: "মাকসুদুর রহমান চৌধুরী",
+                title: "জনসংযোগ প্রধান",
+                phone1: "+৮৮০ ১৬৭৬ ৭৯৩৯৮২",
+                phone2: "",
+                email1: "m.rahman.chw@gmail.com",
+                email2: "2310132@me.buet.ac.bd",
+            },
+            rakibul: {
+                initials: "R H S", 
+                name: "রাকিবুল হাসান শান্ত",
+                title: "অপারেশন অ্যাসোসিয়েট",
+                phone1: "+৮৮০ ১৯৩৯ ১৩৪২০১",
+                phone2: "+৮৮০ ১৬০৮ ৭৮৩৯০১",
+                email1: "2010125@me.buet.ac.bd",
+                email2: "",
+            },
+            farhan: {
+                initials: "F S",
+                name: "ফারহান সাদিক",
+                title: "জুনিয়র অ্যাসোসিয়েট",
+                phone1: "+৮৮০ ১৫৭৭ ০৩৭৩৫৭",
+                phone2: "",
+                email1: "farhan.bme027@gmail.com",
+                email2: "",
+                dept: "বায়োমেডিকেল ইঞ্জিনিয়ারিং বিভাগ"
+            },
+            ehsanSir: {
+                initials: "ড.",
+                name: "অধ্যাপক মোঃ এহসান",
+                title: "উপদেষ্টা ও পরামর্শদাতা",
+                phone1: "+৮৮০ ১৭১১ ৪৪৬৫৬৪",
+                phone2: "৮৮০-২-৮৬১৩০৪৬ (ফ্যাক্স)",
+                email1: "ehsan@me.buet.ac.bd",
+                email2: ""
+            },
+        };
+
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const memberKey = getParameterByName('id') || 'rownak';
+            const member = teamData[memberKey] || teamData['rownak'];
+            
+            document.getElementById('card-initials').innerText = member.initials;
+            document.getElementById('card-name').innerText = member.name;
+            document.getElementById('card-title').innerText = member.title;
+            document.getElementById('card-phone1').innerText = member.phone1;
+            document.getElementById('card-phone2').innerText = member.phone2;
+            document.getElementById('card-email1').innerText = member.email1;
+            document.getElementById('card-email2').innerText = member.email2;
+            if (member.dept) {
+                document.getElementById('card-dept').innerText = member.dept;
+            }
+
+            // Mobile Menu Logic
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn && mobileMenu && closeMenuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                });
+                closeMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                });
+            }
+        });
+    </script>
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
+    <div class="watermark-overlay" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('../../src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: multiply;"></div>
+    <script> 
+        document.addEventListener("mousemove", e => { 
+            const gradient = document.getElementById("cursor-gradient"); 
+            if(gradient) { 
+                gradient.style.setProperty("--x", e.clientX + "px"); 
+                gradient.style.setProperty("--y", e.clientY + "px"); 
+            } 
+        }); 
+    </script>
+</body>
+</html>

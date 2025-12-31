@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinder - TriChokro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons & Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a192f',       // Deep Navy for Pathfinder
+                            light: '#112240',      // Lighter Navy
+                            lighter: '#233554',    // Even lighter
+                            green: '#64ffda',      // Neon Green accent
+                            greenDim: 'rgba(100, 255, 218, 0.1)',
+                            text: '#ccd6f6',       // Light gray text
+                            heading: '#e6f1ff',    // White heading text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Inter', 'Roboto', 'sans-serif'],
+                        display: ['Hind Siliguri', 'Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Hind Siliguri', 'Cormorant Garamond', 'serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 15s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- MAIN GLOBAL STYLES --- */
+        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Hind Siliguri', 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
+        a, button, .interactive, input, .group { cursor: pointer; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        
+        /* Glassmorphism for Pathfinder Subpage Cards */
+        .glass-card {
+            background: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card:hover {
+            border-color: #64ffda;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+        }
+
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('../../src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>:root { --accent-color: #006a4e; --font-main: 'Tiro Bangla', serif; } body, h1, h2, h3, h4, .font-display, .font-sans { font-family: var(--font-main) !important; }</style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-green selection:text-brand-dark" style="background-color: #0a192f; color: #8892b0;">
+    
+        <div class="watermark-overlay"></div>
+
+        <!-- Floating Background Objects -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div class="absolute top-[10%] right-[10%] w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-[100px] animate-pulse" style="animation-duration: 8s;"></div>
+            <div class="absolute bottom-[10%] left-[10%] w-[500px] h-[500px] bg-brand-light/20 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s; animation-duration: 10s;"></div>
+        </div>
+
+        <!-- Unified Nav -->
+        <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-brand-dark/90 backdrop-blur-lg border-b border-white/5 py-3">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+                        <img src="../../src/assets/logo_new.png" alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]">
+                        <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8" style="font-family: 'Hind Siliguri', 'Cinzel', serif;">
+                        <a href="index_bn.html#home" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">হোম<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_bn.html#products" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">পণ্যের মডেল<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="trambulance_bn.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.3s">ট্রাম্বুলেন্স<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_bn.html#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">বৈশিষ্ট্য<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_bn.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">নোটিশ বোর্ড<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="index_bn.html#about" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.6s">আমাদের সম্পর্কে<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                        
+                        <a href="contact_bn.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.7s">যোগাযোগ</a>
+                    
+    <div class="relative group z-[10002]">
+        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1">
+            <i class="fas fa-globe"></i> <span id="current-lang">BN</span> <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+    <a href="pathfinder_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+
+
+
+
+
+
+        
+    <div class="relative group z-[10002] inline-block">
+        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
+            <i class="fas fa-globe"></i> <span id="current-lang">BN</span> <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+    <a href="../pathfinder/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+
+
+
+
+
+
+        
+    <div class="relative group z-[10002] inline-block">
+        <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 px-3 py-2">
+            <i class="fas fa-globe"></i> <span>BN</span> <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+    <a href="../../en/pathfinder/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">EN</a>
+<a href="../../bn/pathfinder/index.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">BN</a>
+<a href="../../de/pathfinder/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
+<a href="../../es/pathfinder/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+<a href="../../zh/pathfinder/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
+<a href="../../ja/pathfinder/index.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
+</div></div></div>
+    </div>
+    </div>
+    </div>
+    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
+                <div class="px-4 py-4 space-y-3 flex flex-col">
+                    <a href="index_bn.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">হোম</a>
+                    <a href="index_bn.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">পণ্যের মডেল</a>
+                    <a href="trambulance_bn.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ট্রাম্বুলেন্স</a>
+                    <a href="pathfinder_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
+                    <a href="contact_bn.html?id=rownak" class="w-full bg-emerald-500 text-slate-900 py-3 rounded-lg font-bold mt-2 block text-center">যোগাযোগ</a>
+                </div>
+            </div>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(menuBtn && mobileMenu) {
+                    let isMenuOpen = false;
+                    menuBtn.addEventListener('click', () => {
+                        isMenuOpen = !isMenuOpen;
+                        if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
+                        else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
+                    });
+                }
+            });
+        </script>
+
+        <!-- Hero Section -->
+        <section class="hero-bg min-h-screen flex items-center pt-20" style="background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%); position: relative; overflow: hidden;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center relative z-10 w-full">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="inline-block text-brand-green font-mono text-sm mb-4 tracking-wider" style="color: #64ffda">
+                        মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ, বুয়েট
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-display font-bold text-brand-heading leading-none mb-6" style="color: #e6f1ff">
+                        বাংলাদেশের জন্য <br> <span class="text-brand-green text-shadow-glow" style="color: #64ffda">তৈরি।</span>
+                    </h1>
+                    <p class="text-xl text-brand-text mb-10 max-w-lg leading-relaxed" style="color: #ccd6f6">
+                        দেশের প্রথম সম্পূর্ণ স্থানীয়ভাবে উৎপাদিত বৈদ্যুতিক অটো-রিকশা শিল্প। নিরাপত্তা, প্রকৌশল এবং পরিবেশগত চ্যালেঞ্জ সমাধান করা।
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#pathfinder-models" class="bg-brand-green text-brand-dark text-center px-8 py-4 rounded font-bold hover:bg-opacity-90 transition shadow-[0_0_15px_rgba(100,255,218,0.4)]" style="background-color: #64ffda; color: #0a192f;">মডেল দেখুন</a>
+                        <a href="#pathfinder-solution" class="border border-brand-text text-brand-text text-center px-8 py-4 rounded font-bold hover:border-brand-green hover:text-brand-green transition" style="border-color: #ccd6f6; color: #ccd6f6;">কেন ত্রিচক্র?</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center relative animate-float">
+                    <!-- Abstract Rickshaw Icon Representation -->
+                    <div class="relative w-80 h-80 flex items-center justify-center">
+                         <div class="absolute inset-0 rounded-full border border-dashed border-brand-green/30 animate-spin-slow" style="border-color: rgba(100, 255, 218, 0.3);"></div>
+                         <img src="../../src/assets/pathfinder_visual.png" alt="Pathfinder Visual" class="relative z-10 w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(100,255,218,0.3)]">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Problem Section -->
+        <section id="pathfinder-problem" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center mb-12">
+                    <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">০১.</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">বর্তমান সংকট ⚠️</h2>
+                    <div class="h-[1px] bg-brand-light flex-grow ml-6" style="background-color: #112240;"></div>
+                </div>
+                <p class="text-brand-text max-w-2xl mb-16 text-lg" style="color: #ccd6f6;">
+                    অনিরাপদ বৈদ্যুতিক রিকশা ঢাকার রাস্তায় প্লাবিত হয়েছে, যা দুর্ঘটনা এবং পরিবেশগত বিপত্তি ঘটাচ্ছে। আমরা তিনটি গুরুত্বপূর্ণ ব্যর্থতার পয়েন্ট চিহ্নিত করেছি 📉।
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Card 1: Safety -->
+                    <div class="glass-card p-8 rounded hover:-translate-y-2 transition duration-300">
+                        <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
+                            <i class="fas fa-exclamation-triangle text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">নিরাপত্তা ঝুঁকি</h3>
+                        <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
+                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>অকার্যকর ব্রেকিং সিস্টেম</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>উচ্চ ভারকেন্দ্র (উল্টে যাওয়ার ঝুঁকি)</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>দুর্বল সাসপেনশন যা আঘাতের কারণ</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: Engineering -->
+                    <div class="glass-card p-8 rounded hover:-translate-y-2 transition duration-300">
+                        <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
+                            <i class="fas fa-wrench text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">প্রকৌশলগত ত্রুটি</h3>
+                        <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
+                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>উচ্চ অ্যারোডাইনামিক ড্র্যাগ</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>কম লোড ক্ষমতা সম্পন্ন চাকা</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>নিকৃষ্ট কাঠামোগত উপাদান</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Environment -->
+                    <div class="glass-card p-8 rounded hover:-translate-y-2 transition duration-300">
+                        <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
+                            <i class="fas fa-leaf text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">পরিবেশগত প্রভাব</h3>
+                        <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
+                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>নন-রিসাইকেলেবল বিষাক্ত ব্যাটারি</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>আমদানি থেকে শিল্প বর্জ্য</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>পুরানো ইঞ্জিন থেকে শব্দ দূষণ</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution Section -->
+        <section id="pathfinder-solution" class="py-24 bg-[#020c1b] relative overflow-hidden" style="background-color: #020c1b;">
+            <!-- Background Gradient Mesh -->
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-brand-dark opacity-80 z-0" style="background-image: linear-gradient(to bottom, transparent, #0a192f);"></div>
+            <div class="absolute -right-40 top-20 w-96 h-96 bg-brand-green opacity-5 rounded-full blur-3xl" style="background-color: #64ffda;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
+                    <div>
+                         <div class="flex items-center mb-4">
+                            <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">০২.</span>
+                            <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">সমাধান 💡</h2>
+                        </div>
+                        <p class="text-brand-green font-mono" style="color: #64ffda;">প্রকৌশল উৎকর্ষ স্থানীয় উদ্ভাবনের সাথে মিলিত হয়েছে 🛠️।</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                         <span class="bg-brand-green/10 border border-brand-green text-brand-green px-4 py-2 rounded font-mono text-sm" style="background-color: rgba(100, 255, 218, 0.1); border-color: #64ffda; color: #64ffda;">বুয়েট উদ্ভাবিত</span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
+                        <i class="fas fa-tachometer-alt text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
+                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">ম্যাকফারসন সাসপেনশন</h4>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">প্রথাগত লিফ স্প্রিংয়ের তুলনায় উন্নত রাইড আরাম এবং স্থিতিশীলতা।</p>
+                    </div>
+                    
+                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
+                        <i class="fas fa-stop-circle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
+                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">ডিস্ক ব্রেক</h4>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">বিপজ্জনক রাবার প্যাড ব্রেক প্রতিস্থাপন করে আধুনিক হাইড্রোলিক ডিস্ক ব্রেক।</p>
+                    </div>
+
+                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
+                        <i class="fas fa-wind text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
+                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">অ্যারোডাইনামিক ডিজাইন</h4>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">ড্র্যাগ কমাতে এবং ব্যাটারি দক্ষতা বাড়াতে অপ্টিমাইজ করা হুড এবং বডি।</p>
+                    </div>
+
+                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
+                        <i class="fas fa-recycle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
+                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">পরিবেশ-টেকসই</h4>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">রিসাইকেলেবল উপাদান এবং ব্যাটারি প্রযুক্তি যা পরিবেশের জন্য ক্ষতিকর নয়।</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="mt-16 bg-brand-light/20 rounded border border-brand-light/30 p-8 backdrop-blur-sm overflow-x-auto" style="background-color: rgba(17, 34, 64, 0.2); border-color: rgba(17, 34, 64, 0.3);">
+                    <h3 class="text-2xl font-bold mb-8 text-center text-brand-heading font-display" style="color: #e6f1ff;">বাজার তুলনা</h3>
+                    <table class="w-full text-left min-w-[600px] border-collapse">
+                        <thead>
+                            <tr class="border-b border-brand-light text-brand-green font-mono text-sm uppercase" style="border-color: #112240; color: #64ffda;">
+                                <th class="pb-4 pl-4">বৈশিষ্ট্য</th>
+                                <th class="pb-4">সাধারণ অটো রিকশা</th>
+                                <th class="pb-4">সিএনজি</th>
+                                <th class="pb-4 text-brand-heading font-bold bg-brand-green/10 rounded-t p-2" style="color: #e6f1ff; background-color: rgba(100, 255, 218, 0.1);">ত্রিচক্র</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-brand-light text-sm text-brand-text" style="border-color: #112240; color: #ccd6f6;">
+                            <tr class="hover:bg-brand-light/30 transition">
+                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">খরচ (BDT)</td>
+                                <td class="py-4">১.২ লক্ষ - ১.৫ লক্ষ</td>
+                                <td class="py-4">২.৫ লক্ষ - ৩.০ লক্ষ</td>
+                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">~১.২ লক্ষ</td>
+                            </tr>
+                            <tr class="hover:bg-brand-light/30 transition">
+                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">ব্রেকিং</td>
+                                <td class="py-4 text-red-400">রাবার/ড্রাম (অনিরাপদ)</td>
+                                <td class="py-4">ডিস্ক ব্রেক</td>
+                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">ডিস্ক ব্রেক (নিরাপদ)</td>
+                            </tr>
+                            <tr class="hover:bg-brand-light/30 transition">
+                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">নিরাপত্তা স্তর</td>
+                                <td class="py-4 text-red-400">মাঝারি ঝুঁকি</td>
+                                <td class="py-4">মাঝারি ঝুঁকি</td>
+                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">উচ্চ নিরাপত্তা</td>
+                            </tr>
+                            <tr class="hover:bg-brand-light/30 transition">
+                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">সিট ক্ষমতা</td>
+                                <td class="py-4">৩</td>
+                                <td class="py-4">৩</td>
+                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">৫</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Models -->
+        <section id="pathfinder-models" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                     <span class="text-brand-green font-mono text-xl block mb-2" style="color: #64ffda;">০৩.</span>
+                    <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-heading mb-4" style="color: #e6f1ff;">পণ্যের লাইনআপ</h2>
+                    <p class="text-brand-text" style="color: #ccd6f6;">প্রতিটি রাস্তা এবং প্রতিটি প্রয়োজনের জন্য ডিজাইন করা।</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Model 1 -->
+                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
+                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
+                            <i class="fas fa-bicycle text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
+                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">বেস</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">বেস মডেল</h3>
+                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">১.৮ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
+                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>স্ট্যান্ডার্ড সাসপেনশন</li>
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>শহুরে যাতায়াতের জন্য প্রস্তুত</li>
+                            </ul>
+                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
+                        </div>
+                    </div>
+
+                    <!-- Model 2 -->
+                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
+                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
+                            <i class="fas fa-cloud-rain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
+                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">সিলড</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">ওয়েদার সিলড</h3>
+                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">২.০ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
+                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>IP69 রেটেড সুরক্ষা</li>
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>বর্ষায় নির্ভরযোগ্য</li>
+                            </ul>
+                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
+                        </div>
+                    </div>
+
+                    <!-- Model 3 -->
+                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
+                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
+                            <i class="fas fa-bolt text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
+                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">প্রো</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">সিএনজি বিকল্প</h3>
+                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">২.৫ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
+                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>উচ্চ গতির রেঞ্জ</li>
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>বর্ধিত ব্যাটারি</li>
+                            </ul>
+                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
+                        </div>
+                    </div>
+
+                    <!-- Model 4 -->
+                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
+                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
+                            <i class="fas fa-mountain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
+                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">রাগড</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">অল টেরেইন</h3>
+                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">৩.০ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
+                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>শক্তিশালী ফ্রেম</li>
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>হেভি ডিউটি সাসপেনশন</li>
+                            </ul>
+                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Stats -->
+        <section id="pathfinder-business" class="py-24 bg-[#112240] clip-slant-top relative" style="background-color: #112240;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Market Size -->
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-6">
+                            <span class="text-xl font-mono text-brand-green mr-4" style="color: #64ffda;">০৪.</span>
+                            <h3 class="text-2xl font-bold font-display text-brand-heading" style="color: #e6f1ff;">বাজার সম্ভাবনা</h3>
+                        </div>
+                        
+                        <div class="bg-brand-dark p-8 rounded-xl border border-brand-light shadow-xl" style="background-color: #0a192f; border-color: #112240;">
+                            <div class="mb-8">
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-brand-text text-sm font-mono" style="color: #ccd6f6;">মোট সম্ভাব্য বাজার (ঢাকা)</span>
+                                    <span class="font-bold text-xl text-brand-heading" style="color: #e6f1ff;">২,৪০০ কোটি BDT</span>
+                                </div>
+                                <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #112240;">
+                                    <div class="bg-brand-heading h-2 rounded-full" style="width: 100%; background-color: #e6f1ff;"></div>
+                                </div>
+                            </div>
+                            <div class="mb-8">
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-brand-text text-sm font-mono" style="color: #ccd6f6;">লক্ষ্য শেয়ার (২ বছর)</span>
+                                    <span class="font-bold text-xl text-brand-green" style="color: #64ffda;">১০%</span>
+                                </div>
+                                <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #112240;">
+                                    <div class="bg-brand-green h-2 rounded-full shadow-[0_0_10px_#64ffda]" style="width: 10%; background-color: #64ffda;"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #112240;">
+                                    <span class="block text-3xl font-bold text-brand-heading" style="color: #e6f1ff;">১.৫ লক্ষ</span>
+                                    <span class="text-xs text-brand-green uppercase font-mono mt-1" style="color: #64ffda;">ঢাকায় যানবাহন</span>
+                                </div>
+                                <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #112240;">
+                                    <span class="block text-3xl font-bold text-brand-heading" style="color: #e6f1ff;">১.২৯ লক্ষ</span>
+                                    <span class="text-xs text-brand-green uppercase font-mono mt-1" style="color: #64ffda;">উৎপাদন খরচ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Projection -->
+                    <div class="lg:w-1/2">
+                        <h3 class="text-2xl font-bold font-display text-brand-heading mb-6 pl-2" style="color: #e6f1ff;">৫ বছরের লাভের পূর্বাভাস 📈</h3>
+                        <div class="flex items-end justify-center h-72 bg-brand-dark p-6 rounded-xl border border-brand-light relative overflow-hidden" style="background-color: #0a192f; border-color: #112240;">
+                            <!-- Inserted Graph Visual -->
+                            <img src="../../src/assets/graph_visual.png" alt="Financial Graph" class="max-w-full max-h-full object-contain filter drop-shadow-[0_0_15px_rgba(100,255,218,0.2)]">
+                        </div>
+                        <p class="text-xs font-mono text-brand-green mt-4 text-center" style="color: #64ffda;"> > নিট লাভের মার্জিন পূর্বাভাস: ৫ম বছরে ১৫-২০%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section - Pathfinder version (Removed or simplified since main site handles team) -->
+        <section id="pathfinder-team" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                     <span class="text-brand-green font-mono text-xl block mb-2" style="color: #64ffda;">০৫.</span>
+                    <h2 class="text-3xl font-display font-bold mb-4 text-brand-heading" style="color: #e6f1ff;">উদ্ভাবকগণ</h2>
+                    <div class="w-20 h-1 bg-brand-green mx-auto rounded" style="background-color: #64ffda;"></div>
+                </div>
+                 <!-- Reusing main team card logic but styled for this theme -->
+                 <!-- Simplified display for subpage -->
+                 <div class="text-center">
+                    <p class="text-brand-text mb-4" style="color: #ccd6f6;">বিপ্লবের পেছনের দলের সাথে পরিচিত হন।</p>
+                    <a href="index_bn.html#about" class="border border-brand-green text-brand-green px-6 py-2 rounded text-sm font-mono hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">সম্পূর্ণ টিম দেখুন</a>
+                 </div>
+            </div>
+        </section>
+
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
+    <script> 
+        document.addEventListener("mousemove", e => { 
+            const gradient = document.getElementById("cursor-gradient"); 
+            if(gradient) { 
+                gradient.style.setProperty("--x", e.clientX + "px"); 
+                gradient.style.setProperty("--y", e.clientY + "px"); 
+            } 
+        }); 
+    </script>
+</body>
+</html>
