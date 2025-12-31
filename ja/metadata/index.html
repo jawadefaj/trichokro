@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Metadata & Credits | Trichokro</title>
+
+<meta name="description" content="Metadata, authorship, and creative credits for Trichokro.com." />
+<meta name="author" content="Rownak Shahriar Ruhan & AI" />
+<meta name="generator" content="Human + Artificial Intelligence" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --navy:#050b1a;
+  --navy2:#0a1633;
+  --blue:#38bdf8;
+  --glass:rgba(255,255,255,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,'Segoe UI',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,50%),
+      rgba(56,189,248,.18), transparent 38%),
+    linear-gradient(135deg,var(--navy),var(--navy2),var(--navy));
+  color:#eaf2ff;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+/* Back button */
+.back-btn{
+  position:fixed;
+  top:26px;
+  left:26px;
+  padding:12px 20px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  text-decoration:none;
+  font-size:.9rem;
+  backdrop-filter:blur(12px);
+  z-index:10;
+}
+
+/* Cursor light */
+.cursor-light{
+  position:fixed;
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(56,189,248,.22),
+    rgba(56,189,248,.1),
+    transparent 70%);
+  filter:blur(26px);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:9;
+}
+
+/* Floating glow */
+.glow{
+  position:fixed;
+  width:480px;
+  height:480px;
+  background:radial-gradient(circle,#38bdf8,#1e3a8a);
+  filter:blur(160px);
+  opacity:.45;
+  animation:float 16s ease-in-out infinite;
+  z-index:-1;
+}
+.glow.alt{
+  top:55%;
+  left:60%;
+  animation-delay:-8s;
+}
+@keyframes float{
+  50%{transform:translateY(-140px)}
+}
+
+/* 🔥 FAST ENERGY / TECH / EV EMOJIS */
+.emoji{
+  position:fixed;
+  font-size:1.6rem;
+  opacity:.35;
+  animation:energyFloat linear infinite;
+  z-index:-1;
+  filter:drop-shadow(0 0 8px rgba(56,189,248,.45));
+}
+
+@keyframes energyFloat{
+  from{
+    transform:translateY(120vh) translateX(0) rotate(0deg);
+  }
+  to{
+    transform:translateY(-30vh) translateX(90px) rotate(360deg);
+  }
+}
+
+/* Parallax */
+.parallax-wrap{perspective:1200px}
+.parallax-layer{
+  transform-style:preserve-3d;
+  transition:transform .18s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* Scroll reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:.8s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+/* Content */
+.card{
+  max-width:880px;
+  margin:140px auto 160px;
+  padding:70px;
+  background:var(--glass);
+  backdrop-filter:blur(28px);
+  border-radius:28px;
+  box-shadow:0 40px 120px rgba(0,0,0,.7);
+}
+
+h1{
+  font-size:3rem;
+  background:linear-gradient(90deg,#eaf2ff,#7dd3fc);
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:36px;
+}
+
+.section{
+  margin-top:32px;
+  padding:26px;
+  background:rgba(5,11,26,.7);
+  border-radius:20px;
+}
+
+p{
+  line-height:1.9;
+  color:#dce8ff;
+}
+
+.signature{
+  margin-top:42px;
+  opacity:.8;
+  text-align:center;
+  font-size:.95rem;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>:root { --accent-color: #BC002D; --font-main: 'Noto Sans JP', system-ui; } body, h1, h2, h3, h4, .font-display, .font-sans { font-family: var(--font-main) !important; }</style>
+</head>
+
+<body>
+
+<a href="../home/index.html" class="back-btn">← Home</a>
+<a href="metadata_bn.html" class="back-btn" style="left: 140px;">বাংলা</a>
+<div class="cursor-light"></div>
+
+<div class="glow"></div>
+<div class="glow alt"></div>
+
+<!-- ⚡ ENERGY / TECH / EV EMOJIS -->
+<div class="emoji" style="left:6%;animation-duration:14s">⚡</div>
+<div class="emoji" style="left:14%;animation-duration:16s">🔋</div>
+<div class="emoji" style="left:22%;animation-duration:15s">🚗</div>
+<div class="emoji" style="left:30%;animation-duration:17s">🤖</div>
+<div class="emoji" style="left:38%;animation-duration:14s">🧠</div>
+<div class="emoji" style="left:46%;animation-duration:16s">🔌</div>
+<div class="emoji" style="left:54%;animation-duration:15s">🌐</div>
+<div class="emoji" style="left:62%;animation-duration:17s">🚀</div>
+<div class="emoji" style="left:70%;animation-duration:14s">📡</div>
+<div class="emoji" style="left:78%;animation-duration:16s">⚙️</div>
+<div class="emoji" style="left:86%;animation-duration:15s">🔬</div>
+<div class="emoji" style="left:94%;animation-duration:17s">🛰️</div>
+
+<div class="parallax-wrap">
+  <div class="card parallax-layer">
+    <h1 class="reveal">Metadata & Credits</h1>
+
+    <div class="section reveal">
+      <p><strong>Website:</strong> Trichokro.com</p>
+      <p><strong>Founder & Creator:</strong> Rownak Shahriar Ruhan</p>
+      <p><strong>Creation Model:</strong> Human creativity × Artificial Intelligence</p>
+    </div>
+
+    <div class="section reveal">
+      <p>
+        Trichokro is an experimental digital platform focused on immersive
+        interaction, energy-inspired motion, and modern web aesthetics.
+      </p>
+    </div>
+
+    <div class="section reveal">
+      <p>
+        The project explores the convergence of technology, intelligence,
+        and future-facing design principles.
+      </p>
+    </div>
+
+    <div class="signature reveal">
+      Designed & authored by Rownak Shahriar Ruhan — enhanced with AI.
+    </div>
+  </div>
+</div>
+
+<script>
+const body=document.body;
+const cursor=document.querySelector('.cursor-light');
+const card=document.querySelector('.parallax-layer');
+const reveals=document.querySelectorAll('.reveal');
+
+/* Mouse effects */
+document.addEventListener('mousemove',e=>{
+  body.style.setProperty('--mx',e.clientX+'px');
+  body.style.setProperty('--my',e.clientY+'px');
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
+
+  const x=(e.clientX/window.innerWidth-.5)*8;
+  const y=(e.clientY/window.innerHeight-.5)*-8;
+  card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+
+/* Scroll reveal */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{threshold:0.15});
+
+reveals.forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
