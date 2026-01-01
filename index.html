@@ -531,155 +531,7 @@
     </div>
 
     <!-- ########################### MAIN VIEW ########################### -->
-        <!-- Language Toggle Bar -->
-    <div id="language-toggle" class="fixed top-20 right-8 z-[9995] flex gap-2 bg-slate-900/80 backdrop-blur-md border border-emerald-500/30 rounded-full px-4 py-2 shadow-lg group hover:shadow-emerald-500/20 transition-all">
-        <button class="lang-btn active text-xs font-bold px-3 py-1 rounded-full transition-all" data-lang="en" data-page="index">
-            <span class="flag"></span> EN
-        </button>
-        <button class="lang-btn text-xs font-bold px-3 py-1 rounded-full transition-all" data-lang="bn" data-page="index">
-            <span class="flag"></span> BN
-        </button>
-        <button class="lang-btn text-xs font-bold px-3 py-1 rounded-full transition-all" data-lang="de" data-page="index">
-            <span class="flag">????</span> DE
-        </button>
-        <button class="lang-btn text-xs font-bold px-3 py-1 rounded-full transition-all" data-lang="es" data-page="index">
-            <span class="flag">????</span> ES
-        </button>
-        <button class="lang-btn text-xs font-bold px-3 py-1 rounded-full transition-all" data-lang="ja" data-page="index">
-            <span class="flag"></span> JP
-        </button>
-        <button class="lang-btn text-xs font-bold px-3 py-1 rounded-full transition-all" data-lang="zh" data-page="index">
-            <span class="flag"></span> ZH
-        </button>
-    </div>
-
-    <style>
-        .lang-btn {
-            color: #94a3b8;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn:hover {
-            color: #10b981;
-            border-color: rgba(16, 185, 129, 0.5);
-            background: rgba(16, 185, 129, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .lang-btn.active {
-            color: #020617;
-            background: #10b981;
-            border-color: #10b981;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-        }
-
-        .lang-btn .flag {
-            margin-right: 4px;
-            font-size: 1.1em;
-        }
-
-        @media (max-width: 768px) {
-            #language-toggle {
-                top: 80px;
-                right: 4px;
-                px-2;
-                gap: 1px;
-            }
-            .lang-btn {
-                padding: 0.4rem 0.6rem;
-                font-size: 10px;
-            }
-            .lang-btn .flag {
-                margin-right: 2px;
-            }
-        }
-    </style>
-
-    <script>
-        // Language Toggle Functionality
-        const languageButtons = document.querySelectorAll('.lang-btn');
-        
-        // Get current page name from URL
-        function getCurrentPageName() {
-            const path = window.location.pathname;
-            const filename = path.split('/').pop() || 'index.html';
-            // Extract base name without language suffix
-            const baseName = filename.replace(/_bn|_de|_es|_ja|_zh/g, '').replace('.html', '');
-            return baseName || 'index';
-        }
-
-        const currentPage = getCurrentPageName();
-        
-        // Language code mapping
-        const languageMap = {
-            'en': { suffix: '', label: 'English' },
-            'bn': { suffix: '_bn', label: 'Bangla' },
-            'de': { suffix: '_de', label: 'German' },
-            'es': { suffix: '_es', label: 'Espa�ol' },
-            'ja': { suffix: '_ja', label: '???' },
-            'zh': { suffix: '_zh', label: '??' }
-        };
-
-        // Page mapping for different URL structures
-        const pageMap = {
-            'index': 'index',
-            'contact': 'contact',
-            'founder': 'founder',
-            'metadata': 'metadata',
-            'pathfinder': 'pathfinder',
-            'privacy': 'privacy',
-            'resources': 'resources',
-            'trambulance': 'trambulance'
-        };
-
-        // Initialize language toggle
-        function initLanguageToggle() {
-            languageButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const langCode = this.getAttribute('data-lang');
-                    const pageName = currentPage;
-                    
-                    // Remove active class from all buttons
-                    languageButtons.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Navigate to the language version of current page
-                    const urlSuffix = languageMap[langCode].suffix;
-                    const newUrl = pageName === 'index' 
-                        ? (urlSuffix ? pageName + urlSuffix + '.html' : 'index.html')
-                        : (urlSuffix ? pageName + urlSuffix + '.html' : pageName + '.html');
-                    
-                    window.location.href = newUrl;
-                });
-            });
-
-            // Set active button based on current page language
-            const currentLang = getCurrentLanguage();
-            languageButtons.forEach(btn => {
-                if(btn.getAttribute('data-lang') === currentLang) {
-                    btn.classList.add('active');
-                }
-            });
-        }
-
-        // Determine current language from URL
-        function getCurrentLanguage() {
-            const path = window.location.pathname;
-            if(path.includes('_bn')) return 'bn';
-            if(path.includes('_de')) return 'de';
-            if(path.includes('_es')) return 'es';
-            if(path.includes('_ja')) return 'ja';
-            if(path.includes('_zh')) return 'zh';
-            return 'en';
-        }
-
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', initLanguageToggle);
-    </script>
-<div id="main-view" class="main-theme-bg">
+    <div id="main-view" class="main-theme-bg">
         <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
@@ -688,64 +540,24 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                    <div class="hidden md:flex items-center space-x-8"
-     style="font-family: 'Cinzel', serif;">
-
-  <a href="#home"
-     class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
-     style="animation-delay: 0.1s">
-    HOME
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-  </a>
-
-  <a href="#about"
-     class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
-     style="animation-delay: 0.2s">
-    ABOUT US
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-  </a>
-
-  <a href="#features"
-     class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
-     style="animation-delay: 0.25s">
-    ENGINEERING
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-  </a>
-
-  <a href="#products"
-     class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
-     style="animation-delay: 0.4s">
-    PRODUCTS
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-  </a>
-
-  <a href="#impact"
-     class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
-     style="animation-delay: 0.45s">
-    WHY US
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-  </a>
-
-  <a href="founder.html"
-     class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
-     style="animation-delay: 0.5s">
-    FOUNDERS
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-  </a>
-
-  <a href="index_bn.html"
-     class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse"
-     style="animation-delay: 0.55s">
-    বাংলা
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-  </a>
-
-  <a href="contact.html?id=rownak"
-     class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle"
-     style="animation-delay: 0.6s">
-    CONTACTS
-  </a>
-
-</div>
+     style="font-family: 'Cinzel', serif;"><a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s"> WHY US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="founder.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s"> FOUNDERS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> 
+    <div class="relative group z-[10002] inline-block ml-4">
+        <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none">
+            <i class="fas fa-globe"></i>
+            <span class="">EN</span>
+            <i class="fas fa-chevron-down text-xs ml-1"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
+            <div class="py-1">
+                <a href="index.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">EN</a>
+                <a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">BN</a>
+                <a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
+                <a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
+                <a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
+                <a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
+            </div>
+        </div>
+    </div> <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s"> CONTACTS </a></div>
                     <div class="md:hidden">
                         <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
                     </div>
