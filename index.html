@@ -1708,7 +1708,7 @@
 
         async function initGallery() {
             // Attempt to load images 1.jpg through 10.jpg
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 30; i++) {
                 const src = `src/assets/slideshow/${i}.jpg`;
                 const exists = await checkImage(src);
                 if (exists) {
@@ -1719,11 +1719,37 @@
             // Fallback if detection fails or is empty
             if(galleryImages.length === 0) {
                 galleryImages = [
-                    'src/assets/slideshow/1.jpg',
-                    'src/assets/slideshow/2.jpg',
-                    'src/assets/slideshow/3.jpg',
-                    'src/assets/slideshow/4.jpg'
-                ];
+    'src/assets/slideshow/1.jpg',
+    'src/assets/slideshow/2.jpg',
+    'src/assets/slideshow/3.jpg',
+    'src/assets/slideshow/4.jpg',
+    'src/assets/slideshow/5.jpg',
+    'src/assets/slideshow/6.jpg',
+    'src/assets/slideshow/7.jpg',
+    'src/assets/slideshow/8.jpg',
+    'src/assets/slideshow/9.jpg',
+    'src/assets/slideshow/10.jpg',
+    'src/assets/slideshow/11.jpg',
+    'src/assets/slideshow/12.jpg',
+    'src/assets/slideshow/13.jpg',
+    'src/assets/slideshow/14.jpg',
+    'src/assets/slideshow/15.jpg',
+    'src/assets/slideshow/16.jpg',
+    'src/assets/slideshow/17.jpg',
+    'src/assets/slideshow/18.jpg',
+    'src/assets/slideshow/19.jpg',
+    'src/assets/slideshow/20.jpg',
+    'src/assets/slideshow/21.jpg',
+    'src/assets/slideshow/22.jpg',
+    'src/assets/slideshow/23.jpg',
+    'src/assets/slideshow/24.jpg',
+    'src/assets/slideshow/25.jpg',
+    'src/assets/slideshow/26.jpg',
+    'src/assets/slideshow/27.jpg',
+    'src/assets/slideshow/28.jpg',
+    'src/assets/slideshow/29.jpg',
+    'src/assets/slideshow/30.jpg'
+];
             }
 
             if(galleryImages.length === 0) {
