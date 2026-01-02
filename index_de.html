@@ -670,33 +670,17 @@
     <!-- END MAIN VIEW -->
 
     <script src="js/main.js"></script>
+
+    <!-- Top to Bottom Button (visible only at bottom) -->
+    <div id="scroll-to-bottom" class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
+        <button onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
+            <span class="text-xl">⬇️</span>
+        </button>
+    </div>
+
     <script>
-        lucide.createIcons();
-        document.addEventListener('DOMContentLoaded', () => {
-            // Re-initialize loader for this page
-            const percentEl = document.getElementById('load-percent');
-            const percentReflectEl = document.getElementById('load-percent-reflection');
-            const statusEl = document.getElementById('load-status');
-            const loader = document.getElementById('loader');
-            const body = document.body;
-            let progress = 0;
-            const statusMessages = ["HYDRAULIK KALIBRIEREN", "STROMNETZ VERBINDEN", "BATTERIE OPTIMIEREN", "ASSETS LADEN", "SYSTEM BEREIT"];
-            const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 6) + 3;
-                if (progress > 100) progress = 100;
-                const display = progress < 10 ? `0${progress}` : `${progress}`;
-                if(percentEl) percentEl.innerText = display;
-                if(percentReflectEl) percentReflectEl.innerText = display;
-                const msgIndex = Math.min(Math.floor(progress / 20), 4);
-                if(statusEl) statusEl.innerText = statusMessages[msgIndex];
-                if (progress === 100) {
-                    clearInterval(interval);
-                    setTimeout(() => { if(loader) { loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; } body.classList.remove('loading'); }, 500);
-                }
-            }, 30);
-            
-            // Tab Data in German
-            const tabsData = [
+        // Language Specific Data for Tabs
+        window.tabsData = [
             { 
                 title: "Treffen Sie die Innovatoren",
                 html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Treffen Sie die Innovatoren</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-6"><a href="contact_de.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform"><img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4><p class="text-emerald-400 text-xs">Gründer</p></a><a href="contact_de.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4><p class="text-emerald-400 text-xs">Leiter Design</p></a><a href="contact_de.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Omor Faruk Hasan</h4><p class="text-emerald-400 text-xs">COO</p></a><a href="contact_de.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4><p class="text-emerald-400 text-xs">HR</p></a><a href="contact_de.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Dipto Muzumder Swadhin</h4><p class="text-emerald-400 text-xs">COO</p></a><a href="contact_de.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Tawhidul Islam Tahsif</h4><p class="text-emerald-400 text-xs">Leitender Designer</p></a></div></div>`
@@ -723,32 +707,10 @@
                 html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">Erfolge</h3><ul class="space-y-8 border-l border-slate-700 ml-2 pl-6"><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span><span class="text-emerald-400 font-bold text-sm block mb-1">Nov 2025</span><h4 class="text-lg font-semibold text-white mb-1">Nationaler Champion | SofE</h4><p class="text-slate-400 text-xs italic mb-2">Speak Out for Engineers (IMechE)</p><p class="text-slate-300 text-sm mb-2"><b>Projekt Trambulanz:</b> Innovation einer effizient gestalteten, erschwinglichen batteriebetriebenen Dreirad-Ambulanz.</p><ul class="list-disc list-inside text-slate-500 text-sm space-y-0.5"><li>Durchführung von 3D-Design in SolidWorks/SketchUp mit Aerodynamik- und Lastsimulationen in Ansys.</li><li>Innovatives Chassis und aerodynamisch inspiriertes Origami-Verdeck-System ernteten Anerkennung.</li></ul></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">Juli 2025</span><h4 class="text-lg font-semibold text-white mb-1">BUET Champion | UIHP</h4><p class="text-slate-400 text-xs italic mb-2">University Innovation Hub Program (ICT Division)</p><p class="text-slate-300 text-sm mb-2"><b>Projekt TriChokro:</b> Entwicklung eines verbesserten und erschwinglichen Auto-Rikscha-Modells.</p><ul class="list-disc list-inside text-slate-500 text-sm space-y-0.5"><li>Prototyp gebaut; Massenproduktionsabkommen mit Panna Group in Arbeit.</li><li>Finanzierung durch BUET Alumni und Investoren gesichert.</li></ul></li></ul></div>`
             }
             ];
-
-            // Tab Switching Logic
-            window.switchTab = function(index) {
-                const btns = document.querySelectorAll('#about-tabs .tab-btn');
-                const contentDiv = document.getElementById('tab-content');
-                
-                btns.forEach((btn, i) => {
-                    if (i === index) {
-                        btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover";
-                    } else {
-                        btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover";
-                    }
-                });
-
-                if (index === 3) { // Mission & Vision
-                    contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[3].title}</h3>
-                    <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10">
-                    <p class="text-slate-400 leading-relaxed mb-6">${tabsData[3].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[3].quote}"</p></div></div>`;
-                } else {
-                    contentDiv.innerHTML = tabsData[index].html;
-                }
-            }
-
-            // Initialize tabs
-            switchTab(0);
-        });
     </script>
+
+    <!-- Core Application Logic -->
+    <script src="js/main.js" defer></script>
+    <script src="js/gallery.js" defer></script>
 </body>
 </html>
