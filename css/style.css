@@ -476,3 +476,13 @@ html[lang="bn"] body {
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
 .mt-4 { margin-top: 1rem; }
+
+html[lang="zh"] body {
+    font-family: 'Noto Sans SC', 'Inter', sans-serif;
+}
+html[lang="ja"] body {
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
+}
+html[lang="bn"] body {
+    font-family: 'Tiro Bangla', 'Hind Siliguri', 'Inter', sans-serif;
+}
