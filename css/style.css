@@ -476,3 +476,18 @@ html[lang="bn"] body {
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
 .mt-4 { margin-top: 1rem; }
+
+/* Mobile Touch Fixes */
+body {
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure overlays don't block interaction on mobile */
+@media (max-width: 768px) {
+    #speed-overlay, #ai-widget, .watermark-logo {
+        pointer-events: none !important;
+        z-index: -1 !important;
+    }
+    /* Re-enable pointer events for active speed overlay if needed, but request was to remove it */
+}

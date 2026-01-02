@@ -57,25 +57,6 @@
 <body class="selection-emerald loading">
     
     <!-- Speedometer Overlay -->
-    <div id="speed-overlay">
-        <div class="speed-lines"></div>
-        <div class="speedy-car">
-            <svg viewBox="0 0 200 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 40 L40 40 L50 20 L120 20 L140 40 L180 40 L180 50 L10 50 Z" opacity="0.8"/>
-                <circle cx="45" cy="50" r="10" fill="#34d399"/>
-                <circle cx="145" cy="50" r="10" fill="#34d399"/>
-                <path d="M185 45 H200" stroke="#34d399" stroke-width="2"/>
-                <path d="M185 40 H210" stroke="#34d399" stroke-width="2"/>
-            </svg>
-        </div>
-        <div class="relative z-10 flex flex-col items-center">
-            <div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
-                <span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
-            </div>
-            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">加速中</div>
-        </div>
-    </div>
-
     <!-- Loader -->
     <div id="loader">
         <div class="relative w-full max-w-lg px-8">
@@ -98,40 +79,9 @@
     </div>
 
     <div class="watermark-overlay"></div>
-    <div id="emoji-container"></div>
+
 
     <!-- AI Widget -->
-    <div id="ai-widget">
-        <div id="ai-chat-window">
-            <div class="p-4 border-b border-emerald-500/20 bg-slate-900/80 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
-                        <i data-lucide="bot" class="w-5 h-5 text-slate-900"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-white text-sm font-bold">TriChokro 2024</h4>
-                        <span class="text-xs text-emerald-400 flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> オンライン
-                        </span>
-                    </div>
-                </div>
-                <button id="close-chat" class="text-slate-400 hover:text-white interactive"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto flex flex-col gap-2">
-                <div class="chat-message ai">こんにちは！TriChokroパイロットです。<br>EVの仕様、航続距離、トラブルシューティングについて何でも聞いてください！</div>
-            </div>
-            <div class="p-4 border-t border-emerald-500/20 bg-slate-900/80">
-                <form id="chat-form" class="relative flex items-center gap-2">
-                    <input type="text" id="chat-input" placeholder="シレットへの旅行を計画中..." class="w-full bg-slate-800/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors interactive">
-                    <button type="submit" class="p-2 bg-emerald-500 rounded-full text-slate-900 hover:bg-emerald-400 transition-colors interactive"><i data-lucide="send" class="w-4 h-4"></i></button>
-                </form>
-            </div>
-        </div>
-        <button id="ai-fab" class="sparkle-btn w-14 h-14 bg-emerald-600 hover:bg-emerald-500 rounded-full shadow-2xl shadow-emerald-500/40 flex items-center justify-center text-white transition-all transform hover:scale-110 interactive group">
-            <i data-lucide="sparkles" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
-        </button>
-    </div>
-
     <!-- ########################### MAIN VIEW ########################### -->
     <div id="main-view" class="main-theme-bg">
         <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5">
@@ -142,35 +92,33 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                    <div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;">
+<a href="index_ja.html#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">ホーム<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+<a href="index_ja.html#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">車両<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+<a href="index_ja.html#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">技術<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+<a href="index_ja.html#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">私たちについて<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+<a href="contact_ja.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">お問い合わせ<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 
-                      <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">ホーム<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 
-                      <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">私たちについて<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+    <div class="relative group z-[10002] inline-block ml-4">
+        <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none">
+            <i class="fas fa-globe"></i>
+            <span class="">JA</span>
+            <i class="fas fa-chevron-down text-xs ml-1"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
+            <div class="py-1">
+                <a href="index.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">EN</a>
+<a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">BN</a>
+<a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
+<a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
+<a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
+<a href="index_ja.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">JA</a>
 
-                      <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s">技術<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+            </div>
+        </div>
+    </div>
 
-                      <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">製品<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-
-                      <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s">選ばれる理由<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-
-                      <a href="founder_ja.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">創設者<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-
-                      <a href="contact_ja.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">お問い合わせ</a>
-
-                        <div class="relative group z-[10002]">
-                            <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1">
-                                <i class="fas fa-globe"></i> <span id="current-lang">JA</span> <i class="fas fa-chevron-down text-xs"></i>
-                            </button>
-                            <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
-                                
-                                <a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
-                                <a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
-                                <a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
-                                <a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
-                                <a href="index_ja.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">JA</a>
-                            </div>
-                        </div>
-                    </div>
+</div>
                     <div class="md:hidden">
                         <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
                     </div>
@@ -178,21 +126,20 @@
             </div>
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
                 <div class="px-4 py-4 space-y-3 flex flex-col">
-                    <a href="#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ホーム</a>
-                    <a href="#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">私たちについて</a>
-                    <a href="#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">技術</a>
-                    <a href="#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">製品</a>
-                    <a href="#impact" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">選ばれる理由</a>
-                    <a href="founder_ja.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">創設者</a>
-                    <a href="contact_ja.html?id=rownak" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">お問い合わせ</a>
-                    
-                
-<a href="index.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
-                    <a href="index_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
-                    <a href="index_de.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">DE</a>
-                    <a href="index_es.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ES</a>
-                    <a href="index_zh.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ZH</a>
-                    <a href="index_ja.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">JA</a>
+<a href="index_ja.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ホーム</a>
+<a href="index_ja.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">車両</a>
+<a href="index_ja.html#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">技術</a>
+<a href="index_ja.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">私たちについて</a>
+<a href="contact_ja.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">お問い合わせ</a>
+
+<div class="border-t border-slate-700 my-2"></div>
+<a href="index.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
+<a href="index_bn.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
+<a href="index_de.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">DE</a>
+<a href="index_es.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ES</a>
+<a href="index_zh.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ZH</a>
+<a href="index_ja.html" class="block text-emerald-400 bg-slate-800 font-bold px-4 py-3 rounded-lg transition-colors font-medium">JA</a>
+
 </div>
             </div>
         </nav>
