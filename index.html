@@ -1241,17 +1241,141 @@
     </div> 
     <!-- END MAIN VIEW -->
 
-    
-    <!-- Top to Bottom Button (visible only at bottom) -->
-    <div id="scroll-to-bottom" class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
-        <button onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
-            <span class="text-xl">⬇️</span>
-        </button>
-    </div>
-    
     <script>
-        // Language Specific Data for Tabs
-        window.tabsData = [
+        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            const percentEl = document.getElementById('load-percent');
+            const percentReflectEl = document.getElementById('load-percent-reflection');
+            const statusEl = document.getElementById('load-status');
+            const loader = document.getElementById('loader');
+            const body = document.body;
+            let progress = 0;
+            const statusMessages = ["CALIBRATING HYDRAULICS", "CONNECTING POWER GRID", "OPTIMIZING BATTERY", "LOADING ASSETS", "SYSTEM READY"];
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 6) + 3;
+                if (progress > 100) progress = 100;
+                const display = progress < 10 ? `0${progress}` : `${progress}`;
+                percentEl.innerText = display;
+                percentReflectEl.innerText = display;
+                const msgIndex = Math.min(Math.floor(progress / 20), 4);
+                statusEl.innerText = statusMessages[msgIndex];
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => { loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; body.classList.remove('loading'); }, 500);
+                }
+            }, 30);
+            startFloatingEmojis();
+            
+            // Initialize default tab (TEAM)
+            switchTab(0);
+        });
+
+        function startFloatingEmojis() {
+            const container = document.getElementById('emoji-container');
+            const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡', '🤖', '💻', '🔌', '⚙️', '🛠️', '🚗', '🔧', '⚡', '🔋', '🌱'];
+            const maxEmojis = 40;
+            let currentEmojis = 0;
+            function createEmoji() {
+                if (currentEmojis >= maxEmojis) return;
+                const emoji = document.createElement('div');
+                emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.classList.add('floating-emoji');
+                emoji.style.left = `${Math.random() * 100}vw`;
+                emoji.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                emoji.style.fontSize = `${Math.random() * 20 + 15}px`;
+                container.appendChild(emoji);
+                currentEmojis++;
+                emoji.addEventListener('animationend', () => { emoji.remove(); currentEmojis--; });
+            }
+            setInterval(createEmoji, 1200);
+            for(let i=0; i<8; i++) setTimeout(createEmoji, i * 400);
+        }
+
+        const speedOverlay = document.getElementById('speed-overlay');
+        const speedCounter = document.getElementById('speed-counter');
+        let speedInterval;
+        function triggerCarLoading() {
+            speedOverlay.classList.add('active');
+            let speed = 0;
+            clearInterval(speedInterval);
+            speedInterval = setInterval(() => {
+                if(speed < 60) speed += 5; else if(speed < 90) speed += 4; else speed += 2;
+                if(speed >= 100) {
+                    speed = 100;
+                    speedCounter.innerText = speed;
+                    clearInterval(speedInterval);
+                    setTimeout(() => { speedOverlay.classList.remove('active'); }, 200);
+                } else { speedCounter.innerText = speed; }
+            }, 10);
+        }
+        
+        const triggerElements = document.querySelectorAll('.transition-trigger');
+        triggerElements.forEach(el => { 
+            el.addEventListener('click', (e) => { 
+                const href = el.getAttribute('href');
+                if (href && !href.startsWith('#')) {
+                    e.preventDefault();
+                    triggerCarLoading();
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 800);
+                }
+            }); 
+        });
+
+        const aiFab = document.getElementById('ai-fab');
+        const aiChatWindow = document.getElementById('ai-chat-window');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+        let isChatOpen = false;
+        aiFab.addEventListener('click', () => { isChatOpen = !isChatOpen; if (isChatOpen) { aiChatWindow.classList.add('open'); } else { aiChatWindow.classList.remove('open'); } });
+        closeChatBtn.addEventListener('click', () => { isChatOpen = false; aiChatWindow.classList.remove('open'); });
+
+        const apiKey = ""; 
+        async function getGeminiResponse(userText) {
+            if (!apiKey) { addMessage("⚠️ Pilot Offline: Please add a valid Google Gemini API Key in the source code.", 'ai'); return; }
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'chat-message ai flex gap-1 items-center';
+            loadingDiv.innerHTML = `<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>`;
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: `You are the "TriChokro AI Pilot", an intelligent assistant for a Bangladeshi Electric Vehicle company. Your Capabilities: 1. Trip Planning (120km range). 2. Mechanic/Diagnostics. 3. Product Specs. Tone: Professional, Helpful, Futuristic. Use emojis.` }] } })
+                });
+                const data = await response.json();
+                chatMessages.removeChild(loadingDiv);
+                if (data.candidates && data.candidates[0].content) {
+                    const aiText = data.candidates[0].content.parts[0].text;
+                    const formattedText = marked.parse(aiText);
+                    addMessage(formattedText, 'ai');
+                } else { addMessage("I'm having trouble connecting to the satellite. Try again? 📡", 'ai'); }
+            } catch (error) { chatMessages.removeChild(loadingDiv); addMessage("System Offline. Please check your connection. ⚠️", 'ai'); console.error(error); }
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `chat-message ${sender}`;
+            if (sender === 'ai') { div.innerHTML = text; } else { div.textContent = text; }
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            chatInput.value = '';
+            getGeminiResponse(text);
+        });
+
+        // Updated Tabs Data: TEAM IS FIRST (INDEX 0)
+        const tabsData = [
             { 
                 title: "Meet the Innovators",
                 html:
@@ -1460,10 +1584,333 @@
         `
         }
         ];
+
+        function switchTab(index) {
+            const btns = document.querySelectorAll('.tab-btn');
+            const contentDiv = document.getElementById('tab-content');
+            btns.forEach((btn, i) => {
+                if (i === index) { btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover"; }
+                else { btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover"; }
+            });
+            if (index === 3) { // Mission (Index 3 now)
+                contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[3].title}</h3>
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10">
+                <p class="text-slate-400 leading-relaxed mb-6">${tabsData[3].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[3].quote}"</p></div></div>`; 
+            }
+            else { contentDiv.innerHTML = tabsData[index].html; }
+        }
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) { navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.remove('py-5', 'bg-transparent'); }
+            else { navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.add('py-5', 'bg-transparent'); }
+        });
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
+            else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
+        });
+
+        const heroContent = document.getElementById('hero-content');
+        const heroGrid = document.getElementById('hero-grid');
+        const blob1 = document.getElementById('blob-1');
+        const blob2 = document.getElementById('blob-2');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 40;
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            if(heroContent) heroContent.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            if(heroGrid) heroGrid.style.transform = `translate(${x * -0.5}px, ${y * -0.5}px) perspective(1000px) rotateX(10deg)`;
+            if(blob1) blob1.style.transform = `translate(${x * -1}px, ${y * -1}px)`;
+            if(blob2) blob2.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (!isMobile) {
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -8;
+                    const rotateY = ((x - centerX) / centerX) * 8;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)'; });
+            });
+        }
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => { observer.observe(el); });
+
+        // Gallery Logic
+        const galleryTrack = document.getElementById('gallery-track');
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        
+        // Dynamic Gallery Loading
+        let galleryImages = [];
+        let currentIndex = 0;
+        let galleryInterval;
+
+        function checkImage(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+
+        async function initGallery() {
+            // Attempt to load images 1.jpg through 10.jpg
+            for (let i = 1; i <= 30; i++) {
+                const src = `src/assets/slideshow/${i}.jpg`;
+                const exists = await checkImage(src);
+                if (exists) {
+                    galleryImages.push(src);
+                }
+            }
+
+            // Fallback if detection fails or is empty
+            if(galleryImages.length === 0) {
+                galleryImages = [
+    'src/assets/slideshow/1.jpg',
+    'src/assets/slideshow/2.jpg',
+    'src/assets/slideshow/3.jpg',
+    'src/assets/slideshow/4.jpg',
+    'src/assets/slideshow/5.jpg',
+    'src/assets/slideshow/6.jpg',
+    'src/assets/slideshow/7.jpg',
+    'src/assets/slideshow/8.jpg',
+    'src/assets/slideshow/9.jpg',
+    'src/assets/slideshow/10.jpg',
+    'src/assets/slideshow/11.jpg',
+    'src/assets/slideshow/12.jpg',
+    'src/assets/slideshow/13.jpg',
+    'src/assets/slideshow/14.jpg',
+    'src/assets/slideshow/15.jpg',
+    'src/assets/slideshow/16.jpg',
+    'src/assets/slideshow/17.jpg',
+    'src/assets/slideshow/18.jpg',
+    'src/assets/slideshow/19.jpg',
+    'src/assets/slideshow/20.jpg',
+    'src/assets/slideshow/21.jpg',
+    'src/assets/slideshow/22.jpg',
+    'src/assets/slideshow/23.jpg',
+    'src/assets/slideshow/24.jpg',
+    'src/assets/slideshow/25.jpg',
+    'src/assets/slideshow/26.jpg',
+    'src/assets/slideshow/27.jpg',
+    'src/assets/slideshow/28.jpg',
+    'src/assets/slideshow/29.jpg',
+    'src/assets/slideshow/30.jpg'
+];
+            }
+
+            if(galleryImages.length === 0) {
+                 document.getElementById('gallery').style.display = 'none';
+                 return;
+            }
+
+            // Render Images with captions
+            galleryImages.forEach((src, index) => {
+                const div = document.createElement('div');
+                div.className = 'min-w-full h-full relative flex-shrink-0 cursor-pointer'; 
+                // Extract photo name from path
+                const photoName = src.split('/').pop().split('.')[0];
+                div.onclick = () => openLightbox(src, photoName);
+                div.innerHTML = `
+                    <img src="${src}" class="w-full h-full object-cover select-none" alt="${photoName}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-70 hover:opacity-50 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <p class="text-lg font-semibold tracking-wide drop-shadow-lg">${photoName.replace(/-/g, ' ').toUpperCase()}</p>
+                    </div>
+                `;
+                galleryTrack.appendChild(div);
+            });
+
+            startGalleryAutoSlide();
+        }
+
+        function openLightbox(src, caption) {
+            lightboxImg.src = src;
+            lightboxCaption.textContent = caption;
+            lightbox.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            requestAnimationFrame(() => {
+                lightbox.classList.remove('opacity-0');
+            });
+            stopGalleryAutoSlide();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+            }, 300);
+            startGalleryAutoSlide();
+        }
+
+        if(lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) closeLightbox();
+            });
+        }
+
+        function updateGalleryPosition() {
+            galleryTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            updateGalleryPosition();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateGalleryPosition();
+        }
+
+               function startGalleryAutoSlide() {
+            galleryInterval = setInterval(nextSlide, 3000);
+        }
+        
+        function stopGalleryAutoSlide() {
+            clearInterval(galleryInterval);
+        }
+
+        if(prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => { stopGalleryAutoSlide(); prevSlide(); startGalleryAutoSlide(); });
+            nextBtn.addEventListener('click', () => { stopGalleryAutoSlide(); nextSlide(); startGalleryAutoSlide(); });
+            
+            // Touch support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const slider = document.querySelector('.gallery-slider');
+            
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopGalleryAutoSlide();
+            }, {passive: true});
+
+            slider.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startGalleryAutoSlide();
+            }, {passive: true});
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) nextSlide();
+                if (touchEndX > touchStartX + 50) prevSlide();
+            }
+        }
+
+        initGallery();
     </script>
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="fixed bottom-10 left-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-12 h-12 bg-slate-800/80 backdrop-blur-sm border border-emerald-500/30 text-emerald-400 rounded-full flex items-center justify-center hover:bg-emerald-500 hover:text-slate-900 transition-all shadow-lg hover:shadow-emerald-500/20 group">
+            <i data-lucide="arrow-up" class="w-6 h-6 group-hover:-translate-y-1 transition-transform"></i>
+        </button>
+    </div>
+    <div id="scroll-progress-bar" class="fixed right-0 top-0 h-screen w-1 bg-gradient-to-b from-emerald-400 via-emerald-500 to-cyan-400 z-[9991] transform scale-y-0 origin-top transition-transform duration-300" style="transform-origin: top; transform: scaleY(0);"></div>
+
+    <!-- Cool Icon Container (fixed on the right side) -->
+<div id="scroll-icon" class="fixed right-4 top-1/4 z-[9991] opacity-30 hover:opacity-60 transition-opacity duration-300 pointer-events-none">
+    <i data-lucide="zap" class="w-8 h-8 text-emerald-400 animate-pulse"></i>
+</div>
+
+    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(400px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.08), transparent 80%); mix-blend-mode: screen;"></div> 
+    <script> 
+        document.addEventListener("mousemove", e => { 
+            const gradient = document.getElementById("cursor-gradient"); 
+            if(gradient) { 
+                gradient.style.setProperty("--x", e.clientX + "px"); 
+                gradient.style.setProperty("--y", e.clientY + "px"); 
+            } 
+        }); 
+
+        // Back to top visibility
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+            }
+        });
+                // Scroll to Bottom Button - visible only when NOT at bottom
+        const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+        window.addEventListener('scroll', () => {
+            const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
+            if (!isAtBottom && window.scrollY > 300) {
+                scrollToBottomBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+            } else {
+                scrollToBottomBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+            }
+        });
+    </script>
+    <!-- Add this JavaScript before the closing </script> tag (before line 1380) */
+
+// Scroll Progress Bar with Smooth Easing
+function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scroll-progress-bar');
+    const scrollIcon = document.getElementById('scroll-icon');
     
-    <!-- Core Application Logic -->
-    <script src="js/main.js" defer></script>
-    <script src="js/gallery.js" defer></script>
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) : 0;
+    
+    // Apply smooth easing: fast at start, slow at end (easeOutQuad)
+    const easedPercent = scrollPercent < 0.5 
+        ? 2 * scrollPercent * scrollPercent 
+        : -1 + (4 - 2 * scrollPercent) * scrollPercent;
+    
+    scrollProgress.style.transform = `scaleY(${easedPercent})`;
+    
+    // Add glow effect when scrolling actively
+    if (scrollPercent > 0 && scrollPercent < 1) {
+        scrollProgress.classList.add('active');
+    } else if (scrollPercent >= 1) {
+        scrollProgress.classList.remove('active');
+    }
+    
+    // Animate icon opacity based on scroll
+    scrollIcon.style.opacity = Math.max(0.15, 0.3 + (scrollPercent * 0.2));
+}
+
+// Listen to scroll events
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+
+// Initial call
+updateScrollProgress();
+    <!-- Top to Bottom Button (visible only at bottom) -->
+    <div id="scroll-to-bottom" class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
+        <button onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
+            <span class="text-xl">⬇️</span>
+        </button>
+    </div>
 </body>
 </html>
