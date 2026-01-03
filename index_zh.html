@@ -690,7 +690,7 @@
                 if(statusEl) statusEl.innerText = statusMessages[msgIndex];
                 if (progress === 100) {
                     clearInterval(interval);
-                    setTimeout(() => { if(loader) { loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; } body.classList.remove('loading'); }, 500);
+                    setTimeout(() => { if(loader) { loader.style.display = 'none'; loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; } body.classList.remove('loading'); body.style.overflow = 'auto'; }, 500);
                 }
             }, 30);
             
@@ -752,5 +752,7 @@
 <script src="js/mobile-optimized.js" defer></script>
 </body>
 </html>
+
+
 
 
