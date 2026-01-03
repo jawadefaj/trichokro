@@ -1,0 +1,231 @@
+﻿/* ============================================
+   TriChokro Optimized CSS v2
+   - Improved mobile touch targets
+   - Better animations
+   - Consolidated styles
+   ============================================ */
+
+:root {
+    --primary: #10b981;
+    --primary-light: #34d399;
+    --bg-dark: #020617;
+    --bg-panel: #0f172a;
+    --text-light: #f8fafc;
+    --text-muted: #cbd5e1;
+    --border-color: rgba(100, 255, 218, 0.1);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+/* Enhanced mobile touch targets - 48px minimum */
+a, button, .interactive, [role="button"], input {
+    min-height: 48px;
+    min-width: 48px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Touch feedback for mobile */
+@media (hover: none) and (pointer: coarse) {
+    a:active, button:active, .interactive:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+/* Ripple effect for buttons */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.btn-ripple:active::before {
+    animation: ripple-effect 0.6s ease-out;
+}
+
+@keyframes ripple-effect {
+    0% { width: 0; height: 0; }
+    100% { width: 300px; height: 300px; }
+}
+
+/* Enhanced animations */
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-top {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
+}
+
+@keyframes float-motion {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in { animation: fade-in-up 0.8s ease-out forwards; }
+.animate-slide-in { animation: slide-in-top 0.6s ease-out; }
+.animate-float { animation: float-motion 3s ease-in-out infinite; }
+.animate-scale { animation: scale-in 0.5s ease-out; }
+
+/* Mobile menu */
+#mobile-menu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+#mobile-menu.show {
+    max-height: 100vh;
+    opacity: 1;
+}
+
+#mobile-menu a {
+    display: block;
+    padding: 16px 16px;
+    min-height: 48px;
+    margin: 4px 0;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 16px;
+}
+
+#mobile-menu a:active {
+    background: rgba(16, 185, 129, 0.1);
+    transform: translateX(4px);
+}
+
+/* Button styles */
+.btn, button {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+    background: #10b981;
+    color: #020617;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+}
+
+/* Card styles */
+.card {
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    padding: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.card:active, .card:hover {
+    border-color: #10b981;
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+    transform: translateY(-4px);
+}
+
+/* Performance optimizations */
+.will-animate { will-change: transform, opacity; }
+
+img, video {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Accessibility */
+a:focus-visible, button:focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Tablet & Mobile Responsiveness */
+@media (max-width: 768px) {
+    a, button, .interactive {
+        min-height: 48px;
+        min-width: 48px;
+        padding: 12px 14px;
+    }
+
+    button, [role="button"], .btn {
+        min-height: 52px;
+        font-size: 16px;
+    }
+
+    #mobile-menu a {
+        padding: 16px 16px;
+        min-height: 52px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    a, button, .interactive {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    button, .btn {
+        min-height: 52px;
+    }
+
+    #mobile-menu a {
+        padding: 16px 16px;
+        min-height: 56px;
+    }
+}
