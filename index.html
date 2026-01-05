@@ -1907,7 +1907,7 @@ window.addEventListener('scroll', updateScrollProgress, { passive: true });
 // Initial call
 updateScrollProgress();
     <!-- Top to Bottom Button (visible only at bottom) -->
-    <div id="scroll-to-bottom" class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
+    <div id="scroll-to-bottom" class="fixed bottom-28 right-4 md:bottom-10 md:right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
         <button onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
             <span class="text-xl">⬇️</span>
         </button>

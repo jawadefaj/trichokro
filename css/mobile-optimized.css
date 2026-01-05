@@ -212,6 +212,17 @@ a:focus-visible, button:focus-visible {
         min-height: 52px;
         font-size: 16px;
     }
+
+    /* Disable animations on interactive elements for mobile to prevent mistouches */
+    .interactive {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    /* Enforce pointer events on overlays */
+    .watermark-overlay, .watermark-logo, #emoji-container, #cursor-gradient {
+        pointer-events: none !important;
+    }
 }
 
 @media (max-width: 480px) {
