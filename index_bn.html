@@ -450,7 +450,33 @@
         #scroll-progress-bar.active {
             box-shadow: 0 0 25px rgba(16, 185, 129, 0.9), 0 0 40px rgba(16, 185, 129, 0.5);
         }
-    </style>
+/* Mobile touch-friendly popup */
+@media (max-width: 768px) {
+    .team-card-popup {
+        display: none !important;
+    }
+    
+    .team-member-card {
+        min-height: 120px;
+        min-width: 120px;
+    }
+    
+    /* Make cards more touch-friendly */
+    .team-member-card:active {
+        transform: scale(0.95);
+        background-color: rgba(15, 23, 42, 0.9) !important;
+    }
+}
+
+/* Desktop: show popup on hover */
+@media (min-width: 769px) {
+    .team-member-card:hover .team-card-popup {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: scale(1) !important;
+    }
+}
+
 </head>
 <body class="selection-emerald loading">
     
@@ -1383,7 +1409,7 @@
     
  <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact_bn.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_bn.html?id=rownak" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
         </div>
@@ -1392,7 +1418,7 @@
         <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/rownak_full.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1403,7 +1429,7 @@
         </div>
     </a>
     
-    <a href="contact_bn.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_bn.html?id=tomal" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia">
         </div>
@@ -1412,7 +1438,7 @@
         <p class="text-slate-500 text-[10px] mt-1">ME, BUET-19</p>
     </a>
     
-    <a href="contact_bn.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_bn.html?id=hasan" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan">
         </div>
@@ -1421,7 +1447,7 @@
         <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
     </a>
     
-    <a href="contact_bn.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_bn.html?id=mijanur" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman">
         </div>
@@ -1430,7 +1456,7 @@
         <p class="text-slate-500 text-[10px] mt-1">ME, BUET-19</p>
     </a>
     
-    <a href="contact_bn.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_bn.html?id=shwadhin" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin">
         </div>
@@ -1439,7 +1465,7 @@
         <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
     </a>
     
-    <a href="contact_bn.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_bn.html?id=tahsif" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif">
         </div>
@@ -1458,7 +1484,7 @@
             <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Our Expert Counsel</h3>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact_bn.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_bn.html?id=ehsanSir" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan">
         </div>
@@ -1467,7 +1493,7 @@
         <p class="text-slate-500 text-[10px] mt-1">Professor, Dept. of Mechanical Engineering, BUET</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/founders/ehsan.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1478,7 +1504,7 @@
         </div>
     </a>
     
-    <a href="contact_bn.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_bn.html?id=abdul" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad">
         </div>
@@ -1487,7 +1513,7 @@
         <p class="text-slate-500 text-[10px] mt-1">PhD, University of California Santa Cruz</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/founders/jawad.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1498,7 +1524,7 @@
         </div>
     </a>
     
-    <a href="contact_bn.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_bn.html?id=ishraq" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid">
         </div>
@@ -1507,7 +1533,7 @@
         <p class="text-slate-500 text-[10px] mt-1">MS, Germany</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/founders/ishraq.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1526,7 +1552,7 @@
 `<div class="animate-fade-in-up">
     <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Junior Associates</h3>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="contact_bn.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_bn.html?id=maxud" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury">
             </div>
@@ -1535,7 +1561,7 @@
         <p class="text-slate-500 text-[10px] mt-1">ME, BUET-23</p>
         </a>
         
-        <a href="contact_bn.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_bn.html?id=rakibul" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto">
             </div>
@@ -1544,7 +1570,7 @@
             <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         </a>
 
-        <a href="contact_bn.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_bn.html?id=farhan" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique">
             </div>
