@@ -8,13 +8,6 @@
 (function() {
     'use strict';
 
-    // Prevent default touch behaviors that cause issues
-    document.addEventListener('touchmove', function(e) {
-        if (e.target.closest('#mobile-menu')) {
-            e.stopPropagation();
-        }
-    }, { passive: true });
-
     // Mobile menu toggle
     const initMobileMenu = () => {
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
