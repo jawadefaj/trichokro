@@ -56,19 +56,7 @@
 </head>
 <body class="selection-emerald loading">
     
-    <!-- Speedometer Overlay -->
-    <div id="speed-overlay">
-        <div class="speed-lines"></div>
-        <div class="speedy-car">
-            <svg viewBox="0 0 200 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 40 L40 40 L50 20 L120 20 L140 40 L180 40 L180 50 L10 50 Z" opacity="0.8"/>
-                <circle cx="45" cy="50" r="10" fill="#34d399"/>
-                <circle cx="145" cy="50" r="10" fill="#34d399"/>
-                <path d="M185 45 H200" stroke="#34d399" stroke-width="2"/>
-                <path d="M185 40 H210" stroke="#34d399" stroke-width="2"/>
-            </svg>
-        </div>
-        <div class="relative z-10 flex flex-col items-center">
+    <div class="relative z-10 flex flex-col items-center">
             <div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
                 <span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
             </div>
@@ -100,16 +88,8 @@
     <div class="watermark-overlay"></div>
     <div id="emoji-container"></div>
 
-    <!-- AI Widget -->
-    <div id="ai-widget">
-        <div id="ai-chat-window">
-            <div class="p-4 border-b border-emerald-500/20 bg-slate-900/80 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
-                        <i data-lucide="bot" class="w-5 h-5 text-slate-900"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-white text-sm font-bold">TriChokro 2024</h4>
+   <div>
+                     <h4 class="text-white text-sm font-bold">TriChokro 2024</h4>
                         <span class="text-xs text-emerald-400 flex items-center gap-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 在线
                         </span>
