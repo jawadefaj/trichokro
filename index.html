@@ -450,33 +450,7 @@
         #scroll-progress-bar.active {
             box-shadow: 0 0 25px rgba(16, 185, 129, 0.9), 0 0 40px rgba(16, 185, 129, 0.5);
         }
-/* Mobile touch-friendly popup */
-@media (max-width: 768px) {
-    .team-card-popup {
-        display: none !important;
-    }
-    
-    .team-member-card {
-        min-height: 120px;
-        min-width: 120px;
-    }
-    
-    /* Make cards more touch-friendly */
-    .team-member-card:active {
-        transform: scale(0.95);
-        background-color: rgba(15, 23, 42, 0.9) !important;
-    }
-}
-
-/* Desktop: show popup on hover */
-@media (min-width: 769px) {
-    .team-member-card:hover .team-card-popup {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: scale(1) !important;
-    }
-}
-
+    </style>
 </head>
 <body class="selection-emerald loading">
     
@@ -566,14 +540,7 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                    <div class="hidden md:flex items-center space-x-8"
-     style="font-family: 'Cinzel', serif;">
-<a href="index.html#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index.html#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Vehicles<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index.html#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Technology<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index.html#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="contact.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Contacts<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-
-
+     style="font-family: 'Cinzel', serif;"><a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s"> WHY US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="founder.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s"> FOUNDERS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> 
     <div class="relative group z-[10002] inline-block ml-4">
         <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none">
             <i class="fas fa-globe"></i>
@@ -583,17 +550,14 @@
         <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
             <div class="py-1">
                 <a href="index.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">EN</a>
-<a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">BN</a>
-<a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
-<a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
-<a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
-<a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
-
+                <a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">BN</a>
+                <a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
+                <a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
+                <a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
+                <a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
             </div>
         </div>
-    </div>
-    
-</div>
+    </div> <a href="contact.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s"> CONTACTS </a></div>
                     <div class="md:hidden">
                         <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
                     </div>
@@ -601,21 +565,16 @@
             </div>
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
                 <div class="px-4 py-4 space-y-3 flex flex-col">
-<a href="index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Home</a>
-<a href="index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Vehicles</a>
-<a href="index.html#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Technology</a>
-<a href="index.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">About</a>
-<a href="contact.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Contacts</a>
-
-<div class="border-t border-slate-700 my-2"></div>
-<a href="index.html" class="block text-emerald-400 bg-slate-800 font-bold px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
-<a href="index_bn.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
-<a href="index_de.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">DE</a>
-<a href="index_es.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ES</a>
-<a href="index_zh.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ZH</a>
-<a href="index_ja.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">JA</a>
-
-</div>
+                    <a href="index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">HOME</a>
+                    <a href="index.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ABOUT US</a>
+                    <a href="#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGINEERING</a>
+                    <a href="#impact" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">WHY US</a>
+                    <a href="trambulance.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCE</a>
+                    <a href="index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCTS</a>
+                    <a href="founder.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">FOUNDERS</a>
+                    <a href="contact.html?id=rownak" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">CONTACTS</a>
+                    <a href="index_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">বাংলা</a>
+                </div>
             </div>
         </nav>
 
@@ -638,7 +597,7 @@
                 <!-- Extra Floating Objects -->
                 <div class="absolute top-20 left-10 w-16 h-16 border-2 border-emerald-500/10 rounded-lg rotate-12 animate-float-slow" style="animation-delay: 0.5s"></div>
                 <div class="absolute bottom-40 right-10 w-20 h-20 bg-gradient-to-tr from-emerald-500/5 to-blue-500/5 rounded-full blur-xl animate-float-medium" style="animation-delay: 1.5s"></div>
-                <div class="absolute top-1/2 right-20 text-emerald-300/10 text-6xl font-serif animate-float-slow opacity-20 pointer-events-none">?</div>
+                <div class="absolute top-1/2 right-20 text-emerald-300/10 text-6xl font-serif animate-float-slow opacity-20 pointer-events-none">⚡</div>
                 <div id="hero-grid" class="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:40px_40px] transition-transform duration-100 ease-out"></div>
             </div>
             <div id="hero-content" class="container mx-auto px-4 z-10 relative text-center transition-transform duration-100 ease-out">
@@ -652,8 +611,8 @@
                 </h1>
                 <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">Zero tailpipe emissions, retractable hood, Engineered for Bangladeshi Road, safety from hydraulic brake, comfort from superior suspension.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#products" class="interactive transition-trigger px-8 py-4 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2 uplift-on-hover">Explore Vehicles ?? <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-                    <a href="#about" class="interactive px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md uplift-on-hover bg-gradient-animate">Explore our team ??</a>
+                    <a href="#products" class="interactive transition-trigger px-8 py-4 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2 uplift-on-hover">Explore Vehicles 🛺 <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+                    <a href="#about" class="interactive px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md uplift-on-hover bg-gradient-animate">Explore our team 👥</a>
                 </div>
             </div>
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500"><i data-lucide="chevron-down" class="w-8 h-8"></i></div>
@@ -748,7 +707,7 @@
                             Country's Leading R&D company's Design-1 which solves safety and 8 mechanical issues of Existing Electric Rickshaw. Inspired by BUET's Prof Ehsan's Easy Bike Project and academically and theoretically supervised by him. Improved truss chassis, hydraulic brakes, and an origami hood.
                         </p>
                         <a href="pathfinder.html" class="interactive px-8 py-3 rounded-full border border-brand-green text-brand-green hover:bg-brand-green hover:text-brand-dark transition-all font-bold font-mono shadow-[0_0_15px_rgba(100,255,218,0.2)]">
-                            Pathfinder's Site ?
+                            Pathfinder's Site ⚡
                         </a>
                     </div>
                 </div>
@@ -763,7 +722,7 @@
                         <div class="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">Emergency Response Ambulance</div>
                         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"><span class="text-emerald-400">Trambulance</span>.<br />Saving Lives with Sustainably.</h2>
                         <p class="text-slate-400 text-lg mb-8 leading-relaxed">TriChokro Trambulance is a fully electric, three-wheeled ambulance designed for the unique needs of Bangladesh. Its compact size allows it to reach patients where traditional ambulances cannot.</p>
-                        <a href="trambulance.html" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">Trambulance's Site ??</a>
+                        <a href="trambulance.html" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">Trambulance's Site 🚑</a>
                     </div>
                     <div class="relative interactive uplift-on-hover animate-float-slow">
                         <!-- UPDATED IMAGE: Father Holding Son -->
@@ -845,7 +804,7 @@
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
-                    <p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh ????</p>
+                    <p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh 🇧🇩</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
@@ -1298,7 +1257,7 @@
 
         function startFloatingEmojis() {
             const container = document.getElementById('emoji-container');
-            const emojis = ['??', '??', '?', '??', '??', '??', '???', '??', '??', '??', '??', '??', '??', '??', '???', '??', '??', '?', '??', '??'];
+            const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡', '🤖', '💻', '🔌', '⚙️', '🛠️', '🚗', '🔧', '⚡', '🔋', '🌱'];
             const maxEmojis = 40;
             let currentEmojis = 0;
             function createEmoji() {
@@ -1361,7 +1320,7 @@
 
         const apiKey = ""; 
         async function getGeminiResponse(userText) {
-            if (!apiKey) { addMessage("?? Pilot Offline: Please add a valid Google Gemini API Key in the source code.", 'ai'); return; }
+            if (!apiKey) { addMessage("⚠️ Pilot Offline: Please add a valid Google Gemini API Key in the source code.", 'ai'); return; }
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'chat-message ai flex gap-1 items-center';
             loadingDiv.innerHTML = `<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>`;
@@ -1379,8 +1338,8 @@
                     const aiText = data.candidates[0].content.parts[0].text;
                     const formattedText = marked.parse(aiText);
                     addMessage(formattedText, 'ai');
-                } else { addMessage("I'm having trouble connecting to the satellite. Try again? ??", 'ai'); }
-            } catch (error) { chatMessages.removeChild(loadingDiv); addMessage("System Offline. Please check your connection. ??", 'ai'); console.error(error); }
+                } else { addMessage("I'm having trouble connecting to the satellite. Try again? 📡", 'ai'); }
+            } catch (error) { chatMessages.removeChild(loadingDiv); addMessage("System Offline. Please check your connection. ⚠️", 'ai'); console.error(error); }
         }
 
         function addMessage(text, sender) {
@@ -1410,16 +1369,15 @@
     
  <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact.html?id=rownak" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
         <p class="text-emerald-400 text-xs">Founder</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/rownak_full.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1430,49 +1388,44 @@
         </div>
     </a>
     
-    <a href="contact.html?id=tomal" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4>
         <p class="text-emerald-400 text-xs">Head of Design</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-19</p>
     </a>
     
-    <a href="contact.html?id=hasan" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Omor Faruk Hasan</h4>
         <p class="text-emerald-400 text-xs">COO</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
     </a>
     
-    <a href="contact.html?id=mijanur" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4>
         <p class="text-emerald-400 text-xs">HR</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-19</p>
     </a>
     
-    <a href="contact.html?id=shwadhin" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Dipto Muzumder Swadhin</h4>
         <p class="text-emerald-400 text-xs">COO</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
     </a>
     
-    <a href="contact.html?id=tahsif" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Tawhidul Islam Tahsif</h4>
         <p class="text-emerald-400 text-xs">Lead Designer</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-21</p>
     </a>
 </div>`
    },
@@ -1485,16 +1438,15 @@
             <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Our Expert Counsel</h3>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact.html?id=ehsanSir" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Dr. Md. Ehsan</h4>
         <p class="text-emerald-400 text-xs">Advisor & Mentor</p>
-        <p class="text-slate-500 text-[10px] mt-1">Professor, Dept. of Mechanical Engineering, BUET</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/founders/ehsan.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1505,16 +1457,15 @@
         </div>
     </a>
     
-    <a href="contact.html?id=abdul" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4>
         <p class="text-emerald-400 text-xs">Vehicle Advisor</p>
-        <p class="text-slate-500 text-[10px] mt-1">PhD, University of California Santa Cruz</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/founders/jawad.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1525,16 +1476,15 @@
         </div>
     </a>
     
-    <a href="contact.html?id=ishraq" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4>
         <p class="text-emerald-400 text-xs">Architectural Advisor</p>
-        <p class="text-slate-500 text-[10px] mt-1">MS, Germany</p>
         
         <!-- Hover Popup -->
-        <div class="absolute bottom-full team-card-popup left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
+        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
                 <img src="src/assets/founders/ishraq.jpg" class="w-full h-auto object-cover">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
@@ -1553,36 +1503,34 @@
 `<div class="animate-fade-in-up">
     <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Junior Associates</h3>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="contact.html?id=maxud" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Maxudur Rahman Chowdhury</h4>
             <p class="text-emerald-400 text-xs">Head of Communications</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-23</p>
         </a>
         
-        <a href="contact.html?id=rakibul" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Rakibul Hasan Shanto</h4>
             <p class="text-emerald-400 text-xs">Manufacturing Executive</p>
-            <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         </a>
 
-        <a href="contact.html?id=farhan" class="team-member-card text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Farhan Saddique</h4>
             <p class="text-emerald-400 text-xs">Junior Associate</p>
-        <p class="text-slate-500 text-[10px] mt-1">BME, BUET-23</p>
+            <p class="text-slate-500 text-[10px] mt-1">BUET BME '23</p>
         </a>
     </div>
 </div>`
    },
-            { title: "Cleaner Mobility for Everyone", text: "Accelerate Bangladesh�s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.", quote: "We obsess over practical details � from frame geometry to charging routines." },
+            { title: "Cleaner Mobility for Everyone", text: "Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.", quote: "We obsess over practical details — from frame geometry to charging routines." },
             { title: "From Prototype to Production", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">From Prototype to Production</h3><ul class="space-y-6 border-l border-slate-700 ml-2 pl-6"><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span><span class="text-emerald-400 font-bold text-sm block mb-1">2022</span><p class="text-slate-400 text-sm">Began with a simple idea: lighter, safer three-wheelers.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2023</span><p class="text-slate-400 text-sm">Piloted first fleet, iterating on chassis and suspension.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2024</span><p class="text-slate-400 text-sm">Production-ready platform with angular composite panels.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">Today</span><p class="text-slate-400 text-sm">TriChokro vehicles carry passengers across cities daily.</p></li></ul></div>` },
         {
         title: "Achievements",
@@ -1908,44 +1856,45 @@
                 scrollToBottomBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
             }
         });
-
-        // Scroll Progress Bar with Smooth Easing
-        function updateScrollProgress() {
-            const scrollProgress = document.getElementById('scroll-progress-bar');
-            const scrollIcon = document.getElementById('scroll-icon');
-
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) : 0;
-
-            // Apply smooth easing: fast at start, slow at end (easeOutQuad)
-            const easedPercent = scrollPercent < 0.5
-                ? 2 * scrollPercent * scrollPercent
-                : -1 + (4 - 2 * scrollPercent) * scrollPercent;
-
-            if (scrollProgress) {
-                scrollProgress.style.transform = ``scaleY(${easedPercent})``;
-                // Add glow effect when scrolling actively
-                if (scrollPercent > 0 && scrollPercent < 1) {
-                    scrollProgress.classList.add('active');
-                } else if (scrollPercent >= 1) {
-                    scrollProgress.classList.remove('active');
-                }
-            }
-
-            if (scrollIcon) {
-                // Animate icon opacity based on scroll
-                scrollIcon.style.opacity = Math.max(0.15, 0.3 + (scrollPercent * 0.2));
-            }
-        }
-
-        window.addEventListener('scroll', updateScrollProgress, { passive: true });
-        updateScrollProgress();
     </script>
+    <!-- Add this JavaScript before the closing </script> tag (before line 1380) */
+
+// Scroll Progress Bar with Smooth Easing
+function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scroll-progress-bar');
+    const scrollIcon = document.getElementById('scroll-icon');
+    
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) : 0;
+    
+    // Apply smooth easing: fast at start, slow at end (easeOutQuad)
+    const easedPercent = scrollPercent < 0.5 
+        ? 2 * scrollPercent * scrollPercent 
+        : -1 + (4 - 2 * scrollPercent) * scrollPercent;
+    
+    scrollProgress.style.transform = `scaleY(${easedPercent})`;
+    
+    // Add glow effect when scrolling actively
+    if (scrollPercent > 0 && scrollPercent < 1) {
+        scrollProgress.classList.add('active');
+    } else if (scrollPercent >= 1) {
+        scrollProgress.classList.remove('active');
+    }
+    
+    // Animate icon opacity based on scroll
+    scrollIcon.style.opacity = Math.max(0.15, 0.3 + (scrollPercent * 0.2));
+}
+
+// Listen to scroll events
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+
+// Initial call
+updateScrollProgress();
     <!-- Top to Bottom Button (visible only at bottom) -->
-    <div id="scroll-to-bottom" class="fixed bottom-28 right-4 md:bottom-10 md:right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
+    <div id="scroll-to-bottom" class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10">
         <button onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})" class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce">
-            <span class="text-xl">??</span>
+            <span class="text-xl">⬇️</span>
         </button>
     </div>
 </body>
