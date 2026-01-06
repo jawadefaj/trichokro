@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+﻿<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +7,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" href="src/assets/logo_icon.png">
-    <title>TriChokro Automotives - Electric TriWheeler R&D</title>
+    <title>TriChokro Automotives - 电动三轮车研发</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Icons & Libraries -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -34,10 +34,10 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Hind Siliguri', 'Inter', 'Roboto', 'sans-serif'],
-                        display: ['Hind Siliguri', 'Cinzel', 'serif'],
+                        sans: ['Noto Sans SC', 'Inter', 'Roboto', 'sans-serif'],
+                        display: ['Noto Sans SC', 'Cinzel', 'serif'],
                         mono: ['JetBrains Mono', 'monospace'],
-                        serif: ['Hind Siliguri', 'Cormorant Garamond', 'serif'], // Added for Founder Page
+                        serif: ['Noto Sans SC', 'Cormorant Garamond', 'serif'], // Added for Founder Page
                     },
                     animation: {
                         'spin-slow': 'spin 25s linear infinite',
@@ -61,7 +61,7 @@
             cursor: default; 
             overflow-x: hidden; 
             background-color: #020617; 
-            font-family: 'Tiro Bangla', 'Hind Siliguri', 'Inter', sans-serif; 
+            font-family: 'Noto Sans SC', 'Inter', sans-serif; 
             color: #e2e8f0; 
             touch-action: manipulation;
             -webkit-overflow-scrolling: touch;
@@ -204,7 +204,7 @@
             cursor: default; 
             overflow-x: hidden; 
             background-color: #020617; 
-            font-family: 'Tiro Bangla', 'Hind Siliguri', 'Inter', sans-serif; 
+            font-family: 'Noto Sans SC', 'Inter', sans-serif; 
             color: #e2e8f0; 
             touch-action: manipulation;
             -webkit-overflow-scrolling: touch;
@@ -470,7 +470,7 @@
             <div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
                 <span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
             </div>
-            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">গতি বৃদ্ধি হচ্ছে</div>
+            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">速度ি বৃদ্ধি হচ্ছে</div>
         </div>
     </div>
 
@@ -509,7 +509,7 @@
                     <div>
                         <h4 class="text-white text-sm font-bold">TriChokro 2024</h4>
                         <span class="text-xs text-emerald-400 flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Online
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 在线
                         </span>
                     </div>
                 </div>
@@ -535,29 +535,29 @@
         <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index_bn.html'">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index_zh.html'">
                         <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                    <div class="hidden md:flex items-center space-x-8"
-     style="font-family: 'Tiro Bangla', 'Hind Siliguri', 'Cinzel', serif;"><a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s"> হোম <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s"> আমাদের সম্পর্কে <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s"> প্রকৌশল <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s"> পণ্য <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s"> কেন আমরা <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="founder_bn.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s"> প্রতিষ্ঠাতা <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> 
+     style="font-family: 'Noto Sans SC', 'Cinzel', serif;"><a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s"> 首页 <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s"> 关于我们 <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s"> 工程 <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s"> 产品 <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s"> 为什么选择我们া <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a href="founder_zh.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s"> প্রতিষ্ঠাতা <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> 
     <div class="relative group z-[10002] inline-block ml-4">
         <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none">
             <i class="fas fa-globe"></i>
-            <span class="">BN</span>
+            <span class="">ZH</span>
             <i class="fas fa-chevron-down text-xs ml-1"></i>
         </button>
         <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
             <div class="py-1">
                 <a href="index.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">EN</a>
-                <a href="index_bn.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">BN</a>
+                <a href="index_zh.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">ZH</a>
                 <a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
                 <a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
                 <a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
                 <a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
             </div>
         </div>
-    </div> <a href="contact_bn.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s"> যোগাযোগ </a></div>
+    </div> <a href="contact_zh.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s"> যোগাযোগ </a></div>
                     <div class="md:hidden">
                         <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
                     </div>
@@ -565,15 +565,15 @@
             </div>
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
                 <div class="px-4 py-4 space-y-3 flex flex-col">
-                    <a href="index_bn.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">হোম</a>
-                    <a href="index_bn.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">আমাদের সম্পর্কে</a>
-                    <a href="#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">প্রকৌশল</a>
-                    <a href="#impact" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">কেন আমরা</a>
-                    <a href="trambulance_bn.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ট্রাম্বুলেন্স</a>
-                    <a href="index_bn.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">পণ্য</a>
-                    <a href="founder_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">প্রতিষ্ঠাতা</a>
-                    <a href="contact_bn.html?id=rownak" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">যোগাযোগ</a>
-                    <a href="index_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
+                    <a href="index_zh.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">首页</a>
+                    <a href="index_zh.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">关于我们</a>
+                    <a href="#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">工程</a>
+                    <a href="#impact" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">为什么选择我们া</a>
+                    <a href="trambulance_zh.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ট্রাম্বুলেন্স</a>
+                    <a href="index_zh.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">产品</a>
+                    <a href="founder_zh.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">প্রতিষ্ঠাতা</a>
+                    <a href="contact_zh.html?id=rownak" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">যোগাযোগ</a>
+                    <a href="index_zh.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">中文</a>
                 </div>
             </div>
         </nav>
@@ -622,11 +622,11 @@
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-on-scroll">
                     <div>
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">ডিজাইন ও পণ্য</h2>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">ডিজাইন ও 产品</h2>
                         <div class="h-1 w-24 bg-emerald-500 rounded-full"></div>
-                        <p class="text-slate-400 mt-4 max-w-lg">বাংলাদেশের রাস্তার অনন্য চাহিদার জন্য প্রকৌশলকৃত। বুয়েটের মতোই টেকসই, দক্ষ ও নির্ভরযোগ্য।</p>
+                        <p class="text-slate-400 mt-4 max-w-lg">বাংলাদেশের রাস্তার অনন্য চাহিদার জন্য 工程কৃত। বুয়েটের মতোই টেকসই, দক্ষ ও নির্ভরযোগ্য।</p>
                     </div>
-                    <a href="pathfinder_bn.html" class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0 uplift-on-hover">সম্পূর্ণ স্পেসিফিকেশন দেখুন <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    <a href="pathfinder_zh.html" class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0 uplift-on-hover">সম্পূর্ণ স্পেসিফিকেশন দেখুন <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- TriChokro-3 Card updated with switchView -->
@@ -642,9 +642,9 @@
                             <div class="grid grid-cols-2 gap-4 mb-6">
                                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">রেঞ্জ</span><span class="text-emerald-400 font-bold">১২০ কিমি</span></div>
                                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">বৈশিষ্ট্য</span><span class="text-white font-bold">৫ জন যাত্রী, স্টিয়ারিং সিস্টেম</span></div>
-                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">গতি</span><span class="text-white font-bold">৫০ কিমি/ঘন্টা</span></div>
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">速度ি</span><span class="text-white font-bold">৫০ কিমি/ঘন্টা</span></div>
                             </div>
-                            <a href="pathfinder_bn.html" class="interactive transition-trigger w-full py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition-colors block text-center">বিস্তারিত স্পেক</a>
+                            <a href="pathfinder_zh.html" class="interactive transition-trigger w-full py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition-colors block text-center">বিস্তারিত স্পেক</a>
                         </div>
                     </div>
                     
@@ -661,9 +661,9 @@
                             <div class="grid grid-cols-2 gap-4 mb-6">
                                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">রেঞ্জ</span><span class="text-emerald-400 font-bold">১৫০ কিমি</span></div>
                                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">ধারণক্ষমতা</span><span class="text-white">রোগী + ৩ জন সেবাকারী</span></div>
-                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">গতি</span><span class="text-white font-bold">৭০ কিমি/ঘন্টা</span></div>
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">速度ি</span><span class="text-white font-bold">৭০ কিমি/ঘন্টা</span></div>
                             </div>
-                            <a href="trambulance_bn.html" class="interactive transition-trigger w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors block text-center">বিস্তারিত স্পেক</a>
+                            <a href="trambulance_zh.html" class="interactive transition-trigger w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors block text-center">বিস্তারিত স্পেক</a>
                         </div>
                     </div>
                     <div class="reveal-on-scroll tilt-card interactive group relative overflow-hidden rounded-2xl bg-transparent border-dashed border-2 border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover" style="transition-delay: 200ms;">
@@ -706,7 +706,7 @@
                         <p class="text-slate-400 text-lg mb-8 leading-relaxed">
                             Country's Leading R&D company's Design-1 which solves safety and 8 mechanical issues of Existing Electric Rickshaw. Inspired by BUET's Prof Ehsan's Easy Bike Project and academically and theoretically supervised by him. Improved truss chassis, hydraulic brakes, and an origami hood.
                         </p>
-                        <a href="pathfinder_bn.html" class="interactive px-8 py-3 rounded-full border border-brand-green text-brand-green hover:bg-brand-green hover:text-brand-dark transition-all font-bold font-mono shadow-[0_0_15px_rgba(100,255,218,0.2)]">
+                        <a href="pathfinder_zh.html" class="interactive px-8 py-3 rounded-full border border-brand-green text-brand-green hover:bg-brand-green hover:text-brand-dark transition-all font-bold font-mono shadow-[0_0_15px_rgba(100,255,218,0.2)]">
                             Pathfinder's Site ⚡
                         </a>
                     </div>
@@ -721,8 +721,8 @@
                     <div>
                         <div class="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">জরুরী পরিষেবা অ্যাম্বুলেন্স</div>
                         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"><span class="text-emerald-400">Trambulance</span>.<br />টেকসইভাবে জীবন বাঁচানো।</h2>
-                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">ত্রিচক্র ট্রাম্বুলেন্স হলো বাংলাদেশের অনন্য চাহিদার জন্য ডিজাইন করা একটি সম্পূর্ণ বৈদ্যুতিক, তিন চাকার অ্যাম্বুলেন্স। এর ছোট আকারের কারণে এটি এমন জায়গায় রোগীদের কাছে পৌঁছাতে পারে যেখানে প্রথাগত অ্যাম্বুলেন্স পারে না।</p>
-                        <a href="trambulance_bn.html" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">ট্রাম্বুলেন্স সাইট 🚑</a>
+                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">ত্রিচক্র ট্রাম্বুলেন্স হলো বাংলাদেশের অনন্য চাহিদার জন্য ডিজাইন করা একটি সম্পূর্ণ বৈদ্যুতিক, তিন চাকার অ্যাম্বুলেন্স। এর ছোট আকারের কারণে এটি এমন জায়গায় রোগীদের কাছে পৌঁছাতে পারে যেখানে প্রথা速度 অ্যাম্বুলেন্স পারে না।</p>
+                        <a href="trambulance_zh.html" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">ট্রাম্বুলেন্স সাইট 🚑</a>
                     </div>
                     <div class="relative interactive uplift-on-hover animate-float-slow">
                         <!-- UPDATED IMAGE: Father Holding Son -->
@@ -749,7 +749,7 @@
                         ত্রিচক্রের নেপথ্যের কারিগর। অটোমোবাইল ইঞ্জিনিয়ারিং এবং উদ্যোক্তা মানসিকতার সমন্বয়ে বাংলাদেশের শহুরে যাতায়াত ব্যবস্থাকে নতুন রূপ দিচ্ছেন।
                     </p>
                     
-                    <a href="founder_bn.html" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-none border border-gold text-gold font-cinzel font-bold tracking-widest hover:text-black transition-colors duration-300" target="_blank">
+                    <a href="founder_zh.html" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-none border border-gold text-gold font-cinzel font-bold tracking-widest hover:text-black transition-colors duration-300" target="_blank">
                         <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-gold rounded-full group-hover:w-96 group-hover:h-96 -ml-2 -mt-2"></span>
                         <span class="relative z-10">পোর্টফোলিও দেখুন</span>
                     </a>
@@ -762,7 +762,7 @@
         <section id="files" class="py-16 bg-slate-900/30 border-b border-slate-900">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-2xl font-bold text-white mb-6">পাবলিক ফাইল এবং রিসোর্স</h2>
-                <a href="resources_bn.html" class="inline-flex items-center gap-2 px-8 py-3 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
+                <a href="resources_zh.html" class="inline-flex items-center gap-2 px-8 py-3 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
                     <i data-lucide="file-text"></i> ডাউনলোড দেখুন
                 </a>
             </div>
@@ -803,24 +803,24 @@
         <section id="features" class="py-24 bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">প্রকৌশল উৎকর্ষ</h2>
-                    <p class="text-slate-400">আমরা বাস্তব জগতের ড্রাইভারদের সুবিধা এবং শক্তিশালী পণ্যের বৈশিষ্ট্যগুলিকে একত্রিত করেছি। প্রতিটি উপাদান বাংলাদেশের জন্য স্থায়িত্ব এবং দক্ষতার জন্য নির্বাচিত 🇧🇩</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">工程 উৎকর্ষ</h2>
+                    <p class="text-slate-400">আমরা বাস্তব জ速度ের ড্রাইভারদের সুবিধা এবং শক্তিশালী 产品ের বৈশিষ্ট্যগুলিকে একত্রিত করেছি। প্রতিটি উপাদান বাংলাদেশের জন্য স্থায়িত্ব এবং দক্ষতার জন্য নির্বাচিত 🇧🇩</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="wind" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">এরোডাইনামিক ডিজাইন</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">আমাদের অনন্য প্রত্যাহারযোগ্য হুড ডিজাইন প্রথাগত ফ্ল্যাট-ফ্রন্ট রিক্সার তুলনায় বাতাসের বাধা উল্লেখযোগ্যভাবে হ্রাস করে। এই অপ্টিমাইজেশনের ফলে প্রতি চার্জে ১৫% রেঞ্জ বৃদ্ধি পায় এবং উচ্চ গতিতে (৫০ কিমি/ঘন্টা পর্যন্ত) আরও ভাল স্থিতিশীলতা পাওয়া যায়।</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">আমাদের অনন্য প্রত্যাহারযোগ্য হুড ডিজাইন প্রথা速度 ফ্ল্যাট-ফ্রন্ট রিক্সার তুলনায় বাতাসের বাধা উল্লেখযোগ্যভাবে হ্রাস করে। এই অপ্টিমাইজেশনের ফলে প্রতি চার্জে ১৫% রেঞ্জ বৃদ্ধি পায় এবং উচ্চ 速度িতে (৫০ কিমি/ঘন্টা পর্যন্ত) আরও ভাল স্থিতিশীলতা পাওয়া যায়।</p>
                     </div>
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 100ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">হাইড্রোলিক ব্রেকিং</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">নিরাপত্তা সর্বাগ্রে। আমরা স্ট্যান্ডার্ড মেকানিক্যাল ড্রাম ব্রেকগুলিকে ট্রিপল-ডিস্ক হাইড্রোলিক ব্রেকিং সিস্টেম (হাত, পা, হ্যান্ডেল) দিয়ে প্রতিস্থাপন করেছি। এটি ব্রেকিং দূরত্ব ৪০% কমিয়ে দেয় এবং ভারী ট্রাফিকে ব্রেক ফেল করার ঝুঁকি দূর করে।</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">নিরাপত্তা সর্বাগ্রে। আমরা স্ট্যান্ডার্ড মেকানিক্যাল ড্রাম ব্রেকগুলিকে ট্রিপল-ডিস্ক হাইড্রোলিক ব্রেকিং সিস্টেম (হাত, পা, হ্যান্ডেল) দিয়ে প্রতিস্থাপন করেছি। এটি ব্রেকিং দূরত্ব ৪০% 公里িয়ে দেয় এবং ভারী ট্রাফিকে ব্রেক ফেল করার ঝুঁকি দূর করে।</p>
                     </div>
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 200ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="layers" class="w-6 h-6"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">ট্রাস চ্যাসিস</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">ANSYS লোড সিমুলেশনের মাধ্যমে পরীক্ষিত, আমাদের টিউবুলার ট্রাস চ্যাসিস চাপ সমানভাবে বিতরণ করে। এটি প্রথাগত কৌণিক চ্যাসিসের চেয়ে ৩৫% হালকা তবুও ৮০% বেশি লোড (৭০০ কেজি পর্যন্ত) সমর্থন করে, কাঠামোগত ক্লান্তি প্রতিরোধ করে।</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">ANSYS লোড সিমুলেশনের মাধ্যমে পরীক্ষিত, আমাদের টিউবুলার ট্রাস চ্যাসিস চাপ সমানভাবে বিতরণ করে। এটি প্রথা速度 কৌণিক চ্যাসিসের চেয়ে ৩৫% হালকা তবুও ৮০% বেশি লোড (৭০০ কেজি পর্যন্ত) সমর্থন করে, কাঠামো速度 ক্লান্তি প্রতিরোধ করে।</p>
                     </div>
                     <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 300ms;">
                         <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="battery-charging" class="w-6 h-6"></i></div>
@@ -842,7 +842,7 @@
                     <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover">
                         <div class="text-4xl font-bold text-white mb-2">৬০%</div>
                         <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">খরচ হ্রাস</div>
-                        <p class="text-slate-400 text-sm leading-relaxed">প্রথাগত ইঞ্জিনের তুলনায়, আমাদের ইভিগুলি দৈনিক খরচ কমিয়ে ড্রাইভারদের পকেটে বেশি টাকা রাখে।</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">প্রথা速度 ইঞ্জিনের তুলনায়, আমাদের ইভিগুলি দৈনিক খরচ 公里িয়ে ড্রাইভারদের পকেটে বেশি টাকা রাখে।</p>
                     </div>
                     <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover" style="transition-delay: 100ms;">
                         <div class="text-4xl font-bold text-white mb-2">০ নির্গমন</div>
@@ -852,7 +852,7 @@
                     <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover" style="transition-delay: 200ms;">
                         <div class="text-4xl font-bold text-white mb-2">৩ গুণ</div>
                         <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">নিরাপদ কাঠামো এবং ব্রেকিং</div>
-                        <p class="text-slate-400 text-sm leading-relaxed">আমাদের ট্রিপল হাইড্রোলিক ডিস্ক ব্রেক সিস্টেম উচ্চতর থামানোর শক্তি প্রদান করে, যা ব্যস্ত রাস্তায় দুর্ঘটনার ঝুঁকি উল্লেখযোগ্যভাবে কমায়।</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">আমাদের ট্রিপল হাইড্রোলিক ডিস্ক ব্রেক সিস্টেম উচ্চতর থামানোর শক্তি প্রদান করে, যা ব্যস্ত রাস্তায় দুর্ঘটনার ঝুঁকি উল্লেখযোগ্যভাবে 公里ায়।</p>
                     </div>
                 </div>
 
@@ -860,7 +860,7 @@
                     <h2 class="text-3xl font-display font-bold text-white mb-8 text-center">অর্থনৈতিক প্রভাব</h2>
                     <div class="bg-slate-800/50 backdrop-blur-md p-8 rounded-xl border-l-4 border-l-emerald-500 border border-slate-700/50">
                         <p class="text-slate-300 text-lg italic mb-4">
-                            "বাংলাদেশে উৎপাদন স্থানীয়করণের মাধ্যমে, আমরা কেবল আমদানি নির্ভরতা কমাই না বরং প্রকৌশল ও উৎপাদনে উচ্চ-দক্ষ কর্মসংস্থান তৈরি করি।"
+                            "বাংলাদেশে উৎপাদন স্থানীয়করণের মাধ্যমে, আমরা কেবল আমদানি নির্ভরতা 公里াই না বরং 工程 ও উৎপাদনে উচ্চ-দক্ষ কর্মসংস্থান তৈরি করি।"
                         </p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-slate-700 rounded-full overflow-hidden border border-emerald-500/50">
@@ -973,7 +973,7 @@
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row gap-12">
                     <div class="md:w-1/3">
-                        <h2 class="text-3xl font-bold text-white mb-6">আমাদের সম্পর্কে</h2>
+                        <h2 class="text-3xl font-bold text-white mb-6">关于我们</h2>
                         <div class="space-y-2" id="about-tabs">
                             <button onclick="switchTab(0)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover">কোর টিম</button>
                             <button onclick="switchTab(1)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">উপদেষ্টা বোর্ড</button>
@@ -1151,7 +1151,7 @@
                 <div class="relative w-full pt-[56.25%]">
                     <iframe
                         class="absolute inset-0 w-full h-full rounded-2xl"
-                        src="https://www.youtube.com/embed/oUWmBn8RAqA"
+                        src="https://www.youtube.com/embed/oUWmZH8RAqA"
                         title="UIHP পিচ ডেক"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1185,15 +1185,15 @@
             
             <div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
                 <div class="relative">
-                    <a href="#" onclick="toggleProductsMenu()" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer">পণ্য</a>
+                    <a href="#" onclick="toggleProductsMenu()" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer">产品</a>
                     <div id="products-menu" class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg">
-                        <a href="trambulance_bn.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">ট্রাম্বুলেন্স</a>
-                        <a href="pathfinder_bn.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">পাথফাইন্ডার</a>
+                        <a href="trambulance_zh.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">ট্রাম্বুলেন্স</a>
+                        <a href="pathfinder_zh.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">পাথফাইন্ডার</a>
                     </div>
                 </div>
-                <a href="founder_bn.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">যোগাযোগ</a>
-                <a href="privacy_bn.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">গোপনীয়তা</a>
-                <a href="metadata_bn.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">মেটা ডেটা</a>
+                <a href="founder_zh.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">যোগাযোগ</a>
+                <a href="privacy_ZH.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">গোপনীয়তা</a>
+                <a href="metadata_ZH.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">মেটা ডেটা</a>
             </div>
         </div>
         
@@ -1369,7 +1369,7 @@
     
  <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact_bn.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_zh.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
         </div>
@@ -1388,7 +1388,7 @@
         </div>
     </a>
     
-    <a href="contact_bn.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_zh.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia">
         </div>
@@ -1396,7 +1396,7 @@
         <p class="text-emerald-400 text-xs">Head of Design</p>
     </a>
     
-    <a href="contact_bn.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_zh.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan">
         </div>
@@ -1404,7 +1404,7 @@
         <p class="text-emerald-400 text-xs">COO</p>
     </a>
     
-    <a href="contact_bn.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_zh.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman">
         </div>
@@ -1412,7 +1412,7 @@
         <p class="text-emerald-400 text-xs">HR</p>
     </a>
     
-    <a href="contact_bn.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_zh.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin">
         </div>
@@ -1420,7 +1420,7 @@
         <p class="text-emerald-400 text-xs">COO</p>
     </a>
     
-    <a href="contact_bn.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+    <a href="contact_zh.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
             <img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif">
         </div>
@@ -1438,7 +1438,7 @@
             <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Our Expert Counsel</h3>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         
-    <a href="contact_bn.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_zh.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan">
         </div>
@@ -1457,7 +1457,7 @@
         </div>
     </a>
     
-    <a href="contact_bn.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_zh.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad">
         </div>
@@ -1476,7 +1476,7 @@
         </div>
     </a>
     
-    <a href="contact_bn.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+    <a href="contact_zh.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
             <img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid">
         </div>
@@ -1503,7 +1503,7 @@
 `<div class="animate-fade-in-up">
     <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Junior Associates</h3>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="contact_bn.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_zh.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury">
             </div>
@@ -1511,7 +1511,7 @@
             <p class="text-emerald-400 text-xs">Head of Communications</p>
         </a>
         
-        <a href="contact_bn.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_zh.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto">
             </div>
@@ -1519,7 +1519,7 @@
             <p class="text-emerald-400 text-xs">Manufacturing Executive</p>
         </a>
 
-        <a href="contact_bn.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_zh.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique">
             </div>
@@ -1873,3 +1873,6 @@ updateScrollProgress();
     </div>
 </body>
 </html>
+
+
+
