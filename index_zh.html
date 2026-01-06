@@ -1,193 +1,805 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#020617" />
-  <link rel="icon" href="src/assets/logo_icon.png" />
-  <title>TriChokro Automotives  电动三轮车 (ZH)</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/mobile-optimized.css" />
-
-  <style>
-    :root{ --accent:#f59e0b; --accentSoft:rgba(245,158,11,.18); --bg:#020617; --panel:#0f172a; --text:#e2e8f0; --muted:#94a3b8; }
-    body{ background:var(--bg); color:var(--text); font-family:'Noto Sans SC',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; overflow-x:hidden; }
-    h1,h2,h3{ font-family:Cinzel,serif; }
-    .accent{ color:var(--accent); }
-    .bg-accent{ background:var(--accent); }
-    .border-accent{ border-color:var(--accent); }
-    .shadow-accent{ box-shadow:0 0 24px var(--accentSoft); }
-    .glass{ background:rgba(15,23,42,.72); backdrop-filter:blur(12px); }
-
-    /* Subtle 祥云/波纹 background */
-    body::before{
-      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-      background:
-        radial-gradient(60px 18px at 18% 22%, rgba(245,158,11,.12) 40%, transparent 41%),
-        radial-gradient(60px 18px at 48% 40%, rgba(245,158,11,.10) 40%, transparent 41%),
-        radial-gradient(60px 18px at 78% 70%, rgba(245,158,11,.12) 40%, transparent 41%);
-      background-size:260px 200px;
-      opacity:.55;
-    }
-    main, nav{ position:relative; z-index:1; }
-    #mobile-menu{ transition:max-height .35s ease, opacity .25s ease; }
-
-    .text-emerald-400{ color:var(--accent) !important; }
-    .bg-emerald-500{ background-color:var(--accent) !important; }
-    .border-emerald-500\/30{ border-color:rgba(245,158,11,.30) !important; }
-    .hover\:text-emerald-400:hover{ color:var(--accent) !important; }
-    .hover\:border-emerald-500\/50:hover{ border-color:rgba(245,158,11,.50) !important; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#020617">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="src/assets/logo_icon.png">
+    <title>TriChokro Automotives - 电动三轮车研发</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons & Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a192f',       // Deep Navy
+                            light: '#112240',      // Lighter Navy
+                            lighter: '#233554',    // Even lighter
+                            green: '#64ffda',      // Neon Green
+                            greenDim: 'rgba(100, 255, 218, 0.1)',
+                            text: '#ccd6f6',       // Light gray text
+                            heading: '#e6f1ff',    // White heading text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'Inter', 'sans-serif'],
+                        display: ['Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 25s linear infinite',
+                        'float': 'float 8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <nav id="navbar" class="fixed w-full z-[10001] border-b border-white/10">
-    <div class="glass">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index_zh.html'">
-            <img src="src/assets/logo_new.png" alt="TriChokro" class="h-10 w-auto" />
-            <span class="text-2xl font-bold text-white">Tri<span class="accent">Chokro</span></span>
-          </div>
-
-          <div class="hidden md:flex items-center space-x-8" style="font-family: 'Noto Sans SC', sans-serif;">
-            <a href="#home" class="text-slate-300 hover:text-emerald-400 text-sm uppercase tracking-wide">首页</a>
-            <a href="#products" class="text-slate-300 hover:text-emerald-400 text-sm uppercase tracking-wide">车辆</a>
-            <a href="#features" class="text-slate-300 hover:text-emerald-400 text-sm uppercase tracking-wide">技术</a>
-            <a href="#about" class="text-slate-300 hover:text-emerald-400 text-sm uppercase tracking-wide">关于我们</a>
-            <a href="contact_zh.html" class="text-slate-300 hover:text-emerald-400 text-sm uppercase tracking-wide">联系方式</a>
-
-            <div class="relative group z-[10002] inline-block ml-2">
-              <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 text-sm uppercase tracking-wide">
-                <i class="fas fa-globe"></i><span>ZH</span><i class="fas fa-chevron-down text-xs ml-1"></i>
-              </button>
-              <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div class="py-1">
-                  <a href="index.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">EN</a>
-                  <a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">BN</a>
-                  <a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
-                  <a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
-                  <a href="index_zh.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">ZH</a>
-                  <a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
-                </div>
-              </div>
+<body class="selection-emerald loading">
+    
+    <!-- Speedometer Overlay -->
+    <div id="speed-overlay">
+        <div class="speed-lines"></div>
+        <div class="speedy-car">
+            <svg viewBox="0 0 200 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 40 L40 40 L50 20 L120 20 L140 40 L180 40 L180 50 L10 50 Z" opacity="0.8"/>
+                <circle cx="45" cy="50" r="10" fill="#34d399"/>
+                <circle cx="145" cy="50" r="10" fill="#34d399"/>
+                <path d="M185 45 H200" stroke="#34d399" stroke-width="2"/>
+                <path d="M185 40 H210" stroke="#34d399" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
+                <span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
             </div>
-          </div>
-
-          <div class="md:hidden">
-            <button id="mobile-menu-btn" class="text-white hover:text-emerald-400"><i data-lucide="menu" class="w-7 h-7"></i></button>
-          </div>
+            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">加速中</div>
         </div>
-      </div>
-
-      <div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0 border-t border-white/10">
-        <div class="px-4 py-4 space-y-2 flex flex-col">
-          <a href="#home" class="text-slate-200 hover:bg-slate-800 px-4 py-3 rounded-lg">首页</a>
-          <a href="#products" class="text-slate-200 hover:bg-slate-800 px-4 py-3 rounded-lg">车辆</a>
-          <a href="#features" class="text-slate-200 hover:bg-slate-800 px-4 py-3 rounded-lg">技术</a>
-          <a href="#about" class="text-slate-200 hover:bg-slate-800 px-4 py-3 rounded-lg">关于我们</a>
-          <a href="contact_zh.html" class="text-slate-200 hover:bg-slate-800 px-4 py-3 rounded-lg">联系方式</a>
-        </div>
-      </div>
     </div>
-  </nav>
 
-  <main class="pt-20">
-    <section id="home" class="relative min-h-[75vh] flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 mb-8 shadow-accent">
-          <span class="w-2.5 h-2.5 rounded-full bg-accent"></span>
-          <span class="text-sm text-slate-200">匠心与创新，让城市出行更高效。</span>
-        </div>
-        <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Tri<span class="accent">Chokro</span><br/>面向LMIC的电动三轮平台</h1>
-        <p class="mt-6 text-lg text-slate-300 max-w-2xl">零尾气排放，注重可靠与易维护。为孟加拉国道路环境打造，兼顾安全、舒适与运营成本。</p>
-        <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="#products" class="px-7 py-4 rounded-full bg-accent text-slate-900 font-bold shadow-accent">查看车辆</a>
-          <a href="#about" class="px-7 py-4 rounded-full glass border border-white/10 text-white">团队与愿景</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="products" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-white">设计与产品</h2>
-        <p class="text-slate-300 mt-3 max-w-2xl">为真实道路、真实载荷、真实运营而设计。</p>
-
-        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <a href="pathfinder_zh.html" class="glass border border-white/10 rounded-2xl p-8 hover:border-emerald-500/50 transition">
-            <div class="flex items-center justify-between">
-              <h3 class="text-xl font-bold text-white">TRCPathfinder</h3>
-              <i data-lucide="arrow-right" class="w-5 h-5 text-emerald-400"></i>
+    <!-- Loader -->
+    <div id="loader">
+        <div class="relative w-full max-w-lg px-8">
+            <div class="text-6xl md:text-[180px] font-bold text-slate-800 leading-none select-none relative overflow-hidden">
+                <span id="load-percent" class="relative z-10 text-transparent bg-clip-text bg-gradient-to-b from-emerald-400 to-slate-900">00</span>
+                <span id="load-percent-reflection" class="absolute top-0 left-0 text-slate-800 opacity-20 transform scale-y-[-1] origin-bottom blur-sm">00</span>
             </div>
-            <p class="text-slate-300 mt-3">面向日常运营的电动三轮车：安全、效率、舒适。</p>
-          </a>
-          <a href="trambulance_zh.html" class="glass border border-white/10 rounded-2xl p-8 hover:border-emerald-500/50 transition">
-            <div class="flex items-center justify-between">
-              <h3 class="text-xl font-bold text-white">Trambulance</h3>
-              <i data-lucide="arrow-right" class="w-5 h-5 text-emerald-400"></i>
+            <div class="flex justify-between items-end mt-4 border-t border-emerald-500/30 pt-4">
+                <div class="loader-text text-emerald-500 text-xs md:text-sm tracking-widest uppercase flex flex-col gap-1">
+                    <span id="load-status">系统检查...</span>
+                    <span class="text-slate-500 text-[10px]">TriChokro by Rownak Shahriar Ruhan</span>
+                </div>
+                <div class="flex gap-1">
+                    <div class="w-2 h-2 bg-emerald-500 animate-pulse"></div>
+                    <div class="w-2 h-2 bg-emerald-500 animate-pulse" style="animation-delay: 0.1s"></div>
+                    <div class="w-2 h-2 bg-emerald-500 animate-pulse" style="animation-delay: 0.2s"></div>
+                </div>
             </div>
-            <p class="text-slate-300 mt-3">可持续三轮救护车：更快到达，更稳救援。</p>
-          </a>
         </div>
-      </div>
-    </section>
+    </div>
 
-    <section id="features" class="py-20 bg-slate-900/30">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-white">核心技术</h2>
-        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="glass border border-white/10 rounded-2xl p-8">
-            <h3 class="font-bold text-white mb-2">零排放</h3>
-            <p class="text-slate-300">降低日常运营成本，减少城市污染。</p>
-          </div>
-          <div class="glass border border-white/10 rounded-2xl p-8">
-            <h3 class="font-bold text-white mb-2">液压制动</h3>
-            <p class="text-slate-300">在满载与复杂路况下提升安全性。</p>
-          </div>
-          <div class="glass border border-white/10 rounded-2xl p-8">
-            <h3 class="font-bold text-white mb-2">全天候防护</h3>
-            <p class="text-slate-300">可伸缩顶篷与坚固结构，适配日常使用。</p>
-          </div>
+    <div class="watermark-overlay"></div>
+    <div id="emoji-container"></div>
+
+    <!-- AI Widget -->
+    <div id="ai-widget">
+        <div id="ai-chat-window">
+            <div class="p-4 border-b border-emerald-500/20 bg-slate-900/80 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+                        <i data-lucide="bot" class="w-5 h-5 text-slate-900"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white text-sm font-bold">TriChokro 2024</h4>
+                        <span class="text-xs text-emerald-400 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 在线
+                        </span>
+                    </div>
+                </div>
+                <button id="close-chat" class="text-slate-400 hover:text-white interactive"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto flex flex-col gap-2">
+                <div class="chat-message ai">你好！我是TriChokro领航员。<br>请问有什么关于电动车规格、续航里程或故障排除的问题吗？</div>
+            </div>
+            <div class="p-4 border-t border-emerald-500/20 bg-slate-900/80">
+                <form id="chat-form" class="relative flex items-center gap-2">
+                    <input type="text" id="chat-input" placeholder="计划去锡尔赫特旅行..." class="w-full bg-slate-800/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors interactive">
+                    <button type="submit" class="p-2 bg-emerald-500 rounded-full text-slate-900 hover:bg-emerald-400 transition-colors interactive"><i data-lucide="send" class="w-4 h-4"></i></button>
+                </form>
+            </div>
         </div>
-      </div>
-    </section>
+        <button id="ai-fab" class="sparkle-btn w-14 h-14 bg-emerald-600 hover:bg-emerald-500 rounded-full shadow-2xl shadow-emerald-500/40 flex items-center justify-center text-white transition-all transform hover:scale-110 interactive group">
+            <i data-lucide="sparkles" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
+        </button>
+    </div>
 
-    <section id="about" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-white">关于我们</h2>
-        <p class="text-slate-300 mt-3 max-w-3xl">TriChokro由BUET学生与校友共同创立。我们专注于可落地的工程方案：耐久、易维护、重视司机收入与城市环境。</p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href="founder_zh.html" class="px-7 py-4 rounded-full glass border border-white/10 text-white">了解创始人</a>
-          <a href="resources_zh.html" class="px-7 py-4 rounded-full glass border border-white/10 text-white">资料与资源</a>
+    <!-- ########################### MAIN VIEW ########################### -->
+    <div id="main-view" class="main-theme-bg">
+        <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index_zh.html'">
+                        <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
+                        <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+                    </div>
+                   <div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;">
+
+                      <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">首页<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+
+                      <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">关于我们<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+
+                      <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s">技术<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+
+                      <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">产品<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+
+                      <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s">为何选择我们<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+
+                      <a href="founder_zh.html" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.5s">创始人<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+
+                      <a href="contact_zh.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">联系我们</a>
+
+                        <div class="relative group z-[10002]">
+                            <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1">
+                                <i class="fas fa-globe"></i> <span id="current-lang">ZH</span> <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+                                
+                                <a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
+                                <a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
+                                <a href="index_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+                                <a href="index_zh.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
+                                <a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
+                <div class="px-4 py-4 space-y-3 flex flex-col">
+                    <a href="#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">首页</a>
+                    <a href="#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">关于我们</a>
+                    <a href="#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">技术</a>
+                    <a href="#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">产品</a>
+                    <a href="#impact" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">为何选择我们</a>
+                    <a href="founder_zh.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">创始人</a>
+                    <a href="contact_zh.html?id=rownak" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">联系我们</a>
+                    
+                
+<a href="index.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
+                    <a href="index_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
+                    <a href="index_de.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">DE</a>
+                    <a href="index_es.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ES</a>
+                    <a href="index_zh.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ZH</a>
+                    <a href="index_ja.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">JA</a>
+</div>
+            </div>
+        </nav>
+
+        <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                <div class="absolute inset-0 bg-slate-900">
+                    <div class="absolute inset-0 bg-[url('src/assets/logo_icon.png')] bg-no-repeat bg-center opacity-5 blur-3xl scale-[2.0]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-transparent to-slate-900"></div>
+                </div>
+                <div class="absolute inset-0 bg-[url('https://pin.it/7kWAfh1qt')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+                <div class="watermark-logo"></div>
+                <div id="blob-1" class="absolute w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[100px] -top-20 -left-20 animate-float-slow transition-transform duration-100 ease-out"></div>
+                <div id="blob-2" class="absolute w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] bottom-0 right-0 animate-float-medium transition-transform duration-100 ease-out"></div>
+                <div class="absolute top-10 right-20 w-32 h-32 border-2 border-emerald-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                <div id="hero-grid" class="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:40px_40px] transition-transform duration-100 ease-out"></div>
+            </div>
+            <div id="hero-content" class="container mx-auto px-4 z-10 relative text-center transition-transform duration-100 ease-out">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700 text-emerald-400 mb-8 animate-fade-in-up backdrop-blur-sm hover:scale-105 transition-transform interactive uplift-on-hover bg-gradient-animate">
+                    <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span></span>
+                    <span class="text-sm font-semibold tracking-wide">2024年 BUET学生与校友创业项目</span>
+                </div>
+                <h1 class="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl type-me">
+                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 relative"> TriChokro</span>
+                    <br />面向中低收入国家的下一代电动出行方案
+                </h1>
+                <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">零尾气排放，可伸缩车篷，专为孟加拉国道路设计，液压制动保障安全，卓越悬挂带来舒适。</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#products" class="interactive transition-trigger px-8 py-4 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2 uplift-on-hover">探索车型 🛺 <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+                    <a href="#about" class="interactive px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md uplift-on-hover bg-gradient-animate">我们的团队 👥</a>
+                </div>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500"><i data-lucide="chevron-down" class="w-8 h-8"></i></div>
+        </section>
+
+        <section id="products" class="py-24 bg-slate-900/50 relative">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-on-scroll">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">设计与产品</h2>
+                        <div class="h-1 w-24 bg-emerald-500 rounded-full"></div>
+                        <p class="text-slate-400 mt-4 max-w-lg">专为孟加拉国道路的独特挑战而设计。耐用、高效、可靠，一如BUET品质。</p>
+                    </div>
+                    <a href="pathfinder_zh.html" class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0 uplift-on-hover">查看完整规格 <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- TRC Pathfinder -->
+                    <div class="reveal-on-scroll tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover bg-gradient-animate">
+                        <div class="relative h-64 overflow-hidden bg-slate-800">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+                            <img src="src/assets/rickshaw.jpg" alt="TriChokro-3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 saturate-0 group-hover:saturate-100">
+                            <div class="absolute top-4 right-4 z-20 bg-emerald-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">BUET 改进型</div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-white mb-2">TRC- 探路者</h3>
+                            <p class="text-slate-400 text-sm mb-6">常见的客运三轮车。配备液压制动器、麦弗逊悬架和可伸缩车篷。</p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">续航里程</span><span class="text-emerald-400 font-bold">120 km</span></div>
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">特点</span><span class="text-white font-bold">5人座，转向系统，6小时充电</span></div>
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">速度</span><span class="text-white font-bold">50 Km/h</span></div>
+                            </div>
+                            <a href="pathfinder_zh.html" class="interactive transition-trigger w-full py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition-colors block text-center">详细规格</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Trambulance -->
+                    <div class="reveal-on-scroll tilt-card interactive group relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700 transition-transform duration-100 ease-linear ring-1 ring-emerald-500/30 uplift-on-hover bg-gradient-animate" style="transition-delay: 100ms;">
+                        <div class="relative h-64 overflow-hidden bg-slate-800">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10"></div>
+                            <div class="absolute inset-0 bg-[url('https://unsplash.com/photos/a-white-van-is-speeding-down-a-city-road-a_CaCtLQTsI')] bg-cover opacity-20 animate-pulse"></div>
+                            <img src="src/assets/trambulance.png" alt="Trambulance" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale hover:grayscale-0 relative z-10">
+                            <div class="absolute top-4 right-4 z-20 bg-white text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1"><i data-lucide="activity" class="w-3 h-3"></i> 紧急医疗运输</div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-white mb-2">三轮救护车</h3>
+                            <p class="text-slate-400 text-sm mb-6">快速、经济且机动性强的三轮救护车。可携带医疗设备进入狭窄巷道。</p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">续航里程</span><span class="text-emerald-400 font-bold">150 Km</span></div>
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">容量</span><span class="text-white">医疗设备 + 患者 + 3名护理人员</span></div>
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700 group-hover:bg-slate-800 transition-colors"><span class="text-slate-500 text-xs uppercase block mb-1">速度</span><span class="text-white font-bold">70 Km/h</span></div>
+                            </div>
+                            <a href="trambulance_zh.html" class="interactive transition-trigger w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors block text-center">详细规格</a>
+                        </div>
+                    </div>
+
+                    <!-- Cargo -->
+                    <div class="reveal-on-scroll tilt-card interactive group relative overflow-hidden rounded-2xl bg-transparent border-dashed border-2 border-slate-700 transition-transform duration-100 ease-linear uplift-on-hover" style="transition-delay: 200ms;">
+                        <div class="h-full flex flex-col items-center justify-center p-8 min-h-[400px]">
+                            <div class="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center text-slate-500 mb-6 group-hover:text-emerald-400 group-hover:bg-slate-700 transition-colors animate-float-medium"><i data-lucide="truck" class="w-8 h-8"></i></div>
+                            <h3 class="text-2xl font-bold text-slate-300 mb-2">TriChokro 货运</h3>
+                            <p class="text-slate-500 text-center text-sm mb-8">城市配送的重型物流解决方案。</p>
+                            <div class="px-4 py-2 bg-slate-800 rounded-full text-xs font-bold text-emerald-500 uppercase tracking-widest">2026年即将推出</div>
+                            
+                            <a href="javascript:void(0)" onclick="alert('配置工具即将推出！')" class="interactive w-full py-3 btn-deep-gradient text-white font-bold rounded-lg transition-colors block text-center mt-8">配置</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PATHFINDER PREVIEW -->
+        <section id="pathfinder-preview" class="py-24 bg-brand-dark relative overflow-hidden border-t border-slate-900">
+            <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#64ffda 1px, transparent 1px); background-size: 30px 30px;"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1 relative interactive uplift-on-hover animate-float-slow">
+                        <div class="relative w-full h-full min-h-[300px] flex items-center justify-center">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-emerald-600/10 blur-[60px] rounded-full"></div>
+                            <div class="relative w-80 h-80 rounded-full flex items-center justify-center p-10 border border-brand-green/20 bg-brand-light/30 backdrop-blur-sm shadow-[0_0_50px_rgba(100,255,218,0.1)]">
+                                 <div class="absolute inset-0 rounded-full border border-dashed border-brand-green/30 animate-spin-slow"></div>
+                                 <div class="text-center z-10">
+                                     <i class="fas fa-bolt text-7xl text-brand-green mb-4 drop-shadow-[0_0_10px_rgba(100,255,218,0.8)]"></i>
+                                     <h3 class="text-2xl font-bold font-display text-brand-heading tracking-widest">电动<br>创新</h3>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <div class="inline-block text-brand-green font-mono text-sm mb-4 tracking-wider">
+                             最安全的客运人力车
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">TriChokro <span class="text-brand-green">探路者</span></h2>
+                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                            来自国家顶级研发企业的设计-1，解决了现有电动人力车的安全问题和8大机械故障。灵感源自BUET Ehsan教授的Easy Bike项目，并由其进行学术和理论指导。升级了桁架底盘、液压制动器和折纸式车篷。
+                        </p>
+                        <a href="pathfinder_zh.html" class="interactive px-8 py-3 rounded-full border border-brand-green text-brand-green hover:bg-brand-green hover:text-brand-dark transition-all font-bold font-mono shadow-[0_0_15px_rgba(100,255,218,0.2)]">
+                            探路者页面 ⚡
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAMBULANCE PREVIEW -->
+        <section id="trambulance" class="py-24 bg-slate-950/80 relative overflow-hidden border-t border-slate-900">
+            <div class="absolute inset-0 z-0 opacity-10" style="background-image: linear-gradient(to right, #34d399 1px, transparent 1px), linear-gradient(to bottom, #34d399 1px, transparent 1px); background-size: 40px 40px;"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <div class="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">紧急救护车</div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"><span class="text-emerald-400">三轮救护车</span>。<br />用可持续性拯救生命。</h2>
+                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">TriChokro三轮救护车是一款全电动三轮救护车，专为满足孟加拉国的独特需求而设计。其紧凑的尺寸使其能够到达传统救护车无法到达的地方。</p>
+                        <a href="trambulance_zh.html" class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold">三轮救护车页面 🚑</a>
+                    </div>
+                    <div class="relative interactive uplift-on-hover animate-float-slow">
+                        <div class="relative w-full h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
+                             <img src="src/assets/Perspective_1.jpg" alt="父子 - 安全" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                             <div class="absolute bottom-6 left-6">
+                                 <p class="text-white font-cinzel text-lg font-bold">保护未来</p>
+                                 <p class="text-emerald-400 text-sm">安全。可靠。快速。</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOUNDER SECTION -->
+        <section id="founder-preview" class="py-24 bg-gradient-to-br from-brand-dark to-slate-900 relative border-t border-slate-800">
+             <div class="container mx-auto px-4">
+                <div class="flex flex-col items-center text-center">
+                    <span class="text-gold font-cinzel tracking-[0.3em] text-sm mb-4">预约创始人会议</span>
+                    <h2 class="text-4xl md:text-6xl font-bold text-white font-cinzel mb-6">Rownak Shahriar Ruhan</h2>
+                    <p class="text-slate-400 max-w-2xl mb-10 text-lg font-light leading-relaxed">
+                        TriChokro背后的灵魂人物。将汽车工程与创业精神相结合，重新定义孟加拉国的城市出行方式。
+                    </p>
+                    
+                    <a href="founder_zh.html" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-none border border-gold text-gold font-cinzel font-bold tracking-widest hover:text-black transition-colors duration-300" target="_blank">
+                        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-gold rounded-full group-hover:w-96 group-hover:h-96 -ml-2 -mt-2"></span>
+                        <span class="relative z-10">查看作品集</span>
+                    </a>
+                </div>
+             </div>
+        </section>
+
+        <section id="files" class="py-16 bg-slate-900/30 border-b border-slate-900">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl font-bold text-white mb-6">文件与资源</h2>
+                <a href="resources_zh.html" class="inline-flex items-center gap-2 px-8 py-3 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
+                    <i data-lucide="file-text"></i> 查看下载
+                </a>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="fixed inset-0 z-[10002] bg-black/95 hidden flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+            <button id="lightbox-close" class="absolute top-6 right-6 text-slate-400 hover:text-white interactive"><i data-lucide="x" class="w-8 h-8"></i></button>
+            <div class="relative max-w-5xl max-h-[85vh] w-full">
+                <img id="lightbox-img" src="" class="w-full h-full object-contain rounded-lg shadow-2xl shadow-emerald-500/10">
+            </div>
+            <p id="lightbox-caption" class="text-white mt-4 text-lg font-mono tracking-widest text-center"></p>
         </div>
-      </div>
-    </section>
 
-    <section id="contact" class="py-16 bg-slate-900/30">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="glass border border-white/10 rounded-2xl p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div>
-            <h2 class="text-2xl md:text-3xl font-bold text-white">联系我们</h2>
-            <p class="text-slate-300 mt-2">预约演示、讨论车队需求或开展合作。</p>
-          </div>
-          <a href="contact_zh.html" class="px-7 py-4 rounded-full bg-accent text-slate-900 font-bold">立即联系</a>
-        </div>
-      </div>
-    </section>
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-24 bg-slate-900 relative overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl font-bold text-white mb-4">画廊</h2>
+                    <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+                </div>
+                
+                <div class="gallery-slider relative w-full max-w-5xl mx-auto h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-700 group">
+                    <div id="gallery-track" class="flex h-full transition-transform duration-700 ease-in-out will-change-transform">
+                        <!-- Images injected by JS -->
+                    </div>
+                    
+                    <button id="gallery-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-900/50 hover:bg-emerald-500 text-white hover:text-slate-900 rounded-full flex items-center justify-center transition-all backdrop-blur-md opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 duration-300 interactive z-10"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                    <button id="gallery-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-900/50 hover:bg-emerald-500 text-white hover:text-slate-900 rounded-full flex items-center justify-center transition-all backdrop-blur-md opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 duration-300 interactive z-10"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+                    
+                    <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-white text-xs font-mono tracking-widest border border-white/10">
+                        TriChokro 精彩瞬间
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer class="py-10 text-center text-slate-500">
-      <p>© <span id="year"></span> TriChokro Automotives</p>
-    </footer>
-  </main>
+        <section id="features" class="py-24 bg-slate-900/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">卓越工程</h2>
+                    <p class="text-slate-400">我们结合了真实驾驶员的利益与强大的产品功能。每个组件均针对孟加拉国的耐用性和效率而设计 🇧🇩</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
+                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="wind" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">空气动力学设计</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">与传统的平头人力车相比，我们独特的伸缩式车篷大大降低了风阻系数。这意味着每次充电的续航里程增加15%，高速行驶（最高50公里/小时）时稳定性更好。</p>
+                    </div>
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 100ms;">
+                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">液压制动</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">安全第一。我们用三盘式液压系统（手刹、脚刹、把手刹）取代了标准的鼓式制动器。这使制动距离缩短了40%，并消除了交通拥堵时制动衰减的风险。</p>
+                    </div>
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 200ms;">
+                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="layers" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">桁架底盘</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">经过ANSYS负载模拟验证，我们的管状桁架底盘均匀分布应力。它比传统角钢底盘轻35%，但承载能力提高80%（最高700公斤），并防止结构疲劳。</p>
+                    </div>
+                    <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate" style="transition-delay: 300ms;">
+                        <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-900 transition-colors shadow-lg"><i data-lucide="battery-charging" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">磷酸铁锂技术</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">我们使用磷酸铁锂电池，提供3000次以上的循环寿命（铅酸电池为500次）。无毒、不爆炸，并且无论充电状态如何都能提供恒定的功率输出。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script>
-    lucide.createIcons();
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script src="js/mobile-optimized.js" defer></script>
+        <section id="impact" class="py-24 bg-gradient-to-t from-slate-950 to-slate-900 relative">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl font-bold text-white mb-4">为何选择TriChokro？</h2>
+                    <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+                    <p class="text-slate-400 mt-4 max-w-xl mx-auto">推动可持续交通的未来，为驾驶员和环境带来实实在在的利益。</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover">
+                        <div class="text-4xl font-bold text-white mb-2">60%</div>
+                        <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">成本降低</div>
+                        <p class="text-slate-400 text-sm leading-relaxed">与传统内燃机相比，我们的电动车大幅降低了日常运营成本，让驾驶员口袋里留下更多现金。</p>
+                    </div>
+                    <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover" style="transition-delay: 100ms;">
+                        <div class="text-4xl font-bold text-white mb-2">0 排放</div>
+                        <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">为了未来的美好世界</div>
+                        <p class="text-slate-400 text-sm leading-relaxed">零尾气排放意味着城市空气更清洁，下一代拥有更健康的未来。</p>
+                    </div>
+                    <div class="reveal-on-scroll bg-slate-900/80 p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300 group interactive uplift-on-hover" style="transition-delay: 200ms;">
+                        <div class="text-4xl font-bold text-white mb-2">3x</div>
+                        <div class="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-4">更安全的结构与制动</div>
+                        <p class="text-slate-400 text-sm leading-relaxed">我们的三盘式液压制动系统提供卓越的制动力，显著降低繁忙道路上的事故风险。</p>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto mt-16 reveal-on-scroll">
+                    <h2 class="text-3xl font-display font-bold text-white mb-8 text-center">经济影响</h2>
+                    <div class="bg-slate-800/50 backdrop-blur-md p-8 rounded-xl border-l-4 border-l-emerald-500 border border-slate-700/50">
+                        <p class="text-slate-300 text-lg italic mb-4">
+                            "通过在孟加拉国本地化生产，我们不仅减少了对进口的依赖，还在工程和制造领域创造了高技能就业机会。"
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-slate-700 rounded-full overflow-hidden border border-emerald-500/50">
+                                <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&background=10b981&color=fff&size=128'" alt="Rownak Shahriar Ruhan">
+                            </div>
+                                                       <div>
+                                <div class="text-white font-bold">Rownak Shahriar Ruhan</div>
+                                <div class="text-emerald-400 text-sm">创始人, TriChokro</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collaboration -->
+        <section id="collaboration" class="py-16 bg-slate-900 border-t border-slate-800 overflow-hidden">
+            <div class="container mx-auto px-4 mb-8 text-center reveal-on-scroll">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">合作与认可</h2>
+                <div class="h-1 w-16 bg-emerald-500 rounded-full mx-auto"></div>
+            </div>
+            
+            <div class="marquee-container w-full">
+                <div class="marquee-content gap-16 px-4">
+                    <!-- Logos/Names repeated for scrolling effect -->
+                    <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-university text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">机械工程, BUET</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-industry text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">Metrocem Automobiles</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-laptop-code text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">Big O Solution</span>
+                    </div>
+                    <!-- Repeat... -->
+                     <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-globe text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">Hoshonto.com</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-lightbulb text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">UHIP (ICT部门)</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-microphone-alt text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">SofE (IMechE)</span>
+                    </div>
+                     <!-- Duplicates for marquee -->
+                    <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-university text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">机械工程, BUET</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-industry text-3xl text-emerald-500"></i>
+                        <span class="text-lg font-bold">Metrocem Automobiles</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 bg-slate-950/80">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/3">
+                        <h2 class="text-3xl font-bold text-white mb-6">关于我们</h2>
+                        <div class="space-y-2" id="about-tabs">
+                            <button onclick="switchTab(0)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover">核心团队</button>
+                            <button onclick="switchTab(1)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">顾问委员会</button>
+                            <button onclick="switchTab(2)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">初级合伙人</button>
+                            <button onclick="switchTab(3)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">使命与愿景</button>
+                            <button onclick="switchTab(4)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">时间线</button>
+                            <button onclick="switchTab(5)" class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover">成就</button>
+
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px] bg-gradient-animate" id="tab-content">
+                        <!-- Dynamic Content Loaded Here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 bg-gradient-to-br from-slate-900 to-blue-950 text-white relative">
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-16 border border-slate-700 shadow-2xl bg-gradient-animate">
+                    <div class="text-center mb-12"><h2 class="text-4xl font-bold mb-4">联系我们</h2><p class="text-slate-400">预约演示、讨论车队需求、合作或会议。</p></div>
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover cursor-pointer" onclick="openBookMeetingModal()">
+                            <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="calendar"></i></div>
+                            <h3 class="font-bold mb-2">预约会议</h3><p class="text-slate-400 text-sm">与我们的团队安排<br/>Google Meet</p>
+                        </div>
+                        <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
+                            <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="map-pin"></i></div>
+                            <h3 class="font-bold mb-2">访问</h3>
+                            <p class="text-slate-400 text-sm mb-4">Kazi Nazrul Islam, BUET<br/>或ME Building, BUET<br/>Dhaka-1000</p>
+                            <a href="https://www.google.com/maps/search/BUET+Kazi+Nazrul+Islam+Dhaka/@23.7259,90.3658,15z" target="_blank" rel="noopener noreferrer" class="inline-block bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-400 px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-emerald-500/30">
+                                <i data-lucide="navigation" class="w-4 h-4 inline mr-2"></i>路线
+                            </a>
+                        </div>
+                        <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
+                            <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="phone"></i></div>
+                            <h3 class="font-bold mb-2">致电</h3>
+                            <p class="text-slate-400 text-sm" id="phone-container">
+                                <button onclick="this.innerHTML = '+880 1714 844677<br/>+8801402667477'; this.classList.remove('underline', 'text-emerald-400'); this.classList.add('cursor-text');" class="underline text-emerald-400 hover:text-emerald-300 transition-colors">点击查看</button>
+                            </p>
+                        </div>
+                        <div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
+                            <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="mail"></i></div>
+                            <h3 class="font-bold mb-2">邮件</h3>
+                            <p class="text-slate-400 text-sm" id="email-container">
+                                <button onclick="this.parentElement.innerHTML = '<a href=\'mailto:trichokro.automotives@gmail.com\' class=\'text-emerald-400 hover:underline\'>trichokro.automotives@gmail.com</a>';" class="underline text-emerald-400 hover:text-emerald-300 transition-colors">点击查看</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- BLOGS -->
+        <section id="blogs" class="py-24 bg-slate-900/50 relative">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">博客与新闻</h2>
+                    <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+                    <p class="text-slate-400 mt-4">了解最新新闻和成就</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <!-- BUET Achievement Blog Card -->
+                    <div class="reveal-on-scroll group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
+                        <div class="relative h-64 bg-gradient-to-br from-emerald-500/20 via-blue-500/10 to-slate-900 flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 bg-[url('src/assets/logo_icon.png')] bg-center bg-no-repeat opacity-5 bg-contain"></div>
+                            <i data-lucide="trophy" class="w-40 h-40 text-emerald-400/80 animate-float-subtle"></i>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="text-xs text-emerald-400 font-bold uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-full">成就</div>
+                                <div class="text-xs text-slate-500">2025年11月24日</div>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">BUET TriChokro团队在2025年SOfE决赛中斩获佳绩</h3>
+                            <p class="text-slate-400 text-base leading-relaxed mb-6">
+                                2025年11月8日，由IMechE孟加拉国分会主办的“为工程发声”（SOfE）孟加拉国2025决赛展示了非凡的工程才华，BUET学生主导了比赛。A.A.M. Rownak Shahriar Ruhan夺得冠军，并将代表TriChokro参加2025年SOfE南亚地区（SAR）比赛。这一令人瞩目的成就突显了BUET在培养杰出工程传播者方面的持久传统，并巩固了该机构在孟加拉国技术卓越前沿的地位。
+                            </p>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-700">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-sm text-slate-400">发布于BUET官方网站</span>
+                                </div>
+                                <a href="https://www.buet.ac.bd/web/#/details/156" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold text-sm">阅读全文<i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEOS SECTION -->
+        <section id="videos" class="py-24 bg-slate-950 relative overflow-hidden">
+            <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">视频</h2>
+                    <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+                    <p class="text-slate-400 mt-4">观看我们的最新项目视频、试驾和技术见解</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video Card 1 -->
+                    <div class="reveal-on-scroll group relative rounded-2xl overflow-hidden bg-black border border-slate-800 transition-all duration-500 hover:-translate-y-3 hover:border-emerald-500/60 hover:shadow-[0_0_40px_rgba(16,185,129,0.35)]">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none"></div>
+                        <div class="relative w-full pt-[56.25%]">
+                            <iframe class="absolute inset-0 w-full h-full rounded-2xl" src="https://www.youtube.com/embed/7Uzam6XvLgY" title="Trambulance Pitch Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 bg-slate-900/60 backdrop-blur">
+                            <h3 class="text-white font-semibold text-sm tracking-wide">三轮救护车推介视频</h3>
+                            <p class="text-slate-400 text-xs mt-2">体验我们旗舰车型的无缝性能</p>
+                        </div>
+                    </div>
+                    <!-- Video Card 2 -->
+                    <div class="reveal-on-scroll group relative rounded-2xl overflow-hidden bg-black border border-slate-800 transition-all duration-500 hover:-translate-y-3 hover:border-emerald-500/60 hover:shadow-[0_0_40px_rgba(16,185,129,0.35)]" style="animation-delay: 120ms;">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none"></div>
+                        <div class="relative w-full pt-[56.25%]">
+                            <iframe class="absolute inset-0 w-full h-full rounded-2xl" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="TriChokro Pathfinder Team" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 bg-slate-900/60 backdrop-blur">
+                            <h3 class="text-white font-semibold text-sm tracking-wide">TriChokro 探路者团队</h3>
+                            <p class="text-slate-400 text-xs mt-2">了解更多关于我们创新的三路液压制动系统的信息</p>
+                        </div>
+                    </div>
+                    <!-- Video Card 3 -->
+                    <div class="reveal-on-scroll group relative rounded-2xl overflow-hidden bg-black border border-slate-800 transition-all duration-500 hover:-translate-y-3 hover:border-emerald-500/60 hover:shadow-[0_0_40px_rgba(16,185,129,0.35)]" style="animation-delay: 240ms;">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none"></div>
+                        <div class="relative w-full pt-[56.25%]">
+                            <iframe class="absolute inset-0 w-full h-full rounded-2xl" src="https://www.youtube.com/embed/oUWmBn8RAqA" title="UIHP Pitch Deck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 bg-slate-900/60 backdrop-blur">
+                            <h3 class="text-white font-semibold text-sm tracking-wide">UIHP 融资演讲稿</h3>
+                            <p class="text-slate-400 text-xs mt-2">看TriChokro如何为所有人提供安全适用的服务</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start justify-between">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 md:mb-0">
+                    <div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
+                        <img src="src/assets/logo_new.png" alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]">
+                        <span class="text-xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+                    </div>
+                    <div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
+                        <div class="relative">
+                            <a href="#" onclick="toggleProductsMenu()" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer">产品</a>
+                            <div id="products-menu" class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg">
+                                <a href="trambulance_zh.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">三轮救护车</a>
+                                <a href="pathfinder_zh.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">探路者</a>
+                            </div>
+                        </div>
+                        <a href="founder_zh.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">联系人</a>
+                        <a href="privacy_zh.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">隐私</a>
+                        <a href="metadata_zh.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">元数据</a>
+                    </div>
+                </div>
+                <div class="flex flex-col items-end space-y-4 mt-4 md:mt-0">
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" aria-label="在LinkedIn上联系我们">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.27 20.45H3.66V9h3.61v11.45zM5.46 7.42c-1.18 0-2.14-.95-2.14-2.13s.96-2.13 2.14-2.13 2.14.95 2.14 2.13-.96 2.13-2.14 2.13zM20.47 20.45h-3.61v-5.63c0-1.34-.48-2.26-1.68-2.26-1.12 0-1.78.75-2.07 1.48-.11.26-.14.63-.14 1v6.41h-3.61s.05-10.4 0-11.45h3.61v1.65c.48-.75 1.34-1.82 3.25-1.82 2.37 0 4.15 1.55 4.15 4.9v6.72z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" aria-label="在Facebook上关注我们">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.77-1.63 1.563V12h3.29l-.527 2.987h-2.763v6.987C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-600 text-sm">由 Ruhan & Jules 开发; 保留所有权利, TriChokro 2026</p>
+                <div class="flex items-center gap-2 text-slate-500 text-sm mt-4 md:mt-0">
+                    <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
+                    <span>访客数: <span id="visitor-count" class="text-emerald-400 font-bold">0</span></span>
+                </div>
+            </div>
+        </footer>
+    </div> 
+    <!-- END MAIN VIEW -->
+
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Re-initialize loader for this page
+            const percentEl = document.getElementById('load-percent');
+            const percentReflectEl = document.getElementById('load-percent-reflection');
+            const statusEl = document.getElementById('load-status');
+            const loader = document.getElementById('loader');
+            const body = document.body;
+            let progress = 0;
+            const statusMessages = ["校准液压系统", "连接电网", "优化电池", "加载资产", "系统就绪"];
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 6) + 3;
+                if (progress > 100) progress = 100;
+                const display = progress < 10 ? `0${progress}` : `${progress}`;
+                if(percentEl) percentEl.innerText = display;
+                if(percentReflectEl) percentReflectEl.innerText = display;
+                const msgIndex = Math.min(Math.floor(progress / 20), 4);
+                if(statusEl) statusEl.innerText = statusMessages[msgIndex];
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => { if(loader) { loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; } body.classList.remove('loading'); }, 500);
+                }
+            }, 30);
+            
+            // Tab Data in Chinese
+            const tabsData = [
+            { 
+                title: "遇见创新者",
+                html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">遇见创新者</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-6"><a href="contact_zh.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform"><img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4><p class="text-emerald-400 text-xs">创始人</p></a><a href="contact_zh.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4><p class="text-emerald-400 text-xs">设计主管</p></a><a href="contact_zh.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Omor Faruk Hasan</h4><p class="text-emerald-400 text-xs">首席运营官</p></a><a href="contact_zh.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4><p class="text-emerald-400 text-xs">人力资源</p></a><a href="contact_zh.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Dipto Muzumder Swadhin</h4><p class="text-emerald-400 text-xs">首席运营官</p></a><a href="contact_zh.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Tawhidul Islam Tahsif</h4><p class="text-emerald-400 text-xs">首席设计师</p></a></div></div>`
+            },
+            {
+                title: "我们的专家顾问",
+                html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">我们的专家顾问</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-6"><a href="contact_zh.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform"><img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Dr. Md. Ehsan</h4><p class="text-emerald-400 text-xs">顾问 & 导师</p></a><a href="contact_zh.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform"><img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4><p class="text-emerald-400 text-xs">车辆顾问</p></a><a href="contact_zh.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform"><img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4><p class="text-emerald-400 text-xs">建筑顾问</p></a></div></div>`
+            },
+            {
+                title: "初级合伙人",
+                html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">初级合伙人</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-6"><a href="contact_zh.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Maxudur Rahman Chowdhury</h4><p class="text-emerald-400 text-xs">通讯主管</p></a><a href="contact_zh.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Rakibul Hasan Shanto</h4><p class="text-emerald-400 text-xs">制造主管</p></a><a href="contact_zh.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block"><div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6"><img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique"></div><h4 class="text-white font-bold text-sm leading-tight mb-1">Farhan Saddique</h4><p class="text-emerald-400 text-xs">初级合伙人</p><p class="text-slate-500 text-[10px] mt-1">BUET BME '23</p></a></div></div>`
+            },
+            { 
+                title: "全民更清洁的交通", 
+                text: "通过提供耐用、高效的三轮车，增加驾驶员收入并减少城市污染，加速孟加拉国向清洁城市交通的过渡。我们针对真实的道路、真实的负载和真实的经济情况进行设计。", 
+                quote: "我们痴迷于实用细节——从车架几何形状到充电程序。" 
+            },
+            { 
+                title: "从原型到生产", 
+                html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">从原型到生产</h3><ul class="space-y-6 border-l border-slate-700 ml-2 pl-6"><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span><span class="text-emerald-400 font-bold text-sm block mb-1">2022</span><p class="text-slate-400 text-sm">始于一个简单的想法：更轻、更安全的三轮车。</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2023</span><p class="text-slate-400 text-sm">测试了首批车队，迭代了底盘和悬架。</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2024</span><p class="text-slate-400 text-sm">采用棱角分明的复合板材，平台已准备好投入生产。</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">今天</span><p class="text-slate-400 text-sm">TriChokro车辆每天都在运送跨城市的乘客。</p></li></ul></div>` 
+            },
+            {
+                title: "成就",
+                html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">成就</h3><ul class="space-y-8 border-l border-slate-700 ml-2 pl-6"><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span><span class="text-emerald-400 font-bold text-sm block mb-1">2025年11月</span><h4 class="text-lg font-semibold text-white mb-1">全国冠军 | SofE</h4><p class="text-slate-400 text-xs italic mb-2">为工程师发声 (IMechE)</p><p class="text-slate-300 text-sm mb-2"><b>三轮救护车项目：</b> 创新一种高效设计、经济实惠的电池驱动三轮救护车。</p><ul class="list-disc list-inside text-slate-500 text-sm space-y-0.5"><li>在SolidWorks/SketchUp中进行了3D设计，并在Ansys中进行了空气动力学和负载模拟。</li><li>创新的底盘和受空气动力学启发的折纸式车篷系统获得了赞誉。</li></ul></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2025年7月</span><h4 class="text-lg font-semibold text-white mb-1">BUET 冠军 | UIHP</h4><p class="text-slate-400 text-xs italic mb-2">大学创新中心计划 (ICT部门)</p><p class="text-slate-300 text-sm mb-2"><b>TriChokro 项目：</b> 研发改进型且经济实惠的自动人力车模型。</p><ul class="list-disc list-inside text-slate-500 text-sm space-y-0.5"><li>制造了原型；正在进行与Panna Group的大规模生产交易。</li><li>获得了来自BUET校友和投资者的资金。</li></ul></li></ul></div>`
+            }
+            ];
+
+            // Tab Switching Logic
+            window.switchTab = function(index) {
+                const btns = document.querySelectorAll('#about-tabs .tab-btn');
+                const contentDiv = document.getElementById('tab-content');
+                
+                btns.forEach((btn, i) => {
+                    if (i === index) {
+                        btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover";
+                    } else {
+                        btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover";
+                    }
+                });
+
+                if (index === 3) { // Mission & Vision
+                    contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[3].title}</h3>
+                    <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10">
+                    <p class="text-slate-400 leading-relaxed mb-6">${tabsData[3].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[3].quote}"</p></div></div>`;
+                } else {
+                    contentDiv.innerHTML = tabsData[index].html;
+                }
+            }
+
+            // Initialize tabs
+            switchTab(0);
+        });
+    </script>
 </body>
 </html>

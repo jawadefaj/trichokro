@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -141,37 +141,30 @@
         #scroll-progress-bar { transition: transform 0.1s; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }
         #scroll-progress-bar.active { box-shadow: 0 0 25px rgba(16, 185, 129, 0.9), 0 0 40px rgba(16, 185, 129, 0.5); }
         #scroll-icon { animation: float-subtle 3s ease-in-out infinite; }
-/* Mobile touch-friendly popup */
-@media (max-width: 768px) {
-    .team-card-popup {
-        display: none !important;
-    }
-    
-    .team-member-card {
-        min-height: 120px;
-        min-width: 120px;
-    }
-    
-    /* Make cards more touch-friendly */
-    .team-member-card:active {
-        transform: scale(0.95);
-        background-color: rgba(15, 23, 42, 0.9) !important;
-    }
-}
-
-/* Desktop: show popup on hover */
-@media (min-width: 769px) {
-    .team-member-card:hover .team-card-popup {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: scale(1) !important;
-    }
-}
-
+    </style>
 </head>
 <body class="selection-emerald loading">
     
     <!-- Speedometer Overlay -->
+    <div id="speed-overlay">
+        <div class="speed-lines"></div>
+        <div class="speedy-car">
+            <svg viewBox="0 0 200 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 40 L40 40 L50 20 L120 20 L140 40 L180 40 L180 50 L10 50 Z" opacity="0.8"/>
+                <circle cx="45" cy="50" r="10" fill="#34d399"/>
+                <circle cx="145" cy="50" r="10" fill="#34d399"/>
+                <path d="M185 45 H200" stroke="#34d399" stroke-width="2"/>
+                <path d="M185 40 H210" stroke="#34d399" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
+                <span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
+            </div>
+            <div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">Acelerando</div>
+        </div>
+    </div>
+
     <!-- Loader -->
     <div id="loader">
         <div class="relative w-full max-w-lg px-8">
@@ -194,7 +187,7 @@
     </div>
 
     <div class="watermark-overlay"></div>
-    
+    <div id="emoji-container"></div>
 
     <!-- ########################### MAIN VIEW ########################### -->
     <div id="main-view" class="main-theme-bg">
@@ -206,33 +199,30 @@
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                    <div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;">
-<a href="index_es.html#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Inicio<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_es.html#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Vehículos<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_es.html#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Tecnología<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_es.html#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Nosotros<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="contact_es.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Contacto<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 
+                      <a href="#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.1s">INICIO<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                      <a href="#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.2s">NOSOTROS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                      <a href="#features" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.25s">INGENIERÍA<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                      <a href="#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.4s">PRODUCTOS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                      <a href="#impact" class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" style="animation-delay: 0.45s">POR QUÉ NOSOTROS<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+                      
+                      <div class="relative group z-[10002]" style="animation-delay: 0.5s">
+                            <button class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors flex items-center gap-1 animate-neon-pulse">
+                                <i class="fas fa-globe"></i> <span id="current-lang">ES</span> <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-[10002]">
+                                
+                                <a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">BN</a>
+                                <a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">DE</a>
+                                <a href="index_es.html" class="block px-4 py-2 text-sm text-emerald-400 hover:text-emerald-400 hover:bg-slate-800">ES</a>
+                                <a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">ZH</a>
+                                <a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:text-emerald-400 hover:bg-slate-800">JA</a>
+                            </div>
+                        </div>
 
-    <div class="relative group z-[10002] inline-block ml-4">
-        <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none">
-            <i class="fas fa-globe"></i>
-            <span class="">ES</span>
-            <i class="fas fa-chevron-down text-xs ml-1"></i>
-        </button>
-        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
-            <div class="py-1">
-                <a href="index.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">EN</a>
-<a href="index_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">BN</a>
-<a href="index_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
-<a href="index_es.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">ES</a>
-<a href="index_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
-<a href="index_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
+                      <a href="contact_es.html?id=rownak" class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" style="animation-delay: 0.6s">CONTACTO</a>
 
-            </div>
-        </div>
-    </div>
-    
-</div>
+                    </div>
                     <div class="md:hidden">
                         <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
                     </div>
@@ -240,20 +230,22 @@
             </div>
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
                 <div class="px-4 py-4 space-y-3 flex flex-col">
-<a href="index_es.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Inicio</a>
-<a href="index_es.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Vehículos</a>
-<a href="index_es.html#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Tecnología</a>
-<a href="index_es.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Nosotros</a>
-<a href="contact_es.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Contacto</a>
-
-<div class="border-t border-slate-700 my-2"></div>
-<a href="index.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
-<a href="index_bn.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
-<a href="index_de.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">DE</a>
-<a href="index_es.html" class="block text-emerald-400 bg-slate-800 font-bold px-4 py-3 rounded-lg transition-colors font-medium">ES</a>
-<a href="index_zh.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ZH</a>
-<a href="index_ja.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">JA</a>
-
+                    <a href="index_es.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">INICIO</a>
+                    <a href="index_es.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">NOSOTROS</a>
+                    <a href="#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">INGENIERÍA</a>
+                    <a href="#impact" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">POR QUÉ NOSOTROS</a>
+                    <a href="trambulance_es.html" class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">TRAMBULANCIA</a>
+                    <a href="index_es.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">PRODUCTOS</a>
+                    <a href="founder_es.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">FUNDADORES</a>
+                    <a href="contact_es.html?id=rownak" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">CONTACTO</a>
+                    
+                
+<a href="index.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
+                    <a href="index_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
+                    <a href="index_de.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">DE</a>
+                    <a href="index_es.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ES</a>
+                    <a href="index_zh.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">ZH</a>
+                    <a href="index_ja.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">JA</a>
 </div>
             </div>
         </nav>
@@ -726,53 +718,47 @@
 `<div class="animate-fade-in-up">
     <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Conoce a los Innovadores</h3>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="contact_es.html?id=rownak" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+        <a href="contact_es.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
                 <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
             <p class="text-emerald-400 text-xs">Fundador</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         </a>
-        <a href="contact_es.html?id=tomal" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4>
             <p class="text-emerald-400 text-xs">Jefe de Diseño</p>
-              <p class="text-slate-500 text-[10px] mt-1">ME, BUET-19</p>
         </a>
-        <a href="contact_es.html?id=hasan" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Omor Faruk Hasan</h4>
             <p class="text-emerald-400 text-xs">COO</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         </a>
-        <a href="contact_es.html?id=mijanur" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4>
             <p class="text-emerald-400 text-xs">RRHH</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-19</p>
         </a>
-        <a href="contact_es.html?id=shwadhin" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Dipto Muzumder Swadhin</h4>
             <p class="text-emerald-400 text-xs">COO</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         </a>
-        <a href="contact_es.html?id=tahsif" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Tawhidul Islam Tahsif</h4>
             <p class="text-emerald-400 text-xs">Diseñador Principal</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-21</p>
         </a>
     </div>
 </div>`
@@ -783,29 +769,26 @@
 `<div class="animate-fade-in-up">
     <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Nuestro Consejo de Expertos</h3>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="contact_es.html?id=ehsanSir" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+        <a href="contact_es.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
                 <img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Dr. Md. Ehsan</h4>
             <p class="text-emerald-400 text-xs">Asesor y Mentor</p>
-        <p class="text-slate-500 text-[10px] mt-1">Professor, Dept. of Mechanical Engineering, BUET</p>
         </a>
-        <a href="contact_es.html?id=abdul" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+        <a href="contact_es.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
                 <img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4>
             <p class="text-emerald-400 text-xs">Asesor de Vehículos</p>
-        <p class="text-slate-500 text-[10px] mt-1">PhD, University of California Santa Cruz</p>
         </a>
-        <a href="contact_es.html?id=ishraq" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
+        <a href="contact_es.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
                 <img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4>
             <p class="text-emerald-400 text-xs">Asesor Arquitectónico</p>
-        <p class="text-slate-500 text-[10px] mt-1">MS, Germany</p>
         </a>
     </div>    
 </div>`
@@ -816,29 +799,27 @@
 `<div class="animate-fade-in-up">
     <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-700 pb-2">Asociados Junior</h3>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="contact_es.html?id=maxud" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Maxudur Rahman Chowdhury</h4>
             <p class="text-emerald-400 text-xs">Jefe de Comunicaciones</p>
-        <p class="text-slate-500 text-[10px] mt-1">ME, BUET-23</p>
         </a>
-        <a href="contact_es.html?id=rakibul" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Rakibul Hasan Shanto</h4>
             <p class="text-emerald-400 text-xs">Ejecutivo de Manufactura</p>
-            <p class="text-slate-500 text-[10px] mt-1">ME, BUET-20</p>
         </a>
-        <a href="contact_es.html?id=farhan" class="team-member-card  class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
+        <a href="contact_es.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
                 <img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Farhan Saddique</h4>
             <p class="text-emerald-400 text-xs">Asociado Junior</p>
-        <p class="text-slate-500 text-[10px] mt-1">BME, BUET-23</p>
+            <p class="text-slate-500 text-[10px] mt-1">BUET BME '23</p>
         </a>
     </div>
 </div>`
