@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -1201,10 +1201,6 @@
     </div>
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
         <p class="text-slate-600 text-sm">Developed by Ruhan & Jules; All right reserved, TriChokro 2026</p>
-        <div class="flex items-center gap-2 text-slate-500 text-sm mt-4 md:mt-0">
-            <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
-            <span>Visitors: <span id="visitor-count" class="text-emerald-400 font-bold">0</span></span>
-        </div>
     </div>
 </footer>
     </div> 
@@ -1241,11 +1237,11 @@
 
         function startFloatingEmojis() {
             const container = document.getElementById('emoji-container');
-            const emojis = ['ðŸŒ±', 'ðŸ”‹', 'âš¡', 'â™»ï¸', 'ðŸŒž', 'ðŸƒ', 'ðŸŒ¦ï¸', 'ðŸš²', 'ðŸŒŽ', 'ðŸ’¡', 'ðŸ¤–', 'ðŸ’»', 'ðŸ”Œ', 'âš™ï¸', 'ðŸ› ï¸', 'ðŸš—', 'ðŸ”§', 'âš¡', 'ðŸ”‹', 'ðŸŒ±'];
+            const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡', '🤖', '💻', '🔌', '⚙️', '🛠️', '🚗', '🔧', '⚡', '🔋', '🌱'];
             const maxEmojis = 40;
             let currentEmojis = 0;
             function createEmoji() {
-                if (currentEmojis >= maxEmojis) return;
+
                 const emoji = document.createElement('div');
                 emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 emoji.classList.add('floating-emoji');
@@ -1883,3 +1879,4 @@ updateScrollProgress();
     </div>
 </body>
 </html>
+
