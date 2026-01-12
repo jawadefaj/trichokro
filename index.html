@@ -101,6 +101,37 @@
         @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
+        /* Random Floating Animations for Footer Links */
+        @keyframes float-random-1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(3px, -5px) rotate(2deg); }
+            50% { transform: translate(-2px, -8px) rotate(-1deg); }
+            75% { transform: translate(4px, -3px) rotate(1deg); }
+        }
+        @keyframes float-random-2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-4px, -6px) rotate(-2deg); }
+            50% { transform: translate(5px, -4px) rotate(2deg); }
+            75% { transform: translate(-3px, -7px) rotate(-1deg); }
+        }
+        @keyframes float-random-3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(2px, -7px) rotate(1deg); }
+            50% { transform: translate(-5px, -3px) rotate(-2deg); }
+            75% { transform: translate(3px, -6px) rotate(1deg); }
+        }
+        @keyframes float-random-4 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-3px, -4px) rotate(-1deg); }
+            50% { transform: translate(4px, -8px) rotate(2deg); }
+            75% { transform: translate(-2px, -5px) rotate(-1deg); }
+        }
+        
+        .float-link-1 { animation: float-random-1 4s ease-in-out infinite; }
+        .float-link-2 { animation: float-random-2 5s ease-in-out infinite; }
+        .float-link-3 { animation: float-random-3 4.5s ease-in-out infinite; }
+        .float-link-4 { animation: float-random-4 5.5s ease-in-out infinite; }
+
         .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
         .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
@@ -1205,15 +1236,15 @@
             
             <div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
                 <div class="relative">
-                    <a href="#" onclick="toggleProductsMenu()" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer">Products</a>
+                    <a href="#" onclick="toggleProductsMenu()" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer float-link-1">Products</a>
                     <div id="products-menu" class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg">
                         <a href="trambulance.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">Trambulance</a>
                         <a href="pathfinder.html" class="hover:text-emerald-400 transition-colors px-3 py-1 rounded">Pathfinder</a>
                     </div>
                 </div>
-                <a href="founder.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Contacts</a>
-                <a href="privacy.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Privacy</a>
-                <a href="metadata.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover">Meta Data</a>
+                <a href="founder.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-2">Contacts</a>
+                <a href="privacy.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-3">Privacy</a>
+                <a href="metadata.html" class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-4">Meta Data</a>
             </div>
         </div>
         
@@ -1915,5 +1946,6 @@ updateScrollProgress();
     </div>
 </body>
 </html>
+
 
 
