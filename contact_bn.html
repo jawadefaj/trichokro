@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Contact - TriChokro</title>
-    <link rel="icon" href="src/assets/logo_icon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -356,17 +355,39 @@
         <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-emerald-400 transition-colors">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="index_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">???</a>
-        <a href="index_bn.html#about" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">?????? ????????</a>
-        <a href="trambulance_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">?????????????</a>
-        <a href="index_bn.html#products" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">????</a>
-        <a href="founder_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">???????????</a>
+        <a href="index_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">হোম</a>
+        <a href="index_bn.html#about" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">আমাদের সম্পর্কে</a>
+        <a href="trambulance_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">ট্রাম্বুলেন্স</a>
+        <a href="index_bn.html#products" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">পণ্য</a>
+        <a href="founder_bn.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">প্রতিষ্ঠাতা</a> 
+    <div class="relative group z-[10002] inline-block ml-4">
+        <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none" style="color: #cbd5e1;">
+            <i class="fas fa-globe"></i>
+            <span class="">BN</span>
+            <i class="fas fa-chevron-down text-xs ml-1"></i>
+        </button>
+        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
+            <div class="py-1">
+                <a href="contact.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">EN</a>
+                <a href="contact_bn.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">BN</a>
+                <a href="contact_de.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">DE</a>
+                <a href="contact_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
+                <a href="contact_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
+                <a href="contact_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!-- Back Button (Replaces Navigation) -->
     <a href="javascript:history.back()" class="fixed top-6 left-6 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
         <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
-        <span class="font-medium font-sans">???? ???</span>
+        <span class="font-medium font-sans">ফিরে যান</span>
+    </a>
+
+    <!-- Language Toggle -->
+    <a href="contact_bn.html" class="fixed top-6 left-32 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
+        <span class="font-medium font-sans">ENGLISH</span>
     </a>
 
     <!-- Floating Background Objects -->
@@ -397,7 +418,7 @@
                 </svg>
             </div>
 
-            <div class="company-name">????????</div>
+            <div class="company-name">ত্রিচক্র</div>
             <div class="company-contact">
                 trichokro.automotives@gmail.com<br>
                 www.trichokro.com
@@ -436,13 +457,13 @@
             </div>
 
             <div class="info-group">
-                <span class="info-text">???? ????? ????? ??</span>
-                <span class="info-text">??????, ?????, ????-????</span>
+                <span class="info-text">কাজী নজরুল ইসলাম হল</span>
+                <span class="info-text">বুয়েট, পলাশী, ঢাকা-১০০০</span>
             </div>
 
             <div class="info-group">
-                <span class="info-text" id="card-dept">??????????? ????????????? ?????</span>
-                <span class="info-text buet-highlight">???????? ??????? ? ????????? ??????????????<br>(??????)</span>
+                <span class="info-text" id="card-dept">মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ</span>
+                <span class="info-text buet-highlight">বাংলাদেশ প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়<br>(বুয়েট)</span>
             </div>
         </div>
     </div>
@@ -451,111 +472,103 @@
         const teamData = {
             rownak: {
                 initials: "A A M",
-                name: "???? ????????? ?????",
-                title: "??????????? ? ????",
-                phone1: "+??? ???? ??????",
-                phone2: "+??? ???? ??????",
+                name: "রওনক শাহরিয়ার রুহান",
+                title: "প্রতিষ্ঠাতা ও সিইও",
+                phone1: "+৮৮০ ১৭১৪ ৮৪৪৬৭৭",
+                phone2: "+৮৮০ ১৪০২ ৬৬৭৪৭৭",
                 email1: "rownakshahriarruhan@gmail.com",
                 email2: "2010105@me.buet.ac.bd"
             },
             abdul: {
-                initials: "Dr.",
-                name: "Abdul Jawad",
-                title: "Vehicle Adviser",
-                phone1: "+1 (831) 419-3654",
-                phone2: "",
-                email1: "abjawad@ucsc.edu",
-                email2: "jawadefaj006@gmail.com",
-                website: "jawadefaj.xyz",
-                scholar: "scholar.google.com",
-                github: "github.com/jawadefaj",
-                dept: "Augmented Design Lab, UC Santa Cruz"
+                initials: "ড.",
+                name: "আব্দুল জাওয়াদ",
+                title: "যানবাহন উপদেষ্টা",
+                email1: "jawadefaj006@gmail.com",
             },
             ishraq: {
-                initials: "I H R",
-                name: "Ishraq H. Rafid",
-                title: "সথপতয উপদষট",
+                initials: "I R",
+                name: "ইশরাক রাফিদ",
+                title: "স্থাপত্য উপদেষ্টা",
                 email1: "ishraq.rafid@gmail.com",
-                dept: "শহর পরকলপক, শহর সড বভগ, পরবহন ও গতিশীলতা রূপান্তর মন্ত্রণালয়, হ্যাম্বুর্গ, জার্মানি"
             },
             hasan: {
                 initials: "H M",
-                name: "????? ??????",
-                title: "??????? ???????????",
-                phone1: "+??? ???? ??????",
-                phone2: "+??? ???? ??????",
+                name: "হাসান মাহমুদ",
+                title: "অপারেশন এক্সিকিউটিভ",
+                phone1: "+৮৮০ ১৭২৬ ৮৫৫৭৬৭",
+                phone2: "+৮৮০ ১৮৬৭ ১১৪৮৮৩",
                 email1: "mhmhasanmahmud2@gmail.com",
                 email2: "2010061@me.buet.ac.bd"
             },
             mijanur: {
                 initials: "M R",
-                name: "??????? ?????",
-                title: "?????",
-                phone1: "+??? ???? ??????",
-                phone2: "+??? ???? ??????",
+                name: "মিজানুর রহমান",
+                title: "এইচআর",
+                phone1: "+৮৮০ ১৭২০ ৯১৭৫৭২",
+                phone2: "+৮৮০ ১৮৬৮ ২৩৩৯৬৫",
                 email1: "mijankutubi65@gmail.com",
                 email2: "1910109@me.buet.ac.bd"
             },
             tomal: {
                 initials: "T K",
-                name: "???? ??????????",
-                title: "?????? ??????",
-                phone1: "+??? ???? ??????",
+                name: "তমাল কীর্তনীয়া",
+                title: "ডিজাইন প্রধান",
+                phone1: "+৮৮০ ১৬২৪ ৭৬২৯৫২",
                 email1: "kirttoniatomal@gmail.com",
                 email2: "2010110@me.buet.ac.bd"
             },
             tahsif: {
                 initials: "T I T", 
-                name: "???????? ????? ??????",
-                title: "??? ????????",
-                phone1: "+??? ???? ??????",
+                name: "তাওহিদুল ইসলাম তাহসিফ",
+                title: "লিড ডিজাইনার",
+                phone1: "+৮৮০ ১৪০৫ ৪৯২৯৬০",
                 phone2: "",
                 email1: "tawhidul.tahsif@gmail.com",
                 email2: "2110153@me.buet.ac.bd",
             },
             shwadhin: {
                 initials: "D S", 
-                name: "????? ??????? ???????",
-                title: "??????? ???????????",
-                phone1: "+??? ???? ??????",
-                phone2: "+??? ???? ??????",
+                name: "দীপ্ত মজুমদার স্বাধীন",
+                title: "অপারেশন এক্সিকিউটিভ",
+                phone1: "+৮৮০ ১৮৬৭ ১৪৫৬৪২",
+                phone2: "+৮৮০ ১৫২১ ৫৫৭৯২০",
                 email1: "diptoswadhin0026@gmail.com",
                 email2: "2010073@me.buet.ac.bd",
             },
             maxud: {
                 initials: "M R C", 
-                name: "???????? ????? ??????",
-                title: "??????? ??????",
-                phone1: "+??? ???? ??????",
+                name: "মাকসুদুর রহমান চৌধুরী",
+                title: "জনসংযোগ প্রধান",
+                phone1: "+৮৮০ ১৬৭৬ ৭৯৩৯৮২",
                 phone2: "",
                 email1: "m.rahman.chw@gmail.com",
                 email2: "2310132@me.buet.ac.bd",
             },
             rakibul: {
                 initials: "R H S", 
-                name: "??????? ????? ?????",
-                title: "??????? ????????????",
-                phone1: "+??? ???? ??????",
-                phone2: "+??? ???? ??????",
+                name: "রাকিবুল হাসান শান্ত",
+                title: "অপারেশন অ্যাসোসিয়েট",
+                phone1: "+৮৮০ ১৯৩৯ ১৩৪২০১",
+                phone2: "+৮৮০ ১৬০৮ ৭৮৩৯০১",
                 email1: "2010125@me.buet.ac.bd",
                 email2: "",
             },
             farhan: {
                 initials: "F S",
-                name: "?????? ?????",
-                title: "??????? ????????????",
-                phone1: "+??? ???? ??????",
+                name: "ফারহান সাদিক",
+                title: "জুনিয়র অ্যাসোসিয়েট",
+                phone1: "+৮৮০ ১৫৭৭ ০৩৭৩৫৭",
                 phone2: "",
                 email1: "farhan.bme027@gmail.com",
                 email2: "",
-                dept: "???????????? ????????????? ?????"
+                dept: "বায়োমেডিকেল ইঞ্জিনিয়ারিং বিভাগ"
             },
             ehsanSir: {
-                initials: "?.",
-                name: "??????? ??? ?????",
-                title: "???????? ? ???????????",
-                phone1: "+??? ???? ??????",
-                phone2: "???-?-??????? (???????)",
+                initials: "ড.",
+                name: "অধ্যাপক মোঃ এহসান",
+                title: "উপদেষ্টা ও পরামর্শদাতা",
+                phone1: "+৮৮০ ১৭১১ ৪৪৬৫৬৪",
+                phone2: "৮৮০-২-৮৬১৩০৪৬ (ফ্যাক্স)",
                 email1: "ehsan@me.buet.ac.bd",
                 email2: ""
             },
@@ -614,4 +627,3 @@
     </script>
 </body>
 </html>
-
