@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
     <!-- Icons & Libraries -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -29,24 +29,19 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['IBM Plex Mono', 'Inter', 'Roboto', 'monospace'],
+                        sans: ['Inter', 'Roboto', 'sans-serif'],
                         display: ['Cinzel', 'serif'],
-                        mono: ['IBM Plex Mono', 'JetBrains Mono', 'monospace'],
+                        mono: ['JetBrains Mono', 'monospace'],
                         serif: ['Cormorant Garamond', 'serif'],
                     },
                     animation: {
                         'spin-slow': 'spin 15s linear infinite',
                         'float': 'float 6s ease-in-out infinite',
-                        'type-blink': 'type-blink 1s steps(2, start) infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
-                        },
-                        'type-blink': {
-                            '0%, 50%': { opacity: 1 },
-                            '50.01%, 100%': { opacity: 0 }
                         }
                     }
                 }
@@ -56,7 +51,7 @@
 
     <style>
         /* --- MAIN GLOBAL STYLES --- */
-        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'IBM Plex Mono', 'JetBrains Mono', monospace; color: #e2e8f0; touch-action: manipulation; letter-spacing: 0.01em; }
+        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
         a, button, .interactive, input, .group { cursor: pointer; }
         
         ::-webkit-scrollbar { width: 8px; }
@@ -75,11 +70,6 @@
         }
 
         .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
-
-        /* Typewriter styling */
-        .typewriter-line { white-space: nowrap; overflow: hidden; border-right: 2px solid #64ffda; }
-        .typewriter-caret { display: inline-block; width: 10px; margin-left: 4px; height: 1em; background: #64ffda; animation: type-blink 1s steps(2, start) infinite; vertical-align: bottom; }
-        .typewriter-subtle { opacity: 0.9; letter-spacing: 0.08em; }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-brand-green selection:text-brand-dark" style="background-color: #0a192f; color: #8892b0;">
@@ -104,7 +94,7 @@
 <a href="index_de.html#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Startseite<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 <a href="index_de.html#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Fahrzeuge<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 <a href="index_de.html#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Technologie<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_de.html#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Über uns<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
+<a href="index_de.html#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Ãœber uns<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 <a href="contact_de.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">Kontakt<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
 
 
@@ -122,7 +112,6 @@
 <a href="pathfinder_es.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ES</a>
 <a href="pathfinder_zh.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">ZH</a>
 <a href="pathfinder_ja.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">JA</a>
-<a href="pathfinder_nl.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">NL</a>
 
             </div>
         </div>
@@ -139,7 +128,7 @@
 <a href="index_de.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Startseite</a>
 <a href="index_de.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Fahrzeuge</a>
 <a href="index_de.html#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Technologie</a>
-<a href="index_de.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Über uns</a>
+<a href="index_de.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Ãœber uns</a>
 <a href="contact_de.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">Kontakt</a>
 
 <div class="border-t border-slate-700 my-2"></div>
@@ -149,7 +138,6 @@
 <a href="pathfinder_es.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ES</a>
 <a href="pathfinder_zh.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ZH</a>
 <a href="pathfinder_ja.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">JA</a>
-<a href="pathfinder_nl.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">NL</a>
 
 </div>
             </div>
@@ -174,24 +162,17 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center relative z-10 w-full">
                 <div class="md:w-1/2 mb-10 md:mb-0">
                     <div class="inline-block text-brand-green font-mono text-sm mb-4 tracking-wider" style="color: #64ffda">
-                        Abt. für Maschinenbau, BUET
+                        Abt. fÃ¼r Maschinenbau, BUET
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-display font-bold text-brand-heading leading-none mb-4 typewriter-subtle" style="color: #e6f1ff">
-                        Gemacht für <span class="text-brand-green text-shadow-glow" style="color: #64ffda">Bangladesch</span><span class="typewriter-caret"></span>
+                    <h1 class="text-5xl md:text-7xl font-display font-bold text-brand-heading leading-none mb-6" style="color: #e6f1ff">
+                        Gemacht fÃ¼r <br> <span class="text-brand-green text-shadow-glow" style="color: #64ffda">Bangladesch.</span>
                     </h1>
-                    <p id="typewriter-line" class="text-xl text-brand-text mb-8 max-w-xl leading-relaxed typewriter-line" style="color: #ccd6f6">
-                        Sicher. Ingenieurgetrieben. Lokal entwickelt.
+                    <p class="text-xl text-brand-text mb-10 max-w-lg leading-relaxed" style="color: #ccd6f6">
+                        Die erste vollstÃ¤ndig lokal hergestellte elektrische Auto-Rikscha-Industrie des Landes. LÃ¶sung von Sicherheits-, Ingenieurs- und Umweltproblemen.
                     </p>
-                    <p class="text-sm uppercase tracking-[0.24em] text-brand-green mb-6" style="color: #64ffda;">Pathfinder E-Autorikscha · Geprüft in Dhaka · Bereit für die Straße</p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#pathfinder-models" class="bg-brand-green text-brand-dark text-center px-8 py-4 rounded font-bold hover:bg-opacity-90 transition shadow-[0_0_15px_rgba(100,255,218,0.4)]" style="background-color: #64ffda; color: #0a192f;">Modelle ansehen</a>
                         <a href="#pathfinder-solution" class="border border-brand-text text-brand-text text-center px-8 py-4 rounded font-bold hover:border-brand-green hover:text-brand-green transition" style="border-color: #ccd6f6; color: #ccd6f6;">Warum TriChokro?</a>
-                    </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 text-center">
-                        <div class="glass-card rounded p-3 text-sm text-brand-text" style="color: #ccd6f6;" ≤3,5 s Bremsweg</div>
-                        <div class="glass-card rounded p-3 text-sm text-brand-text" style="color: #ccd6f6;">+22% Reichweite</div>
-                        <div class="glass-card rounded p-3 text-sm text-brand-text" style="color: #ccd6f6;">5 Sitze gesichert</div>
-                        <div class="glass-card rounded p-3 text-sm text-brand-text" style="color: #ccd6f6;">Lokale Fertigung</div>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center relative animate-float">
@@ -209,11 +190,11 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center mb-12">
                     <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">01.</span>
-                    <h2 class="text-3xl md:text-4xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">Die aktuelle Krise </h2>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">Die aktuelle Krise âš ï¸</h2>
                     <div class="h-[1px] bg-brand-light flex-grow ml-6" style="background-color: #112240;"></div>
                 </div>
                 <p class="text-brand-text max-w-2xl mb-16 text-lg" style="color: #ccd6f6;">
-                    Unsichere Elektro-Rikschas fluten Dhakas Straßen und verursachen Unfälle sowie Umweltgefahren. Wir haben drei kritische Schwachstellen identifiziert.
+                    Unsichere elektrische Rikschas haben Dhakas StraÃŸen Ã¼berschwemmt und verursachen UnfÃ¤lle und Umweltgefahren. Wir haben drei kritische Fehlerpunkte identifiziert ðŸ“‰.
                 </p>
 
                 <div class="grid md:grid-cols-3 gap-6">
@@ -224,9 +205,9 @@
                         </div>
                         <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">Sicherheitsrisiken</h3>
                         <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
-                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>Keine zuverlässigen Bremssysteme</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>Fehlende Bremssysteme</span></li>
                             <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>Hoher Schwerpunkt (Kippgefahr)</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>Harte Federung verursacht Verletzungen</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>Schlechte Federung verursacht Verletzungen</span></li>
                         </ul>
                     </div>
 
@@ -235,10 +216,10 @@
                         <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
                             <i class="fas fa-wrench text-3xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">Technische Mängel</h3>
+                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">Technische MÃ¤ngel</h3>
                         <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
-                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>Hoher aerodynamischer Widerstand</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>Räder mit geringer Tragfähigkeit</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>Hoher aerodynamischer Luftwiderstand</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>RÃ¤der mit geringer TragfÃ¤higkeit</span></li>
                             <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>Minderwertige Strukturmaterialien</span></li>
                         </ul>
                     </div>
@@ -251,8 +232,8 @@
                         <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">Umweltauswirkungen</h3>
                         <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
                             <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>Nicht recycelbare giftige Batterien</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>Industrieabfälle aus Importen</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>Lärmbelastung durch alte Motoren</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>IndustrieabfÃ¤lle aus Importen</span></li>
+                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>LÃ¤rmbelÃ¤stigung durch alte Motoren</span></li>
                         </ul>
                     </div>
                 </div>
@@ -270,9 +251,9 @@
                     <div>
                          <div class="flex items-center mb-4">
                             <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">02.</span>
-                            <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">Die Lösung </h2>
+                            <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">Die LÃ¶sung ðŸ’¡</h2>
                         </div>
-                        <p class="text-brand-green font-mono" style="color: #64ffda;">Ingenieurskunst trifft auf lokale Innovation.</p>
+                        <p class="text-brand-green font-mono" style="color: #64ffda;">Ingenieurskunst trifft auf lokale Innovation ðŸ› ï¸.</p>
                     </div>
                     <div class="mt-4 md:mt-0">
                          <span class="bg-brand-green/10 border border-brand-green text-brand-green px-4 py-2 rounded font-mono text-sm" style="background-color: rgba(100, 255, 218, 0.1); border-color: #64ffda; color: #64ffda;">BUET Innoviert</span>
@@ -283,25 +264,25 @@
                     <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
                         <i class="fas fa-tachometer-alt text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
                         <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">McPherson-Federung</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Überlegener Fahrkomfort und Stabilität im Vergleich zu Blattfedern.</p>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Ãœberlegener Fahrkomfort und StabilitÃ¤t im Vergleich zu herkÃ¶mmlichen Blattfedern.</p>
                     </div>
                     
                     <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
                         <i class="fas fa-stop-circle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
                         <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">Scheibenbremsen</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Moderne hydraulische Scheibenbremsen ersetzen gefährliche Gummibelagbremsen.</p>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Moderne hydraulische Scheibenbremsen ersetzen gefÃ¤hrliche Gummibelagbremsen.</p>
                     </div>
 
                     <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
                         <i class="fas fa-wind text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
                         <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">Aerodynamisches Design</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Optimierte Haube reduziert Luftwiderstand und steigert Batterieeffizienz.</p>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Optimierte Haube und Karosserie zur Reduzierung des Luftwiderstands und zur Steigerung der Batterieeffizienz.</p>
                     </div>
 
                     <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
                         <i class="fas fa-recycle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">Öko-Nachhaltig</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Recycelbare Komponenten und schadstoffarme Batterietechnologie.</p>
+                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">Ã–ko-Nachhaltig</h4>
+                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">Recycelbare Komponenten und Batterietechnologie, die fÃ¼r die Umwelt nicht schÃ¤dlich ist.</p>
                     </div>
                 </div>
 
@@ -326,9 +307,9 @@
                             </tr>
                             <tr class="hover:bg-brand-light/30 transition">
                                 <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">Bremsen</td>
-                                <td class="py-4 text-red-400">Gummi/Trommel (unsicher)</td>
+                                <td class="py-4 text-red-400">Gummi/Trommel (Unsicher)</td>
                                 <td class="py-4">Scheibenbremse</td>
-                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">Scheibenbremse (sicher)</td>
+                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">Scheibenbremse (Sicher)</td>
                             </tr>
                             <tr class="hover:bg-brand-light/30 transition">
                                 <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">Sicherheitsniveau</td>
@@ -337,7 +318,7 @@
                                 <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">Hohe Sicherheit</td>
                             </tr>
                             <tr class="hover:bg-brand-light/30 transition">
-                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">Sitzkapazität</td>
+                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">SitzkapazitÃ¤t</td>
                                 <td class="py-4">3</td>
                                 <td class="py-4">3</td>
                                 <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">5</td>
@@ -354,7 +335,7 @@
                 <div class="text-center mb-16">
                      <span class="text-brand-green font-mono text-xl block mb-2" style="color: #64ffda;">03.</span>
                     <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-heading mb-4" style="color: #e6f1ff;">Produktpalette</h2>
-                    <p class="text-brand-text" style="color: #ccd6f6;">Entwickelt für jede Straße und jeden Bedarf.</p>
+                    <p class="text-brand-text" style="color: #ccd6f6;">Entwickelt fÃ¼r jede StraÃŸe und jeden Bedarf.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -369,7 +350,7 @@
                             <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">1,8 Lakh <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
                             <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
                                 <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>Standardfederung</li>
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>Bereit für Stadtverkehr</li>
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>Bereit fÃ¼r den Stadtverkehr</li>
                             </ul>
                             <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">Details ansehen</button>
                         </div>
@@ -386,7 +367,7 @@
                             <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">2,0 Lakh <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
                             <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
                                 <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>IP69 Schutzklasse</li>
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>Zuverlässig im Monsun</li>
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>ZuverlÃ¤ssig im Monsun</li>
                             </ul>
                             <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">Details ansehen</button>
                         </div>
@@ -399,7 +380,7 @@
                             <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">Pro</div>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">CNG-Alternative</h3>
+                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">CNG Alternative</h3>
                             <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">2,5 Lakh <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
                             <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
                                 <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>Hohe Geschwindigkeitsreichweite</li>
@@ -416,10 +397,10 @@
                             <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">Robust</div>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">Geländegängig</h3>
+                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">GelÃ¤ndegÃ¤ngig</h3>
                             <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">3,0 Lakh <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
                             <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>Verstärkter Rahmen</li>
+                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>VerstÃ¤rkter Rahmen</li>
                                 <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>Schwerlastfederung</li>
                             </ul>
                             <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">Details ansehen</button>
@@ -474,18 +455,18 @@
 
                     <!-- Financial Projection -->
                     <div class="lg:w-1/2">
-                        <h3 class="text-2xl font-bold font-display text-brand-heading mb-6 pl-2" style="color: #e6f1ff;">5-Jahres-Gewinnprognose </h3>
+                        <h3 class="text-2xl font-bold font-display text-brand-heading mb-6 pl-2" style="color: #e6f1ff;">5-Jahres-Gewinnprognose ðŸ“ˆ</h3>
                         <div class="flex items-end justify-center h-72 bg-brand-dark p-6 rounded-xl border border-brand-light relative overflow-hidden" style="background-color: #0a192f; border-color: #112240;">
                             <!-- Inserted Graph Visual -->
                             <img src="src/assets/graph_visual.png" alt="Financial Graph" class="max-w-full max-h-full object-contain filter drop-shadow-[0_0_15px_rgba(100,255,218,0.2)]">
                         </div>
-                        <p class="text-xs font-mono text-brand-green mt-4 text-center" style="color: #64ffda;">> Prognostizierte Nettogewinnmarge: 15–20% im Jahr 5</p>
+                        <p class="text-xs font-mono text-brand-green mt-4 text-center" style="color: #64ffda;"> > Prognostizierte Nettogewinnmarge: 15-20% im Jahr 5</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Team Section - Pathfinder version -->
+        <!-- Team Section - Pathfinder version (Removed or simplified since main site handles team) -->
         <section id="pathfinder-team" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
@@ -493,9 +474,11 @@
                     <h2 class="text-3xl font-display font-bold mb-4 text-brand-heading" style="color: #e6f1ff;">Die Innovatoren</h2>
                     <div class="w-20 h-1 bg-brand-green mx-auto rounded" style="background-color: #64ffda;"></div>
                 </div>
+                 <!-- Reusing main team card logic but styled for this theme -->
+                 <!-- Simplified display for subpage -->
                  <div class="text-center">
                     <p class="text-brand-text mb-4" style="color: #ccd6f6;">Lernen Sie das Team hinter der Revolution kennen.</p>
-                    <a href="index_de.html#about" class="border border-brand-green text-brand-green px-6 py-2 rounded text-sm font-mono hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">Vollständiges Team ansehen</a>
+                    <a href="index_de.html#about" class="border border-brand-green text-brand-green px-6 py-2 rounded text-sm font-mono hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">VollstÃ¤ndiges Team ansehen</a>
                  </div>
             </div>
         </section>
@@ -508,38 +491,8 @@
                 gradient.style.setProperty("--x", e.clientX + "px"); 
                 gradient.style.setProperty("--y", e.clientY + "px"); 
             } 
-        });
-
-        // Typewriter effect for the hero subtitle
-        const phrases = [
-            'Sicher. Ingenieurgetrieben. Lokal entwickelt.',
-            'McPherson-Federung · Hydraulische Scheibenbremsen.',
-            'Gebaut in Dhaka · Für Dhaka.',
-            '5 Sitze · ≤3,5 s Bremsweg · +22% Reichweite.'
-        ];
-        const target = document.getElementById('typewriter-line');
-        let pIndex = 0, cIndex = 0, deleting = false;
-
-        function tick() {
-            if (!target) return;
-            const current = phrases[pIndex];
-            const displayed = current.slice(0, cIndex);
-            target.textContent = displayed;
-            target.classList.add('typewriter-line');
-            const speed = deleting ? 25 : 45;
-
-            if (!deleting && cIndex === current.length) {
-                setTimeout(() => { deleting = true; tick(); }, 1200);
-                return;
-            }
-            if (deleting && cIndex === 0) {
-                deleting = false;
-                pIndex = (pIndex + 1) % phrases.length;
-            }
-            cIndex += deleting ? -1 : 1;
-            setTimeout(tick, speed);
-        }
-        setTimeout(tick, 400);
+        }); 
     </script>
 </body>
 </html>
+
