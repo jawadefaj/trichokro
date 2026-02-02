@@ -17,9 +17,13 @@
             --accent-glow: rgba(132, 204, 22, 0.3);
         }
         
+        html {
+            background-color: var(--soil-dark);
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: var(--soil-dark);
+            background-color: transparent;
             color: #e7e5e4;
             overflow-x: hidden;
             cursor: default;
@@ -113,7 +117,10 @@
         .animate-float { animation: float 6s ease-in-out infinite; }
     </style>
 </head>
-<body class="antialiased organic-texture selection:bg-lime-500 selection:text-black">
+<body class="antialiased selection:bg-lime-500 selection:text-black">
+    <video autoplay loop muted playsinline class="fixed inset-0 w-full h-full object-cover z-[-1] opacity-30">
+        <source src="src/assets/TriMateria%20vid.mp4" type="video/mp4">
+    </video>
 
     <div id="cursor-glow"></div>
 
