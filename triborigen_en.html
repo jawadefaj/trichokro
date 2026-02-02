@@ -4,127 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TribOriGen | Turning Waste Tires into Durable Materials</title>
+    <link rel="icon" type="image/jpg" href="src/assets/triborigen logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Custom Theme Overrides */
         :root {
             --tire-black: #1a1a1a;
-            --tire-dark: #121212;
-            --rubber-gray: #2d2d2d;
+            --tire-dark: #0f0f0f;
             --eco-green: #4ade80;
-            --eco-glow: rgba(74, 222, 128, 0.4);
+            --eco-dark: #15803d;
+            --formal-gold: #d4af37; 
         }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Lato', sans-serif;
             background-color: var(--tire-dark);
             color: #e5e5e5;
             overflow-x: hidden;
-            cursor: default; /* Keep default but maybe customize later */
+            cursor: default;
         }
 
-        h1, h2, h3, h4, .brand-font {
-            font-family: 'Space Grotesk', sans-serif;
+        h1, h2, h3, h4, .formal-font {
+            font-family: 'Playfair Display', serif;
         }
 
-        /* --- Dynamic Background & Cursor Spotlight --- */
+        /* --- Dynamic Backgrounds --- */
         .tire-texture {
-            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
             background-size: 30px 30px;
-            background-attachment: fixed; /* Parallax feel */
+            background-attachment: fixed;
         }
 
-        /* The Spotlight Glow */
         #cursor-glow {
             pointer-events: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, rgba(0,0,0,0) 70%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, rgba(0,0,0,0) 70%);
             transform: translate(-50%, -50%);
             z-index: 9999;
             mix-blend-mode: screen;
             transition: opacity 0.3s ease;
         }
 
-        /* --- Advanced Animations --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse-green {
-            0%, 100% { box-shadow: 0 0 10px var(--eco-glow); }
-            50% { box-shadow: 0 0 25px rgba(74, 222, 128, 0.6); }
-        }
-
-        /* Hover Cards: Lift & Glow */
+        /* Hover Cards */
         .hover-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .hover-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-8px);
             border-color: var(--eco-green);
-            box-shadow: 0 10px 30px -10px rgba(74, 222, 128, 0.3);
-        }
-        .hover-card:hover i {
-            transform: rotate(15deg) scale(1.2);
-            color: var(--eco-green);
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        /* Neon Border Utilities */
-        .neon-border {
-            box-shadow: 0 0 5px rgba(74, 222, 128, 0.1);
-            transition: all 0.3s ease;
-        }
-        .neon-border:hover {
-            box-shadow: 0 0 20px var(--eco-green);
-            border-color: var(--eco-green);
-        }
-
-        /* Nav Link Animation */
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--eco-green);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Market Circle Animation */
-        .market-circle {
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .market-circle:hover {
-            transform: scale(1.1);
-            z-index: 50;
-            box-shadow: 0 0 40px rgba(74, 222, 128, 0.2);
+            box-shadow: 0 15px 40px -10px rgba(74, 222, 128, 0.15);
         }
         
-        /* Button Shine Effect */
+        /* Button Shine */
         .btn-shine {
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
         .btn-shine::before {
             content: '';
@@ -134,224 +75,388 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+            transition: 0.6s;
         }
         .btn-shine:hover::before {
             left: 100%;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--eco-green);
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .nav-glass {
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #4ade80;
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #333;
+            border-radius: 2px;
         }
     </style>
 </head>
 <body class="antialiased selection:bg-green-500 selection:text-black">
 
-    <!-- Mouse Follower -->
     <div id="cursor-glow"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800 transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 nav-glass transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-black font-bold text-xl brand-font group-hover:rotate-12 transition-transform duration-300 shadow-[0_0_15px_rgba(74,222,128,0.5)]">T</div>
-                    <div class="flex flex-col group-hover:translate-x-1 transition-transform">
-                        <span class="text-2xl font-bold brand-font text-white tracking-tighter">TribOriGen</span>
-                        <span class="text-xs text-green-400 uppercase tracking-widest">A TriChokro Initiative</span>
+            <div class="flex justify-between items-center h-24">
+                <div class="flex items-center gap-4 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border border-gray-700 shadow-lg group-hover:border-green-500 transition-colors">
+                        <img src="src/assets/triborigen logo.jpg" alt="TribOriGen Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-bold formal-font text-white tracking-wide">TribOriGen</span>
+                        <span class="text-[10px] text-green-500 uppercase tracking-widest">Sister Concern of TriChokro</span>
                     </div>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#problem" class="nav-link text-gray-300 hover:text-green-400 transition-colors">The Crisis</a>
-                    <a href="#technology" class="nav-link text-gray-300 hover:text-green-400 transition-colors">Technology</a>
-                    <a href="#impact" class="nav-link text-gray-300 hover:text-green-400 transition-colors">Impact</a>
-                    <a href="#roadmap" class="nav-link text-gray-300 hover:text-green-400 transition-colors">Roadmap</a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#problem" class="text-xs font-bold text-gray-300 hover:text-green-400 transition-colors tracking-widest uppercase">The Crisis</a>
+                    <a href="#technology" class="text-xs font-bold text-gray-300 hover:text-green-400 transition-colors tracking-widest uppercase">Technology</a>
+                    <a href="#applications" class="text-xs font-bold text-gray-300 hover:text-green-400 transition-colors tracking-widest uppercase">Applications</a>
+                    <a href="#simulator" class="text-xs font-bold text-gray-300 hover:text-green-400 transition-colors tracking-widest uppercase">Impact</a>
+                    <a href="#finance" class="text-xs font-bold text-gray-300 hover:text-green-400 transition-colors tracking-widest uppercase">Financials</a>
                 </div>
-                <a href="https://www.trichokro.com" target="_blank" class="hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black bg-green-500 hover:bg-green-400 transition-all shadow-[0_0_15px_rgba(74,222,128,0.3)] hover:shadow-[0_0_25px_rgba(74,222,128,0.6)] hover:-translate-y-1">
-                    Visit TriChokro
-                </a>
+
+                <div class="flex items-center gap-4">
+                    <a href="index_bn.html" class="px-4 py-1.5 rounded-full border border-gray-600 text-xs font-bold text-gray-300 hover:bg-white/10 hover:border-green-500 transition-all flex items-center gap-2">
+                        <span>🇧🇩</span> BN
+                    </a>
+                    <a href="https://www.trichokro.com" target="_blank" class="hidden md:inline-flex items-center justify-center px-6 py-2 border border-green-600/30 text-xs font-bold text-green-400 hover:bg-green-500 hover:text-black transition-all rounded-sm uppercase tracking-wider">
+                        TriChokro
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden tire-texture">
-        <!-- Background Elements -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-[#121212]"></div>
-        <!-- Animated Blobs -->
-        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse mix-blend-screen"></div>
-        <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse mix-blend-screen" style="animation-delay: 1s;"></div>
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-30 z-0">
+            <source src="src/assets/Trioborigengif.MP4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-[#0f0f0f] z-1"></div>
+        <div class="absolute inset-0 tire-texture opacity-40 z-1 pointer-events-none"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="1000">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/50 border border-gray-700 mb-8 animate-float backdrop-blur-sm hover:border-green-500 transition-colors cursor-default">
-                <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#4ade80]"></span>
-                <span class="text-sm font-medium text-green-400">Revolutionizing Infrastructure</span>
+            <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-black/40 border border-white/10 mb-8 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-gray-300 tracking-widest uppercase">Revolutionizing Infrastructure</span>
             </div>
             
-            <h1 class="text-5xl md:text-8xl font-bold text-white mb-6 tracking-tight leading-tight">
+            <h1 class="text-5xl md:text-8xl font-bold text-white mb-6 leading-tight formal-font drop-shadow-2xl">
                 Turning Waste Tires into <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-green-600 bg-300% animate-gradient">Durable Materials</span>
+                <span id="typewriter" class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-emerald-400 to-green-600"></span><span class="cursor">&nbsp;</span>
             </h1>
             
-            <p class="mt-6 text-xl text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Our vision is to lead the global transition to circular, high-performance infrastructure materials. 
-                <span class="block mt-2 text-green-500/80 font-semibold">Presented by TriChokro Automotives.</span>
+            <p class="mt-8 text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                A pioneering initiative to transform environmental liability into circular, high-performance infrastructure assets.
             </p>
 
-            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="#technology" class="btn-shine inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-lg text-black bg-green-500 hover:bg-green-400 transition-all shadow-[0_0_20px_rgba(74,222,128,0.4)] hover:shadow-[0_0_35px_rgba(74,222,128,0.6)] transform hover:-translate-y-1">
+            <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="#technology" class="btn-shine inline-flex items-center justify-center px-10 py-4 bg-green-600 text-white font-bold text-xs tracking-widest uppercase hover:bg-green-500 transition-all shadow-[0_0_30px_rgba(74,222,128,0.2)] rounded-sm">
                     Our Technology
-                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                 </a>
-                <a href="#market" class="inline-flex items-center justify-center px-8 py-4 border border-gray-600 text-lg font-medium rounded-lg text-white hover:bg-white/5 hover:border-white transition-all transform hover:-translate-y-1">
-                    Market Potential
+                <a href="#simulator" class="inline-flex items-center justify-center px-10 py-4 border border-white/20 text-white font-bold text-xs tracking-widest uppercase hover:bg-white/10 transition-all rounded-sm backdrop-blur-sm">
+                    Simulate Impact
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- The Problem Section -->
-    <section id="problem" class="py-24 bg-[#121212]">
+    <!-- The Crisis Section -->
+    <section id="problem" class="py-32 bg-[#0f0f0f]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">A World <span class="text-red-500">Drowning</span> in Waste</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-orange-500 mx-auto rounded-full"></div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 formal-font">A Global <span class="italic text-red-500 font-serif">Emergency</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">The environmental cost of conventional tire disposal is unsustainable.</p>
+                <div class="w-24 h-1 bg-red-500 mx-auto mt-8"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="hover-card bg-[#1a1a1a] p-8 rounded-2xl border border-gray-800 group" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-red-500/20 transition-colors">
-                        <i data-lucide="flame" class="w-8 h-8 text-red-500 transition-transform"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="hover-card bg-[#161616] p-10 border border-gray-800 group relative overflow-hidden" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="cloud-fog" class="w-24 h-24 text-red-500"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-red-400 transition-colors">Environmental Catastrophe</h3>
-                    <p class="text-gray-400 leading-relaxed">Millions of non-biodegradable tires accumulated in landfills. Burning tires releases +37% CO and +24% SO2, creating toxic air pollution.</p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="hover-card bg-[#1a1a1a] p-8 rounded-2xl border border-gray-800 group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-500/20 transition-colors">
-                        <i data-lucide="alert-triangle" class="w-8 h-8 text-orange-500 transition-transform"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">The Bangladesh Crisis</h3>
-                    <p class="text-gray-400 leading-relaxed">Approximately 150,000 tons of waste tires generated annually. Widespread dumping and burning intensify local air and water pollution.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="hover-card bg-[#1a1a1a] p-8 rounded-2xl border border-gray-800 group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500/20 transition-colors">
-                        <i data-lucide="activity" class="w-8 h-8 text-yellow-500 transition-transform"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-yellow-400 transition-colors">Infrastructure Failure</h3>
-                    <p class="text-gray-400 leading-relaxed">Conventional asphalt fails prematurely under heat and heavy loads, leading to constant maintenance and inefficient infrastructure.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution / Technology Section -->
-    <section id="technology" class="py-24 bg-[#1a1a1a] relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-green-900/10 to-transparent pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="mb-16" data-aos="fade-right">
-                <span class="text-green-400 font-bold tracking-widest uppercase text-sm border-b border-green-500 pb-1">The TribOriGen Solution</span>
-                <h2 class="text-4xl md:text-6xl font-bold text-white mt-6 mb-6">From Waste to <br><span class="text-green-500">High-Performance</span></h2>
-                <p class="text-xl text-gray-400 max-w-3xl">
-                    We utilize a circular approach using Ground Tire Rubber (GTR) to produce elastomers that are both durable and self-healing.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <!-- Step 1 -->
-                <div class="hover-card relative p-8 bg-[#252525] rounded-xl border border-gray-700" data-aos="zoom-in-up" data-aos-delay="0">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(74,222,128,0.5)]">1</div>
-                    <i data-lucide="scissors" class="w-10 h-10 text-gray-300 mb-6"></i>
-                    <h4 class="text-xl font-bold text-white mb-2">Shredding</h4>
-                    <p class="text-sm text-gray-400">Tires are shredded into chips using a steel-capable unit.</p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="hover-card relative p-8 bg-[#252525] rounded-xl border border-gray-700" data-aos="zoom-in-up" data-aos-delay="100">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(74,222,128,0.5)]">2</div>
-                    <i data-lucide="hammer" class="w-10 h-10 text-gray-300 mb-6"></i>
-                    <h4 class="text-xl font-bold text-white mb-2">Grinding</h4>
-                    <p class="text-sm text-gray-400">Chips ground to 20-40 mesh. Magnetic separators remove steel.</p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="hover-card relative p-8 bg-[#252525] rounded-xl border border-gray-700" data-aos="zoom-in-up" data-aos-delay="200">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(74,222,128,0.5)]">3</div>
-                    <i data-lucide="settings" class="w-10 h-10 text-gray-300 mb-6"></i>
-                    <h4 class="text-xl font-bold text-white mb-2">Devulcanization</h4>
-                    <p class="text-sm text-gray-400">Pan milling applies shear to break sulfur crosslinks (controlled).</p>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="hover-card relative p-8 bg-gradient-to-br from-green-900/30 to-[#252525] rounded-xl border border-green-500/50" data-aos="zoom-in-up" data-aos-delay="300">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(255,255,255,0.5)]">4</div>
-                    <i data-lucide="sparkles" class="w-10 h-10 text-green-400 mb-6"></i>
-                    <h4 class="text-xl font-bold text-white mb-2">Activation</h4>
-                    <p class="text-sm text-gray-400">Mechanochemical activation creates reactive rubber powder.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Market Section -->
-    <section id="market" class="py-24 bg-[#121212]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-                <div class="md:w-1/2" data-aos="fade-right">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">Unlocking a <span class="text-green-400">Billion Dollar</span> Opportunity</h2>
-                    <p class="text-gray-400 mb-8 text-lg">
-                        The market for recycled rubber and GTR is substantial. Driven by policy changes and economic zone adoption, we are positioned to capture significant value.
-                    </p>
-                    
-                    <ul class="space-y-6">
-                        <li class="flex items-center group cursor-default">
-                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-4 group-hover:bg-green-500 transition-colors">
-                                <i data-lucide="check" class="w-5 h-5 text-green-500 group-hover:text-black transition-colors"></i>
-                            </div>
-                            <div>
-                                <strong class="text-white text-xl block group-hover:text-green-400 transition-colors">Cost Reduction</strong>
-                                <span class="text-gray-500 text-sm">Uses low-cost waste feedstock.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-center group cursor-default">
-                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-4 group-hover:bg-green-500 transition-colors">
-                                <i data-lucide="users" class="w-5 h-5 text-green-500 group-hover:text-black transition-colors"></i>
-                            </div>
-                            <div>
-                                <strong class="text-white text-xl block group-hover:text-green-400 transition-colors">Job Creation</strong>
-                                <span class="text-gray-500 text-sm">Supports local employment & growth.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-center group cursor-default">
-                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-4 group-hover:bg-green-500 transition-colors">
-                                <i data-lucide="trending-up" class="w-5 h-5 text-green-500 group-hover:text-black transition-colors"></i>
-                            </div>
-                            <div>
-                                <strong class="text-white text-xl block group-hover:text-green-400 transition-colors">Diverse Revenue</strong>
-                                <span class="text-gray-500 text-sm">Sales, R&D, Licensing, Consultancy.</span>
-                            </div>
-                        </li>
+                    <h3 class="text-2xl font-bold text-white mb-6 formal-font group-hover:text-red-400 transition-colors">Toxic Emissions</h3>
+                    <ul class="text-gray-400 space-y-4 text-sm font-light">
+                        <li class="flex items-start"><span class="text-red-500 mr-2">•</span><span><strong class="text-white">+37% CO</strong> & <strong class="text-white">+24% SO2</strong> emissions when burning tires.</span></li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">•</span><span>PM10 exposure can reach <strong class="text-white">18,940 µg/m³</strong>.</span></li>
                     </ul>
                 </div>
 
-                <!-- Market Visualization -->
-                <div class="md:w-1/2 relative h-[450px] w-full flex items-center justify-center" data-aos="fade-left">
-                    <!-- TAM -->
-                    <div class="market-circle absolute w-80 h-80 md:w-96 md:h-96 bg-[#1a1a1a] rounded-full border border-gray-700 flex flex-col items-center pt-8 shadow-2xl hover:border-green-500/30 cursor-pointer">
-                        <span class="text-xs text-gray-500 font-bold tracking-widest mt-4">TAM</span>
-                        <span class="text-4xl font-bold text-gray-300 mt-2">$20M</span>
+                <div class="hover-card bg-[#161616] p-10 border border-gray-800 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="droplets" class="w-24 h-24 text-blue-500"></i>
                     </div>
-                    <!-- SAM -->
-                    <div class="market-circle absolute w-56 h-56 md:w-64 md:h-64 bg-[#252525] rounded-full border border-gray-600 flex flex-col items-center pt-6 shadow-xl hover:border-green-400/50 cursor-pointer">
-                        <span class="text-xs text-green-500/70 font-bold tracking-widest mt-4">SAM</span>
-                        <span class="text-3xl font-bold text-gray-200 mt-2">$5M</span>
+                    <h3 class="text-2xl font-bold text-white mb-6 formal-font group-hover:text-blue-400 transition-colors">Marine Impact</h3>
+                    <ul class="text-gray-400 space-y-4 text-sm font-light">
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span>Tires contribute <strong class="text-white">5-10%</strong> of marine microplastics.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span>Leaching heavy metals: Zinc (Zn), Lead (Pb).</span></li>
+                    </ul>
+                </div>
+
+                <div class="hover-card bg-[#161616] p-10 border border-gray-800 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="map-pin" class="w-24 h-24 text-orange-500"></i>
                     </div>
-                    <!-- SOM -->
-                    <div class="market-circle absolute w-28 h-28 md:w-32 md:h-32 bg-green-600 rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(74,222,128,0.3)] z-20 cursor-pointer animate-pulse">
-                        <span class="text-xs text-black/60 font-bold tracking-widest">SOM</span>
-                        <span class="text-xl font-bold text-white">$0.3M</span>
+                    <h3 class="text-2xl font-bold text-white mb-6 formal-font group-hover:text-orange-400 transition-colors">Bangladesh Context</h3>
+                    <ul class="text-gray-400 space-y-4 text-sm font-light">
+                        <li class="flex items-start"><span class="text-orange-500 mr-2">•</span><span><strong class="text-white">150,000 tons</strong> of waste tires annually.</span></li>
+                        <li class="flex items-start"><span class="text-orange-500 mr-2">•</span><span>Uncontrolled dumping causes land degradation.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-32 bg-[#141414] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-green-500 font-bold tracking-widest uppercase text-xs mb-2 block">Our Methodology</span>
+                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 formal-font">Engineering <br> <span class="text-green-500">Resilience</span></h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        We utilize Ground Tire Rubber (GTR) to produce advanced elastomers. By applying controlled shear forces and mechanochemical activation, we break sulfur crosslinks to create a reactive, self-healing material.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center group">
+                            <div class="w-12 h-12 flex-shrink-0 bg-green-900/20 border border-green-500/30 flex items-center justify-center mr-6 group-hover:bg-green-500 group-hover:text-black transition-all">
+                                <span class="font-bold font-serif">01</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg formal-font">Shredding</h4>
+                                <p class="text-sm text-gray-500">Reduction to 20-40 mesh chips.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center group">
+                            <div class="w-12 h-12 flex-shrink-0 bg-green-900/20 border border-green-500/30 flex items-center justify-center mr-6 group-hover:bg-green-500 group-hover:text-black transition-all">
+                                <span class="font-bold font-serif">02</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg formal-font">Devulcanization</h4>
+                                <p class="text-sm text-gray-500">Pan milling to reactivate rubber chains.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center group">
+                            <div class="w-12 h-12 flex-shrink-0 bg-green-900/20 border border-green-500/30 flex items-center justify-center mr-6 group-hover:bg-green-500 group-hover:text-black transition-all">
+                                <span class="font-bold font-serif">03</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg formal-font">Activation</h4>
+                                <p class="text-sm text-gray-500">Creating high-performance binders.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative" data-aos="fade-left">
+                    <div class="absolute -inset-4 bg-green-500/10 blur-3xl rounded-full"></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-[#1a1a1a] p-8 border border-gray-800 flex flex-col items-center text-center aspect-square justify-center hover:border-green-500/50 transition-colors">
+                            <i data-lucide="scissors" class="w-10 h-10 text-gray-400 mb-4"></i>
+                            <span class="text-white font-bold uppercase text-sm tracking-wider">Raw Material</span>
+                        </div>
+                        <div class="bg-[#1a1a1a] p-8 border border-gray-800 flex flex-col items-center text-center aspect-square justify-center hover:border-green-500/50 transition-colors mt-8">
+                            <i data-lucide="zap" class="w-10 h-10 text-gray-400 mb-4"></i>
+                            <span class="text-white font-bold uppercase text-sm tracking-wider">Reactant</span>
+                        </div>
+                        <div class="bg-[#1a1a1a] p-8 border border-gray-800 flex flex-col items-center text-center aspect-square justify-center hover:border-green-500/50 transition-colors -mt-8">
+                            <i data-lucide="settings" class="w-10 h-10 text-gray-400 mb-4"></i>
+                            <span class="text-white font-bold uppercase text-sm tracking-wider">Processing</span>
+                        </div>
+                        <div class="bg-[#1a1a1a] p-8 border border-gray-800 flex flex-col items-center text-center aspect-square justify-center hover:border-green-500/50 transition-colors">
+                            <i data-lucide="check-circle" class="w-10 h-10 text-green-500 mb-4"></i>
+                            <span class="text-white font-bold uppercase text-sm tracking-wider">GTR Product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Applications Section -->
+    <section id="applications" class="py-32 bg-[#0f0f0f]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-16 formal-font" data-aos="fade-up">Diverse <span class="text-green-500">Applications</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- App 1 -->
+                <div class="group relative h-[400px] rounded-lg overflow-hidden border border-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1542361345-89e58247f2d5?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60">
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                        <h3 class="text-2xl font-bold text-white mb-2 formal-font">Smart Roads</h3>
+                        <p class="text-gray-400 text-sm mb-4 h-0 overflow-hidden group-hover:h-auto transition-all duration-500">
+                            Modified asphalt with 2x fatigue life, reduced thermal cracking, and self-healing properties for highway infrastructure.
+                        </p>
+                        <span class="text-green-500 text-xs font-bold uppercase tracking-widest border-b border-green-500 pb-1">View Sector</span>
+                    </div>
+                </div>
+
+                <!-- App 2 -->
+                <div class="group relative h-[400px] rounded-lg overflow-hidden border border-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1530263503756-b3822955974b?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60">
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                        <h3 class="text-2xl font-bold text-white mb-2 formal-font">Industrial Flooring</h3>
+                        <p class="text-gray-400 text-sm mb-4 h-0 overflow-hidden group-hover:h-auto transition-all duration-500">
+                            High-impact absorption flooring for factories and warehouses. Anti-slip, noise reducing, and chemical resistant.
+                        </p>
+                        <span class="text-green-500 text-xs font-bold uppercase tracking-widest border-b border-green-500 pb-1">View Sector</span>
+                    </div>
+                </div>
+
+                <!-- App 3 -->
+                <div class="group relative h-[400px] rounded-lg overflow-hidden border border-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1486262715619-72a604e3d7b9?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60">
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                        <h3 class="text-2xl font-bold text-white mb-2 formal-font">Automotive Parts</h3>
+                        <p class="text-gray-400 text-sm mb-4 h-0 overflow-hidden group-hover:h-auto transition-all duration-500">
+                            Sustainable raw material for manufacturing bushings, seals, and vehicle mats, closing the loop in the auto industry.
+                        </p>
+                        <span class="text-green-500 text-xs font-bold uppercase tracking-widest border-b border-green-500 pb-1">View Sector</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Impact Simulator -->
+    <section id="simulator" class="py-32 bg-[#121212] relative">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="bg-[#1a1a1a]/80 backdrop-blur-xl border border-gray-700 rounded-2xl p-12 text-center shadow-2xl">
+                <h2 class="text-3xl font-bold text-white mb-2 formal-font">The Green Calculator</h2>
+                <p class="text-gray-400 mb-10">See the immediate impact of switching to TribOriGen GTR Asphalt.</p>
+
+                <div class="mb-12">
+                    <label class="block text-left text-sm font-bold text-green-500 uppercase tracking-widest mb-4">
+                        Road Length to Pave (Kilometers)
+                    </label>
+                    <input type="range" min="1" max="100" value="10" class="w-full" id="roadRange" oninput="calculateImpact()">
+                    <div class="flex justify-between text-xs text-gray-500 mt-2">
+                        <span>1 km</span>
+                        <span id="kmDisplay" class="text-white font-bold text-lg">10 km</span>
+                        <span>100 km</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="bg-black/50 p-6 rounded-xl border border-gray-700">
+                        <i data-lucide="trash-2" class="w-8 h-8 text-green-500 mx-auto mb-2"></i>
+                        <h4 class="text-4xl font-bold text-white mb-1 formal-font" id="tiresCount">20,000</h4>
+                        <p class="text-xs text-gray-400 uppercase tracking-widest">Waste Tires Diverted</p>
+                    </div>
+                    <div class="bg-black/50 p-6 rounded-xl border border-gray-700">
+                        <i data-lucide="leaf" class="w-8 h-8 text-green-500 mx-auto mb-2"></i>
+                        <h4 class="text-4xl font-bold text-white mb-1 formal-font" id="co2Count">450</h4>
+                        <p class="text-xs text-gray-400 uppercase tracking-widest">Tons of CO2 Saved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Decoration -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+    </section>
+
+    <!-- Financials -->
+    <section id="finance" class="py-32 bg-[#0f0f0f] border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-16 formal-font">Financial <span class="text-green-500">Overview</span></h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- CAPEX Table -->
+                <div class="bg-[#161616] p-10 border border-gray-800 hover:border-green-500/30 transition-colors">
+                    <h3 class="text-2xl font-bold text-white mb-8 formal-font border-b border-gray-800 pb-4">Capital Expenditure (CAPEX)</h3>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center group">
+                            <span class="text-gray-400 group-hover:text-white transition-colors">Primary Shredder</span>
+                            <span class="text-white font-mono font-bold">31.5%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-1">
+                            <div class="bg-green-600 h-1" style="width: 31.5%"></div>
+                        </div>
+
+                        <div class="flex justify-between items-center group">
+                            <span class="text-gray-400 group-hover:text-white transition-colors">Hammer Mill</span>
+                            <span class="text-white font-mono font-bold">27.0%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-1">
+                            <div class="bg-green-600 h-1" style="width: 27%"></div>
+                        </div>
+
+                        <div class="flex justify-between items-center group">
+                            <span class="text-gray-400 group-hover:text-white transition-colors">Pan Milling Unit</span>
+                            <span class="text-white font-mono font-bold">12.0%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-1">
+                            <div class="bg-green-600 h-1" style="width: 12%"></div>
+                        </div>
+                        
+                        <div class="pt-6 mt-6 border-t border-gray-800 flex justify-between items-center">
+                            <span class="text-white font-bold uppercase tracking-wider text-sm">Total Investment</span>
+                            <span class="text-green-400 font-bold text-xl formal-font">BDT 345,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OPEX & Revenue -->
+                <div class="grid grid-cols-1 gap-8">
+                    <div class="bg-[#161616] p-8 border border-gray-800 flex flex-col justify-between">
+                        <div>
+                            <span class="text-gray-500 text-xs font-bold uppercase tracking-widest">Monthly Operational Cost</span>
+                            <h3 class="text-3xl font-bold text-white mt-2 formal-font">BDT 44,500</h3>
+                        </div>
+                        <div class="mt-8">
+                            <p class="text-sm text-gray-400">Includes wages, electricity, maintenance, and logistics.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-900/10 p-8 border border-green-500/20 flex flex-col justify-between">
+                        <div>
+                            <span class="text-green-500 text-xs font-bold uppercase tracking-widest">Revenue Model</span>
+                            <h3 class="text-3xl font-bold text-white mt-2 formal-font">Diversified</h3>
+                        </div>
+                        <div class="mt-8 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-500/10 text-green-400 text-xs border border-green-500/30">Sales (40%)</span>
+                            <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs border border-blue-500/30">Consultancy (25%)</span>
+                            <span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs border border-purple-500/30">R&D (15%)</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -359,128 +464,136 @@
     </section>
 
     <!-- Roadmap -->
-    <section id="roadmap" class="py-24 bg-[#1a1a1a] border-t border-gray-800">
+    <section id="roadmap" class="py-32 bg-[#121212]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-20" data-aos="zoom-in">Implementation Roadmap</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                <!-- Connector Line (Desktop) -->
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2 z-0"></div>
-
-                <!-- Phase 1 -->
-                <div class="hover-card relative z-10 bg-[#121212] p-8 rounded-xl border border-gray-700" data-aos="fade-right" data-aos-delay="0">
-                    <div class="w-14 h-14 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-xl mb-6 border-4 border-[#1a1a1a] shadow-lg relative mx-auto md:mx-0">
-                        01
+            <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-24 formal-font" data-aos="fade-up">Strategic Roadmap</h2>
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-gray-800 -translate-y-1/2 z-0"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="relative z-10 bg-[#121212] p-8 border-l-4 border-gray-700 hover:border-green-500 transition-colors pl-6" data-aos="fade-up" data-aos-delay="0">
+                        <span class="text-5xl font-bold text-gray-800 absolute -top-10 left-0 -z-10 opacity-50 formal-font">01</span>
+                        <h3 class="text-xl font-bold text-white mb-2 formal-font">Stabilization</h3>
+                        <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-4 block">0-6 Months</span>
+                        <p class="text-gray-400 text-sm leading-relaxed">Proof of concept execution. Establishing initial processing units and validating material properties.</p>
                     </div>
-                    <span class="text-green-400 text-sm font-bold uppercase tracking-wider block mb-2">0-6 Months</span>
-                    <h3 class="text-2xl font-bold text-white mb-3">Stabilization</h3>
-                    <p class="text-gray-400 text-sm">Proof of concept. Establishing initial processes and validating technology performance.</p>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="hover-card relative z-10 bg-[#121212] p-8 rounded-xl border border-gray-700" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-green-900 text-green-100 rounded-full flex items-center justify-center font-bold text-xl mb-6 border-4 border-green-500 shadow-[0_0_20px_rgba(74,222,128,0.4)] relative mx-auto md:mx-0 animate-bounce">
-                        02
+                    <div class="relative z-10 bg-[#121212] p-8 border-l-4 border-gray-700 hover:border-green-500 transition-colors pl-6" data-aos="fade-up" data-aos-delay="200">
+                        <span class="text-5xl font-bold text-gray-800 absolute -top-10 left-0 -z-10 opacity-50 formal-font">02</span>
+                        <h3 class="text-xl font-bold text-white mb-2 formal-font">Scale Up</h3>
+                        <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-4 block">Year 1</span>
+                        <p class="text-gray-400 text-sm leading-relaxed">Achieving <span class="text-white">3 tons/month</span> output. Collaborating with infrastructure partners for pilot road usage.</p>
                     </div>
-                    <span class="text-green-400 text-sm font-bold uppercase tracking-wider block mb-2">Year 1</span>
-                    <h3 class="text-2xl font-bold text-white mb-3">Scale Up</h3>
-                    <p class="text-gray-400 text-sm">Equipment upgrades to achieve a production output of <span class="text-white font-semibold">3 tons/month</span> of GTR.</p>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="hover-card relative z-10 bg-[#121212] p-8 rounded-xl border border-gray-700" data-aos="fade-left" data-aos-delay="400">
-                    <div class="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl mb-6 border-4 border-[#1a1a1a] shadow-lg relative mx-auto md:mx-0">
-                        03
+                    <div class="relative z-10 bg-[#121212] p-8 border-l-4 border-gray-700 hover:border-green-500 transition-colors pl-6" data-aos="fade-up" data-aos-delay="400">
+                        <span class="text-5xl font-bold text-gray-800 absolute -top-10 left-0 -z-10 opacity-50 formal-font">03</span>
+                        <h3 class="text-xl font-bold text-white mb-2 formal-font">Expansion</h3>
+                        <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-4 block">Year 2+</span>
+                        <p class="text-gray-400 text-sm leading-relaxed">Targeting <span class="text-white">4+ tons/month</span>. Developing specialized formulations for industrial flooring.</p>
                     </div>
-                    <span class="text-green-400 text-sm font-bold uppercase tracking-wider block mb-2">Year 2</span>
-                    <h3 class="text-2xl font-bold text-white mb-3">Expansion</h3>
-                    <p class="text-gray-400 text-sm">Operations expansion and specialized R&D to reach <span class="text-white font-semibold">4+ tons/month</span> output.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black border-t border-gray-800 py-16">
+    <footer class="bg-black border-t border-gray-900 pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-8 md:mb-0 text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4 group cursor-pointer">
-                        <div class="w-10 h-10 bg-green-600 rounded flex items-center justify-center text-white font-bold brand-font group-hover:rotate-180 transition-transform duration-700">T</div>
-                        <span class="text-3xl font-bold text-white brand-font">TribOriGen</span>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="src/assets/triborigen logo.jpg" alt="Logo" class="w-8 h-8 rounded-full grayscale hover:grayscale-0 transition-all">
+                        <span class="text-2xl font-bold text-white formal-font">TribOriGen</span>
                     </div>
-                    <p class="text-gray-500 text-sm">A TriChokro Automotives Sister Concern</p>
-                    <p class="text-gray-600 text-xs mt-2">Turning Waste into Worth.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-sm">
+                        Committed to solving the waste tire crisis through sustainable engineering and circular economic models. A proud initiative of TriChokro Automotives.
+                    </p>
                 </div>
-                
-                <div class="flex flex-col items-center md:items-end gap-6">
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-green-400 hover:scale-125 transition-all"><i data-lucide="linkedin"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-green-400 hover:scale-125 transition-all"><i data-lucide="twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-green-400 hover:scale-125 transition-all"><i data-lucide="mail"></i></a>
-                    </div>
-                    <div class="text-center md:text-right">
-                        <p class="text-gray-500 text-sm">Based in Bangladesh</p>
-                        <p class="text-gray-600 text-xs mt-1">&copy; 2024 TribOriGen. All rights reserved.</p>
+                <div>
+                    <h4 class="text-white font-bold mb-6 formal-font">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#technology" class="hover:text-green-500 transition-colors">Technology</a></li>
+                        <li><a href="#market" class="hover:text-green-500 transition-colors">Market Analysis</a></li>
+                        <li><a href="#finance" class="hover:text-green-500 transition-colors">Financials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 formal-font">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-green-600 hover:text-white transition-all"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-green-600 hover:text-white transition-all"><i data-lucide="mail" class="w-4 h-4"></i></a>
                     </div>
                 </div>
             </div>
-            
-            <div class="mt-12 pt-8 border-t border-gray-900 text-center md:text-left opacity-50 hover:opacity-100 transition-opacity">
-                <p class="text-xs text-gray-700">
-                    Sources: Bockstal et al. (2019), Fazli & Rodrigue (2020), Araujo-Morera et al. (2019).
-                </p>
+            <div class="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2024 TribOriGen. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
+        AOS.init({ once: false, mirror: true, duration: 1000, offset: 50 });
 
-        // Initialize AOS (Animate on Scroll)
-        AOS.init({
-            once: false, // Animations repeat when scrolling up/down
-            mirror: true,
-            offset: 100,
-            duration: 800,
-            easing: 'ease-out-cubic',
-        });
+        // Calculator Logic
+        function calculateImpact() {
+            const km = document.getElementById('roadRange').value;
+            document.getElementById('kmDisplay').innerText = km + " km";
+            
+            // Estimates: ~2000 tires per km of rubberized road, ~45 tons CO2 saved
+            const tires = km * 2000; 
+            const co2 = km * 45;
 
-        // Mouse Spotlight Effect
-        const cursorGlow = document.getElementById('cursor-glow');
-        
-        document.addEventListener('mousemove', (e) => {
-            // Update the position of the glow to center on mouse
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
+            document.getElementById('tiresCount').innerText = tires.toLocaleString();
+            document.getElementById('co2Count').innerText = co2.toLocaleString();
+        }
 
-        // Add a slight lag effect to the cursor for smoother feel (optional/advanced)
-        // For now, direct tracking provides the most responsive "flashlight" feel.
+        // Typewriter Effect
+        const textElement = document.getElementById('typewriter');
+        const phrases = ["Durable Materials", "Sustainable Roads", "Circular Economy"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-        // Smooth Scroll for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            const typeSpeed = isDeleting ? 50 : 100;
+            
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
 
-        // Navbar Blur/Transparency on Scroll
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, typeSpeed);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // Navbar Scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg');
-                navbar.classList.replace('bg-black/80', 'bg-black/95');
+                navbar.classList.add('py-0', 'h-16');
+                navbar.classList.remove('h-24');
             } else {
-                navbar.classList.remove('shadow-lg');
-                navbar.classList.replace('bg-black/95', 'bg-black/80');
+                navbar.classList.remove('py-0', 'h-16');
+                navbar.classList.add('h-24');
             }
+        });
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
         });
     </script>
 </body>
