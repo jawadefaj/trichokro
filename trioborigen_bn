@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TribOriGen | বর্জ্য টায়ারকে টেকসই উপকরণে রূপান্তর</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Noto Sans Bengali for Bangla text -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Theme Overrides */
+        :root {
+            --tire-black: #1a1a1a;
+            --tire-dark: #121212;
+            --rubber-gray: #2d2d2d;
+            --eco-green: #4ade80;
+            --eco-glow: rgba(74, 222, 128, 0.4);
+        }
+        
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background-color: var(--tire-dark);
+            color: #e5e5e5;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* English/Brand names keep the English font */
+        .brand-font, .en-text {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* --- Dynamic Background & Cursor Spotlight --- */
+        .tire-texture {
+            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-attachment: fixed;
+        }
+
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            mix-blend-mode: screen;
+            transition: opacity 0.3s ease;
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hover-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .hover-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--eco-green);
+            box-shadow: 0 10px 30px -10px rgba(74, 222, 128, 0.3);
+        }
+        .hover-card:hover i {
+            transform: rotate(15deg) scale(1.2);
+            color: var(--eco-green);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Progress Bar Animation */
+        @keyframes progress {
+            from { width: 0; }
+        }
+        .progress-bar {
+            animation: progress 1.5s ease-out forwards;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--eco-green);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .market-circle {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .market-circle:hover {
+            transform: scale(1.1);
+            z-index: 50;
+            box-shadow: 0 0 40px rgba(74, 222, 128, 0.2);
+        }
+        
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-shine:hover::before {
+            left: 100%;
+        }
+
+        /* Typewriter Cursor */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--eco-green);
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-green-500 selection:text-black">
+
+    <div id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-black font-bold text-xl brand-font group-hover:rotate-12 transition-transform duration-300 shadow-[0_0_15px_rgba(74,222,128,0.5)]">T</div>
+                    <div class="flex flex-col group-hover:translate-x-1 transition-transform">
+                        <span class="text-2xl font-bold brand-font text-white tracking-tighter">TribOriGen</span>
+                        <span class="text-xs text-green-400 uppercase tracking-widest brand-font">A TriChokro Initiative</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8 text-base font-medium">
+                    <a href="#problem" class="nav-link text-gray-300 hover:text-green-400 transition-colors">সংকট</a>
+                    <a href="#technology" class="nav-link text-gray-300 hover:text-green-400 transition-colors">প্রযুক্তি</a>
+                    <a href="#impact" class="nav-link text-gray-300 hover:text-green-400 transition-colors">স্কেলেবিলিটি</a>
+                    <a href="#finance" class="nav-link text-gray-300 hover:text-green-400 transition-colors">আর্থিক</a>
+                    <a href="#roadmap" class="nav-link text-gray-300 hover:text-green-400 transition-colors">রোডম্যাপ</a>
+                </div>
+                <a href="https://www.trichokro.com" target="_blank" class="hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black bg-green-500 hover:bg-green-400 transition-all shadow-[0_0_15px_rgba(74,222,128,0.3)] hover:shadow-[0_0_25px_rgba(74,222,128,0.6)] hover:-translate-y-1">
+                    TriChokro ভিজিট করুন
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden tire-texture">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-[#121212]"></div>
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse mix-blend-screen"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse mix-blend-screen" style="animation-delay: 1s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="1000">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/50 border border-gray-700 mb-8 animate-float backdrop-blur-sm hover:border-green-500 transition-colors cursor-default">
+                <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#4ade80]"></span>
+                <span class="text-sm font-medium text-green-400">অবকাঠামোতে নতুন বিপ্লব</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight min-h-[160px] md:min-h-[220px]">
+                বর্জ্য টায়ারকে রূপান্তর করুন <br>
+                <span id="typewriter-bn" class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-green-600 bg-300% animate-gradient"></span><span class="cursor">&nbsp;</span>
+            </h1>
+            
+            <p class="mt-6 text-xl text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                আমাদের লক্ষ্য হলো বিশ্বকে বৃত্তাকার এবং উচ্চ-ক্ষমতাসম্পন্ন অবকাঠামো সামগ্রীর দিকে নিয়ে যাওয়া।
+                <span class="block mt-2 text-green-500/80 font-semibold brand-font">TriChokro Automotives এর একটি উদ্যোগ।</span>
+            </p>
+
+            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="#technology" class="btn-shine inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-lg text-black bg-green-500 hover:bg-green-400 transition-all shadow-[0_0_20px_rgba(74,222,128,0.4)] hover:shadow-[0_0_35px_rgba(74,222,128,0.6)] transform hover:-translate-y-1">
+                    আমাদের প্রযুক্তি
+                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#market" class="inline-flex items-center justify-center px-8 py-4 border border-gray-600 text-lg font-medium rounded-lg text-white hover:bg-white/5 hover:border-white transition-all transform hover:-translate-y-1">
+                    বাজার সম্ভাবনা
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Crisis Section -->
+    <section id="problem" class="py-24 bg-[#121212]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">বর্জ্যের ভারে <span class="text-red-500">জর্জরিত</span> পৃথিবী</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-orange-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Air Pollution -->
+                <div class="hover-card bg-[#1a1a1a] p-8 rounded-2xl border border-gray-800 group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-red-500/20 transition-colors">
+                        <i data-lucide="cloud-fog" class="w-8 h-8 text-red-500 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 group-hover:text-red-400 transition-colors">বিষাক্ত বায়ু দূষণ</h3>
+                    <ul class="text-gray-400 space-y-2 text-sm">
+                        <li>সিমেন্ট ভাটায় টায়ার পোড়ানোর সময় <span class="text-red-500 font-bold">+৩৭% CO</span>, <span class="text-red-500 font-bold">+২৪% SO2</span>, <span class="text-red-500 font-bold">+৪৮% HCl</span> বৃদ্ধি পায়।</li>
+                        <li>ক্ষতিগ্রস্ত এলাকায় PM10 এর মাত্রা <span class="text-white font-semibold">১৮,৯৪০ µg/m³</span> পর্যন্ত পৌঁছাতে পারে।</li>
+                        <li>রাস্তা পেভিং প্রক্রিয়া থেকে ~৪০.৭% পার্টিকুলেট ম্যাটার আসে।</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Ocean Pollution -->
+                <div class="hover-card bg-[#1a1a1a] p-8 rounded-2xl border border-gray-800 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
+                        <i data-lucide="waves" class="w-8 h-8 text-blue-500 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">মহাসাগর দূষণ</h3>
+                    <ul class="text-gray-400 space-y-2 text-sm">
+                        <li>বৈশ্বিক সামুদ্রিক মাইক্রোপ্লাস্টিকের <span class="text-blue-400 font-bold">৫-১০%</span> টায়ার থেকে আসে।</li>
+                        <li>প্রতি বছর <span class="text-white font-semibold">৬ মিলিয়ন টন</span> টায়ার কণা নির্গত হয়।</li>
+                        <li>জিঙ্ক (Zn), লেড (Pb), এবং কপারের (Cu) মতো ভারী ধাতু পরিবেশে ছড়িয়ে পড়ে।</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Bangladesh Context -->
+                <div class="hover-card bg-[#1a1a1a] p-8 rounded-2xl border border-gray-800 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-500/20 transition-colors">
+                        <i data-lucide="alert-triangle" class="w-8 h-8 text-orange-500 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">স্থানীয় সংকট</h3>
+                    <ul class="text-gray-400 space-y-2 text-sm">
+                        <li>বাংলাদেশে প্রতি বছর <span class="text-orange-400 font-bold">১,৫০,০০০ টন</span> বর্জ্য টায়ার তৈরি হয়।</li>
+                        <li>যত্রতত্র ডাম্পিং এবং অনিয়ন্ত্রিতভাবে পোড়ানো।</li>
+                        <li>ঘনবসতিপূর্ণ ট্রাফিক এবং চরম আবহাওয়া রাস্তার ক্ষতি ত্বরান্বিত করে।</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Gap Section -->
+    <section class="py-16 bg-[#0f0f0f] border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-300 mb-8">বর্তমানে কী অভাব রয়েছে?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 border-l-2 border-red-500 bg-gray-900/50">
+                    <h4 class="text-white font-bold mb-2">অনিয়ন্ত্রিত ডাম্পিং</h4>
+                    <p class="text-xs text-gray-500">জমির অবক্ষয় এবং স্বাস্থ্য ঝুঁকির কারণ।</p>
+                </div>
+                <div class="p-6 border-l-2 border-yellow-500 bg-gray-900/50">
+                    <h4 class="text-white font-bold mb-2">রাস্তার অকাল ক্ষয়</h4>
+                    <p class="text-xs text-gray-500">দুর্বল অ্যাসফল্টের কারণে উচ্চ রক্ষণাবেক্ষণ খরচ।</p>
+                </div>
+                <div class="p-6 border-l-2 border-blue-500 bg-gray-900/50">
+                    <h4 class="text-white font-bold mb-2">সমন্বয়ের অভাব</h4>
+                    <p class="text-xs text-gray-500">বর্জ্যকে সেলফ-হিলিং উপকরণে রূপান্তরের কোনো সমন্বিত ব্যবস্থা নেই।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-24 bg-[#1a1a1a] relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-green-900/10 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-16" data-aos="fade-right">
+                <span class="text-green-400 font-bold tracking-widest uppercase text-sm border-b border-green-500 pb-1">TribOriGen সমাধান</span>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mt-6 mb-6">বর্জ্য থেকে <br><span class="text-green-500">উচ্চ-ক্ষমতাসম্পন্ন উপকরণ</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl">
+                    আমরা গ্রাউন্ড টায়ার রাবার (GTR) ব্যবহার করে এমন ইলাস্টোমার তৈরি করি যা টেকসই এবং নিজেই নিজের ক্ষয় পূরণ (self-healing) করতে সক্ষম।
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="hover-card relative p-6 bg-[#252525] rounded-xl border border-gray-700" data-aos="zoom-in-up" data-aos-delay="0">
+                    <div class="absolute -top-3 -left-3 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold text-black text-sm">১</div>
+                    <i data-lucide="scissors" class="w-8 h-8 text-gray-300 mb-4"></i>
+                    <h4 class="text-lg font-bold text-white mb-2">শ্রেডিং</h4>
+                    <p class="text-xs text-gray-400">টায়ারগুলোকে মেশিনের সাহায্যে ছোট ছোট টুকরো (চিপস) করা হয়।</p>
+                </div>
+
+                <div class="hover-card relative p-6 bg-[#252525] rounded-xl border border-gray-700" data-aos="zoom-in-up" data-aos-delay="100">
+                    <div class="absolute -top-3 -left-3 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold text-black text-sm">২</div>
+                    <i data-lucide="filter" class="w-8 h-8 text-gray-300 mb-4"></i>
+                    <h4 class="text-lg font-bold text-white mb-2">গ্রাইন্ডিং (২০-৪০ মেশ)</h4>
+                    <p class="text-xs text-gray-400">হ্যামার মিল গ্রাইন্ডিং। চুম্বক দিয়ে স্টিল আলাদা করা হয়।</p>
+                </div>
+
+                <div class="hover-card relative p-6 bg-[#252525] rounded-xl border border-gray-700" data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="absolute -top-3 -left-3 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center font-bold text-black text-sm">৩</div>
+                    <i data-lucide="settings-2" class="w-8 h-8 text-gray-300 mb-4"></i>
+                    <h4 class="text-lg font-bold text-white mb-2">ডিভলকানাইজেশন</h4>
+                    <p class="text-xs text-gray-400">প্যান মিলিং প্রযুক্তির মাধ্যমে সালফার বন্ড ভেঙে রাবারকে পুনরায় ব্যবহারযোগ্য করা হয়।</p>
+                </div>
+
+                <div class="hover-card relative p-6 bg-gradient-to-br from-green-900/30 to-[#252525] rounded-xl border border-green-500/50" data-aos="zoom-in-up" data-aos-delay="300">
+                    <div class="absolute -top-3 -left-3 w-8 h-8 bg-white rounded-full flex items-center justify-center font-bold text-black text-sm">৪</div>
+                    <i data-lucide="sparkles" class="w-8 h-8 text-green-400 mb-4"></i>
+                    <h4 class="text-lg font-bold text-white mb-2">অ্যাক্টিভেশন</h4>
+                    <p class="text-xs text-gray-400">মেকানোকেমিক্যাল অ্যাক্টিভেশনের মাধ্যমে রিঅ্যাক্টিভ পাউডার তৈরি করা হয়।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scalability & Impact Section -->
+    <section id="impact" class="py-24 bg-[#121212]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 text-center"><span class="text-green-500">স্কেলেবিলিটির</span> জন্য তৈরি</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="p-6 bg-[#1a1a1a] rounded-lg border-t-2 border-green-500">
+                    <h4 class="text-white font-bold mb-2">মডুলার সেটআপ</h4>
+                    <p class="text-sm text-gray-400">স্বল্প মূলধনী ব্যয় (Low-CAPEX) এবং সহজে সম্প্রসারণযোগ্য ডিজাইন।</p>
+                </div>
+                <div class="p-6 bg-[#1a1a1a] rounded-lg border-t-2 border-blue-500">
+                    <h4 class="text-white font-bold mb-2">অভিযোজনযোগ্য</h4>
+                    <p class="text-sm text-gray-400">রাস্তা, শিল্প রাবার এবং ফ্লোরিংয়ের জন্য বহুমুখী ব্যবহার।</p>
+                </div>
+                <div class="p-6 bg-[#1a1a1a] rounded-lg border-t-2 border-purple-500">
+                    <h4 class="text-white font-bold mb-2">নীতি সামঞ্জস্যপূর্ণ</h4>
+                    <p class="text-sm text-gray-400">বৃত্তাকার অর্থনীতি এবং টেকসই অনুশীলনকে সমর্থন করে।</p>
+                </div>
+                <div class="p-6 bg-[#1a1a1a] rounded-lg border-t-2 border-orange-500">
+                    <h4 class="text-white font-bold mb-2">শহুরে উপযোগী</h4>
+                    <p class="text-sm text-gray-400">বিভিন্ন শহুরে অঞ্চলে সহজে স্থাপনযোগ্য।</p>
+                </div>
+            </div>
+
+            <div class="bg-[#1a1a1a] rounded-2xl p-8 border border-gray-800">
+                <h3 class="text-2xl font-bold text-white mb-6">ত্রিমুখী প্রভাব (Triple Bottom Line Impact)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <i data-lucide="leaf" class="w-10 h-10 text-green-500 mx-auto mb-3"></i>
+                        <h4 class="text-white font-bold">পরিবেশগত</h4>
+                        <p class="text-sm text-gray-400">বর্জ্য অপসারণ, কার্বন নিঃসরণ হ্রাস, উপাদানের ব্যবহার কমানো।</p>
+                    </div>
+                    <div>
+                        <i data-lucide="hammer" class="w-10 h-10 text-blue-500 mx-auto mb-3"></i>
+                        <h4 class="text-white font-bold">অবকাঠামো</h4>
+                        <p class="text-sm text-gray-400">দীর্ঘস্থায়ীত্ব বৃদ্ধি, সেলফ-হিলিং ক্ষমতা, মেরামত হ্রাস।</p>
+                    </div>
+                    <div>
+                        <i data-lucide="coins" class="w-10 h-10 text-yellow-500 mx-auto mb-3"></i>
+                        <h4 class="text-white font-bold">অর্থনৈতিক</h4>
+                        <p class="text-sm text-gray-400">খরচ কমানো, কর্মসংস্থান সৃষ্টি, শিল্প প্রবৃদ্ধি।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Structure -->
+    <section id="finance" class="py-24 bg-[#0f0f0f]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">আর্থিক ওভারভিউ</h2>
+            <p class="text-gray-400 mb-12">উচ্চ প্রভাব এবং আকর্ষণীয় মুনাফার জন্য ডিজাইন করা সাশ্রয়ী অপারেশন।</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- CAPEX -->
+                <div class="bg-[#1a1a1a] p-8 rounded-xl border border-gray-800">
+                    <div class="flex justify-between items-end mb-6">
+                        <h3 class="text-2xl font-bold text-white">CAPEX (মূলধনী ব্যয়)</h3>
+                        <span class="text-green-400 font-bold text-xl">৩,৪৫,০০০ টাকা <span class="text-sm text-gray-500">(~$২,৮৭৫)</span></span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>প্রাইমারি শ্রেডার</span>
+                                <span>৩১.৫%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-2 rounded-full progress-bar" style="width: 31.5%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>হ্যামার মিল</span>
+                                <span>২৭%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-2 rounded-full progress-bar" style="width: 27%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>প্যান মিলিং ইউনিট</span>
+                                <span>১২%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-2 rounded-full progress-bar" style="width: 12%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>ওয়ার্কশপ সেটআপ</span>
+                                <span>১০.৫%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-2 rounded-full progress-bar" style="width: 10.5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OPEX -->
+                <div class="bg-[#1a1a1a] p-8 rounded-xl border border-gray-800">
+                    <div class="flex justify-between items-end mb-6">
+                        <h3 class="text-2xl font-bold text-white">মাসিক OPEX (পরিচালন ব্যয়)</h3>
+                        <span class="text-blue-400 font-bold text-xl">৪৪,৫০০ টাকা <span class="text-sm text-gray-500">(~$৩৬৪)</span></span>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-blue-500"></i>মজুরি (অপারেটর + হেল্পার)</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-blue-500"></i>বিদ্যুৎ</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-blue-500"></i>রক্ষণাবেক্ষণ ও ক্ষয়ক্ষতি</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-blue-500"></i>স্ক্র্যাপ টায়ার লজিস্টিকস</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-blue-500"></i>প্যাকেজিং ও কনজ্যুমেবলস</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section id="market" class="py-24 bg-[#121212]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">রাজস্ব ও <span class="text-green-400">বাজার</span></h2>
+                    
+                    <div class="bg-[#1a1a1a] p-6 rounded-lg mb-8 border border-gray-800">
+                        <h4 class="text-white font-bold mb-4">রাজস্ব প্রবাহ (Revenue Streams)</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="text-gray-300">GTR বিক্রয় (৪০%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                <span class="text-gray-300">কনসালটেন্সি (২৫%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">R&D পরিষেবা (১৫%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <span class="text-gray-300">লাইসেন্সিং (১০%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                                <span class="text-gray-300">জয়েন্ট ভেঞ্চার (৭%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Visualization -->
+                <div class="lg:w-1/2 relative h-[400px] flex items-center justify-center" data-aos="fade-left">
+                    <div class="market-circle absolute w-80 h-80 bg-[#1a1a1a] rounded-full border border-gray-700 flex flex-col items-center pt-8 shadow-2xl hover:border-green-500/30 cursor-pointer">
+                        <span class="text-xs text-gray-500 font-bold tracking-widest mt-4">TAM</span>
+                        <span class="text-4xl font-bold text-gray-300 mt-2 brand-font">$20M</span>
+                    </div>
+                    <div class="market-circle absolute w-56 h-56 bg-[#252525] rounded-full border border-gray-600 flex flex-col items-center pt-6 shadow-xl hover:border-green-400/50 cursor-pointer">
+                        <span class="text-xs text-green-500/70 font-bold tracking-widest mt-4">SAM</span>
+                        <span class="text-3xl font-bold text-gray-200 mt-2 brand-font">$5M</span>
+                    </div>
+                    <div class="market-circle absolute w-28 h-28 bg-green-600 rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(74,222,128,0.3)] z-20 cursor-pointer animate-pulse">
+                        <span class="text-xs text-black/60 font-bold tracking-widest">SOM</span>
+                        <span class="text-xl font-bold text-white brand-font">$0.3M</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="py-24 bg-[#1a1a1a] border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-20" data-aos="zoom-in">বাস্তবায়ন রোডম্যাপ</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2 z-0"></div>
+
+                <div class="hover-card relative z-10 bg-[#121212] p-8 rounded-xl border border-gray-700" data-aos="fade-right" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-xl mb-6 border-4 border-[#1a1a1a] shadow-lg relative mx-auto md:mx-0 brand-font">
+                        01
+                    </div>
+                    <span class="text-green-400 text-sm font-bold uppercase tracking-wider block mb-2">০-৬ মাস</span>
+                    <h3 class="text-2xl font-bold text-white mb-3">স্থিতিশীলকরণ</h3>
+                    <p class="text-gray-400 text-sm">প্রুফ অফ কনসেপ্ট। প্রাথমিক প্রক্রিয়া প্রতিষ্ঠা। পারফরম্যান্স যাচাইয়ের জন্য পাইলট স্থাপনা।</p>
+                </div>
+
+                <div class="hover-card relative z-10 bg-[#121212] p-8 rounded-xl border border-gray-700" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-green-900 text-green-100 rounded-full flex items-center justify-center font-bold text-xl mb-6 border-4 border-green-500 shadow-[0_0_20px_rgba(74,222,128,0.4)] relative mx-auto md:mx-0 animate-bounce brand-font">
+                        02
+                    </div>
+                    <span class="text-green-400 text-sm font-bold uppercase tracking-wider block mb-2">১ম বছর</span>
+                    <h3 class="text-2xl font-bold text-white mb-3">স্কেল এবং পার্টনার</h3>
+                    <p class="text-gray-400 text-sm">মাসিক <span class="text-white font-semibold">৩ টন</span> উৎপাদন। অবকাঠামো ও শিল্প ক্রেতাদের সাথে সহযোগিতা।</p>
+                </div>
+
+                <div class="hover-card relative z-10 bg-[#121212] p-8 rounded-xl border border-gray-700" data-aos="fade-left" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl mb-6 border-4 border-[#1a1a1a] shadow-lg relative mx-auto md:mx-0 brand-font">
+                        03
+                    </div>
+                    <span class="text-green-400 text-sm font-bold uppercase tracking-wider block mb-2">২য় বছর</span>
+                    <h3 class="text-2xl font-bold text-white mb-3">সম্প্রসারণ</h3>
+                    <p class="text-gray-400 text-sm">মাসিক <span class="text-white font-semibold">৪+ টন</span> উৎপাদন। বিশেষ ফর্মুলেশন তৈরি এবং ব্যবহারের ক্ষেত্র বৃদ্ধি।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4 group cursor-pointer">
+                        <div class="w-10 h-10 bg-green-600 rounded flex items-center justify-center text-white font-bold brand-font group-hover:rotate-180 transition-transform duration-700">T</div>
+                        <span class="text-3xl font-bold text-white brand-font">TribOriGen</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">TriChokro Automotives এর একটি অঙ্গপ্রতিষ্ঠান</p>
+                    <p class="text-gray-600 text-xs mt-2">বর্জ্যকে সম্পদে পরিণত করা।</p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end gap-6">
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-green-400 hover:scale-125 transition-all"><i data-lucide="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 hover:scale-125 transition-all"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 hover:scale-125 transition-all"><i data-lucide="mail"></i></a>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-500 text-sm">ঢাকা, বাংলাদেশ</p>
+                        <p class="text-gray-600 text-xs mt-1 brand-font">&copy; 2024 TribOriGen. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-900 text-center md:text-left opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-xs text-gray-700">
+                    <strong>তথ্যসূত্র:</strong><br>
+                    • Bockstal et al. (2019) - টায়ারের ডিভলকানাইজেশন এবং রিক্লেইমিং।<br>
+                    • Fazli & Rodrigue (2020) - বর্জ্য টায়ার রিসাইক্লিং।<br>
+                    • Araujo-Morera et al. (2019) - টেকসই সেলফ-হিলিং রাবার।<br>
+                    • Pastor et al. (2023) - সেলফ-হিলিং ইলাস্টোমারের লাইফ সাইকেল অ্যাসেসমেন্ট।
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Bangla Typewriter
+        const textElement = document.getElementById('typewriter-bn');
+        const phrases = ["টেকসই উপকরণে", "উন্নত সড়কে", "বৃত্তাকার অর্থনীতিতে", "ভবিষ্যৎ সম্পদে"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50; 
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100; 
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000; 
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500; 
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+
+        AOS.init({
+            once: false,
+            mirror: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('bg-black/80', 'bg-black/95');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('bg-black/95', 'bg-black/80');
+            }
+        });
+    </script>
+</body>
+</html>
