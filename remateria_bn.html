@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remateria | উন্নত টেকসই উপকরণ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Theme Overrides - Blue/Cyan Theme for Remateria */
+        :root {
+            --material-black: #0f172a;
+            --material-dark: #020617;
+            --material-gray: #1e293b;
+            --tech-blue: #38bdf8;
+            --tech-glow: rgba(56, 189, 248, 0.4);
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background-color: var(--material-dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        h1, h2, h3, h4, .brand-font, .en-text {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* --- Dynamic Background & Cursor Spotlight --- */
+        .hex-texture {
+            background-image: radial-gradient(#1e293b 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+        }
+
+        /* The Spotlight Glow */
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            mix-blend-mode: screen;
+            transition: opacity 0.3s ease;
+        }
+
+        /* --- Advanced Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Hover Cards: Lift & Glow */
+        .hover-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .hover-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--tech-blue);
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3);
+        }
+        .hover-card:hover i {
+            transform: rotate(15deg) scale(1.2);
+            color: var(--tech-blue);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Nav Link Animation */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--tech-blue);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Button Shine Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-shine:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sky-500 selection:text-black">
+
+    <!-- Mouse Follower -->
+    <div id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-sky-500 rounded-lg flex items-center justify-center text-black font-bold text-xl brand-font group-hover:rotate-12 transition-transform duration-300 shadow-[0_0_15px_rgba(56,189,248,0.5)]">R</div>
+                    <div class="flex flex-col group-hover:translate-x-1 transition-transform">
+                        <span class="text-2xl font-bold brand-font text-white tracking-tighter">Remateria</span>
+                        <span class="text-xs text-sky-400 uppercase tracking-widest brand-font">A TriChokro Initiative</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8 text-base font-medium">
+                    <a href="#vision" class="nav-link text-slate-300 hover:text-sky-400 transition-colors">লক্ষ্য</a>
+                    <a href="#solutions" class="nav-link text-slate-300 hover:text-sky-400 transition-colors">সমাধান</a>
+                    <a href="#innovation" class="nav-link text-slate-300 hover:text-sky-400 transition-colors">উদ্ভাবন</a>
+                    <a href="#future" class="nav-link text-slate-300 hover:text-sky-400 transition-colors">ভবিষ্যৎ</a>
+                </div>
+                <a href="index_bn.html" class="hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black bg-sky-500 hover:bg-sky-400 transition-all shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:shadow-[0_0_25px_rgba(56,189,248,0.6)] hover:-translate-y-1">
+                    TriChokro-তে ফিরে যান
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden hex-texture">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/60 to-[#020617]"></div>
+        <!-- Animated Blobs -->
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl animate-pulse mix-blend-screen"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl animate-pulse mix-blend-screen" style="animation-delay: 1s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="1000">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 mb-8 animate-float backdrop-blur-sm hover:border-sky-500 transition-colors cursor-default">
+                <span class="w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_10px_#38bdf8]"></span>
+                <span class="text-sm font-medium text-sky-400">পরবর্তী প্রজন্মের উপাদান বিজ্ঞান</span>
+            </div>
+
+            <h1 class="text-4xl md:text-8xl font-bold text-white mb-6 tracking-tight leading-tight">
+                টেকসই উপকরণকে <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-500 bg-300% animate-gradient">নতুনভাবে সংজ্ঞায়িত করা</span>
+            </h1>
+
+            <p class="mt-6 text-xl text-slate-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                পরিবেশবান্ধব কম্পোজিট এবং উন্নত পুনর্ব্যবহারযোগ্য প্রযুক্তির ভবিষ্যৎ অগ্রদূত।
+                <span class="block mt-2 text-sky-500/80 font-semibold">বৃত্তাকার অর্থনীতির জন্য উদ্ভাবন।</span>
+            </p>
+
+            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="#solutions" class="btn-shine inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-lg text-black bg-sky-500 hover:bg-sky-400 transition-all shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:shadow-[0_0_35px_rgba(56,189,248,0.6)] transform hover:-translate-y-1">
+                    সমাধান দেখুন
+                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#vision" class="inline-flex items-center justify-center px-8 py-4 border border-slate-600 text-lg font-medium rounded-lg text-white hover:bg-white/5 hover:border-white transition-all transform hover:-translate-y-1">
+                    আমাদের লক্ষ্য
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="py-24 bg-[#020617]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">উপাদানের <span class="text-sky-500">বিপ্লব</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-sky-500 to-indigo-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="hover-card bg-[#0f172a] p-8 rounded-2xl border border-slate-800 group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-sky-500/20 transition-colors">
+                        <i data-lucide="recycle" class="w-8 h-8 text-sky-500 transition-transform"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-sky-400 transition-colors">বৃত্তাকার অর্থনীতি</h3>
+                    <p class="text-slate-400 leading-relaxed">শিল্পের উপজাতগুলিকে প্রিমিয়াম গ্রেড উপকরণে রূপান্তর করে সম্পদের ব্যবহারের চক্র সম্পূর্ণ করা।</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="hover-card bg-[#0f172a] p-8 rounded-2xl border border-slate-800 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+                        <i data-lucide="flask-conical" class="w-8 h-8 text-indigo-500 transition-transform"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-indigo-400 transition-colors">উন্নত কম্পোজিট</h3>
+                    <p class="text-slate-400 leading-relaxed">হালকা এবং উচ্চ-শক্তিসম্পন্ন কম্পোজিট তৈরি করা যা শক্তি খরচ কমায় এবং স্থায়িত্ব বাড়ায়।</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="hover-card bg-[#0f172a] p-8 rounded-2xl border border-slate-800 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
+                        <i data-lucide="leaf" class="w-8 h-8 text-purple-500 transition-transform"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">ইকো-দক্ষতা</h3>
+                    <p class="text-slate-400 leading-relaxed">উদ্ভাবনী প্রক্রিয়াকরণ কৌশল এবং টেকসই উৎসের মাধ্যমে পরিবেশগত প্রভাব কমানো।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-24 bg-[#0f172a] relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-sky-900/10 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-16" data-aos="fade-right">
+                <span class="text-sky-400 font-bold tracking-widest uppercase text-sm border-b border-sky-500 pb-1">আমাদের পদ্ধতি</span>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mt-6 mb-6">উদ্ভাবনী <span class="text-sky-500">প্রক্রিয়াকরণ</span></h2>
+                <p class="text-xl text-slate-400 max-w-3xl">
+                    আমরা আণবিক স্তরে উপকরণগুলি পুনর্গঠন করতে অত্যাধুনিক প্রযুক্তি ব্যবহার করি।
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="hover-card relative p-8 bg-[#1e293b] rounded-xl border border-slate-700" data-aos="zoom-in-up" data-aos-delay="0">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(56,189,248,0.5)]">১</div>
+                    <i data-lucide="search" class="w-10 h-10 text-slate-300 mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-2">বিশ্লেষণ</h4>
+                    <p class="text-sm text-slate-400">কাঁচামালের বিশদ চরিত্রায়ন।</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="hover-card relative p-8 bg-[#1e293b] rounded-xl border border-slate-700" data-aos="zoom-in-up" data-aos-delay="100">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(56,189,248,0.5)]">২</div>
+                    <i data-lucide="layers" class="w-10 h-10 text-slate-300 mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-2">প্রক্রিয়াকরণ</h4>
+                    <p class="text-sm text-slate-400">উন্নত তাপীয় এবং যান্ত্রিক চিকিৎসা।</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="hover-card relative p-8 bg-[#1e293b] rounded-xl border border-slate-700" data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(56,189,248,0.5)]">৩</div>
+                    <i data-lucide="zap" class="w-10 h-10 text-slate-300 mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-2">উন্নতি</h4>
+                    <p class="text-sm text-slate-400">উচ্চতর কর্মক্ষমতার জন্য সংযোজন।</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="hover-card relative p-8 bg-gradient-to-br from-sky-900/30 to-[#1e293b] rounded-xl border border-sky-500/50" data-aos="zoom-in-up" data-aos-delay="300">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-black shadow-[0_0_15px_rgba(255,255,255,0.5)]">৪</div>
+                    <i data-lucide="box" class="w-10 h-10 text-sky-400 mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-2">পণ্য</h4>
+                    <p class="text-sm text-slate-400">উচ্চ মানের, বাজার-প্রস্তুত টেকসই উপকরণ।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4 group cursor-pointer">
+                        <div class="w-10 h-10 bg-sky-600 rounded flex items-center justify-center text-white font-bold brand-font group-hover:rotate-180 transition-transform duration-700">R</div>
+                        <span class="text-3xl font-bold text-white brand-font">Remateria</span>
+                    </div>
+                    <p class="text-slate-500 text-sm">TriChokro Automotives এর একটি অঙ্গপ্রতিষ্ঠান</p>
+                    <p class="text-slate-600 text-xs mt-2">সুন্দর আগামীর জন্য উপাদান বিজ্ঞান।</p>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end gap-6">
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-slate-400 hover:text-sky-400 hover:scale-125 transition-all"><i data-lucide="linkedin"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 hover:scale-125 transition-all"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 hover:scale-125 transition-all"><i data-lucide="mail"></i></a>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="text-slate-500 text-sm">ঢাকা, বাংলাদেশ</p>
+                        <p class="text-slate-600 text-xs mt-1 brand-font">&copy; 2026 Remateria. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize AOS
+        AOS.init({
+            once: false,
+            mirror: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Mouse Spotlight Effect
+        const cursorGlow = document.getElementById('cursor-glow');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar Blur
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('bg-slate-900/80', 'bg-slate-900/95');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('bg-slate-900/95', 'bg-slate-900/80');
+            }
+        });
+    </script>
+</body>
+</html>
