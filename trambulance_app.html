@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trambulance Pro - Dhaka Edition</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    animation: {
+                        'shimmer': 'shimmer 1.6s infinite linear',
+                        'ping-slow': 'ping 2.8s cubic-bezier(0, 0, 0.2, 1) infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'siren-flash': 'sirenFlash 0.8s ease-in-out infinite',
+                        'bounce-gentle': 'bounceGentle 1.2s ease-in-out infinite',
+                        'slideInUp': 'slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                    },
+                    keyframes: {
+                        shimmer: { '0%': { transform: 'translateX(-120%)' }, '100%': { transform: 'translateX(120%)' } },
+                        sirenFlash: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(0.95)' },
+                            '50%': { opacity: '1', transform: 'scale(1.15)' }
+                        },
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-6px)' }
+                        },
+                        slideInUp: {
+                            from: { transform: 'translateY(120%)', opacity: '0' },
+                            to: { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.24.5/babel.min.js"></script>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react"
+        }
+    }
+    </script>
+
+    <style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .leaflet-container { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        .user-marker, .hospital-icon, .fleet-icon { background: transparent; border: none; }
+        
+        .fleet-icon .siren { animation: siren-flash 1.2s infinite; }
+        .selected-ambulance .fleet-wrapper { animation: siren-flash 0.7s infinite; filter: brightness(1.3); }
+
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        .leaflet-control-attribution { display: none !important; }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .slide-up { animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 overflow-hidden h-screen w-screen">
+    <div id="root" class="h-full w-full relative"></div>
+
+    <script type="text/babel" data-presets="react" data-type="module">
+        import React, { useState, useEffect, useRef, useMemo } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { 
+            Menu, Layers, X, Phone, MessageSquare, Navigation, Star, 
+            Siren, Car, Zap, Clock, Shield, Activity, Search, MapPin,
+            AlertTriangle, HeartPulse, ChevronRight, CheckCircle
+        } from 'lucide-react';
+
+        const DHAKA_BOUNDS = { minLat: 23.7000, maxLat: 23.8200, minLng: 90.3600, maxLng: 90.4500 };
+
+        const generatePoints = (count, type) => Array.from({ length: count }).map((_, i) => ({
+            id: `${type}-${i}`,
+            lat: DHAKA_BOUNDS.minLat + Math.random() * (DHAKA_BOUNDS.maxLat - DHAKA_BOUNDS.minLat),
+            lng: DHAKA_BOUNDS.minLng + Math.random() * (DHAKA_BOUNDS.maxLng - DHAKA_BOUNDS.minLng),
+            rotation: Math.random() * 360,
+            type
+        }));
+
+        const OUTPOSTS = generatePoints(50, 'outpost');
+        const INITIAL_FLEET = generatePoints(22, 'trambulance').map((t, i) => ({
+            ...t,
+            name: `Pilot ${['Rahim', 'Karim', 'Sajid', 'Bilal', 'Nabil', 'Fahim', 'Hasan'][i % 7]}`,
+            plate: `DHA-${1000 + i}`,
+            rating: (4.3 + Math.random() * 0.6).toFixed(1),
+            specialty: i % 3 === 0 ? "ICU" : i % 3 === 1 ? "Trauma" : "Basic",
+            eta: Math.floor(2 + Math.random() * 6)
+        }));
+
+        const HOSPITALS = [
+            { id: 'h1', name: "Evercare Hospital", lat: 23.8115, lng: 90.4310, type: "Tertiary", use: "Critical Care & ICU", color: "text-blue-600" },
+            { id: 'h2', name: "Dhaka Medical", lat: 23.7261, lng: 90.3976, type: "Public", use: "Burn Unit & Trauma", color: "text-red-600" },
+            { id: 'h3', name: "United Hospital", lat: 23.7999, lng: 90.4208, type: "Cardiac", use: "Cardiac Center", color: "text-red-500" },
+            { id: 'h4', name: "NITOR", lat: 23.7690, lng: 90.3720, type: "Orthopedic", use: "Bone & Trauma", color: "text-orange-600" },
+            { id: 'h5', name: "Sheikh Hasina Burn", lat: 23.7220, lng: 90.3950, type: "Burn", use: "Specialized Burn", color: "text-red-700" },
+        ];
+
+        const TrambulancePro = () => {
+            const [appStep, setAppStep] = useState('HOME');
+            const [map, setMap] = useState(null);
+            const [userLocation] = useState({ lat: 23.7940, lng: 90.4043 });
+            const [selectedHospital, setSelectedHospital] = useState(null);
+            const [selectedDestination, setSelectedDestination] = useState(null);
+            const [selectedRideType, setSelectedRideType] = useState(null);
+            const [selectedDriver, setSelectedDriver] = useState(null);
+            const [selectedNearby, setSelectedNearby] = useState(null);
+            const [etaSeconds, setEtaSeconds] = useState(180);
+            const [isTrafficOn, setIsTrafficOn] = useState(true);
+            const [isCalling, setIsCalling] = useState(false);
+
+            const mapRef = useRef(null);
+            const fleetMarkersRef = useRef({});
+            const fleetDataRef = useRef(INITIAL_FLEET);
+            const routeRef = useRef(null);
+            const destinationMarkerRef = useRef(null);
+
+            const userIcon = useMemo(() => window.L && window.L.divIcon({
+                html: `<div class="w-5 h-5 bg-blue-600 rounded-full border-[3px] border-white relative shadow-xl">
+                        <div class="absolute -inset-3 bg-blue-500/40 rounded-full animate-ping-slow"></div>
+                       </div>`,
+                iconSize: [20, 20]
+            }), []);
+
+            useEffect(() => {
+                if (mapRef.current) return;
+                const m = window.L.map('map-container', { zoomControl: false, attributionControl: false, preferCanvas: true })
+                    .setView([userLocation.lat, userLocation.lng], 13.5);
+
+                window.L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(m);
+                window.L.marker([userLocation.lat, userLocation.lng], { icon: userIcon }).addTo(m);
+
+                mapRef.current = m;
+                setMap(m);
+            }, []);
+
+            // Hospital markers + click to select destination
+            useEffect(() => {
+                if (!map) return;
+                HOSPITALS.forEach(h => {
+                    const icon = window.L.divIcon({
+                        html: `<div class="w-10 h-10 bg-white rounded-3xl shadow-xl flex items-center justify-center border-2 border-white hover:scale-110 transition-all">
+                                <div class="${h.color}"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></div>
+                               </div>`,
+                        iconSize: [40, 40]
+                    });
+                    const marker = window.L.marker([h.lat, h.lng], { icon }).addTo(map);
+                    marker.on('click', () => {
+                        setSelectedHospital(h);
+                        map.flyTo([h.lat, h.lng], 15.5, { duration: 1.4 });
+                        if (appStep === 'SELECT_DESTINATION') setSelectedDestination(h);
+                    });
+                });
+            }, [map, appStep]);
+
+            // Fleet markers + click interaction
+            useEffect(() => {
+                if (!map || Object.keys(fleetMarkersRef.current).length > 0) return;
+
+                fleetDataRef.current.forEach(v => {
+                    const iconHtml = `
+                        <div class="fleet-wrapper relative flex items-center justify-center" style="transform:rotate(${v.rotation}deg)">
+                            <div class="relative">
+                                <svg width="44" height="44" viewBox="0 0 100 80">
+                                    <rect x="26" y="14" width="68" height="46" fill="#f1f5f9" stroke="#0f172a" stroke-width="3"/>
+                                    <path d="M26 56 L94 56 L94 66 L26 66 Z" fill="#0f172a"/>
+                                    <path d="M26 56 L6 56 L2 44 L14 18 L26 18 Z" fill="#0f172a"/>
+                                    <rect x="26" y="54" width="68" height="5" fill="#e11d48"/>
+                                    <circle cx="20" cy="60" r="8" fill="#111"/>
+                                    <circle cx="80" cy="60" r="8" fill="#111"/>
+                                </svg>
+                                <div class="siren absolute -top-2.5 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                                    <span class="text-[11px] font-black text-white">S</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    const icon = window.L.divIcon({ className: 'fleet-icon', html: iconHtml, iconSize: [44, 44], iconAnchor: [22, 22] });
+                    const marker = window.L.marker([v.lat, v.lng], { icon, zIndexOffset: 300 }).addTo(map);
+
+                    marker.on('click', () => {
+                        setSelectedNearby(v);
+                        map.flyTo([v.lat, v.lng], 16, { duration: 1 });
+                    });
+
+                    fleetMarkersRef.current[v.id] = { marker, data: v };
+                });
+            }, [map]);
+
+            // Fleet movement + selected driver approach
+            useEffect(() => {
+                if (!map) return;
+                let frame = 0;
+                let animId;
+
+                const animate = () => {
+                    frame++;
+                    fleetDataRef.current.forEach(v => {
+                        v.lat += (Math.random() - 0.5) * 0.000035;
+                        v.lng += (Math.random() - 0.5) * 0.000035;
+                        v.lat = Math.max(DHAKA_BOUNDS.minLat + 0.005, Math.min(DHAKA_BOUNDS.maxLat - 0.005, v.lat));
+                        v.lng = Math.max(DHAKA_BOUNDS.minLng + 0.005, Math.min(DHAKA_BOUNDS.maxLng - 0.005, v.lng));
+
+                        const item = fleetMarkersRef.current[v.id];
+                        if (item) {
+                            item.marker.setLatLng([v.lat, v.lng]);
+                            if (frame % 8 === 0) {
+                                const wrapper = item.marker.getElement()?.querySelector('.fleet-wrapper');
+                                if (wrapper) wrapper.style.transform = `rotate(${v.rotation + (Math.random()-0.5)*1}deg)`;
+                            }
+                        }
+                    });
+
+                    // Selected driver moves to user
+                    if (selectedDriver && appStep === 'TRACKING') {
+                        const driver = fleetDataRef.current.find(d => d.id === selectedDriver.id);
+                        if (driver) {
+                            const dx = userLocation.lng - driver.lng;
+                            const dy = userLocation.lat - driver.lat;
+                            const dist = Math.hypot(dx, dy);
+                            if (dist > 0.0002) {
+                                const speed = 0.00009;
+                                driver.lng += (dx / dist) * speed;
+                                driver.lat += (dy / dist) * speed;
+                                driver.rotation = Math.atan2(dy, dx) * 180 / Math.PI - 90;
+
+                                const item = fleetMarkersRef.current[driver.id];
+                                if (item) {
+                                    const wrapper = item.marker.getElement()?.querySelector('.fleet-wrapper');
+                                    if (wrapper) wrapper.style.transform = `rotate(${driver.rotation}deg)`;
+                                }
+
+                                if (routeRef.current) routeRef.current.setLatLngs([[driver.lat, driver.lng], [userLocation.lat, userLocation.lng]]);
+                            } else {
+                                // Simulate arrival
+                                setTimeout(() => {
+                                    if (selectedDestination) {
+                                        // Move to destination after pickup
+                                        setEtaSeconds(240);
+                                    }
+                                }, 800);
+                            }
+                        }
+                    }
+
+                    animId = requestAnimationFrame(animate);
+                };
+                animate();
+                return () => cancelAnimationFrame(animId);
+            }, [map, selectedDriver, appStep, selectedDestination]);
+
+            const callDriver = (driver) => {
+                setIsCalling(true);
+                setTimeout(() => {
+                    setIsCalling(false);
+                    setSelectedNearby(null);
+                }, 1400);
+            };
+
+            const requestSpecificAmbulance = (driver) => {
+                setSelectedDriver(driver);
+                setSelectedRideType(driver.specialty.toLowerCase());
+                setAppStep('MATCHING');
+                setSelectedNearby(null);
+                setTimeout(() => setAppStep('TRACKING'), 1800);
+            };
+
+            const HomeSheet = () => (
+                <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] shadow-2xl z-[1000] p-6 slide-up">
+                    <div className="w-14 h-1.5 bg-slate-200 rounded-full mx-auto mb-6"></div>
+                    
+                    <div className="bg-slate-50 rounded-3xl p-5 flex items-center gap-4 mb-8">
+                        <div className="bg-white p-4 rounded-2xl shadow"><MapPin size={32} className="text-red-600"/></div>
+                        <div>
+                            <div className="text-xs text-slate-500 font-medium">PICKUP</div>
+                            <div className="font-bold text-lg">Gulshan-2, Dhaka</div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-4 gap-3 mb-8">
+                        {[
+                            { icon: Siren, label: "Call Now", color: "text-red-600", action: () => setAppStep('SELECT_RIDE_TYPE') },
+                            { icon: Clock, label: "Schedule", color: "text-blue-600", action: () => {} },
+                            { icon: HeartPulse, label: "Triage", color: "text-orange-600", action: () => {} },
+                            { icon: Shield, label: "Safe Ride", color: "text-emerald-600", action: () => {} }
+                        ].map((item, i) => (
+                            <button key={i} onClick={item.action} className="flex flex-col items-center gap-3 active:scale-95 transition-all">
+                                <div className="w-[72px] h-[72px] bg-white rounded-3xl flex items-center justify-center border shadow hover:shadow-lg">
+                                    <item.icon size={34} className={item.color} />
+                                </div>
+                                <span className="text-xs font-semibold text-slate-700">{item.label}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="bg-white border rounded-3xl p-5 cursor-pointer hover:border-slate-300">
+                        <div className="font-bold mb-1">Nearby Trambulances</div>
+                        <div className="text-slate-500 text-sm">Tap any on map to request directly</div>
+                    </div>
+                </div>
+            );
+
+            const RideTypeSheet = () => (
+                <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] shadow-2xl z-[1000] max-h-[75vh] flex flex-col slide-up">
+                    <div className="px-6 py-5 border-b flex items-center">
+                        <button onClick={() => setAppStep('HOME')}><X size={24}/></button>
+                        <div className="flex-1 text-center font-bold text-xl">Choose Type</div>
+                    </div>
+                    <div className="flex-1 p-5 space-y-4 overflow-auto custom-scroll">
+                        {[
+                            { id: 'icu', title: 'ICU Ambulance', desc: 'Ventilator, Doctor onboard', price: 420, time: '2 min', color: '#b91c1c' },
+                            { id: 'trauma', title: 'Trauma Response', desc: 'Advanced life support', price: 290, time: '3 min', color: '#1e40af' },
+                            { id: 'basic', title: 'Standard', desc: 'Oxygen & basic support', price: 170, time: '5 min', color: '#15803d' }
+                        ].map(r => (
+                            <div key={r.id} onClick={() => setSelectedRideType(r.id)} className={`p-6 rounded-3xl border-2 cursor-pointer transition-all ${selectedRideType === r.id ? 'border-slate-900 bg-slate-50' : 'border-transparent hover:bg-slate-50'}`}>
+                                <div className="flex items-start gap-5">
+                                    <div style={{color: r.color}}><Car size={48}/></div>
+                                    <div className="flex-1">
+                                        <div className="font-bold text-2xl">{r.title}</div>
+                                        <div className="text-slate-500 mt-1">{r.desc}</div>
+                                        <div className="flex justify-between mt-4">
+                                            <div><span className="font-mono font-bold">৳{r.price}</span></div>
+                                            <div className="text-emerald-700 font-medium">{r.time}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="p-6 border-t">
+                        <button disabled={!selectedRideType} onClick={() => setAppStep('SELECT_DESTINATION')} 
+                                className="w-full bg-slate-900 text-white py-5 rounded-3xl font-bold text-xl disabled:opacity-40 active:scale-[0.98]">
+                            Next: Choose Destination
+                        </button>
+                    </div>
+                </div>
+            );
+
+            const DestinationSheet = () => (
+                <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] shadow-2xl z-[1000] flex flex-col max-h-[78vh] slide-up">
+                    <div className="px-6 py-5 border-b flex items-center">
+                        <button onClick={() => setAppStep('SELECT_RIDE_TYPE')}><X size={24}/></button>
+                        <div className="flex-1 text-center font-bold">Select Destination</div>
+                    </div>
+                    <div className="flex-1 p-5 overflow-auto custom-scroll space-y-3">
+                        {HOSPITALS.map(h => (
+                            <div key={h.id} onClick={() => setSelectedDestination(h)} className={`p-6 rounded-3xl border-2 transition-all cursor-pointer ${selectedDestination?.id === h.id ? 'border-red-600 bg-red-50' : 'border-transparent hover:bg-slate-50'}`}>
+                                <div className="font-bold text-xl">{h.name}</div>
+                                <div className="text-slate-500 text-sm mt-1">{h.use}</div>
+                                <div className="flex gap-4 mt-4 text-xs">
+                                    <div>Est. 7 min</div>
+                                    <div>3.2 km away</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="p-6 border-t">
+                        <button disabled={!selectedDestination} onClick={() => { setAppStep('MATCHING'); }} 
+                                className="w-full bg-red-600 text-white py-5 rounded-3xl font-bold text-xl active:scale-[0.98]">
+                            Request to {selectedDestination ? selectedDestination.name.split(' ')[0] : 'Hospital'}
+                        </button>
+                    </div>
+                </div>
+            );
+
+            const MatchingSheet = () => (
+                <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] shadow-2xl z-[1000] p-10 slide-up">
+                    <div className="flex justify-center mb-8">
+                        <div className="relative">
+                            <div className="w-[92px] h-[92px] border-[6px] border-slate-100 border-t-red-600 rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <Siren size={52} className="text-red-600 animate-bounce-gentle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <div className="font-bold text-3xl">Finding nearest</div>
+                        <div className="font-bold text-3xl text-red-600">Trambulance...</div>
+                        <div className="text-slate-500 mt-3">Best match arriving soon</div>
+                    </div>
+                    <div className="mt-12 w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div className="h-full w-[68%] bg-gradient-to-r from-red-500 to-rose-600 rounded-full animate-shimmer"></div>
+                    </div>
+                </div>
+            );
+
+            const TrackingSheet = () => {
+                const min = Math.floor(etaSeconds / 60);
+                const sec = etaSeconds % 60;
+                return (
+                    <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] shadow-2xl z-[1000] p-7 slide-up">
+                        <div className="flex items-center justify-between mb-6">
+                            <div>
+                                <div className="uppercase text-red-600 text-xs font-bold tracking-widest">ARRIVING IN</div>
+                                <div className="text-[42px] font-bold tabular-nums leading-none mt-1">{min}:{sec<10?'0':''}{sec}</div>
+                            </div>
+                            <div className="text-right">
+                                <div className="bg-emerald-100 px-4 py-1 rounded-2xl text-emerald-700 font-bold text-xs">ON THE WAY</div>
+                                {selectedDestination && <div className="text-xs text-slate-500 mt-2">Then to {selectedDestination.name}</div>}
+                            </div>
+                        </div>
+
+                        {selectedDriver && (
+                            <div className="flex gap-5 mb-8">
+                                <div className="relative flex-shrink-0">
+                                    <div className="w-[78px] h-[78px] rounded-[22px] overflow-hidden border-4 border-white shadow-xl">
+                                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${selectedDriver.name}`} className="object-cover" alt=""/>
+                                    </div>
+                                    <div className="absolute -bottom-px -right-px bg-red-500 text-white rounded-2xl px-3 py-1 text-xs font-bold">LIVE</div>
+                                </div>
+                                <div className="flex-1 pt-2">
+                                    <div className="font-bold text-[27px]">{selectedDriver.name}</div>
+                                    <div className="font-mono text-slate-600 mt-0.5">{selectedDriver.plate}</div>
+                                    <div className="flex items-center gap-2 mt-3">
+                                        <div className="flex text-amber-500"><Star size={18} fill="currentColor"/></div>
+                                        <div className="font-bold">{selectedDriver.rating}</div>
+                                        <div className="text-slate-500 text-sm">• {selectedDriver.specialty}</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button onClick={() => callDriver(selectedDriver)} className="bg-slate-100 p-4 rounded-3xl mb-3 active:bg-slate-200"><MessageSquare size={26}/></button>
+                                    <button onClick={() => callDriver(selectedDriver)} className="bg-red-600 text-white p-4 rounded-3xl active:scale-95"><Phone size={26}/></button>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="relative h-3 bg-slate-100 rounded-full overflow-hidden mb-8">
+                            <div className="absolute left-0 top-0 h-full bg-gradient-to-r from-slate-900 to-slate-700 rounded-full w-[65%]">
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-shimmer"></div>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                            <button className="flex-1 py-4 border-2 border-slate-200 rounded-3xl font-bold text-slate-600 active:bg-slate-50">Share ETA</button>
+                            <button onClick={() => { setAppStep('HOME'); setSelectedDriver(null); }} className="flex-1 py-4 bg-red-50 text-red-700 rounded-3xl font-bold active:bg-red-100">Cancel</button>
+                        </div>
+                    </div>
+                );
+            };
+
+            const NearbyDetailSheet = () => {
+                if (!selectedNearby) return null;
+                return (
+                    <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] shadow-2xl z-[1100] p-7 slide-up">
+                        <div className="flex items-center gap-6 mb-8">
+                            <div className="relative">
+                                <div className="w-24 h-24 rounded-3xl overflow-hidden border-[5px] border-white shadow-2xl">
+                                    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${selectedNearby.name}`} className="object-cover" alt=""/>
+                                </div>
+                                <div className="absolute -bottom-2 -right-2 bg-red-500 text-white text-xs font-black px-3 py-1 rounded-2xl">LIVE</div>
+                            </div>
+                            <div>
+                                <div className="font-bold text-4xl">{selectedNearby.name}</div>
+                                <div className="font-mono text-slate-700 mt-1">{selectedNearby.plate}</div>
+                                <div className="flex items-center gap-4 mt-4">
+                                    <div className="flex items-center gap-1"><Star size={22} fill="currentColor" className="text-amber-500"/> <span className="font-bold text-2xl">{selectedNearby.rating}</span></div>
+                                    <div className="text-slate-500 text-xl">• {selectedNearby.specialty}</div>
+                                </div>
+                                <div className="mt-2 text-emerald-700 font-medium">Est. arrival: {selectedNearby.eta} min</div>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                            <button onClick={() => callDriver(selectedNearby)} className="flex-1 py-5 bg-slate-100 rounded-3xl font-bold active:bg-slate-200 flex items-center justify-center gap-3">
+                                <MessageSquare size={26}/> Message
+                            </button>
+                            <button onClick={() => callDriver(selectedNearby)} className="flex-1 py-5 bg-red-600 text-white rounded-3xl font-bold active:scale-[0.98] flex items-center justify-center gap-3">
+                                <Phone size={26}/> Call Now
+                            </button>
+                        </div>
+
+                        <button onClick={() => requestSpecificAmbulance(selectedNearby)} className="mt-6 w-full bg-gradient-to-r from-red-600 to-rose-600 text-white py-5 rounded-3xl font-bold text-xl active:scale-[0.98]">
+                            Request this Trambulance
+                        </button>
+
+                        <button onClick={() => setSelectedNearby(null)} className="absolute top-6 right-6 text-slate-400 hover:text-slate-700">
+                            <X size={32}/>
+                        </button>
+                    </div>
+                );
+            };
+
+            return (
+                <div className="relative w-full h-full select-none">
+                    <div id="map-container" className="absolute inset-0" />
+
+                    <div className="absolute top-0 inset-x-0 z-50 flex justify-between px-6 pt-16 pb-4">
+                        <button className="w-12 h-12 bg-white/95 backdrop-blur rounded-3xl flex items-center justify-center shadow border border-white">
+                            <Menu size={28}/>
+                        </button>
+                        <div className="flex items-center bg-white/95 backdrop-blur px-4 rounded-full shadow border border-white gap-3">
+                            <div className="w-4 h-4 bg-emerald-500 rounded-full animate-pulse"></div>
+                            <div>
+                                <div className="text-xs font-medium text-slate-400">GPS</div>
+                                <div className="text-xs -mt-1 font-bold">Accurate</div>
+                            </div>
+                        </div>
+                        <button onClick={() => setIsTrafficOn(!isTrafficOn)} className="w-12 h-12 bg-white/95 backdrop-blur rounded-3xl flex items-center justify-center shadow border border-white">
+                            <Layers size={28} className={isTrafficOn ? 'text-emerald-600' : 'text-slate-400'}/>
+                        </button>
+                    </div>
+
+                    <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-white to-transparent pointer-events-none z-10"/>
+
+                    {appStep === 'HOME' && !selectedNearby && <HomeSheet />}
+                    {appStep === 'SELECT_RIDE_TYPE' && <RideTypeSheet />}
+                    {appStep === 'SELECT_DESTINATION' && <DestinationSheet />}
+                    {appStep === 'MATCHING' && <MatchingSheet />}
+                    {appStep === 'TRACKING' && <TrackingSheet />}
+                    {selectedNearby && <NearbyDetailSheet />}
+
+                    <button className="fixed bottom-[148px] right-6 z-[1200] w-16 h-16 bg-red-600 rounded-[26px] flex items-center justify-center shadow-[0_10px_30px_-8px] shadow-red-600 active:scale-95">
+                        <AlertTriangle size={36} className="text-white"/>
+                    </button>
+
+                    {isCalling && (
+                        <div className="fixed inset-0 bg-black/70 z-[2000] flex items-center justify-center">
+                            <div className="bg-white rounded-3xl p-10 w-[86%] text-center animate-slideInUp">
+                                <div className="mx-auto w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                                    <Phone size={46} className="text-red-600 animate-pulse"/>
+                                </div>
+                                <div className="font-bold text-2xl">Calling {selectedNearby?.name || selectedDriver?.name}</div>
+                                <div className="text-slate-500 mt-1">Please wait...</div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<TrambulancePro />);
+    </script>
+</body>
+</html>
