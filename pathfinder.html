@@ -21,13 +21,14 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0a192f',
-                            light: '#112240',
-                            lighter: '#233554',
-                            green: '#64ffda',
-                            greenDim: 'rgba(100, 255, 218, 0.1)',
-                            text: '#ccd6f6',
-                            heading: '#e6f1ff',
+                            dark: '#02040a',
+                            light: '#0a101f',
+                            lighter: '#1e293b',
+                            green: '#00e5ff',
+                            greenDim: 'rgba(0, 229, 255, 0.1)',
+                            orange: '#ff6d00',
+                            text: '#e2e8f0',
+                            heading: '#f8fafc',
                         }
                     },
                     fontFamily: {
@@ -49,8 +50,8 @@
                             '50%': { transform: 'translateY(-20px)' },
                         },
                         'pulse-glow': {
-                            '0%, 100%': { boxShadow: '0 0 20px rgba(100, 255, 218, 0.3)' },
-                            '50%': { boxShadow: '0 0 40px rgba(100, 255, 218, 0.6)' },
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 229, 255, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(0, 229, 255, 0.6)' },
                         },
                         'slide-up': {
                             'from': { transform: 'translateY(30px)', opacity: '0' },
@@ -70,7 +71,7 @@
         body { 
             cursor: default; 
             overflow-x: hidden; 
-            background-color: #0a192f; 
+            background-color: #02040a;
             font-family: 'Inter', sans-serif; 
             color: #e2e8f0; 
             touch-action: manipulation; 
@@ -88,8 +89,8 @@
             transition: all 0.3s ease;
         }
         .glass-card:hover {
-            border-color: #64ffda;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+            border-color: #00e5ff;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
             transform: translateY(-4px);
         }
 
@@ -111,7 +112,7 @@
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #64ffda, #a0e7ff);
+            background: linear-gradient(135deg, #00e5ff, #a0e7ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -129,7 +130,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.1), transparent);
             transition: left 0.5s ease;
         }
 
@@ -149,8 +150,9 @@
         }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-brand-green selection:text-brand-dark" style="background-color: #0a192f; color: #8892b0;">
+<body class="font-sans antialiased selection:bg-brand-green selection:text-brand-dark" style="background-color: #02040a; color: #8892b0; background-image: url('src/assets/TriChokro Main page.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;">
     
+    <div class="fixed inset-0 bg-slate-950/85 z-[-1] pointer-events-none"></div>
     <div class="watermark-overlay"></div>
 
     <!-- Floating Background Objects -->
@@ -222,27 +224,27 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden" style="background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%);">
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden bg-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center relative z-10 w-full gap-8">
             <div class="md:w-1/2 mb-10 md:mb-0 scroll-reveal">
-                <div class="inline-block text-brand-green font-mono text-sm mb-4 tracking-wider" style="color: #64ffda;">
+                <div class="inline-block text-brand-green font-mono text-sm mb-4 tracking-wider" style="color: #00e5ff;">
                     BUET Mechanical Engineering Department
                 </div>
-                <h1 class="text-5xl md:text-7xl font-display font-bold leading-none mb-6" style="color: #e6f1ff;">
-                    Built For <br> <span class="gradient-text" style="color: #64ffda;">Bangladesh</span>
+                <h1 class="text-5xl md:text-7xl font-display font-bold leading-none mb-6" style="color: #f8fafc;">
+                    Built For <br> <span class="gradient-text" style="color: #00e5ff;">Bangladesh</span>
                 </h1>
-                <p class="text-xl mb-10 max-w-lg leading-relaxed" style="color: #ccd6f6;">
+                <p class="text-xl mb-10 max-w-lg leading-relaxed" style="color: #e2e8f0;">
                     The nation's first fully locally-manufactured electric auto-rickshaw ecosystem. Engineering sustainable mobility solutions for the future.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#pathfinder-models" class="bg-brand-green text-brand-dark text-center px-8 py-4 rounded font-bold hover:shadow-[0_0_20px_rgba(100,255,218,0.6)] transition" style="background-color: #64ffda; color: #0a192f;">View Models</a>
-                    <a href="#pathfinder-solution" class="border text-center px-8 py-4 rounded font-bold hover:border-brand-green hover:text-brand-green transition" style="border-color: #ccd6f6; color: #ccd6f6;">Why TriChokro?</a>
-                    <a href="src/assets/pdf/UIHP Pathfinder-1.pdf" target="_blank" class="flex items-center justify-center gap-2 text-brand-green font-bold hover:text-white transition" style="color: #64ffda;">Download Specs <i data-lucide="download" class="w-4 h-4"></i></a>
+                    <a href="#pathfinder-models" class="bg-brand-green text-brand-dark text-center px-8 py-4 rounded font-bold hover:shadow-[0_0_20px_rgba(100,255,218,0.6)] transition" style="background-color: #00e5ff; color: #02040a;">View Models</a>
+                    <a href="#pathfinder-solution" class="border text-center px-8 py-4 rounded font-bold hover:border-brand-green hover:text-brand-green transition" style="border-color: #e2e8f0; color: #e2e8f0;">Why TriChokro?</a>
+                    <a href="src/assets/pdf/UIHP Pathfinder-1.pdf" target="_blank" class="flex items-center justify-center gap-2 text-brand-green font-bold hover:text-white transition" style="color: #00e5ff;">Download Specs <i data-lucide="download" class="w-4 h-4"></i></a>
                 </div>
             </div>
             <div class="md:w-1/2 flex justify-center relative animate-float scroll-reveal">
                 <div class="relative w-80 h-80 flex items-center justify-center">
-                    <div class="absolute inset-0 rounded-full border border-dashed border-brand-green/30 animate-spin-slow" style="border-color: rgba(100, 255, 218, 0.3);"></div>
+                    <div class="absolute inset-0 rounded-full border border-dashed border-brand-green/30 animate-spin-slow" style="border-color: rgba(0, 229, 255, 0.3);"></div>
                     <img src="src/assets/pathfinder_visual.png" alt="Pathfinder Visual" class="relative z-10 w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(100,255,218,0.3)]">
                 </div>
             </div>
@@ -253,45 +255,45 @@
     <section class="py-16 bg-brand-light/20 border-b border-brand-light/30" style="background-color: rgba(17, 34, 64, 0.2); border-color: rgba(17, 34, 64, 0.3);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-6">
-                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #0a192f; border-color: rgba(17, 34, 64, 0.3);">
-                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #64ffda;">2.4B BDT</div>
-                    <p class="text-sm font-mono text-brand-text" style="color: #ccd6f6;">Total Addressable Market</p>
+                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #02040a; border-color: rgba(17, 34, 64, 0.3);">
+                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #00e5ff;">2.4B BDT</div>
+                    <p class="text-sm font-mono text-brand-text" style="color: #e2e8f0;">Total Addressable Market</p>
                 </div>
-                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #0a192f; border-color: rgba(17, 34, 64, 0.3);">
-                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #64ffda;">150K+</div>
-                    <p class="text-sm font-mono text-brand-text" style="color: #ccd6f6;">Vehicles in Dhaka</p>
+                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #02040a; border-color: rgba(17, 34, 64, 0.3);">
+                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #00e5ff;">150K+</div>
+                    <p class="text-sm font-mono text-brand-text" style="color: #e2e8f0;">Vehicles in Dhaka</p>
                 </div>
-                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #0a192f; border-color: rgba(17, 34, 64, 0.3);">
-                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #64ffda;">8.5K BDT</div>
-                    <p class="text-sm font-mono text-brand-text" style="color: #ccd6f6;">Daily Operating Cost</p>
+                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #02040a; border-color: rgba(17, 34, 64, 0.3);">
+                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #00e5ff;">8.5K BDT</div>
+                    <p class="text-sm font-mono text-brand-text" style="color: #e2e8f0;">Daily Operating Cost</p>
                 </div>
-                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #0a192f; border-color: rgba(17, 34, 64, 0.3);">
-                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #64ffda;">10%</div>
-                    <p class="text-sm font-mono text-brand-text" style="color: #ccd6f6;">Market Target (2Y)</p>
+                <div class="stat-card text-center p-6 bg-brand-dark rounded border border-brand-light/30" style="background-color: #02040a; border-color: rgba(17, 34, 64, 0.3);">
+                    <div class="text-4xl font-bold text-brand-green mb-2" style="color: #00e5ff;">10%</div>
+                    <p class="text-sm font-mono text-brand-text" style="color: #e2e8f0;">Market Target (2Y)</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Problem Section -->
-    <section id="pathfinder-problem" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
+    <section id="pathfinder-problem" class="py-24 bg-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center mb-12 scroll-reveal">
-                <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">01.</span>
-                <h2 class="text-3xl md:text-4xl font-display font-bold" style="color: #e6f1ff;">The Crisis</h2>
-                <div class="h-[1px] bg-brand-light flex-grow ml-6" style="background-color: #112240;"></div>
+                <span class="text-2xl font-mono text-brand-green mr-4" style="color: #00e5ff;">01.</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold" style="color: #f8fafc;">The Crisis</h2>
+                <div class="h-[1px] bg-brand-light flex-grow ml-6" style="background-color: #0a101f;"></div>
             </div>
-            <p class="text-brand-text max-w-2xl mb-16 text-lg scroll-reveal" style="color: #ccd6f6;">
+            <p class="text-brand-text max-w-2xl mb-16 text-lg scroll-reveal" style="color: #e2e8f0;">
                 Unsafe electric rickshaws flood Dhaka's streets, causing accidents and environmental hazards. We've identified three critical failure points.
             </p>
 
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="glass-card p-8 rounded scroll-reveal">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
+                    <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #00e5ff;">
                         <i class="fas fa-exclamation-triangle text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 font-display" style="color: #e6f1ff;">Safety Risks</h3>
-                    <ul class="space-y-3 text-sm" style="color: #ccd6f6;">
+                    <h3 class="text-xl font-bold mb-4 font-display" style="color: #f8fafc;">Safety Risks</h3>
+                    <ul class="space-y-3 text-sm" style="color: #e2e8f0;">
                         <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>Missing brake systems</span></li>
                         <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>High center of gravity (tipping hazard)</span></li>
                         <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>Poor suspension causes injuries</span></li>
@@ -299,11 +301,11 @@
                 </div>
 
                 <div class="glass-card p-8 rounded scroll-reveal">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
+                    <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #00e5ff;">
                         <i class="fas fa-wrench text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 font-display" style="color: #e6f1ff;">Engineering Flaws</h3>
-                    <ul class="space-y-3 text-sm" style="color: #ccd6f6;">
+                    <h3 class="text-xl font-bold mb-4 font-display" style="color: #f8fafc;">Engineering Flaws</h3>
+                    <ul class="space-y-3 text-sm" style="color: #e2e8f0;">
                         <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>High aerodynamic drag</span></li>
                         <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>Low-capacity wheels</span></li>
                         <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>Inferior structural materials</span></li>
@@ -311,11 +313,11 @@
                 </div>
 
                 <div class="glass-card p-8 rounded scroll-reveal">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
+                    <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #00e5ff;">
                         <i class="fas fa-leaf text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 font-display" style="color: #e6f1ff;">Environmental Impact</h3>
-                    <ul class="space-y-3 text-sm" style="color: #ccd6f6;">
+                    <h3 class="text-xl font-bold mb-4 font-display" style="color: #f8fafc;">Environmental Impact</h3>
+                    <ul class="space-y-3 text-sm" style="color: #e2e8f0;">
                         <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>Non-recyclable toxic batteries</span></li>
                         <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>Industrial waste from imports</span></li>
                         <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>Noise pollution from outdated motors</span></li>
@@ -326,97 +328,97 @@
     </section>
 
     <!-- Solution Section -->
-    <section id="pathfinder-solution" class="py-24 bg-[#020c1b] relative overflow-hidden" style="background-color: #020c1b;">
-        <div class="absolute -right-40 top-20 w-96 h-96 bg-brand-green opacity-5 rounded-full blur-3xl" style="background-color: #64ffda;"></div>
+    <section id="pathfinder-solution" class="py-24 bg-transparent relative overflow-hidden">
+        <div class="absolute -right-40 top-20 w-96 h-96 bg-brand-green opacity-5 rounded-full blur-3xl" style="background-color: #00e5ff;"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 scroll-reveal">
                 <div>
                     <div class="flex items-center mb-4">
-                        <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">02.</span>
-                        <h2 class="text-3xl md:text-5xl font-display font-bold" style="color: #e6f1ff;">The Solution</h2>
+                        <span class="text-2xl font-mono text-brand-green mr-4" style="color: #00e5ff;">02.</span>
+                        <h2 class="text-3xl md:text-5xl font-display font-bold" style="color: #f8fafc;">The Solution</h2>
                     </div>
-                    <p class="text-brand-green font-mono" style="color: #64ffda;">Engineering excellence meets local innovation.</p>
+                    <p class="text-brand-green font-mono" style="color: #00e5ff;">Engineering excellence meets local innovation.</p>
                 </div>
                 <div class="mt-4 md:mt-0">
-                    <span class="bg-brand-green/10 border border-brand-green text-brand-green px-4 py-2 rounded font-mono text-sm" style="background-color: rgba(100, 255, 218, 0.1); border-color: #64ffda; color: #64ffda;">BUET Innovates</span>
+                    <span class="bg-brand-green/10 border border-brand-green text-brand-green px-4 py-2 rounded font-mono text-sm" style="background-color: rgba(0, 229, 255, 0.1); border-color: #00e5ff; color: #00e5ff;">BUET Innovates</span>
                 </div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #112240; border-color: #112240;">
-                    <i class="fas fa-tachometer-alt text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                    <h4 class="text-lg font-bold mb-2" style="color: #e6f1ff;">McPherson Suspension</h4>
-                    <p class="text-sm" style="color: #ccd6f6;">Superior ride comfort and stability compared to conventional leaf springs.</p>
+                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #0a101f; border-color: #0a101f;">
+                    <i class="fas fa-tachometer-alt text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #e2e8f0;"></i>
+                    <h4 class="text-lg font-bold mb-2" style="color: #f8fafc;">McPherson Suspension</h4>
+                    <p class="text-sm" style="color: #e2e8f0;">Superior ride comfort and stability compared to conventional leaf springs.</p>
                 </div>
                 
-                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #112240; border-color: #112240;">
-                    <i class="fas fa-stop-circle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                    <h4 class="text-lg font-bold mb-2" style="color: #e6f1ff;">Disc Brakes</h4>
-                    <p class="text-sm" style="color: #ccd6f6;">Modern hydraulic disc brakes replace dangerous rubber pad brakes.</p>
+                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #0a101f; border-color: #0a101f;">
+                    <i class="fas fa-stop-circle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #e2e8f0;"></i>
+                    <h4 class="text-lg font-bold mb-2" style="color: #f8fafc;">Disc Brakes</h4>
+                    <p class="text-sm" style="color: #e2e8f0;">Modern hydraulic disc brakes replace dangerous rubber pad brakes.</p>
                 </div>
 
-                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #112240; border-color: #112240;">
-                    <i class="fas fa-wind text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                    <h4 class="text-lg font-bold mb-2" style="color: #e6f1ff;">Aerodynamic Design</h4>
-                    <p class="text-sm" style="color: #ccd6f6;">Optimized hood and body to reduce air resistance and boost battery efficiency.</p>
+                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #0a101f; border-color: #0a101f;">
+                    <i class="fas fa-wind text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #e2e8f0;"></i>
+                    <h4 class="text-lg font-bold mb-2" style="color: #f8fafc;">Aerodynamic Design</h4>
+                    <p class="text-sm" style="color: #e2e8f0;">Optimized hood and body to reduce air resistance and boost battery efficiency.</p>
                 </div>
 
-                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #112240; border-color: #112240;">
-                    <i class="fas fa-recycle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                    <h4 class="text-lg font-bold mb-2" style="color: #e6f1ff;">Eco-Sustainable</h4>
-                    <p class="text-sm" style="color: #ccd6f6;">Recyclable components and battery technology that's environmentally safe.</p>
+                <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group scroll-reveal" style="background-color: #0a101f; border-color: #0a101f;">
+                    <i class="fas fa-recycle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #e2e8f0;"></i>
+                    <h4 class="text-lg font-bold mb-2" style="color: #f8fafc;">Eco-Sustainable</h4>
+                    <p class="text-sm" style="color: #e2e8f0;">Recyclable components and battery technology that's environmentally safe.</p>
                 </div>
             </div>
 
             <!-- Comparison Table -->
             <div class="bg-brand-light/20 rounded border border-brand-light/30 p-8 backdrop-blur-sm overflow-x-auto scroll-reveal" style="background-color: rgba(17, 34, 64, 0.2); border-color: rgba(17, 34, 64, 0.3);">
-                <h3 class="text-2xl font-bold mb-8 text-center font-display" style="color: #e6f1ff;">Market Comparison</h3>
+                <h3 class="text-2xl font-bold mb-8 text-center font-display" style="color: #f8fafc;">Market Comparison</h3>
                 <table class="w-full text-left min-w-[600px] border-collapse">
                     <thead>
-                        <tr class="border-b font-mono text-sm uppercase" style="border-color: #112240; color: #64ffda;">
+                        <tr class="border-b font-mono text-sm uppercase" style="border-color: #0a101f; color: #00e5ff;">
                             <th class="pb-4 pl-4">Feature</th>
                             <th class="pb-4">Typical Auto-Ricksha</th>
                             <th class="pb-4">CNG</th>
-                            <th class="pb-4 font-bold bg-brand-green/10 rounded-t p-2" style="color: #e6f1ff; background-color: rgba(100, 255, 218, 0.1);">Pathfinder</th>
+                            <th class="pb-4 font-bold bg-brand-green/10 rounded-t p-2" style="color: #f8fafc; background-color: rgba(0, 229, 255, 0.1);">Pathfinder</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y text-sm" style="border-color: #112240; color: #ccd6f6;">
+                    <tbody class="divide-y text-sm" style="border-color: #0a101f; color: #e2e8f0;">
                         <tr class="hover:bg-brand-light/30 transition">
-                            <td class="py-4 pl-4 font-bold" style="color: #e6f1ff;">Cost (BDT)</td>
+                            <td class="py-4 pl-4 font-bold" style="color: #f8fafc;">Cost (BDT)</td>
                             <td class="py-4">120K - 150K</td>
                             <td class="py-4">250K - 300K</td>
-                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">~120K</td>
+                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #00e5ff; background-color: rgba(0, 229, 255, 0.05);">~120K</td>
                         </tr>
                         <tr class="hover:bg-brand-light/30 transition">
-                            <td class="py-4 pl-4 font-bold" style="color: #e6f1ff;">Braking System</td>
+                            <td class="py-4 pl-4 font-bold" style="color: #f8fafc;">Braking System</td>
                             <td class="py-4 text-red-400">Rubber/Drum (Unsafe)</td>
                             <td class="py-4">Disc Brake</td>
-                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">Disc Brake (Safe)</td>
+                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #00e5ff; background-color: rgba(0, 229, 255, 0.05);">Disc Brake (Safe)</td>
                         </tr>
                         <tr class="hover:bg-brand-light/30 transition">
-                            <td class="py-4 pl-4 font-bold" style="color: #e6f1ff;">Safety Level</td>
+                            <td class="py-4 pl-4 font-bold" style="color: #f8fafc;">Safety Level</td>
                             <td class="py-4 text-red-400">Medium Risk</td>
                             <td class="py-4">Medium Risk</td>
-                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">High Safety</td>
+                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #00e5ff; background-color: rgba(0, 229, 255, 0.05);">High Safety</td>
                         </tr>
                         <tr class="hover:bg-brand-light/30 transition">
-                            <td class="py-4 pl-4 font-bold" style="color: #e6f1ff;">Seating Capacity</td>
+                            <td class="py-4 pl-4 font-bold" style="color: #f8fafc;">Seating Capacity</td>
                             <td class="py-4">3</td>
                             <td class="py-4">3</td>
-                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">5</td>
+                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #00e5ff; background-color: rgba(0, 229, 255, 0.05);">5</td>
                         </tr>
                         <tr class="hover:bg-brand-light/30 transition">
-                            <td class="py-4 pl-4 font-bold" style="color: #e6f1ff;">Range (km)</td>
+                            <td class="py-4 pl-4 font-bold" style="color: #f8fafc;">Range (km)</td>
                             <td class="py-4">50-70</td>
                             <td class="py-4">250-300</td>
-                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">120-150</td>
+                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #00e5ff; background-color: rgba(0, 229, 255, 0.05);">120-150</td>
                         </tr>
                         <tr class="hover:bg-brand-light/30 transition">
-                            <td class="py-4 pl-4 font-bold" style="color: #e6f1ff;">Emissions</td>
+                            <td class="py-4 pl-4 font-bold" style="color: #f8fafc;">Emissions</td>
                             <td class="py-4 text-orange-400">Zero (Electric)</td>
                             <td class="py-4 text-orange-400">High (Gas)</td>
-                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">Zero (Clean)</td>
+                            <td class="py-4 font-bold bg-brand-green/5 p-2" style="color: #00e5ff; background-color: rgba(0, 229, 255, 0.05);">Zero (Clean)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -425,88 +427,88 @@
     </section>
 
     <!-- Product Models Section -->
-    <section id="pathfinder-models" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
+    <section id="pathfinder-models" class="py-24 bg-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
-                <span class="text-brand-green font-mono text-xl block mb-2" style="color: #64ffda;">03.</span>
-                <h2 class="text-3xl md:text-5xl font-display font-bold mb-4" style="color: #e6f1ff;">Product Lineup</h2>
-                <p class="text-brand-text" style="color: #ccd6f6;">Engineered for every road and every need.</p>
+                <span class="text-brand-green font-mono text-xl block mb-2" style="color: #00e5ff;">03.</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold mb-4" style="color: #f8fafc;">Product Lineup</h2>
+                <p class="text-brand-text" style="color: #e2e8f0;">Engineered for every road and every need.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Model 1: Starter -->
                 <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500 scroll-reveal">
-                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                        <i class="fas fa-bicycle text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">STARTER</div>
+                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #0a101f;">
+                        <i class="fas fa-bicycle text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #e2e8f0;"></i>
+                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #02040a; color: #00e5ff; border-color: #00e5ff;">STARTER</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #e6f1ff;">Starter Model</h3>
-                        <p class="text-2xl font-mono font-bold mb-4" style="color: #64ffda;">1.8L <span class="text-sm font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                        <ul class="text-sm space-y-2 mb-6" style="color: #ccd6f6;">
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>Standard Suspension</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>City Ready</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>50kW Motor</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>80km Range</li>
+                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #f8fafc;">Starter Model</h3>
+                        <p class="text-2xl font-mono font-bold mb-4" style="color: #00e5ff;">1.8L <span class="text-sm font-sans font-normal" style="color: #e2e8f0;">BDT</span></p>
+                        <ul class="text-sm space-y-2 mb-6" style="color: #e2e8f0;">
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>Standard Suspension</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>City Ready</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>50kW Motor</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>80km Range</li>
                         </ul>
-                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #64ffda; color: #64ffda;">Learn More</button>
+                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #00e5ff; color: #00e5ff;">Learn More</button>
                     </div>
                 </div>
 
                 <!-- Model 2: Weather-Sealed -->
                 <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500 scroll-reveal">
-                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                        <i class="fas fa-cloud-rain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">PRO</div>
+                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #0a101f;">
+                        <i class="fas fa-cloud-rain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #e2e8f0;"></i>
+                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #02040a; color: #00e5ff; border-color: #00e5ff;">PRO</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #e6f1ff;">Weather-Sealed Pro</h3>
-                        <p class="text-2xl font-mono font-bold mb-4" style="color: #64ffda;">2.0L <span class="text-sm font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                        <ul class="text-sm space-y-2 mb-6" style="color: #ccd6f6;">
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>IP69 Rating</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>Monsoon Ready</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>60kW Motor</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>100km Range</li>
+                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #f8fafc;">Weather-Sealed Pro</h3>
+                        <p class="text-2xl font-mono font-bold mb-4" style="color: #00e5ff;">2.0L <span class="text-sm font-sans font-normal" style="color: #e2e8f0;">BDT</span></p>
+                        <ul class="text-sm space-y-2 mb-6" style="color: #e2e8f0;">
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>IP69 Rating</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>Monsoon Ready</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>60kW Motor</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>100km Range</li>
                         </ul>
-                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #64ffda; color: #64ffda;">Learn More</button>
+                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #00e5ff; color: #00e5ff;">Learn More</button>
                     </div>
                 </div>
 
                 <!-- Model 3: Extended Range -->
                 <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500 scroll-reveal">
-                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                        <i class="fas fa-bolt text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">EXTENDED</div>
+                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #0a101f;">
+                        <i class="fas fa-bolt text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #e2e8f0;"></i>
+                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #02040a; color: #00e5ff; border-color: #00e5ff;">EXTENDED</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #e6f1ff;">Extended Range</h3>
-                        <p class="text-2xl font-mono font-bold mb-4" style="color: #64ffda;">2.5L <span class="text-sm font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                        <ul class="text-sm space-y-2 mb-6" style="color: #ccd6f6;">
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>Long Range Battery</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>75kW Motor</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>150km Range</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>Fast Charging</li>
+                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #f8fafc;">Extended Range</h3>
+                        <p class="text-2xl font-mono font-bold mb-4" style="color: #00e5ff;">2.5L <span class="text-sm font-sans font-normal" style="color: #e2e8f0;">BDT</span></p>
+                        <ul class="text-sm space-y-2 mb-6" style="color: #e2e8f0;">
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>Long Range Battery</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>75kW Motor</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>150km Range</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>Fast Charging</li>
                         </ul>
-                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #64ffda; color: #64ffda;">Learn More</button>
+                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #00e5ff; color: #00e5ff;">Learn More</button>
                     </div>
                 </div>
 
                 <!-- Model 4: Heavy Duty -->
                 <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500 scroll-reveal">
-                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                        <i class="fas fa-mountain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">HEAVY DUTY</div>
+                    <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #0a101f;">
+                        <i class="fas fa-mountain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #e2e8f0;"></i>
+                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #02040a; color: #00e5ff; border-color: #00e5ff;">HEAVY DUTY</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #e6f1ff;">Heavy Duty</h3>
-                        <p class="text-2xl font-mono font-bold mb-4" style="color: #64ffda;">3.0L <span class="text-sm font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                        <ul class="text-sm space-y-2 mb-6" style="color: #ccd6f6;">
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>Reinforced Frame</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>Heavy Load Suspension</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>90kW Motor</li>
-                            <li><i class="fas fa-check mr-2" style="color: #64ffda;"></i>All-Terrain Ready</li>
+                        <h3 class="text-xl font-bold mb-2 font-display" style="color: #f8fafc;">Heavy Duty</h3>
+                        <p class="text-2xl font-mono font-bold mb-4" style="color: #00e5ff;">3.0L <span class="text-sm font-sans font-normal" style="color: #e2e8f0;">BDT</span></p>
+                        <ul class="text-sm space-y-2 mb-6" style="color: #e2e8f0;">
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>Reinforced Frame</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>Heavy Load Suspension</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>90kW Motor</li>
+                            <li><i class="fas fa-check mr-2" style="color: #00e5ff;"></i>All-Terrain Ready</li>
                         </ul>
-                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #64ffda; color: #64ffda;">Learn More</button>
+                        <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-green/10 transition" style="border-color: #00e5ff; color: #00e5ff;">Learn More</button>
                     </div>
                 </div>
             </div>
@@ -514,43 +516,43 @@
     </section>
 
     <!-- Business & Market Section -->
-    <section id="pathfinder-business" class="py-24 bg-[#112240]" style="background-color: #112240;">
+    <section id="pathfinder-business" class="py-24 bg-brand-light/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-12">
                 <!-- Left: Market Size -->
                 <div class="lg:w-1/2 scroll-reveal">
                     <div class="flex items-center mb-6">
-                        <span class="text-xl font-mono text-brand-green mr-4" style="color: #64ffda;">04.</span>
-                        <h3 class="text-2xl font-bold font-display" style="color: #e6f1ff;">Market Potential</h3>
+                        <span class="text-xl font-mono text-brand-green mr-4" style="color: #00e5ff;">04.</span>
+                        <h3 class="text-2xl font-bold font-display" style="color: #f8fafc;">Market Potential</h3>
                     </div>
                     
-                    <div class="bg-brand-dark p-8 rounded-xl border border-brand-light shadow-xl" style="background-color: #0a192f; border-color: #112240;">
+                    <div class="bg-brand-dark p-8 rounded-xl border border-brand-light shadow-xl" style="background-color: #02040a; border-color: #0a101f;">
                         <div class="mb-8">
                             <div class="flex justify-between items-end mb-2">
-                                <span class="text-sm font-mono" style="color: #ccd6f6;">Total Addressable Market (Dhaka)</span>
-                                <span class="font-bold text-xl" style="color: #e6f1ff;">2,400 Cr BDT</span>
+                                <span class="text-sm font-mono" style="color: #e2e8f0;">Total Addressable Market (Dhaka)</span>
+                                <span class="font-bold text-xl" style="color: #f8fafc;">2,400 Cr BDT</span>
                             </div>
-                            <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #112240;">
-                                <div class="bg-brand-heading h-2 rounded-full" style="width: 100%; background-color: #e6f1ff;"></div>
+                            <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #0a101f;">
+                                <div class="bg-brand-heading h-2 rounded-full" style="width: 100%; background-color: #f8fafc;"></div>
                             </div>
                         </div>
                         <div class="mb-8">
                             <div class="flex justify-between items-end mb-2">
-                                <span class="text-sm font-mono" style="color: #ccd6f6;">Target Share (2 Years)</span>
-                                <span class="font-bold text-xl text-brand-green" style="color: #64ffda;">10%</span>
+                                <span class="text-sm font-mono" style="color: #e2e8f0;">Target Share (2 Years)</span>
+                                <span class="font-bold text-xl text-brand-green" style="color: #00e5ff;">10%</span>
                             </div>
-                            <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #112240;">
-                                <div class="bg-brand-green h-2 rounded-full shadow-[0_0_10px_#64ffda]" style="width: 10%; background-color: #64ffda;"></div>
+                            <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #0a101f;">
+                                <div class="bg-brand-green h-2 rounded-full shadow-[0_0_10px_#00e5ff]" style="width: 10%; background-color: #00e5ff;"></div>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 mt-6">
-                            <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #112240;">
-                                <span class="block text-3xl font-bold" style="color: #e6f1ff;">1.5L</span>
-                                <span class="text-xs uppercase font-mono mt-1" style="color: #64ffda;">Vehicles in Dhaka</span>
+                            <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #0a101f;">
+                                <span class="block text-3xl font-bold" style="color: #f8fafc;">1.5L</span>
+                                <span class="text-xs uppercase font-mono mt-1" style="color: #00e5ff;">Vehicles in Dhaka</span>
                             </div>
-                            <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #112240;">
-                                <span class="block text-3xl font-bold" style="color: #e6f1ff;">1.29L</span>
-                                <span class="text-xs uppercase font-mono mt-1" style="color: #64ffda;">Production Cost</span>
+                            <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #0a101f;">
+                                <span class="block text-3xl font-bold" style="color: #f8fafc;">1.29L</span>
+                                <span class="text-xs uppercase font-mono mt-1" style="color: #00e5ff;">Production Cost</span>
                             </div>
                         </div>
                     </div>
@@ -559,20 +561,20 @@
                 <!-- Right: Financial Projection -->
                 <div class="lg:w-1/2 scroll-reveal">
                     <div class="flex items-center mb-6">
-                        <span class="text-xl font-mono text-brand-green mr-4" style="color: #64ffda;">05.</span>
-                        <h3 class="text-2xl font-bold font-display" style="color: #e6f1ff;">5-Year Profit Projection</h3>
+                        <span class="text-xl font-mono text-brand-green mr-4" style="color: #00e5ff;">05.</span>
+                        <h3 class="text-2xl font-bold font-display" style="color: #f8fafc;">5-Year Profit Projection</h3>
                     </div>
-                    <div class="flex items-end justify-center h-72 bg-brand-dark p-6 rounded-xl border border-brand-light relative overflow-hidden" style="background-color: #0a192f; border-color: #112240;">
+                    <div class="flex items-end justify-center h-72 bg-brand-dark p-6 rounded-xl border border-brand-light relative overflow-hidden" style="background-color: #02040a; border-color: #0a101f;">
                         <img src="src/assets/graph_visual.png" alt="Financial Graph" class="max-w-full max-h-full object-contain filter drop-shadow-[0_0_15px_rgba(100,255,218,0.2)]">
                     </div>
-                    <p class="text-xs font-mono text-brand-green mt-4 text-center" style="color: #64ffda;">Projected Net Profit Margin: 15-20% by Year 5</p>
+                    <p class="text-xs font-mono text-brand-green mt-4 text-center" style="color: #00e5ff;">Projected Net Profit Margin: 15-20% by Year 5</p>
                     
                     <div class="mt-8 bg-brand-light/20 p-6 rounded border border-brand-light/30" style="background-color: rgba(17, 34, 64, 0.2); border-color: rgba(17, 34, 64, 0.3);">
-                        <h4 class="font-bold mb-3" style="color: #e6f1ff;">Key Metrics</h4>
-                        <div class="space-y-2 text-sm" style="color: #ccd6f6;">
-                            <div class="flex justify-between"><span>ROI Period:</span><span class="text-brand-green" style="color: #64ffda;">2.5 Years</span></div>
-                            <div class="flex justify-between"><span>Break-even:</span><span class="text-brand-green" style="color: #64ffda;">Month 18</span></div>
-                            <div class="flex justify-between"><span>Growth Rate:</span><span class="text-brand-green" style="color: #64ffda;">45% YoY</span></div>
+                        <h4 class="font-bold mb-3" style="color: #f8fafc;">Key Metrics</h4>
+                        <div class="space-y-2 text-sm" style="color: #e2e8f0;">
+                            <div class="flex justify-between"><span>ROI Period:</span><span class="text-brand-green" style="color: #00e5ff;">2.5 Years</span></div>
+                            <div class="flex justify-between"><span>Break-even:</span><span class="text-brand-green" style="color: #00e5ff;">Month 18</span></div>
+                            <div class="flex justify-between"><span>Growth Rate:</span><span class="text-brand-green" style="color: #00e5ff;">45% YoY</span></div>
                         </div>
                     </div>
                 </div>
@@ -581,32 +583,32 @@
     </section>
 
     <!-- Innovation Team Section -->
-    <section id="pathfinder-team" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
+    <section id="pathfinder-team" class="py-24 bg-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
-                <span class="text-brand-green font-mono text-xl block mb-2" style="color: #64ffda;">06.</span>
-                <h2 class="text-3xl font-display font-bold mb-4" style="color: #e6f1ff;">The Innovators</h2>
-                <div class="w-20 h-1 bg-brand-green mx-auto rounded" style="background-color: #64ffda;"></div>
+                <span class="text-brand-green font-mono text-xl block mb-2" style="color: #00e5ff;">06.</span>
+                <h2 class="text-3xl font-display font-bold mb-4" style="color: #f8fafc;">The Innovators</h2>
+                <div class="w-20 h-1 bg-brand-green mx-auto rounded" style="background-color: #00e5ff;"></div>
             </div>
             <div class="text-center">
-                <p class="text-brand-text mb-6" style="color: #ccd6f6;">Engineering students from BUET's Mechanical Department leading sustainable innovation for Bangladesh.</p>
+                <p class="text-brand-text mb-6" style="color: #e2e8f0;">Engineering students from BUET's Mechanical Department leading sustainable innovation for Bangladesh.</p>
                 <div class="max-w-2xl mx-auto bg-brand-light/20 p-8 rounded border border-brand-light/30" style="background-color: rgba(17, 34, 64, 0.2); border-color: rgba(17, 34, 64, 0.3);">
-                    <p class="mb-6" style="color: #ccd6f6;"><i class="fas fa-quote-left text-brand-green mr-2" style="color: #64ffda;"></i>TriChokro isn't just about vehiclesit's about reimagining sustainable urban mobility for Bangladesh and the Global South.</p>
-                    <a href="index.html#about" class="border border-brand-green text-brand-green px-6 py-2 rounded text-sm font-mono hover:bg-brand-green/10 transition inline-block" style="border-color: #64ffda; color: #64ffda;">View Full Team</a>
+                    <p class="mb-6" style="color: #e2e8f0;"><i class="fas fa-quote-left text-brand-green mr-2" style="color: #00e5ff;"></i>TriChokro isn't just about vehiclesit's about reimagining sustainable urban mobility for Bangladesh and the Global South.</p>
+                    <a href="index.html#about" class="border border-brand-green text-brand-green px-6 py-2 rounded text-sm font-mono hover:bg-brand-green/10 transition inline-block" style="border-color: #00e5ff; color: #00e5ff;">View Full Team</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-gradient-to-r from-brand-dark to-brand-light relative overflow-hidden" style="background: linear-gradient(to right, #0a192f, #112240);">
-        <div class="absolute -right-20 -top-20 w-40 h-40 bg-brand-green/10 rounded-full blur-3xl" style="background-color: rgba(100, 255, 218, 0.1);"></div>
+    <section class="py-16 bg-gradient-to-r from-brand-dark to-brand-light relative overflow-hidden" style="background: linear-gradient(to right, #02040a, #0a101f);">
+        <div class="absolute -right-20 -top-20 w-40 h-40 bg-brand-green/10 rounded-full blur-3xl" style="background-color: rgba(0, 229, 255, 0.1);"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 scroll-reveal">
-            <h2 class="text-3xl md:text-4xl font-display font-bold mb-6" style="color: #e6f1ff;">Ready to Transform Urban Mobility?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto" style="color: #ccd6f6;">Join us in building the sustainable transportation future. Contact us for partnerships, pre-orders, or investment inquiries.</p>
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-6" style="color: #f8fafc;">Ready to Transform Urban Mobility?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto" style="color: #e2e8f0;">Join us in building the sustainable transportation future. Contact us for partnerships, pre-orders, or investment inquiries.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="contact.html" class="bg-brand-green text-brand-dark px-8 py-4 rounded font-bold hover:shadow-[0_0_20px_rgba(100,255,218,0.6)] transition" style="background-color: #64ffda; color: #0a192f;">Get in Touch</a>
-                <a href="#pathfinder-models" class="border border-brand-green text-brand-green px-8 py-4 rounded font-bold hover:bg-brand-green/10 transition" style="border-color: #64ffda; color: #64ffda;">Explore Models</a>
+                <a href="contact.html" class="bg-brand-green text-brand-dark px-8 py-4 rounded font-bold hover:shadow-[0_0_20px_rgba(100,255,218,0.6)] transition" style="background-color: #00e5ff; color: #02040a;">Get in Touch</a>
+                <a href="#pathfinder-models" class="border border-brand-green text-brand-green px-8 py-4 rounded font-bold hover:bg-brand-green/10 transition" style="border-color: #00e5ff; color: #00e5ff;">Explore Models</a>
             </div>
         </div>
     </section>
