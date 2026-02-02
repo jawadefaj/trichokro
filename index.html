@@ -1275,6 +1275,8 @@
             }); 
         });
 
+
+
         // Updated Tabs Data: TEAM IS FIRST (INDEX 0)
         const tabsData = [
             { 
@@ -1788,6 +1790,41 @@
             }
         });
     </script>
+<!-- Add this JavaScript before the closing </script> tag (before line 1380) */
+
+// Scroll Progress Bar with Smooth Easing
+function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scroll-progress-bar');
+    const scrollIcon = document.getElementById('scroll-icon');
+    
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) : 0;
+    
+    // Apply smooth easing: fast at start, slow at end (easeOutQuad)
+    const easedPercent = scrollPercent < 0.5 
+        ? 2 * scrollPercent * scrollPercent 
+        : -1 + (4 - 2 * scrollPercent) * scrollPercent;
+    
+    scrollProgress.style.transform = `scaleY(${easedPercent})`;
+    
+    // Add glow effect when scrolling actively
+    if (scrollPercent > 0 && scrollPercent < 1) {
+        scrollProgress.classList.add('active');
+    } else if (scrollPercent >= 1) {
+        scrollProgress.classList.remove('active');
+    }
+    
+    // Animate icon opacity based on scroll
+    scrollIcon.style.opacity = Math.max(0.15, 0.3 + (scrollPercent * 0.2));
+}
+
+// Listen to scroll events
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+
+// Initial call
+updateScrollProgress();
+    <!-- Top to Bottom Button (visible only at bottom) -->
 <div class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10" id="scroll-to-bottom">
 <button class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce" onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})">
 <span class="text-xl">â¬‡ï¸</span>
