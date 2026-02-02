@@ -29,12 +29,32 @@
             font-family: 'Syne', sans-serif;
         }
 
-        /* Organic Background Texture */
+        /* Organic Background Texture with Logo Watermark */
         .organic-texture {
+            position: relative;
+            background-color: var(--soil-dark);
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(132, 204, 22, 0.05) 0%, transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.05) 0%, transparent 25%);
             background-attachment: fixed;
+        }
+
+        .organic-texture::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            background-image: url('src/assets/Rematerialogo.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.03; /* Subtle watermark effect */
+            pointer-events: none;
+            z-index: -1;
+            filter: grayscale(100%) contrast(1.2);
         }
 
         /* Mouse Follower */
@@ -101,7 +121,10 @@
     <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-lg border-b border-white/5 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-lime-500 rounded-full flex items-center justify-center text-black font-bold text-xl brand-font shadow-[0_0_15px_rgba(132,204,22,0.5)]">R</div>
+                <!-- Logo Image -->
+                <div class="w-10 h-10 rounded-full overflow-hidden shadow-[0_0_15px_rgba(132,204,22,0.5)] border border-lime-500/30">
+                    <img src="src/assets/Rematerialogo.jpg" alt="ReMateria Logo" class="w-full h-full object-cover">
+                </div>
                 <div class="flex flex-col">
                     <span class="text-2xl font-bold brand-font text-white tracking-tight">ReMateria</span>
                     <span class="text-[10px] text-lime-400 uppercase tracking-widest">Sister Concern of TriChokro</span>
@@ -219,10 +242,13 @@
                             <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-lime-500"></i> <strong>2-3 Months:</strong> Degradation time</li>
                         </ul>
                     </div>
-                    <div class="relative h-full min-h-[300px] rounded-3xl overflow-hidden bg-white/5 flex items-center justify-center">
-                        <div class="text-center">
-                            <i data-lucide="package-open" class="w-24 h-24 text-lime-500/50 mb-4 mx-auto"></i>
-                            <p class="text-lime-200/50 font-mono">Mycelium Structure Visual</p>
+                    
+                    <!-- Updated Packaging Image -->
+                    <div class="relative h-full min-h-[400px] rounded-3xl overflow-hidden bg-white/5 flex items-center justify-center group border border-white/5">
+                        <img src="src/assets/Remateria package.jpg" alt="ReMateria Packaging" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 hover:scale-105">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
+                             <p class="text-lime-300 font-mono text-sm uppercase tracking-widest mb-1">Prototype</p>
+                             <p class="text-white font-bold">Bio-composite Packaging</p>
                         </div>
                     </div>
                 </div>
