@@ -69,6 +69,24 @@
             overflow: hidden;
         }
 
+        .card-image-wrapper {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none; /* Hidden by default */
+            animation: zoomIn 0.8s backwards 0.2s;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .card-left::before {
             content: '';
             position: absolute;
@@ -379,6 +397,9 @@
     <div class="contact-card-container">
         <!-- Left Panel: Identity -->
         <div class="card-left">
+            <div class="card-image-wrapper" id="card-image-container">
+                <img id="card-image" src="" alt="Profile Picture">
+            </div>
             <div class="header-initials" id="card-initials">A A M</div>
             <h1 class="profile-name" id="card-name">Rownak Shahriar Ruhan</h1>
             <div class="profile-title" id="card-title">Founder</div>
@@ -456,7 +477,8 @@
                 phone1: "+880 1714 844677",
                 phone2: "+880 1402 667477",
                 email1: "rownakshahriarruhan@gmail.com",
-                email2: "2010105@me.buet.ac.bd"
+                email2: "2010105@me.buet.ac.bd",
+                image: "src/assets/founders/rownak.jpg"
             },
             abdul: {
                 initials: "Dr.",
@@ -469,14 +491,16 @@
                 website: "jawadefaj.xyz",
                 scholar: "scholar.google.com",
                 github: "github.com/jawadefaj",
-                dept: "Augmented Design Lab, UC Santa Cruz"
+                dept: "Augmented Design Lab, UC Santa Cruz",
+                image: "src/assets/founders/jawad.jpg"
             },
             ishraq: {
                 initials: "I H R",
                 name: "Ishraq H. Rafid",
                 title: "Architecture Advisor",
                 email1: "ishraq.rafid@gmail.com",
-                dept: "Street Planner, Urban Roads Division, Ministry of Transport and Mobility Transition, Hamburg, Germany"
+                dept: "Street Planner, Urban Roads Division, Ministry of Transport and Mobility Transition, Hamburg, Germany",
+                image: "src/assets/founders/ishraq.jpg"
             },
             hasan: {
                 initials: "H M",
@@ -485,7 +509,8 @@
                 phone1: "+8801726855767",
                 phone2: "+8801867114883",
                 email1: "mhmhasanmahmud2@gmail.com",
-                email2: "2010061@me.buet.ac.bd"
+                email2: "2010061@me.buet.ac.bd",
+                image: "src/assets/founders/Omor.jpg"
             },
             mijanur: {
                 initials: "M R",
@@ -494,7 +519,8 @@
                 phone1: "+880 1720917572",
                 phone2: "+880 1868233965",
                 email1: "mijankutubi65@gmail.com",
-                email2: "1910109@me.buet.ac.bd"
+                email2: "1910109@me.buet.ac.bd",
+                image: "src/assets/founders/mijan.jpg"
             },
             tomal: {
                 initials: "T K",
@@ -502,7 +528,8 @@
                 title: "Head of Design",
                 phone1: "+880 1624762952",
                 email1: "kirttoniatomal@gmail.com",
-                email2: "2010110@me.buet.ac.bd"
+                email2: "2010110@me.buet.ac.bd",
+                image: "src/assets/founders/Tomal.jpg"
             },
             tahsif: {
                 initials: "T I T", 
@@ -512,6 +539,7 @@
                 phone2: "",
                 email1: "tawhidul.tahsif@gmail.com",
                 email2: "2110153@me.buet.ac.bd",
+                image: "src/assets/founders/tahsif.jpg"
             },
             shwadhin: {
                 initials: "D S", 
@@ -521,6 +549,7 @@
                 phone2: "+880 1521557920",
                 email1: "diptoswadhin0026@gmail.com",
                 email2: "2010073@me.buet.ac.bd",
+                image: "src/assets/founders/Swadhin.jpg"
             },
             maxud: {
                 initials: "M R C", 
@@ -530,6 +559,7 @@
                 phone2: "",
                 email1: "m.rahman.chw@gmail.com",
                 email2: "2310132@me.buet.ac.bd",
+                image: "src/assets/founders/Samee.jpg"
             },
             rakibul: {
                 initials: "R H S", 
@@ -557,7 +587,8 @@
                 phone1: "+880 1711 446564",
                 phone2: "880-2-8613046 (Fax)",
                 email1: "ehsan@me.buet.ac.bd",
-                email2: ""
+                email2: "",
+                image: "src/assets/founders/ehsan.jpg"
             },
         };
 
@@ -584,6 +615,23 @@
             document.getElementById('card-email2').innerText = member.email2;
             if (member.dept) {
                 document.getElementById('card-dept').innerText = member.dept;
+            }
+
+            // Image Logic
+            const imageContainer = document.getElementById('card-image-container');
+            const imageElement = document.getElementById('card-image');
+            const initialsElement = document.getElementById('card-initials');
+            const logoContainer = document.querySelector('.logo-container');
+
+            if (member.image) {
+                imageElement.src = member.image;
+                imageContainer.style.display = 'block';
+                initialsElement.style.display = 'none';
+                if(logoContainer) logoContainer.style.display = 'none';
+            } else {
+                imageContainer.style.display = 'none';
+                initialsElement.style.display = 'block';
+                if(logoContainer) logoContainer.style.display = 'block';
             }
 
             // Mobile Menu Logic
