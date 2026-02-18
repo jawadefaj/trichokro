@@ -421,48 +421,7 @@
         }
     </style>
 </head>
-<body class="selection-emerald loading">
-<!-- Speedometer Overlay -->
-<div id="speed-overlay">
-<div class="speed-lines"></div>
-<div class="speedy-car">
-<svg fill="currentColor" viewbox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 40 L40 40 L50 20 L120 20 L140 40 L180 40 L180 50 L10 50 Z" opacity="0.8"></path>
-<circle cx="45" cy="50" fill="#34d399" r="10"></circle>
-<circle cx="145" cy="50" fill="#34d399" r="10"></circle>
-<path d="M185 45 H200" stroke="#34d399" stroke-width="2"></path>
-<path d="M185 40 H210" stroke="#34d399" stroke-width="2"></path>
-</svg>
-</div>
-<div class="relative z-10 flex flex-col items-center">
-<div class="text-[120px] font-bold text-white leading-none italic font-mono tracking-tighter" style="text-shadow: 4px 4px 0px #047857;">
-<span id="speed-counter">0</span><span class="text-4xl ml-2 not-italic text-emerald-400">km/h</span>
-</div>
-<div class="mt-4 text-emerald-400 text-sm uppercase tracking-[0.3em] animate-pulse">গতি বৃদ্ধি হচ্ছে</div>
-</div>
-</div>
-<!-- Loader -->
-<div id="loader">
-<div class="relative w-full max-w-lg px-8">
-<div class="text-6xl md:text-[180px] font-bold text-slate-800 leading-none select-none relative overflow-hidden">
-<span class="relative z-10 text-transparent bg-clip-text bg-gradient-to-b from-emerald-400 to-slate-900" id="load-percent">00</span>
-<span class="absolute top-0 left-0 text-slate-800 opacity-20 transform scale-y-[-1] origin-bottom blur-sm" id="load-percent-reflection">00</span>
-</div>
-<div class="flex justify-between items-end mt-4 border-t border-emerald-500/30 pt-4">
-<div class="loader-text text-emerald-500 text-xs md:text-sm tracking-widest uppercase flex flex-col gap-1">
-<span id="load-status">সিস্টেম চেক...</span>
-<span class="text-slate-500 text-[10px]">রওনক শাহরিয়ার রুহানের ত্রিচক্র</span>
-</div>
-<div class="flex gap-1">
-<div class="w-2 h-2 bg-emerald-500 animate-pulse"></div>
-<div class="w-2 h-2 bg-emerald-500 animate-pulse" style="animation-delay: 0.1s"></div>
-<div class="w-2 h-2 bg-emerald-500 animate-pulse" style="animation-delay: 0.2s"></div>
-</div>
-</div>
-</div>
-
-
-</div>
+<body class="selection-emerald">
 <div class="watermark-overlay"></div>
 <div id="emoji-container"></div>
 <!-- Social Media Widgets -->
@@ -496,24 +455,16 @@
     হোম
     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
 </a>
-<a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#about" style="animation-delay: 0.2s">
-    আমাদের সম্পর্কে
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-</a>
 <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#products" style="animation-delay: 0.4s">
     পণ্য
     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
 </a>
 <a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="engineering_excellence_bn.html" style="animation-delay: 0.45s">প্রকৌশল উৎকর্ষ </a>
-<a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="founder_bn.html" style="animation-delay: 0.5s">
-    প্রতিষ্ঠাতা
-    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-</a>
 <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html" style="animation-delay: 0.55s">
 <i class="fas fa-globe"></i> EN
   </a>
-<a class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" href="contact_bn.html?id=rownak" style="animation-delay: 0.6s">
-    যোগাযোগ
+<a class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" href="#about" style="animation-delay: 0.6s">
+    আমাদের সম্পর্কে
   </a>
 </div>
 <div class="md:hidden">
@@ -524,13 +475,11 @@
 <div class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate" id="mobile-menu">
 <div class="px-4 py-4 space-y-3 flex flex-col">
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index_bn.html#home">হোম</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index_bn.html#about">আমাদের সম্পর্কে</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="engineering_excellence_bn.html">প্রকৌশল</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="engineering_excellence_bn.html">প্রকৌশল উৎকর্ষ </a>
 <a class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="trambulance_bn.html">ট্রাম্বুলেন্স</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index_bn.html#products">পণ্য</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="founder_bn.html">প্রতিষ্ঠাতা</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="contact_bn.html?id=rownak">যোগাযোগ</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="#about">আমাদের সম্পর্কে</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html">ENGLISH</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index_bn.html">BN</a>
 </div>
@@ -581,9 +530,7 @@
 <div>
 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">ডিজাইন ও পণ্য</h2>
 <div class="h-1 w-24 bg-emerald-500 rounded-full"></div>
-<p class="reveal-on-scroll text-slate-400 mt-4 max-w-lg">বাংলাদেশের রাস্তার অনন্য চাহিদার জন্য প্রকৌশলকৃত। বুয়েটের মতোই টেকসই, দক্ষ ও নির্ভরযোগ্য।</p>
 </div>
-<a class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0 uplift-on-hover" href="pathfinder_bn.html">সম্পূর্ণ স্পেসিফিকেশন দেখুন <i class="w-4 h-4" data-lucide="arrow-right"></i></a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- TriChokro-3 Card updated with switchView -->
@@ -1061,6 +1008,7 @@ Muspana ভিজিট করুন <i class="w-4 h-4" data-lucide="external-li
 </div>
 </div>
 </div>
+<div class="text-center mt-12 mb-8 reveal-on-scroll"><a href="blog_bn.html" class="inline-flex items-center gap-2 px-8 py-3 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">আরও দেখুন <i data-lucide="arrow-right"></i></a></div>
 </div>
 </div>
 </section>
@@ -1187,83 +1135,8 @@ Muspana ভিজিট করুন <i class="w-4 h-4" data-lucide="external-li
 <script>
         lucide.createIcons();
         document.addEventListener('DOMContentLoaded', () => {
-            const percentEl = document.getElementById('load-percent');
-            const percentReflectEl = document.getElementById('load-percent-reflection');
-            const statusEl = document.getElementById('load-status');
-            const loader = document.getElementById('loader');
-            const body = document.body;
-            let progress = 0;
-            const statusMessages = ["হাইড্রোলিক্স ক্যালিব্রেট হচ্ছে", "পাওয়ার গ্রিড সংযোগ হচ্ছে", "ব্যাটারি অপ্টিমাইজ হচ্ছে", "অ্যাসেট লোড হচ্ছে", "সিস্টেম প্রস্তুত"];
-            const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 6) + 3;
-                if (progress > 100) progress = 100;
-                const display = progress < 10 ? `0${progress}` : `${progress}`;
-                percentEl.innerText = display;
-                percentReflectEl.innerText = display;
-                const msgIndex = Math.min(Math.floor(progress / 20), 4);
-                statusEl.innerText = statusMessages[msgIndex];
-                if (progress === 100) {
-                    clearInterval(interval);
-                    setTimeout(() => { loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; body.classList.remove('loading'); }, 500);
-                }
-            }, 30);
-            startFloatingEmojis();
-            
             // Initialize default tab (TEAM)
             switchTab(0);
-        });
-
-        function startFloatingEmojis() {
-            const container = document.getElementById('emoji-container');
-            const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡', '🤖', '💻', '🔌', '⚙️', '🛠️', '🚗', '🔧', '⚡', '🔋', '🌱'];
-            const maxEmojis = 40;
-            let currentEmojis = 0;
-            function createEmoji() {
-                if (currentEmojis >= maxEmojis) return;
-                const emoji = document.createElement('div');
-                emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                emoji.classList.add('floating-emoji');
-                emoji.style.left = `${Math.random() * 100}vw`;
-                emoji.style.animationDuration = `${Math.random() * 10 + 10}s`;
-                emoji.style.fontSize = `${Math.random() * 20 + 15}px`;
-                container.appendChild(emoji);
-                currentEmojis++;
-                emoji.addEventListener('animationend', () => { emoji.remove(); currentEmojis--; });
-            }
-            setInterval(createEmoji, 1200);
-            for(let i=0; i<8; i++) setTimeout(createEmoji, i * 400);
-        }
-
-        const speedOverlay = document.getElementById('speed-overlay');
-        const speedCounter = document.getElementById('speed-counter');
-        let speedInterval;
-        function triggerCarLoading() {
-            speedOverlay.classList.add('active');
-            let speed = 0;
-            clearInterval(speedInterval);
-            speedInterval = setInterval(() => {
-                if(speed < 60) speed += 5; else if(speed < 90) speed += 4; else speed += 2;
-                if(speed >= 100) {
-                    speed = 100;
-                    speedCounter.innerText = speed;
-                    clearInterval(speedInterval);
-                    setTimeout(() => { speedOverlay.classList.remove('active'); }, 200);
-                } else { speedCounter.innerText = speed; }
-            }, 10);
-        }
-        
-        const triggerElements = document.querySelectorAll('.transition-trigger');
-        triggerElements.forEach(el => { 
-            el.addEventListener('click', (e) => { 
-                const href = el.getAttribute('href');
-                if (href && !href.startsWith('#')) {
-                    e.preventDefault();
-                    triggerCarLoading();
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 800);
-                }
-            }); 
         });
 
         // Updated Tabs Data: TEAM IS FIRST (INDEX 0)
