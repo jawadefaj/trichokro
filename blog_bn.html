@@ -1,403 +1,572 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<title>ব্লগ | ত্রিচক্র</title>
-    <link rel="icon" href="src/assets/logo_icon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইনসাইটস | ত্রিচক্র ইঞ্জিনিয়ারিং</title>
+    <!-- Modern Typography with Bengali Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #020617;
+            --bg-surface: #0a0f29;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --secondary: #6366f1;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --nav-height: 80px;
+        }
 
-<style>
-/* =====================
-   THEME
-   ===================== */
-:root{
-  --bg:#050b1a;
-  --bg2:#0a1633;
-  --text:#eaf2ff;
-  --glass:rgba(255,255,255,.08);
-  --accent:#38bdf8;
-  --gold1:#f5d36a;
-  --gold2:#c9a227;
-}
+        [data-theme="light"] {
+            --bg-deep: #f8fafc;
+            --bg-surface: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
 
-[data-theme="light"]{
-  --bg:#f4f7ff;
-  --bg2:#e6ecff;
-  --text:#0b1222;
-  --glass:rgba(0,0,0,.06);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif; /* Updated for Bengali */
+            -webkit-font-smoothing: antialiased;
+        }
 
-/* =====================
-   GLOBAL
-   ===================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Hind Siliguri', system-ui,'Segoe UI',sans-serif;
-}
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at var(--mx,50%) var(--my,50%),
-      rgba(56,189,248,.15), transparent 40%),
-    linear-gradient(135deg,var(--bg),var(--bg2),var(--bg));
-  color:var(--text);
-  overflow-x:hidden;
-}
+        /* --- BACKGROUND PARTICLES --- */
+        .emoji-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+            font-size: 2rem;
+            filter: blur(4px);
+            opacity: 0.12;
+            user-select: none;
+        }
 
-/* =====================
-   UI
-   ===================== */
-.back-btn,.theme-toggle{
-  position:fixed;
-  top:26px;
-  padding:12px 18px;
-  border-radius:999px;
-  backdrop-filter:blur(12px);
-  background:var(--glass);
-  color:inherit;
-  border:none;
-  cursor:pointer;
-  z-index:10;
-  transition:.3s ease;
-}
-.back-btn{left:26px;text-decoration:none}
-.theme-toggle{right:26px}
-.back-btn:hover,.theme-toggle:hover{
-  box-shadow:0 0 25px rgba(245,211,106,.45);
-}
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--accent-glow) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -2;
+        }
 
-/* =====================
-   CURSOR LIGHT
-   ===================== */
-.cursor-light{
-  position:fixed;
-  width:160px;height:160px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle,
-    rgba(245,211,106,.25),
-    transparent 70%);
-  filter:blur(35px);
-}
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 999;
+        }
 
-/* =====================
-   RANDOM FLOATING EMOJIS
-   ===================== */
-.emoji{
-  position:fixed;
-  font-size:1.6rem;
-  opacity:.35;
-  pointer-events:none;
-  filter:drop-shadow(0 0 10px rgba(56,189,248,.4));
-  z-index:-1;
-}
+        /* --- NAVIGATION --- */
+        nav {
+            height: var(--nav-height);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            background: rgba(2, 6, 23, 0.85);
+        }
 
-/* =====================
-   LAYOUT
-   ===================== */
-.container{
-  max-width:1100px;
-  margin:140px auto 160px;
-  padding:0 30px;
-}
+        .logo {
+            font-family: 'Outfit', sans-serif; /* Keep logo font English/Distinct */
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: -1.5px;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.hidden{display:none}
+        .logo span { color: var(--accent); }
 
-/* =====================
-   TITLES (GOLD)
-   ===================== */
-h1{
-  font-size:3rem;
-  background:linear-gradient(90deg,var(--gold1),var(--gold2));
-  -webkit-background-clip:text;
-  color:transparent;
-  margin-bottom:40px;
-  text-shadow:0 0 25px rgba(245,211,106,.25);
-}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
 
-/* =====================
-   BLOG LIST
-   ===================== */
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:28px;
-}
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1rem; /* Slightly larger for Bengali readability */
+            font-weight: 500;
+            transition: 0.3s;
+        }
 
-.card{
-  background:var(--glass);
-  border-radius:22px;
-  padding:22px;
-  backdrop-filter:blur(20px);
-  cursor:pointer;
-  transition:.4s cubic-bezier(.25,.46,.45,.94);
-  position:relative;
-}
+        .nav-links a:hover {
+            color: var(--accent);
+        }
 
-.card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:22px;
-  opacity:0;
-  transition:.4s;
-  box-shadow:0 0 45px rgba(245,211,106,.35);
-}
+        .btn-ui {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 10px 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.card:hover{
-  transform:translateY(-10px) scale(1.02);
-}
-.card:hover::after{opacity:1}
+        .btn-ui:hover {
+            background: var(--glass-border);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
 
-.card img{
-  width:100%;
-  border-radius:16px;
-  margin-bottom:14px;
-  transition:.4s ease;
-}
-.card:hover img{
-  transform:scale(1.05);
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
-}
+        /* --- HERO --- */
+        .container {
+            max-width: 1200px;
+            margin: calc(var(--nav-height) + 40px) auto 100px;
+            padding: 0 24px;
+        }
 
-.tags span{
-  font-size:.75rem;
-  opacity:.8;
-  margin-right:6px;
-  transition:.3s;
-}
-.tags span:hover{
-  color:var(--gold1);
-  text-shadow:0 0 12px rgba(245,211,106,.6);
-}
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
 
-/* =====================
-   POST VIEW
-   ===================== */
-.post{
-  max-width:860px;
-  margin:auto;
-  padding:60px;
-  background:var(--glass);
-  backdrop-filter:blur(26px);
-  border-radius:28px;
-  box-shadow:0 40px 120px rgba(0,0,0,.7);
-}
+        h1 {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.post img{
-  width:100%;
-  border-radius:18px;
-  margin:30px 0;
-  transition:.4s;
-}
-.post img:hover{
-  transform:scale(1.03);
-  box-shadow:0 25px 70px rgba(0,0,0,.7);
-}
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
 
-.post h1{
-  font-size:2.6rem;
-}
+        .hero-illustration {
+            width: 100%;
+            max-width: 450px;
+            filter: drop-shadow(0 0 40px var(--accent-glow));
+            animation: float 6s ease-in-out infinite;
+        }
 
-.post h2{
-  margin:30px 0 16px;
-  color:#9ddcff;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
 
-.post p{
-  line-height:1.9;
-  margin-bottom:18px;
-}
+        /* --- BLOG GRID --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+        }
 
-/* =====================
-   REVEAL
-   ===================== */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:.8s ease;
-}
-.reveal.visible{opacity:1;transform:none}
-</style>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#020617">
+        .post-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:hover {
+            transform: translateY(-12px) scale(1.01);
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.9);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6);
+        }
+
+        .card-image-wrap {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: var(--bg-surface);
+        }
+
+        .card-image-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.85;
+        }
+
+        .post-card:hover .card-image-wrap img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .card-content { padding: 28px; flex-grow: 1; display: flex; flex-direction: column; }
+
+        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-weight: 700;
+        }
+
+        .post-card h3 {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            letter-spacing: 0;
+            font-weight: 600;
+        }
+
+        .post-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 24px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* --- POST VIEW --- */
+        .hidden { display: none !important; }
+
+        #postView {
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .post-content-body {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text-main);
+        }
+
+        .post-content-body h2 {
+            font-family: 'Hind Siliguri', sans-serif;
+            margin: 40px 0 20px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .featured-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 35px;
+            margin-bottom: 60px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 150px;
+            padding: 80px 0;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.03));
+        }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 950px) {
+            .hero-section { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 30px; }
+            .hero-illustration { margin: 0 auto; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
-
 <body>
 
-<a href="index_bn.html" class="back-btn">← হোম</a>
-<a href="blog_bn.html" class="theme-toggle" style="text-decoration:none; display:flex; align-items:center; justify-content:center; width:auto; height:auto;">ENGLISH</a>
-<div class="cursor-light"></div>
+    <div class="noise-overlay"></div>
+    <div id="particle-container"></div>
+    <div class="ambient-glow"></div>
 
-<!-- EMOJIS (JS RANDOMIZES MOTION) -->
-<div class="emoji">⚡</div>
-<div class="emoji">🔋</div>
-<div class="emoji">🚗</div>
-<div class="emoji">🤖</div>
-<div class="emoji">🌐</div>
-<div class="emoji">📡</div>
-<div class="emoji">⚙️</div>
-<div class="emoji">🛰️</div>
+    <nav>
+        <a href="#" class="logo" onclick="closePost(event)">TRI<span>CHOKRO</span></a>
+        
+        <div class="nav-links">
+            <a href="#" onclick="closePost(event)">হোম</a>
+            <a href="#blogList">সর্বশেষ খবর</a>
+            <a href="https://trichokro.index.htm">মূল সাইট</a>
+            <a href="#">টিম</a>
+        </div>
 
-<div class="container">
+        <div style="display: flex; gap: 12px;">
+            <button class="btn-ui" onclick="toggleTheme()" title="থিম পরিবর্তন">🌓</button>
+            <a href="https://trichokro.index.htm" class="btn-ui" style="background:var(--accent); color:var(--bg-deep); border:none;">মেইন হাব</a>
+        </div>
+    </nav>
 
-  <!-- LIST -->
-  <div id="listView">
-    <h1 class="reveal">ব্লগ</h1>
-    <div class="blog-grid" id="blogList"></div>
-  </div>
+    <div class="container">
+        
+        <!-- BLOG LIST VIEW -->
+        <div id="listView">
+            <section class="hero-section">
+                <div class="hero-text reveal">
+                    <div class="tag" style="display:inline-block; margin-bottom: 15px;">ইঞ্জিনিয়ারিং ক্রনিকলস</div>
+                    <h1>ব্লুপ্রিন্টের <span style="color:var(--accent)">বাইরে</span>।</h1>
+                    <p>গ্লোবাল ইঞ্জিনিয়ারিংয়ের বিজয়, আরবান মোবিলিটির নতুন উদ্ভাবন এবং বুয়েটে আমাদের যাত্রার দলিল।</p>
+                    <div style="display:flex; gap: 15px;">
+                        <button class="btn-ui" style="background:var(--accent); color:var(--bg-deep); border:none;">সাম্প্রতিক জয়</button>
+                        <button class="btn-ui">আমাদের পার্টনাররা</button>
+                    </div>
+                </div>
+                <div class="hero-illustration reveal" style="transition-delay: 0.2s">
+                    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M100 350 Q250 100 400 350" stroke="url(#grad1)" stroke-width="4" fill="none" opacity="0.6"/>
+                        <rect x="150" y="200" width="200" height="150" rx="30" fill="url(#grad1)" opacity="0.15" stroke="var(--accent)" stroke-width="2"/>
+                        <circle cx="250" cy="275" r="40" fill="url(#grad1)" />
+                        <rect x="235" y="210" width="30" height="130" rx="15" fill="#fff" opacity="0.2" />
+                        <!-- Cartoon Win Icon -->
+                        <path d="M220 180 L250 150 L280 180" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="220" cy="260" r="6" fill="#fff" />
+                        <circle cx="280" cy="260" r="6" fill="#fff" />
+                    </svg>
+                </div>
+            </section>
 
-  <!-- POST -->
-  <div id="postView" class="hidden">
-    <div class="post reveal" id="postContent"></div>
-  </div>
+            <div class="blog-grid" id="blogList"></div>
+        </div>
 
-</div>
+        <!-- POST VIEW -->
+        <div id="postView" class="hidden">
+            <div id="postContent"></div>
+            <div style="margin-top: 80px; text-align: center;">
+                <button class="btn-ui" onclick="closePost(event)">← সব খবরে ফিরে যান</button>
+            </div>
+        </div>
 
-<script>
-/* =====================
-   THEME
-   ===================== */
-document.querySelector('.theme-toggle').onclick=()=>{
-  document.body.dataset.theme =
-    document.body.dataset.theme ? '' : 'light';
-};
-
-/* =====================
-   CURSOR
-   ===================== */
-const cursor=document.querySelector('.cursor-light');
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX+'px';
-  cursor.style.top=e.clientY+'px';
-  document.body.style.setProperty('--mx',e.clientX+'px');
-  document.body.style.setProperty('--my',e.clientY+'px');
-});
-
-/* =====================
-   RANDOM EMOJI MOTION
-   ===================== */
-document.querySelectorAll('.emoji').forEach(e=>{
-  const speed=10+Math.random()*10;
-  const drift=(Math.random()*120)-60;
-  const size=1.2+Math.random();
-  e.style.left=Math.random()*100+"%";
-  e.style.fontSize=size+"rem";
-  e.animate([
-    {transform:`translateY(120vh) translateX(0) rotate(0deg)`},
-    {transform:`translateY(-30vh) translateX(${drift}px) rotate(360deg)`}
-  ],{
-    duration:speed*1000,
-    iterations:Infinity,
-    delay:Math.random()*3000
-  });
-});
-
-/* =====================
-   BLOG DATA (EDIT HERE)
-   ===================== */
-const posts={
-  ev:{
-    title:"ইভি এবং শক্তির ভবিষ্যত",
-    image:"src/assets/blog/ev.jpg",
-    tags:["ইভি","শক্তি","প্রযুক্তি"],
-    content:`
-# ইভি এবং শক্তির ভবিষ্যত
-
-![EV](src/assets/blog/ev.jpg)
-
-বৈদ্যুতিক যানবাহন গতিশীলতাকে নতুনভাবে সংজ্ঞায়িত করছে।
-
-## কেন এটি গুরুত্বপূর্ণ
-শক্তি সিস্টেম, এআই এবং ডিজাইন একত্রিত হচ্ছে।
-`
-  },
-  ffvc:{
-    title:"ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার থেকে মার্কিন অনুদান পেল ত্রিচক্র",
-    image:"src/assets/logo_icon.png",
-    tags:["অনুদান","আন্তর্জাতিক","উদ্ভাবন"],
-    content:`
-# ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার থেকে মার্কিন অনুদান পেয়ে ত্রিচক্র "হাই ইম্প্যাক্ট" স্ট্যাটাস অর্জন করেছে
-
-![FFVC](src/assets/logo_icon.png)
-
-**১০ ফেব্রুয়ারি, ২০২৬**
-
-বাংলাদেশি প্রকৌশলের জন্য একটি উল্লেখযোগ্য মাইলফলক হিসেবে, প্রজেক্ট ট্রাম্বুলেন্স উত্তর ক্যারোলিনার প্রধান বিজ্ঞান ইনকিউবেটর, ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার (FFVC) থেকে $৩,৫০০ অনুদান নিশ্চিত করেছে। এই অর্থায়ন ত্রিচক্রকে বিশ্বমঞ্চে একটি "হাই সায়েন্স, হাই ইম্প্যাক্ট" স্টার্টআপ হিসেবে স্বীকৃতি দেয় এবং আগামী বছরের জন্য আমাদের গবেষণা ও উন্নয়নকে ত্বরান্বিত করবে।
-`
-  },
-  muspana:{
-    title:"মুসপানার সাথে ত্রিচক্রের কৌশলগত অংশীদারিত্ব",
-    image:"src/assets/logo_icon.png",
-    tags:["অংশীদারিত্ব","সোলার","উৎপাদন"],
-    content:`
-# গণউৎপাদন ত্বরান্বিত করতে এনার্জি জায়ান্ট মুসপানার সাথে ত্রিচক্রের অংশীদারিত্ব
-
-![Muspana](src/assets/logo_icon.png)
-
-**২০ ফেব্রুয়ারি, ২০২৬**
-
-প্রোটোটাইপ এবং বাস্তবের মধ্যে ব্যবধান ঘুচিয়ে, ত্রিচক্র সোলার এবং ইলেকট্রিক শিল্পের অন্যতম শীর্ষস্থানীয় প্রতিষ্ঠান মুসপানা থেকে স্পনসরশিপ নিশ্চিত করেছে। এই সহযোগিতার মূল লক্ষ্য হলো মুসপানার শিল্প দক্ষতাকে কাজে লাগিয়ে আমাদের সোলার ইন্টিগ্রেশন অপ্টিমাইজ করা এবং ২০২৬ সালের জন্য উৎপাদন ক্ষমতা বৃদ্ধি করা।
-
-[Muspana ওয়েবসাইট ভিজিট করুন](https://muspana.com/)
-`
-  }
-};
-
-/* =====================
-   MARKDOWN
-   ===================== */
-function md(t){
-  return t
-    .replace(/^# (.*$)/gim,'<h1>$1</h1>')
-    .replace(/^## (.*$)/gim,'<h2>$1</h2>')
-    .replace(/\*\*(.*)\*\*/gim,'<strong>$1</strong>')
-    .replace(/!\[(.*?)\]\((.*?)\)/g,'<img src="$2">')
-    .replace(/\n\n/g,'</p><p>');
-}
-
-/* =====================
-   RENDER LIST
-   ===================== */
-const list=document.getElementById('blogList');
-Object.keys(posts).forEach(k=>{
-  const p=posts[k];
-  list.innerHTML+=`
-    <div class="card reveal" onclick="openPost('${k}')">
-      <img src="${p.image}">
-      <h3>${p.title}</h3>
-      <div class="tags">${p.tags.map(t=>`<span>#${t}</span>`).join("")}</div>
     </div>
-  `;
-});
 
-/* =====================
-   OPEN POST
-   ===================== */
-function openPost(k){
-  history.pushState({k},'',`blog_bn.html?post=${k}`);
-  document.getElementById('listView').classList.add('hidden');
-  document.getElementById('postView').classList.remove('hidden');
-  document.getElementById('postContent').innerHTML='<p>'+md(posts[k].content)+'</p>';
-}
+    <footer>
+        <div class="tag" style="margin-bottom: 20px;">অ্যাফিলিয়েশন</div>
+        <h2 style="font-family:'Outfit'; font-size: 1.8rem; margin-bottom: 20px;">CSTPD-এর গর্বিত সদস্য</h2>
+        <p style="color:var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-left:auto; margin-right:auto;">সেন্টার ফর সাস্টেইনেবল টেকনোলজিস অ্যান্ড প্রফেশনাল ডেভেলপমেন্ট-এ গর্বের সাথে অবদান রাখছি।</p>
+        <p>&copy; ২০২৬ ত্রিচক্র ইঞ্জিনিয়ারিং। হাই সায়েন্স • হাই ইমপ্যাক্ট</p>
+    </footer>
 
-/* ROUTER */
-const q=new URLSearchParams(location.search).get('post');
-if(q&&posts[q]) openPost(q);
+    <script>
+        const posts = {
+            muspana: {
+                title: "এনার্জি জায়ান্ট মুসপানার সাথে ত্রিচক্রের পার্টনারশিপ",
+                excerpt: "প্রোটোটাইপ এবং বাস্তবতার ব্যবধান ঘুচিয়ে, ত্রিচক্র এখন মাস প্রোডাকশন ত্বরান্বিত করতে মুসপানার স্পন্সরশিপ নিশ্চিত করেছে।",
+                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=1200",
+                tags: ["পার্টনারশিপ", "সোলার", "ম্যানুফ্যাকচারিং"],
+                date: "১৮ ফেব্রুয়ারি, ২০২৬",
+                content: `
+                    <h2>২০২৬ সালের জন্য স্কেলিং আপ</h2>
+                    <p>প্রোটোটাইপ এবং বাস্তবতার ব্যবধান ঘুচিয়ে, <strong>ত্রিচক্র</strong> আনুষ্ঠানিকভাবে <strong>মুসপানা</strong>-র স্পন্সরশিপ নিশ্চিত করেছে, যারা সোলার এবং ইলেকট্রিক ইন্ডাস্ট্রির এক অনন্য নাম।</p>
+                    <p>এই কৌশলগত সহযোগিতার মূল লক্ষ্য হলো মুসপানার গভীর ইন্ডাস্ট্রিয়াল অভিজ্ঞতা কাজে লাগিয়ে আমাদের সোলার ইন্টিগ্রেশন সিস্টেমগুলো অপ্টিমাইজ করা। তাদের ম্যানুফ্যাকচারিং পাইপলাইন ব্যবহারের মাধ্যমে, আমরা ২০২৬ সালে মাস প্রোডাকশনের টাইমলাইন উল্লেখযোগ্যভাবে এগিয়ে নিতে পারবো।</p>
+                    <p>একসাথে, আমরা ল্যাব-বেঞ্চ প্রোটোটাইপ থেকে রাস্তার উপযোগী সলিউশনের দিকে এগিয়ে যাচ্ছি।</p>
+                `
+            },
+            sofe: {
+                title: "বুয়েট থেকে ত্রিচক্রের SOfE ফাইনাল ২০২৫ জয়",
+                excerpt: "এ.এ.এম. রওনক শাহরিয়ার রুহান চ্যাম্পিয়নশিপ টাইটেল জিতে নিয়েছেন এবং SOfE সাউথ এশিয়ান রিজিওন ২০২৫-এ বাংলাদেশের প্রতিনিধিত্ব করবেন।",
+                image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=1200",
+                tags: ["চ্যাম্পিয়ন", "SOfE", "বুয়েট"],
+                date: "৮ নভেম্বর, ২০২৫",
+                content: `
+                    <p>IMechE বাংলাদেশ আয়োজিত <strong>স্পিক আউট ফর ইঞ্জিনিয়ারিং (SOfE) বাংলাদেশ ফাইনাল ২০২৫</strong>-এ বুয়েটের শিক্ষার্থীদের অসামান্য ইঞ্জিনিয়ারিং প্রতিভা প্রদর্শিত হয়েছে।</p>
+                    <p>এ.এ.এম. রওনক শাহরিয়ার রুহান চ্যাম্পিয়নশিপ টাইটেল জিতে নিয়েছেন এবং <strong>ত্রিচক্র</strong>-এর পক্ষে SOfE সাউথ এশিয়ান রিজিওন (SAR) ২০২৫-এ বাংলাদেশের প্রতিনিধিত্ব করবেন।</p>
+                    <h2>শ্রেষ্ঠত্বের ঐতিহ্য</h2>
+                    <p>এই অসাধারণ অর্জন অসামান্য ইঞ্জিনিয়ারিং কমিউনিকেটর তৈরিতে বুয়েটের ধারাবাহিক ঐতিহ্যেরই প্রতিফলন এবং বাংলাদেশে প্রযুক্তিগত উৎকর্ষের শীর্ষে প্রতিষ্ঠানটির অবস্থানকে আরও সুদৃঢ় করে।</p>
+                    <p>রওনকের প্রেজেন্টেশনে গভীর টেকনিক্যাল বিশ্লেষণের সাথে ছিল চমৎকার কমিউনিকেশন দক্ষতা—যা আধুনিক ইঞ্জিনিয়ারের জন্য অপরিহার্য, বিশেষ করে যখন আমরা ত্রিচক্রের ইমপ্যাক্ট বাড়াতে কাজ করছি।</p>
+                `
+            },
+            uihp: {
+                title: "UIHP-তে বিজয়: ৮০,০০০ টাকার গ্রান্ট নিশ্চিত",
+                excerpt: "ত্রিচক্র তাদের বিজয়ের ধারা অব্যাহত রেখেছে এবং ইলেকট্রিক ভেহিকেল আর-এন্ড-ডি এর জন্য আরও একটি বড় ফান্ডিং অ্যাওয়ার্ড জিতেছে।",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+                tags: ["বিজয়", "গ্রান্ট", "UIHP"],
+                date: "১০ জানুয়ারি, ২০২৬",
+                content: `
+                    <h2>প্রোটোটাইপের শক্তিবৃদ্ধি</h2>
+                    <p>আমরা অত্যন্ত আনন্দের সাথে জানাচ্ছি যে <strong>ত্রিচক্র</strong> আবারও একটি গুরুত্বপূর্ণ মাইলফলক স্পর্শ করেছে—UIHP প্রতিযোগিতায় ৮০,০০০ টাকা জিতেছে।</p>
+                    <p>এই গ্রান্ট সরাসরি আমাদের সাস্টেইনেবল আরবান মোবিলিটি গবেষণায় কাজে লাগানো হবে। বিশেষ করে, আমরা আমাদের ব্যাটারি প্যাকের এনার্জি ডেনসিটি বাড়ানো এবং আমাদের ৩-চাকার প্ল্যাটফর্মগুলোর জন্য আরও ভালো স্ট্রাকচারাল সেফটি ইমপ্লিমেন্ট করার দিকে নজর দিচ্ছি।</p>
+                    <p>প্রতিটি বিজয় আমাদের একটি পরিচ্ছন্ন এবং আরও দক্ষ বাংলাদেশের কাছাকাছি নিয়ে যাচ্ছে।</p>
+                `
+            },
+            cstpd: {
+                title: "অফিসিয়াল মেম্বারশিপ: CSTPD ইন্ডাকশন",
+                excerpt: "ত্রিচক্র এখন সেন্টার ফর সাস্টেইনেবল টেকনোলজিস অ্যান্ড প্রফেশনাল ডেভেলপমেন্ট-এর সদস্য।",
+                image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
+                tags: ["সদস্য", "সাস্টেইনেবিলিটি", "CSTPD"],
+                date: "১৫ ডিসেম্বর, ২০২৫",
+                content: `
+                    <h2>প্রফেশনাল ডেভেলপমেন্ট</h2>
+                    <p><strong>সেন্টার ফর সাস্টেইনেবল টেকনোলজিস অ্যান্ড প্রফেশনাল ডেভেলপমেন্ট (CSTPD)</strong>-এ যোগদান আমাদের পেশাগত যাত্রায় একটি নতুন অধ্যায়।</p>
+                    <p>সদস্য হিসেবে, ত্রিচক্র পলিসি রিসার্চ এবং সাস্টেইনেবল ইনফ্রাস্ট্রাকচার ফ্রেমওয়ার্ক নিয়ে সহযোগিতা করবে। এই পার্টনারশিপ নিশ্চিত করে যে আমাদের ইঞ্জিনিয়ারিং সলিউশনগুলো সর্বোচ্চ প্রফেশনাল স্ট্যান্ডার্ড এবং দীর্ঘমেয়াদী পরিবেশগত লক্ষ্যের সাথে সামঞ্জস্যপূর্ণ।</p>
+                `
+            },
+            ffvc: {
+                title: "FFVC 'হাই ইমপ্যাক্ট' স্ট্যাটাস অর্জন",
+                excerpt: "ত্রিচক্র নর্থ ক্যারোলিনার প্রিমিয়ার ইনকিউবেটর, ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার থেকে স্ট্র্যাটেজিক ফান্ডিং পেয়েছে।",
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
+                tags: ["গ্রান্ট", "গ্লোবাল"],
+                date: "১০ ফেব্রুয়ারি, ২০২৬",
+                content: `<h2>ইঞ্জিনিয়ারিং অ্যাট স্কেল</h2><p><strong>ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার (FFVC)</strong> থেকে ৩,৫০০ ডলারের গ্রান্ট নিশ্চিত করা আমাদের "হাই সায়েন্স" অ্যাপ্রোচের একটি স্বীকৃতি। এই ফান্ডিং প্রোডাকশন-রেডি পেলোডের জন্য আমাদের নিজস্ব BMS অপ্টিমাইজেশনে সহায়তা করবে।</p>`
+            }
+        };
 
-/* =====================
-   REVEAL
-   ===================== */
-const obs=new IntersectionObserver(es=>{
-  es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible'));
-},{threshold:.15});
-document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
-</script>
+        // --- PARTICLE SYSTEM ---
+        const emojis = ['⚡', '🤖', '⚙️', '🔋', '🏆', '📈', '🚀'];
+        const container = document.getElementById('particle-container');
+        
+        function createParticle() {
+            const p = document.createElement('div');
+            p.className = 'emoji-particle';
+            p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = '110vh';
+            container.appendChild(p);
 
+            const duration = 18000 + Math.random() * 20000;
+            p.animate([
+                { transform: `translateY(0) rotate(0deg) scale(0.8)`, opacity: 0 },
+                { transform: `translateY(-60vh) rotate(180deg) scale(1.1)`, opacity: 0.12 },
+                { transform: `translateY(-120vh) rotate(360deg) scale(1)`, opacity: 0 }
+            ], { duration: duration, easing: 'linear' });
+
+            setTimeout(() => p.remove(), duration);
+        }
+        setInterval(createParticle, 4000);
+
+        // --- CORE UI LOGIC ---
+        function toggleTheme() {
+            document.body.dataset.theme = document.body.dataset.theme === 'light' ? '' : 'light';
+        }
+
+        document.addEventListener('mousemove', e => {
+            document.body.style.setProperty('--mx', e.clientX + 'px');
+            document.body.style.setProperty('--my', e.clientY + 'px');
+        });
+
+        const listContainer = document.getElementById('blogList');
+        // Sort posts or just render in order - here we ensure SOfE is prominent
+        Object.keys(posts).forEach((k, i) => {
+            const p = posts[k];
+            const card = document.createElement('div');
+            card.className = 'post-card reveal';
+            card.style.transitionDelay = `${i * 0.1}s`;
+            card.onclick = () => openPost(k);
+            card.innerHTML = `
+                <div class="card-image-wrap"><img src="${p.image}"></div>
+                <div class="card-content">
+                    <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                    <h3>${p.title}</h3>
+                    <p>${p.excerpt}</p>
+                    <div class="card-footer"><span>${p.date}</span> <span style="color:var(--accent)">বিস্তারিত পড়ুন →</span></div>
+                </div>
+            `;
+            listContainer.appendChild(card);
+        });
+
+        function openPost(key) {
+            const post = posts[key];
+            const listView = document.getElementById('listView');
+            const postView = document.getElementById('postView');
+            listView.style.opacity = '0';
+            setTimeout(() => {
+                listView.classList.add('hidden');
+                postView.classList.remove('hidden');
+                window.scrollTo(0, 0);
+                document.getElementById('postContent').innerHTML = `
+                    <div style="text-align:center; margin-bottom:50px;">
+                        <span class="tag">${post.tags[0]}</span>
+                        <h1 style="margin-top:20px;">${post.title}</h1>
+                        <p style="color:var(--text-muted)">প্রজেক্ট মাইলফলক • প্রকাশিত ${post.date}</p>
+                    </div>
+                    <img src="${post.image}" class="featured-image">
+                    <div class="post-content-body">${post.content}</div>
+                `;
+            }, 400);
+            history.pushState({post: key}, '', `?post=${key}`);
+        }
+
+        function closePost(e) {
+            if(e) e.preventDefault();
+            const lv = document.getElementById('listView');
+            const pv = document.getElementById('postView');
+            pv.style.opacity = '0';
+            setTimeout(() => {
+                pv.classList.add('hidden'); pv.style.opacity = '1';
+                lv.classList.remove('hidden'); lv.style.opacity = '1';
+                window.scrollTo(0,0);
+            }, 300);
+            history.pushState({}, '', window.location.pathname);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
