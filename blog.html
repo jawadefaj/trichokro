@@ -1,403 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Blog | Trichokro</title>
-    <link rel="icon" href="src/assets/logo_icon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | Trichokro Engineering</title>
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #020617;
+            --bg-surface: #0a0f29;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --secondary: #6366f1;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --nav-height: 80px;
+        }
 
-<style>
-/* =====================
-   THEME
-   ===================== */
-:root{
-  --bg:#050b1a;
-  --bg2:#0a1633;
-  --text:#eaf2ff;
-  --glass:rgba(255,255,255,.08);
-  --accent:#38bdf8;
-  --gold1:#f5d36a;
-  --gold2:#c9a227;
-}
+        [data-theme="light"] {
+            --bg-deep: #f8fafc;
+            --bg-surface: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
 
-[data-theme="light"]{
-  --bg:#f4f7ff;
-  --bg2:#e6ecff;
-  --text:#0b1222;
-  --glass:rgba(0,0,0,.06);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
 
-/* =====================
-   GLOBAL
-   ===================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui,'Segoe UI',sans-serif;
-}
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at var(--mx,50%) var(--my,50%),
-      rgba(56,189,248,.15), transparent 40%),
-    linear-gradient(135deg,var(--bg),var(--bg2),var(--bg));
-  color:var(--text);
-  overflow-x:hidden;
-}
+        /* --- BACKGROUND PARTICLES --- */
+        .emoji-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+            font-size: 2rem;
+            filter: blur(4px);
+            opacity: 0.12;
+            user-select: none;
+        }
 
-/* =====================
-   UI
-   ===================== */
-.back-btn,.theme-toggle{
-  position:fixed;
-  top:26px;
-  padding:12px 18px;
-  border-radius:999px;
-  backdrop-filter:blur(12px);
-  background:var(--glass);
-  color:inherit;
-  border:none;
-  cursor:pointer;
-  z-index:10;
-  transition:.3s ease;
-}
-.back-btn{left:26px;text-decoration:none}
-.theme-toggle{right:26px}
-.back-btn:hover,.theme-toggle:hover{
-  box-shadow:0 0 25px rgba(245,211,106,.45);
-}
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--accent-glow) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -2;
+        }
 
-/* =====================
-   CURSOR LIGHT
-   ===================== */
-.cursor-light{
-  position:fixed;
-  width:160px;height:160px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle,
-    rgba(245,211,106,.25),
-    transparent 70%);
-  filter:blur(35px);
-}
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 999;
+        }
 
-/* =====================
-   RANDOM FLOATING EMOJIS
-   ===================== */
-.emoji{
-  position:fixed;
-  font-size:1.6rem;
-  opacity:.35;
-  pointer-events:none;
-  filter:drop-shadow(0 0 10px rgba(56,189,248,.4));
-  z-index:-1;
-}
+        /* --- NAVIGATION --- */
+        nav {
+            height: var(--nav-height);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            background: rgba(2, 6, 23, 0.85);
+        }
 
-/* =====================
-   LAYOUT
-   ===================== */
-.container{
-  max-width:1100px;
-  margin:140px auto 160px;
-  padding:0 30px;
-}
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: -1.5px;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.hidden{display:none}
+        .logo span { color: var(--accent); }
 
-/* =====================
-   TITLES (GOLD)
-   ===================== */
-h1{
-  font-size:3rem;
-  background:linear-gradient(90deg,var(--gold1),var(--gold2));
-  -webkit-background-clip:text;
-  color:transparent;
-  margin-bottom:40px;
-  text-shadow:0 0 25px rgba(245,211,106,.25);
-}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
 
-/* =====================
-   BLOG LIST
-   ===================== */
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:28px;
-}
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
 
-.card{
-  background:var(--glass);
-  border-radius:22px;
-  padding:22px;
-  backdrop-filter:blur(20px);
-  cursor:pointer;
-  transition:.4s cubic-bezier(.25,.46,.45,.94);
-  position:relative;
-}
+        .nav-links a:hover {
+            color: var(--accent);
+        }
 
-.card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:22px;
-  opacity:0;
-  transition:.4s;
-  box-shadow:0 0 45px rgba(245,211,106,.35);
-}
+        .btn-ui {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 10px 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.card:hover{
-  transform:translateY(-10px) scale(1.02);
-}
-.card:hover::after{opacity:1}
+        .btn-ui:hover {
+            background: var(--glass-border);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
 
-.card img{
-  width:100%;
-  border-radius:16px;
-  margin-bottom:14px;
-  transition:.4s ease;
-}
-.card:hover img{
-  transform:scale(1.05);
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
-}
+        /* --- HERO --- */
+        .container {
+            max-width: 1200px;
+            margin: calc(var(--nav-height) + 40px) auto 100px;
+            padding: 0 24px;
+        }
 
-.tags span{
-  font-size:.75rem;
-  opacity:.8;
-  margin-right:6px;
-  transition:.3s;
-}
-.tags span:hover{
-  color:var(--gold1);
-  text-shadow:0 0 12px rgba(245,211,106,.6);
-}
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
 
-/* =====================
-   POST VIEW
-   ===================== */
-.post{
-  max-width:860px;
-  margin:auto;
-  padding:60px;
-  background:var(--glass);
-  backdrop-filter:blur(26px);
-  border-radius:28px;
-  box-shadow:0 40px 120px rgba(0,0,0,.7);
-}
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.post img{
-  width:100%;
-  border-radius:18px;
-  margin:30px 0;
-  transition:.4s;
-}
-.post img:hover{
-  transform:scale(1.03);
-  box-shadow:0 25px 70px rgba(0,0,0,.7);
-}
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
 
-.post h1{
-  font-size:2.6rem;
-}
+        .hero-illustration {
+            width: 100%;
+            max-width: 450px;
+            filter: drop-shadow(0 0 40px var(--accent-glow));
+            animation: float 6s ease-in-out infinite;
+        }
 
-.post h2{
-  margin:30px 0 16px;
-  color:#9ddcff;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
 
-.post p{
-  line-height:1.9;
-  margin-bottom:18px;
-}
+        /* --- BLOG GRID --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+        }
 
-/* =====================
-   REVEAL
-   ===================== */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:.8s ease;
-}
-.reveal.visible{opacity:1;transform:none}
-</style>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#020617">
+        .post-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:hover {
+            transform: translateY(-12px) scale(1.01);
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.9);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6);
+        }
+
+        .card-image-wrap {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: var(--bg-surface);
+        }
+
+        .card-image-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.85;
+        }
+
+        .post-card:hover .card-image-wrap img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .card-content { padding: 28px; flex-grow: 1; display: flex; flex-direction: column; }
+
+        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-weight: 700;
+        }
+
+        .post-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .post-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* --- POST VIEW --- */
+        .hidden { display: none !important; }
+
+        #postView {
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .post-content-body {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text-main);
+        }
+
+        .post-content-body h2 {
+            font-family: 'Outfit', sans-serif;
+            margin: 40px 0 20px;
+            color: var(--accent);
+        }
+
+        .featured-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 35px;
+            margin-bottom: 60px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 150px;
+            padding: 80px 0;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.03));
+        }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 950px) {
+            .hero-section { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 30px; }
+            .hero-illustration { margin: 0 auto; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
-
 <body>
 
-<a href="index.html" class="back-btn">← Home</a>
+    <div class="noise-overlay"></div>
+    <div id="particle-container"></div>
+    <div class="ambient-glow"></div>
 
-<button class="theme-toggle">🌙</button>
-<div class="cursor-light"></div>
+    <nav>
+        <a href="#" class="logo" onclick="closePost(event)">TRI<span>CHOKRO</span></a>
+        
+        <div class="nav-links">
+            <a href="#" onclick="closePost(event)">Home</a>
+            <a href="#blogList">Latest News</a>
+            <a href="https://trichokro.index.htm">Main Site</a>
+            <a href="#">Team</a>
+        </div>
 
-<!-- EMOJIS (JS RANDOMIZES MOTION) -->
-<div class="emoji">⚡</div>
-<div class="emoji">🔋</div>
-<div class="emoji">🚗</div>
-<div class="emoji">🤖</div>
-<div class="emoji">🌐</div>
-<div class="emoji">📡</div>
-<div class="emoji">⚙️</div>
-<div class="emoji">🛰️</div>
+        <div style="display: flex; gap: 12px;">
+            <button class="btn-ui" onclick="toggleTheme()" title="Toggle Theme">🌓</button>
+            <a href="https://trichokro.index.htm" class="btn-ui" style="background:var(--accent); color:var(--bg-deep); border:none;">Visit Main Hub</a>
+        </div>
+    </nav>
 
-<div class="container">
+    <div class="container">
+        
+        <!-- BLOG LIST VIEW -->
+        <div id="listView">
+            <section class="hero-section">
+                <div class="hero-text reveal">
+                    <div class="tag" style="display:inline-block; margin-bottom: 15px;">Engineering Chronicles</div>
+                    <h1>Beyond the <span style="color:var(--accent)">Blueprint</span>.</h1>
+                    <p>Documenting victories in global engineering, breakthroughs in urban mobility, and our journey at BUET.</p>
+                    <div style="display:flex; gap: 15px;">
+                        <button class="btn-ui" style="background:var(--accent); color:var(--bg-deep); border:none;">Recent Wins</button>
+                        <button class="btn-ui">Our Partners</button>
+                    </div>
+                </div>
+                <div class="hero-illustration reveal" style="transition-delay: 0.2s">
+                    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M100 350 Q250 100 400 350" stroke="url(#grad1)" stroke-width="4" fill="none" opacity="0.6"/>
+                        <rect x="150" y="200" width="200" height="150" rx="30" fill="url(#grad1)" opacity="0.15" stroke="var(--accent)" stroke-width="2"/>
+                        <circle cx="250" cy="275" r="40" fill="url(#grad1)" />
+                        <rect x="235" y="210" width="30" height="130" rx="15" fill="#fff" opacity="0.2" />
+                        <!-- Cartoon Win Icon -->
+                        <path d="M220 180 L250 150 L280 180" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="220" cy="260" r="6" fill="#fff" />
+                        <circle cx="280" cy="260" r="6" fill="#fff" />
+                    </svg>
+                </div>
+            </section>
 
-  <!-- LIST -->
-  <div id="listView">
-    <h1 class="reveal">Blog</h1>
-    <div class="blog-grid" id="blogList"></div>
-  </div>
+            <div class="blog-grid" id="blogList"></div>
+        </div>
 
-  <!-- POST -->
-  <div id="postView" class="hidden">
-    <div class="post reveal" id="postContent"></div>
-  </div>
+        <!-- POST VIEW -->
+        <div id="postView" class="hidden">
+            <div id="postContent"></div>
+            <div style="margin-top: 80px; text-align: center;">
+                <button class="btn-ui" onclick="closePost(event)">← Back to All News</button>
+            </div>
+        </div>
 
-</div>
-
-<script>
-/* =====================
-   THEME
-   ===================== */
-document.querySelector('.theme-toggle').onclick=()=>{
-  document.body.dataset.theme =
-    document.body.dataset.theme ? '' : 'light';
-};
-
-/* =====================
-   CURSOR
-   ===================== */
-const cursor=document.querySelector('.cursor-light');
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX+'px';
-  cursor.style.top=e.clientY+'px';
-  document.body.style.setProperty('--mx',e.clientX+'px');
-  document.body.style.setProperty('--my',e.clientY+'px');
-});
-
-/* =====================
-   RANDOM EMOJI MOTION
-   ===================== */
-document.querySelectorAll('.emoji').forEach(e=>{
-  const speed=10+Math.random()*10;
-  const drift=(Math.random()*120)-60;
-  const size=1.2+Math.random();
-  e.style.left=Math.random()*100+"%";
-  e.style.fontSize=size+"rem";
-  e.animate([
-    {transform:`translateY(120vh) translateX(0) rotate(0deg)`},
-    {transform:`translateY(-30vh) translateX(${drift}px) rotate(360deg)`}
-  ],{
-    duration:speed*1000,
-    iterations:Infinity,
-    delay:Math.random()*3000
-  });
-});
-
-/* =====================
-   BLOG DATA (EDIT HERE)
-   ===================== */
-const posts={
-  ev:{
-    title:"Future of EV & Energy",
-    image:"src/assets/blog/ev.jpg",
-    tags:["EV","Energy","Tech"],
-    content:`
-# Future of EV & Energy
-
-![EV](src/assets/blog/ev.jpg)
-
-Electric vehicles are redefining mobility.
-
-## Why it matters
-Energy systems, AI, and design are converging.
-`
-  },
-  ffvc:{
-    title:"TriChokro Achieves \"High Impact\" Status",
-    image:"src/assets/logo_icon.png",
-    tags:["Global","Grant","Innovation"],
-    content:`
-# TriChokro Achieves "High Impact" Status with US Grant
-
-![FFVC](src/assets/logo_icon.png)
-
-**February 10, 2026**
-
-In a significant milestone for Bangladeshi engineering, Project Trambulance has secured a $3,500 grant from North Carolina’s premier science incubator, First Flight Venture Center (FFVC). This funding validates TriChokro as a "High Science, High Impact" startup on the global stage, fueling our R&D for the year ahead.
-`
-  },
-  muspana:{
-    title:"Strategic Partnership with Muspana",
-    image:"src/assets/logo_icon.png",
-    tags:["Partnership","Solar","Growth"],
-    content:`
-# TriChokro Partners with Energy Giant Muspana
-
-![Muspana](src/assets/logo_icon.png)
-
-**February 20, 2026**
-
-Bridging the gap between prototype and reality, TriChokro has secured sponsorship from Muspana, a leader in the Solar and Electric industry. This collaboration focuses on leveraging Muspana's industrial expertise to optimize our solar integration and scale up manufacturing capabilities for 2026.
-
-[Visit Muspana Website](https://muspana.com/)
-`
-  }
-};
-
-/* =====================
-   MARKDOWN
-   ===================== */
-function md(t){
-  return t
-    .replace(/^# (.*$)/gim,'<h1>$1</h1>')
-    .replace(/^## (.*$)/gim,'<h2>$1</h2>')
-    .replace(/\*\*(.*)\*\*/gim,'<strong>$1</strong>')
-    .replace(/!\[(.*?)\]\((.*?)\)/g,'<img src="$2">')
-    .replace(/\n\n/g,'</p><p>');
-}
-
-/* =====================
-   RENDER LIST
-   ===================== */
-const list=document.getElementById('blogList');
-Object.keys(posts).forEach(k=>{
-  const p=posts[k];
-  list.innerHTML+=`
-    <div class="card reveal" onclick="openPost('${k}')">
-      <img src="${p.image}">
-      <h3>${p.title}</h3>
-      <div class="tags">${p.tags.map(t=>`<span>#${t}</span>`).join("")}</div>
     </div>
-  `;
-});
 
-/* =====================
-   OPEN POST
-   ===================== */
-function openPost(k){
-  history.pushState({k},'',`blog.html?post=${k}`);
-  document.getElementById('listView').classList.add('hidden');
-  document.getElementById('postView').classList.remove('hidden');
-  document.getElementById('postContent').innerHTML='<p>'+md(posts[k].content)+'</p>';
-}
+    <footer>
+        <div class="tag" style="margin-bottom: 20px;">Affiliations</div>
+        <h2 style="font-family:'Outfit'; font-size: 1.8rem; margin-bottom: 20px;">Member of CSTPD</h2>
+        <p style="color:var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-left:auto; margin-right:auto;">Proudly contributing to the Center for Sustainable Technologies and Professional Development.</p>
+        <p>&copy; 2026 TriChokro Engineering. High Science • High Impact</p>
+    </footer>
 
-/* ROUTER */
-const q=new URLSearchParams(location.search).get('post');
-if(q&&posts[q]) openPost(q);
+    <script>
+        const posts = {
+            muspana: {
+                title: "TriChokro Partners with Energy Giant Muspana",
+                excerpt: "Bridging the gap between prototype and reality, TriChokro has secured sponsorship from Muspana to accelerate mass production.",
+                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=1200",
+                tags: ["Partnership", "Solar", "Manufacturing"],
+                date: "Feb 18, 2026",
+                content: `
+                    <h2>Scaling Up for 2026</h2>
+                    <p>Bridging the gap between prototype and reality, <strong>TriChokro</strong> has officially secured sponsorship from <strong>Muspana</strong>, a distinguished leader in the Solar and Electric industry.</p>
+                    <p>This strategic collaboration focuses on leveraging Muspana's deep industrial expertise to optimize our solar integration systems. By accessing their manufacturing pipelines, we aim to significantly accelerate our timeline for mass production in 2026.</p>
+                    <p>Together, we are moving from lab-bench prototypes to street-ready solutions.</p>
+                `
+            },
+            sofe: {
+                title: "TriChokro from BUET Wins SOfE Final 2025",
+                excerpt: "A.A.M. Rownak Shahriar Ruhan claims the championship title, representing Bangladesh at the SOfE South Asian Region 2025.",
+                image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=1200",
+                tags: ["Champion", "SOfE", "BUET"],
+                date: "Nov 8, 2025",
+                content: `
+                    <p>The <strong>Speak Out for Engineering (SOfE) Bangladesh Final 2025</strong>, organized by IMechE Bangladesh, showcased exceptional engineering talent as BUET students dominated the competition.</p>
+                    <p>A.A.M. Rownak Shahriar Ruhan claimed the championship title and will represent Bangladesh at the SOfE South Asian Region (SAR) 2025 on behalf of <strong>TriChokro</strong>.</p>
+                    <h2>A Legacy of Excellence</h2>
+                    <p>This impressive achievement underscores BUET's continuing legacy of producing outstanding engineering communicators and reinforces the institution's position at the forefront of technical excellence in Bangladesh.</p>
+                    <p>Rownak's presentation combined deep technical analysis with persuasive communication—essential skills for the modern engineer as we scale TriChokro's impact.</p>
+                `
+            },
+            uihp: {
+                title: "Victory at UIHP: 80,000 BDT Grant Secured",
+                excerpt: "TriChokro continues its winning streak with another major funding award to fuel our electric vehicle R&D.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+                tags: ["Victory", "Grant", "UIHP"],
+                date: "Jan 10, 2026",
+                content: `
+                    <h2>Fueling the Prototype</h2>
+                    <p>We are thrilled to announce that <strong>TriChokro</strong> has once again secured a significant milestone, winning 80,000 BDT at the UIHP competition.</p>
+                    <p>This grant will be directly injected into our sustainable urban mobility research. Specifically, we are looking at improving the energy density of our battery packs and implementing better structural safety for our 3-wheel platforms.</p>
+                    <p>Every victory brings us closer to a cleaner, more efficient Bangladesh.</p>
+                `
+            },
+            cstpd: {
+                title: "Official Membership: CSTPD Induction",
+                excerpt: "TriChokro is now a member of the Center for Sustainable Technologies and Professional Development.",
+                image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
+                tags: ["Member", "Sustainability", "CSTPD"],
+                date: "Dec 15, 2025",
+                content: `
+                    <h2>Professional Development</h2>
+                    <p>Joining the <strong>Center for Sustainable Technologies and Professional Development (CSTPD)</strong> marks a new chapter in our professional journey.</p>
+                    <p>As a member, TriChokro will collaborate on policy research and sustainable infrastructure frameworks. This partnership ensures that our engineering solutions are aligned with the highest professional standards and long-term environmental goals.</p>
+                `
+            },
+            ffvc: {
+                title: "FFVC 'High Impact' Status Secured",
+                excerpt: "TriChokro receives strategic funding from North Carolina's premier incubator, First Flight Venture Center.",
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
+                tags: ["Grant", "Global"],
+                date: "Feb 10, 2026",
+                content: `<h2>Engineering at Scale</h2><p>Securing the $3,500 grant from <strong>First Flight Venture Center (FFVC)</strong> is a validation of our "High Science" approach. This funding facilitates the optimization of our proprietary BMS for production-ready payloads.</p>`
+            }
+        };
 
-/* =====================
-   REVEAL
-   ===================== */
-const obs=new IntersectionObserver(es=>{
-  es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible'));
-},{threshold:.15});
-document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
-</script>
+        // --- PARTICLE SYSTEM ---
+        const emojis = ['⚡', '🤖', '⚙️', '🔋', '🏆', '📈', '🚀'];
+        const container = document.getElementById('particle-container');
+        
+        function createParticle() {
+            const p = document.createElement('div');
+            p.className = 'emoji-particle';
+            p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = '110vh';
+            container.appendChild(p);
 
+            const duration = 18000 + Math.random() * 20000;
+            p.animate([
+                { transform: `translateY(0) rotate(0deg) scale(0.8)`, opacity: 0 },
+                { transform: `translateY(-60vh) rotate(180deg) scale(1.1)`, opacity: 0.12 },
+                { transform: `translateY(-120vh) rotate(360deg) scale(1)`, opacity: 0 }
+            ], { duration: duration, easing: 'linear' });
+
+            setTimeout(() => p.remove(), duration);
+        }
+        setInterval(createParticle, 4000);
+
+        // --- CORE UI LOGIC ---
+        function toggleTheme() {
+            document.body.dataset.theme = document.body.dataset.theme === 'light' ? '' : 'light';
+        }
+
+        document.addEventListener('mousemove', e => {
+            document.body.style.setProperty('--mx', e.clientX + 'px');
+            document.body.style.setProperty('--my', e.clientY + 'px');
+        });
+
+        const listContainer = document.getElementById('blogList');
+        // Sort posts or just render in order - here we ensure SOfE is prominent
+        Object.keys(posts).forEach((k, i) => {
+            const p = posts[k];
+            const card = document.createElement('div');
+            card.className = 'post-card reveal';
+            card.style.transitionDelay = `${i * 0.1}s`;
+            card.onclick = () => openPost(k);
+            card.innerHTML = `
+                <div class="card-image-wrap"><img src="${p.image}"></div>
+                <div class="card-content">
+                    <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                    <h3>${p.title}</h3>
+                    <p>${p.excerpt}</p>
+                    <div class="card-footer"><span>${p.date}</span> <span style="color:var(--accent)">Read Log →</span></div>
+                </div>
+            `;
+            listContainer.appendChild(card);
+        });
+
+        function openPost(key) {
+            const post = posts[key];
+            const listView = document.getElementById('listView');
+            const postView = document.getElementById('postView');
+            listView.style.opacity = '0';
+            setTimeout(() => {
+                listView.classList.add('hidden');
+                postView.classList.remove('hidden');
+                window.scrollTo(0, 0);
+                document.getElementById('postContent').innerHTML = `
+                    <div style="text-align:center; margin-bottom:50px;">
+                        <span class="tag">${post.tags[0]}</span>
+                        <h1 style="margin-top:20px;">${post.title}</h1>
+                        <p style="color:var(--text-muted)">Project Milestone • Published ${post.date}</p>
+                    </div>
+                    <img src="${post.image}" class="featured-image">
+                    <div class="post-content-body">${post.content}</div>
+                `;
+            }, 400);
+            history.pushState({post: key}, '', `?post=${key}`);
+        }
+
+        function closePost(e) {
+            if(e) e.preventDefault();
+            const lv = document.getElementById('listView');
+            const pv = document.getElementById('postView');
+            pv.style.opacity = '0';
+            setTimeout(() => {
+                pv.classList.add('hidden'); pv.style.opacity = '1';
+                lv.classList.remove('hidden'); lv.style.opacity = '1';
+                window.scrollTo(0,0);
+            }, 300);
+            history.pushState({}, '', window.location.pathname);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
