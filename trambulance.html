@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trambulance - TriChokro</title>
+    <link rel="icon" type="image/png" href="src/assets/trambulance.png">
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fonts -->
@@ -408,31 +409,44 @@
             </div>
         </section>
 
+        <!-- Engineering Showcase Section -->
+        <section id="tramb-engineering" class="py-24 bg-slate-950 relative border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Advanced <span class="text-purple-400">Engineering</span></h2>
+                    <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                        Witness the intricate mechanisms and 3D modeling behind the Trambulance.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- GIF / Mechanism -->
+                    <div class="bg-slate-900/50 p-6 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-all group">
+                        <h3 class="text-2xl font-bold mb-4 text-white">Smart Access Mechanism</h3>
+                        <div class="rounded-2xl overflow-hidden shadow-lg aspect-video bg-slate-800 flex items-center justify-center">
+                            <img src="src/assets/Trambulance gif up.gif" alt="Trambulance Mechanism" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Video / Model -->
+                    <div class="bg-slate-900/50 p-6 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-all group">
+                        <h3 class="text-2xl font-bold mb-4 text-white">3D Model Visualization</h3>
+                        <div class="rounded-2xl overflow-hidden shadow-lg relative group aspect-video bg-slate-800 flex items-center justify-center">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="src/assets/Trambulance model1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- App & Coordination -->
         <section id="tramb-app" class="py-24 relative">
             <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
                 <div class="order-2 md:order-1 relative">
-                    <div class="relative mx-auto border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
-                        <div class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
-                        <div class="h-[32px] w-[3px] bg-gray-800 absolute -start-[17px] top-[72px] rounded-s-lg"></div>
-                        <div class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
-                        <div class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
-                        <div class="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"></div>
-                        <div class="rounded-[2rem] overflow-hidden w-full h-full bg-slate-900 relative">
-                            <div class="absolute inset-0 bg-[url('https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/90.4125,23.8103,12,0,0/600x1200')] bg-cover opacity-60"></div>
-                            <div class="absolute bottom-0 w-full bg-slate-900 p-6 rounded-t-3xl border-t border-white/10 animate-slide-up">
-                                <div class="w-12 h-1 bg-slate-700 rounded-full mx-auto mb-4"></div>
-                                <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center font-bold text-white">T</div>
-                                    <div><div class="font-bold text-white">Trambulance Arriving</div><div class="text-xs text-green-400">4 Minutes away</div></div>
-                                </div>
-                                <button class="w-full bg-green-500 py-3 rounded-xl font-bold text-slate-900">Call Driver</button>
-                            </div>
-                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                                <div class="w-4 h-4 bg-purple-500 rounded-full animate-ping absolute"></div>
-                                <div class="w-4 h-4 bg-purple-500 border-2 border-white rounded-full relative z-10"></div>
-                            </div>
-                        </div>
+                    <div class="relative mx-auto border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[640px] w-[320px] shadow-xl overflow-hidden">
+                        <div class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute z-20 pointer-events-none"></div>
+                        <iframe src="trambulance_app.html" class="w-full h-full border-0 rounded-[2rem] bg-white" title="Trambulance App Demo"></iframe>
                     </div>
                 </div>
                 <div class="order-1 md:order-2">
