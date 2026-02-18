@@ -419,58 +419,6 @@
         .glow-on-hover:hover {
             animation: glow-pulse 1s ease-in-out infinite;
         }
-
-        /* Add this CSS to your <style> section (after line 95) */
-
-        /* Scroll Progress Bar Animation */
-        @keyframes scroll-progress {
-            0% { transform: scaleY(0); opacity: 0.3; }
-            20% { opacity: 0.8; }
-            85% { opacity: 0.9; }
-            100% { transform: scaleY(1); opacity: 1; }
-        }
-
-        #scroll-progress-bar {
-            animation: scroll-progress 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-        }
-
-        #scroll-progress-bar:hover {
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
-            animation: scroll-progress 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* Cool Easing for smooth scroll animation */
-        @keyframes progress-fill {
-            from { transform: scaleY(0); }
-            to { transform: scaleY(1); }
-        }
-
-        #scroll-icon {
-            animation: float-subtle 3s ease-in-out infinite;
-        }
-
-        #scroll-icon i {
-            filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
-        }
-
-        @media (max-width: 768px) {
-            #scroll-progress-bar {
-                width: 2px;
-                right: 8px;
-            }
-            
-            #scroll-icon {
-                right: 6px;
-                top: 20%;
-                opacity: 0.2;
-            }
-        }
-
-        /* Enhanced glow on scroll */
-        #scroll-progress-bar.active {
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.9), 0 0 40px rgba(16, 185, 129, 0.5);
-        }
     </style>
 </head>
 <body class="selection-emerald loading">
@@ -613,11 +561,11 @@
 <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span></span>
 <span class="text-sm font-semibold tracking-wide">২০২৪ সাল থেকে বুয়েট ছাত্র ও অ্যালামনাইদের একটি স্টার্টআপ</span>
 </div>
-<h1 class="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl type-me">
+<h1 class="reveal-on-scroll text-4xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl type-me">
 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 relative"> ত্রিচক্র</span>
 <br>স্বল্পোন্নত দেশগুলোর জন্য পরবর্তী প্রজন্মের ইলেকট্রিক বাহন
                 </br></h1>
-<p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">শূন্য নির্গমন, প্রত্যাহারযোগ্য হুড, বাংলাদেশের রাস্তার জন্য তৈরি, হাইড্রোলিক ব্রেকের সুরক্ষা, এবং উন্নত সাসপেনশনের আরাম।</p>
+<p class="reveal-on-scroll text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">শূন্য নির্গমন, প্রত্যাহারযোগ্য হুড, বাংলাদেশের রাস্তার জন্য তৈরি, হাইড্রোলিক ব্রেকের সুরক্ষা, এবং উন্নত সাসপেনশনের আরাম।</p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
 <a class="interactive transition-trigger px-8 py-4 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center gap-2 uplift-on-hover" href="#products">যানবাহন দেখুন 🛺 <i class="w-5 h-5" data-lucide="arrow-right"></i></a>
 <a class="interactive px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white border border-slate-600 hover:border-emerald-500/50 font-semibold rounded-full transition-all backdrop-blur-md uplift-on-hover bg-gradient-animate" href="#about">আমাদের টিম 👥</a>
@@ -631,7 +579,7 @@
 <div>
 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">ডিজাইন ও পণ্য</h2>
 <div class="h-1 w-24 bg-emerald-500 rounded-full"></div>
-<p class="text-slate-400 mt-4 max-w-lg">বাংলাদেশের রাস্তার অনন্য চাহিদার জন্য প্রকৌশলকৃত। বুয়েটের মতোই টেকসই, দক্ষ ও নির্ভরযোগ্য।</p>
+<p class="reveal-on-scroll text-slate-400 mt-4 max-w-lg">বাংলাদেশের রাস্তার অনন্য চাহিদার জন্য প্রকৌশলকৃত। বুয়েটের মতোই টেকসই, দক্ষ ও নির্ভরযোগ্য।</p>
 </div>
 <a class="interactive hidden md:flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition mt-4 md:mt-0 uplift-on-hover" href="pathfinder_bn.html">সম্পূর্ণ স্পেসিফিকেশন দেখুন <i class="w-4 h-4" data-lucide="arrow-right"></i></a>
 </div>
@@ -753,8 +701,8 @@
 <div class="inline-block text-brand-green font-mono text-sm mb-4 tracking-wider">
                              SAFEST PASSENGER RICKSHAW 
                         </div>
-<h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">TriChokro <span class="text-brand-green">Pathfinder</span></h2>
-<p class="text-slate-400 text-lg mb-8 leading-relaxed">
+<h2 class="reveal-on-scroll text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">TriChokro <span class="text-brand-green">Pathfinder</span></h2>
+<p class="reveal-on-scroll text-slate-400 text-lg mb-8 leading-relaxed">
                             Country's Leading R&amp;D company's Design-1 which solves safety and 8 mechanical issues of Existing Electric Rickshaw. Inspired by BUET's Prof Ehsan's Easy Bike Project and academically and theoretically supervised by him. Improved truss chassis, hydraulic brakes, and an origami hood.
                         </p>
 <a class="interactive px-8 py-3 rounded-full border border-brand-green text-brand-green hover:bg-brand-green hover:text-brand-dark transition-all font-bold font-mono shadow-[0_0_15px_rgba(100,255,218,0.2)]" href="pathfinder_bn.html">
@@ -770,8 +718,8 @@
 <div class="grid lg:grid-cols-2 gap-20 items-center">
 <div>
 <div class="inline-block px-4 py-1 mb-6 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-widest animate-pulse">জরুরী পরিষেবা অ্যাম্বুলেন্স</div>
-<h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"><span class="text-emerald-400">Trambulance</span>.<br>টেকসইভাবে জীবন বাঁচানো।</br></h2>
-<p class="text-slate-400 text-lg mb-8 leading-relaxed">ত্রিচক্র ট্রাম্বুলেন্স হলো বাংলাদেশের অনন্য চাহিদার জন্য ডিজাইন করা একটি সম্পূর্ণ বৈদ্যুতিক, তিন চাকার অ্যাম্বুলেন্স। এর ছোট আকারের কারণে এটি এমন জায়গায় রোগীদের কাছে পৌঁছাতে পারে যেখানে প্রথাগত অ্যাম্বুলেন্স পারে না।</p>
+<h2 class="reveal-on-scroll text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"><span class="text-emerald-400">Trambulance</span>.<br>টেকসইভাবে জীবন বাঁচানো।</br></h2>
+<p class="reveal-on-scroll text-slate-400 text-lg mb-8 leading-relaxed">ত্রিচক্র ট্রাম্বুলেন্স হলো বাংলাদেশের অনন্য চাহিদার জন্য ডিজাইন করা একটি সম্পূর্ণ বৈদ্যুতিক, তিন চাকার অ্যাম্বুলেন্স। এর ছোট আকারের কারণে এটি এমন জায়গায় রোগীদের কাছে পৌঁছাতে পারে যেখানে প্রথাগত অ্যাম্বুলেন্স পারে না।</p>
 <a class="interactive px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all font-bold" href="trambulance_bn.html">ট্রাম্বুলেন্স সাইট 🚑</a>
 </div>
 <div class="relative interactive uplift-on-hover animate-float-slow">
@@ -793,8 +741,8 @@
 <div class="container mx-auto px-4">
 <div class="flex flex-col items-center text-center">
 <span class="text-gold font-cinzel tracking-[0.3em] text-sm mb-4">আমাদের প্রতিষ্ঠাতার সাথে সাক্ষাতের জন্য অ্যাপয়েন্টমেন্ট নিন</span>
-<h2 class="text-4xl md:text-6xl font-bold text-white font-cinzel mb-6">Rownak Shahriar Ruhan</h2>
-<p class="text-slate-400 max-w-2xl mb-10 text-lg font-light leading-relaxed">
+<h2 class="reveal-on-scroll text-4xl md:text-6xl font-bold text-white font-cinzel mb-6">Rownak Shahriar Ruhan</h2>
+<p class="reveal-on-scroll text-slate-400 max-w-2xl mb-10 text-lg font-light leading-relaxed">
                         ত্রিচক্রের নেপথ্যের কারিগর। অটোমোবাইল ইঞ্জিনিয়ারিং এবং উদ্যোক্তা মানসিকতার সমন্বয়ে বাংলাদেশের শহুরে যাতায়াত ব্যবস্থাকে নতুন রূপ দিচ্ছেন।
                     </p>
 <a class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-none border border-gold text-gold font-cinzel font-bold tracking-widest hover:text-black transition-colors duration-300" href="founder_bn.html" target="_blank">
@@ -806,7 +754,7 @@
 </section>
 <section class="py-16 bg-slate-900/30 border-b border-slate-900" id="files">
 <div class="container mx-auto px-4 text-center">
-<h2 class="text-2xl font-bold text-white mb-6">পাবলিক ফাইল এবং রিসোর্স</h2>
+<h2 class="reveal-on-scroll text-2xl font-bold text-white mb-6">পাবলিক ফাইল এবং রিসোর্স</h2>
 <a class="inline-flex items-center gap-2 px-8 py-3 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg" href="resources_bn.html">
 <i data-lucide="file-text"></i> ফাইল ডাউনলোড করুন
                 </a>
@@ -858,8 +806,8 @@
 </div>
 </div>
 <div class="w-full md:w-2/3 text-left">
-<h3 class="text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">TribOriGen</h3>
-<p class="text-slate-400 text-sm mb-6 leading-relaxed">
+<h3 class="reveal-on-scroll text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">TribOriGen</h3>
+<p class="reveal-on-scroll text-slate-400 text-sm mb-6 leading-relaxed">
                                 বর্জ্য টায়ারকে উচ্চ-ক্ষমতাসম্পন্ন, টেকসই উপকরণে রূপান্তর করে অবকাঠামোতে বিপ্লব ঘটাচ্ছে। বৃত্তাকার অর্থনীতি পরিচালনাকারী একটি ত্রিচক্র উদ্যোগ।
                             </p>
 <a class="inline-flex items-center gap-2 text-emerald-400 font-bold hover:text-emerald-300 transition-colors group-hover:translate-x-2 duration-300" href="triborigen_bn.html">
@@ -878,8 +826,8 @@
 </div>
 </div>
 <div class="w-full md:w-2/3 text-left">
-<h3 class="text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Trimateria</h3>
-<p class="text-slate-400 text-sm mb-6 leading-relaxed">উন্নত টেকসই উপকরণ। সুন্দর আগামীর জন্য উপাদান বিজ্ঞান।</p>
+<h3 class="reveal-on-scroll text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Trimateria</h3>
+<p class="reveal-on-scroll text-slate-400 text-sm mb-6 leading-relaxed">উন্নত টেকসই উপকরণ। সুন্দর আগামীর জন্য উপাদান বিজ্ঞান।</p>
 <a class="inline-flex items-center gap-2 text-emerald-400 font-bold hover:text-emerald-300 transition-colors group-hover:translate-x-2 duration-300" href="trimateria_bn.html">Trimateria ঘুরে দেখুন <i class="w-4 h-4" data-lucide="arrow-right"></i></a>
 </div>
 </div>
@@ -999,7 +947,7 @@
 <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
 <div class="container mx-auto px-4 relative z-10">
 <div class="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-16 border border-slate-700 shadow-2xl bg-gradient-animate">
-<div class="text-center mb-12"><h2 class="text-4xl font-bold mb-4">যোগাযোগ করুন</h2></div>
+<div class="text-center mb-12 reveal-on-scroll"><h2 class="text-4xl font-bold mb-4">যোগাযোগ করুন</h2></div>
 <div class="grid md:grid-cols-4 gap-8"><div class="text-center p-6 rounded-2xl bg-slate-800/50 hover:bg-slate-800 transition-colors group interactive uplift-on-hover">
 <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 group-hover:scale-110 transition-transform"><i data-lucide="map-pin"></i></div>
 <h3 class="font-bold mb-2">ভিজিট করুন</h3>
@@ -1104,7 +1052,7 @@
         <!-- Duplicate for Scroll Effect -->
         <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
             <div class="relative w-full pt-[56.25%]">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/watch?v=K5gdsmmMgA8" title="Pitch Deck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="Pitch Deck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="p-5 bg-slate-900/60 backdrop-blur">
                 <h3 class="text-white font-semibold text-sm">UIHP পিচ ডেক</h3>
@@ -1717,11 +1665,6 @@
 <i class="w-6 h-6 group-hover:-translate-y-1 transition-transform" data-lucide="arrow-up"></i>
 </button>
 </div>
-<div class="fixed right-0 top-0 h-screen w-1 bg-gradient-to-b from-emerald-400 via-emerald-500 to-cyan-400 z-[9991] transform scale-y-0 origin-top transition-transform duration-300" id="scroll-progress-bar" style="transform-origin: top; transform: scaleY(0);"></div>
-<!-- Cool Icon Container (fixed on the right side) -->
-<div class="fixed right-4 top-1/4 z-[9991] opacity-30 hover:opacity-60 transition-opacity duration-300 pointer-events-none" id="scroll-icon">
-<i class="w-8 h-8 text-emerald-400 animate-pulse" data-lucide="zap"></i>
-</div>
 <div class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" id="cursor-gradient" style="background: radial-gradient(400px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.08), transparent 80%); mix-blend-mode: screen;"></div>
 <script>
         document.addEventListener("mousemove", e => { 
@@ -1752,40 +1695,6 @@
             }
         });
     </script>
-<!-- Add this JavaScript before the closing </script> tag (before line 1380) */
-
-// Scroll Progress Bar with Smooth Easing
-function updateScrollProgress() {
-    const scrollProgress = document.getElementById('scroll-progress-bar');
-    const scrollIcon = document.getElementById('scroll-icon');
-    
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) : 0;
-    
-    // Apply smooth easing: fast at start, slow at end (easeOutQuad)
-    const easedPercent = scrollPercent < 0.5 
-        ? 2 * scrollPercent * scrollPercent 
-        : -1 + (4 - 2 * scrollPercent) * scrollPercent;
-    
-    scrollProgress.style.transform = `scaleY(${easedPercent})`;
-    
-    // Add glow effect when scrolling actively
-    if (scrollPercent > 0 && scrollPercent < 1) {
-        scrollProgress.classList.add('active');
-    } else if (scrollPercent >= 1) {
-        scrollProgress.classList.remove('active');
-    }
-    
-    // Animate icon opacity based on scroll
-    scrollIcon.style.opacity = Math.max(0.15, 0.3 + (scrollPercent * 0.2));
-}
-
-// Listen to scroll events
-window.addEventListener('scroll', updateScrollProgress, { passive: true });
-
-// Initial call
-updateScrollProgress();
     <!-- Top to Bottom Button (visible only at bottom) -->
 <div class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10" id="scroll-to-bottom">
 <button class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce" onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})">
