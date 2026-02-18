@@ -565,6 +565,13 @@
             entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Check for URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const postKey = urlParams.get('post');
+        if (postKey && posts[postKey]) {
+            openPost(postKey);
+        }
     </script>
 </body>
 </html>
