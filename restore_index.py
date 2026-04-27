@@ -46,7 +46,7 @@ bn_to_en = {
     "দেখতে ক্লিক করুন": "Click to Reveal",
     "দিকনির্দেশ পান": "Get Direction",
     "২০২৪ সাল থেকে বুয়েট ছাত্র ও অ্যালামনাইদের একটি স্টার্টআপ": "A Startup of BUET Students & Alumni Since 2024",
-    "স্বল্পোন্নত দেশগুলোর জন্য নির্ভরযোগ্য ইলেকট্রিক বাহন": "Reliable Electric Mobility for LMICs",
+    "স্বল্পোন্নত দেশগুলোর জন্য পরবর্তী প্রজন্মের ইলেকট্রিক বাহন": "Next Gen Electric Mobility For LMICs",
     "শূন্য নির্গমন, প্রত্যাহারযোগ্য হুড, বাংলাদেশের রাস্তার জন্য তৈরি, হাইড্রোলিক ব্রেকের সুরক্ষা, এবং উন্নত সাসপেনশনের আরাম।": "Zero tailpipe emissions, retractable hood, Engineered for Bangladeshi Road, safety from hydraulic brake, comfort from superior suspension.",
     "যানবাহন দেখুন 🛺": "Explore Vehicles 🛺",
     "আমাদের টিম 👥": "Explore our team 👥",
