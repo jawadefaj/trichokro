@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -465,11 +465,66 @@
                 <span class="info-text" id="card-dept">Dept of Mechanical Engineering</span>
                 <span class="info-text buet-highlight">Bangladesh University of<br>Engineering & Technology (BUET)</span>
             </div>
+            <div class="info-group" id="card-extrainfo" style="display:none;"></div>
         </div>
     </div>
 
     <script>
         const teamData = {
+            abrar: {
+                initials: "A F",
+                name: "Abrar Faiaz",
+                title: "CMO / Head of Software & AI Systems",
+                phone1: "+8801795095833",
+                email1: "abrarfaiaz20@gmail.com",
+                dept: "Civil Engineering, BUET",
+                image: "src/assets/founders/abrar.jpg"
+            },
+            arefien: {
+                initials: "A R",
+                name: "Arefien Razi",
+                title: "Sustainability Analyst / Executive Director",
+                phone1: "+8801714205386",
+                email1: "arefien.razi@gmail.com",
+                dept: "Civil Engineering, BUET | Logistics Expert",
+                image: "src/assets/founders/yaad.jpg"
+            },
+            alphy: {
+                initials: "A S",
+                name: "Alphy Shaharin",
+                title: "Head of Sustainability & Impact Strategy / Transportation Eng. Analyst",
+                phone1: "+8801567812916",
+                email1: "alphytamim16687@gmail.com",
+                dept: "Civil Engineering, BUET",
+                image: "src/assets/founders/aphy.jpg"
+            },
+            mafizur: {
+                initials: "Dr.",
+                name: "Md. Mafizur Rahman",
+                title: "Advisor, Biz-comp.",
+                email1: "mafizur@gmail.com",
+                dept: "Professor, Department of Civil Engineering, BUET",
+                image: "https://ui-avatars.com/api/?name=Md+Mafizur+Rahman&background=10b981&color=fff&size=128",
+                extraInfo: `
+                    <div class="mt-4 text-sm text-slate-300">
+                        <p class="font-bold text-emerald-400 mb-1">Specialization:</p>
+                        <p class="mb-3">Environmental Engineering</p>
+                        <p class="font-bold text-emerald-400 mb-1">Education:</p>
+                        <ul class="list-disc list-inside">
+                            <li>B.Sc. in Civil Engineering, BUET, Dhaka, 1992</li>
+                            <li>M.Sc. in Civil and Environmental Engineering, BUET, Dhaka, 1994</li>
+                            <li>Ph.D. in Civil and Environmental Engineering, The University of Tokyo, Japan, 1997</li>
+                        </ul>
+                    </div>
+                `
+            },
+            hasanul: {
+                initials: "Dr.",
+                name: "Hasanul Banna",
+                title: "Surgeon & Medical officer",
+                dept: "BUET Medical Centre",
+                image: "https://ui-avatars.com/api/?name=Hasanul+Banna&background=10b981&color=fff&size=128"
+            },
             rownak: {
                 initials: "A A M",
                 name: "Rownak Shahriar Ruhan",
@@ -616,6 +671,16 @@
             document.getElementById('card-email2').innerText = member.email2;
             if (member.dept) {
                 document.getElementById('card-dept').innerText = member.dept;
+            }
+            const extraInfoContainer = document.getElementById('card-extrainfo');
+            if (extraInfoContainer) {
+                if (member.extraInfo) {
+                    extraInfoContainer.innerHTML = member.extraInfo;
+                    extraInfoContainer.style.display = 'block';
+                } else {
+                    extraInfoContainer.innerHTML = '';
+                    extraInfoContainer.style.display = 'none';
+                }
             }
 
             // Image Logic

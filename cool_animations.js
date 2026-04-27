@@ -112,15 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. Glitch Effect Logic (applied via CSS class, toggle on hover)
-    const glitchElement = document.querySelector('.type-me');
-    if (glitchElement) {
-        glitchElement.addEventListener('mouseover', () => {
-            glitchElement.classList.add('glitch-active');
-        });
-        glitchElement.addEventListener('mouseout', () => {
-            glitchElement.classList.remove('glitch-active');
-        });
-    }
+    // Hover glitch effect removed for .type-me elements
 
     // 4. Magnetic Buttons (Light version)
     const buttons = document.querySelectorAll('.magnetic-btn');
