@@ -1,126 +1,147 @@
-﻿// ============================================
-// TriChokro Optimized JavaScript v2
-// - Better touch handling
-// - Efficient DOM manipulation
-// - Mobile optimizations
+// ============================================
+// TriChokro Mobile & Dynamic Script v2.5
+// - Mobile menu toggle with outdoor click closing
+// - Smooth scrollSpy and active link highlighting
+// - Dynamic animated numbers for .counter elements
+// - Touch swipe gestures for gallery sliders
+// - IntersectionObserver for entrance animations
 // ============================================
 
 (function() {
     'use strict';
 
-    // Mobile menu toggle
+    // 1. Mobile Menu Toggle
     const initMobileMenu = () => {
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (!mobileMenuBtn || !mobileMenu) return;
-        
-        // Toggle menu
-        mobileMenuBtn.addEventListener('click', (e) => {
+        if (!menuBtn || !mobileMenu) return;
+
+        let isOpen = false;
+
+        const toggleMenu = (show) => {
+            isOpen = typeof show === 'boolean' ? show : !isOpen;
+            if (isOpen) {
+                mobileMenu.classList.add('show');
+                mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                mobileMenu.classList.add('max-h-[85vh]', 'opacity-100');
+            } else {
+                mobileMenu.classList.remove('show');
+                mobileMenu.classList.add('max-h-0', 'opacity-0');
+                mobileMenu.classList.remove('max-h-[85vh]', 'opacity-100');
+            }
+        };
+
+        menuBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            mobileMenu.classList.toggle('show');
+            toggleMenu();
         }, { passive: false });
-        
-        // Close menu on link click
-        const menuLinks = mobileMenu.querySelectorAll('a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('show');
-            }, { passive: true });
+
+        // Close when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false), { passive: true });
         });
-        
-        // Close menu on outside click
+
+        // Close when clicking outside
         document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mobileMenu.classList.remove('show');
+            if (isOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                toggleMenu(false);
             }
         }, { passive: true });
     };
 
-    // Smooth scroll to sections
+    // 2. Animated Counters
+    const initCounters = () => {
+        const counters = document.querySelectorAll('.counter');
+        if (!counters.length) return;
+
+        const animateCounter = (el) => {
+            const target = parseInt(el.getAttribute('data-target') || el.innerText, 10);
+            if (isNaN(target)) return;
+            
+            const duration = 1500; // ms
+            const stepTime = 20; // ms
+            const steps = duration / stepTime;
+            const increment = target / steps;
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    el.innerText = target;
+                    clearInterval(timer);
+                } else {
+                    el.innerText = Math.floor(current);
+                }
+            }, stepTime);
+        };
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            counters.forEach(c => observer.observe(c));
+        } else {
+            counters.forEach(c => animateCounter(c));
+        }
+    };
+
+    // 3. Smooth Scroll for Anchor Links
     const initSmoothScroll = () => {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
-                if (href === '#') return;
-                
-                e.preventDefault();
+                if (!href || href === '#') return;
+
                 const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }, { passive: false });
         });
     };
 
-    // Optimize touch interactions
-    const optimizeTouchTargets = () => {
-        const touches = document.querySelectorAll('a, button, .interactive');
-        touches.forEach(element => {
-            // Add touch feedback
-            element.addEventListener('touchstart', function() {
-                this.style.opacity = '0.8';
-            }, { passive: true });
-            
-            element.addEventListener('touchend', function() {
-                this.style.opacity = '1';
-            }, { passive: true });
-        });
-    };
+    // 4. ScrollSpy Active Link Tracking
+    const initScrollSpy = () => {
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        if (!navLinks.length) return;
 
-    // Lazy load images
-    const lazyLoadImages = () => {
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.removeAttribute('data-src');
-                            observer.unobserve(img);
-                        }
-                    }
-                });
-            });
-            
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-    };
+        const sections = Array.from(navLinks)
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
 
-    // Add entrance animations
-    const addEntranceAnimations = () => {
-        if ('IntersectionObserver' in window) {
-            const animationObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in');
-                        animationObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('[data-animate]').forEach(el => {
-                animationObserver.observe(el);
-            });
-        }
-    };
-
-    // Optimize scroll performance
-    const optimizeScrollPerformance = () => {
         let ticking = false;
-        
+
+        const updateActiveLink = () => {
+            const scrollPos = window.scrollY + 120;
+            sections.forEach(sec => {
+                const top = sec.offsetTop;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+
+                if (scrollPos >= top && scrollPos < top + height) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active', 'text-emerald-400');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        };
+
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    // Update active nav link
-                    updateActiveNavLink();
+                    updateActiveLink();
                     ticking = false;
                 });
                 ticking = true;
@@ -128,44 +149,76 @@
         }, { passive: true });
     };
 
-    // Update active navigation link
-    const updateActiveNavLink = () => {
-        const sections = document.querySelectorAll('[id]');
-        let scrollPosition = window.scrollY + 100;
-        
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= 100 && rect.bottom > 100) {
-                document.querySelectorAll('#navbar a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + section.id) {
-                        link.classList.add('active');
+    // 5. Entrance Animations on Scroll
+    const addEntranceAnimations = () => {
+        const animatedElements = document.querySelectorAll('[data-animate], .reveal-on-scroll');
+        if (!animatedElements.length) return;
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed', 'animate-fade-in');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => observer.observe(el));
+        } else {
+            animatedElements.forEach(el => el.classList.add('revealed', 'animate-fade-in'));
+        }
+    };
+
+    // 6. Touch Target Feedback
+    const optimizeTouchTargets = () => {
+        const interactiveElements = document.querySelectorAll('a, button, .interactive, .card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('touchstart', function() {
+                this.style.opacity = '0.85';
+            }, { passive: true });
+
+            el.addEventListener('touchend', function() {
+                this.style.opacity = '1';
+            }, { passive: true });
         });
     };
 
-    // Performance: Debounce window resize
-    const debounce = (func, delay) => {
-        let timeoutId;
-        return function(...args) {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => func(...args), delay);
-        };
+    // 7. Gallery Touch Swipe
+    const initGalleryTouch = () => {
+        const sliders = document.querySelectorAll('.gallery-slider, .marquee-container');
+        sliders.forEach(slider => {
+            let startX = 0;
+            let endX = 0;
+
+            slider.addEventListener('touchstart', e => {
+                startX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', e => {
+                endX = e.changedTouches[0].screenX;
+                const diff = endX - startX;
+                if (Math.abs(diff) > 40) {
+                    const prevBtn = slider.querySelector('#gallery-prev');
+                    const nextBtn = slider.querySelector('#gallery-next');
+                    if (diff < 0 && nextBtn) nextBtn.click();
+                    if (diff > 0 && prevBtn) prevBtn.click();
+                }
+            }, { passive: true });
+        });
     };
 
-    // Initialize on DOM ready
+    // Initialize all enhancements on DOMReady
     const init = () => {
         initMobileMenu();
+        initCounters();
         initSmoothScroll();
-        optimizeTouchTargets();
-        lazyLoadImages();
+        initScrollSpy();
         addEntranceAnimations();
-        optimizeScrollPerformance();
+        optimizeTouchTargets();
+        initGalleryTouch();
     };
 
-    // Wait for DOM if needed
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
