@@ -7,7 +7,7 @@
 <meta content="#020617" name="theme-color"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<link href="src/assets/logo_icon.png" rel="icon"/>
+<link href="src/assets/logo_icon.webp" rel="icon"/>
 <title>প্রকৌশল উৎকর্ষ - ত্রিচক্র</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Fonts -->
@@ -119,8 +119,8 @@
         .uplift-on-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .uplift-on-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15); }
 
-        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
-        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.png'); background-repeat: no-repeat; background-position: center; background-size: 85%; opacity: 0.5; pointer-events: none; z-index: 1; mix-blend-mode: overlay; }
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.webp'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.webp'); background-repeat: no-repeat; background-position: center; background-size: 85%; opacity: 0.5; pointer-events: none; z-index: 1; mix-blend-mode: overlay; }
 
         #loader { position: fixed; inset: 0; background: #020617; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-in-out; }
         .loader-text { font-family: 'JetBrains Mono', monospace; }
@@ -472,8 +472,10 @@
             box-shadow: 0 0 25px rgba(16, 185, 129, 0.9), 0 0 40px rgba(16, 185, 129, 0.5);
         }
     </style>
+<link rel="stylesheet" href="css/site-mobile.css"/>
+<script src="js/site-mobile.js" defer></script>
 </head>
-<body class="selection-emerald loading">
+<body class="selection-emerald">
 <!-- Speedometer Overlay -->
 <div id="speed-overlay">
 <div class="speed-lines"></div>
@@ -538,7 +540,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index_bn.html'">
-<img alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" src="src/assets/logo_new.png"/>
+<img alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" src="src/assets/logo_new.webp" decoding="async" width="1600" height="1600">
 <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
 </div>
 <div class="hidden md:flex items-center space-x-8" style="font-family: 'Tiro Bangla', 'Hind Siliguri', 'Cinzel', serif;">
@@ -605,7 +607,7 @@
 <div class="fixed inset-0 z-[10002] bg-black/95 hidden flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300" id="lightbox">
 <button class="absolute top-6 right-6 text-slate-400 hover:text-white interactive" id="lightbox-close"><i class="w-8 h-8" data-lucide="x"></i></button>
 <div class="relative max-w-5xl max-h-[85vh] w-full">
-<img class="w-full h-full object-contain rounded-lg shadow-2xl shadow-emerald-500/10" id="lightbox-img" src=""/>
+<img class="w-full h-full object-contain rounded-lg shadow-2xl shadow-emerald-500/10" id="lightbox-img" src="" decoding="async">
 </div>
 <p class="text-white mt-4 text-lg font-mono tracking-widest text-center" id="lightbox-caption"></p>
 </div>
@@ -673,7 +675,7 @@
                         </p>
 <div class="flex items-center gap-4">
 <div class="w-12 h-12 bg-slate-700 rounded-full overflow-hidden border border-emerald-500/50">
-<img alt="Rownak Shahriar Ruhan" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&amp;background=10b981&amp;color=fff&amp;size=128'" src="src/assets/founders/rownak.jpg"/>
+<img alt="Rownak Shahriar Ruhan" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Rownak+Shahriar+Ruhan&amp;background=10b981&amp;color=fff&amp;size=128'" src="src/assets/founders/rownak.jpg" decoding="async" loading="lazy">
 </div>
 <div>
 <div class="text-white font-bold">রওনক শাহরিয়ার রুহান</div>
@@ -699,7 +701,7 @@
 <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 md:mb-0">
 <!-- Updated Footer Logo -->
 <div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
-<img alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]" src="src/assets/logo_new.png"/>
+<img alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]" src="src/assets/logo_new.webp" decoding="async" loading="lazy" width="1600" height="1600">
 <span class="text-xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
 </div>
 <div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
@@ -769,13 +771,13 @@
                     setTimeout(() => { loader.style.opacity = '0'; loader.style.pointerEvents = 'none'; body.classList.remove('loading'); }, 500);
                 }
             }, 30);
-            startFloatingEmojis();
+            if (!window.matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches) startFloatingEmojis();
         });
 
         function startFloatingEmojis() {
             const container = document.getElementById('emoji-container');
             const emojis = ['🌱', '🔋', '⚡', '♻️', '🌞', '🍃', '🌦️', '🚲', '🌎', '💡', '🤖', '💻', '🔌', '⚙️', '🛠️', '🚗', '🔧', '⚡', '🔋', '🌱'];
-            const maxEmojis = 40;
+            const maxEmojis = 12;
             let currentEmojis = 0;
             function createEmoji() {
                 if (currentEmojis >= maxEmojis) return;
@@ -837,7 +839,7 @@
 
     <a href="contact_bn.html?id=rownak" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
-            <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan">
+            <img src="src/assets/founders/rownak.jpg" class="w-full h-full object-cover" alt="Rownak Shahriar Ruhan" decoding="async" loading="lazy" width="1208" height="930">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Rownak Shahriar Ruhan</h4>
         <p class="text-emerald-400 text-xs">Founder</p>
@@ -845,7 +847,7 @@
         <!-- Hover Popup -->
         <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
-                <img src="src/assets/rownak_full.jpg" class="w-full h-auto object-cover">
+                <img src="src/assets/rownak_full.jpg" class="w-full h-auto object-cover" decoding="async" loading="lazy" width="1208" height="1280">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
                     <p class="text-white text-xs font-bold text-center">Rownak Shahriar Ruhan</p>
                 </div>
@@ -856,7 +858,7 @@
 
     <a href="contact_bn.html?id=tomal" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia">
+            <img src="https://ui-avatars.com/api/?name=Tomal+Kirtonia&background=10b981&color=fff&size=128" alt="Tomal Kirtonia" decoding="async" loading="lazy">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Tomal Kirtonia</h4>
         <p class="text-emerald-400 text-xs">Head of Design</p>
@@ -864,7 +866,7 @@
 
     <a href="contact_bn.html?id=hasan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan">
+            <img src="https://ui-avatars.com/api/?name=Omor+Faruk+Hasan&background=10b981&color=fff&size=128" alt="Omor Faruk Hasan" decoding="async" loading="lazy">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Omor Faruk Hasan</h4>
         <p class="text-emerald-400 text-xs">COO</p>
@@ -872,7 +874,7 @@
 
     <a href="contact_bn.html?id=mijanur" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman">
+            <img src="https://ui-avatars.com/api/?name=Mijanur+Rahman&background=10b981&color=fff&size=128" alt="Mijanur Rahman" decoding="async" loading="lazy">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Mijanur Rahman</h4>
         <p class="text-emerald-400 text-xs">HR</p>
@@ -880,7 +882,7 @@
 
     <a href="contact_bn.html?id=shwadhin" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin">
+            <img src="https://ui-avatars.com/api/?name=Dipto+Muzumder+Swadhin&background=10b981&color=fff&size=128" alt="Dipto Muzumder Swadhin" decoding="async" loading="lazy">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Dipto Muzumder Swadhin</h4>
         <p class="text-emerald-400 text-xs">COO</p>
@@ -888,7 +890,7 @@
 
     <a href="contact_bn.html?id=tahsif" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-            <img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif">
+            <img src="https://ui-avatars.com/api/?name=Tawhidul+Islam+Tahsif&background=10b981&color=fff&size=128" alt="Tawhidul Islam Tahsif" decoding="async" loading="lazy">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Tawhidul Islam Tahsif</h4>
         <p class="text-emerald-400 text-xs">Lead Designer</p>
@@ -906,7 +908,7 @@
 
     <a href="contact_bn.html?id=ehsanSir" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
-            <img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan">
+            <img src="src/assets/founders/ehsan.jpg" class="w-full h-full object-cover" alt="Dr. Md. Ehsan" decoding="async" loading="lazy" width="480" height="601">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Dr. Md. Ehsan</h4>
         <p class="text-emerald-400 text-xs">Advisor & Mentor</p>
@@ -914,7 +916,7 @@
         <!-- Hover Popup -->
         <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
-                <img src="src/assets/founders/ehsan.jpg" class="w-full h-auto object-cover">
+                <img src="src/assets/founders/ehsan.jpg" class="w-full h-auto object-cover" decoding="async" loading="lazy" width="480" height="601">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
                     <p class="text-white text-xs font-bold text-center">Dr. Md. Ehsan</p>
                 </div>
@@ -925,7 +927,7 @@
 
     <a href="contact_bn.html?id=abdul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
-            <img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad">
+            <img src="src/assets/founders/jawad.jpg" class="w-full h-full object-cover" alt="Abdul Jawad" decoding="async" loading="lazy" width="809" height="1017">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Abdul Jawad</h4>
         <p class="text-emerald-400 text-xs">Vehicle Advisor</p>
@@ -933,7 +935,7 @@
         <!-- Hover Popup -->
         <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
-                <img src="src/assets/founders/jawad.jpg" class="w-full h-auto object-cover">
+                <img src="src/assets/founders/jawad.jpg" class="w-full h-auto object-cover" decoding="async" loading="lazy" width="809" height="1017">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
                     <p class="text-white text-xs font-bold text-center">Abdul Jawad</p>
                 </div>
@@ -944,7 +946,7 @@
 
     <a href="contact_bn.html?id=ishraq" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block relative">
         <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform">
-            <img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid">
+            <img src="src/assets/founders/ishraq.jpg" class="w-full h-full object-cover" alt="Ishraq Rafid" decoding="async" loading="lazy" width="861" height="1109">
         </div>
         <h4 class="text-white font-bold text-sm leading-tight mb-1">Ishraq Rafid</h4>
         <p class="text-emerald-400 text-xs">Architectural Advisor</p>
@@ -952,7 +954,7 @@
         <!-- Hover Popup -->
         <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-2 bg-slate-900 rounded-xl border border-emerald-500 shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 transform scale-95 group-hover:scale-100 origin-bottom">
             <div class="rounded-lg overflow-hidden relative">
-                <img src="src/assets/founders/ishraq.jpg" class="w-full h-auto object-cover">
+                <img src="src/assets/founders/ishraq.jpg" class="w-full h-auto object-cover" decoding="async" loading="lazy" width="861" height="1109">
                 <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-slate-900 to-transparent p-2">
                     <p class="text-white text-xs font-bold text-center">Ishraq Rafid</p>
                 </div>
@@ -971,7 +973,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
         <a href="contact_bn.html?id=maxud" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-                <img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury">
+                <img src="https://ui-avatars.com/api/?name=Maxudur+Rahman+Chowdhury&background=10b981&color=fff&size=128" alt="Maxudur Rahman Chowdhury" decoding="async" loading="lazy">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Maxudur Rahman Chowdhury</h4>
             <p class="text-emerald-400 text-xs">Head of Communications</p>
@@ -979,7 +981,7 @@
 
         <a href="contact_bn.html?id=rakibul" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-                <img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto">
+                <img src="https://ui-avatars.com/api/?name=Rakibul+Hasan+Shanto&background=10b981&color=fff&size=128" alt="Rakibul Hasan Shanto" decoding="async" loading="lazy">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Rakibul Hasan Shanto</h4>
             <p class="text-emerald-400 text-xs">Manufacturing Executive</p>
@@ -987,7 +989,7 @@
 
         <a href="contact_bn.html?id=farhan" class="text-center p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors group cursor-pointer interactive uplift-on-hover block">
             <div class="w-16 h-16 mx-auto bg-slate-600 rounded-full mb-3 overflow-hidden group-hover:ring-4 ring-emerald-400 transition-all duration-300 transform group-hover:rotate-6">
-                <img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique">
+                <img src="https://ui-avatars.com/api/?name=Farhan+Saddique&background=10b981&color=fff&size=128" alt="Farhan Saddique" decoding="async" loading="lazy">
             </div>
             <h4 class="text-white font-bold text-sm leading-tight mb-1">Farhan Saddique</h4>
             <p class="text-emerald-400 text-xs">Junior Associate</p>
@@ -1045,7 +1047,7 @@
             });
             if (index === 3) { // Mission (Index 3 now)
                 contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[3].title}</h3>
-                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10">
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10" decoding="async" loading="lazy">
                 <p class="text-slate-400 leading-relaxed mb-6">${tabsData[3].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[3].quote}"</p></div></div>`;
             }
             else { contentDiv.innerHTML = tabsData[index].html; }
@@ -1146,9 +1148,9 @@
             if(galleryImages.length === 0) {
                 galleryImages = [
                     'src/assets/slideshow/1.jpg',
-                    'src/assets/slideshow/2.jpg',
-                    'src/assets/slideshow/3.jpg',
-                    'src/assets/slideshow/4.jpg'
+                    'src/assets/slideshow/2.webp',
+                    'src/assets/slideshow/3.webp',
+                    'src/assets/slideshow/4.webp'
                 ];
             }
 
@@ -1165,7 +1167,7 @@
                 const photoName = src.split('/').pop().split('.')[0];
                 div.onclick = () => openLightbox(src, photoName);
                 div.innerHTML = `
-                    <img src="${src}" class="w-full h-full object-cover select-none" alt="${photoName}">
+                    <img src="${src}" class="w-full h-full object-cover select-none" alt="${photoName}" decoding="async" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-70 hover:opacity-50 transition-opacity"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <p class="text-lg font-semibold tracking-wide drop-shadow-lg">${photoName.replace(/-/g, ' ').toUpperCase()}</p>

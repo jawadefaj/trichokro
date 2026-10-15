@@ -332,6 +332,8 @@
             .nav-links { display: none; }
         }
     </style>
+<link rel="stylesheet" href="css/site-mobile.css"/>
+<script src="js/site-mobile.js" defer></script>
 </head>
 <body>
 
@@ -515,7 +517,7 @@
             card.style.transitionDelay = `${i * 0.1}s`;
             card.onclick = () => openPost(k);
             card.innerHTML = `
-                <div class="card-image-wrap"><img src="${p.image}"></div>
+                <div class="card-image-wrap"><img src="${p.image}" decoding="async"></div>
                 <div class="card-content">
                     <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
                     <h3>${p.title}</h3>
@@ -541,7 +543,7 @@
                         <h1 style="margin-top:20px;">${post.title}</h1>
                         <p style="color:var(--text-muted)">Project Milestone • Published ${post.date}</p>
                     </div>
-                    <img src="${post.image}" class="featured-image">
+                    <img src="${post.image}" class="featured-image" decoding="async">
                     <div class="post-content-body">${post.content}</div>
                 `;
             }, 400);

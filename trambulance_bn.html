@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trambulance - TriChokro</title>
-    <link rel="icon" type="image/png" href="src/assets/trambulance.png">
+    <link rel="icon" type="image/png" href="src/assets/trambulance.webp">
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fonts -->
@@ -85,6 +85,8 @@
         .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
+<link rel="stylesheet" href="css/site-mobile.css"/>
+<script src="js/site-mobile.js" defer></script>
 </head>
 <body class="min-h-screen bg-slate-950 font-sans text-slate-100 overflow-x-hidden selection:bg-purple-500 selection:text-white">
 
@@ -101,7 +103,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index_bn.html'">
-                        <img src="src/assets/logo_icon.png" alt="TriChokro Logo" class="w-10 h-10 object-contain mr-2">
+                        <img src="src/assets/logo_icon.webp" alt="TriChokro Logo" class="w-10 h-10 object-contain mr-2" decoding="async" width="1600" height="1600">
                         <span class="text-2xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
                     </div>
                     <div class="hidden md:flex items-center space-x-8" style="font-family: 'Hind Siliguri', 'Cinzel', serif;">
@@ -263,7 +265,8 @@
         <!-- Video Showcase Section -->
         <section id="video-showcase" class="w-full bg-slate-950 relative overflow-hidden border-y border-white/10">
             <div class="w-full h-[500px] md:h-[700px] relative">
-                 <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                 <video class="w-full h-full object-cover" loop muted playsinline data-play-when-visible="true" preload="none" poster="src/assets/trambulance-rotate-poster.jpg">
+                     <source src="src/assets/trambulance-rotate-optimized.mp4" media="(max-width: 767px)" type="video/mp4">
                      <source src="src/assets/trambulance%20rotate.mp4" type="video/mp4">
                      Your browser does not support the video tag.
                  </video>
@@ -431,14 +434,15 @@
                     <div class="bg-slate-900/50 p-6 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-all group">
                         <h3 class="text-2xl font-bold mb-4 text-white">স্মার্ট অ্যাক্সেস মেকানিজম</h3>
                         <div class="rounded-2xl overflow-hidden shadow-lg aspect-video bg-slate-800 flex items-center justify-center">
-                            <img src="src/assets/Trambulance gif up.gif" alt="Trambulance Mechanism" class="w-full h-full object-cover">
+                            <video class="w-full h-full object-cover" muted loop playsinline data-play-when-visible="true" preload="none" poster="src/assets/trambulance-model-poster.jpg" aria-label="Trambulance mechanism animation"><source src="src/assets/trambulance-mechanism-optimized.mp4" type="video/mp4"></video>
                         </div>
                     </div>
                     <!-- Video / Model -->
                     <div class="bg-slate-900/50 p-6 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-all group">
                         <h3 class="text-2xl font-bold mb-4 text-white">থ্রিডি মডেল ভিজ্যুয়ালাইজেশন</h3>
                         <div class="rounded-2xl overflow-hidden shadow-lg relative group aspect-video bg-slate-800 flex items-center justify-center">
-                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                            <video class="w-full h-full object-cover" loop muted playsinline data-play-when-visible="true" preload="none" poster="src/assets/trambulance-model-poster.jpg">
+                                <source src="src/assets/trambulance-model-optimized.mp4" media="(max-width: 767px)" type="video/mp4">
                                 <source src="src/assets/Trambulance model1.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -457,13 +461,13 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
-                        <img src="src/assets/2.jpg" alt="Trambulance View 1" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="src/assets/2.webp" alt="Trambulance View 1" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" decoding="async" loading="lazy" width="1600" height="905">
                     </div>
                     <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
-                        <img src="src/assets/3.jpg" alt="Trambulance View 2" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="src/assets/3.webp" alt="Trambulance View 2" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" decoding="async" loading="lazy" width="1600" height="905">
                     </div>
                     <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
-                        <img src="src/assets/Perspective_1.jpg" alt="Trambulance Perspective" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="src/assets/Perspective_1.webp" alt="Trambulance Perspective" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" decoding="async" loading="lazy" width="1600" height="905">
                     </div>
                 </div>
             </div>
@@ -509,7 +513,7 @@
                     <!-- Abrar Faiaz -->
                     <div class="bg-slate-900 rounded-3xl p-8 border border-white/5 hover:border-purple-500/30 transition-all group">
                         <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-6 ring-4 ring-slate-800 group-hover:ring-purple-500/50 transition-all">
-                            <img src="src/assets/founders/abrar.jpg" class="w-full h-full object-cover" alt="Abrar Faiaz">
+                            <img src="src/assets/founders/abrar.webp" class="w-full h-full object-cover" alt="Abrar Faiaz" decoding="async" loading="lazy" width="1371" height="1837">
                         </div>
                         <h4 class="text-xl font-bold text-white text-center mb-1">আবরার ফাইয়াজ</h4>
                         <p class="text-purple-400 text-sm text-center mb-4">হেড অফ সফটওয়্যার এবং এআই সিস্টেমস</p>
@@ -519,7 +523,7 @@
                     <!-- Alphy Shaharin -->
                     <div class="bg-slate-900 rounded-3xl p-8 border border-white/5 hover:border-purple-500/30 transition-all group">
                         <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-6 ring-4 ring-slate-800 group-hover:ring-purple-500/50 transition-all">
-                            <img src="src/assets/founders/aphy.jpg" class="w-full h-full object-cover" alt="Alphy Shaharin">
+                            <img src="src/assets/founders/aphy.webp" class="w-full h-full object-cover" alt="Alphy Shaharin" decoding="async" loading="lazy" width="1181" height="1568">
                         </div>
                         <h4 class="text-xl font-bold text-white text-center mb-1">আলফি শাহারিন</h4>
                         <p class="text-purple-400 text-sm text-center mb-4">হেড অফ সাসটেইনেবিলিটি</p>
@@ -529,7 +533,7 @@
                     <!-- Arefien Razi -->
                     <div class="bg-slate-900 rounded-3xl p-8 border border-white/5 hover:border-purple-500/30 transition-all group">
                         <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-6 ring-4 ring-slate-800 group-hover:ring-purple-500/50 transition-all">
-                            <img src="src/assets/founders/yaad.jpg" class="w-full h-full object-cover" alt="Arefien Razi">
+                            <img src="src/assets/founders/yaad.jpg" class="w-full h-full object-cover" alt="Arefien Razi" decoding="async" loading="lazy" width="657" height="880">
                         </div>
                         <h4 class="text-xl font-bold text-white text-center mb-1">আরেফিন রাজী</h4>
                         <p class="text-purple-400 text-sm text-center mb-4">নির্বাহী পরিচালক</p>

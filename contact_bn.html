@@ -359,6 +359,8 @@
             .info-group:hover { transform: translateY(-5px); padding-left: 0; background: rgba(141, 163, 86, 0.05); border-radius: 8px; }
         }
     </style>
+<link rel="stylesheet" href="css/site-mobile.css"/>
+<script src="js/site-mobile.js" defer></script>
 </head>
 <body>
     <!-- Hamburger Menu (Mobile Only) -->
@@ -409,7 +411,7 @@
         <!-- Left Panel: Identity -->
         <div class="card-left">
             <div class="card-image-wrapper" id="card-image-container">
-                <img id="card-image" src="" alt="প্রোফাইল ছবি">
+                <img id="card-image" src="" alt="প্রোফাইল ছবি" decoding="async">
             </div>
             <div class="header-initials" id="card-initials">A A M</div>
             <h1 class="profile-name" id="card-name">Rownak Shahriar Ruhan</h1>
@@ -488,7 +490,7 @@
                 phone1: "+8801795095833",
                 email1: "abrarfaiaz20@gmail.com",
                 dept: "Civil Engineering, BUET",
-                image: "src/assets/founders/abrar.jpg"
+                image: "src/assets/founders/abrar.webp"
             },
             arefien: {
                 initials: "A R",
@@ -506,7 +508,7 @@
                 phone1: "+8801567812916",
                 email1: "alphytamim16687@gmail.com",
                 dept: "Civil Engineering, BUET",
-                image: "src/assets/founders/aphy.jpg"
+                image: "src/assets/founders/aphy.webp"
             },
             mafizur: {
                 initials: "Dr.",
@@ -567,7 +569,7 @@
                 phone2: "+৮৮০ ১৮৬৭ ১১৪৮৮৩",
                 email1: "mhmhasanmahmud2@gmail.com",
                 email2: "2010061@me.buet.ac.bd",
-                image: "src/assets/founders/Omor.jpg"
+                image: "src/assets/founders/Omor.webp"
             },
             mijanur: {
                 initials: "M R",
@@ -717,7 +719,7 @@
         });
     </script>
     <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
-    <div class="watermark-overlay" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: multiply;"></div>
+    <div class="watermark-overlay" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.webp'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: multiply;"></div>
     <script> 
         document.addEventListener("mousemove", e => { 
             const gradient = document.getElementById("cursor-gradient"); 

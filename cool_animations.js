@@ -1,133 +1,96 @@
+/* TriChokro decorative animation: adaptive and paused while offscreen. */
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Particle Network Animation
-    const canvas = document.getElementById('particle-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let particlesArray = [];
-        const numberOfParticles = 80; // Reduced count for performance
-
-        // Handle resize
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
+  const canvas = document.getElementById('particle-canvas');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const small = matchMedia('(max-width: 767px)');
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+  if (canvas && !reduced.matches && !saveData && !small.matches) {
+    const ctx = canvas.getContext('2d', { alpha:true });
+    if (ctx) {
+      const count = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ? 24 : 45;
+      let particles = [], raf = 0, active = true, last = 0;
+      function sizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.max(1, Math.min(rect.width || innerWidth, innerWidth));
+        const h = Math.max(1, Math.min(rect.height || innerHeight, innerHeight));
+        // Avoid creating a 4K backing canvas on high-density devices.
+        const dpr = Math.min(devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+        particles = Array.from({length:count}, () => ({
+          x:Math.random()*w, y:Math.random()*h,
+          vx:(Math.random()-.5)*.45, vy:(Math.random()-.5)*.45,
+          radius:Math.random()*1.6+.5
+        }));
+      }
+      function draw(now) {
+        raf = 0;
+        if (!active || document.hidden) return;
+        // 30fps cap prevents a heavy background effect from occupying every frame.
+        if (now-last >= 32) {
+          last=now;
+          const w=canvas.width/Math.min(devicePixelRatio||1,1.5);
+          const h=canvas.height/Math.min(devicePixelRatio||1,1.5);
+          ctx.clearRect(0,0,w,h);
+          particles.forEach((p,i)=> {
+            p.x=(p.x+p.vx+w)%w; p.y=(p.y+p.vy+h)%h;
+            ctx.fillStyle='rgba(100,255,218,.45)';
+            ctx.beginPath();ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);ctx.fill();
+            // Connect only nearby points, calculate squared distance (no sqrt per pair).
+            for(let j=i+1;j<particles.length;j++) {
+              const q=particles[j],dx=p.x-q.x,dy=p.y-q.y,d2=dx*dx+dy*dy;
+              if(d2<10000) {
+                ctx.strokeStyle=`rgba(100,255,218,${.14*(1-d2/10000)})`;
+                ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+              }
             }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                // Wrap around screen
-                if (this.x > canvas.width) this.x = 0;
-                else if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                else if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(100, 255, 218, 0.5)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+          });
         }
-
-        function init() {
-            particlesArray = [];
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-
-                // Connect particles
-                for (let j = i; j < particlesArray.length; j++) {
-                    const dx = particlesArray[i].x - particlesArray[j].x;
-                    const dy = particlesArray[i].y - particlesArray[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 120) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(100, 255, 218, ${1 - distance / 120})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
+        raf=requestAnimationFrame(draw);
+      }
+      function start() { if (!raf && active && !document.hidden) raf=requestAnimationFrame(draw); }
+      sizeCanvas();
+      const obs=new IntersectionObserver(entries=>{
+        active=entries[0].isIntersecting;
+        if (!active && raf) {cancelAnimationFrame(raf);raf=0;}
+        if (active) start();
+      },{threshold:0.01});
+      obs.observe(canvas);
+      document.addEventListener('visibilitychange',start);
+      let resizeTimer;
+      addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{sizeCanvas();start();},150);},{passive:true});
+      start();
     }
+  }
 
-    // 2. Animated Counters
-    const counters = document.querySelectorAll('.counter');
-    const animateCounters = () => {
-        counters.forEach(counter => {
-            const updateCount = () => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const inc = Math.max(1, Math.ceil(target / 100)); // Ensure increment is at least 1
+  // Each counter animates at most once, and only when visible.
+  const counters = [...document.querySelectorAll('.counter[data-target]')];
+  const updateCounter=el=>{
+    const target=Number(el.dataset.target);
+    if (!Number.isFinite(target)) return;
+    if (reduced.matches) {el.textContent=String(target);return;}
+    const start=performance.now();
+    function frame(now){
+      const progress=Math.min(1,(now-start)/850);
+      el.textContent=String(Math.round(target*(1-Math.pow(1-progress,3))));
+      if (progress<1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  };
+  if ('IntersectionObserver' in window) {
+    const observer=new IntersectionObserver((entries,obs)=>entries.forEach(e=>{
+      if(e.isIntersecting){updateCounter(e.target);obs.unobserve(e.target);}
+    }),{threshold:.1});
+    counters.forEach(el=>observer.observe(el));
+  } else counters.forEach(updateCounter);
 
-                if (count < target) {
-                    counter.innerText = count + inc;
-                    setTimeout(updateCount, 20);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            updateCount();
-        });
-    };
-
-    // Observer for counters
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                observer.disconnect(); // Run once (assuming all counters are in the same section)
-            }
-        });
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced.matches) {
+    document.querySelectorAll('.magnetic-btn').forEach(btn=>{
+      btn.addEventListener('mousemove',e=>{
+        const r=btn.getBoundingClientRect();
+        btn.style.translate=`${((e.clientX-r.left)-r.width/2)*.18}px ${((e.clientY-r.top)-r.height/2)*.18}px`;
+      },{passive:true});
+      btn.addEventListener('mouseleave',()=>{btn.style.translate='0 0';});
     });
-
-    if (counters.length > 0) {
-        counterObserver.observe(counters[0]); 
-    }
-
-    // 3. Glitch Effect Logic (applied via CSS class, toggle on hover)
-    // Hover glitch effect removed for .type-me elements
-
-    // 4. Magnetic Buttons (Light version)
-    const buttons = document.querySelectorAll('.magnetic-btn');
-    if (!window.matchMedia("(pointer: coarse)").matches) { // Disable on touch devices
-        buttons.forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                // Use translate property to avoid conflict with Tailwind transform classes
-                btn.style.translate = `${x * 0.2}px ${y * 0.2}px`;
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.translate = '0px 0px';
-            });
-        });
-    }
+  }
 });

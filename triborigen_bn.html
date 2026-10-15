@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TribOriGen | বর্জ্য টায়ারকে টেকসই উপকরণে রূপান্তর</title>
-    <link rel="icon" type="image/jpg" href="src/assets/triborigen logo.jpg">
+    <link rel="icon" type="image/jpg" href="src/assets/triborigen_logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -105,6 +105,8 @@
             border-radius: 2px;
         }
     </style>
+<link rel="stylesheet" href="css/site-mobile.css"/>
+<script src="js/site-mobile.js" defer></script>
 </head>
 <body class="antialiased selection:bg-green-500 selection:text-black">
 
@@ -115,7 +117,7 @@
             <div class="flex justify-between items-center h-24">
                 <div class="flex items-center gap-4 cursor-pointer group" onclick="window.scrollTo(0,0)">
                     <div class="w-12 h-12 rounded-full overflow-hidden border border-gray-700 shadow-lg group-hover:border-green-500 transition-colors">
-                        <img src="src/assets/triborigen logo.jpg" alt="TribOriGen Logo" class="w-full h-full object-cover">
+                        <img src="src/assets/triborigen_logo.jpg" alt="TribOriGen Logo" class="w-full h-full object-cover" decoding="async" width="1280" height="698">
                     </div>
                     <div class="flex flex-col">
                         <span class="text-2xl font-bold formal-font text-white tracking-wide">TribOriGen</span>
@@ -144,7 +146,7 @@
     </nav>
 
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-30 z-0">
+        <video loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-30 z-0" data-play-when-visible="true" preload="none">
             <source src="src/assets/Trioborigengif.MP4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-[#0f0f0f] z-1"></div>
@@ -296,7 +298,7 @@
                 <!-- App 1 -->
                 <div class="group relative h-[400px] rounded-lg overflow-hidden border border-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="0">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1542361345-89e58247f2d5?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60">
+                    <img src="https://images.unsplash.com/photo-1542361345-89e58247f2d5?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60" decoding="async">
                     <div class="absolute bottom-0 left-0 p-8 z-20">
                         <h3 class="text-2xl font-bold text-white mb-2 formal-font">স্মার্ট রাস্তা</h3>
                         <p class="text-gray-400 text-sm mb-4 h-0 overflow-hidden group-hover:h-auto transition-all duration-500">
@@ -309,7 +311,7 @@
                 <!-- App 2 -->
                 <div class="group relative h-[400px] rounded-lg overflow-hidden border border-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="100">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1530263503756-b3822955974b?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60">
+                    <img src="https://images.unsplash.com/photo-1530263503756-b3822955974b?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60" decoding="async" loading="lazy">
                     <div class="absolute bottom-0 left-0 p-8 z-20">
                         <h3 class="text-2xl font-bold text-white mb-2 formal-font">শিল্প ফ্লোরিং</h3>
                         <p class="text-gray-400 text-sm mb-4 h-0 overflow-hidden group-hover:h-auto transition-all duration-500">
@@ -322,7 +324,7 @@
                 <!-- App 3 -->
                 <div class="group relative h-[400px] rounded-lg overflow-hidden border border-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1486262715619-72a604e3d7b9?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60">
+                    <img src="https://images.unsplash.com/photo-1486262715619-72a604e3d7b9?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60" decoding="async" loading="lazy">
                     <div class="absolute bottom-0 left-0 p-8 z-20">
                         <h3 class="text-2xl font-bold text-white mb-2 formal-font">অটোমোটিভ পার্টস</h3>
                         <p class="text-gray-400 text-sm mb-4 h-0 overflow-hidden group-hover:h-auto transition-all duration-500">
@@ -439,7 +441,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="src/assets/triborigen logo.jpg" alt="Logo" class="w-8 h-8 rounded-full grayscale hover:grayscale-0 transition-all">
+                        <img src="src/assets/triborigen_logo.jpg" alt="Logo" class="w-8 h-8 rounded-full grayscale hover:grayscale-0 transition-all" decoding="async" loading="lazy" width="1280" height="698">
                         <span class="text-2xl font-bold text-white formal-font">TribOriGen</span>
                     </div>
                     <p class="text-gray-500 text-sm leading-relaxed max-w-sm">
