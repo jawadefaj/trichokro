@@ -73,42 +73,95 @@
     input[type=range]::-webkit-slider-thumb:hover {
       transform: scale(1.15);
     }
-  </style>
+
+    /* Add base professional styles */
+    body {
+        cursor: default;
+        background-color: #020617;
+        font-family: 'Inter', sans-serif;
+        color: #e2e8f0;
+    }
+
+    .animate-pulse-slow {
+        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .animate-blob {
+        animation: float 8s ease-in-out infinite;
+    }
+
+    /* Background FX */
+    .bg-fx {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .bg-fx .shape1 {
+        position: absolute; top: -10%; left: -10%; width: 50%; height: 50%;
+        background-color: rgba(88, 28, 135, 0.4);
+        border-radius: 50%; filter: blur(120px);
+        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .bg-fx .shape2 {
+        position: absolute; bottom: -10%; right: -10%; width: 60%; height: 60%;
+        background-color: rgba(30, 58, 138, 0.3);
+        border-radius: 50%; filter: blur(120px);
+        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        animation-delay: 1s;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+</style>
+
+</style>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 </head>
-<body class="font-sans antialiased selection:bg-arkRed selection:text-white subtle-grid">
+<body id="main-view" class="font-sans antialiased selection:bg-emerald-500 selection:text-white subtle-grid">
+<div class="bg-fx">
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+</div>
 
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-arkDark/85 border-b border-white/[0.07]">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <div class="w-7 h-7 rounded bg-arkRed flex items-center justify-center font-mono font-bold text-sm text-white">
-          +
-        </div>
-        <span class="font-display font-bold text-lg tracking-tight text-white">ARKGO</span>
-        <span class="hidden sm:inline-block text-[11px] font-mono text-slate-500 border-l border-white/10 pl-3">
-          TRAMBULANCE REV-2
-        </span>
-      </a>
-      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-slate-400">
-        <a href="#deficit" class="hover:text-white transition">01. Deficit</a>
-        <a href="#simulation" class="hover:text-white transition">02. Simulation</a>
-        <a href="#architecture" class="hover:text-white transition">03. Specs</a>
-        <a href="#cabin" class="hover:text-white transition">04. Interior</a>
-        <a href="#economics" class="hover:text-white transition">05. Economics</a>
-      </nav>
-      <button onclick="openPilotModal()" class="px-4 py-2 rounded-lg bg-white text-slate-950 hover:bg-slate-200 font-display font-semibold text-xs tracking-wide transition">
-        Seed Round · $275K
-      </button>
-    </div>
-  </header>
 
-  <section class="pt-28 pb-20 lg:pt-36 lg:pb-24">
+  <nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5" id="navbar">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+<img alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" src="src/assets/logo_icon.webp" decoding="async" width="1600" height="1600">
+<span class="tc-brand-wordmark"><span class="tc-brand-main">Tri<span class="text-emerald-400">Chokro</span></span><span class="tc-brand-sub"> Automotives</span></span>
+</div>
+<div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;"><a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#home" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#about" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#products" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#blogs" style="animation-delay: 0.45s">NEWS</a>
+<a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index_bn.html" style="animation-delay: 0.55s"><i class="fas fa-globe"></i> BN</a> <a class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" href="contact.html?id=rownak" style="animation-delay: 0.6s"> CONTACTS </a></div>
+<div class="md:hidden">
+<button class="text-white hover:text-emerald-400 interactive" id="mobile-menu-btn"><i class="w-7 h-7" data-lucide="menu"></i></button>
+</div>
+</div>
+</div>
+<div class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate" id="mobile-menu">
+<div class="px-4 py-4 space-y-3 flex flex-col">
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#home">HOME</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#about">ABOUT US</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="#blogs">NEWS</a>
+<a class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="trambulance.html">TRAMBULANCE</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#products">PRODUCTS</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="contact.html?id=rownak">CONTACTS</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index_bn.html">BN</a>
+</div>
+</div>
+</nav>
+
+  <section class="pt-40 pb-20 lg:pt-48 lg:pb-24">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid lg:grid-cols-12 gap-12 items-center">
 
         <!-- Left Column: Concise Executive Positioning -->
         <div class="lg:col-span-6 space-y-7">
           <div class="inline-flex items-center gap-2.5 text-xs font-mono uppercase tracking-widest text-slate-400">
-            <span class="w-2 h-2 rounded-full bg-arkRed"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
             Project Argo · Team Trichokro · Bangladesh
           </div>
 
@@ -121,7 +174,7 @@
           </p>
 
           <div class="flex flex-wrap gap-3 pt-1">
-            <a href="#simulation" class="px-5 py-3 rounded-lg bg-arkRed hover:bg-rose-700 text-white font-display font-medium text-sm transition">
+            <a href="#simulation" class="px-5 py-3 rounded-lg bg-emerald-500 hover:bg-rose-700 text-white font-display font-medium text-sm transition">
               Run Depth Simulation
             </a>
             <a href="#architecture" class="px-5 py-3 rounded-lg bg-arkSurface hover:bg-arkPanel border border-white/10 text-slate-200 font-display font-medium text-sm transition">
@@ -259,7 +312,7 @@
   <section id="deficit" class="py-12 border-y border-white/[0.07] bg-arkSurface/40">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8">
-        <span class="text-xs font-mono uppercase tracking-widest text-arkRed">01 // THE INFRASTRUCTURE DEFICIT</span>
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">01 // THE INFRASTRUCTURE DEFICIT</span>
         <span class="text-[11px] font-mono text-slate-500">AUG 2024 BANGLADESH FLOOD DATA · UN OCHA / DGHS</span>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -276,7 +329,7 @@
           <div class="text-xs text-slate-400 mt-1">Of Sylhet district submerged</div>
         </div>
         <div>
-          <div class="font-display text-3xl sm:text-4xl font-bold text-arkRed">0</div>
+          <div class="font-display text-3xl sm:text-4xl font-bold text-emerald-400">0</div>
           <div class="text-xs text-slate-400 mt-1">Water ambulances in public fleet</div>
         </div>
       </div>
@@ -371,7 +424,7 @@
             </div>
 
             <div id="visArkgo" class="relative z-20 text-center transition-transform duration-300">
-              <div class="px-3.5 py-1.5 rounded bg-arkRed text-white font-display font-semibold text-xs shadow-lg">
+              <div class="px-3.5 py-1.5 rounded bg-emerald-500 text-white font-display font-semibold text-xs shadow-lg">
                 ARKGO (0–10+ FT)
               </div>
             </div>
@@ -480,11 +533,11 @@
         <div class="lg:col-span-6 rounded-2xl bg-arkSurface border border-white/10 p-6">
           <div class="flex items-center justify-between mb-6">
             <div>
-              <span class="text-xs font-mono text-arkRed uppercase">04 // INTERIOR LAYOUT (4' × 6' BAY)</span>
+              <span class="text-xs font-mono text-emerald-400 uppercase">04 // INTERIOR LAYOUT (4' × 6' BAY)</span>
               <h3 class="font-display text-xl font-bold text-white mt-0.5">Floating ER Configurator</h3>
             </div>
             <div class="flex bg-arkDark p-1 rounded-lg border border-white/[0.07] text-xs font-mono">
-              <button onclick="setCabin('ambulance')" id="btnCabAmb" class="px-3 py-1 rounded bg-arkRed text-white font-medium transition">7+1 EMS</button>
+              <button onclick="setCabin('ambulance')" id="btnCabAmb" class="px-3 py-1 rounded bg-emerald-500 text-white font-medium transition">7+1 EMS</button>
               <button onclick="setCabin('rescue')" id="btnCabRes" class="px-3 py-1 rounded text-slate-400 hover:text-white transition">11 Rescue</button>
             </div>
           </div>
@@ -559,7 +612,7 @@
       <div class="grid lg:grid-cols-12 gap-8">
         <!-- Competitive Benchmark -->
         <div class="lg:col-span-7 rounded-2xl bg-arkSurface border border-white/10 p-6">
-          <span class="text-xs font-mono text-arkRed uppercase">05 // MARKET POSITIONING</span>
+          <span class="text-xs font-mono text-emerald-400 uppercase">05 // MARKET POSITIONING</span>
           <h3 class="font-display text-xl font-bold text-white mt-0.5 mb-5">15× Cheaper Than Imported Amphibians</h3>
 
           <div class="divide-y divide-white/[0.06] text-xs sm:text-sm">
@@ -635,7 +688,7 @@
               <div class="p-2 rounded bg-arkDark">15% Team ($41K)</div>
               <div class="p-2 rounded bg-arkDark">10% Pilots ($28K)</div>
             </div>
-            <button onclick="openPilotModal()" class="w-full py-3 rounded-lg bg-arkRed hover:bg-rose-700 text-white font-display font-medium text-xs uppercase tracking-wider transition">
+            <button onclick="openPilotModal()" class="w-full py-3 rounded-lg bg-emerald-500 hover:bg-rose-700 text-white font-display font-medium text-xs uppercase tracking-wider transition">
               Request Dossier / Book Sylhet & Cumilla Pilot
             </button>
           </div>
@@ -675,9 +728,55 @@
     </div>
   </div>
 
-  <footer class="py-8 border-t border-white/[0.07] text-center text-[11px] font-mono text-slate-500">
-    ARKGO TRAMBULANCE · TEAM TRICHOKRO · "IN WATER, IN LAND — YOUR LIFE IS IN OUR HAND"
-  </footer>
+  <footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start justify-between">
+<div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 md:mb-0">
+<!-- Updated Footer Logo -->
+<div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
+<img alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]" src="src/assets/logo_new.webp" decoding="async" loading="lazy" width="1600" height="1600">
+<span class="text-xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+</div>
+<div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
+<div class="relative">
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer float-link-1" href="#" onclick="toggleProductsMenu()">Products</a>
+<div class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg" id="products-menu">
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="trambulance.html">Trambulance</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="pathfinder.html">Pathfinder</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="arkgo.html">ARKGO</a>
+</div>
+</div>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-2" href="founder.html">Contacts</a>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-3" href="privacy.html">Privacy</a>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-4" href="metadata.html">Meta Data</a>
+</div>
+</div>
+<div class="flex flex-col items-end space-y-4 mt-4 md:mt-0">
+<div class="flex space-x-4">
+<a aria-label="Connect with us on LinkedIn" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.linkedin.com/in/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.27 20.45H3.66V9h3.61v11.45zM5.46 7.42c-1.18 0-2.14-.95-2.14-2.13s.96-2.13 2.14-2.13 2.14.95 2.14 2.13-.96 2.13-2.14 2.13zM20.47 20.45h-3.61v-5.63c0-1.34-.48-2.26-1.68-2.26-1.12 0-1.78.75-2.07 1.48-.11.26-.14.63-.14 1v6.41h-3.61s.05-10.4 0-11.45h3.61v1.65c.48-.75 1.34-1.82 3.25-1.82 2.37 0 4.15 1.55 4.15 4.9v6.72z"></path>
+</svg>
+</a>
+<a aria-label="Follow us on Facebook" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.facebook.com/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+
+<!-- Facebook Section -->
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8 flex justify-center">
+    <div class="w-full max-w-2xl bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-2xl flex justify-center">
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61577812382585&tabs=timeline&width=500&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+</div>
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+<p class="text-slate-600 text-sm">Developed by Ruhan &amp; Jules; All right reserved, TriChokro 2026</p>
+</div>
+</footer>
 
   <script>
     function switchHeroView(view) {
@@ -795,7 +894,7 @@
     function setCabin(type) {
       const isAmb = type === 'ambulance';
       document.getElementById('btnCabAmb').className = isAmb
-        ? 'px-3 py-1 rounded bg-arkRed text-white font-medium transition'
+        ? 'px-3 py-1 rounded bg-emerald-500 text-white font-medium transition'
         : 'px-3 py-1 rounded text-slate-400 hover:text-white transition';
       document.getElementById('btnCabRes').className = !isAmb
         ? 'px-3 py-1 rounded bg-arkCyan text-slate-950 font-medium transition'
