@@ -1,939 +1,907 @@
-<!DOCTYPE html> 
-<html lang="en" class="scroll-smooth"> 
-<head> 
-  <meta charset="UTF-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-  <title>ARKGO Trambulance | Team Trichokro — Amphibious Medical Response</title> 
-  <script src="https://cdn.tailwindcss.com"></script> 
-  <link rel="preconnect" href="https://fonts.googleapis.com"> 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"> 
-  <script> 
-    tailwind.config = { 
-      theme: { 
-        extend: { 
-          fontFamily: { 
-            display: ['Space Grotesk', 'sans-serif'], 
-            sans: ['Inter', 'sans-serif'], 
-            mono: ['JetBrains Mono', 'monospace'], 
-          }, 
-          colors: { 
-            arkDark: '#090b10', 
-            arkSurface: '#11151f', 
-            arkPanel: '#161b26', 
-            arkRed: '#e11d48', 
-            arkCyan: '#38bdf8', 
-            arkAmber: '#f59e0b', 
-            arkGreen: '#10b981' 
-          } 
-        } 
-      } 
-    } 
-  </script> 
-  <style> 
-    body { 
-      background-color: #090b10; 
-      color: #f1f5f9; 
-      overflow-x: hidden; 
-    } 
-    .subtle-grid { 
-      background-size: 48px 48px; 
-      background-image:  
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px); 
-    } 
-    .cad-grid { 
-      background-color: #0c111a; 
-      background-size: 24px 24px; 
-      background-image:  
-        linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px), 
-        linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px); 
-    } 
-    .wave-transition { 
-      transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1); 
-    } 
-    input[type=range] { 
-      -webkit-appearance: none; 
-      appearance: none; 
-      background: rgba(255, 255, 255, 0.08); 
-      height: 5px; 
-      border-radius: 999px; 
-    } 
-    input[type=range]::-webkit-slider-thumb { 
-      -webkit-appearance: none; 
-      appearance: none; 
-      width: 18px; 
-      height: 18px; 
-      border-radius: 50%; 
-      background: #f8fafc; 
-      border: 2px solid #e11d48; 
-      cursor: pointer; 
-      transition: transform 0.15s ease; 
-    } 
-    input[type=range]::-webkit-slider-thumb:hover { 
-      transform: scale(1.15); 
-    } 
-  
-    /* Add base professional styles */
-    body {
-        cursor: default; 
-        background-color: #020617; 
-        font-family: 'Inter', sans-serif; 
-        color: #e2e8f0; 
-    }
-    
-    .animate-pulse-slow {
-        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    .animate-blob {
-        animation: float 8s ease-in-out infinite;
-    }
-    
-    /* Background FX */
-    .bg-fx {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-    }
-    .bg-fx .shape1 {
-        position: absolute; top: -10%; left: -10%; width: 50%; height: 50%;
-        background-color: rgba(88, 28, 135, 0.4);
-        border-radius: 50%; filter: blur(120px);
-        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    .bg-fx .shape2 {
-        position: absolute; bottom: -10%; right: -10%; width: 60%; height: 60%;
-        background-color: rgba(30, 58, 138, 0.3);
-        border-radius: 50%; filter: blur(120px);
-        animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        animation-delay: 1s;
-    }
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARKGO Trambulance | TriChokro Automotives, Amphibious Medical Response</title>
+  <meta name="description" content="ARKGO Trambulance by TriChokro: an amphibious electric ambulance for flood-isolated Bangladesh. 40 km/h on land, 10 km/h on water, US$8,000 per unit.">
+  <meta name="theme-color" content="#020617">
+  <meta property="og:title" content="ARKGO Trambulance by TriChokro">
+  <meta property="og:description" content="Amphibious medical response for flood-isolated deltas. Drives on land, floats through floodwater, no patient transfers.">
+  <meta property="og:image" content="https://www.trichokro.com/src/assets/arkgo/arkgo_hero.webp">
+  <meta property="og:url" content="https://www.trichokro.com/arkgo.html">
 
-</style> 
-<script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-</head> 
-<body id="main-view" class="font-sans antialiased selection:bg-emerald-500 selection:text-white subtle-grid">
-<div class="bg-fx">
-    <div class="shape1"></div>
-    <div class="shape2"></div>
-</div>
- 
- 
-  <nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5" id="navbar">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
-<img alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" src="src/assets/logo_icon.webp" decoding="async" width="1600" height="1600">
-<span class="tc-brand-wordmark"><span class="tc-brand-main">Tri<span class="text-emerald-400">Chokro</span></span><span class="tc-brand-sub"> Automotives</span></span>
-</div>
-<div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;"><a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#home" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#about" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#products" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#blogs" style="animation-delay: 0.45s">NEWS</a>
-<a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index_bn.html" style="animation-delay: 0.55s"><i class="fas fa-globe"></i> BN</a> <a class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" href="contact.html?id=rownak" style="animation-delay: 0.6s"> CONTACTS </a></div>
-<div class="md:hidden">
-<button class="text-white hover:text-emerald-400 interactive" id="mobile-menu-btn"><i class="w-7 h-7" data-lucide="menu"></i></button>
-</div>
-</div>
-</div>
-<div class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate" id="mobile-menu">
-<div class="px-4 py-4 space-y-3 flex flex-col">
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#home">HOME</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#about">ABOUT US</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="#blogs">NEWS</a>
-<a class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="trambulance.html">TRAMBULANCE</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#products">PRODUCTS</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="contact.html?id=rownak">CONTACTS</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index_bn.html">BN</a>
-</div>
-</div>
-</nav> 
- 
-  <section class="pt-40 pb-20 lg:pt-48 lg:pb-24"> 
-    <div class="max-w-7xl mx-auto px-6"> 
-      <div class="grid lg:grid-cols-12 gap-12 items-center"> 
-         
-        <!-- Left Column: Concise Executive Positioning --> 
-        <div class="lg:col-span-6 space-y-7"> 
-          <div class="inline-flex items-center gap-2.5 text-xs font-mono uppercase tracking-widest text-slate-400"> 
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 
-            Project Argo · Team Trichokro · Bangladesh 
-          </div> 
-           
-          <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white leading-[1.05]"> 
-            Amphibious medical response. 
-          </h1> 
-           
-          <p class="text-base sm:text-lg text-slate-400 font-light leading-relaxed max-w-xl"> 
-            Engineered for flood-isolated deltas. Drives at <span class="text-white font-medium">40 km/h on land</span>, propels through debris-laden water at <span class="text-white font-medium">10 km/h</span>, and eliminates mid-route patient transfers. 
-          </p> 
- 
-          <div class="flex flex-wrap gap-3 pt-1"> 
-            <a href="#simulation" class="px-5 py-3 rounded-lg bg-emerald-500 hover:bg-rose-700 text-white font-display font-medium text-sm transition"> 
-              Run Depth Simulation 
-            </a> 
-            <a href="#architecture" class="px-5 py-3 rounded-lg bg-arkSurface hover:bg-arkPanel border border-white/10 text-slate-200 font-display font-medium text-sm transition"> 
-              Technical Specifications 
-            </a> 
-          </div> 
- 
-          <!-- Minimalist Key Metrics --> 
-          <div class="grid grid-cols-4 gap-6 pt-8 border-t border-white/[0.08]"> 
-            <div> 
-              <div class="font-display text-2xl sm:text-3xl font-bold text-white">$8K</div> 
-              <div class="text-[11px] font-mono text-slate-500 uppercase mt-1">Unit Cost</div> 
-            </div> 
-            <div> 
-              <div class="font-display text-2xl sm:text-3xl font-bold text-white">2.0 t</div> 
-              <div class="text-[11px] font-mono text-slate-500 uppercase mt-1">Max Load</div> 
-            </div> 
-            <div> 
-              <div class="font-display text-2xl sm:text-3xl font-bold text-white">48 hr</div> 
-              <div class="text-[11px] font-mono text-slate-500 uppercase mt-1">Autonomy</div> 
-            </div> 
-            <div> 
-              <div class="font-display text-2xl sm:text-3xl font-bold text-arkGreen">70%</div> 
-              <div class="text-[11px] font-mono text-slate-500 uppercase mt-1">Local Build</div> 
-            </div> 
-          </div> 
-        </div> 
- 
-        <div class="lg:col-span-6"> 
-          <div class="rounded-2xl bg-arkSurface border border-white/10 p-6"> 
-            <div class="flex items-center justify-between mb-4"> 
-              <span id="viewCaptionBadge" class="text-xs font-mono text-slate-400"> 
-                PROFILE // 105" L × 52" W × 96" H 
-              </span> 
-              <div class="flex bg-arkDark p-1 rounded-lg border border-white/[0.07] text-xs font-mono"> 
-                <button onclick="switchHeroView('side')" id="tabViewSide" class="px-3 py-1 rounded bg-white text-slate-950 font-medium transition">Side</button> 
-                <button onclick="switchHeroView('front')" id="tabViewFront" class="px-3 py-1 rounded text-slate-400 hover:text-white transition">Bow</button> 
-                <button onclick="switchHeroView('rear')" id="tabViewRear" class="px-3 py-1 rounded text-slate-400 hover:text-white transition">Stern</button> 
-              </div> 
-            </div> 
- 
-            <!-- Precision CAD Viewport --> 
-            <div class="relative h-72 rounded-xl cad-grid border border-white/[0.06] flex flex-col justify-center items-center overflow-hidden p-6"> 
-               
-              <!-- View 1: Side Profile --> 
-              <div id="heroSvgSide" class="w-full max-w-md z-20"> 
-                <svg viewBox="0 0 440 200" class="w-full h-auto"> 
-                  <!-- Dimension markers --> 
-                  <line x1="60" y1="18" x2="370" y2="18" stroke="#475569" stroke-width="1" stroke-dasharray="3 3"/> 
-                  <text x="215" y="13" fill="#64748b" font-family="JetBrains Mono" font-size="9" text-anchor="middle">105 IN (8.75 FT)</text> 
-                  <!-- Emergency Lightbar & 500W Solar Array --> 
-                  <rect x="115" y="30" width="24" height="5" rx="2" fill="#e11d48" /> 
-                  <rect x="290" y="30" width="24" height="5" rx="2" fill="#38bdf8" /> 
-                  <rect x="145" y="31" width="138" height="4" rx="1" fill="#f59e0b" /> 
-                  <!-- Upper Superstructure --> 
-                  <path d="M65 122 L65 40 Q65 35 70 35 L305 35 L368 86 L368 122 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/> 
-                  <rect x="65" y="108" width="303" height="6" fill="#e11d48" /> 
-                  <!-- Glazing --> 
-                  <rect x="86" y="47" width="180" height="38" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1.5"/> 
-                  <polygon points="276,47 300,47 348,85 276,85" fill="#0f172a" stroke="#334155" stroke-width="1.5"/> 
-                  <!-- Minimal Branding --> 
-                  <text x="90" y="101" fill="#0f172a" font-family="Space Grotesk" font-weight="700" font-size="13" letter-spacing="1">ARKGO</text> 
-                  <rect x="252" y="91" width="12" height="12" rx="2" fill="#e11d48"/> 
-                  <path d="M258 94 L258 100 M255 97 L261 97" stroke="#ffffff" stroke-width="1.8"/> 
-                  <!-- 3-ft Sealed FRP Hull --> 
-                  <polygon points="56,122 378,122 356,158 66,158" fill="#1e293b" stroke="#475569" stroke-width="1.5"/> 
-                  <!-- Guarded Stern Propeller --> 
-                  <circle cx="43" cy="145" r="12" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="3 2"/> 
-                  <circle cx="43" cy="145" r="4" fill="#e11d48"/> 
-                  <line x1="58" y1="134" x2="43" y2="145" stroke="#64748b" stroke-width="2.5"/> 
-                  <!-- 24-in Buoyant Wheels --> 
-                  <circle cx="118" cy="158" r="23" fill="#090b10" stroke="#475569" stroke-width="4"/> 
-                  <circle cx="118" cy="158" r="9" fill="#64748b"/> 
-                  <circle cx="305" cy="158" r="23" fill="#090b10" stroke="#475569" stroke-width="4"/> 
-                  <circle cx="305" cy="158" r="9" fill="#64748b"/> 
-                </svg> 
-              </div> 
- 
-              <!-- View 2: Front Bow View --> 
-              <div id="heroSvgFront" class="hidden w-full max-w-xs z-20"> 
-                <svg viewBox="0 0 280 200" class="w-full h-auto"> 
-                  <rect x="90" y="24" width="45" height="6" rx="2" fill="#e11d48"/> 
-                  <rect x="145" y="24" width="45" height="6" rx="2" fill="#38bdf8"/> 
-                  <polygon points="68,126 76,32 204,32 212,126" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/> 
-                  <polygon points="82,42 198,42 202,88 78,88" fill="#0f172a" stroke="#334155" stroke-width="1.5"/> 
-                  <rect x="82" y="96" width="116" height="22" rx="3" fill="#0f172a"/> 
-                  <line x1="86" y1="99" x2="86" y2="115" stroke="#e11d48" stroke-width="2.5"/> 
-                  <line x1="194" y1="99" x2="194" y2="115" stroke="#e11d48" stroke-width="2.5"/> 
-                  <text x="140" y="110" fill="#f8fafc" font-family="Space Grotesk" font-weight="700" font-size="10" text-anchor="middle" letter-spacing="1">ARKGO</text> 
-                  <polygon points="62,126 218,126 194,162 86,162" fill="#1e293b" stroke="#475569" stroke-width="1.5"/> 
-                  <rect x="44" y="124" width="18" height="46" rx="4" fill="#090b10" stroke="#475569" stroke-width="2.5"/> 
-                  <rect x="218" y="124" width="18" height="46" rx="4" fill="#090b10" stroke="#475569" stroke-width="2.5"/> 
-                </svg> 
-              </div> 
- 
-              <!-- View 3: Rear Stern Ramp --> 
-              <div id="heroSvgRear" class="hidden w-full max-w-xs z-20"> 
-                <svg viewBox="0 0 280 200" class="w-full h-auto"> 
-                  <rect x="90" y="24" width="100" height="6" rx="2" fill="#e11d48"/> 
-                  <rect x="70" y="32" width="140" height="96" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/> 
-                  <rect x="82" y="42" width="116" height="78" fill="#0f172a"/> 
-                  <!-- Interior Bench & Stretcher --> 
-                  <rect x="86" y="68" width="28" height="46" rx="2" fill="#475569"/> 
-                  <rect x="146" y="70" width="46" height="44" rx="2" fill="#10b981"/> 
-                  <!-- Deployed Ramp --> 
-                  <polygon points="94,122 186,122 198,168 82,168" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/> 
-                  <line x1="90" y1="138" x2="190" y2="138" stroke="#64748b" stroke-width="1.5"/> 
-                  <line x1="86" y1="154" x2="194" y2="154" stroke="#64748b" stroke-width="1.5"/> 
-                  <circle cx="140" cy="178" r="10" fill="none" stroke="#38bdf8" stroke-width="1.8"/> 
-                </svg> 
-              </div> 
- 
-              <!-- Subtle Waterline Reference --> 
-              <div class="absolute bottom-0 left-0 right-0 h-11 bg-sky-500/10 border-t border-sky-400/30 flex items-center justify-between px-4 text-[10px] font-mono text-sky-300 z-30"> 
-                <span>WATERLINE // 17" DRAFT AT 1.2T</span> 
-                <span>+155 KG TIRE BUOYANCY</span> 
-              </div> 
-            </div> 
- 
-            <!-- Minimal Sub-bar --> 
-            <div class="mt-4 flex items-center justify-between text-xs font-mono text-slate-400"> 
-              <span>5 kW EV Land Drive</span> 
-              <span>·</span> 
-              <span>15 hp Guarded Prop</span> 
-              <span>·</span> 
-              <span class="text-amber-400">500W Solar Roof</span> 
-            </div> 
-          </div> 
-        </div> 
- 
-      </div> 
-    </div> 
-  </section> 
- 
-  <section id="deficit" class="py-12 border-y border-white/[0.07] bg-arkSurface/40"> 
-    <div class="max-w-7xl mx-auto px-6"> 
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8"> 
-        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">01 // THE INFRASTRUCTURE DEFICIT</span> 
-        <span class="text-[11px] font-mono text-slate-500">AUG 2024 BANGLADESH FLOOD DATA · UN OCHA / DGHS</span> 
-      </div> 
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8"> 
-        <div> 
-          <div class="font-display text-3xl sm:text-4xl font-bold text-white">5.8M</div> 
-          <div class="text-xs text-slate-400 mt-1">Citizens impacted in Aug '24 floods</div> 
-        </div> 
-        <div> 
-          <div class="font-display text-3xl sm:text-4xl font-bold text-white">502K</div> 
-          <div class="text-xs text-slate-400 mt-1">Marooned without road access</div> 
-        </div> 
-        <div> 
-          <div class="font-display text-3xl sm:text-4xl font-bold text-arkCyan">75%</div> 
-          <div class="text-xs text-slate-400 mt-1">Of Sylhet district submerged</div> 
-        </div> 
-        <div> 
-          <div class="font-display text-3xl sm:text-4xl font-bold text-emerald-400">0</div> 
-          <div class="text-xs text-slate-400 mt-1">Water ambulances in public fleet</div> 
-        </div> 
-      </div> 
-    </div> 
-  </section> 
- 
-  <section id="simulation" class="py-20"> 
-    <div class="max-w-7xl mx-auto px-6"> 
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4"> 
-        <div> 
-          <span class="text-xs font-mono uppercase tracking-widest text-arkCyan">02 // DEPTH SIMULATION</span> 
-          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white mt-1">The 3 ft – 7 ft Operational Dead Zone</h2> 
-        </div> 
-        <p class="text-xs font-mono text-slate-400">3 FT GROUNDS A BOAT · 7 FT SUBMERGES A VAN · ARKGO BRIDGES BOTH</p> 
-      </div> 
- 
-      <div class="grid lg:grid-cols-12 gap-8"> 
-        <!-- Left Controls --> 
-        <div class="lg:col-span-5 rounded-2xl bg-arkSurface border border-white/10 p-6 flex flex-col justify-between"> 
-          <div class="space-y-5"> 
-            <div class="flex items-center justify-between"> 
-              <span class="text-sm font-medium text-slate-300">Water Depth</span> 
-              <span id="depthReadout" class="font-mono text-xl font-semibold text-arkCyan">3.0 ft</span> 
-            </div> 
- 
-            <input id="depthSlider" type="range" min="0" max="10" step="0.5" value="3" class="w-full" /> 
- 
-            <div class="grid grid-cols-3 gap-2 pt-1"> 
-              <button onclick="setFloodDepth(0)" class="py-2 rounded-lg bg-arkDark hover:bg-white/5 text-xs font-mono text-slate-300 border border-white/[0.07] transition">0 ft · Road</button> 
-              <button onclick="setFloodDepth(3)" class="py-2 rounded-lg bg-arkDark hover:bg-white/5 text-xs font-mono text-amber-300 border border-amber-500/20 transition">3 ft · Street</button> 
-              <button onclick="setFloodDepth(7)" class="py-2 rounded-lg bg-arkDark hover:bg-white/5 text-xs font-mono text-sky-300 border border-sky-500/20 transition">7 ft · Haor</button> 
-            </div> 
-          </div> 
- 
-          <!-- Clean Vehicle Comparison Matrix --> 
-          <div class="space-y-2.5 mt-8"> 
-            <div class="p-3.5 rounded-xl bg-arkDark border border-white/[0.07] flex items-center justify-between"> 
-              <div> 
-                <div class="text-xs font-medium text-white">Rescue Speedboat</div> 
-                <div id="boatText" class="text-[11px] text-slate-400">Propeller grounds below 3.5 ft</div> 
-              </div> 
-              <span id="boatBadge" class="px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-amber-500/15 text-amber-300">Too Shallow</span> 
-            </div> 
- 
-            <div class="p-3.5 rounded-xl bg-arkDark border border-white/[0.07] flex items-center justify-between"> 
-              <div> 
-                <div class="text-xs font-medium text-white">Road Ambulance</div> 
-                <div id="vanText" class="text-[11px] text-slate-400">Hydrolocks above 1.5 ft</div> 
-              </div> 
-              <span id="vanBadge" class="px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-rose-500/15 text-rose-300">Stalled</span> 
-            </div> 
- 
-            <div class="p-3.5 rounded-xl bg-arkDark border border-arkGreen/30 flex items-center justify-between"> 
-              <div> 
-                <div class="text-xs font-medium text-white">ARKGO Trambulance</div> 
-                <div id="arkgoText" class="text-[11px] text-emerald-300/80">Sealed hull + buoyant wheels</div> 
-              </div> 
-              <span id="arkgoBadge" class="px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-arkGreen/15 text-arkGreen">Transition</span> 
-            </div> 
-          </div> 
-        </div> 
- 
-        <div class="lg:col-span-7 rounded-2xl bg-arkSurface border border-white/10 p-6 flex flex-col justify-between"> 
-          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/[0.07]"> 
-            <span class="text-xs font-mono text-slate-400">DRIVELINE STATE</span> 
-            <div class="flex bg-arkDark p-1 rounded-lg border border-white/[0.07] text-xs font-mono"> 
-              <button onclick="selectMode('land')" id="btnModeLand" class="px-3 py-1 rounded text-slate-400 hover:text-white transition">1. Land EV</button> 
-              <button onclick="selectMode('transition')" id="btnModeTrans" class="px-3 py-1 rounded bg-white text-slate-950 font-medium transition">2. Transition</button> 
-              <button onclick="selectMode('water')" id="btnModeWater" class="px-3 py-1 rounded text-slate-400 hover:text-white transition">3. Water ICE</button> 
-            </div> 
-          </div> 
- 
-          <!-- Hydrological Cross Section --> 
-          <div class="relative h-56 my-4 rounded-xl cad-grid border border-white/[0.06] overflow-hidden flex items-end justify-around px-10 pb-4"> 
-            <div class="absolute left-3 top-3 bottom-3 flex flex-col justify-between text-[10px] font-mono text-slate-500 z-30 pointer-events-none"> 
-              <span>10 FT</span> 
-              <span>7 FT</span> 
-              <span>3 FT</span> 
-              <span>0 FT</span> 
-            </div> 
- 
-            <div id="visBoat" class="relative z-20 text-center transition-transform duration-300"> 
-              <div class="px-3 py-1.5 rounded bg-arkPanel border border-white/10 text-[11px] font-mono text-slate-300"> 
-                BOAT (3.5' MIN) 
-              </div> 
-            </div> 
- 
-            <div id="visVan" class="relative z-20 text-center transition-all duration-300"> 
-              <div class="px-3 py-1.5 rounded bg-arkPanel border border-white/10 text-[11px] font-mono text-slate-300"> 
-                ROAD VAN (1.5' MAX) 
-              </div> 
-            </div> 
- 
-            <div id="visArkgo" class="relative z-20 text-center transition-transform duration-300"> 
-              <div class="px-3.5 py-1.5 rounded bg-emerald-500 text-white font-display font-semibold text-xs shadow-lg"> 
-                ARKGO (0–10+ FT) 
-              </div> 
-            </div> 
- 
-            <div id="waterOverlay" class="wave-transition absolute bottom-0 left-0 right-0 bg-sky-500/20 border-t border-sky-400/60 z-10" style="height: 30%;"></div> 
-          </div> 
- 
-          <!-- Active Mode Readout --> 
-          <div class="grid grid-cols-3 gap-4 pt-2"> 
-            <div> 
-              <div class="text-[10px] font-mono text-slate-500 uppercase" id="mTitle1">MODE</div> 
-              <div class="font-display font-semibold text-sm text-white mt-0.5" id="mVal1">Seamless Entry</div> 
-            </div> 
-            <div> 
-              <div class="text-[10px] font-mono text-slate-500 uppercase" id="mTitle2">BUOYANCY</div> 
-              <div class="font-display font-semibold text-sm text-arkCyan mt-0.5" id="mVal2">Hull + 155 kg Tires</div> 
-            </div> 
-            <div> 
-              <div class="text-[10px] font-mono text-slate-500 uppercase" id="mTitle3">TRANSFER</div> 
-              <div class="font-display font-semibold text-sm text-arkGreen mt-0.5" id="mVal3">Zero Ramps</div> 
-            </div> 
-          </div> 
-        </div> 
-      </div> 
-    </div> 
-  </section> 
- 
-  <section id="architecture" class="py-20 border-y border-white/[0.07] bg-arkSurface/30"> 
-    <div class="max-w-7xl mx-auto px-6"> 
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4"> 
-        <div> 
-          <span class="text-xs font-mono uppercase tracking-widest text-arkAmber">03 // ARCHITECTURE & SPECIFICATIONS</span> 
-          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white mt-1">Tri-Energy System & Rev-2 Hardware</h2> 
-        </div> 
-        <span class="text-xs font-mono text-arkGreen">FEASIBILITY VERDICT: 6/6 PASS</span> 
-      </div> 
- 
-      <div class="grid lg:grid-cols-12 gap-8 items-start"> 
-        <!-- Left: Energy & Dimension Summary --> 
-        <div class="lg:col-span-5 rounded-2xl bg-arkSurface border border-white/10 p-6 space-y-6"> 
-          <div class="text-xs font-mono text-slate-400 uppercase">THREE INDEPENDENT ENERGY SOURCES (~2 DAYS AUTONOMY)</div> 
-           
-          <div class="space-y-3"> 
-            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06] flex items-center justify-between"> 
-              <div> 
-                <div class="font-display font-semibold text-sm text-white">10 kWh LiFePO4 Floor Pack</div> 
-                <div class="text-xs text-slate-400">48V 200Ah · Powers 5 kW rear land motor</div> 
-              </div> 
-              <span class="font-mono text-xs text-arkGreen">~100 km</span> 
-            </div> 
- 
-            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06] flex items-center justify-between"> 
-              <div> 
-                <div class="font-display font-semibold text-sm text-white">500 W Rooftop Solar</div> 
-                <div class="text-xs text-slate-400">~2 kWh/day · Sustains ER vitals & comms</div> 
-              </div> 
-              <span class="font-mono text-xs text-arkAmber">+20% / day</span> 
-            </div> 
- 
-            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06] flex items-center justify-between"> 
-              <div> 
-                <div class="font-display font-semibold text-sm text-white">10–15 hp Marine ICE</div> 
-                <div class="text-xs text-slate-400">Guarded stern prop · Zero battery drain</div> 
-              </div> 
-              <span class="font-mono text-xs text-arkCyan">10 km/h</span> 
-            </div> 
-          </div> 
-        </div> 
- 
-        <!-- Right: Clean Architectural Specification Table --> 
-        <div class="lg:col-span-7 rounded-2xl bg-arkSurface border border-white/10 divide-y divide-white/[0.07]"> 
-          <div class="p-4 sm:px-6 flex justify-between items-center text-sm"> 
-            <span class="text-slate-400">Dimensions (L × W × H)</span> 
-            <span class="font-mono text-white">105 in × 52 in × 96 in (3 ft hull tub)</span> 
-          </div> 
-          <div class="p-4 sm:px-6 flex justify-between items-center text-sm"> 
-            <span class="text-slate-400">Ground Clearance & Wheels</span> 
-            <span class="font-mono text-white">10 in clearance · 4× 24" OD buoyant tires</span> 
-          </div> 
-          <div class="p-4 sm:px-6 flex justify-between items-center text-sm"> 
-            <span class="text-slate-400">Chassis & Hull Structure</span> 
-            <span class="font-mono text-white">~120 kg galvanized steel truss + foam-void FRP</span> 
-          </div> 
-          <div class="p-4 sm:px-6 flex justify-between items-center text-sm"> 
-            <span class="text-slate-400">Waterproofing & Bilge</span> 
-            <span class="font-mono text-white">IP67 electrics · Lip-sealed axles · Twin bilge pumps</span> 
-          </div> 
-          <div class="p-4 sm:px-6 flex justify-between items-center text-sm"> 
-            <span class="text-slate-400">Medical & Safety Fit-out</span> 
-            <span class="font-mono text-white">Stretcher, O2, monitor, 8 life vests, VHF, ABC ext.</span> 
-          </div> 
-          <div class="p-4 sm:px-6 flex justify-between items-center text-sm"> 
-            <span class="text-slate-400">Regulatory Path</span> 
-            <span class="font-mono text-white">BRTA · Dept. of Shipping · BSTI · CE Export</span> 
-          </div> 
-        </div> 
-      </div> 
-    </div> 
-  </section> 
- 
-  <section id="cabin" class="py-20"> 
-    <div class="max-w-7xl mx-auto px-6"> 
-      <div class="grid lg:grid-cols-12 gap-8"> 
-         
-        <!-- Left: Cabin Configurator --> 
-        <div class="lg:col-span-6 rounded-2xl bg-arkSurface border border-white/10 p-6"> 
-          <div class="flex items-center justify-between mb-6"> 
-            <div> 
-              <span class="text-xs font-mono text-emerald-400 uppercase">04 // INTERIOR LAYOUT (4' × 6' BAY)</span> 
-              <h3 class="font-display text-xl font-bold text-white mt-0.5">Floating ER Configurator</h3> 
-            </div> 
-            <div class="flex bg-arkDark p-1 rounded-lg border border-white/[0.07] text-xs font-mono"> 
-              <button onclick="setCabin('ambulance')" id="btnCabAmb" class="px-3 py-1 rounded bg-emerald-500 text-white font-medium transition">7+1 EMS</button> 
-              <button onclick="setCabin('rescue')" id="btnCabRes" class="px-3 py-1 rounded text-slate-400 hover:text-white transition">11 Rescue</button> 
-            </div> 
-          </div> 
- 
-          <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]"> 
-            <div class="grid grid-cols-3 gap-2 mb-3 pb-3 border-b border-white/[0.06] text-center text-[11px] font-mono text-slate-400"> 
-              <div class="py-1.5 rounded bg-arkPanel">Crew 1</div> 
-              <div class="py-1.5 rounded bg-arkPanel">Crew 2</div> 
-              <div class="py-1.5 rounded bg-arkPanel text-white font-medium">Driver</div> 
-            </div> 
- 
-            <div class="grid grid-cols-12 gap-2.5 h-40 text-xs font-mono"> 
-              <div class="col-span-4 rounded-lg bg-arkPanel border border-white/[0.06] p-3 flex flex-col justify-between"> 
-                <span class="text-white font-medium">4-Seat Bench</span> 
-                <span class="text-[10px] text-slate-400">1 ft width · Life vests stowed</span> 
-              </div> 
-              <div class="col-span-3 rounded-lg border border-dashed border-white/10 flex items-center justify-center"> 
-                <span class="text-[10px] text-slate-500 -rotate-90 whitespace-nowrap">AISLE (1 FT)</span> 
-              </div> 
-              <div id="rightBayBox" class="col-span-5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 flex flex-col justify-between transition-all"> 
-                <span class="font-display font-semibold text-emerald-300" id="rightBayTitle">Stretcher Bay (2')</span> 
-                <span class="text-[11px] text-slate-300 font-sans" id="rightBayDesc">Roll-in stretcher, fixed O2 mount & vitals monitor.</span> 
-              </div> 
-            </div> 
-          </div> 
-        </div> 
- 
-        <!-- Right: Hydrostatic Load Calculator --> 
-        <div class="lg:col-span-6 rounded-2xl bg-arkSurface border border-white/10 p-6 flex flex-col justify-between"> 
-          <div> 
-            <div class="flex items-center justify-between"> 
-              <div> 
-                <span class="text-xs font-mono text-arkGreen uppercase">HYDROSTATIC STRESS TEST</span> 
-                <h3 class="font-display text-xl font-bold text-white mt-0.5">2-Tonne Displacement</h3> 
-              </div> 
-              <span id="massReadout" class="font-mono text-lg font-semibold text-white">1,200 kg</span> 
-            </div> 
- 
-            <div class="mt-6"> 
-              <input id="massSlider" type="range" min="700" max="2000" step="50" value="1200" class="w-full" /> 
-              <div class="flex justify-between text-[11px] font-mono text-slate-500 mt-2"> 
-                <span>700 kg (Curb)</span> 
-                <span>1,200 kg (EMS)</span> 
-                <span>2,000 kg (Max Load)</span> 
-              </div> 
-            </div> 
-          </div> 
- 
-          <div class="grid grid-cols-3 gap-3 mt-6"> 
-            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]"> 
-              <div class="text-[10px] font-mono text-slate-500 uppercase">HULL DRAFT</div> 
-              <div id="draftVal" class="font-display text-2xl font-bold text-white mt-1">17.0 in</div> 
-            </div> 
-            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]"> 
-              <div class="text-[10px] font-mono text-slate-500 uppercase">FREEBOARD</div> 
-              <div id="freeboardVal" class="font-display text-2xl font-bold text-arkGreen mt-1">19.0 in</div> 
-            </div> 
-            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]"> 
-              <div class="text-[10px] font-mono text-slate-500 uppercase">TIRE LIFT</div> 
-              <div class="font-display text-2xl font-bold text-arkCyan mt-1">+155 kg</div> 
-            </div> 
-          </div> 
-        </div> 
- 
-      </div> 
-    </div> 
-  </section> 
- 
-  <section id="economics" class="py-20 border-t border-white/[0.07] bg-arkSurface/30"> 
-    <div class="max-w-7xl mx-auto px-6 space-y-12"> 
-       
-      <div class="grid lg:grid-cols-12 gap-8"> 
-        <!-- Competitive Benchmark --> 
-        <div class="lg:col-span-7 rounded-2xl bg-arkSurface border border-white/10 p-6"> 
-          <span class="text-xs font-mono text-emerald-400 uppercase">05 // MARKET POSITIONING</span> 
-          <h3 class="font-display text-xl font-bold text-white mt-0.5 mb-5">15× Cheaper Than Imported Amphibians</h3> 
- 
-          <div class="divide-y divide-white/[0.06] text-xs sm:text-sm"> 
-            <div class="py-2.5 grid grid-cols-12 text-[11px] font-mono text-slate-500"> 
-              <span class="col-span-5">PLATFORM</span> 
-              <span class="col-span-2 text-center">WATER</span> 
-              <span class="col-span-2 text-center">LAND</span> 
-              <span class="col-span-1 text-center">ER</span> 
-              <span class="col-span-2 text-right">COST</span> 
-            </div> 
-            <div class="py-3 grid grid-cols-12 items-center text-slate-300"> 
-              <span class="col-span-5">Speedboat (Fire Service)</span> 
-              <span class="col-span-2 text-center text-arkGreen">●</span> 
-              <span class="col-span-2 text-center text-slate-600">○</span> 
-              <span class="col-span-1 text-center text-amber-400">◐</span> 
-              <span class="col-span-2 text-right font-mono">$3–10K</span> 
-            </div> 
-            <div class="py-3 grid grid-cols-12 items-center text-slate-300"> 
-              <span class="col-span-5">Conventional Road Van</span> 
-              <span class="col-span-2 text-center text-slate-600">○</span> 
-              <span class="col-span-2 text-center text-arkGreen">●</span> 
-              <span class="col-span-1 text-center text-arkGreen">●</span> 
-              <span class="col-span-2 text-right font-mono">$15–20K</span> 
-            </div> 
-            <div class="py-3 grid grid-cols-12 items-center text-slate-300"> 
-              <span class="col-span-5">Imported Amphibian</span> 
-              <span class="col-span-2 text-center text-arkGreen">●</span> 
-              <span class="col-span-2 text-center text-arkGreen">●</span> 
-              <span class="col-span-1 text-center text-slate-600">○</span> 
-              <span class="col-span-2 text-right font-mono text-rose-400">$120K+</span> 
-            </div> 
-            <div class="py-3.5 px-3 -mx-3 rounded-lg bg-white/[0.04] grid grid-cols-12 items-center font-medium text-white"> 
-              <span class="col-span-5">ARKGO Trambulance</span> 
-              <span class="col-span-2 text-center text-arkGreen">●</span> 
-              <span class="col-span-2 text-center text-arkGreen">●</span> 
-              <span class="col-span-1 text-center text-arkGreen">●</span> 
-              <span class="col-span-2 text-right font-mono text-arkGreen font-bold">$8,000</span> 
-            </div> 
-          </div> 
-        </div> 
- 
-        <!-- Fleet Calculator & Seed Ask --> 
-        <div class="lg:col-span-5 rounded-2xl bg-arkSurface border border-white/10 p-6 flex flex-col justify-between space-y-6"> 
-          <div> 
-            <div class="flex justify-between items-center mb-3"> 
-              <span class="text-xs font-mono text-slate-400 uppercase">FLEET ESTIMATOR</span> 
-              <span id="fleetCountOut" class="font-mono text-sm font-semibold text-arkCyan">5 Units</span> 
-            </div> 
-            <input id="fleetSlider" type="range" min="1" max="50" value="5" class="w-full" /> 
-            <div class="grid grid-cols-2 gap-3 mt-4"> 
-              <div class="p-3.5 rounded-xl bg-arkDark border border-white/[0.06]"> 
-                <div class="text-[10px] font-mono text-slate-500">PURCHASE OR LEASE</div> 
-                <div id="fleetPurchaseCost" class="font-display text-xl font-bold text-white mt-0.5">$40,000</div> 
-                <div class="text-[11px] text-slate-400"><span id="fleetLeaseCost">$3,200</span>/mo lease</div> 
-              </div> 
-              <div class="p-3.5 rounded-xl bg-arkDark border border-white/[0.06]"> 
-                <div class="text-[10px] font-mono text-slate-500">IMPORT SAVINGS</div> 
-                <div id="fleetSavingsOut" class="font-display text-xl font-bold text-arkGreen mt-0.5">$560,000</div> 
-                <div class="text-[11px] text-slate-400">22.5% launch margin</div> 
-              </div> 
-            </div> 
-          </div> 
- 
-          <!-- Seed Ask Summary --> 
-          <div class="pt-5 border-t border-white/[0.07] space-y-3"> 
-            <div class="flex items-center justify-between"> 
-              <span class="font-display font-bold text-base text-white">Seed Ask: US$275,000</span> 
-              <span class="text-xs font-mono text-slate-400">3-Yr Target: 120 Units (~$1M)</span> 
-            </div> 
-            <div class="grid grid-cols-4 gap-1.5 text-[10px] font-mono text-slate-300"> 
-              <div class="p-2 rounded bg-arkDark">60% Fleet ($165K)</div> 
-              <div class="p-2 rounded bg-arkDark">15% Cert ($41K)</div> 
-              <div class="p-2 rounded bg-arkDark">15% Team ($41K)</div> 
-              <div class="p-2 rounded bg-arkDark">10% Pilots ($28K)</div> 
-            </div> 
-            <button onclick="openPilotModal()" class="w-full py-3 rounded-lg bg-emerald-500 hover:bg-rose-700 text-white font-display font-medium text-xs uppercase tracking-wider transition"> 
-              Request Dossier / Book Sylhet & Cumilla Pilot 
-            </button> 
-          </div> 
-        </div> 
-      </div> 
- 
-    </div> 
-  </section> 
- 
-  <div id="pilotModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"> 
-    <div class="bg-arkSurface border border-white/15 rounded-2xl max-w-md w-full p-6 space-y-5"> 
-      <div class="flex items-center justify-between border-b border-white/10 pb-3"> 
-        <h4 class="font-display text-lg font-bold text-white">Partner With Team Trichokro</h4> 
-        <button onclick="closePilotModal()" class="text-slate-400 hover:text-white text-sm font-mono">ESC</button> 
-      </div> 
-      <form onsubmit="submitPilotRequest(event)" class="space-y-4 text-sm"> 
-        <div> 
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">ORGANIZATION</label> 
-          <input type="text" required placeholder="DGHS, Fire Service, NGO, Climate Fund" class="w-full px-3.5 py-2 rounded-lg bg-arkDark border border-white/10 text-white text-xs focus:outline-none focus:border-white/40" /> 
-        </div> 
-        <div> 
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">PROGRAM</label> 
-          <select class="w-full px-3.5 py-2 rounded-lg bg-arkDark border border-white/10 text-white text-xs focus:outline-none focus:border-white/40"> 
-            <option>US$275K Seed Round / Grant</option> 
-            <option>Monsoon Pilot Fleet (Sylhet / Cumilla / Noakhali)</option> 
-            <option>Fleet Procurement ($8K/unit or $640/mo lease)</option> 
-          </select> 
-        </div> 
-        <div id="modalConfirmation" class="hidden p-3 rounded-lg bg-arkGreen/15 border border-arkGreen/30 text-xs font-mono text-emerald-300"> 
-          ✓ Request logged. Rev-2 engineering dossier queued. 
-        </div> 
-        <div class="flex justify-end gap-2 pt-2"> 
-          <button type="button" onclick="closePilotModal()" class="px-4 py-2 rounded-lg bg-arkDark text-slate-400 text-xs">Cancel</button> 
-          <button type="submit" class="px-4 py-2 rounded-lg bg-white text-slate-950 font-display font-semibold text-xs">Submit</button> 
-        </div> 
-      </form> 
-    </div> 
-  </div> 
- 
-  <footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start justify-between">
-<div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 md:mb-0">
-<!-- Updated Footer Logo -->
-<div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
-<img alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]" src="src/assets/logo_new.webp" decoding="async" loading="lazy" width="1600" height="1600">
-<span class="text-xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
-</div>
-<div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
-<div class="relative">
-<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer float-link-1" href="#" onclick="toggleProductsMenu()">Products</a>
-<div class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg" id="products-menu">
-<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="trambulance.html">Trambulance</a>
-<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="pathfinder.html">Pathfinder</a>
-<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="arkgo.html">ARKGO</a>
-</div>
-</div>
-<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-2" href="founder.html">Contacts</a>
-<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-3" href="privacy.html">Privacy</a>
-<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-4" href="metadata.html">Meta Data</a>
-</div>
-</div>
-<div class="flex flex-col items-end space-y-4 mt-4 md:mt-0">
-<div class="flex space-x-4">
-<a aria-label="Connect with us on LinkedIn" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.linkedin.com/in/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
-<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
-<path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.27 20.45H3.66V9h3.61v11.45zM5.46 7.42c-1.18 0-2.14-.95-2.14-2.13s.96-2.13 2.14-2.13 2.14.95 2.14 2.13-.96 2.13-2.14 2.13zM20.47 20.45h-3.61v-5.63c0-1.34-.48-2.26-1.68-2.26-1.12 0-1.78.75-2.07 1.48-.11.26-.14.63-.14 1v6.41h-3.61s.05-10.4 0-11.45h3.61v1.65c.48-.75 1.34-1.82 3.25-1.82 2.37 0 4.15 1.55 4.15 4.9v6.72z"></path>
-</svg>
-</a>
-<a aria-label="Follow us on Facebook" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.facebook.com/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
-<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
-<path clip-rule="evenodd" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill-rule="evenodd"></path>
-</svg>
-</a>
-</div>
-</div>
-</div>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 
-<!-- Facebook Section -->
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8 flex justify-center">
-    <div class="w-full max-w-2xl bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-2xl flex justify-center">
-        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61577812382585&tabs=timeline&width=500&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            arkDark: '#090b10',
+            arkSurface: '#11151f',
+            arkPanel: '#161b26',
+            arkRed: '#e11d48',
+            arkCyan: '#38bdf8',
+            arkAmber: '#f59e0b',
+            arkGreen: '#10b981'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #020617; color: #e2e8f0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+    :focus-visible { outline: 2px solid #38bdf8; outline-offset: 3px; border-radius: 6px; }
+
+    .subtle-grid {
+      background-size: 48px 48px;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    }
+    .cad-grid {
+      background-color: #0c111a;
+      background-size: 24px 24px;
+      background-image:
+        linear-gradient(to right, rgba(56,189,248,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56,189,248,0.06) 1px, transparent 1px);
+    }
+
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    @keyframes pulse-soft { 0%,100% { opacity: .4; transform: scale(1); } 50% { opacity: .6; transform: scale(1.05); } }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-80px); } }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+    .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+    .bg-blob { animation: pulse-soft 7s ease-in-out infinite; }
+    .bob { animation: bob 3.2s ease-in-out infinite; }
+    .wave-path { animation: wave 4s linear infinite; }
+    .fade-up { animation: fade-up .9s ease-out both; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease-out, transform .8s ease-out; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .sim-move { transition: transform .45s cubic-bezier(.22,1,.36,1), opacity .35s ease; }
+    .sim-water { transition: y .45s cubic-bezier(.22,1,.36,1), height .45s cubic-bezier(.22,1,.36,1); }
+
+    input[type=range] { -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); height: 5px; border-radius: 999px; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #f8fafc; border: 3px solid #38bdf8; cursor: pointer; }
+    input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #f8fafc; border: 3px solid #38bdf8; cursor: pointer; }
+
+    .seg-btn { padding: .3rem .75rem; border-radius: .375rem; color: #94a3b8; transition: background-color .2s, color .2s; }
+    .seg-btn:hover { color: #fff; }
+    .seg-btn[aria-pressed="true"], .seg-btn[aria-selected="true"] { background: #f8fafc; color: #020617; font-weight: 500; }
+
+    .gallery-tile .media svg { width: auto; height: auto; max-width: 85%; max-height: 58%; margin-bottom: 2.75rem; }
+    .gallery-tile img { transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+    .gallery-tile:hover img { transform: scale(1.05); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-sky-500 selection:text-white subtle-grid">
+
+  <!-- Background FX (site signature) -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="bg-blob absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-sky-900/30 rounded-full blur-[130px]"></div>
+    <div class="bg-blob absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-rose-900/20 rounded-full blur-[130px]" style="animation-delay:1.5s"></div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav id="navbar" class="fixed w-full z-[10001] bg-slate-950/70 backdrop-blur-lg border-b border-white/5 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-3" aria-label="TriChokro home">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+          <div class="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-emerald-400 border-r-emerald-600 border-b-emerald-700 animate-spin-slow"></div>
+          <i data-lucide="zap" class="text-blue-500 fill-blue-500 relative z-10 -rotate-12 w-6 h-6"></i>
+        </div>
+        <span class="text-2xl font-bold text-white tracking-tight">Tri<span class="text-emerald-400">Chokro</span></span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 text-sm font-medium uppercase tracking-wide">
+        <a href="index.html#home" class="text-slate-300 hover:text-emerald-400 transition-colors">Home</a>
+        <a href="index.html#products" class="text-slate-300 hover:text-emerald-400 transition-colors">Vehicles</a>
+        <a href="#simulation" class="text-slate-300 hover:text-emerald-400 transition-colors">Simulation</a>
+        <a href="#gallery" class="text-slate-300 hover:text-emerald-400 transition-colors">Gallery</a>
+        <a href="#resources" class="text-slate-300 hover:text-emerald-400 transition-colors">Resources</a>
+        <a href="index_bn.html" class="text-slate-300 hover:text-emerald-400 transition-colors">BN</a>
+        <a href="contact.html?id=rownak" class="bg-gradient-to-r from-emerald-700 to-emerald-400 hover:from-emerald-600 hover:to-emerald-300 text-white px-5 py-2 rounded-full font-bold normal-case tracking-normal transition-colors">Contact</a>
+      </div>
+      <button id="mobile-menu-btn" class="lg:hidden text-white hover:text-emerald-400" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu" class="w-7 h-7"></i></button>
     </div>
-</div>
+    <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl overflow-hidden max-h-0 opacity-0 transition-all duration-300">
+      <div class="px-4 py-4 flex flex-col gap-1">
+        <a href="index.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg font-medium">Home</a>
+        <a href="index.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg font-medium">Vehicles</a>
+        <a href="#simulation" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg font-medium">Simulation</a>
+        <a href="#gallery" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg font-medium">Gallery</a>
+        <a href="#resources" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg font-medium">Resources</a>
+        <a href="index_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg font-medium">BN</a>
+        <a href="contact.html?id=rownak" class="block bg-emerald-500 text-white text-center px-4 py-3 rounded-lg font-bold mt-2">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-<p class="text-slate-600 text-sm">Developed by Ruhan &amp; Jules; All right reserved, TriChokro 2026</p>
-</div>
-</footer> 
- 
-  <script> 
-    function switchHeroView(view) { 
-      const views = { side: 'heroSvgSide', front: 'heroSvgFront', rear: 'heroSvgRear' }; 
-      const tabs = { side: 'tabViewSide', front: 'tabViewFront', rear: 'tabViewRear' }; 
-      const captions = { 
-        side: 'PROFILE // 105" L × 52" W × 96" H', 
-        front: 'BOW // 52" TRACK + SPONSON WHEELS', 
-        rear: 'STERN // ROLL-IN RAMP & GUARDED PROP' 
-      }; 
- 
-      Object.keys(views).forEach(k => { 
-        document.getElementById(views[k]).classList.toggle('hidden', k !== view); 
-        document.getElementById(tabs[k]).className = k === view 
-          ? 'px-3 py-1 rounded bg-white text-slate-950 font-medium transition' 
-          : 'px-3 py-1 rounded text-slate-400 hover:text-white transition'; 
-      }); 
-      document.getElementById('viewCaptionBadge').textContent = captions[view]; 
-    } 
- 
-    const depthSlider = document.getElementById('depthSlider'); 
-    const depthReadout = document.getElementById('depthReadout'); 
-    const waterOverlay = document.getElementById('waterOverlay'); 
-    const boatBadge = document.getElementById('boatBadge'); 
-    const boatText = document.getElementById('boatText'); 
-    const vanBadge = document.getElementById('vanBadge'); 
-    const vanText = document.getElementById('vanText'); 
-    const arkgoBadge = document.getElementById('arkgoBadge'); 
-    const arkgoText = document.getElementById('arkgoText'); 
-    const visBoat = document.getElementById('visBoat'); 
-    const visVan = document.getElementById('visVan'); 
-    const visArkgo = document.getElementById('visArkgo'); 
- 
-    function updateFloodSimulation(depth) { 
-      const d = parseFloat(depth); 
-      depthReadout.textContent = d.toFixed(1) + ' ft'; 
-      waterOverlay.style.height = Math.min(90, Math.max(6, d * 8.8)) + '%'; 
- 
-      if (d < 3.5) { 
-        boatBadge.textContent = 'Too Shallow'; 
-        boatBadge.className = 'px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-amber-500/15 text-amber-300'; 
-        boatText.textContent = 'Hull grounds below 3.5 ft'; 
-        visBoat.style.transform = 'translateY(0px)'; 
-      } else { 
-        boatBadge.textContent = 'Water Only'; 
-        boatBadge.className = 'px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-sky-500/15 text-sky-300'; 
-        boatText.textContent = 'Requires transfer at dry streets'; 
-        visBoat.style.transform = `translateY(-${(d - 2) * 12}px)`; 
-      } 
- 
-      if (d <= 1.5) { 
-        vanBadge.textContent = 'Road Only'; 
-        vanBadge.className = 'px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-emerald-500/15 text-emerald-300'; 
-        vanText.textContent = 'Drives on dry pavement'; 
-        visVan.style.opacity = '1'; 
-      } else { 
-        vanBadge.textContent = d >= 7 ? 'Submerged' : 'Stalled'; 
-        vanBadge.className = 'px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-rose-500/15 text-rose-300'; 
-        vanText.textContent = 'Engine floods above 1.5 ft'; 
-        visVan.style.opacity = '0.35'; 
-      } 
- 
-      if (d < 2.0) { 
-        arkgoBadge.textContent = 'Land · 40 km/h'; 
-        arkgoText.textContent = '5 kW EV · 10" clearance'; 
-        visArkgo.style.transform = 'translateY(0px)'; 
-      } else if (d <= 3.5) { 
-        arkgoBadge.textContent = 'Transition'; 
-        arkgoText.textContent = 'Sealed hull + buoyant wheels'; 
-        visArkgo.style.transform = `translateY(-${(d - 1.5) * 10}px)`; 
-      } else { 
-        arkgoBadge.textContent = 'Water · 10 km/h'; 
-        arkgoText.textContent = '15 hp guarded marine prop'; 
-        visArkgo.style.transform = `translateY(-${(d - 1.5) * 12}px)`; 
-      } 
-    } 
- 
-    function setFloodDepth(val) { 
-      depthSlider.value = val; 
-      updateFloodSimulation(val); 
-    } 
- 
-    depthSlider.addEventListener('input', (e) => updateFloodSimulation(e.target.value)); 
- 
-    function selectMode(mode) { 
-      const btns = { land: 'btnModeLand', transition: 'btnModeTrans', water: 'btnModeWater' }; 
-      Object.keys(btns).forEach(k => { 
-        document.getElementById(btns[k]).className = k === mode 
-          ? 'px-3 py-1 rounded bg-white text-slate-950 font-medium transition' 
-          : 'px-3 py-1 rounded text-slate-400 hover:text-white transition'; 
-      }); 
- 
-      const mVal1 = document.getElementById('mVal1'); 
-      const mVal2 = document.getElementById('mVal2'); 
-      const mVal3 = document.getElementById('mVal3'); 
- 
-      if (mode === 'land') { 
-        setFloodDepth(0.5); 
-        mVal1.textContent = '5 kW EV (40 km/h)'; 
-        mVal2.textContent = '10 kWh LiFePO4'; 
-        mVal3.textContent = '10 in Clearance'; 
-      } else if (mode === 'transition') { 
-        setFloodDepth(3.0); 
-        mVal1.textContent = 'Seamless Entry'; 
-        mVal2.textContent = 'Hull + 155 kg Tires'; 
-        mVal3.textContent = 'Zero Ramps'; 
-      } else { 
-        setFloodDepth(7.0); 
-        mVal1.textContent = '15 hp ICE (10 km/h)'; 
-        mVal2.textContent = 'Guarded Cage Prop'; 
-        mVal3.textContent = 'Wheel Sponsons'; 
-      } 
-    } 
- 
-    function setCabin(type) { 
-      const isAmb = type === 'ambulance'; 
-      document.getElementById('btnCabAmb').className = isAmb 
-        ? 'px-3 py-1 rounded bg-emerald-500 text-white font-medium transition' 
-        : 'px-3 py-1 rounded text-slate-400 hover:text-white transition'; 
-      document.getElementById('btnCabRes').className = !isAmb 
-        ? 'px-3 py-1 rounded bg-arkCyan text-slate-950 font-medium transition' 
-        : 'px-3 py-1 rounded text-slate-400 hover:text-white transition'; 
- 
-      document.getElementById('rightBayTitle').textContent = isAmb ? "Stretcher Bay (2')" : "4-Seat Bench (2')"; 
-      document.getElementById('rightBayDesc').textContent = isAmb 
-        ? 'Roll-in stretcher, fixed O2 mount & vitals monitor.' 
-        : 'Replaces stretcher with 4 bench seats (11 total).'; 
-    } 
- 
-    document.getElementById('massSlider').addEventListener('input', (e) => { 
-      const mass = parseInt(e.target.value, 10); 
-      document.getElementById('massReadout').textContent = `${mass.toLocaleString()} kg`; 
-      const draft = 17 + ((mass - 1200) / 800) * 9; 
-      const freeboard = 36 - draft; 
-      document.getElementById('draftVal').textContent = `${draft.toFixed(1)} in`; 
-      document.getElementById('freeboardVal').textContent = `${freeboard.toFixed(1)} in`; 
-    }); 
- 
-    document.getElementById('fleetSlider').addEventListener('input', (e) => { 
-      const u = parseInt(e.target.value, 10); 
-      document.getElementById('fleetCountOut').textContent = `${u} ${u === 1 ? 'Unit' : 'Units'}`; 
-      document.getElementById('fleetPurchaseCost').textContent = `$${(u * 8000).toLocaleString()}`; 
-      document.getElementById('fleetLeaseCost').textContent = `$${(u * 640).toLocaleString()}`; 
-      document.getElementById('fleetSavingsOut').textContent = `$${(u * 112000).toLocaleString()}`; 
-    }); 
- 
-    function openPilotModal() { 
-      document.getElementById('pilotModal').classList.remove('hidden'); 
-    } 
-    function closePilotModal() { 
-      document.getElementById('pilotModal').classList.add('hidden'); 
-      document.getElementById('modalConfirmation').classList.add('hidden'); 
-    } 
-    function submitPilotRequest(e) { 
-      e.preventDefault(); 
-      document.getElementById('modalConfirmation').classList.remove('hidden'); 
-    } 
-  </script> 
-</body> 
+  <main class="relative z-10">
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-24">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+
+      <div class="lg:col-span-6 space-y-7 fade-up">
+        <div class="inline-flex items-center gap-2.5 text-xs font-mono uppercase tracking-widest text-slate-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Project Argo, Team TriChokro, Bangladesh
+        </div>
+        <h1 class="font-display text-5xl sm:text-7xl font-bold tracking-tight text-white leading-[1.02]">
+          The ambulance that doesn’t stop at the water’s edge.
+        </h1>
+        <p class="text-base sm:text-lg text-slate-400 font-light leading-relaxed max-w-xl">
+          ARKGO is an amphibious medical vehicle for flood-isolated deltas. It drives at <span class="text-white font-medium">40 km/h on land</span>, floats and pushes through debris-laden water at <span class="text-white font-medium">10 km/h</span>, and carries the patient the whole way with no transfer to a boat.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-1">
+          <a href="#simulation" class="px-6 py-3.5 rounded-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-semibold text-sm transition shadow-[0_0_40px_-10px_rgba(56,189,248,.7)] flex items-center gap-2">
+            Try the depth simulation <i data-lucide="waves" class="w-4 h-4"></i>
+          </a>
+          <a href="#resources" class="px-6 py-3.5 rounded-full bg-arkSurface hover:bg-arkPanel border border-white/15 text-slate-200 font-display font-medium text-sm transition flex items-center gap-2">
+            Download the brief <i data-lucide="file-down" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <dl class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/[0.08]">
+          <div><dt class="text-[11px] font-mono text-slate-500 uppercase">Unit cost</dt><dd class="font-display text-3xl font-bold text-white mt-1">$8K</dd></div>
+          <div><dt class="text-[11px] font-mono text-slate-500 uppercase">Max load</dt><dd class="font-display text-3xl font-bold text-white mt-1">2.0 t</dd></div>
+          <div><dt class="text-[11px] font-mono text-slate-500 uppercase">Autonomy</dt><dd class="font-display text-3xl font-bold text-white mt-1">48 hr</dd></div>
+          <div><dt class="text-[11px] font-mono text-slate-500 uppercase">Local build</dt><dd class="font-display text-3xl font-bold text-arkGreen mt-1">70%</dd></div>
+        </dl>
+      </div>
+
+      <!-- Viewer: photo when available, CAD drawings always -->
+      <div class="lg:col-span-6 fade-up" style="animation-delay:.15s">
+        <div class="rounded-3xl bg-arkSurface border border-white/10 p-5 sm:p-6 shadow-2xl shadow-black/50">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span id="viewCaption" class="text-xs font-mono text-slate-400">PROFILE // 105" L × 52" W × 96" H</span>
+            <div class="flex bg-arkDark p-1 rounded-lg border border-white/[0.07] text-xs font-mono" role="tablist" aria-label="Vehicle views">
+              <button class="seg-btn hidden" role="tab" data-view="photo" aria-selected="false">Photo</button>
+              <button class="seg-btn" role="tab" data-view="side" aria-selected="true">Side</button>
+              <button class="seg-btn" role="tab" data-view="front" aria-selected="false">Bow</button>
+              <button class="seg-btn" role="tab" data-view="rear" aria-selected="false">Stern</button>
+            </div>
+          </div>
+
+          <div class="relative h-72 sm:h-80 rounded-2xl cad-grid border border-white/[0.06] overflow-hidden flex items-center justify-center">
+            <img id="heroPhoto" data-panel="photo" alt="ARKGO Trambulance amphibious ambulance" class="hidden absolute inset-0 w-full h-full object-cover">
+
+            <div data-panel="side" class="w-full max-w-md px-6 pb-10 bob">
+              <svg viewBox="0 0 440 200" class="w-full h-auto" role="img" aria-label="Side profile drawing of ARKGO">
+                <line x1="60" y1="18" x2="370" y2="18" stroke="#475569" stroke-dasharray="3 3"/>
+                <text x="215" y="13" fill="#64748b" font-family="JetBrains Mono" font-size="9" text-anchor="middle">105 IN (8.75 FT)</text>
+                <rect x="115" y="30" width="24" height="5" rx="2" fill="#e11d48"/>
+                <rect x="290" y="30" width="24" height="5" rx="2" fill="#38bdf8"/>
+                <rect x="145" y="31" width="138" height="4" rx="1" fill="#f59e0b"/>
+                <path d="M65 122 L65 40 Q65 35 70 35 L305 35 L368 86 L368 122 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+                <rect x="65" y="108" width="303" height="6" fill="#e11d48"/>
+                <rect x="86" y="47" width="180" height="38" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                <polygon points="276,47 300,47 348,85 276,85" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                <text x="90" y="101" fill="#0f172a" font-family="Space Grotesk" font-weight="700" font-size="13" letter-spacing="1">ARKGO</text>
+                <rect x="252" y="91" width="12" height="12" rx="2" fill="#e11d48"/>
+                <path d="M258 94 L258 100 M255 97 L261 97" stroke="#fff" stroke-width="1.8"/>
+                <polygon points="56,122 378,122 356,158 66,158" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+                <circle cx="43" cy="145" r="12" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="3 2"/>
+                <circle cx="43" cy="145" r="4" fill="#e11d48"/>
+                <line x1="58" y1="134" x2="43" y2="145" stroke="#64748b" stroke-width="2.5"/>
+                <circle cx="118" cy="158" r="23" fill="#090b10" stroke="#475569" stroke-width="4"/><circle cx="118" cy="158" r="9" fill="#64748b"/>
+                <circle cx="305" cy="158" r="23" fill="#090b10" stroke="#475569" stroke-width="4"/><circle cx="305" cy="158" r="9" fill="#64748b"/>
+              </svg>
+            </div>
+
+            <div data-panel="front" class="hidden w-full max-w-[16rem] pb-10 bob">
+              <svg viewBox="0 0 280 200" class="w-full h-auto" role="img" aria-label="Bow view drawing of ARKGO">
+                <rect x="90" y="24" width="45" height="6" rx="2" fill="#e11d48"/><rect x="145" y="24" width="45" height="6" rx="2" fill="#38bdf8"/>
+                <polygon points="68,126 76,32 204,32 212,126" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+                <polygon points="82,42 198,42 202,88 78,88" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                <rect x="82" y="96" width="116" height="22" rx="3" fill="#0f172a"/>
+                <line x1="86" y1="99" x2="86" y2="115" stroke="#e11d48" stroke-width="2.5"/><line x1="194" y1="99" x2="194" y2="115" stroke="#e11d48" stroke-width="2.5"/>
+                <text x="140" y="110" fill="#f8fafc" font-family="Space Grotesk" font-weight="700" font-size="10" text-anchor="middle" letter-spacing="1">ARKGO</text>
+                <polygon points="62,126 218,126 194,162 86,162" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+                <rect x="44" y="124" width="18" height="46" rx="4" fill="#090b10" stroke="#475569" stroke-width="2.5"/>
+                <rect x="218" y="124" width="18" height="46" rx="4" fill="#090b10" stroke="#475569" stroke-width="2.5"/>
+              </svg>
+            </div>
+
+            <div data-panel="rear" class="hidden w-full max-w-[16rem] pb-10 bob">
+              <svg viewBox="0 0 280 200" class="w-full h-auto" role="img" aria-label="Stern view drawing of ARKGO with ramp deployed">
+                <rect x="90" y="24" width="100" height="6" rx="2" fill="#e11d48"/>
+                <rect x="70" y="32" width="140" height="96" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+                <rect x="82" y="42" width="116" height="78" fill="#0f172a"/>
+                <rect x="86" y="68" width="28" height="46" rx="2" fill="#475569"/>
+                <rect x="146" y="70" width="46" height="44" rx="2" fill="#10b981"/>
+                <polygon points="94,122 186,122 198,168 82,168" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="90" y1="138" x2="190" y2="138" stroke="#64748b" stroke-width="1.5"/><line x1="86" y1="154" x2="194" y2="154" stroke="#64748b" stroke-width="1.5"/>
+                <circle cx="140" cy="178" r="10" fill="none" stroke="#38bdf8" stroke-width="1.8"/>
+              </svg>
+            </div>
+
+            <div id="heroWaterline" class="absolute bottom-0 left-0 right-0 h-11 bg-sky-500/10 border-t border-sky-400/30 flex items-center justify-between px-4 text-[10px] font-mono text-sky-300">
+              <span>WATERLINE // 17" DRAFT AT 1.2 T</span>
+              <span>+155 KG TIRE BUOYANCY</span>
+            </div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-400">
+            <span class="flex items-center gap-1.5"><i data-lucide="battery-charging" class="w-3.5 h-3.5 text-arkGreen"></i>5 kW EV land drive</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="fan" class="w-3.5 h-3.5 text-arkCyan"></i>15 hp guarded prop</span>
+            <span class="flex items-center gap-1.5 text-amber-400"><i data-lucide="sun" class="w-3.5 h-3.5"></i>500 W solar roof</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 01 DEFICIT ===== -->
+  <section id="deficit" class="py-14 border-y border-white/[0.07] bg-arkSurface/40">
+    <div class="max-w-7xl mx-auto px-6 reveal">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">01 // The infrastructure deficit</span>
+        <span class="text-[11px] font-mono text-slate-500">Aug 2024 Bangladesh flood data, UN OCHA / DGHS</span>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div><div class="font-display text-4xl sm:text-5xl font-bold text-white">5.8M</div><div class="text-sm text-slate-400 mt-1">People affected by the Aug 2024 floods</div></div>
+        <div><div class="font-display text-4xl sm:text-5xl font-bold text-white">502K</div><div class="text-sm text-slate-400 mt-1">Marooned without road access</div></div>
+        <div><div class="font-display text-4xl sm:text-5xl font-bold text-arkCyan">75%</div><div class="text-sm text-slate-400 mt-1">Of Sylhet district submerged</div></div>
+        <div><div class="font-display text-4xl sm:text-5xl font-bold text-arkRed">0</div><div class="text-sm text-slate-400 mt-1">Water ambulances in the public fleet</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 SIMULATION ===== -->
+  <section id="simulation" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 reveal">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-arkCyan">02 // Depth simulation</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2">The 3 ft to 7 ft dead zone</h2>
+          <p class="text-slate-400 mt-3 max-w-xl">Three feet of water grounds a rescue boat. Seven feet submerges an ambulance van. Drag the water level and watch which vehicle can still reach the patient.</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-6 reveal">
+        <!-- Visual -->
+        <div class="lg:col-span-8 min-w-0 rounded-3xl bg-arkSurface border border-white/10 p-5 sm:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div class="flex items-baseline gap-3">
+              <span class="text-sm text-slate-400">Water depth</span>
+              <span id="depthReadout" class="font-mono text-2xl font-semibold text-arkCyan">3.0 ft</span>
+            </div>
+            <div class="flex bg-arkDark p-1 rounded-lg border border-white/[0.07] text-xs font-mono" aria-label="Driveline mode">
+              <button class="seg-btn" data-mode="land" aria-pressed="false">Land EV</button>
+              <button class="seg-btn" data-mode="transition" aria-pressed="true">Transition</button>
+              <button class="seg-btn" data-mode="water" aria-pressed="false">Water ICE</button>
+            </div>
+          </div>
+
+          <div class="rounded-2xl cad-grid border border-white/[0.06] overflow-hidden">
+            <svg id="simSvg" viewBox="0 0 640 300" class="w-full h-auto block" role="img" aria-label="Cross-section showing a boat, a road ambulance and ARKGO at the selected water depth">
+              <defs>
+                <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#38bdf8" stop-opacity=".35"/>
+                  <stop offset="1" stop-color="#0369a1" stop-opacity=".55"/>
+                </linearGradient>
+              </defs>
+              <!-- depth scale: 16 px per ft, ground at y=290 -->
+              <g font-family="JetBrains Mono" font-size="10" fill="#64748b">
+                <line x1="34" y1="290" x2="34" y2="130" stroke="#334155"/>
+                <text x="8" y="293">0</text><text x="8" y="245">3</text><text x="8" y="181">7</text><text x="2" y="133">10</text>
+                <line x1="30" y1="242" x2="640" y2="242" stroke="#f59e0b" stroke-opacity=".25" stroke-dasharray="4 6"/>
+                <line x1="30" y1="178" x2="640" y2="178" stroke="#e11d48" stroke-opacity=".25" stroke-dasharray="4 6"/>
+              </g>
+              <!-- Boat (hull bottom y=246, outboard leg reaches 3.5 ft) -->
+              <g id="simBoat" class="sim-move">
+                <text x="140" y="196" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#cbd5e1">BOAT</text>
+                <rect id="boatLeg" x="99" y="236" width="5" height="54" fill="#94a3b8"/>
+                <path d="M95 224 L185 224 L172 246 L108 246 Z" fill="#475569" stroke="#94a3b8"/>
+                <rect x="122" y="206" width="34" height="18" rx="3" fill="#64748b"/>
+              </g>
+              <!-- Road van -->
+              <g id="simVan" class="sim-move">
+                <text x="330" y="168" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#cbd5e1">ROAD VAN</text>
+                <path d="M270 276 L270 192 Q270 180 282 180 L362 180 L392 220 L392 276 Z" fill="#e2e8f0" stroke="#94a3b8"/>
+                <rect x="282" y="192" width="58" height="26" rx="2" fill="#1e293b"/>
+                <path d="M348 192 L364 192 L382 218 L348 218 Z" fill="#1e293b"/>
+                <rect x="270" y="244" width="122" height="6" fill="#e11d48"/>
+                <circle cx="296" cy="278" r="12" fill="#0f172a" stroke="#475569" stroke-width="3"/>
+                <circle cx="368" cy="278" r="12" fill="#0f172a" stroke="#475569" stroke-width="3"/>
+              </g>
+              <!-- ARKGO -->
+              <g id="simArkgo" class="sim-move">
+                <text x="530" y="152" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="12" fill="#34d399">ARKGO</text>
+                <rect x="482" y="160" width="20" height="4" rx="2" fill="#e11d48"/><rect x="558" y="160" width="20" height="4" rx="2" fill="#38bdf8"/>
+                <path d="M466 240 L466 168 Q466 164 470 164 L566 164 L596 200 L596 240 Z" fill="#f8fafc" stroke="#94a3b8"/>
+                <rect x="478" y="174" width="66" height="24" rx="2" fill="#0f172a"/>
+                <rect x="466" y="230" width="130" height="5" fill="#e11d48"/>
+                <path d="M460 240 L602 240 L592 266 L470 266 Z" fill="#1e293b" stroke="#475569"/>
+                <circle cx="494" cy="272" r="17" fill="#090b10" stroke="#475569" stroke-width="3.5"/>
+                <circle cx="568" cy="272" r="17" fill="#090b10" stroke="#475569" stroke-width="3.5"/>
+                <circle cx="452" cy="258" r="7" fill="none" stroke="#38bdf8" stroke-dasharray="2 2"/>
+              </g>
+              <!-- Water -->
+              <rect id="simWater" class="sim-water" x="0" y="242" width="640" height="48" fill="url(#waterGrad)"/>
+              <g id="simWaveWrap" class="sim-move" style="transform: translateY(242px)">
+                <path class="wave-path" d="M0 0 q20 -5 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#7dd3fc" stroke-width="2" stroke-opacity=".8"/>
+              </g>
+              <!-- Ground -->
+              <rect x="0" y="290" width="640" height="10" fill="#3f3a2e"/>
+            </svg>
+          </div>
+
+          <input id="depthSlider" type="range" min="0" max="10" step="0.5" value="3" class="w-full mt-6" aria-label="Water depth in feet">
+          <div class="flex justify-between text-[11px] font-mono text-slate-500 mt-2">
+            <button class="hover:text-white" data-depth="0">0 ft, road</button>
+            <button class="hover:text-amber-300" data-depth="3">3 ft, flooded street</button>
+            <button class="hover:text-sky-300" data-depth="7">7 ft, haor</button>
+            <button class="hover:text-white" data-depth="10">10 ft</button>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="lg:col-span-4 flex flex-col gap-3">
+          <div class="p-4 rounded-2xl bg-arkSurface border border-white/10 flex items-center justify-between gap-3">
+            <div><div class="text-sm font-medium text-white">Rescue speedboat</div><div id="boatText" class="text-xs text-slate-400 mt-0.5">Hull grounds below 3.5 ft</div></div>
+            <span id="boatBadge" class="shrink-0 px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-amber-500/15 text-amber-300">Too shallow</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-arkSurface border border-white/10 flex items-center justify-between gap-3">
+            <div><div class="text-sm font-medium text-white">Road ambulance</div><div id="vanText" class="text-xs text-slate-400 mt-0.5">Engine floods above 1.5 ft</div></div>
+            <span id="vanBadge" class="shrink-0 px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-rose-500/15 text-rose-300">Stalled</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-between gap-3">
+            <div><div class="text-sm font-medium text-white">ARKGO Trambulance</div><div id="arkgoText" class="text-xs text-emerald-300/80 mt-0.5">Sealed hull + buoyant wheels</div></div>
+            <span id="arkgoBadge" class="shrink-0 px-2.5 py-1 rounded text-[10px] font-mono uppercase bg-arkGreen/15 text-arkGreen">Transition</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-arkSurface border border-white/10 grid grid-cols-3 gap-3 mt-auto">
+            <div><div class="text-[10px] font-mono text-slate-500 uppercase">Mode</div><div id="mVal1" class="font-display font-semibold text-sm text-white mt-1">Seamless entry</div></div>
+            <div><div class="text-[10px] font-mono text-slate-500 uppercase">Buoyancy</div><div id="mVal2" class="font-display font-semibold text-sm text-arkCyan mt-1">Hull + 155 kg tires</div></div>
+            <div><div class="text-[10px] font-mono text-slate-500 uppercase">Transfer</div><div id="mVal3" class="font-display font-semibold text-sm text-arkGreen mt-1">Zero ramps</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 ARCHITECTURE ===== -->
+  <section id="architecture" class="py-24 border-y border-white/[0.07] bg-arkSurface/30">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 reveal">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-arkAmber">03 // Architecture and specifications</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2">Three energy sources. Two days on its own.</h2>
+        </div>
+        <span class="inline-flex items-center gap-2 text-xs font-mono text-arkGreen bg-arkGreen/10 border border-arkGreen/30 px-3 py-1.5 rounded-full"><i data-lucide="badge-check" class="w-4 h-4"></i>Feasibility verdict: 6/6 pass</span>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-6 items-start reveal">
+        <div class="lg:col-span-5 space-y-3">
+          <div class="p-5 rounded-2xl bg-arkSurface border border-white/10 flex items-center gap-4">
+            <div class="p-3 rounded-xl bg-arkGreen/10"><i data-lucide="battery-full" class="w-6 h-6 text-arkGreen"></i></div>
+            <div class="flex-1"><div class="font-display font-semibold text-white">10 kWh LiFePO4 floor pack</div><div class="text-xs text-slate-400 mt-0.5">48 V 200 Ah, powers the 5 kW rear land motor</div></div>
+            <span class="font-mono text-xs text-arkGreen">~100 km</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-arkSurface border border-white/10 flex items-center gap-4">
+            <div class="p-3 rounded-xl bg-arkAmber/10"><i data-lucide="sun" class="w-6 h-6 text-arkAmber"></i></div>
+            <div class="flex-1"><div class="font-display font-semibold text-white">500 W rooftop solar</div><div class="text-xs text-slate-400 mt-0.5">~2 kWh/day, keeps vitals monitors and comms alive</div></div>
+            <span class="font-mono text-xs text-arkAmber">+20%/day</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-arkSurface border border-white/10 flex items-center gap-4">
+            <div class="p-3 rounded-xl bg-arkCyan/10"><i data-lucide="fan" class="w-6 h-6 text-arkCyan"></i></div>
+            <div class="flex-1"><div class="font-display font-semibold text-white">10–15 hp marine engine</div><div class="text-xs text-slate-400 mt-0.5">Guarded stern prop, no drain on the battery</div></div>
+            <span class="font-mono text-xs text-arkCyan">10 km/h</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 rounded-2xl bg-arkSurface border border-white/10 divide-y divide-white/[0.07] overflow-hidden">
+          <div class="p-4 sm:px-6 grid sm:grid-cols-2 gap-1 text-sm"><span class="text-slate-400">Dimensions (L × W × H)</span><span class="font-mono text-white sm:text-right">105 × 52 × 96 in, 3 ft hull tub</span></div>
+          <div class="p-4 sm:px-6 grid sm:grid-cols-2 gap-1 text-sm"><span class="text-slate-400">Clearance and wheels</span><span class="font-mono text-white sm:text-right">10 in clearance, 4 × 24 in buoyant tires</span></div>
+          <div class="p-4 sm:px-6 grid sm:grid-cols-2 gap-1 text-sm"><span class="text-slate-400">Chassis and hull</span><span class="font-mono text-white sm:text-right">~120 kg galvanized steel truss, foam-void FRP</span></div>
+          <div class="p-4 sm:px-6 grid sm:grid-cols-2 gap-1 text-sm"><span class="text-slate-400">Waterproofing and bilge</span><span class="font-mono text-white sm:text-right">IP67 electrics, lip-sealed axles, twin bilge pumps</span></div>
+          <div class="p-4 sm:px-6 grid sm:grid-cols-2 gap-1 text-sm"><span class="text-slate-400">Medical and safety fit-out</span><span class="font-mono text-white sm:text-right">Stretcher, O2, monitor, 8 life vests, VHF, ABC extinguisher</span></div>
+          <div class="p-4 sm:px-6 grid sm:grid-cols-2 gap-1 text-sm"><span class="text-slate-400">Regulatory path</span><span class="font-mono text-white sm:text-right">BRTA, Dept. of Shipping, BSTI, CE export</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 CABIN ===== -->
+  <section id="cabin" class="py-24">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-6 reveal">
+      <div class="lg:col-span-6 rounded-3xl bg-arkSurface border border-white/10 p-6">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-6">
+          <div>
+            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">04 // Interior layout, 4 × 6 ft bay</span>
+            <h3 class="font-display text-2xl font-bold text-white mt-1">Floating ER configurator</h3>
+          </div>
+          <div class="flex bg-arkDark p-1 rounded-lg border border-white/[0.07] text-xs font-mono">
+            <button class="seg-btn" data-cabin="ambulance" aria-pressed="true">7+1 EMS</button>
+            <button class="seg-btn" data-cabin="rescue" aria-pressed="false">11 rescue</button>
+          </div>
+        </div>
+        <div class="p-4 rounded-2xl bg-arkDark border border-white/[0.06]">
+          <div class="grid grid-cols-3 gap-2 mb-3 pb-3 border-b border-white/[0.06] text-center text-[11px] font-mono text-slate-400">
+            <div class="py-1.5 rounded bg-arkPanel">Crew 1</div><div class="py-1.5 rounded bg-arkPanel">Crew 2</div><div class="py-1.5 rounded bg-arkPanel text-white font-medium">Driver</div>
+          </div>
+          <div class="grid grid-cols-12 gap-2.5 h-44 text-xs font-mono">
+            <div class="col-span-4 rounded-lg bg-arkPanel border border-white/[0.06] p-3 flex flex-col justify-between">
+              <span class="text-white font-medium">4-seat bench</span><span class="text-[10px] text-slate-400">1 ft wide, life vests stowed</span>
+            </div>
+            <div class="col-span-3 rounded-lg border border-dashed border-white/10 flex items-center justify-center"><span class="text-[10px] text-slate-500 -rotate-90 whitespace-nowrap">Aisle (1 ft)</span></div>
+            <div id="rightBay" class="col-span-5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 flex flex-col justify-between transition-colors">
+              <span id="rightBayTitle" class="font-display font-semibold text-emerald-300">Stretcher bay (2 ft)</span>
+              <span id="rightBayDesc" class="text-[11px] text-slate-300 font-sans">Roll-in stretcher, fixed O2 mount and vitals monitor.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 rounded-3xl bg-arkSurface border border-white/10 p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <span class="text-xs font-mono text-arkCyan uppercase tracking-widest">Hydrostatic stress test</span>
+              <h3 class="font-display text-2xl font-bold text-white mt-1">Floats up to 2 tonnes</h3>
+            </div>
+            <span id="massReadout" class="font-mono text-xl font-semibold text-white">1,200 kg</span>
+          </div>
+          <input id="massSlider" type="range" min="700" max="2000" step="50" value="1200" class="w-full mt-8" aria-label="Total vehicle mass in kilograms">
+          <div class="flex justify-between text-[11px] font-mono text-slate-500 mt-2"><span>700 kg curb</span><span>1,200 kg EMS</span><span>2,000 kg max</span></div>
+        </div>
+        <div class="grid grid-cols-3 gap-3 mt-8">
+          <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]"><div class="text-[10px] font-mono text-slate-500 uppercase">Hull draft</div><div id="draftVal" class="font-display text-2xl font-bold text-white mt-1">17.0 in</div></div>
+          <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]"><div class="text-[10px] font-mono text-slate-500 uppercase">Freeboard</div><div id="freeboardVal" class="font-display text-2xl font-bold text-arkGreen mt-1">19.0 in</div></div>
+          <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]"><div class="text-[10px] font-mono text-slate-500 uppercase">Tire lift</div><div class="font-display text-2xl font-bold text-arkCyan mt-1">+155 kg</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 GALLERY ===== -->
+  <section id="gallery" class="py-24 border-y border-white/[0.07] bg-arkSurface/30">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 reveal">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-rose-400">05 // Gallery</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2">From CAD to floodwater</h2>
+        </div>
+        <p class="text-slate-400 max-w-md md:text-right text-sm">Renders, prototype build and field trials. Select any image to view it full size.</p>
+      </div>
+      <div id="galleryGrid" class="grid grid-cols-2 lg:grid-cols-4 auto-rows-[180px] sm:auto-rows-[220px] gap-4 reveal"></div>
+    </div>
+  </section>
+
+  <!-- ===== 06 ECONOMICS ===== -->
+  <section id="economics" class="py-24">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-6 reveal">
+      <div class="lg:col-span-7 min-w-0 rounded-3xl bg-arkSurface border border-white/10 p-6">
+        <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">06 // Market positioning</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1 mb-6">15× cheaper than imported amphibians</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[420px] text-sm">
+            <thead><tr class="text-[11px] font-mono text-slate-500 uppercase"><th class="text-left font-normal pb-3">Platform</th><th class="font-normal pb-3">Water</th><th class="font-normal pb-3">Land</th><th class="font-normal pb-3">ER</th><th class="text-right font-normal pb-3">Cost</th></tr></thead>
+            <tbody class="divide-y divide-white/[0.06] text-slate-300">
+              <tr><td class="py-3">Speedboat (Fire Service)</td><td class="text-center text-arkGreen" aria-label="yes">●</td><td class="text-center text-slate-600" aria-label="no">○</td><td class="text-center text-amber-400" aria-label="partial">◐</td><td class="text-right font-mono">$3–10K</td></tr>
+              <tr><td class="py-3">Conventional road van</td><td class="text-center text-slate-600" aria-label="no">○</td><td class="text-center text-arkGreen" aria-label="yes">●</td><td class="text-center text-arkGreen" aria-label="yes">●</td><td class="text-right font-mono">$15–20K</td></tr>
+              <tr><td class="py-3">Imported amphibian</td><td class="text-center text-arkGreen" aria-label="yes">●</td><td class="text-center text-arkGreen" aria-label="yes">●</td><td class="text-center text-slate-600" aria-label="no">○</td><td class="text-right font-mono text-rose-400">$120K+</td></tr>
+              <tr class="bg-emerald-500/10 font-medium text-white"><td class="py-3.5 pl-3 rounded-l-lg">ARKGO Trambulance</td><td class="text-center text-arkGreen">●</td><td class="text-center text-arkGreen">●</td><td class="text-center text-arkGreen">●</td><td class="text-right font-mono text-arkGreen font-bold pr-3 rounded-r-lg">$8,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 min-w-0 rounded-3xl bg-arkSurface border border-white/10 p-6 flex flex-col gap-6">
+        <div>
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs font-mono text-slate-400 uppercase">Fleet estimator</span>
+            <span id="fleetCountOut" class="font-mono text-sm font-semibold text-arkCyan">5 units</span>
+          </div>
+          <input id="fleetSlider" type="range" min="1" max="50" value="5" class="w-full" aria-label="Number of units">
+          <div class="grid grid-cols-2 gap-3 mt-5">
+            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]">
+              <div class="text-[10px] font-mono text-slate-500 uppercase">Purchase</div>
+              <div id="fleetPurchaseCost" class="font-display text-2xl font-bold text-white mt-1">$40,000</div>
+              <div class="text-[11px] text-slate-400">or <span id="fleetLeaseCost">$3,200</span>/mo lease</div>
+            </div>
+            <div class="p-4 rounded-xl bg-arkDark border border-white/[0.06]">
+              <div class="text-[10px] font-mono text-slate-500 uppercase">Saved vs import</div>
+              <div id="fleetSavingsOut" class="font-display text-2xl font-bold text-arkGreen mt-1">$560,000</div>
+              <div class="text-[11px] text-slate-400">22.5% launch margin</div>
+            </div>
+          </div>
+        </div>
+        <div class="pt-5 border-t border-white/[0.07] space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="font-display font-bold text-lg text-white">Seed ask: US$275,000</span>
+            <span class="text-xs font-mono text-slate-400">3-yr target: 120 units (~$1M)</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] font-mono text-slate-300">
+            <div class="p-2 rounded bg-arkDark">60% fleet ($165K)</div><div class="p-2 rounded bg-arkDark">15% cert ($41K)</div>
+            <div class="p-2 rounded bg-arkDark">15% team ($41K)</div><div class="p-2 rounded bg-arkDark">10% pilots ($28K)</div>
+          </div>
+          <button id="openPilot" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-display font-semibold text-sm transition">Request dossier or book a Sylhet / Cumilla pilot</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 07 RESOURCES ===== -->
+  <section id="resources" class="py-24 border-t border-white/[0.07] bg-gradient-to-b from-arkSurface/40 to-transparent">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-10 reveal">
+        <span class="text-xs font-mono uppercase tracking-widest text-arkAmber">07 // Resources</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2">Take ARKGO to your next meeting</h2>
+      </div>
+      <div class="grid lg:grid-cols-12 gap-6 reveal">
+        <!-- Featured PDF -->
+        <article class="lg:col-span-7 rounded-3xl bg-arkSurface border border-white/10 p-6 sm:p-8 flex flex-col sm:flex-row gap-6 sm:gap-8">
+          <div class="shrink-0 w-32 sm:w-40 aspect-[1/1.414] rounded-lg bg-[#0b1220] border border-white/10 shadow-xl shadow-black/40 p-3 flex flex-col justify-between mx-auto sm:mx-0" aria-hidden="true">
+            <div class="h-1.5 w-10 rounded bg-arkRed"></div>
+            <div>
+              <div class="font-display text-white font-bold text-base leading-tight">ARKGO<br>Trambulance</div>
+              <div class="text-[8px] font-mono text-slate-400 mt-1">Project brief</div>
+            </div>
+            <div class="h-8 rounded bg-gradient-to-r from-sky-500/40 to-sky-500/10"></div>
+          </div>
+          <div class="flex-1 flex flex-col">
+            <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-2"><i data-lucide="file-text" class="w-4 h-4 text-arkRed"></i>PDF, 2 pages</div>
+            <h3 class="font-display text-2xl font-bold text-white">ARKGO Trambulance: project brief</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mt-3">The problem, how the vehicle works across land and water, full specifications, market comparison and the seed round, in a format ready to print or forward.</p>
+            <div class="flex flex-wrap gap-3 mt-auto pt-6">
+              <a href="src/assets/pdf/ARKGO_Trambulance_Brief.pdf" download class="px-5 py-3 rounded-xl bg-arkRed hover:bg-rose-500 text-white font-display font-semibold text-sm flex items-center gap-2 transition"><i data-lucide="download" class="w-4 h-4"></i>Download PDF</a>
+              <a href="src/assets/pdf/ARKGO_Trambulance_Brief.pdf" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl bg-arkDark hover:bg-arkPanel border border-white/10 text-slate-200 font-display font-medium text-sm flex items-center gap-2 transition"><i data-lucide="eye" class="w-4 h-4"></i>Open in browser</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Other resources -->
+        <div class="lg:col-span-5 flex flex-col gap-4" id="resourceList">
+          <a data-resource="src/assets/pdf/ARKGO_Engineering_Dossier.pdf" href="src/assets/pdf/ARKGO_Engineering_Dossier.pdf" download class="group p-5 rounded-2xl bg-arkSurface border border-white/10 hover:border-sky-400/40 flex items-center gap-4 transition">
+            <div class="p-3 rounded-xl bg-arkCyan/10"><i data-lucide="ruler" class="w-5 h-5 text-arkCyan"></i></div>
+            <div class="flex-1"><div class="font-display font-semibold text-white">Rev-2 engineering dossier</div><div class="text-xs text-slate-400 mt-0.5" data-status>CAD, hydrostatics and feasibility checks</div></div>
+            <i data-lucide="download" class="w-5 h-5 text-slate-500 group-hover:text-white"></i>
+          </a>
+          <a data-resource="src/assets/pdf/ARKGO_Pitch_Deck.pdf" href="src/assets/pdf/ARKGO_Pitch_Deck.pdf" download class="group p-5 rounded-2xl bg-arkSurface border border-white/10 hover:border-sky-400/40 flex items-center gap-4 transition">
+            <div class="p-3 rounded-xl bg-arkAmber/10"><i data-lucide="presentation" class="w-5 h-5 text-arkAmber"></i></div>
+            <div class="flex-1"><div class="font-display font-semibold text-white">Investor pitch deck</div><div class="text-xs text-slate-400 mt-0.5" data-status>Seed round, use of funds and roadmap</div></div>
+            <i data-lucide="download" class="w-5 h-5 text-slate-500 group-hover:text-white"></i>
+          </a>
+          <a href="resources.html" class="group p-5 rounded-2xl bg-arkSurface border border-white/10 hover:border-emerald-400/40 flex items-center gap-4 transition">
+            <div class="p-3 rounded-xl bg-arkGreen/10"><i data-lucide="folder-open" class="w-5 h-5 text-arkGreen"></i></div>
+            <div class="flex-1"><div class="font-display font-semibold text-white">All TriChokro public files</div><div class="text-xs text-slate-400 mt-0.5">Brochures and documents for every project</div></div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-500 group-hover:text-white"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ===== PILOT MODAL ===== -->
+  <div id="pilotModal" class="hidden fixed inset-0 z-[10002] bg-black/80 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="pilotTitle">
+    <div class="bg-arkSurface border border-white/15 rounded-2xl max-w-md w-full p-6 space-y-5">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <h4 id="pilotTitle" class="font-display text-lg font-bold text-white">Partner with Team TriChokro</h4>
+        <button id="closePilot" class="text-slate-400 hover:text-white" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form id="pilotForm" class="space-y-4 text-sm">
+        <label class="block"><span class="block text-[11px] font-mono text-slate-400 mb-1">Organization</span>
+          <input name="org" type="text" required placeholder="DGHS, Fire Service, NGO, climate fund" class="w-full px-3.5 py-2.5 rounded-lg bg-arkDark border border-white/10 text-white focus:outline-none focus:border-sky-400"></label>
+        <label class="block"><span class="block text-[11px] font-mono text-slate-400 mb-1">Your name</span>
+          <input name="name" type="text" required class="w-full px-3.5 py-2.5 rounded-lg bg-arkDark border border-white/10 text-white focus:outline-none focus:border-sky-400"></label>
+        <label class="block"><span class="block text-[11px] font-mono text-slate-400 mb-1">Program</span>
+          <select name="program" class="w-full px-3.5 py-2.5 rounded-lg bg-arkDark border border-white/10 text-white focus:outline-none focus:border-sky-400">
+            <option>US$275K seed round / grant</option>
+            <option>Monsoon pilot fleet (Sylhet / Cumilla / Noakhali)</option>
+            <option>Fleet procurement ($8K/unit or $640/mo lease)</option>
+            <option>Engineering dossier request</option>
+          </select></label>
+        <p class="text-xs text-slate-500">Submitting opens your email app with the request filled in, addressed to rownakshahriarruhan@gmail.com.</p>
+        <div class="flex justify-end gap-2 pt-1">
+          <button type="button" id="cancelPilot" class="px-4 py-2.5 rounded-lg bg-arkDark text-slate-300 text-xs">Cancel</button>
+          <button type="submit" class="px-4 py-2.5 rounded-lg bg-white text-slate-950 font-display font-semibold text-xs">Send request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div id="lightbox" class="hidden fixed inset-0 z-[10003] bg-black/90 backdrop-blur items-center justify-center p-4 sm:p-10" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button id="lbClose" class="absolute top-4 right-4 text-white/70 hover:text-white" aria-label="Close"><i data-lucide="x" class="w-8 h-8"></i></button>
+    <button id="lbPrev" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2" aria-label="Previous image"><i data-lucide="chevron-left" class="w-9 h-9"></i></button>
+    <button id="lbNext" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2" aria-label="Next image"><i data-lucide="chevron-right" class="w-9 h-9"></i></button>
+    <figure class="max-w-5xl w-full">
+      <div id="lbMedia" class="flex items-center justify-center max-h-[78vh]"></div>
+      <figcaption class="mt-4 text-center"><div id="lbTitle" class="font-display text-white font-semibold"></div><div id="lbCaption" class="text-sm text-slate-400 mt-1"></div></figcaption>
+    </figure>
+  </div>
+
+  <!-- ===== FOOTER (site standard) ===== -->
+  <footer class="relative z-10 bg-slate-950 pt-16 pb-8 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <a href="index.html" class="flex items-center gap-3">
+          <img alt="TriChokro logo" class="h-10 w-auto drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]" src="src/assets/logo_new.webp" loading="lazy" width="40" height="40">
+          <span class="text-xl font-bold text-white tracking-tight">Tri<span class="text-emerald-400">Chokro</span></span>
+        </a>
+        <div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8">
+          <div class="relative">
+            <button id="productsToggle" class="hover:text-emerald-400 transition-colors" aria-expanded="false">Products</button>
+            <div id="productsMenu" class="absolute bottom-full left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 mb-2 bg-slate-800 rounded-lg p-2 hidden flex-col gap-1 shadow-lg min-w-[10rem]">
+              <a class="hover:text-emerald-400 px-3 py-1.5 rounded" href="trambulance.html">Trambulance</a>
+              <a class="hover:text-emerald-400 px-3 py-1.5 rounded" href="pathfinder.html">Pathfinder</a>
+              <a class="text-emerald-400 px-3 py-1.5 rounded" href="arkgo.html">ARKGO</a>
+              <a class="hover:text-emerald-400 px-3 py-1.5 rounded" href="vesel_urbana.html">Vesel Urbana</a>
+            </div>
+          </div>
+          <a class="hover:text-emerald-400 transition-colors" href="founder.html">Contacts</a>
+          <a class="hover:text-emerald-400 transition-colors" href="privacy.html">Privacy</a>
+          <a class="hover:text-emerald-400 transition-colors" href="metadata.html">Meta Data</a>
+        </div>
+      </div>
+      <div class="flex space-x-4">
+        <a aria-label="TriChokro founder on LinkedIn" class="text-gray-400 hover:text-emerald-400" href="https://www.linkedin.com/in/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+          <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.27 20.45H3.66V9h3.61v11.45zM5.46 7.42c-1.18 0-2.14-.95-2.14-2.13s.96-2.13 2.14-2.13 2.14.95 2.14 2.13-.96 2.13-2.14 2.13zM20.47 20.45h-3.61v-5.63c0-1.34-.48-2.26-1.68-2.26-1.12 0-1.78.75-2.07 1.48-.11.26-.14.63-.14 1v6.41h-3.61s.05-10.4 0-11.45h3.61v1.65c.48-.75 1.34-1.82 3.25-1.82 2.37 0 4.15 1.55 4.15 4.9v6.72z"></path></svg>
+        </a>
+        <a aria-label="TriChokro on Facebook" class="text-gray-400 hover:text-emerald-400" href="https://www.facebook.com/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+          <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" fill-rule="evenodd" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8 flex justify-center">
+      <div class="w-full max-w-2xl bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-2xl flex justify-center">
+        <iframe title="TriChokro on Facebook" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61577812382585&tabs=timeline&width=500&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="300" style="border:none;overflow:hidden;max-width:100%" scrolling="no" frameborder="0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 pt-8">
+      <p class="text-slate-600 text-sm text-center md:text-left">Developed by Ruhan &amp; Jules; All right reserved, TriChokro 2026</p>
+    </div>
+  </footer>
+
+  <div id="cursor-glow" class="pointer-events-none fixed inset-0 z-[9999] hidden md:block" aria-hidden="true" style="background: radial-gradient(600px at var(--x,50%) var(--y,50%), rgba(56,189,248,0.07), transparent 80%); mix-blend-mode: screen;"></div>
+
+  <script>
+  /* ================================================================
+     EDIT HERE: image and gallery paths.
+     Put your photos in src/assets/arkgo/ using these names, or change
+     the paths. Any image that is missing is replaced by a CAD drawing,
+     so the page never shows a broken picture.
+     ================================================================ */
+  const HERO_PHOTO = 'src/assets/arkgo/arkgo_hero.webp';
+  const GALLERY = [
+    { src: 'src/assets/arkgo/arkgo_hero.webp',     title: 'ARKGO Trambulance',      caption: 'Amphibious ambulance, Rev-2 concept', fallback: 'side', wide: true },
+    { src: 'src/assets/arkgo/arkgo_water.webp',    title: 'On the water',           caption: 'Guarded prop drive at 10 km/h',       fallback: 'side' },
+    { src: 'src/assets/arkgo/arkgo_bow.webp',      title: 'Bow',                    caption: 'Sponson wheels and lightbar',          fallback: 'front' },
+    { src: 'src/assets/arkgo/arkgo_stern.webp',    title: 'Stern ramp',             caption: 'Roll-in stretcher access',            fallback: 'rear' },
+    { src: 'src/assets/arkgo/arkgo_interior.webp', title: 'Floating ER',            caption: 'Stretcher bay, O2 and monitor',        fallback: 'rear' },
+    { src: 'src/assets/arkgo/arkgo_cad.webp',      title: 'CAD and hull study',     caption: 'Truss chassis with foam-void FRP hull', fallback: 'side', wide: true },
+  ];
+  /* ================================================================ */
+
+  if (window.lucide) lucide.createIcons();
+
+  // ---- Mobile menu
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  function setMenu(open) {
+    menuBtn.setAttribute('aria-expanded', String(open));
+    mobileMenu.classList.toggle('max-h-0', !open); mobileMenu.classList.toggle('opacity-0', !open);
+    mobileMenu.classList.toggle('max-h-[32rem]', open); mobileMenu.classList.toggle('opacity-100', open);
+  }
+  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // ---- Hero viewer
+  const captions = {
+    photo: 'PHOTO // ARKGO TRAMBULANCE',
+    side: 'PROFILE // 105" L × 52" W × 96" H',
+    front: 'BOW // 52" TRACK + SPONSON WHEELS',
+    rear: 'STERN // ROLL-IN RAMP + GUARDED PROP'
+  };
+  const viewTabs = document.querySelectorAll('[data-view]');
+  const panels = document.querySelectorAll('[data-panel]');
+  function showView(v) {
+    viewTabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.view === v)));
+    panels.forEach(p => p.classList.toggle('hidden', p.dataset.panel !== v));
+    document.getElementById('viewCaption').textContent = captions[v];
+    document.getElementById('heroWaterline').classList.toggle('hidden', v === 'photo');
+  }
+  viewTabs.forEach(t => t.addEventListener('click', () => showView(t.dataset.view)));
+  const heroImg = document.getElementById('heroPhoto');
+  heroImg.onload = () => { document.querySelector('[data-view="photo"]').classList.remove('hidden'); showView('photo'); };
+  heroImg.src = HERO_PHOTO;
+
+  // ---- Depth simulation (16 px per ft, ground at y = 290)
+  const PX = 16, GROUND = 290;
+  const $ = id => document.getElementById(id);
+  const depthSlider = $('depthSlider');
+  const badge = (el, text, cls) => { el.textContent = text; el.className = 'shrink-0 px-2.5 py-1 rounded text-[10px] font-mono uppercase ' + cls; };
+
+  function updateSim(depth) {
+    const d = parseFloat(depth);
+    depthSlider.value = d;
+    $('depthReadout').textContent = d.toFixed(1) + ' ft';
+    const h = Math.max(2, d * PX);
+    const water = $('simWater');
+    water.setAttribute('y', GROUND - h); water.setAttribute('height', h);
+    $('simWaveWrap').style.transform = `translateY(${GROUND - h}px)`;
+
+    // Boat: floats with ~0.75 ft draft; below 3.5 ft its outboard leg is in the mud
+    $('simBoat').style.transform = `translateY(${Math.min(44, 56 - d * PX)}px)`;
+    $('boatLeg').setAttribute('fill', d < 3.5 ? '#f59e0b' : '#94a3b8');
+    if (d < 3.5) { badge($('boatBadge'), 'Too shallow', 'bg-amber-500/15 text-amber-300'); $('boatText').textContent = 'Hull grounds below 3.5 ft'; }
+    else { badge($('boatBadge'), 'Water only', 'bg-sky-500/15 text-sky-300'); $('boatText').textContent = 'Patient must be transferred at dry ground'; }
+
+    // Van: works to 1.5 ft
+    $('simVan').style.opacity = d <= 1.5 ? 1 : (d >= 7 ? .3 : .55);
+    if (d <= 1.5) { badge($('vanBadge'), 'Road only', 'bg-emerald-500/15 text-emerald-300'); $('vanText').textContent = 'Drives on dry pavement'; }
+    else { badge($('vanBadge'), d >= 7 ? 'Submerged' : 'Stalled', 'bg-rose-500/15 text-rose-300'); $('vanText').textContent = 'Engine floods above 1.5 ft'; }
+
+    // ARKGO: drives to ~1.5 ft, floats above
+    $('simArkgo').style.transform = d <= 1.5 ? 'translateY(0)' : `translateY(${-(d - 1.5) * PX}px)`;
+    if (d < 2) { badge($('arkgoBadge'), 'Land, 40 km/h', 'bg-arkGreen/15 text-arkGreen'); $('arkgoText').textContent = '5 kW EV, 10 in clearance'; }
+    else if (d <= 3.5) { badge($('arkgoBadge'), 'Transition', 'bg-arkGreen/15 text-arkGreen'); $('arkgoText').textContent = 'Sealed hull + buoyant wheels'; }
+    else { badge($('arkgoBadge'), 'Water, 10 km/h', 'bg-arkGreen/15 text-arkGreen'); $('arkgoText').textContent = '15 hp guarded marine prop'; }
+
+    const mode = d < 2 ? 'land' : (d <= 3.5 ? 'transition' : 'water');
+    document.querySelectorAll('[data-mode]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.mode === mode)));
+    ['mVal1','mVal2','mVal3'].forEach((id, i) => $(id).textContent = modes[mode].v[i]);
+  }
+  depthSlider.addEventListener('input', e => updateSim(e.target.value));
+  document.querySelectorAll('[data-depth]').forEach(b => b.addEventListener('click', () => updateSim(b.dataset.depth)));
+
+  const modes = {
+    land:       { depth: 0.5, v: ['5 kW EV (40 km/h)', '10 kWh LiFePO4', '10 in clearance'] },
+    transition: { depth: 3.0, v: ['Seamless entry', 'Hull + 155 kg tires', 'Zero ramps'] },
+    water:      { depth: 7.0, v: ['15 hp engine (10 km/h)', 'Guarded cage prop', 'Wheel sponsons'] }
+  };
+  document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => updateSim(modes[b.dataset.mode].depth)));
+  updateSim(3);
+
+  // ---- Cabin
+  document.querySelectorAll('[data-cabin]').forEach(b => b.addEventListener('click', () => {
+    const amb = b.dataset.cabin === 'ambulance';
+    document.querySelectorAll('[data-cabin]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    $('rightBayTitle').textContent = amb ? 'Stretcher bay (2 ft)' : '4-seat bench (2 ft)';
+    $('rightBayDesc').textContent = amb ? 'Roll-in stretcher, fixed O2 mount and vitals monitor.' : 'Replaces the stretcher with 4 bench seats (11 total).';
+    $('rightBay').className = 'col-span-5 rounded-lg p-3 flex flex-col justify-between transition-colors ' + (amb ? 'bg-emerald-500/10 border border-emerald-500/30' : 'bg-sky-500/10 border border-sky-500/30');
+    $('rightBayTitle').className = 'font-display font-semibold ' + (amb ? 'text-emerald-300' : 'text-sky-300');
+  }));
+
+  // ---- Hydrostatics
+  $('massSlider').addEventListener('input', e => {
+    const mass = parseInt(e.target.value, 10);
+    $('massReadout').textContent = mass.toLocaleString() + ' kg';
+    const draft = 17 + ((mass - 1200) / 800) * 9;
+    $('draftVal').textContent = draft.toFixed(1) + ' in';
+    $('freeboardVal').textContent = (36 - draft).toFixed(1) + ' in';
+  });
+
+  // ---- Fleet
+  $('fleetSlider').addEventListener('input', e => {
+    const u = parseInt(e.target.value, 10);
+    $('fleetCountOut').textContent = `${u} ${u === 1 ? 'unit' : 'units'}`;
+    $('fleetPurchaseCost').textContent = '$' + (u * 8000).toLocaleString();
+    $('fleetLeaseCost').textContent = '$' + (u * 640).toLocaleString();
+    $('fleetSavingsOut').textContent = '$' + (u * 112000).toLocaleString();
+  });
+
+  // ---- Pilot modal (opens a pre-filled email)
+  const modal = $('pilotModal');
+  const openModal = () => { modal.classList.remove('hidden'); modal.classList.add('flex'); modal.querySelector('input').focus(); };
+  const closeModal = () => { modal.classList.add('hidden'); modal.classList.remove('flex'); };
+  $('openPilot').addEventListener('click', openModal);
+  $('closePilot').addEventListener('click', closeModal);
+  $('cancelPilot').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  $('pilotForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const subject = `ARKGO: ${f.get('program')} (${f.get('org')})`;
+    const body = `Hello TriChokro team,\n\nOrganization: ${f.get('org')}\nName: ${f.get('name')}\nProgram: ${f.get('program')}\n\n`;
+    window.location.href = `mailto:rownakshahriarruhan@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    closeModal();
+  });
+
+  // ---- Gallery with CAD fallback + lightbox
+  const cadSvg = key => document.querySelector(`[data-panel="${key}"] svg`).outerHTML;
+  const grid = $('galleryGrid');
+  const items = [];
+  GALLERY.forEach((g, i) => {
+    const tile = document.createElement('button');
+    tile.type = 'button';
+    tile.className = 'gallery-tile group relative overflow-hidden rounded-2xl border border-white/10 bg-arkSurface text-left ' + (g.wide ? 'col-span-2 row-span-1' : '');
+    tile.setAttribute('aria-label', `View ${g.title}`);
+    tile.innerHTML = `
+      <div class="media absolute inset-0 cad-grid flex items-center justify-center p-6">${cadSvg(g.fallback)}</div>
+      <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent">
+        <div class="font-display font-semibold text-white text-sm sm:text-base">${g.title}</div>
+        <div class="text-[11px] sm:text-xs text-slate-400">${g.caption}</div>
+      </div>`;
+    const item = { ...g, isPhoto: false };
+    items.push(item);
+    const img = new Image();
+    img.alt = g.title;
+    img.loading = 'lazy';
+    img.className = 'absolute inset-0 w-full h-full object-cover';
+    img.onload = () => { const m = tile.querySelector('.media'); m.className = 'media absolute inset-0'; m.innerHTML = ''; m.appendChild(img); item.isPhoto = true; };
+    img.src = g.src;
+    tile.addEventListener('click', () => openLightbox(i));
+    grid.appendChild(tile);
+  });
+
+  const lb = $('lightbox');
+  let lbIndex = 0;
+  function renderLightbox() {
+    const it = items[lbIndex];
+    $('lbMedia').innerHTML = it.isPhoto
+      ? `<img src="${it.src}" alt="${it.title}" class="max-h-[78vh] w-auto max-w-full rounded-xl">`
+      : `<div class="cad-grid rounded-xl border border-white/10 w-full max-w-3xl p-10">${cadSvg(it.fallback)}</div>`;
+    $('lbTitle').textContent = it.title;
+    $('lbCaption').textContent = it.isPhoto ? it.caption : it.caption + ' (concept drawing)';
+  }
+  function openLightbox(i) { lbIndex = i; renderLightbox(); lb.classList.remove('hidden'); lb.classList.add('flex'); $('lbClose').focus(); }
+  function closeLightbox() { lb.classList.add('hidden'); lb.classList.remove('flex'); }
+  $('lbClose').addEventListener('click', closeLightbox);
+  $('lbPrev').addEventListener('click', () => { lbIndex = (lbIndex - 1 + items.length) % items.length; renderLightbox(); });
+  $('lbNext').addEventListener('click', () => { lbIndex = (lbIndex + 1) % items.length; renderLightbox(); });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closeModal(); }
+    if (!lb.classList.contains('hidden')) {
+      if (e.key === 'ArrowLeft') $('lbPrev').click();
+      if (e.key === 'ArrowRight') $('lbNext').click();
+    }
+  });
+
+  // ---- Resources: if an optional PDF isn't uploaded yet, turn it into an email request
+  document.querySelectorAll('[data-resource]').forEach(a => {
+    if (location.protocol === 'file:') return;
+    fetch(a.dataset.resource, { method: 'HEAD' }).then(r => {
+      if (r.ok) return;
+      const title = a.querySelector('.font-display').textContent;
+      a.removeAttribute('download');
+      a.href = `mailto:rownakshahriarruhan@gmail.com?subject=${encodeURIComponent('Request: ARKGO ' + title)}`;
+      a.querySelector('[data-status]').textContent = 'Available on request. Select to email us.';
+    }).catch(() => {});
+  });
+
+  // ---- Footer products menu
+  const pToggle = $('productsToggle'), pMenu = $('productsMenu');
+  pToggle.addEventListener('click', () => {
+    const open = pMenu.classList.contains('hidden');
+    pMenu.classList.toggle('hidden', !open); pMenu.classList.toggle('flex', open);
+    pToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  // ---- Scroll reveal
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }), { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---- Cursor glow (site signature)
+  const glow = $('cursor-glow');
+  document.addEventListener('mousemove', e => { glow.style.setProperty('--x', e.clientX + 'px'); glow.style.setProperty('--y', e.clientY + 'px'); });
+  </script>
+</body>
 </html>
