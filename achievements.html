@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Achievements | TriChokro Automotives</title>
+<meta name="description" content="Awards, grants and selections won by TriChokro Automotives and the Trambulance, a three-wheeled electric ambulance from BUET.">
+<meta name="theme-color" content="#020617">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..850&display=swap" rel="stylesheet">
+<style>
+/* Everything is scoped under .tc-ach so the section can be pasted into trichokro.com. */
+.tc-ach{
+  --night:#020617; --surface:#0F172A; --surface-2:#131E35; --line:#22304A;
+  --ink:#E2E8F0; --muted:#94A3B8; --road:#1B2740; --lane:#FBBF24;
+  --siren:#F43F5E; --award:#FBBF24; --money:#34D399; --select:#60A5FA;
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+  background:var(--night); color:var(--ink); line-height:1.55;
+  padding:clamp(3.5rem,8vw,7rem) clamp(1.25rem,4vw,3rem) clamp(3rem,6vw,5rem);
+  color-scheme:dark; overflow:hidden;
+}
+.tc-ach *{box-sizing:border-box}
+.tc-ach img{max-width:100%;display:block}
+.tc-ach a{color:inherit}
+.tc-ach .wrap{max-width:1160px;margin:0 auto}
+.tc-ach :focus-visible{outline:3px solid var(--lane);outline-offset:3px;border-radius:6px}
+
+/* ---------- Heading ---------- */
+.tc-ach .head{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem 4rem;align-items:end;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.tc-ach h2{
+  margin:0;font-stretch:125%;font-weight:850;letter-spacing:-.025em;line-height:.88;
+  font-size:clamp(3rem,8.4vw,6.6rem);
+}
+.tc-ach h2 .outline{display:block;color:transparent;-webkit-text-stroke:1.5px var(--muted)}
+.tc-ach .lede{margin:0 0 1.5rem;font-size:1.12rem;color:var(--muted);max-width:46ch}
+.tc-ach .ledger{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tc-ach .ledger li{background:var(--surface);padding:1rem 1.1rem}
+.tc-ach .ledger b{display:block;font-stretch:112%;font-weight:800;font-size:clamp(1.5rem,2.6vw,2rem);font-variant-numeric:tabular-nums;line-height:1.1}
+.tc-ach .ledger span{font-size:.9rem;color:var(--muted)}
+.tc-ach .ledger li:nth-child(1) b{color:var(--money)}
+.tc-ach .ledger li:nth-child(4) b{color:var(--award)}
+
+/* ---------- Featured win ---------- */
+.tc-ach .feature{
+  position:relative;display:grid;grid-template-columns:1.2fr 1fr;text-decoration:none;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  margin-bottom:clamp(3.5rem,8vw,6rem);transition:border-color .2s
+}
+.tc-ach .feature:hover{border-color:#3B4C6B}
+.tc-ach .feature .pic{position:relative;min-height:320px}
+.tc-ach .feature .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.tc-ach .feature:hover .pic img{transform:scale(1.03)}
+.tc-ach .feature .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,var(--surface))}
+.tc-ach .feature .body{padding:clamp(1.5rem,4vw,3rem);display:flex;flex-direction:column;justify-content:center;gap:1rem}
+.tc-ach .feature .medal{display:flex;align-items:center;gap:.6rem;color:var(--money);font-weight:650}
+.tc-ach .feature .medal svg{flex:none}
+.tc-ach .feature h3{margin:0;font-stretch:112%;font-weight:780;font-size:clamp(1.55rem,3vw,2.3rem);line-height:1.08}
+.tc-ach .feature .ev{margin:0;color:var(--lane);font-weight:650}
+.tc-ach .feature p.sum{margin:0;color:var(--muted);max-width:44ch}
+.tc-ach .feature .go{align-self:flex-start;margin-top:.5rem;padding:.75rem 1.2rem;border-radius:999px;background:var(--ink);color:var(--night);font-weight:700;transition:background .2s}
+.tc-ach .feature:hover .go{background:var(--lane)}
+
+/* ---------- Filters ---------- */
+.tc-ach .tl-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:2.5rem}
+.tc-ach .tl-bar h3{margin:0;font-stretch:118%;font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1}
+.tc-ach .filters{display:flex;flex-wrap:wrap;gap:.5rem}
+.tc-ach .filters button{
+  font:inherit;font-size:.92rem;font-weight:600;color:var(--muted);cursor:pointer;
+  background:transparent;border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;
+  display:inline-flex;align-items:center;gap:.5rem;transition:color .15s,border-color .15s,background .15s
+}
+.tc-ach .filters button:hover{color:var(--ink);border-color:#3B4C6B}
+.tc-ach .filters button[aria-pressed="true"]{background:var(--ink);color:var(--night);border-color:var(--ink)}
+.tc-ach .filters .dot{width:8px;height:8px;border-radius:50%}
+.tc-ach .filters [data-f="win"] .dot{background:var(--award)}
+.tc-ach .filters [data-f="funding"] .dot{background:var(--money)}
+.tc-ach .filters [data-f="selection"] .dot{background:var(--select)}
+.tc-ach .filters .n{font-variant-numeric:tabular-nums;opacity:.7}
+
+/* ---------- Timeline road ---------- */
+.tc-ach .timeline{position:relative;list-style:none;margin:0;padding:4.5rem 0 2rem}
+.tc-ach .timeline::before{ /* asphalt */
+  content:"";position:absolute;top:0;bottom:0;left:50%;width:22px;transform:translateX(-50%);
+  background:var(--road);border-left:2px solid #2C3B58;border-right:2px solid #2C3B58;border-radius:4px
+}
+.tc-ach .timeline::after{ /* centre line */
+  content:"";position:absolute;top:8px;bottom:8px;left:50%;width:3px;transform:translateX(-50%);
+  background:repeating-linear-gradient(to bottom,var(--lane) 0 16px,transparent 16px 32px);opacity:.55
+}
+.tc-ach .year{position:relative;z-index:2;display:flex;justify-content:center;margin:1.25rem 0 2.25rem}
+.tc-ach .year span{
+  background:var(--lane);color:#1A1203;font-stretch:120%;font-weight:850;font-size:1.05rem;
+  padding:.35rem .9rem;border-radius:6px;box-shadow:0 0 0 6px var(--night)
+}
+.tc-ach .event{position:relative;display:grid;grid-template-columns:1fr 1fr;column-gap:5.5rem;margin-bottom:2.25rem}
+.tc-ach .event[hidden],.tc-ach .year[hidden],.tc-ach .empty-note[hidden]{display:none}
+.tc-ach .stamp{grid-column:1;justify-self:end;text-align:right;padding-top:1.15rem}
+.tc-ach .event .card{grid-column:2}
+.tc-ach .event.flip .stamp{grid-column:2;grid-row:1;justify-self:start;text-align:left}
+.tc-ach .event.flip .card{grid-column:1;grid-row:1}
+.tc-ach .stamp .d{display:block;font-stretch:115%;font-weight:780;font-size:1.2rem}
+.tc-ach .stamp .p{display:block;color:var(--muted);font-size:.92rem}
+.tc-ach .event.t-win{--c:var(--award)}
+.tc-ach .event.t-funding{--c:var(--money)}
+.tc-ach .event.t-selection{--c:var(--select)}
+
+.tc-ach .hub{ /* wheel hub on the road */
+  position:absolute;left:50%;top:1.2rem;z-index:2;width:28px;height:28px;transform:translateX(-50%);
+  border-radius:50%;background:var(--night);border:4px solid #3B4C6B;
+  transition:border-color .35s, box-shadow .35s
+}
+.tc-ach .hub::after{content:"";position:absolute;inset:5px;border-radius:50%;background:#3B4C6B;transition:background .35s}
+.tc-ach .event.passed .hub{border-color:var(--c);box-shadow:0 0 0 6px rgba(148,163,184,.12)}
+.tc-ach .event.passed .hub::after{background:var(--c)}
+
+.tc-ach .card{
+  position:relative;display:grid;grid-template-columns:120px 1fr;gap:1.1rem;align-items:start;text-decoration:none;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem;
+  transition:transform .2s ease,border-color .2s,background .2s
+}
+.tc-ach .card:hover{transform:translateY(-3px);border-color:var(--c);background:var(--surface-2)}
+.tc-ach .thumb{width:120px;height:92px;border-radius:8px;overflow:hidden;background:#fff;display:grid;place-items:center}
+.tc-ach .thumb img{width:100%;height:100%;object-fit:cover}
+.tc-ach .thumb.logo img{object-fit:contain;padding:10px}
+.tc-ach .thumb.tile{background:var(--surface-2);border:1px solid var(--line);color:var(--c);font-stretch:118%;font-weight:850;font-size:1.05rem;text-align:center;line-height:1.05;padding:8px}
+.tc-ach .kind{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700;color:var(--c);margin-bottom:.3rem}
+.tc-ach .kind::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+.tc-ach .card h4{margin:0 0 .3rem;font-stretch:104%;font-weight:720;font-size:1.08rem;line-height:1.25}
+.tc-ach .card .sum{margin:0;font-size:.93rem;color:var(--muted)}
+.tc-ach .card .foot{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem;margin-top:.7rem;font-size:.86rem}
+.tc-ach .card .prize{font-weight:750;color:var(--money);font-variant-numeric:tabular-nums}
+.tc-ach .card .more{font-weight:650;color:var(--ink);display:inline-flex;align-items:center;gap:.35rem}
+.tc-ach .card .more svg{transition:transform .2s}
+.tc-ach .card:hover .more svg{transform:translateX(3px)}
+
+/* The Trambulance driving down the road as you scroll */
+.tc-ach .rider{
+  position:absolute;left:50%;top:0;z-index:3;width:54px;height:54px;margin-left:-27px;
+  border-radius:50%;background:var(--ink);display:grid;place-items:center;
+  box-shadow:0 0 0 5px var(--night),0 8px 24px rgba(0,0,0,.5);will-change:transform;pointer-events:none
+}
+.tc-ach .rider .beacon{position:absolute;top:-3px;right:-1px;width:12px;height:12px;border-radius:50%;background:var(--siren);box-shadow:0 0 0 3px var(--night);animation:tc-blink 1.2s steps(2,end) infinite}
+@keyframes tc-blink{50%{background:#3B82F6}}
+
+.tc-ach .empty-note{text-align:center;color:var(--muted);margin:0 0 2rem;position:relative;z-index:2}
+.tc-ach .empty-note span{background:var(--night);padding:.25rem .75rem}
+
+/* ---------- Partners ---------- */
+.tc-ach .partners{margin-top:clamp(3rem,6vw,4.5rem);display:grid;grid-template-columns:auto 1fr;gap:1.5rem 3rem;align-items:center;padding-top:2rem;border-top:1px solid var(--line)}
+.tc-ach .partners p{margin:0;color:var(--muted);max-width:22ch}
+.tc-ach .partners ul{display:flex;flex-wrap:wrap;gap:.75rem;list-style:none;margin:0;padding:0}
+.tc-ach .partners li{background:#fff;border-radius:8px;height:60px;padding:.5rem .8rem;display:grid;place-items:center}
+.tc-ach .partners img{max-height:42px;width:auto}
+.tc-ach .outro{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.tc-ach .outro a{text-decoration:none;font-weight:650;padding:.65rem 1.1rem;border-radius:999px;border:1px solid var(--line);transition:border-color .15s}
+.tc-ach .outro a:hover{border-color:var(--ink)}
+
+/* ---------- Load sequence (the one orchestrated moment) ---------- */
+.tc-ach.js .head > *, .tc-ach.js .feature{opacity:0;transform:translateY(14px)}
+.tc-ach.ready .head > *, .tc-ach.ready .feature{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+.tc-ach.ready .head > :nth-child(2){transition-delay:.12s}
+.tc-ach.ready .feature{transition-delay:.25s}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .tc-ach .head{grid-template-columns:1fr}
+  .tc-ach .feature{grid-template-columns:1fr}
+  .tc-ach .feature .pic{min-height:240px}
+  .tc-ach .feature .pic::after{background:linear-gradient(180deg,transparent 55%,var(--surface))}
+  .tc-ach .partners{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .tc-ach .timeline::before,.tc-ach .timeline::after{left:17px}
+  .tc-ach .year{justify-content:flex-start}
+  .tc-ach .event,.tc-ach .event.flip{grid-template-columns:1fr;padding-left:54px;row-gap:.6rem}
+  .tc-ach .stamp,.tc-ach .event.flip .stamp{grid-column:1;grid-row:1;justify-self:start;text-align:left;padding-top:0}
+  .tc-ach .event .card,.tc-ach .event.flip .card{grid-column:1;grid-row:2}
+  .tc-ach .hub{left:17px;top:0}
+  .tc-ach .rider{left:17px;width:42px;height:42px;margin-left:-21px}
+  .tc-ach .rider svg{width:26px}
+  .tc-ach .card{grid-template-columns:1fr}
+  .tc-ach .thumb{width:100%;height:150px}
+  .tc-ach .thumb.tile{height:64px;font-size:1.2rem}
+}
+@media (prefers-reduced-motion: reduce){
+  .tc-ach *,.tc-ach *::before,.tc-ach *::after{transition:none!important;animation:none!important}
+  .tc-ach.js .head > *, .tc-ach.js .feature{opacity:1;transform:none}
+}
+</style>
+</head>
+<body style="margin:0;background:#020617">
+
+<section class="tc-ach" id="achievements" aria-labelledby="tc-ach-title">
+  <div class="wrap">
+
+    <header class="head">
+      <h2 id="tc-ach-title">Achieve<span class="outline">ments</span></h2>
+      <div>
+        <p class="lede">The Trambulance began as a student project at BUET. In just over a year it has been recognised in Dhaka, the Maldives, North Carolina, Bangkok and Lahore.</p>
+        <ul class="ledger" aria-label="Funding and recognition">
+          <li><b data-count="8500" data-prefix="$">$8,500</b><span>International grants and prizes</span></li>
+          <li><b data-count="600" data-prefix="€">€600</b><span>IMechE prize money</span></li>
+          <li><b data-count="20000" data-prefix="৳">৳20,000</b><span>BUET Alumni fund</span></li>
+          <li><b data-count="12" id="tc-total">12</b><span>Recognitions since July 2025</span></li>
+        </ul>
+      </div>
+    </header>
+
+    <a class="feature" href="achievement-details.html#bangkok-business-challenge">
+      <div class="pic"><img src="images/bangkok-business-challenge-2026.jpg" alt="TriChokro receiving the Sustainability Award at the Bangkok Business Challenge 2026 royal award ceremony"></div>
+      <div class="body">
+        <span class="medal">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c4 2 6 5.5 6 9.5A6 6 0 0 1 6 12.5C6 8.5 8 5 12 3Z" stroke="currentColor" stroke-width="2"/><path d="M12 21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Sustainability Award, $5,000
+        </span>
+        <h3>HRH Princess Maha Chakri Sirindhorn's Sustainability Award</h3>
+        <p class="ev">Bangkok Business Challenge 2026, Thailand</p>
+        <p class="sum">Chosen from 385 teams across 20 countries at Asia's longest-running student startup competition.</p>
+        <span class="go">Read the coverage</span>
+      </div>
+    </a>
+
+    <div class="tl-bar">
+      <h3 id="timeline">The road so far</h3>
+      <div class="filters" role="group" aria-label="Filter achievements"></div>
+    </div>
+
+    <ol class="timeline" id="tc-timeline">
+      <li class="rider" aria-hidden="true">
+        <span class="beacon"></span>
+        <svg width="36" viewBox="0 0 40 28" fill="none">
+          <path d="M3 19V9.5C3 7.6 4.6 6 6.5 6H22l5 6h6.5c1.4 0 2.5 1.1 2.5 2.5V19" fill="#F8FAFC" stroke="#020617" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M23 7.5 27 12h-4z" fill="#93C5FD" stroke="#020617" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M11 9v6M8 12h6" stroke="#F43F5E" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M2 19h35" stroke="#020617" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9" cy="21.5" r="3.5" fill="#020617"/><circle cx="31" cy="21.5" r="3.5" fill="#020617"/>
+          <circle cx="9" cy="21.5" r="1.2" fill="#F8FAFC"/><circle cx="31" cy="21.5" r="1.2" fill="#F8FAFC"/>
+        </svg>
+      </li>
+    </ol>
+
+    <div class="partners">
+      <p>Backed and recognised by</p>
+      <ul>
+        <li><img src="images/logo-ict-division.png" alt="ICT Division, Government of Bangladesh" loading="lazy"></li>
+        <li><img src="images/logo-uihp.jpg" alt="University Innovation Hub Program" loading="lazy"></li>
+        <li><img src="images/logo-rise-buet.png" alt="RISE, BUET" loading="lazy"></li>
+        <li><img src="images/logo-imeche.png" alt="Institution of Mechanical Engineers" loading="lazy"></li>
+        <li><img src="images/logo-first-flight.png" alt="First Flight Ventures" loading="lazy"></li>
+      </ul>
+    </div>
+    <div class="outro">
+      <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" rel="noopener">Watch the Trambulance pitch</a>
+      <a href="https://trichokro.com/blog.html">Read all news</a>
+    </div>
+
+  </div>
+</section>
+
+<script src="achievements-data.js"></script>
+<script>
+(function(){
+  const root = document.querySelector(".tc-ach");
+  const data = window.TC_ACHIEVEMENTS || [];
+  const TYPES = window.TC_TYPES;
+  const KIND = { win:"Award", funding:"Grant", selection:"Selection" };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const arrow = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  /* Build the timeline from achievements-data.js */
+  const tl = document.getElementById("tc-timeline");
+  let lastYear = null, side = 0;
+  data.forEach(a => {
+    if (a.year !== lastYear){
+      tl.insertAdjacentHTML("beforeend", `<li class="year" aria-hidden="true"><span>${a.year}</span></li>`);
+      lastYear = a.year;
+    }
+    const thumb = a.image
+      ? `<div class="thumb ${a.imageFit==="logo"?"logo":""}"><img src="${esc(a.image)}" alt="" loading="lazy"></div>`
+      : `<div class="thumb tile">${esc(a.tile || a.org)}</div>`;
+    const heading = a.event ? `${a.event}: Sustainability Award` : a.title;
+    tl.insertAdjacentHTML("beforeend", `
+      <li class="event t-${a.type} ${side++ % 2 ? "flip" : ""}" data-type="${a.type}">
+        <span class="hub" aria-hidden="true"></span>
+        <div class="stamp"><span class="d">${esc(a.date)}</span><span class="p">${esc(a.place)}</span></div>
+        <a class="card" href="achievement-details.html#${esc(a.id)}">
+          ${thumb}
+          <div>
+            <span class="kind">${KIND[a.type]}</span>
+            <h4>${esc(heading)}</h4>
+            <p class="sum">${esc(a.short)}</p>
+            <div class="foot">${a.prize ? `<span class="prize">${esc(a.prize)}</span>` : ""}<span class="more">News and links ${arrow}</span></div>
+          </div>
+        </a>
+      </li>`);
+  });
+  tl.insertAdjacentHTML("beforeend", `<li class="empty-note" hidden><span>Nothing in this category yet.</span></li>`);
+  document.getElementById("tc-total").dataset.count = data.length;
+
+  /* Filters */
+  const bar = root.querySelector(".filters");
+  const counts = { all: data.length };
+  data.forEach(a => counts[a.type] = (counts[a.type] || 0) + 1);
+  const opts = [["all","All"], ...Object.entries(TYPES)];
+  bar.innerHTML = opts.map(([k,l],i) =>
+    `<button type="button" data-f="${k}" aria-pressed="${i===0}">${k!=="all"?'<span class="dot"></span>':""}${l} <span class="n">${counts[k]||0}</span></button>`).join("");
+  bar.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const f = b.dataset.f;
+    bar.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    let s = 0, shown = 0;
+    tl.querySelectorAll(".event").forEach(ev => {
+      const on = f === "all" || ev.dataset.type === f;
+      ev.hidden = !on;
+      if (on){ ev.classList.toggle("flip", s++ % 2 === 1); shown++; }
+    });
+    tl.querySelectorAll(".year").forEach(y => {
+      let n = y.nextElementSibling, any = false;
+      while (n && !n.classList.contains("year")){ if (n.classList.contains("event") && !n.hidden) any = true; n = n.nextElementSibling; }
+      y.hidden = !any;
+    });
+    tl.querySelector(".empty-note").hidden = shown > 0;
+    drive();
+  });
+
+  /* The Trambulance rides down the road as you scroll; hubs light up as it passes */
+  const rider = tl.querySelector(".rider");
+  let ticking = false;
+  function drive(){
+    const r = tl.getBoundingClientRect();
+    const max = tl.offsetHeight - 60;
+    const y = Math.max(0, Math.min(max, innerHeight * 0.55 - r.top));
+    rider.style.transform = `translateY(${y}px)`;
+    tl.querySelectorAll(".event").forEach(ev => ev.classList.toggle("passed", ev.offsetTop <= y + 10));
+    ticking = false;
+  }
+  addEventListener("scroll", () => { if (!ticking){ ticking = true; requestAnimationFrame(drive); } }, { passive:true });
+  addEventListener("resize", drive);
+  drive();
+
+  /* Count-up ledger, once, when the heading comes into view */
+  function countUp(el){
+    const end = +el.dataset.count, pre = el.dataset.prefix || "";
+    if (reduce){ el.textContent = pre + end.toLocaleString("en-US"); return; }
+    const t0 = performance.now(), dur = 1400;
+    (function step(t){
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(end * e).toLocaleString("en-US");
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  root.classList.add("js");
+  const io = new IntersectionObserver(entries => {
+    if (!entries.some(en => en.isIntersecting)) return;
+    root.classList.add("ready");
+    root.querySelectorAll("[data-count]").forEach(countUp);
+    io.disconnect();
+  }, { threshold: 0.15 });
+  io.observe(root.querySelector(".head"));
+})();
+</script>
+</body>
+</html>

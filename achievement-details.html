@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Achievements | TriChokro Automotives</title>
+<meta name="description" content="News, articles and official links for every award won by TriChokro Automotives and the Trambulance.">
+<meta name="theme-color" content="#020617">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..850&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#020617; --surface:#0F172A; --surface-2:#131E35; --line:#22304A;
+  --ink:#E2E8F0; --muted:#94A3B8; --road:#1B2740; --lane:#FBBF24;
+  --siren:#F43F5E; --award:#FBBF24; --money:#34D399; --select:#60A5FA;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(80px + env(safe-area-inset-top,0px))}
+html,body{margin:0}
+body{
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;background:var(--night);color:var(--ink);line-height:1.6;
+  padding-bottom:env(safe-area-inset-bottom,0px)
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lane);outline-offset:3px;border-radius:6px}
+.t-win{--c:var(--award)} .t-funding{--c:var(--money)} .t-selection{--c:var(--select)}
+
+/* Top bar with a progress road */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:rgba(2,6,23,.85);backdrop-filter:blur(10px)}
+.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(2,6,23,.85);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)
+}
+.top .in{max-width:1220px;margin:0 auto;padding:.9rem clamp(1.25rem,4vw,2.5rem);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.brand{font-stretch:122%;font-weight:850;font-size:1.15rem;text-decoration:none;letter-spacing:-.01em}
+.top nav{display:flex;gap:.5rem;align-items:center}
+.btn{font:inherit;font-size:.9rem;font-weight:650;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--ink)}
+.btn.solid{background:var(--ink);color:var(--night);border-color:var(--ink)}
+.progress{height:3px;background:var(--road)}
+.progress i{display:block;height:100%;background:var(--lane);width:0;transition:width .4s ease}
+
+.layout{max-width:1220px;margin:0 auto;padding:2rem clamp(1.25rem,4vw,2.5rem) 5rem;display:grid;grid-template-columns:290px 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+
+/* Side road */
+.side{position:sticky;top:90px;max-height:calc(100vh - 110px);overflow:auto;padding-right:.25rem}
+.side .filters{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem}
+.side .filters button{font:inherit;font-size:.8rem;font-weight:650;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.3rem .7rem;cursor:pointer}
+.side .filters button[aria-pressed="true"]{background:var(--ink);color:var(--night);border-color:var(--ink)}
+.side ol{list-style:none;margin:0;padding:0 0 0 34px;position:relative}
+.side ol::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:12px;border-radius:3px;background:var(--road)}
+.side ol::after{content:"";position:absolute;left:13px;top:10px;bottom:10px;width:2px;background:repeating-linear-gradient(to bottom,var(--lane) 0 8px,transparent 8px 16px);opacity:.5}
+.side li{position:relative;margin-bottom:.2rem}
+.side li[hidden]{display:none}
+.side li::before{content:"";position:absolute;left:-31px;top:.8rem;width:14px;height:14px;border-radius:50%;background:var(--night);border:3px solid #3B4C6B;z-index:1}
+.side li.current::before{border-color:var(--c);background:var(--c);box-shadow:0 0 0 4px rgba(148,163,184,.15)}
+.side a{display:block;text-decoration:none;padding:.5rem .65rem;border-radius:8px;transition:background .15s}
+.side a:hover{background:var(--surface)}
+.side li.current a{background:var(--surface);box-shadow:inset 3px 0 0 var(--c)}
+.side .d{display:block;font-size:.78rem;color:var(--muted)}
+.side .t{display:block;font-weight:620;font-size:.9rem;line-height:1.3}
+
+/* Detail */
+.detail{min-width:0}
+.detail.enter{animation:tc-in .35s ease}
+@keyframes tc-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{position:relative;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.hero .pic{position:relative;aspect-ratio:16/8;background:#fff;cursor:zoom-in;border:0;padding:0;width:100%;display:block}
+.hero .pic img{width:100%;height:100%;object-fit:cover}
+.hero .pic.logo{background:#fff}
+.hero .pic.logo img{object-fit:contain;padding:12% 20%}
+.hero .pic.banner{background:#0b1030}
+.hero .pic.banner img{object-fit:contain}
+.hero .pic .zoom{position:absolute;right:12px;bottom:12px;background:rgba(2,6,23,.75);color:#fff;font-size:.8rem;font-weight:650;padding:.35rem .7rem;border-radius:999px}
+.hero .tile{aspect-ratio:16/6;display:grid;place-items:center;background:
+  repeating-linear-gradient(90deg,transparent 0 calc(50% - 2px),rgba(251,191,36,.35) calc(50% - 2px) calc(50% + 2px),transparent calc(50% + 2px)),var(--road)}
+.hero .tile span{font-stretch:125%;font-weight:850;font-size:clamp(2.2rem,7vw,4.5rem);color:var(--c);background:var(--night);padding:.2rem 1.2rem;border-radius:10px;letter-spacing:-.02em}
+
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;margin:1.75rem 0 .6rem;color:var(--muted)}
+.kind{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;color:var(--c)}
+.kind::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+h1{font-stretch:118%;font-weight:820;font-size:clamp(1.9rem,4.2vw,3.1rem);line-height:1.04;letter-spacing:-.02em;margin:0 0 .6rem;max-width:22ch}
+.ev{margin:0 0 .3rem;color:var(--lane);font-weight:650}
+.org{margin:0 0 1.5rem;color:var(--muted)}
+.story p{max-width:66ch;margin:0 0 1rem;font-size:1.05rem}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:1.25rem 0 0;padding:0}
+.facts li{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.35rem .9rem;font-weight:650;font-size:.88rem}
+.facts li:first-child{border-color:var(--c);color:var(--c)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-top:1.5rem}
+.gallery button{padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:zoom-in;background:none;aspect-ratio:4/3}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.gallery button:hover img{transform:scale(1.04)}
+
+/* Coverage tabs */
+.coverage{margin-top:3rem}
+.coverage h2{font-stretch:115%;font-weight:800;font-size:1.6rem;margin:0 0 1rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem;border-bottom:1px solid var(--line);margin-bottom:1.25rem}
+.tabs button{font:inherit;font-weight:650;font-size:.95rem;color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;padding:.6rem .9rem;cursor:pointer;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--lane)}
+.tabs .n{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:500;margin-left:.25rem}
+.links[hidden]{display:none}
+.links{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.links a{display:grid;grid-template-columns:44px 1fr auto;gap:.9rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;text-decoration:none;transition:border-color .15s,transform .15s,background .15s}
+.links a:hover{border-color:var(--lane);background:var(--surface-2);transform:translateX(3px)}
+.links .ini{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--road);font-stretch:118%;font-weight:850;color:var(--lane);font-size:1rem}
+.links .ttl{display:block;font-weight:650;line-height:1.35}
+.links .src{display:block;color:var(--muted);font-size:.86rem}
+.links .ext{color:var(--muted)}
+.empty{border:1.5px dashed var(--line);border-radius:12px;padding:1.5rem;color:var(--muted);margin:0}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem}
+.pager a{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;transition:border-color .15s}
+.pager a:hover{border-color:var(--ink)}
+.pager .dir{display:block;font-size:.8rem;color:var(--muted)}
+.pager .nm{font-weight:650;line-height:1.3}
+.pager .next{text-align:right;grid-column:2}
+.hint{color:var(--muted);font-size:.82rem;margin-top:.75rem;text-align:center}
+
+/* Lightbox */
+dialog.lb{padding:0;border:0;background:transparent;max-width:min(1100px,94vw);max-height:90vh}
+dialog.lb::backdrop{background:rgba(2,6,23,.92)}
+dialog.lb img{max-height:84vh;width:auto;margin:0 auto;border-radius:10px}
+dialog.lb button{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:16px}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--night);font-weight:700;padding:.65rem 1.1rem;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .side{position:static;max-height:none;order:2;border-top:1px solid var(--line);padding-top:2rem}
+  .top .label{display:none}
+}
+@media (prefers-reduced-motion: reduce){ *,*::before,*::after{transition:none!important;animation:none!important} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="https://trichokro.com/">TriChokro</a>
+    <nav>
+      <button class="btn" id="share" type="button"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 9.5 9.5 6.5M7 4.5l1.5-1.5a3 3 0 0 1 4.2 4.2L11.5 8.5M9 11.5 7.5 13A3 3 0 0 1 3.3 8.8L4.5 7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="label">Copy link</span></button>
+      <a class="btn solid" href="achievements.html#timeline">All achievements</a>
+    </nav>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+</header>
+
+<div class="layout">
+  <aside class="side" aria-label="All achievements">
+    <div class="filters" role="group" aria-label="Filter list"></div>
+    <ol id="nav"></ol>
+  </aside>
+  <main class="detail" id="detail" aria-live="polite"></main>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Photo">
+  <button class="btn solid" type="button" id="lb-close">Close</button>
+  <img id="lb-img" alt="">
+</dialog>
+<div class="toast" id="toast" role="status">Link copied</div>
+
+<script src="achievements-data.js"></script>
+<script>
+(function(){
+  const DATA = window.TC_ACHIEVEMENTS || [];
+  const TYPES = window.TC_TYPES;
+  const KIND = { win:"Award", funding:"Grant", selection:"Selection" };
+  const GROUPS = [["news","In the news"],["event","About the event"],["ours","From TriChokro"]];
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const host = u => { try { return new URL(u).hostname.replace(/^www\d?\./,""); } catch(e){ return ""; } };
+  const initials = s => (s || "").replace(/[^A-Za-z0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w => w[0]).join("").toUpperCase() || "↗";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const nav = document.getElementById("nav"), detail = document.getElementById("detail");
+  let filter = "all", current = 0;
+
+  /* Side list + filter */
+  nav.innerHTML = DATA.map((a,i) => `<li class="t-${a.type}" data-i="${i}" data-type="${a.type}">
+      <a href="#${a.id}"><span class="d">${esc(a.date)}</span><span class="t">${esc(a.event ? a.event + ": Sustainability Award" : a.title)}</span></a></li>`).join("");
+  const fbar = document.querySelector(".side .filters");
+  fbar.innerHTML = [["all","All"], ...Object.entries(TYPES)].map(([k,l],i) => `<button type="button" data-f="${k}" aria-pressed="${i===0}">${l}</button>`).join("");
+  fbar.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    filter = b.dataset.f;
+    fbar.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    nav.querySelectorAll("li").forEach(li => li.hidden = !(filter === "all" || li.dataset.type === filter));
+  });
+
+  function render(i){
+    const a = DATA[i]; current = i;
+    nav.querySelectorAll("li").forEach(li => {
+      const on = +li.dataset.i === i;
+      li.classList.toggle("current", on);
+      li.querySelector("a").toggleAttribute("aria-current", on);
+      if (on) li.querySelector("a").setAttribute("aria-current","page");
+    });
+
+    let media;
+    if (a.image){
+      const fit = a.imageFit === "logo" ? "logo" : a.imageFit === "banner" ? "banner" : "";
+      media = `<button type="button" class="pic ${fit}" data-zoom="${esc(a.image)}" aria-label="View photo larger"><img src="${esc(a.image)}" alt="${esc(a.title)}">${fit ? "" : '<span class="zoom">Tap to enlarge</span>'}</button>`;
+    } else {
+      media = `<div class="tile"><span>${esc(a.tile || a.org)}</span></div>`;
+    }
+
+    const counts = GROUPS.map(([k]) => (a.links[k] || []).length);
+    const total = counts.reduce((x,y) => x + y, 0);
+    const firstTab = Math.max(0, counts.findIndex(n => n > 0));
+    const tabs = total ? `<div class="tabs" role="tablist">${GROUPS.map(([k,l],gi) => counts[gi] ? `<button role="tab" type="button" data-g="${k}" aria-selected="${gi===firstTab}">${l}<span class="n">${counts[gi]}</span></button>` : "").join("")}</div>
+      ${GROUPS.map(([k],gi) => counts[gi] ? `<ul class="links" role="tabpanel" data-panel="${k}" ${gi===firstTab?"":"hidden"}>${a.links[k].map(l => `
+        <li><a href="${esc(l.url)}" target="_blank" rel="noopener">
+          <span class="ini" aria-hidden="true">${esc(initials(l.source || host(l.url)))}</span>
+          <span><span class="ttl">${esc(l.title)}</span><span class="src">${esc(l.source || host(l.url))}</span></span>
+          <svg class="ext" width="16" height="16" viewBox="0 0 16 16" aria-label="opens in a new tab"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3 7 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a></li>`).join("")}</ul>` : "").join("")}`
+      : `<p class="empty">News and articles for this achievement are on their way. Follow TriChokro on Facebook for the latest.</p>`;
+
+    const gallery = (a.gallery || []).length ? `<div class="gallery">${a.gallery.map(g => `<button type="button" data-zoom="${esc(g)}" aria-label="View photo larger"><img src="${esc(g)}" alt="" loading="lazy"></button>`).join("")}</div>` : "";
+    const prev = DATA[i-1], next = DATA[i+1];
+    const nm = x => esc(x.event ? x.event : x.title);
+
+    detail.className = `detail t-${a.type}`;
+    detail.innerHTML = `
+      <article class="hero">${media}</article>
+      <div class="meta"><span class="kind">${KIND[a.type]}</span><span>${esc(a.date)}</span><span>${esc(a.place)}</span></div>
+      <h1>${esc(a.title)}</h1>
+      ${a.event ? `<p class="ev">${esc(a.event)}</p>` : ""}
+      <p class="org">${esc(a.org)}</p>
+      <div class="story">${a.story.map(p => `<p>${esc(p)}</p>`).join("")}</div>
+      <ul class="facts">${a.facts.map(f => `<li>${esc(f)}</li>`).join("")}</ul>
+      ${gallery}
+      <section class="coverage" aria-labelledby="cov"><h2 id="cov">News, articles and links</h2>${tabs}</section>
+      <nav class="pager" aria-label="Previous and next">
+        ${prev ? `<a href="#${prev.id}"><span class="dir">Previous</span><span class="nm">${nm(prev)}</span></a>` : ""}
+        ${next ? `<a class="next" href="#${next.id}"><span class="dir">Next</span><span class="nm">${nm(next)}</span></a>` : ""}
+      </nav>
+      <p class="hint">Use the ← and → keys to move between achievements.</p>`;
+    if (!reduce){ detail.classList.remove("enter"); void detail.offsetWidth; detail.classList.add("enter"); }
+    document.title = `${a.event || a.title} | TriChokro Automotives`;
+    document.getElementById("prog").style.width = ((i + 1) / DATA.length * 100) + "%";
+  }
+
+  /* Tabs, zoom */
+  detail.addEventListener("click", e => {
+    const tab = e.target.closest("[role=tab]");
+    if (tab){
+      detail.querySelectorAll("[role=tab]").forEach(t => t.setAttribute("aria-selected", t === tab));
+      detail.querySelectorAll("[role=tabpanel]").forEach(p => p.hidden = p.dataset.panel !== tab.dataset.g);
+      return;
+    }
+    const z = e.target.closest("[data-zoom]");
+    if (z){ const lb = document.getElementById("lb"); document.getElementById("lb-img").src = z.dataset.zoom; lb.showModal(); }
+  });
+  const lb = document.getElementById("lb");
+  document.getElementById("lb-close").onclick = () => lb.close();
+  lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+
+  /* Copy link */
+  document.getElementById("share").addEventListener("click", async () => {
+    const t = document.getElementById("toast");
+    try { await navigator.clipboard.writeText(location.href); t.textContent = "Link copied"; }
+    catch(e){ t.textContent = "Copy the address bar to share"; }
+    t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800);
+  });
+
+  /* Keyboard: arrows move between achievements */
+  addEventListener("keydown", e => {
+    if (lb.open || e.target.closest("input,textarea")) return;
+    if (e.key === "ArrowRight" && DATA[current+1]) location.hash = DATA[current+1].id;
+    if (e.key === "ArrowLeft" && DATA[current-1]) location.hash = DATA[current-1].id;
+  });
+
+  function route(first){
+    const id = decodeURIComponent(location.hash.slice(1));
+    let i = DATA.findIndex(a => a.id === id); if (i < 0) i = 0;
+    render(i);
+    if (!first) window.scrollTo({ top:0, behavior: reduce ? "auto" : "smooth" });
+  }
+  addEventListener("hashchange", () => route(false));
+  route(true);
+})();
+</script>
+</body>
+</html>
