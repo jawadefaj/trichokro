@@ -1285,8 +1285,9 @@
             }
         });
                 // Scroll to Bottom Button - visible only when NOT at bottom
-        const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
         window.addEventListener('scroll', () => {
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            if (!scrollToBottomBtn) return;
             const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
             if (!isAtBottom && window.scrollY > 300) {
                 scrollToBottomBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');

@@ -30,3 +30,28 @@ COMPATIBILITY & LIMITATIONS
 - Do not delete optimized mobile video files or the shared site-mobile files.
 
 Original website and file structure preserved where practical.
+
+CONTENT REVISION — OCTOBER 2026
+- Navigation label on both homepages: NEWS / খবর; corresponding section jump.
+- Added TriChokro AUTOMOTIVES header wordmark and EV R&D company positioning.
+- Added 2-, 3-, 4-wheeler / commercial / customized / bulk / R&D / CAD / manufacture capability tiles.
+- Refreshed Pathfinder image and homepage feature specifications per handwritten annotations.
+- Updated Trambulance copy, founder photo and introduction, sister concerns description.
+- Reordered core team and updated advisor roles; replaced junior associates with Sifat Rana.
+- Replaced the erroneous timeline entries with annotated 2022–2026 milestones.
+- Rebuilt the homepage gallery using known local files and reliable one-image-at-a-time layout.
+- Added css/site-content-revisions.css and synchronized homepage changes into index_bn.html.
+
+REQUIRES OWNER REVIEW BEFORE PUBLISHING
+- Confirm new managing director name and role, and supply an approved photograph.
+- Confirm Sifat Rana spelling/role and provide an approved photograph.
+- Supply the achievement slide to replace the retained achievements text exactly.
+- Verify 150 km, 50 km/h and 3/6/8-person Pathfinder variants before publishing.
+- Confirm the official Bangkok 2025 sustainability-award title.
+- Provide the requested replacement logo or product images when available.
+- Screenshot annotation '4' did not specify a 4-wheeler product; retained the existing
+  sister-concern card and added a 4-wheeler capability category without inventing a model.
+
+CLEANUP: Two obsolete, unlinked demo pages under src/assets/ (index.html and
+index2.html) were excluded because their relative links were broken and they
+are not part of the production website navigation.

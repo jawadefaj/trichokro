@@ -999,7 +999,7 @@
     </div>
 </div>`
    },
-            { title: "Cleaner Mobility for Everyone", text: "Accelerate Bangladeshâ€™s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.", quote: "We obsess over practical details â€” from frame geometry to charging routines." },
+            { title: "Cleaner Mobility for Everyone", text: "Accelerate Bangladesh’s shift to clean urban mobility by delivering durable, efficient three-wheelers that raise driver income and reduce city pollution. We design for real streets, real loads, and real economics.", quote: "We obsess over practical details — from frame geometry to charging routines." },
             { title: "From Prototype to Production", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">From Prototype to Production</h3><ul class="space-y-6 border-l border-slate-700 ml-2 pl-6"><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span><span class="text-emerald-400 font-bold text-sm block mb-1">2022</span><p class="text-slate-400 text-sm">Began with a simple idea: lighter, safer three-wheelers.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2023</span><p class="text-slate-400 text-sm">Piloted first fleet, iterating on chassis and suspension.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">2024</span><p class="text-slate-400 text-sm">Production-ready platform with angular composite panels.</p></li><li class="relative"><span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span><span class="text-white font-bold text-sm block mb-1">Today</span><p class="text-slate-400 text-sm">TriChokro vehicles carry passengers across cities daily.</p></li></ul></div>` },
         {
         title: "Achievements",
@@ -1312,8 +1312,9 @@
             }
         });
                 // Scroll to Bottom Button - visible only when NOT at bottom
-        const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
         window.addEventListener('scroll', () => {
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            if (!scrollToBottomBtn) return;
             const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
             if (!isAtBottom && window.scrollY > 300) {
                 scrollToBottomBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
