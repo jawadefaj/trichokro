@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0e1729" />
+  <meta name="description" content="Explore TriChokro Automotives' research initiatives in electric auto-rickshaw policy, testing, traffic analytics and ride vibration." />
+  <title>Research & Publications | TriChokro Automotives</title>
+  <style>
+    /*
+      TriChokro Research & Publications — standalone and embeddable.
+      To use on trichokro.com, take the <section id="research">, this <style>
+      block and the final <script> block. No library or image dependencies.
+      Typeface intentionally uses local/system fonts for dependable loading.
+    */
+    :root {
+      color-scheme: dark;
+      --bg: #0e1729;
+      --card: #111d30;
+      --line: #2f4058;
+      --text: #f1f6ff;
+      --muted: #9aaac0;
+      --green: #17d3aa;
+      --cyan: #2ebcfa;
+      --font-ui: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; background: var(--bg); color: var(--text); font-family: var(--font-ui); -webkit-font-smoothing: antialiased; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    button:focus-visible, a:focus-visible { outline: 3px solid #83dfff; outline-offset: 4px; }
+    .page-glow { position: fixed; pointer-events: none; width: 55vw; height: 55vw; top: -36vw; right: -20vw; background: radial-gradient(circle, rgba(19, 112, 147, .13), transparent 68%); z-index: 0; }
+    .site-top { position: relative; z-index: 1; max-width: 1160px; padding: 23px 27px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(158, 186, 213, .12); }
+    .brand { display: inline-flex; gap: 10px; align-items: center; color: #eef6ff; text-decoration: none; }
+    .brand-mark { width: 31px; height: 31px; border: 1px solid rgba(20, 218, 174, .65); border-radius: 9px; display: grid; place-items: center; color: var(--green); font-size: 21px; line-height: 1; font-weight: 900; transform: rotate(-5deg); }
+    .brand-copy { font-size: 12px; font-weight: 830; letter-spacing: .08em; line-height: 1.15; }
+    .brand-copy small { font-size: 9px; display: block; letter-spacing: .19em; color: #8da0b8; font-weight: 600; margin-top: 4px; }
+    .back-link { text-decoration: none; display: inline-flex; align-items: center; gap: 9px; color: #b2c1d5; font-size: 12px; font-weight: 630; transition: color .2s; }
+    .back-link:hover { color: var(--green); }
+    .back-link svg { width: 16px; height: 16px; }
+    .research-section { position: relative; isolation: isolate; padding: 65px 24px 108px; }
+    .research-inner { max-width: 1100px; margin: 0 auto; }
+    .section-heading { text-align: center; margin-bottom: 39px; }
+    .eyebrow { margin: 0 0 13px; text-transform: uppercase; color: var(--green); font-size: 10px; font-weight: 750; letter-spacing: .25em; }
+    .section-heading h1 { font-family: Georgia, 'Times New Roman', serif; font-variant: small-caps; letter-spacing: -.025em; font-size: clamp(31px, 3.4vw, 44px); line-height: 1.16; margin: 0; font-weight: 700; }
+    .gradient-rule { height: 4px; width: 55px; border-radius: 4px; margin: 16px auto 19px; background: linear-gradient(90deg, #05c9a3 0 60%, #a6f8e2 100%); }
+    .section-heading .intro { max-width: 640px; line-height: 1.65; font-size: 13.5px; margin: 0 auto; color: var(--muted); }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 19px; }
+    .project-count { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: #8c9db6; font-weight: 750; white-space: nowrap; }
+    .project-count::before { content: ''; background: #24d6b3; box-shadow: 0 0 11px #13d5a359; width: 7px; height: 7px; border-radius: 50%; }
+    .filters { display: inline-flex; flex-wrap: wrap; gap: 6px; padding: 4px; background: #0b1322; border: 1px solid #26354c; border-radius: 10px; }
+    .filter { border: 0; border-radius: 7px; padding: 8px 13px; color: #8fa1b8; background: none; font-size: 11px; cursor: pointer; font-weight: 680; transition: background .2s, color .2s; }
+    .filter:hover { color: #effaff; }
+    .filter[aria-pressed="true"] { background: #263951; color: #fff; box-shadow: 0 1px 4px #080f1c45; }
+    .research-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+    .research-card { --accent: #1dd7a9; --accent-rgb: 29,215,169; display: flex; flex-direction: column; min-width: 0; position: relative; border: 1px solid #314159; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #152036, #111b2e 75%); box-shadow: 0 8px 30px #04091410; transition: transform .35s cubic-bezier(.2,.75,.2,1), border-color .3s, box-shadow .3s; animation: riseIn .65s both; }
+    .research-card:nth-child(2) { animation-delay: .08s; }
+    .research-card:nth-child(3) { animation-delay: .15s; }
+    .research-card:nth-child(4) { animation-delay: .22s; }
+    .research-card:hover { transform: translateY(-5px); border-color: rgba(var(--accent-rgb),.6); box-shadow: 0 18px 46px #00000030, 0 0 0 1px rgba(var(--accent-rgb),.05); }
+    .research-card[hidden] { display: none !important; }
+    .tone-cyan { --accent: #35bdff; --accent-rgb: 53,189,255; }
+    .tone-violet { --accent: #b39aff; --accent-rgb: 179,154,255; }
+    .tone-gold { --accent: #f4c66e; --accent-rgb: 244,198,110; }
+    .card-visual { height: 211px; position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 40% 20%, rgba(var(--accent-rgb),.11), transparent 60%), #101c30; border-bottom: 1px solid #27374f; }
+    .card-visual::after { position: absolute; content: ''; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(13,22,38,.6), transparent 32%); z-index: 2; }
+    .art-grid { position: absolute; inset: 0; opacity: .36; background-image: linear-gradient(#89b4db1c 1px, transparent 1px), linear-gradient(90deg, #89b4db1c 1px, transparent 1px); background-size: 22px 22px; mask-image: linear-gradient(90deg, transparent, black 16% 85%, transparent); }
+    .visual-topline { position: absolute; top: 17px; left: 21px; z-index: 3; font-size: 10px; font-weight: 730; letter-spacing: .17em; color: #9cacc6; }
+    .category-badge { position: absolute; z-index: 4; right: 16px; top: 15px; padding: 8px 10px; border-radius: 20px; color: #051520; background: var(--accent); letter-spacing: .06em; text-transform: uppercase; font-size: 9px; font-weight: 830; box-shadow: 0 3px 18px rgba(var(--accent-rgb), .18); }
+    .art-svg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .research-card:hover .art-svg { transform: scale(1.045) translateY(-2px); }
+    .card-content { padding: 24px 26px 27px; flex: 1; display: flex; flex-direction: column; position: relative; }
+    .card-content::before { content: ''; position: absolute; bottom: 0; right: 0; height: 180px; width: 180px; pointer-events: none; border-radius: 50%; background: radial-gradient(circle at bottom right, rgba(var(--accent-rgb),.065), transparent 70%); }
+    .card-num { color: var(--accent); font-size: 10px; font-weight: 750; letter-spacing: .13em; margin: 0 0 8px; text-transform: uppercase; }
+    .card-title { font-family: Georgia, 'Times New Roman', serif; letter-spacing: -.017em; font-size: 23px; line-height: 1.2; margin: 0 0 10px; font-weight: 700; font-variant: small-caps; }
+    .card-desc { font-size: 13px; line-height: 1.66; color: #a0aec4; margin: 0 0 22px; min-height: 43px; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: auto; margin-bottom: 20px; }
+    .stat { padding: 13px 14px 14px; min-width: 0; border: 1px solid #33445e; border-radius: 7px; background: #101a2bba; }
+    .stat-label { font-size: 9px; text-transform: uppercase; color: #788ca8; display: block; line-height: 1.3; margin-bottom: 6px; font-weight: 700; }
+    .stat-value { display: block; font-size: 13px; font-weight: 720; color: #eef6ff; line-height: 1.35; }
+    .stat:first-child .stat-value { color: var(--accent); }
+    .card-button { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px; border: 0; padding: 13px 15px; min-height: 43px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 770; color: #061723; background: linear-gradient(105deg, var(--btn-from), var(--btn-to)); transition: box-shadow .25s, filter .25s, transform .25s; }
+    .card-button:hover { filter: brightness(1.1); box-shadow: 0 7px 24px rgba(var(--accent-rgb), .18); }
+    .card-button:active { transform: scale(.99); }
+    .card-button svg { width: 15px; height: 15px; transition: transform .2s; }
+    .card-button:hover svg { transform: translateX(3px); }
+    .tone-green { --btn-from: #0b866b; --btn-to: #2ed4aa; }
+    .tone-cyan { --btn-from: #038cce; --btn-to: #39c3fa; }
+    .tone-violet { --btn-from: #8d70da; --btn-to: #beafff; }
+    .tone-gold { --btn-from: #d69a40; --btn-to: #facf80; }
+    .research-footnote { display: flex; justify-content: center; align-items: center; gap: 8px; color: #7487a3; font-size: 11px; margin: 24px auto 0; text-align: center; line-height: 1.6; }
+    .research-footnote svg { flex: none; width: 14px; height: 14px; }
+    .site-footer { max-width: 1100px; margin: auto; padding: 22px 24px 27px; color: #70849e; border-top: 1px solid #28364b; display: flex; justify-content: space-between; gap: 15px; font-size: 11px; }
+    .site-footer a { color: #9aabc3; text-decoration: none; }
+    .site-footer a:hover { color: var(--green); }
+    dialog { color: #ecf4fd; padding: 0; border: 1px solid #425570; background: #121e31; width: min(610px, calc(100% - 30px)); max-height: min(84dvh, 770px); overflow-y: auto; border-radius: 16px; box-shadow: 0 30px 100px #000a; }
+    dialog::backdrop { background: rgba(3,9,19,.8); backdrop-filter: blur(7px); }
+    .modal-head { padding: 29px 30px 24px; border-bottom: 1px solid #293d56; position: relative; background: radial-gradient(ellipse at top right, rgba(28,177,162,.12), transparent 67%); }
+    .modal-kicker { color: #21d5b0; text-transform: uppercase; letter-spacing: .2em; font-size: 10px; font-weight: 800; }
+    .modal-head h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(25px, 4vw, 34px); line-height: 1.2; font-variant: small-caps; margin: 12px 34px 0 0; }
+    .modal-close { position: absolute; right: 19px; top: 19px; background: #1e3046; border: 1px solid #40526a; border-radius: 9px; height: 33px; width: 33px; color: #d1e1f0; cursor: pointer; display: grid; place-items: center; }
+    .modal-close:hover { background: #2c405a; }
+    .modal-body { padding: 24px 30px 30px; }
+    .modal-body p { color: #acbed2; font-size: 13px; line-height: 1.8; margin: 0 0 24px; }
+    .modal-meta { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 20px; }
+    .meta-pill { display: inline-block; color: #c2d2e5; border: 1px solid #3b4d64; border-radius: 100px; padding: 7px 11px; font-size: 11px; }
+    .modal-body h3 { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 800; color: #eef7ff; margin: 0 0 14px; }
+    .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+    .topic { display: flex; align-items: flex-start; gap: 9px; font-size: 12px; line-height: 1.5; padding: 12px; border-radius: 8px; background: #0e1a2c; border: 1px solid #2c3e57; color: #b8c9dd; }
+    .topic::before { content: '↗'; color: #1dd5b2; font-weight: bold; }
+    .modal-note { font-size: 11px; color: #8295ad; border-top: 1px solid #2b3c55; padding-top: 17px; line-height: 1.65; }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 760px) { .research-grid { grid-template-columns: 1fr; max-width: 550px; margin: auto; gap: 20px; } .research-section { padding: 54px 19px 80px; } .toolbar { max-width: 550px; margin-left: auto; margin-right: auto; } .card-visual { height: 220px; } }
+    @media (max-width: 500px) { .site-top { padding: 17px 18px; } .brand-copy { font-size: 11px; } .back-link { font-size: 0; } .back-link svg { height: 19px; width: 19px; } .research-section { padding-inline: 14px; } .section-heading { margin-bottom: 30px; } .toolbar { flex-direction: column; align-items: flex-start; gap: 12px; } .filters { width: 100%; display: grid; grid-template-columns: repeat(3,1fr); } .filter { padding: 9px 7px; font-size: 10px; } .card-visual { height: 194px; } .card-content { padding: 21px 20px 23px; } .card-title { font-size: 21px; } .stat { padding: 11px; } .stat-row { gap: 9px; } .site-footer { flex-direction: column; } .modal-head { padding: 24px 22px 19px; } .modal-body { padding: 23px 22px; } .topic-grid { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+  <header class="site-top">
+    <a href="https://trichokro.com/" class="brand" aria-label="TriChokro Automotives home">
+      <span class="brand-mark" aria-hidden="true">T</span>
+      <span class="brand-copy">TRICHOKRO<small>AUTOMOTIVES / R&amp;D</small></span>
+    </a>
+    <a href="https://trichokro.com/" class="back-link">
+      Return to main website
+      <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="m5 12 14 0m-6-6 6 6-6 6" /></svg>
+    </a>
+  </header>
+
+  <!-- START: Drop-in Research section for the main TriChokro website -->
+  <section id="research" class="research-section" aria-labelledby="research-title">
+    <div class="research-inner">
+      <div class="section-heading">
+        <p class="eyebrow">TriChokro / Engineering Knowledge</p>
+        <h1 id="research-title">Research &amp; Publications</h1>
+        <div class="gradient-rule" aria-hidden="true"></div>
+        <p class="intro">From evidence-based policy to real-world engineering tests — advancing safer, smarter electric mobility for Bangladesh.</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="project-count" id="project-count" aria-live="polite">04 Research Initiatives</div>
+        <div class="filters" role="group" aria-label="Filter research projects">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All research</button>
+          <button class="filter" type="button" data-filter="publication" aria-pressed="false">Publications</button>
+          <button class="filter" type="button" data-filter="study" aria-pressed="false">Field studies</button>
+        </div>
+      </div>
+
+      <div class="research-grid" id="research-grid">
+        <article class="research-card tone-green" data-type="publication">
+          <div class="card-visual">
+            <div class="art-grid" aria-hidden="true"></div>
+            <div class="visual-topline">RESEARCH / 001</div>
+            <span class="category-badge">POLICY RESEARCH</span>
+            <svg class="art-svg" viewBox="0 0 540 230" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs><linearGradient id="bookCover" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#27566a"/><stop offset="1" stop-color="#102838"/></linearGradient><linearGradient id="bookPages" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8f4ef"/><stop offset="1" stop-color="#97bcb6"/></linearGradient><filter id="shadow1"><feGaussianBlur stdDeviation="15" /></filter></defs>
+              <ellipse cx="280" cy="209" rx="155" ry="14" fill="#000" opacity=".4" filter="url(#shadow1)"/>
+              <path d="M166 52 307 35 390 80 251 102Z" fill="#3e7281" opacity=".55"/>
+              <path d="m165 62 85 47 0 114-85-49Z" fill="url(#bookCover)" stroke="#48d9bd" stroke-opacity=".65" stroke-width="1.8"/>
+              <path d="m250 109 141-29v114l-141 29Z" fill="#eef8ee" opacity=".1" stroke="#56e3bf" stroke-width="1.5"/>
+              <path d="m257 111 127-25v99l-127 28Z" fill="url(#bookPages)" opacity=".89" />
+              <path d="m165 172 86 48 141-30" fill="none" stroke="#83e1d2" stroke-width="4"/>
+              <path d="m165 176 86 49 141-29" fill="none" stroke="#dafcf2" stroke-width="2"/>
+              <path d="m255 116 126-25" stroke="#194353" stroke-width="1" stroke-opacity=".4"/>
+              <g stroke="#286b68" stroke-width="3" stroke-linecap="round" opacity=".6"><path d="m274 132 76-15"/><path d="m274 145 87-18"/><path d="m274 158 61-12"/><path d="m274 176 85-17"/><path d="m274 189 68-14"/></g>
+              <g fill="none" stroke="#9ce7d5" stroke-width="1.7"><path d="m190 109 31 17 0 33-31-16z"/><path d="m196 123 7 11 15-10"/></g>
+              <text x="85" y="183" fill="#62a899" font-size="10" letter-spacing="3" font-family="Arial">REGULATORY</text>
+              <path d="M73 167h71" stroke="#4f987f" opacity=".5"/>
+              <circle cx="415" cy="131" r="55" fill="none" stroke="#39c7ae" stroke-dasharray="3 8" opacity=".35"/>
+              <text x="406" y="148" font-size="29" font-family="Georgia" fill="#6ce5c5" opacity=".45">§</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <p class="card-num">Publication / 01</p>
+            <h2 class="card-title">Auto-Rickshaw Policy for Bangladesh</h2>
+            <p class="card-desc">A research-led policy recommendation book outlining a practical framework for electric auto-rickshaws in Bangladesh.</p>
+            <div class="stat-row">
+              <div class="stat"><span class="stat-label">Planned Length</span><span class="stat-value">170 Pages</span></div>
+              <div class="stat"><span class="stat-label">For</span><span class="stat-value">Policymakers</span></div>
+            </div>
+            <button class="card-button" style="--btn-from:#07725e; --btn-to:#2bcfa2" data-project="policy" type="button">Explore Research <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="research-card tone-cyan" data-type="publication">
+          <div class="card-visual">
+            <div class="art-grid" aria-hidden="true"></div>
+            <div class="visual-topline">RESEARCH / 002</div>
+            <span class="category-badge">TESTING MANUAL</span>
+            <svg class="art-svg" viewBox="0 0 540 230" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs><linearGradient id="blueprintFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#188cc5" stop-opacity=".2"/><stop offset="1" stop-color="#3d6ea9" stop-opacity=".02"/></linearGradient></defs>
+              <g transform="translate(62,29)" stroke="#65c9f4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+                <rect x="71" y="20" width="255" height="145" rx="4" fill="url(#blueprintFill)" stroke-opacity=".2"/>
+                <path d="M78 144h257" opacity=".2"/><path d="M113 146h180M123 139h145" opacity=".2"/>
+                <circle cx="140" cy="136" r="32" stroke-width="3"/><circle cx="140" cy="136" r="22" stroke-opacity=".5"/><circle cx="140" cy="136" r="5" fill="#7bdeff"/>
+                <circle cx="294" cy="136" r="32" stroke-width="3"/><circle cx="294" cy="136" r="22" stroke-opacity=".5"/><circle cx="294" cy="136" r="5" fill="#7bdeff"/>
+                <path d="m141 136 22-74 126 1 22 73M164 62l-8 54 91-3 40-50M177 65l76 47M177 72l-6 43"/>
+                <path d="m160 62-18-13-18 2m165 13 26-18 30 2m-173 18 17-19h86l13 19"/>
+                <path d="m189 47 2-13h59l4 13m-62-13h-14"/>
+                <path d="m145 100 44 0 47-25" stroke-dasharray="4 5" opacity=".6"/>
+                <g stroke-width="1" opacity=".7"><path d="M114 137H53v-40h32M307 134h62v-48h20"/><path d="M174 46V17h-52"/><path d="M138 167v16m157-16v16M138 181h157"/></g>
+                <g fill="#a3e8ff" stroke="none" font-family="Arial" font-size="10" letter-spacing="1"><text x="26" y="95">BRAKE</text><text x="362" y="81">LOAD</text><text x="90" y="14">CHASSIS</text><text x="190" y="199">DIMENSIONS</text></g>
+                <g fill="#a3e8ff" stroke="none"><circle cx="86" cy="97" r="3"/><circle cx="369" cy="134" r="3"/><circle cx="174" cy="46" r="3"/></g>
+              </g>
+              <path d="M35 203h470" stroke="#3e82aa" stroke-width="1" stroke-dasharray="4 9" opacity=".45"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <p class="card-num">Publication / 02</p>
+            <h2 class="card-title">Auto-Rickshaw Testing Manual</h2>
+            <p class="card-desc">An illustrated, engineering-focused guide to what should be tested, how to test it, and how to document results.</p>
+            <div class="stat-row">
+              <div class="stat"><span class="stat-label">Planned Length</span><span class="stat-value">110 Pages</span></div>
+              <div class="stat"><span class="stat-label">Focus</span><span class="stat-value">Safety &amp; Testing</span></div>
+            </div>
+            <button class="card-button" data-project="manual" type="button">Explore Research <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="research-card tone-violet" data-type="study">
+          <div class="card-visual">
+            <div class="art-grid" aria-hidden="true"></div>
+            <div class="visual-topline">RESEARCH / 003</div>
+            <span class="category-badge">URBAN ANALYTICS</span>
+            <svg class="art-svg" viewBox="0 0 540 230" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs><linearGradient id="jamLine" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#698ec8"/><stop offset=".6" stop-color="#bf93fa"/><stop offset="1" stop-color="#ffa76a"/></linearGradient></defs>
+              <g transform="translate(72,48)">
+                <g stroke="#4c6182" stroke-width="14" stroke-linecap="round" fill="none" opacity=".35"><path d="M5 104 80 104 108 54 240 54 270 18 377 18"/><path d="M48 0 48 149M162 0 162 150M301 0 301 150M7 20h363M10 137h350"/></g>
+                <g stroke="#8397b6" stroke-width="2" fill="none" opacity=".35" stroke-dasharray="3 8"><path d="M5 104 80 104 108 54 240 54 270 18 377 18"/><path d="M48 0 48 149M162 0 162 150M301 0 301 150M7 20h363M10 137h350"/></g>
+                <path d="M5 104 80 104 108 54 240 54 270 18 377 18" stroke="url(#jamLine)" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <g fill="#d8a7ff" stroke="#fff" stroke-width="1.2"><circle cx="48" cy="104" r="6"/><circle cx="108" cy="54" r="7"/><circle cx="162" cy="54" r="6"/><circle cx="240" cy="54" r="7"/><circle cx="301" cy="18" r="6"/></g>
+                <circle cx="301" cy="18" r="19" fill="none" stroke="#ffa86b" stroke-width="2" stroke-dasharray="3 5" opacity=".8"/>
+                <g fill="#cbdeff" font-size="9" letter-spacing="1.3" font-family="Arial"><text x="-2" y="94">J-08</text><text x="168" y="43">J-42</text><text x="305" y="54">J-70</text></g>
+              </g>
+              <rect x="390" y="169" width="110" height="38" rx="5" fill="#111e31" stroke="#667398" stroke-opacity=".55"/>
+              <g fill="#a5b7cf" font-size="8.5" font-family="Arial" letter-spacing="1"><text x="405" y="184">CONGESTION</text></g><rect x="405" y="192" width="21" height="5" fill="#5a89c5" rx="2"/><rect x="430" y="192" width="21" height="5" fill="#a387e0" rx="2"/><rect x="455" y="192" width="29" height="5" fill="#f0a66d" rx="2"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <p class="card-num">Data Study / 03</p>
+            <h2 class="card-title">Dhaka Traffic: 30-Day Analysis</h2>
+            <p class="card-desc">A junction-level study of Dhaka's traffic conditions, designed to identify congestion trends throughout October 2026.</p>
+            <div class="stat-row">
+              <div class="stat"><span class="stat-label">Study Coverage</span><span class="stat-value">70 Junctions</span></div>
+              <div class="stat"><span class="stat-label">Study Period</span><span class="stat-value">30 Days</span></div>
+            </div>
+            <button class="card-button" data-project="traffic" type="button">Explore Research <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="research-card tone-gold" data-type="study">
+          <div class="card-visual">
+            <div class="art-grid" aria-hidden="true"></div>
+            <div class="visual-topline">RESEARCH / 004</div>
+            <span class="category-badge">RIDE DYNAMICS</span>
+            <svg class="art-svg" viewBox="0 0 540 230" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs><linearGradient id="waveArea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f6bd69" stop-opacity=".25"/><stop offset="1" stop-color="#f6bd69" stop-opacity="0"/></linearGradient></defs>
+              <g transform="translate(32,41)"><path d="M20 118H456M20 82H456M20 46H456M20 10H456" stroke="#64809b" stroke-opacity=".28" stroke-width="1" stroke-dasharray="4 6"/><path d="M20 9v145M91 10v144M162 10v144M233 10v144M304 10v144M375 10v144M456 10v144" stroke="#64809b" stroke-opacity=".24" stroke-width="1" stroke-dasharray="4 6"/>
+              <path d="M20 83 C35 81 36 90 49 77 S63 58 76 101 S93 114 103 78 118 20 128 84 145 124 157 84 170 32 183 94 198 119 210 76 224 46 235 90 248 111 262 84 280 59 291 90 305 114 318 84 332 65 346 86 361 104 375 85 390 76 405 85 422 94 437 82 448 80 456 83L456 154H20Z" fill="url(#waveArea)"/>
+              <path d="M20 83 C35 81 36 90 49 77 S63 58 76 101 S93 114 103 78 118 20 128 84 145 124 157 84 170 32 183 94 198 119 210 76 224 46 235 90 248 111 262 84 280 59 291 90 305 114 318 84 332 65 346 86 361 104 375 85 390 76 405 85 422 94 437 82 448 80 456 83" fill="none" stroke="#f8c67a" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M20 85 C50 85 80 94 105 91 S145 81 168 78 220 88 246 86 299 82 318 81 372 84 390 82 427 83 456 83" fill="none" stroke="#6bbbd1" stroke-width="1.4" stroke-dasharray="5 4" opacity=".8"/>
+              <g font-family="Arial" fill="#b5a68e" font-size="8" letter-spacing="1"><text x="22" y="7">ACCELERATION SIGNAL</text><text x="359" y="165">TIME / SAMPLE →</text></g>
+              <circle cx="128" cy="84" r="5" fill="#f8c67a" stroke="#142033" stroke-width="2"/><path d="M128 79V24M133 23h47" stroke="#d9b278" opacity=".65" stroke-dasharray="3 3"/>
+              </g>
+            </svg>
+          </div>
+          <div class="card-content">
+            <p class="card-num">Engineering Study / 04</p>
+            <h2 class="card-title">Rickshaw Vibration Analysis</h2>
+            <p class="card-desc">An engineering investigation into road-induced vibration, vehicle response and passenger ride comfort.</p>
+            <div class="stat-row">
+              <div class="stat"><span class="stat-label">Study Focus</span><span class="stat-value">Ride Comfort</span></div>
+              <div class="stat"><span class="stat-label">Approach</span><span class="stat-value">Signal Analysis</span></div>
+            </div>
+            <button class="card-button" data-project="vibration" type="button">Explore Research <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </article>
+      </div>
+      <div class="research-footnote">
+        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></svg>
+        Research scopes shown here are project overviews. Publication and data links can be added upon release.
+      </div>
+    </div>
+  </section>
+  <!-- END: Drop-in Research section -->
+
+  <footer class="site-footer"><span>© 2026 TriChokro Automotives · Engineering electric mobility for Bangladesh.</span><a href="https://trichokro.com/">trichokro.com ↗</a></footer>
+
+  <dialog id="research-dialog" aria-labelledby="modal-title">
+    <div class="modal-head">
+      <div class="modal-kicker" id="modal-kicker">TriChokro Research</div>
+      <h2 id="modal-title"></h2>
+      <button class="modal-close" type="button" id="modal-close" aria-label="Close project details">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta" id="modal-meta"></div>
+      <p id="modal-overview"></p>
+      <h3>Research Scope</h3>
+      <div class="topic-grid" id="modal-topics"></div>
+      <div class="modal-note" id="modal-note"></div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const projectDetails = {
+        policy: {
+          kicker: 'Publication / 01 · Policy',
+          title: 'Auto-Rickshaw Policy for Bangladesh',
+          meta: ['Planned: 170-page book', 'Audience: Policymakers', 'Location: Bangladesh'],
+          overview: 'A research-based policy recommendation book intended as practical reading material for policymakers. The proposed publication examines how Bangladesh can govern and integrate auto-rickshaws with attention to road safety, engineering realities, transport operations and implementation.',
+          topics: ['Vehicle safety and construction criteria', 'Registration and regulatory options', 'Operating conditions and road integration', 'Feasible inspection and enforcement'],
+          note: 'The 170-page length is a planned publication scope, not a claim that the book has been published or adopted as policy.'
+        },
+        manual: {
+          kicker: 'Publication / 02 · Testing',
+          title: 'Auto-Rickshaw Testing Manual',
+          meta: ['Planned: 110-page manual', 'Format: Visual & graphical', 'Purpose: Engineering assessment'],
+          overview: 'A visual, engineering-oriented manual describing what to test and how to evaluate an electric auto-rickshaw. It is intended to make proposed inspection procedures and pass/fail documentation easier to understand, including in the context of engineering evaluations associated with BUET.',
+          topics: ['Braking and stopping performance', 'Stability, loading and structural checks', 'Electrical, battery and vehicle safety', 'Graphical test steps and result sheets'],
+          note: 'This is a proposed research manual; it is not presented as an official BUET test protocol, approved standard or certification document.'
+        },
+        traffic: {
+          kicker: 'Field Study / 03 · Transport Data',
+          title: 'Dhaka Traffic: 30-Day Analysis',
+          meta: ['Location: Dhaka', 'Coverage: 70 junctions', 'Study window: October 2026'],
+          overview: 'A planned research article using 30 days of traffic observations from 70 junctions in Dhaka. The study is designed to explore where and when congestion intensifies, describe recurring patterns and make the findings easier to interpret with spatial and time-series visualizations.',
+          topics: ['Junction-by-junction comparisons', 'Daily and hourly congestion changes', '30-day maps, charts and heatmaps', 'Implications for urban traffic management'],
+          note: 'The 30-day October 2026 study period has not yet fully elapsed as of 17 October 2026. No final findings are stated here.'
+        },
+        vibration: {
+          kicker: 'Engineering Study / 04 · Vehicle Dynamics',
+          title: 'Rickshaw Vibration Analysis',
+          meta: ['Focus: Ride comfort', 'Discipline: Vehicle dynamics', 'Approach: Signal analysis'],
+          overview: 'A vehicle-dynamics research initiative exploring how road surfaces and vehicle configuration affect vibration experienced by auto-rickshaw passengers. Findings could inform suspension tuning, vehicle design decisions and future ride-quality comparisons.',
+          topics: ['Vibration and acceleration measurement', 'Road-surface and speed comparisons', 'Frequency and time-domain analysis', 'Suspension response and passenger comfort'],
+          note: 'These are proposed lines of investigation. No measured vibration levels or research conclusions are asserted.'
+        }
+      };
+
+      const dialog = document.getElementById('research-dialog');
+      const close = document.getElementById('modal-close');
+      let lastTrigger = null;
+      document.querySelectorAll('[data-project]').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = projectDetails[button.dataset.project];
+          if (!item) return;
+          lastTrigger = button;
+          document.getElementById('modal-kicker').textContent = item.kicker;
+          document.getElementById('modal-title').textContent = item.title;
+          document.getElementById('modal-overview').textContent = item.overview;
+          document.getElementById('modal-note').textContent = item.note;
+          const meta = document.getElementById('modal-meta');
+          meta.replaceChildren(...item.meta.map(label => {
+            const el = document.createElement('span'); el.className = 'meta-pill'; el.textContent = label; return el;
+          }));
+          const topics = document.getElementById('modal-topics');
+          topics.replaceChildren(...item.topics.map(label => {
+            const el = document.createElement('div'); el.className = 'topic'; el.textContent = label; return el;
+          }));
+          if (typeof dialog.showModal === 'function') dialog.showModal();
+          else dialog.setAttribute('open', '');
+          close.focus();
+        });
+      });
+      close.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', e => {
+        if (e.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('close', () => lastTrigger?.focus());
+
+      const cards = [...document.querySelectorAll('.research-card')];
+      document.querySelectorAll('[data-filter]').forEach(filterButton => {
+        filterButton.addEventListener('click', () => {
+          const type = filterButton.dataset.filter;
+          document.querySelectorAll('[data-filter]').forEach(other => {
+            other.setAttribute('aria-pressed', String(other === filterButton));
+          });
+          let count = 0;
+          cards.forEach(card => {
+            const visible = type === 'all' || card.dataset.type === type;
+            card.hidden = !visible;
+            if (visible) count++;
+          });
+          document.getElementById('project-count').textContent = `${String(count).padStart(2,'0')} Research ${count === 1 ? 'Initiative' : 'Initiatives'}`;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

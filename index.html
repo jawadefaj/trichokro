@@ -531,32 +531,40 @@
 <script src="js/site-mobile.js" defer></script>
 <link rel="stylesheet" href="css/site-content-revisions.css">
 <style id="integration-media-styles">
-/* Video carousel: horizontally scrollable, touch friendly, and click-to-play YouTube embeds. */
-#videos .tc-video-shell{min-width:0}
-#videos .tc-video-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 15px}
-#videos .tc-video-status{font:500 12px/1.5 'Inter',sans-serif;letter-spacing:.03em;color:#94a3b8}
-#videos .tc-video-buttons{display:flex;gap:9px}
-#videos .tc-video-arrow{display:grid;place-items:center;width:46px;height:46px;min-width:46px;padding:0;border:1px solid #334155;border-radius:50%;color:#e2e8f0;background:#152237;cursor:pointer;transition:background .2s,border-color .2s}
-#videos .tc-video-arrow:hover:not(:disabled){background:#164d43;border-color:#34d399}
-#videos .tc-video-arrow:disabled{opacity:.3;cursor:default}
-#videos .tc-video-track{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#059669 #0f172a;padding:2px 2px 19px;outline-offset:5px}
-#videos .tc-video-card{flex:0 0 calc((100% - 40px)/3);min-width:0;scroll-snap-align:start;overflow:hidden;border:1px solid #334155;border-radius:18px;background:#0f172a;display:flex;flex-direction:column}
-#videos .tc-video-frame{position:relative;aspect-ratio:16/9;background:#020617;overflow:hidden}
-#videos .tc-video-lite{display:block;position:relative;width:100%;height:100%;padding:0;border:0;border-radius:0;overflow:hidden;background:#020617;cursor:pointer}
-#videos .tc-video-lite img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
-#videos .tc-video-lite:hover img{transform:scale(1.035)}
-#videos .tc-video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:#ed1c24;color:#fff;border-radius:15px;width:65px;height:46px;font-size:22px;box-shadow:0 8px 28px #0008}
-#videos .tc-video-lite:hover .tc-video-play{background:#ff3434}
-#videos .tc-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
-#videos .tc-video-card-text{padding:19px 21px 23px;flex:1;min-height:100px;background:rgba(15,23,42,.72)}
-#videos .tc-video-card-text h3{font:650 15px/1.45 'Inter',sans-serif;margin:0 0 7px;color:#f8fafc}
-#videos .tc-video-card-text p{font:400 12px/1.55 'Inter',sans-serif;margin:0;color:#94a3b8}
-#videos .tc-video-loading{padding:50px 20px;text-align:center;color:#94a3b8;min-width:100%;border:1px solid #334155;border-radius:18px;background:#0f172a}
-#facebook .fb-feed-wrap{max-width:530px;margin:0 auto;border:1px solid #334155;border-radius:18px;overflow:hidden;background:#fff;padding:12px;box-shadow:0 22px 55px rgba(0,0,0,.24)}
-#facebook .fb-feed-wrap iframe{display:block;border:0;max-width:100%;width:500px;height:860px;overflow:auto;margin:0 auto;background:white}
-@media(max-width:980px){#videos .tc-video-card{flex-basis:calc((100% - 20px)/2)}}
-@media(max-width:650px){#videos .tc-video-card{flex-basis:88%}#videos .tc-video-track{gap:14px}#facebook .fb-feed-wrap{padding:5px}#facebook .fb-feed-wrap iframe{height:760px}}
-@media(prefers-reduced-motion:reduce){#videos .tc-video-track{scroll-behavior:auto}}
+/* TriChokro media sections: the original site's marquee visual treatment, with embedded players. */
+#videos .tc-video-marquee{position:relative;overflow:hidden;max-width:100%;isolation:isolate}
+#videos .tc-video-marquee-content{display:flex;gap:0;width:max-content;max-width:none;animation:tc-video-travel 64s linear infinite;align-items:stretch;will-change:transform}
+#videos .tc-video-set{display:flex;align-items:stretch;gap:32px;flex:0 0 auto;padding:32px 16px}
+#videos .tc-video-card{width:min(400px,86vw);flex:0 0 min(400px,86vw);border-radius:16px;overflow:hidden;background:#000;border:1px solid #1e293b;transition:border-color .3s,box-shadow .3s}
+#videos .tc-video-card:hover{border-color:rgba(52,211,153,.65);box-shadow:0 16px 38px rgba(0,0,0,.25)}
+#videos .tc-video-frame{width:100%;position:relative;padding-top:56.25%;background:#020617}
+#videos .tc-video-frame iframe{display:block;position:absolute;inset:0;width:100%;height:100%;border:0}
+#videos .tc-video-card-copy{padding:20px;background:rgba(15,23,42,.75);min-height:90px}
+#videos .tc-video-card-copy h3{color:#fff;font:600 14px/1.5 'Inter',sans-serif;margin:0 0 4px}
+#videos .tc-video-card-copy p{color:#94a3b8;font:400 12px/1.55 'Inter',sans-serif;margin:0}
+#videos .tc-video-marquee:hover .tc-video-marquee-content,
+#videos .tc-video-marquee:focus-within .tc-video-marquee-content,
+#videos .tc-video-marquee.tc-video-paused .tc-video-marquee-content{animation-play-state:paused}
+#videos .tc-video-meta{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin:8px auto 0;color:#94a3b8;font:400 12px/1.5 'Inter',sans-serif}
+#videos .tc-video-pause{border:1px solid rgba(52,211,153,.35);background:rgba(15,23,42,.7);color:#6ee7b7;border-radius:999px;padding:8px 13px;min-height:34px;min-width:0;cursor:pointer;font:600 12px 'Inter',sans-serif}
+#videos .tc-video-pause:hover{border-color:#34d399;color:#fff}
+@keyframes tc-video-travel{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#facebook .fb-feed-wrap{width:100%;max-width:672px;margin:0 auto;background:#0f172a;border:1px solid #1e293b;border-radius:14px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.32);display:flex;justify-content:center;padding:18px 12px}
+#facebook .fb-feed-wrap iframe{display:block;width:500px;max-width:100%;height:850px;min-height:850px;border:0;overflow:hidden;background:#fff}
+@media(max-width:768px){
+  #videos .tc-video-marquee{overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#10b981 #0f172a;mask-image:none;-webkit-mask-image:none}
+  #videos .tc-video-marquee-content{animation:none!important;transform:none!important;will-change:auto}
+  #videos .tc-video-set{gap:16px;padding:20px 8px}
+  #videos .tc-video-card{width:min(365px,86vw);flex-basis:min(365px,86vw)}
+  #videos .tc-video-pause{display:none}
+  #facebook .fb-feed-wrap{padding:8px 0;border-radius:12px}
+  #facebook .fb-feed-wrap iframe{height:760px;min-height:760px}
+}
+@media(prefers-reduced-motion:reduce){
+  #videos .tc-video-marquee{overflow-x:auto;mask-image:none;-webkit-mask-image:none}
+  #videos .tc-video-marquee-content{animation:none!important;transform:none!important;will-change:auto}
+  #videos .tc-video-pause{display:none}
+}
 </style>
 </head>
 <body class="selection-emerald">
@@ -1859,6 +1867,20 @@
 </svg>
 </li>
 </ol>
+<div class="partners">
+<p>Backed and recognised by</p>
+<ul>
+<li><img alt="ICT Division, Government of Bangladesh" loading="lazy" src="images/logo-ict-division.png"/></li>
+<li><img alt="University Innovation Hub Program" loading="lazy" src="images/logo-uihp.jpg"/></li>
+<li><img alt="RISE, BUET" loading="lazy" src="images/logo-rise-buet.png"/></li>
+<li><img alt="Institution of Mechanical Engineers" loading="lazy" src="images/logo-imeche.png"/></li>
+<li><img alt="First Flight Ventures" loading="lazy" src="images/logo-first-flight.png"/></li>
+</ul>
+</div>
+<div class="outro">
+<a href="https://www.youtube.com/@TriChokroAutomotives" rel="noopener" target="_blank">Watch the Trambulance pitch</a>
+<a href="https://trichokro.com/blog.html">Read all news</a>
+</div>
 </div>
 </section>
 <section class="py-24 bg-gradient-to-br from-slate-900 to-blue-950 text-white relative" id="contact">
@@ -1893,100 +1915,55 @@
 </div>
 </section>
 <!-- VIDEOS SECTION -->
-<section id="videos" class="py-24 bg-slate-950 relative overflow-hidden">
-
-    <!-- Ambient glow -->
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full"></div>
-
-    <div class="container mx-auto px-4 relative z-10">
-
-        <!-- Section Header -->
-        <div class="text-center mb-16 reveal-on-scroll">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                Videos
-            </h2>
-            <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
-            <p class="text-slate-400 mt-4">
-                Watch our latest project videos, test drives, and tech insights
-            </p>
-        </div>
-
-<!-- Scrolling Video Part -->
-<div class="marquee-container w-full mt-8 reveal-on-scroll">
-    <div class="marquee-content gap-8 px-4 py-8">
-        <!-- Video Card 1 -->
-        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
-            <div class="relative w-full pt-[56.25%]">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/7Uzam6XvLgY" title="Trambulance Pitch Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="p-5 bg-slate-900/60 backdrop-blur">
-                <h3 class="text-white font-semibold text-sm">Trambulance Pitch Video</h3>
-                <p class="text-slate-400 text-xs mt-1">Experience the smooth performance of our flagship model</p>
-            </div>
-        </div>
-        <!-- Video Card 2 -->
-        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
-            <div class="relative w-full pt-[56.25%]">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="TriChokro Pathfinder Team" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="p-5 bg-slate-900/60 backdrop-blur">
-                <h3 class="text-white font-semibold text-sm">TriChokro Pathfinder Team</h3>
-                <p class="text-slate-400 text-xs mt-1">Learn about our innovative triple hydraulic braking system</p>
-            </div>
-        </div>
-        <!-- Video Card 3 -->
-        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
-            <div class="relative w-full pt-[56.25%]">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="UIHP Pitch Deck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="p-5 bg-slate-900/60 backdrop-blur">
-                <h3 class="text-white font-semibold text-sm">UIHP Pitch Deck</h3>
-                <p class="text-slate-400 text-xs mt-1">See how TriChokro brings safe, suitable services to everyone</p>
-            </div>
-        </div>
-         <!-- Duplicate for Scroll Effect -->
-         <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
-            <div class="relative w-full pt-[56.25%]">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/7Uzam6XvLgY" title="Trambulance Pitch Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="p-5 bg-slate-900/60 backdrop-blur">
-                <h3 class="text-white font-semibold text-sm">Trambulance Pitch Video</h3>
-                <p class="text-slate-400 text-xs mt-1">Experience the smooth performance of our flagship model</p>
-            </div>
-        </div>
-        <!-- Duplicate for Scroll Effect -->
-        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
-            <div class="relative w-full pt-[56.25%]">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="TriChokro Pathfinder Team" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="p-5 bg-slate-900/60 backdrop-blur">
-                <h3 class="text-white font-semibold text-sm">TriChokro Pathfinder Team</h3>
-                <p class="text-slate-400 text-xs mt-1">Learn about our innovative triple hydraulic braking system</p>
-            </div>
-        </div>
+<section id="videos" class="py-24 bg-slate-950 relative overflow-hidden" aria-labelledby="tc-video-title">
+  <!-- Ambient glow -->
+  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full" aria-hidden="true"></div>
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16 reveal-on-scroll">
+      <h2 id="tc-video-title" class="text-4xl md:text-5xl font-bold text-white mb-4">Videos</h2>
+      <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+      <p class="text-slate-400 mt-4">Watch our latest project videos, test drives, and tech insights</p>
     </div>
-</div>
 
-<div class="text-center mt-12 mb-8 reveal-on-scroll">
-    <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
+    <!-- Continuously scrolling embedded YouTube videos; swipe to browse on mobile -->
+    <div id="tc-video-marquee" class="marquee-container tc-video-marquee w-full mt-8 reveal-on-scroll" aria-label="TriChokro videos">
+      <div id="tc-video-track" class="marquee-content tc-video-marquee-content">
+        <div class="tc-video-set" data-video-set="original"><article class="tc-video-card group relative" aria-label="Trambulance Pitch Video"><div class="tc-video-frame"><iframe loading="lazy" src="https://www.youtube.com/embed/7Uzam6XvLgY" title="Trambulance Pitch Video" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe></div><div class="tc-video-card-copy"><h3>Trambulance Pitch Video</h3><p>Experience the electric Trambulance concept and its design.</p></div></article>
+<article class="tc-video-card group relative" aria-label="TriChokro Pathfinder Team"><div class="tc-video-frame"><iframe loading="lazy" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="TriChokro Pathfinder Team" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe></div><div class="tc-video-card-copy"><h3>TriChokro Pathfinder Team</h3><p>Meet the people behind the Pathfinder development.</p></div></article>
+<article class="tc-video-card group relative" aria-label="BUET Automobile Club Interview"><div class="tc-video-frame"><iframe loading="lazy" src="https://www.youtube.com/embed/EQQj7bS-1uY" title="BUET Automobile Club Interview" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe></div><div class="tc-video-card-copy"><h3>BUET Automobile Club Interview</h3><p>An in-depth conversation about TriChokro’s electric vehicle R&amp;D.</p></div></article></div>
+        <div class="tc-video-set" data-video-set="duplicate" aria-hidden="true"><article class="tc-video-card group relative" aria-label="Trambulance Pitch Video"><div class="tc-video-frame"><iframe loading="lazy" src="https://www.youtube.com/embed/7Uzam6XvLgY" title="Trambulance Pitch Video" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen tabindex="-1"></iframe></div><div class="tc-video-card-copy"><h3>Trambulance Pitch Video</h3><p>Experience the electric Trambulance concept and its design.</p></div></article>
+<article class="tc-video-card group relative" aria-label="TriChokro Pathfinder Team"><div class="tc-video-frame"><iframe loading="lazy" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="TriChokro Pathfinder Team" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen tabindex="-1"></iframe></div><div class="tc-video-card-copy"><h3>TriChokro Pathfinder Team</h3><p>Meet the people behind the Pathfinder development.</p></div></article>
+<article class="tc-video-card group relative" aria-label="BUET Automobile Club Interview"><div class="tc-video-frame"><iframe loading="lazy" src="https://www.youtube.com/embed/EQQj7bS-1uY" title="BUET Automobile Club Interview" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen tabindex="-1"></iframe></div><div class="tc-video-card-copy"><h3>BUET Automobile Club Interview</h3><p>An in-depth conversation about TriChokro’s electric vehicle R&amp;D.</p></div></article></div>
+      </div>
+    </div>
+    <div class="tc-video-meta">
+      <span id="tc-video-status" role="status" aria-live="polite">Featured videos · The latest channel uploads load when the video feed is available</span>
+      <button id="tc-video-motion" class="tc-video-pause" type="button" aria-pressed="false">Pause scrolling</button>
+    </div>
+
+    <div class="text-center mt-12 mb-8 reveal-on-scroll">
+      <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
         <i class="fab fa-youtube text-xl"></i> Visit YouTube Channel
-    </a>
-</div>
+      </a>
     </div>
+  </div>
 </section>
+
 <!-- FACEBOOK SECTION -->
 <section id="facebook" class="py-24 bg-slate-900 relative overflow-hidden border-t border-slate-800">
     <div class="container mx-auto px-4 relative z-10">
         <div class="text-center mb-12 reveal-on-scroll">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Follow Us on Facebook</h2>
             <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
-            <p class="text-slate-400 mt-4">Browse recent public posts, updates and behind-the-scenes from TriChokro</p>
+            <p class="text-slate-400 mt-4">Latest updates, news and behind-the-scenes from TriChokro</p>
         </div>
+        <!-- Portrait-style Facebook Page frame -->
         <div class="fb-feed-wrap">
-            <iframe data-fb-page="https://www.facebook.com/people/TriChokro/61577812382585/" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fpeople%2FTriChokro%2F61577812382585%2F&amp;tabs=timeline&amp;width=500&amp;height=860&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false" title="Recent public posts from TriChokro Automotives Facebook Page" loading="lazy" scrolling="yes" width="500" height="860" style="border:0;overflow:auto;max-width:100%;" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61577812382585&amp;tabs=timeline&amp;width=500&amp;height=850&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true" width="500" height="850" title="TriChokro Automotives recent Facebook posts" loading="lazy" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
         </div>
         <div class="text-center mt-8">
-            <a href="https://www.facebook.com/people/TriChokro/61577812382585/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-lg">
+            <a href="https://www.facebook.com/profile.php?id=61577812382585" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-lg">
                 <i class="fab fa-facebook-f"></i> Open Facebook Page
             </a>
         </div>
@@ -2571,79 +2548,74 @@
 })();
 
 
-// Six newest videos are retrieved from TriChokro's public YouTube RSS via youtube-feed.php.
-// The two existing, known video links remain a fallback for static hosting / unavailable feeds.
+// Keep the embedded YouTube card marquee synchronized with the channel's six newest public uploads.
+// A PHP YouTube RSS bridge is optional; without it, the three known videos above remain visible.
 (function(){
   'use strict';
   const track=document.getElementById('tc-video-track');
+  const marquee=document.getElementById('tc-video-marquee');
   const status=document.getElementById('tc-video-status');
-  const prev=document.getElementById('tc-video-prev');
-  const next=document.getElementById('tc-video-next');
-  if(!track) return;
-  const known=[
-    {id:'7Uzam6XvLgY',title:'Trambulance Pitch Video',description:'TriChokro featured video'},
-    {id:'K5gdsmmMgA8',title:'TriChokro Pathfinder Team',description:'TriChokro featured video'}
-  ];
-  let hasPlayer=false, hover=false, playingTimer=null, inView=false;
+  const motion=document.getElementById('tc-video-motion');
+  if(!track || !marquee) return;
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const validId=id=>typeof id==='string'&&/^[A-Za-z0-9_-]{11}$/.test(id);
-  function buildVideo(v){
-    const card=document.createElement('article');card.className='tc-video-card';
-    const frame=document.createElement('div');frame.className='tc-video-frame';
-    const button=document.createElement('button');button.className='tc-video-lite';button.type='button';button.dataset.videoId=v.id;
-    button.setAttribute('aria-label','Play '+v.title);
-    const img=document.createElement('img');img.alt='';img.loading='lazy';img.decoding='async';img.width=480;img.height=270;
-    img.src='https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg';
-    const play=document.createElement('span');play.className='tc-video-play';play.setAttribute('aria-hidden','true');play.textContent='▶';button.append(img,play);frame.append(button);
-    const info=document.createElement('div');info.className='tc-video-card-text';
-    const heading=document.createElement('h3');heading.textContent=v.title;
-    const desc=document.createElement('p');desc.textContent=v.published ? new Date(v.published).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}) : (v.description||'TriChokro Automotives');
-    info.append(heading,desc);card.append(frame,info);return card;
-  }
-  function refreshControls(){
-    const atEnd=track.scrollLeft+track.clientWidth>=track.scrollWidth-4;
-    prev.disabled=track.scrollLeft<4;next.disabled=atEnd;
-  }
-  function advance(dir){
-    const one=track.querySelector('.tc-video-card');const amount=(one?one.getBoundingClientRect().width:310)+20;
-    if(dir>0&&track.scrollLeft+track.clientWidth>=track.scrollWidth-5){track.scrollTo({left:0,behavior:reduced?'instant':'smooth'});}
-    else track.scrollBy({left:amount*dir,behavior:reduced?'instant':'smooth'});
-  }
-  function stopAuto(){if(playingTimer){clearInterval(playingTimer);playingTimer=null;}}
-  function maybeAuto(){stopAuto();if(reduced||hover||hasPlayer||!inView||track.querySelectorAll('.tc-video-card').length<3)return;playingTimer=setInterval(()=>advance(1),6500);}
-  function render(items,live){
-    if(hasPlayer)return;
-    const data=(Array.isArray(items)?items:[]).filter(v=>v&&validId(v.id)&&typeof v.title==='string').slice(0,6);
-    if(!data.length)return;
-    track.replaceChildren(...data.map(buildVideo));
-    status.textContent=live ? `Latest ${data.length} YouTube uploads · Scroll to browse` : 'Featured videos · Latest uploads will appear when the feed is available';
-    track.scrollLeft=0;refreshControls();maybeAuto();
-  }
-  prev.addEventListener('click',()=>{stopAuto();advance(-1);maybeAuto()});
-  next.addEventListener('click',()=>{stopAuto();advance(1);maybeAuto()});
-  track.addEventListener('scroll',refreshControls,{passive:true});
-  track.addEventListener('pointerenter',()=>{hover=true;stopAuto()});
-  track.addEventListener('pointerleave',()=>{hover=false;maybeAuto()});
-  track.addEventListener('focusin',stopAuto);
-  track.addEventListener('focusout',()=>{maybeAuto()});
-  track.addEventListener('touchstart',stopAuto,{passive:true});
-  track.addEventListener('touchend',maybeAuto,{passive:true});
-  track.addEventListener('click',e=>{
-    const button=e.target.closest('.tc-video-lite[data-video-id]');if(!button)return;
-    const id=button.dataset.videoId;if(!validId(id))return;
-    hasPlayer=true;stopAuto();
-    const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';
-    frame.title='TriChokro YouTube video';frame.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';
-    button.replaceWith(frame);
+  const validId=id=>typeof id==='string' && /^[A-Za-z0-9_-]{11}$/.test(id);
+  let manuallyPaused=false;
+  let interacted=false;
+  motion?.addEventListener('click',()=>{
+    manuallyPaused=!manuallyPaused;
+    marquee.classList.toggle('tc-video-paused',manuallyPaused);
+    motion.setAttribute('aria-pressed',String(manuallyPaused));
+    motion.textContent=manuallyPaused?'Resume scrolling':'Pause scrolling';
   });
-  if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>{inView=entries.some(e=>e.isIntersecting);maybeAuto()},{threshold:.1});io.observe(track)}else{inView=true;}
-  render(known,false); // Do not mislabel these pre-existing videos as latest.
-  const aborter=new AbortController();const timeout=setTimeout(()=>aborter.abort(),11000);
-  fetch('youtube-feed.php',{signal:aborter.signal,cache:'no-store'})
-    .then(r=>{if(!r.ok)throw Error('Feed unavailable');return r.json()})
-    .then(body=>{if(body?.ok&&Array.isArray(body.videos)&&body.videos.length){render(body.videos,true);}})
+  // Do not replace a player after someone starts interacting with the embedded video.
+  track.addEventListener('pointerdown',()=>{interacted=true;},{passive:true});
+  track.addEventListener('focusin',()=>{interacted=true;marquee.classList.add('tc-video-paused');});
+  if(reduced) marquee.classList.add('tc-video-paused');
+
+  function card(v,duplicate){
+    const article=document.createElement('article');
+    article.className='tc-video-card group relative';
+    article.setAttribute('aria-label',v.title);
+    const frame=document.createElement('div');frame.className='tc-video-frame';
+    const iframe=document.createElement('iframe');
+    iframe.loading='lazy';
+    iframe.src='https://www.youtube.com/embed/'+v.id;
+    iframe.title=v.title;
+    iframe.referrerPolicy='strict-origin-when-cross-origin';
+    iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.allowFullscreen=true;
+    if(duplicate) iframe.tabIndex=-1;
+    frame.appendChild(iframe);
+    const copy=document.createElement('div');copy.className='tc-video-card-copy';
+    const title=document.createElement('h3');title.textContent=v.title;
+    const meta=document.createElement('p');
+    const date=v.published ? new Date(v.published) : null;
+    meta.textContent=date && !Number.isNaN(date.getTime())
+      ? 'Published '+date.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})
+      : 'TriChokro Automotives';
+    copy.append(title,meta);article.append(frame,copy);return article;
+  }
+  function render(items){
+    if(interacted)return;
+    const unique=new Set();
+    const videos=items.filter(v=>v&&validId(v.id)&&typeof v.title==='string'&&v.title.trim()).filter(v=>{
+      if(unique.has(v.id))return false;unique.add(v.id);return true;
+    }).slice(0,6);
+    if(!videos.length)return;
+    const set1=document.createElement('div');set1.className='tc-video-set';set1.dataset.videoSet='original';
+    const set2=document.createElement('div');set2.className='tc-video-set';set2.dataset.videoSet='duplicate';set2.setAttribute('aria-hidden','true');
+    videos.forEach(v=>{set1.append(card(v,false));set2.append(card(v,true));});
+    track.replaceChildren(set1,set2);
+    status.textContent='Latest '+videos.length+' public YouTube uploads · Playing within this page';
+  }
+  if(!('fetch' in window))return;
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),11000);
+  fetch('youtube-feed.php',{signal:controller.signal,cache:'no-store'})
+    .then(r=>{if(!r.ok)throw Error('Feed unavailable');return r.json();})
+    .then(data=>{if(data?.ok && Array.isArray(data.videos))render(data.videos);})
     .catch(()=>{})
-    .finally(()=>clearTimeout(timeout));
+    .finally(()=>clearTimeout(timer));
 })();
 </script>
 </body>
