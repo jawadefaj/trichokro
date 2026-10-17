@@ -566,6 +566,72 @@
   #videos .tc-video-pause{display:none}
 }
 </style>
+
+<style id="tc-founder-hover-animation">
+/* Only the founder preview: match the profile-card lift and emerald portrait ring. */
+#founder-preview .tc-founder-hover {
+  width: 100%; max-width: 800px; margin-inline: auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem); border-radius: 1.5rem;
+  background-color: rgba(30, 41, 59, 0);
+  transition: background-color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+#founder-preview .tc-founder-hover .tc-founder-portrait {
+  outline: 4px solid transparent; outline-offset: 3px;
+  transition: outline-color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+#founder-preview .tc-founder-hover:hover,
+#founder-preview .tc-founder-hover:focus-within {
+  background-color: rgba(30, 41, 59, .42);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -5px rgba(16, 185, 129, .13);
+}
+#founder-preview .tc-founder-hover:hover .tc-founder-portrait,
+#founder-preview .tc-founder-hover:focus-within .tc-founder-portrait {
+  outline-color: #34d399;
+  transform: scale(1.035);
+  box-shadow: 0 0 28px rgba(16, 185, 129, .17);
+}
+@media (prefers-reduced-motion: reduce) {
+  #founder-preview .tc-founder-hover,
+  #founder-preview .tc-founder-hover .tc-founder-portrait { transition: none; }
+  #founder-preview .tc-founder-hover:hover,
+  #founder-preview .tc-founder-hover:focus-within,
+  #founder-preview .tc-founder-hover:hover .tc-founder-portrait,
+  #founder-preview .tc-founder-hover:focus-within .tc-founder-portrait { transform: none; }
+}
+</style>
+
+<style id="tc-omi-card-hover">
+/* Matches the existing founder-preview lift and emerald portrait halo. */
+#about .tc-omi-card {
+  transition: transform .3s ease, background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+#about .tc-omi-card:hover,
+#about .tc-omi-card:focus-visible {
+  background-color: rgba(51, 65, 85, .85);
+  border-color: rgba(52, 211, 153, .65);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -5px rgba(16, 185, 129, .15);
+}
+#about .tc-omi-card .tc-omi-photo {
+  transition: box-shadow .3s ease, transform .3s ease, outline-color .3s ease;
+}
+#about .tc-omi-card:hover .tc-omi-photo,
+#about .tc-omi-card:focus-visible .tc-omi-photo {
+  transform: scale(1.035);
+  box-shadow: 0 0 25px rgba(16, 185, 129, .18);
+}
+@media (prefers-reduced-motion: reduce) {
+  #about .tc-omi-card,
+  #about .tc-omi-card .tc-omi-photo,
+  #about .tc-omi-card .tc-omi-photo img { transition: none !important; }
+  #about .tc-omi-card:hover,
+  #about .tc-omi-card:focus-visible,
+  #about .tc-omi-card:hover .tc-omi-photo,
+  #about .tc-omi-card:focus-visible .tc-omi-photo,
+  #about .tc-omi-card:hover .tc-omi-photo img { transform: none !important; }
+}
+</style>
 </head>
 <body class="selection-emerald">
 <!-- Speedometer Overlay -->
@@ -1438,7 +1504,7 @@
 <!-- NEW FOUNDER SECTION (Main Site) -->
 <section class="py-24 bg-gradient-to-br from-brand-dark to-slate-900 relative border-t border-slate-800" id="founder-preview">
 <div class="container mx-auto px-4">
-<div class="flex flex-col items-center text-center">
+<div class="tc-founder-hover flex flex-col items-center text-center">
 <span class="text-gold font-cinzel tracking-[0.3em] text-sm mb-4">Take appointment for a meeting with our Founder</span>
 <img src="src/assets/rownak_full.jpg" class="tc-founder-portrait" alt="Rownak Shahriar Ruhan, founder of TriChokro" loading="lazy" decoding="async" width="700" height="740">
 <h2 class="reveal-on-scroll text-4xl md:text-6xl font-bold text-white font-cinzel mb-6">Rownak Shahriar Ruhan</h2>
@@ -2102,10 +2168,10 @@
     {title: "Meet the Innovators", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3">Meet the Innovators</h3><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"><a href="contact.html?id=rownak" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
  <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><img src="src/assets/founders/rownak.jpg" alt="Portrait of Rownak Shahriar Ruhan" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
  <h4 class="text-white font-bold text-sm leading-snug mb-1">Rownak Shahriar Ruhan</h4>
- <p class="text-emerald-400 text-xs leading-relaxed">Founder &amp; CEO</p></a><div class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
- <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><span aria-hidden="true" class="text-lg font-bold text-emerald-300">HM</span></div>
- <h4 class="text-white font-bold text-sm leading-snug mb-1">Hasib Malik Nadim Arman</h4>
- <p class="text-emerald-400 text-xs leading-relaxed">Managing Director</p></div><a href="contact.html?id=hasan" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
+ <p class="text-emerald-400 text-xs leading-relaxed">Founder &amp; CEO</p></a><a href="contact.html?id=omi" aria-label="Contact Malik Nadim Arman Omi, Managing Director" class="tc-profile-card tc-omi-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block group cursor-pointer interactive uplift-on-hover">
+ <div class="tc-omi-photo w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20 group-hover:ring-4 group-hover:ring-emerald-400 transition-all duration-300 transform"><img src="src/assets/founders/omi.jpg" alt="Portrait of Malik Nadim Arman Omi" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async"></div>
+ <h4 class="text-white font-bold text-sm leading-snug mb-1">Malik Nadim Arman Omi</h4>
+ <p class="text-emerald-400 text-xs leading-relaxed">Managing Director</p></a><a href="contact.html?id=hasan" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
  <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><img src="src/assets/founders/Omor.webp" alt="Portrait of Omor Faruk Hasan" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
  <h4 class="text-white font-bold text-sm leading-snug mb-1">Omor Faruk Hasan</h4>
  <p class="text-emerald-400 text-xs leading-relaxed">Chief Operating Officer</p></a><a href="contact.html?id=shwadhin" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
