@@ -531,19 +531,32 @@
 <script src="js/site-mobile.js" defer></script>
 <link rel="stylesheet" href="css/site-content-revisions.css">
 <style id="integration-media-styles">
-/* Functional inline YouTube player and scrollable Facebook feed; only these sections are affected. */
-#videos .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-#videos .video-card{overflow:hidden;border:1px solid #334155;border-radius:18px;background:#0f172a}
-#videos .video-frame{position:relative;aspect-ratio:16/9;background:#020617;overflow:hidden}
-#videos .video-lite{display:block;position:relative;width:100%;height:100%;padding:0;border:0;border-radius:0;overflow:hidden;background:#020617;cursor:pointer}
-#videos .video-lite img{width:100%;height:100%;object-fit:cover;display:block}
-#videos .video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:#ed1c24;color:white;border-radius:16px;width:68px;height:48px;font-size:24px;box-shadow:0 8px 28px #0008;transition:background .2s}
-#videos .video-lite:hover .video-play{background:#ff3333}
-#videos .video-frame iframe{width:100%;height:100%;position:absolute;inset:0;border:0;display:block}
-#facebook .fb-feed-wrap{max-width:540px;margin:0 auto;border:1px solid #334155;border-radius:18px;overflow:hidden;background:#fff;padding:14px;box-shadow:0 22px 55px rgba(0,0,0,.24)}
-#facebook .fb-feed-wrap iframe{display:block;border:0;max-width:100%;width:500px;height:680px;overflow:auto;margin:0 auto;background:white}
-@media (max-width:1020px){#videos .video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){#videos .video-grid{grid-template-columns:1fr}#facebook .fb-feed-wrap{padding:6px}#facebook .fb-feed-wrap iframe{height:600px}}
+/* Video carousel: horizontally scrollable, touch friendly, and click-to-play YouTube embeds. */
+#videos .tc-video-shell{min-width:0}
+#videos .tc-video-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 15px}
+#videos .tc-video-status{font:500 12px/1.5 'Inter',sans-serif;letter-spacing:.03em;color:#94a3b8}
+#videos .tc-video-buttons{display:flex;gap:9px}
+#videos .tc-video-arrow{display:grid;place-items:center;width:46px;height:46px;min-width:46px;padding:0;border:1px solid #334155;border-radius:50%;color:#e2e8f0;background:#152237;cursor:pointer;transition:background .2s,border-color .2s}
+#videos .tc-video-arrow:hover:not(:disabled){background:#164d43;border-color:#34d399}
+#videos .tc-video-arrow:disabled{opacity:.3;cursor:default}
+#videos .tc-video-track{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#059669 #0f172a;padding:2px 2px 19px;outline-offset:5px}
+#videos .tc-video-card{flex:0 0 calc((100% - 40px)/3);min-width:0;scroll-snap-align:start;overflow:hidden;border:1px solid #334155;border-radius:18px;background:#0f172a;display:flex;flex-direction:column}
+#videos .tc-video-frame{position:relative;aspect-ratio:16/9;background:#020617;overflow:hidden}
+#videos .tc-video-lite{display:block;position:relative;width:100%;height:100%;padding:0;border:0;border-radius:0;overflow:hidden;background:#020617;cursor:pointer}
+#videos .tc-video-lite img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+#videos .tc-video-lite:hover img{transform:scale(1.035)}
+#videos .tc-video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:#ed1c24;color:#fff;border-radius:15px;width:65px;height:46px;font-size:22px;box-shadow:0 8px 28px #0008}
+#videos .tc-video-lite:hover .tc-video-play{background:#ff3434}
+#videos .tc-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
+#videos .tc-video-card-text{padding:19px 21px 23px;flex:1;min-height:100px;background:rgba(15,23,42,.72)}
+#videos .tc-video-card-text h3{font:650 15px/1.45 'Inter',sans-serif;margin:0 0 7px;color:#f8fafc}
+#videos .tc-video-card-text p{font:400 12px/1.55 'Inter',sans-serif;margin:0;color:#94a3b8}
+#videos .tc-video-loading{padding:50px 20px;text-align:center;color:#94a3b8;min-width:100%;border:1px solid #334155;border-radius:18px;background:#0f172a}
+#facebook .fb-feed-wrap{max-width:530px;margin:0 auto;border:1px solid #334155;border-radius:18px;overflow:hidden;background:#fff;padding:12px;box-shadow:0 22px 55px rgba(0,0,0,.24)}
+#facebook .fb-feed-wrap iframe{display:block;border:0;max-width:100%;width:500px;height:860px;overflow:auto;margin:0 auto;background:white}
+@media(max-width:980px){#videos .tc-video-card{flex-basis:calc((100% - 20px)/2)}}
+@media(max-width:650px){#videos .tc-video-card{flex-basis:88%}#videos .tc-video-track{gap:14px}#facebook .fb-feed-wrap{padding:5px}#facebook .fb-feed-wrap iframe{height:760px}}
+@media(prefers-reduced-motion:reduce){#videos .tc-video-track{scroll-behavior:auto}}
 </style>
 </head>
 <body class="selection-emerald">
@@ -616,7 +629,7 @@
 <img alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" src="src/assets/logo_icon.webp" decoding="async" width="1600" height="1600">
 <span class="tc-brand-wordmark"><span class="tc-brand-main">Tri<span class="text-emerald-400">Chokro</span></span><span class="tc-brand-sub"> Automotives</span></span>
 </div>
-<div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;"><a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#home" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#about" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#products" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#blogs" style="animation-delay: 0.45s">NEWS</a>
+<div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;"><a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#home" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#about" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="#products" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="blogs.html" style="animation-delay: 0.45s">NEWS</a>
 <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index_bn.html" style="animation-delay: 0.55s"><i class="fas fa-globe"></i> BN</a> <a class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" href="contact.html?id=rownak" style="animation-delay: 0.6s"> CONTACTS </a></div>
 <div class="md:hidden">
 <button class="text-white hover:text-emerald-400 interactive" id="mobile-menu-btn"><i class="w-7 h-7" data-lucide="menu"></i></button>
@@ -627,7 +640,7 @@
 <div class="px-4 py-4 space-y-3 flex flex-col">
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#home">HOME</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#about">ABOUT US</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="#blogs">NEWS</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="blogs.html">NEWS</a>
 <a class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="trambulance.html">TRAMBULANCE</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#products">PRODUCTS</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="contact.html?id=rownak">CONTACTS</a>
@@ -686,9 +699,9 @@
 
 <!-- Requested capabilities / vehicle-category section -->
 <section id="capabilities" class="tc-capabilities relative overflow-hidden py-16 md:py-24 border-t border-slate-800" aria-labelledby="capabilities-title">
-<div class="tc-cap-bg" aria-hidden="true"><div class="tc-cap-floor"><div class="tc-cap-floor-lines"></div></div><div class="tc-cap-scan"></div><div class="tc-cap-orb tc-cap-orb-1"></div><div class="tc-cap-orb tc-cap-orb-2"></div></div>
+<div class="tc-cap-bg" aria-hidden="true"><div class="tc-cap-orb tc-cap-orb-1"></div><div class="tc-cap-orb tc-cap-orb-2"></div></div>
 <div class="container mx-auto px-4 max-w-6xl relative z-10">
-<div class="text-center max-w-3xl mx-auto mb-10 md:mb-14"><span class="tc-cap-kicker"><span class="tc-cap-dot"></span>Engineering Stack · 09 Modules</span><h2 id="capabilities-title" class="tc-cap-title font-bold text-white mb-4">Our Engineering <span class="tc-gradient-text">Capabilities</span></h2><p class="text-slate-400">From two-wheelers to commercial mobility, we work across design, development and manufacturing.</p></div>
+<div class="text-center max-w-3xl mx-auto mb-10 md:mb-14"><h2 id="capabilities-title" class="tc-cap-title font-bold text-white mb-4">Our Engineering <span class="tc-gradient-text">Capabilities</span></h2><p class="text-slate-400">From two-wheelers to commercial mobility, we work across design, development and manufacturing.</p></div>
 <div class="tc-cap-list">
 <a href="#contact" class="tc-capability" style="--i:0"><span class="tc-cap-index">01</span><span class="tc-cap-icon" aria-hidden="true"><i class="fas fa-motorcycle"></i></span><span class="tc-cap-label">2 Wheeler</span><span class="tc-cap-meta">Electric bikes &amp; scooters</span><span class="tc-cap-arrow" aria-hidden="true">→</span></a>
 <a href="#products" class="tc-capability" style="--i:1"><span class="tc-cap-index">02</span><span class="tc-cap-icon" aria-hidden="true"><i class="fas fa-van-shuttle"></i></span><span class="tc-cap-label">3 Wheeler</span><span class="tc-cap-meta">Passenger &amp; utility trikes</span><span class="tc-cap-arrow" aria-hidden="true">→</span></a>
@@ -1893,174 +1906,31 @@
 </div>
 </div>
 </section>
-<!-- BLOGS & NEWS SECTION -->
-<section class="py-24 bg-slate-900/50 relative" id="blogs">
-<div class="container mx-auto px-4">
-<div class="text-center mb-16 reveal-on-scroll">
-<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Blogs &amp; News</h2>
-<div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
-<p class="text-slate-400 mt-4">Stay updated with the latest news and achievements</p>
-</div>
-
-<div class="marquee-container w-full reveal-on-scroll">
-<div class="marquee-content gap-8 px-4">
-
-<!-- Muspana -->
-<a href="blog.html?post=muspana" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-yellow-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-yellow-500/80" data-lucide="zap"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-yellow-500 font-bold uppercase tracking-wider bg-yellow-500/10 px-2 py-1 rounded-full">Partnership</span>
-<span class="text-xs text-slate-500">Feb 18, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Sponsored by Energy Company Muspana</h3>
-<p class="text-slate-400 text-sm line-clamp-3">Bridging the gap between prototype and reality, TriChokro has secured sponsorship from Muspana...</p>
-</div>
-</a>
-
-<!-- SOFE -->
-<a href="blog.html?post=sofe" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-emerald-500/20 via-blue-500/10 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-emerald-400/80" data-lucide="trophy"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-emerald-400 font-bold uppercase tracking-wider bg-emerald-500/10 px-2 py-1 rounded-full">Champion</span>
-<span class="text-xs text-slate-500">Nov 8, 2025</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">TriChokro Wins SOfE Final 2025</h3>
-<p class="text-slate-400 text-sm line-clamp-3">A.A.M. Rownak Shahriar Ruhan claimed the championship title representing Bangladesh...</p>
-</div>
-</a>
-
-<!-- UIHP -->
-<a href="blog.html?post=uihp" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-blue-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-blue-400/80" data-lucide="award"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-blue-400 font-bold uppercase tracking-wider bg-blue-500/10 px-2 py-1 rounded-full">Grant</span>
-<span class="text-xs text-slate-500">Jan 10, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Victory at UIHP: 80,000 BDT Grant</h3>
-<p class="text-slate-400 text-sm line-clamp-3">TriChokro continues its winning streak with another major funding award...</p>
-</div>
-</a>
-
-<!-- FFVC -->
-<a href="blog.html?post=ffvc" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-purple-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-purple-400/80" data-lucide="globe"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-purple-400 font-bold uppercase tracking-wider bg-purple-500/10 px-2 py-1 rounded-full">Global</span>
-<span class="text-xs text-slate-500">Feb 10, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">3500 USD from First Flight Venture</h3>
-<p class="text-slate-400 text-sm line-clamp-3">TriChokro receives strategic funding from North Carolina's premier incubator...</p>
-</div>
-</a>
-
-<!-- CSTPD -->
-<a href="blog.html?post=cstpd" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-green-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-green-400/80" data-lucide="users"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-green-400 font-bold uppercase tracking-wider bg-green-500/10 px-2 py-1 rounded-full">Member</span>
-<span class="text-xs text-slate-500">Dec 15, 2025</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Official Membership: CSTPD Induction</h3>
-<p class="text-slate-400 text-sm line-clamp-3">TriChokro is now a member of the Center for Sustainable Technologies...</p>
-</div>
-</a>
-
-<!-- DUPLICATE FOR SCROLL -->
-<a href="blog.html?post=muspana" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-yellow-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-yellow-500/80" data-lucide="zap"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-yellow-500 font-bold uppercase tracking-wider bg-yellow-500/10 px-2 py-1 rounded-full">Partnership</span>
-<span class="text-xs text-slate-500">Feb 18, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Sponsored by Energy Company Muspana</h3>
-<p class="text-slate-400 text-sm line-clamp-3">Bridging the gap between prototype and reality, TriChokro has secured sponsorship from Muspana...</p>
-</div>
-</a>
-
-</div>
-</div>
-
-<div class="text-center mt-12 mb-8 reveal-on-scroll">
-<a href="blog.html" class="inline-flex items-center gap-2 px-8 py-3 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
-View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
-</a>
-</div>
-</div>
-</section>
 <!-- VIDEOS SECTION -->
-<section id="videos" class="py-24 bg-slate-950 relative overflow-hidden">
-
-    <!-- Ambient glow -->
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full"></div>
-
-    <div class="container mx-auto px-4 relative z-10">
-
-        <!-- Section Header -->
-        <div class="text-center mb-16 reveal-on-scroll">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                Videos
-            </h2>
-            <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
-            <p class="text-slate-400 mt-4">
-                Watch our latest project videos, test drives, and tech insights
-            </p>
-        </div>
-
-<!-- Video Grid (16:9, plays in page) -->
-<div class="video-grid max-w-6xl mx-auto mt-8 reveal-on-scroll">
-        <div class="video-card">
-            <div class="video-frame">
-                <button type="button" class="video-lite" data-video-id="7Uzam6XvLgY" data-video-title="Trambulance Pitch Video" aria-label="Play video: Trambulance Pitch Video"><img loading="lazy" decoding="async" src="https://i.ytimg.com/vi/7Uzam6XvLgY/hqdefault.jpg" alt="" width="480" height="360" /><span class="video-play" aria-hidden="true">▶</span></button>
-            </div>
-            <div class="p-4 sm:p-5 bg-slate-900/60">
-                <h3 class="text-white font-semibold text-base">Trambulance Pitch Video</h3>
-                <p class="text-slate-400 text-sm mt-1">Experience the smooth performance of our flagship model</p>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-frame">
-                <button type="button" class="video-lite" data-video-id="K5gdsmmMgA8" data-video-title="TriChokro Pathfinder Team" aria-label="Play video: TriChokro Pathfinder Team"><img loading="lazy" decoding="async" src="https://i.ytimg.com/vi/K5gdsmmMgA8/hqdefault.jpg" alt="" width="480" height="360" /><span class="video-play" aria-hidden="true">▶</span></button>
-            </div>
-            <div class="p-4 sm:p-5 bg-slate-900/60">
-                <h3 class="text-white font-semibold text-base">TriChokro Pathfinder Team</h3>
-                <p class="text-slate-400 text-sm mt-1">Learn about our innovative triple hydraulic braking system</p>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-frame">
-                <button type="button" class="video-lite" data-video-id="K5gdsmmMgA8" data-video-title="UIHP Pitch Deck" aria-label="Play video: UIHP Pitch Deck"><img loading="lazy" decoding="async" src="https://i.ytimg.com/vi/K5gdsmmMgA8/hqdefault.jpg" alt="" width="480" height="360" /><span class="video-play" aria-hidden="true">▶</span></button>
-            </div>
-            <div class="p-4 sm:p-5 bg-slate-900/60">
-                <h3 class="text-white font-semibold text-base">UIHP Pitch Deck</h3>
-                <p class="text-slate-400 text-sm mt-1">See how TriChokro brings safe, suitable services to everyone</p>
-            </div>
-        </div>
-</div>
-
-<div class="text-center mt-12 mb-8 reveal-on-scroll">
-    <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
-        <i class="fab fa-youtube text-xl"></i> Visit YouTube Channel
-    </a>
-</div>
+<section id="videos" class="py-24 bg-slate-950 relative overflow-hidden" aria-labelledby="tc-video-title">
+  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full" aria-hidden="true"></div>
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-12 reveal-on-scroll">
+      <h2 id="tc-video-title" class="text-4xl md:text-5xl font-bold text-white mb-4">Videos</h2>
+      <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+      <p class="text-slate-400 mt-4">Our latest YouTube uploads — watch right here or swipe to explore.</p>
     </div>
+    <div class="tc-video-shell max-w-6xl mx-auto reveal-on-scroll">
+      <div class="tc-video-controls">
+        <span class="tc-video-status" id="tc-video-status" role="status" aria-live="polite">Loading latest videos…</span>
+        <div class="tc-video-buttons">
+          <button type="button" id="tc-video-prev" class="tc-video-arrow" aria-label="Scroll videos left" title="Previous videos"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+          <button type="button" id="tc-video-next" class="tc-video-arrow" aria-label="Scroll videos right" title="Next videos"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div id="tc-video-track" class="tc-video-track" role="region" tabindex="0" aria-label="TriChokro YouTube videos carousel">
+        <div class="tc-video-loading">Fetching videos from our YouTube channel…</div>
+      </div>
+    </div>
+    <div class="text-center mt-11 mb-8 reveal-on-scroll">
+      <a href="https://www.youtube.com/@TriChokroAutomotives/videos" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg"><i class="fab fa-youtube text-xl"></i> Visit YouTube Channel</a>
+    </div>
+  </div>
 </section>
 <!-- FACEBOOK SECTION -->
 <section id="facebook" class="py-24 bg-slate-900 relative overflow-hidden border-t border-slate-800">
@@ -2068,10 +1938,10 @@ View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
         <div class="text-center mb-12 reveal-on-scroll">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Follow Us on Facebook</h2>
             <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
-            <p class="text-slate-400 mt-4">Latest updates, news and behind-the-scenes from TriChokro</p>
+            <p class="text-slate-400 mt-4">Browse recent public posts, updates and behind-the-scenes from TriChokro</p>
         </div>
         <div class="fb-feed-wrap">
-            <iframe data-fb-page="https://www.facebook.com/profile.php?id=61577812382585" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61577812382585&amp;tabs=timeline&amp;width=500&amp;height=680&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false" title="Scrollable TriChokro Facebook page timeline" loading="lazy" scrolling="yes" width="500" height="680" style="border:none;overflow:auto" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <iframe data-fb-page="https://www.facebook.com/people/TriChokro/61577812382585/" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fpeople%2FTriChokro%2F61577812382585%2F&amp;tabs=timeline&amp;width=500&amp;height=860&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false" title="Recent public posts from TriChokro Automotives Facebook Page" loading="lazy" scrolling="yes" width="500" height="860" style="border:0;overflow:auto;max-width:100%;" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="text-center mt-8">
             <a href="https://www.facebook.com/people/TriChokro/61577812382585/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-lg">
@@ -2659,22 +2529,79 @@ View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
 })();
 
 
-// Play YouTube videos directly inside the corresponding video card.
+// Six newest videos are retrieved from TriChokro's public YouTube RSS via youtube-feed.php.
+// The two existing, known video links remain a fallback for static hosting / unavailable feeds.
 (function(){
-  document.querySelectorAll('#videos .video-lite[data-video-id]').forEach(button => {
-    button.addEventListener('click', () => {
-      const id=button.getAttribute('data-video-id');
-      if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
-      const frame=document.createElement('iframe');
-      frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';
-      frame.title=button.getAttribute('data-video-title')||'TriChokro YouTube video';
-      frame.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-      frame.setAttribute('allowfullscreen','');
-      frame.referrerPolicy='strict-origin-when-cross-origin';
-      frame.loading='eager';
-      button.replaceWith(frame);
-    });
+  'use strict';
+  const track=document.getElementById('tc-video-track');
+  const status=document.getElementById('tc-video-status');
+  const prev=document.getElementById('tc-video-prev');
+  const next=document.getElementById('tc-video-next');
+  if(!track) return;
+  const known=[
+    {id:'7Uzam6XvLgY',title:'Trambulance Pitch Video',description:'TriChokro featured video'},
+    {id:'K5gdsmmMgA8',title:'TriChokro Pathfinder Team',description:'TriChokro featured video'}
+  ];
+  let hasPlayer=false, hover=false, playingTimer=null, inView=false;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const validId=id=>typeof id==='string'&&/^[A-Za-z0-9_-]{11}$/.test(id);
+  function buildVideo(v){
+    const card=document.createElement('article');card.className='tc-video-card';
+    const frame=document.createElement('div');frame.className='tc-video-frame';
+    const button=document.createElement('button');button.className='tc-video-lite';button.type='button';button.dataset.videoId=v.id;
+    button.setAttribute('aria-label','Play '+v.title);
+    const img=document.createElement('img');img.alt='';img.loading='lazy';img.decoding='async';img.width=480;img.height=270;
+    img.src='https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg';
+    const play=document.createElement('span');play.className='tc-video-play';play.setAttribute('aria-hidden','true');play.textContent='▶';button.append(img,play);frame.append(button);
+    const info=document.createElement('div');info.className='tc-video-card-text';
+    const heading=document.createElement('h3');heading.textContent=v.title;
+    const desc=document.createElement('p');desc.textContent=v.published ? new Date(v.published).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}) : (v.description||'TriChokro Automotives');
+    info.append(heading,desc);card.append(frame,info);return card;
+  }
+  function refreshControls(){
+    const atEnd=track.scrollLeft+track.clientWidth>=track.scrollWidth-4;
+    prev.disabled=track.scrollLeft<4;next.disabled=atEnd;
+  }
+  function advance(dir){
+    const one=track.querySelector('.tc-video-card');const amount=(one?one.getBoundingClientRect().width:310)+20;
+    if(dir>0&&track.scrollLeft+track.clientWidth>=track.scrollWidth-5){track.scrollTo({left:0,behavior:reduced?'instant':'smooth'});}
+    else track.scrollBy({left:amount*dir,behavior:reduced?'instant':'smooth'});
+  }
+  function stopAuto(){if(playingTimer){clearInterval(playingTimer);playingTimer=null;}}
+  function maybeAuto(){stopAuto();if(reduced||hover||hasPlayer||!inView||track.querySelectorAll('.tc-video-card').length<3)return;playingTimer=setInterval(()=>advance(1),6500);}
+  function render(items,live){
+    if(hasPlayer)return;
+    const data=(Array.isArray(items)?items:[]).filter(v=>v&&validId(v.id)&&typeof v.title==='string').slice(0,6);
+    if(!data.length)return;
+    track.replaceChildren(...data.map(buildVideo));
+    status.textContent=live ? `Latest ${data.length} YouTube uploads · Scroll to browse` : 'Featured videos · Latest uploads will appear when the feed is available';
+    track.scrollLeft=0;refreshControls();maybeAuto();
+  }
+  prev.addEventListener('click',()=>{stopAuto();advance(-1);maybeAuto()});
+  next.addEventListener('click',()=>{stopAuto();advance(1);maybeAuto()});
+  track.addEventListener('scroll',refreshControls,{passive:true});
+  track.addEventListener('pointerenter',()=>{hover=true;stopAuto()});
+  track.addEventListener('pointerleave',()=>{hover=false;maybeAuto()});
+  track.addEventListener('focusin',stopAuto);
+  track.addEventListener('focusout',()=>{maybeAuto()});
+  track.addEventListener('touchstart',stopAuto,{passive:true});
+  track.addEventListener('touchend',maybeAuto,{passive:true});
+  track.addEventListener('click',e=>{
+    const button=e.target.closest('.tc-video-lite[data-video-id]');if(!button)return;
+    const id=button.dataset.videoId;if(!validId(id))return;
+    hasPlayer=true;stopAuto();
+    const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';
+    frame.title='TriChokro YouTube video';frame.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';
+    button.replaceWith(frame);
   });
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>{inView=entries.some(e=>e.isIntersecting);maybeAuto()},{threshold:.1});io.observe(track)}else{inView=true;}
+  render(known,false); // Do not mislabel these pre-existing videos as latest.
+  const aborter=new AbortController();const timeout=setTimeout(()=>aborter.abort(),11000);
+  fetch('youtube-feed.php',{signal:aborter.signal,cache:'no-store'})
+    .then(r=>{if(!r.ok)throw Error('Feed unavailable');return r.json()})
+    .then(body=>{if(body?.ok&&Array.isArray(body.videos)&&body.videos.length){render(body.videos,true);}})
+    .catch(()=>{})
+    .finally(()=>clearTimeout(timeout));
 })();
 </script>
 </body>
