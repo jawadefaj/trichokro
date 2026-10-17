@@ -1893,30 +1893,86 @@
 </div>
 </section>
 <!-- VIDEOS SECTION -->
-<section id="videos" class="py-24 bg-slate-950 relative overflow-hidden" aria-labelledby="tc-video-title">
-  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full" aria-hidden="true"></div>
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="text-center mb-12 reveal-on-scroll">
-      <h2 id="tc-video-title" class="text-4xl md:text-5xl font-bold text-white mb-4">Videos</h2>
-      <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
-      <p class="text-slate-400 mt-4">Our latest YouTube uploads — watch right here or swipe to explore.</p>
-    </div>
-    <div class="tc-video-shell max-w-6xl mx-auto reveal-on-scroll">
-      <div class="tc-video-controls">
-        <span class="tc-video-status" id="tc-video-status" role="status" aria-live="polite">Loading latest videos…</span>
-        <div class="tc-video-buttons">
-          <button type="button" id="tc-video-prev" class="tc-video-arrow" aria-label="Scroll videos left" title="Previous videos"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
-          <button type="button" id="tc-video-next" class="tc-video-arrow" aria-label="Scroll videos right" title="Next videos"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+<section id="videos" class="py-24 bg-slate-950 relative overflow-hidden">
+
+    <!-- Ambient glow -->
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+
+        <!-- Section Header -->
+        <div class="text-center mb-16 reveal-on-scroll">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Videos
+            </h2>
+            <div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
+            <p class="text-slate-400 mt-4">
+                Watch our latest project videos, test drives, and tech insights
+            </p>
         </div>
-      </div>
-      <div id="tc-video-track" class="tc-video-track" role="region" tabindex="0" aria-label="TriChokro YouTube videos carousel">
-        <div class="tc-video-loading">Fetching videos from our YouTube channel…</div>
-      </div>
+
+<!-- Scrolling Video Part -->
+<div class="marquee-container w-full mt-8 reveal-on-scroll">
+    <div class="marquee-content gap-8 px-4 py-8">
+        <!-- Video Card 1 -->
+        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
+            <div class="relative w-full pt-[56.25%]">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/7Uzam6XvLgY" title="Trambulance Pitch Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 bg-slate-900/60 backdrop-blur">
+                <h3 class="text-white font-semibold text-sm">Trambulance Pitch Video</h3>
+                <p class="text-slate-400 text-xs mt-1">Experience the smooth performance of our flagship model</p>
+            </div>
+        </div>
+        <!-- Video Card 2 -->
+        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
+            <div class="relative w-full pt-[56.25%]">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="TriChokro Pathfinder Team" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 bg-slate-900/60 backdrop-blur">
+                <h3 class="text-white font-semibold text-sm">TriChokro Pathfinder Team</h3>
+                <p class="text-slate-400 text-xs mt-1">Learn about our innovative triple hydraulic braking system</p>
+            </div>
+        </div>
+        <!-- Video Card 3 -->
+        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
+            <div class="relative w-full pt-[56.25%]">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="UIHP Pitch Deck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 bg-slate-900/60 backdrop-blur">
+                <h3 class="text-white font-semibold text-sm">UIHP Pitch Deck</h3>
+                <p class="text-slate-400 text-xs mt-1">See how TriChokro brings safe, suitable services to everyone</p>
+            </div>
+        </div>
+         <!-- Duplicate for Scroll Effect -->
+         <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
+            <div class="relative w-full pt-[56.25%]">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/7Uzam6XvLgY" title="Trambulance Pitch Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 bg-slate-900/60 backdrop-blur">
+                <h3 class="text-white font-semibold text-sm">Trambulance Pitch Video</h3>
+                <p class="text-slate-400 text-xs mt-1">Experience the smooth performance of our flagship model</p>
+            </div>
+        </div>
+        <!-- Duplicate for Scroll Effect -->
+        <div class="w-[400px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-black border border-slate-800 hover:border-emerald-500/60 transition-all duration-300">
+            <div class="relative w-full pt-[56.25%]">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/K5gdsmmMgA8" title="TriChokro Pathfinder Team" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="p-5 bg-slate-900/60 backdrop-blur">
+                <h3 class="text-white font-semibold text-sm">TriChokro Pathfinder Team</h3>
+                <p class="text-slate-400 text-xs mt-1">Learn about our innovative triple hydraulic braking system</p>
+            </div>
+        </div>
     </div>
-    <div class="text-center mt-11 mb-8 reveal-on-scroll">
-      <a href="https://www.youtube.com/@TriChokroAutomotives/videos" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg"><i class="fab fa-youtube text-xl"></i> Visit YouTube Channel</a>
+</div>
+
+<div class="text-center mt-12 mb-8 reveal-on-scroll">
+    <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
+        <i class="fab fa-youtube text-xl"></i> Visit YouTube Channel
+    </a>
+</div>
     </div>
-  </div>
 </section>
 <!-- FACEBOOK SECTION -->
 <section id="facebook" class="py-24 bg-slate-900 relative overflow-hidden border-t border-slate-800">
