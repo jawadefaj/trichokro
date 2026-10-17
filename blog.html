@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Latest TriChokro Automotives stories, recognitions, funding and engineering updates." name="description"/>
+<meta content="TriChokro newsroom: Bangkok Business Challenge award coverage, electric emergency mobility, university innovation and engineering stories, with linked original sources." name="description"/>
 <meta content="website" property="og:type"/>
-<meta content="https://www.trichokro.com/" property="og:url"/>
+<meta content="https://www.trichokro.com/blog.html" property="og:url"/>
 <meta content="TriChokro Automotives - Electric TriWheeler R&amp;D" property="og:title"/>
 <meta content="Latest TriChokro Automotives stories, recognitions, funding and engineering updates." property="og:description"/>
 <meta content="https://www.trichokro.com/src/assets/og-image.jpg" property="og:image"/>
@@ -18,7 +18,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <link href="src/assets/logo_icon.webp" rel="icon"/>
-<title>Blogs &amp; News | TriChokro Automotives</title>
+<title>TriChokro News Story | TriChokro Automotives</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
@@ -530,7 +530,45 @@
 <script src="js/site-mobile.js" defer></script>
 <link rel="stylesheet" href="css/site-content-revisions.css">
 
-</head>
+
+<style id="trichokro-story-styles">
+.tc-story{font-family:Inter,Roboto,sans-serif;background:#071020;min-height:90vh;padding:130px 0 100px;color:#e5edf6;overflow:hidden}
+.tc-story *{box-sizing:border-box}.tc-story a{cursor:pointer}
+.tc-story-shell{width:min(100% - 48px,1120px);margin:auto}
+.tc-story-crumb{font:600 11px JetBrains Mono,monospace;color:#87a1b4;letter-spacing:.09em;display:flex;align-items:center;gap:11px;margin-bottom:53px}
+.tc-story-crumb a{color:#68e9c5;text-decoration:none}.tc-story-crumb a:hover{text-decoration:underline}
+.tc-story-titlearea{max-width:945px}.tc-story-eyebrow{font:700 11px JetBrains Mono,monospace;color:#67e8c1;letter-spacing:.18em;text-transform:uppercase;display:flex;gap:13px;align-items:center}
+.tc-story-dot{height:7px;width:7px;background:#3edbb0;border-radius:50%;display:inline-block}
+.tc-story h1{font:600 clamp(34px,5.3vw,70px)/1.19 Cinzel,serif;letter-spacing:-.04em;color:#f4f7ff;margin:25px 0 23px}
+.tc-story-lead{font-size:clamp(16px,2vw,19px);line-height:1.85;color:#aab9cc;max-width:750px;margin:0 0 31px}
+.tc-story-metadata{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:#9aacbf;margin-bottom:37px}.tc-story-metadata span+span:before{content:'•';margin-right:12px;color:#49778b}
+.tc-story-art{min-height:290px;position:relative;border:1px solid #2c4454;border-radius:15px;overflow:hidden;background:radial-gradient(ellipse at 25% 55%,rgba(23,181,151,.22),transparent 50%),linear-gradient(125deg,#10263c,#091626 65%,#0a2230);display:flex;align-items:flex-end;padding:38px}
+.tc-story-art::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(107,209,204,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(107,209,204,.08) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(90deg,black,transparent)}
+.tc-story-art-title{position:relative;font:500 clamp(35px,6vw,83px)/1.15 Cinzel,serif;color:#f2fffb;text-transform:uppercase;letter-spacing:-.04em;max-width:850px;word-break:break-word;text-shadow:0 10px 50px #051323}
+.tc-story-art small{position:absolute;right:24px;top:24px;font:700 10px JetBrains Mono,monospace;letter-spacing:.16em;color:#92c1bb}
+.tc-story-content{display:grid;grid-template-columns:minmax(0,700px) minmax(230px,1fr);gap:clamp(30px,7vw,100px);margin-top:57px}
+.tc-story-copy{min-width:0}.tc-story-copy h2{font:600 24px Cinzel,serif;color:#f3f8ff;margin:0 0 23px}
+.tc-story-copy>p{color:#aebed1;font-size:15px;line-height:1.98;margin:0 0 25px}
+.tc-story-callout{border-left:3px solid #39d3a8;padding:16px 21px;background:#102b32;margin:34px 0;color:#cde6df;font-size:13px;line-height:1.8}
+.tc-story-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}.tc-story-tags span{font-size:11px;color:#aad6cd;background:#10302f;border:1px solid #2b5b55;border-radius:100px;padding:6px 12px}
+.tc-story-side{min-width:0}.tc-story-side-inner{position:sticky;top:100px}.tc-story-source-card{background:#101e30;border:1px solid #304459;border-radius:13px;padding:22px;margin-bottom:20px}
+.tc-story-side-label{font:700 10px JetBrains Mono,monospace;letter-spacing:.19em;color:#6ee3c1;text-transform:uppercase}
+.tc-story-source-name{color:#eef7ff;font:600 19px Cinzel,serif;margin:14px 0 7px;overflow-wrap:anywhere}
+.tc-story-source-note{font-size:12px;line-height:1.7;color:#90a6ba;margin:0 0 22px}
+.tc-story-open{display:flex;align-items:center;justify-content:space-between;gap:15px;text-decoration:none!important;color:#051c23!important;background:#54d9b4;border-radius:7px;padding:13px 14px;font-size:12px;font-weight:700}
+.tc-story-open:hover{background:#99f3d9}
+.tc-story-source-card .tc-story-open.tc-no-source{background:#213548;color:#b7c8d8!important;cursor:default}
+.tc-story-actions{display:flex;gap:10px;margin:18px 0 0}.tc-story-actions button{background:#0e2030;color:#cbe1e8;border:1px solid #30505a;border-radius:7px;padding:10px 14px;font-size:11px;cursor:pointer}.tc-story-actions button:hover{border-color:#69dcc2}
+.tc-story-rel{border-top:1px solid #274154;margin-top:65px;padding-top:35px}.tc-story-rel h2{font:600 27px Cinzel,serif;color:#f3f8ff;margin:0 0 23px}.tc-story-relgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.tc-story-relgrid a{padding:18px;border-radius:10px;border:1px solid #34485d;background:#101d2c;color:#ebf6ff;text-decoration:none;line-height:1.6;font-size:14px;font-weight:600;transition:border-color .25s}.tc-story-relgrid a:hover{border-color:#5fe1bc}.tc-story-relgrid small{display:block;color:#65dab8;text-transform:uppercase;font:600 9px JetBrains Mono,monospace;letter-spacing:.14em;margin-bottom:9px}
+.tc-story-notfound{max-width:760px;padding:90px 0}.tc-story-notfound h1{font-size:42px}.tc-story-notfound a{color:#61e6c0}
+@media(max-width:750px){.tc-story{padding:98px 0 60px}.tc-story-shell{width:calc(100% - 34px)}.tc-story-crumb{margin-bottom:28px}.tc-story-art{min-height:215px;padding:24px}.tc-story-content{grid-template-columns:1fr;margin-top:35px}.tc-story-side-inner{position:static}.tc-story-relgrid{grid-template-columns:1fr}.tc-story-rel{margin-top:30px}}
+</style>
+<style id="tc-article-v2-style">
+.tc-spacer{flex:1}.tc-story-language{margin-left:auto;display:inline-flex;align-items:center;padding:8px 13px;border-radius:8px;background:#2cbb98;color:#061923!important;font-size:12px;white-space:nowrap;text-decoration:none!important;letter-spacing:0}.tc-story-review{border-left:3px solid #d7a665;color:#d8c0a3;padding:15px 16px;background:#192536;margin:18px 0;font-size:13px;line-height:1.75}
+.tc-article-video{margin:27px 0}.tc-article-video p{font-size:12px;color:#98acbb;margin:10px 0}.tc-youtube-load{display:block;position:relative;width:100%;aspect-ratio:16/9;background:#05121b;border:1px solid #294151;overflow:hidden;border-radius:11px;cursor:pointer;padding:0}.tc-youtube-load img{width:100%;height:100%;object-fit:cover;opacity:.62}.tc-youtube-load span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#16bc91;color:#061b1b;white-space:nowrap;border-radius:999px;padding:14px 22px;font-size:13px;font-weight:700}.tc-video-frame{position:relative;width:100%;aspect-ratio:16/9}.tc-video-frame iframe{width:100%;height:100%;border:0;border-radius:10px}
+html[lang="bn"] .tc-story h1,html[lang="bn"] .tc-story h2,html[lang="bn"] .tc-story h3, html[lang="bn"] .tc-story-copy,html[lang="bn"] .tc-story-lead{font-family:Inter,"Noto Sans Bengali",sans-serif;letter-spacing:normal}.tc-story-copy p{overflow-wrap:anywhere}
+@media(max-width:570px){.tc-story-crumb{flex-wrap:wrap;gap:8px}.tc-story-language{margin-left:0}}
+</style></head>
 <body class="selection-emerald" style="background:#020617">
 <div class="main-theme-bg" id="main-view">
 <nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5" id="navbar">
@@ -559,121 +597,7 @@
 </div>
 </div>
 </nav>
-<main class="pt-28" id="news-page">
-<!-- BLOGS & NEWS SECTION -->
-<section class="py-24 bg-slate-900/50 relative" id="blogs">
-<div class="container mx-auto px-4">
-<div class="text-center mb-16 reveal-on-scroll">
-<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Blogs &amp; News</h2>
-<div class="h-1 w-24 bg-emerald-500 rounded-full mx-auto"></div>
-<p class="text-slate-400 mt-4">Stay updated with the latest news and achievements</p>
-</div>
-
-<div class="marquee-container w-full reveal-on-scroll">
-<div class="marquee-content gap-8 px-4">
-
-<!-- Muspana -->
-<a href="blog.html?post=muspana" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-yellow-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-yellow-500/80" data-lucide="zap"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-yellow-500 font-bold uppercase tracking-wider bg-yellow-500/10 px-2 py-1 rounded-full">Partnership</span>
-<span class="text-xs text-slate-500">Feb 18, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Sponsored by Energy Company Muspana</h3>
-<p class="text-slate-400 text-sm line-clamp-3">Bridging the gap between prototype and reality, TriChokro has secured sponsorship from Muspana...</p>
-</div>
-</a>
-
-<!-- SOFE -->
-<a href="blog.html?post=sofe" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-emerald-500/20 via-blue-500/10 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-emerald-400/80" data-lucide="trophy"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-emerald-400 font-bold uppercase tracking-wider bg-emerald-500/10 px-2 py-1 rounded-full">Champion</span>
-<span class="text-xs text-slate-500">Nov 8, 2025</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">TriChokro Wins SOfE Final 2025</h3>
-<p class="text-slate-400 text-sm line-clamp-3">A.A.M. Rownak Shahriar Ruhan claimed the championship title representing Bangladesh...</p>
-</div>
-</a>
-
-<!-- UIHP -->
-<a href="blog.html?post=uihp" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-blue-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-blue-400/80" data-lucide="award"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-blue-400 font-bold uppercase tracking-wider bg-blue-500/10 px-2 py-1 rounded-full">Grant</span>
-<span class="text-xs text-slate-500">Jan 10, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Victory at UIHP: 80,000 BDT Grant</h3>
-<p class="text-slate-400 text-sm line-clamp-3">TriChokro continues its winning streak with another major funding award...</p>
-</div>
-</a>
-
-<!-- FFVC -->
-<a href="blog.html?post=ffvc" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-purple-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-purple-400/80" data-lucide="globe"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-purple-400 font-bold uppercase tracking-wider bg-purple-500/10 px-2 py-1 rounded-full">Global</span>
-<span class="text-xs text-slate-500">Feb 10, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">3500 USD from First Flight Venture</h3>
-<p class="text-slate-400 text-sm line-clamp-3">TriChokro receives strategic funding from North Carolina's premier incubator...</p>
-</div>
-</a>
-
-<!-- CSTPD -->
-<a href="blog.html?post=cstpd" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-green-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-green-400/80" data-lucide="users"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-green-400 font-bold uppercase tracking-wider bg-green-500/10 px-2 py-1 rounded-full">Member</span>
-<span class="text-xs text-slate-500">Dec 15, 2025</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Official Membership: CSTPD Induction</h3>
-<p class="text-slate-400 text-sm line-clamp-3">TriChokro is now a member of the Center for Sustainable Technologies...</p>
-</div>
-</a>
-
-<!-- DUPLICATE FOR SCROLL -->
-<a href="blog.html?post=muspana" class="block w-[400px] flex-shrink-0 group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 uplift-on-hover">
-<div class="relative h-48 bg-gradient-to-br from-yellow-600/20 via-slate-900 to-slate-900 flex items-center justify-center overflow-hidden">
-<i class="w-24 h-24 text-yellow-500/80" data-lucide="zap"></i>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-4 mb-3">
-<span class="text-xs text-yellow-500 font-bold uppercase tracking-wider bg-yellow-500/10 px-2 py-1 rounded-full">Partnership</span>
-<span class="text-xs text-slate-500">Feb 18, 2026</span>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Sponsored by Energy Company Muspana</h3>
-<p class="text-slate-400 text-sm line-clamp-3">Bridging the gap between prototype and reality, TriChokro has secured sponsorship from Muspana...</p>
-</div>
-</a>
-
-</div>
-</div>
-
-<div class="text-center mt-12 mb-8 reveal-on-scroll">
-<a href="blog.html" class="inline-flex items-center gap-2 px-8 py-3 btn-deep-gradient text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-lg">
-View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
-</a>
-</div>
-</div>
-</section>
-
-</main>
+<main id="story-page" class="tc-story"><div class="tc-story-shell" id="story-view"><div class="tc-story-notfound"><p>Loading story…</p></div></div></main>
 <footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start justify-between">
 <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 md:mb-0">
@@ -732,5 +656,42 @@ View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
   else document.querySelectorAll('.reveal-on-scroll').forEach(el=>el.classList.add('revealed'));
 </script>
 
+
+<script src="news-data.js"></script>
+<script src="news-data-bn.js"></script>
+<script src="news-category-bn.js"></script>
+<script id="trichokro-news-article-render">
+(()=>{
+ const raw=window.TC_NEWS||[], translations=window.TC_NEWS_BN||{}, cats=window.TC_CATEGORIES_BN||{};
+ const bn=false, query=new URLSearchParams(location.search), id=query.get('post');
+ const record=raw.find(x=>x.id===id), root=document.getElementById('story-view'); if(!root)return;
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const localized=x=>bn&&translations[x.id]?{...x,...translations[x.id]}:x;
+ const category=c=>bn?(cats[c]||c):c;
+ const other=bn?'blog.html':'blog_bn.html', archive=bn?'blogs_bn.html':'blogs.html';
+ const lang=bn?'EN':'বাংলা', title=bn?'খবর খুঁজে পাওয়া যায়নি':'Story not found', shareLabel=bn?'শেয়ার':'Share', copyLabel=bn?'লিংক কপি':'Copy link';
+ if(!record){root.innerHTML=`<div class="tc-story-notfound"><p class="tc-story-eyebrow">TRICHOKRO / JOURNAL</p><h1>${title}</h1><a href="${archive}">${bn?'← সব খবর দেখুন':'← Browse all stories'}</a></div>`;return;}
+ const item=localized(record);
+ const related=[...new Set([...(record.related||[]),...raw.filter(x=>x.category===record.category&&x.id!==id).map(x=>x.id)])].map(i=>raw.find(x=>x.id===i)).filter(Boolean).slice(0,3).map(localized);
+ const flagged=record.category==='Source Review'||record.external;
+ const status=record.sourceStatus?(bn?'উৎস যাচাইয়ের অবস্থা: ':'Source status: ')+record.sourceStatus:'';
+ const sourceKind=record.category==='Archive'?(bn?'পূর্বপ্রকাশিত ওয়েবসাইটের খবর':'Earlier company website announcement'):(flagged?(bn?'ট্রাইচক্রোর নিশ্চিত তৃতীয় পক্ষের প্রচার নয়':'Not verified TriChokro coverage'):(bn?'উৎস-উল্লেখসহ সম্পাদকীয় সারসংক্ষেপ':'Source-attributed editorial summary'));
+ document.title=item.title+' | TriChokro Automotives';document.querySelector('meta[name="description"]')?.setAttribute('content',item.excerpt);
+ const languageLink=`<a class="tc-story-language" href="${other}?post=${encodeURIComponent(id)}" lang="${bn?'en':'bn'}" aria-label="${bn?'Read in English':'বাংলায় পড়ুন'}">${lang} ↔</a>`;
+ const playVideo=record.videoId?`<div class="tc-article-video"><button class="tc-youtube-load" type="button" data-video="${esc(record.videoId)}" aria-label="${bn?'ভিডিও চালু করুন':'Play YouTube interview'}"><img alt="" loading="lazy" src="https://i.ytimg.com/vi/${encodeURIComponent(record.videoId)}/hqdefault.jpg"><span>▶ ${bn?'সাক্ষাৎকার দেখুন':'Watch the interview'}</span></button><p>${bn?'ইউটিউবে ভিডিওটি এমবেড করার অনুমতি না থাকলে মূল উৎস লিংক ব্যবহার করুন।':'If the owner restricts embedding, open the original video using the source link.'}</p></div>`:'';
+ root.innerHTML=`<div class="tc-story-crumb"><a href="index.html">${bn?'হোম':'Home'}</a><span>／</span><a href="${archive}">${bn?'সংবাদ':'Newsroom'}</a><span>／</span><span>${esc(category(record.category))}</span><span class="tc-spacer"></span>${languageLink}</div>
+ <div class="tc-story-titlearea"><div class="tc-story-eyebrow"><span class="tc-story-dot"></span>${esc(category(record.category))} <span style="opacity:.5">/</span> ${esc(record.date)}</div><h1>${esc(item.title)}</h1><p class="tc-story-lead">${esc(item.excerpt)}</p><div class="tc-story-metadata"><span>${esc(record.date)}</span><span>${bn?'উৎস':'Source'}: ${esc(record.source)}</span><span>${bn?'ট্রাইচক্রো সম্পাদকীয়':'TriChokro editorial'}</span></div></div>
+ <div class="tc-story-art"><small>TC / JOURNAL • ${esc(record.category.toUpperCase())}</small><div class="tc-story-art-title">${esc(category(record.category))}<span style="color:#6ce5c0">.</span></div></div>
+ <div class="tc-story-content"><article class="tc-story-copy"><h2>${bn?'মূল প্রতিবেদন':'The story'}</h2>${item.body.map(p=>`<p>${esc(p)}</p>`).join('')}${playVideo}${flagged?`<div class="tc-story-callout"><strong>${bn?'সম্পাদকীয় নোট':'Editorial note'}:</strong> ${bn?'এই লিংককে ট্রাইচক্রোর নিশ্চিত তৃতীয় পক্ষের প্রচার হিসেবে উপস্থাপন করা হচ্ছে না।':'This source is not presented as confirmed TriChokro third-party coverage.'}</div>`:''}${status?`<div class="tc-story-review">${esc(status)}</div>`:''}<div class="tc-story-tags">${(record.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div></article>
+ <aside class="tc-story-side"><div class="tc-story-side-inner"><div class="tc-story-source-card"><div class="tc-story-side-label">${bn?'মূল উৎস':'ORIGINAL SOURCE'}</div><div class="tc-story-source-name">${esc(record.source)}</div><p class="tc-story-source-note">${esc(sourceKind)}. ${bn?'মূল লেখাটি হুবহু পুনঃপ্রকাশ করা হয়নি।':'This summary does not reproduce the source text in full.'}</p>${record.url?`<a class="tc-story-open" href="${esc(record.url)}" target="_blank" rel="noopener noreferrer">${bn?'মূল লিংক খুলুন':'Open original source'} <span aria-hidden="true">↗</span></a>`:`<span class="tc-story-open tc-no-source">${bn?'সাইটের পুরোনো সংবাদ':'Company archive item'}</span>`}</div>${record.metric?`<div class="tc-story-source-card"><div class="tc-story-side-label">${bn?'এক নজরে':'AT A GLANCE'}</div><div style="color:#5ee2be;font-size:27px;font-weight:600;margin:11px 0">${esc(record.metric)}</div><p class="tc-story-source-note">${esc(record.metricLabel||'')}</p></div>`:''}<div class="tc-story-actions"><button type="button" id="copy-story">${copyLabel} ↗</button><button type="button" id="share-story">${shareLabel} ↗</button></div></div></aside></div>
+ ${related.length?`<div class="tc-story-rel"><h2>${bn?'আরও পড়ুন':'Continue reading'}</h2><div class="tc-story-relgrid">${related.map(x=>`<a href="${bn?'blog_bn.html':'blog.html'}?post=${encodeURIComponent(x.id)}"><small>${esc(category(x.category))}</small>${esc(x.title)} <span aria-hidden="true">↗</span></a>`).join('')}</div></div>`:''}`;
+ document.querySelectorAll('.tc-youtube-load').forEach(btn=>btn.addEventListener('click',()=>{
+ const video=btn.dataset.video; if(!/^[A-Za-z0-9_-]{11}$/.test(video))return;
+ const box=document.createElement('div'); box.className='tc-video-frame';const iframe=document.createElement('iframe');iframe.src=`https://www.youtube-nocookie.com/embed/${video}?autoplay=1&rel=0`;iframe.title=bn?'ইউটিউব সাক্ষাৎকার':'YouTube interview';iframe.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';iframe.referrerPolicy='strict-origin-when-cross-origin';iframe.allowFullscreen=true;box.append(iframe);btn.replaceWith(box);
+ }));
+ document.getElementById('copy-story')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);document.getElementById('copy-story').textContent=bn?'লিংক কপি হয়েছে ✓':'Link copied ✓';}catch(e){window.prompt('Copy link',location.href)}});
+ document.getElementById('share-story')?.addEventListener('click',async()=>{if(navigator.share){try{await navigator.share({title:item.title,url:location.href});}catch(e){}}else{try{await navigator.clipboard.writeText(location.href);document.getElementById('share-story').textContent=bn?'লিংক কপি হয়েছে ✓':'Link copied ✓';}catch(e){window.prompt('Copy link',location.href)}}});
+})();
+</script>
 </body>
 </html>

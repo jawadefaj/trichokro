@@ -1,581 +1,697 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ইনসাইটস | ত্রিচক্র অটোমোবাইল</title>
-    <!-- Modern Typography with Bengali Support -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-deep: #020617;
-            --bg-surface: #0a0f29;
-            --bg-card: rgba(15, 23, 42, 0.7);
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --secondary: #6366f1;
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --nav-height: 80px;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="TriChokro newsroom: Bangkok Business Challenge award coverage, electric emergency mobility, university innovation and engineering stories, with linked original sources." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.trichokro.com/blog_bn.html" property="og:url"/>
+<meta content="TriChokro Automotives - Electric TriWheeler R&amp;D" property="og:title"/>
+<meta content="Latest TriChokro Automotives stories, recognitions, funding and engineering updates." property="og:description"/>
+<meta content="https://www.trichokro.com/src/assets/og-image.jpg" property="og:image"/>
+<meta content="summary_large_image" property="twitter:card"/>
+<meta content="https://www.trichokro.com/" property="twitter:url"/>
+<meta content="TriChokro Automotives - Electric TriWheeler R&amp;D" property="twitter:title"/>
+<meta content="Latest TriChokro Automotives stories, recognitions, funding and engineering updates." property="twitter:description"/>
+<meta content="https://www.trichokro.com/src/assets/og-image.jpg" property="twitter:image"/>
+<meta content="#020617" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<link href="src/assets/logo_icon.webp" rel="icon"/>
+<title>ট্রাইচক্রো সংবাদ | TriChokro Automotives</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons & Libraries -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="cool_animations.js"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a192f',       // Deep Navy for Pathfinder
+                            light: '#112240',      // Lighter Navy
+                            lighter: '#233554',    // Even lighter
+                            green: '#64ffda',      // Neon Green accent
+                            greenDim: 'rgba(100, 255, 218, 0.1)',
+                            text: '#ccd6f6',       // Light gray text
+                            heading: '#e6f1ff',    // White heading text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Roboto', 'sans-serif'],
+                        display: ['Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Cormorant Garamond', 'serif'], // Added for Founder Page
+                    },
+                    animation: {
+                        'spin-slow': 'spin 25s linear infinite',
+                        'float': 'float 8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
         }
-
-        [data-theme="light"] {
-            --bg-deep: #f8fafc;
-            --bg-surface: #f1f5f9;
-            --bg-card: rgba(255, 255, 255, 0.9);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --glass-border: rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Hind Siliguri', sans-serif; /* Bengali Font */
+    </script>
+<style>
+        /* --- MAIN GLOBAL STYLES --- */
+        /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
+        body { 
+            cursor: default; 
+            overflow-x: hidden; 
+            background-color: #020617; 
+            font-family: 'Inter', sans-serif; 
+            color: #e2e8f0; 
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a, button, .interactive, input, .group { cursor: pointer; }
+        
+        .main-theme-bg {
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #022c22);
+            background-size: 400% 400%;
+            animation: gradient-flow 30s ease infinite;
         }
 
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
+        body.loading { overflow: hidden; height: 100vh; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
+        a, button, .interactive, input, .group { cursor: pointer; }
+        ::-webkit-scrollbar { width: 14px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 7px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.6), inset 0 0 10px rgba(16, 185, 129, 0.3); }
+        ::-webkit-scrollbar-thumb:hover { box-shadow: 0 0 20px rgba(16, 185, 129, 0.9), inset 0 0 15px rgba(16, 185, 129, 0.5); }
+
+        /* Animations */
+        @keyframes gradient-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes float-subtle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        @keyframes float-slow { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(3deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+        @keyframes float-medium { 0% { transform: translate(0px, 0px) rotate(0deg); } 33% { transform: translate(20px, -30px) rotate(20deg); } 66% { transform: translate(-10px, 10px) rotate(-5deg); } 100% { transform: translate(0px, 0px) rotate(0deg); } }
+        @keyframes float-upward { 0% { transform: translateY(100vh) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-100px) scale(1); opacity: 0; } }
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spin-continuous { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes neon-pulse { 0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); } 50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; } }
+        @keyframes drive-by { 0% { transform: translateX(-100vw) skewX(-10deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(100vw) skewX(-10deg); opacity: 0; } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); } 50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); } }
+        @keyframes slide-in-left { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slide-in-right { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* Random Floating Animations for Footer Links */
+        @keyframes float-random-1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(3px, -5px) rotate(2deg); }
+            50% { transform: translate(-2px, -8px) rotate(-1deg); }
+            75% { transform: translate(4px, -3px) rotate(1deg); }
+        }
+        @keyframes float-random-2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-4px, -6px) rotate(-2deg); }
+            50% { transform: translate(5px, -4px) rotate(2deg); }
+            75% { transform: translate(-3px, -7px) rotate(-1deg); }
+        }
+        @keyframes float-random-3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(2px, -7px) rotate(1deg); }
+            50% { transform: translate(-5px, -3px) rotate(-2deg); }
+            75% { transform: translate(3px, -6px) rotate(1deg); }
+        }
+        @keyframes float-random-4 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-3px, -4px) rotate(-1deg); }
+            50% { transform: translate(4px, -8px) rotate(2deg); }
+            75% { transform: translate(-2px, -5px) rotate(-1deg); }
+        }
+        
+        .float-link-1 { animation: float-random-1 4s ease-in-out infinite; }
+        .float-link-2 { animation: float-random-2 5s ease-in-out infinite; }
+        .float-link-3 { animation: float-random-3 4.5s ease-in-out infinite; }
+        .float-link-4 { animation: float-random-4 5.5s ease-in-out infinite; }
+
+        .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
+        .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+        .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+        .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
+        .animate-neon-pulse { animation: neon-pulse 3s infinite ease-in-out; }
+        .animate-shimmer { animation: shimmer 2s infinite; }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-slide-down { animation: slide-down 0.6s ease-out; }
+        .animate-scale-in { animation: scale-in 0.5s ease-out; }
+        .animate-rotate-center { animation: rotate-center 4s linear infinite; }
+        .animate-border-glow { animation: border-glow 2.5s ease-in-out infinite; }
+
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
+
+        .bg-gradient-animate { background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8), rgba(6, 78, 59, 0.4)); background-size: 200% 200%; animation: gradient-flow 8s ease infinite; }
+        .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out, box-shadow 0.3s ease; }
+        .uplift-on-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .uplift-on-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15); }
+        
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.webp'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.webp'); background-repeat: no-repeat; background-position: center; background-size: 85%; opacity: 0.5; pointer-events: none; z-index: 1; mix-blend-mode: overlay; }
+
+        #loader { position: fixed; inset: 0; background: #020617; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-in-out; }
+        .loader-text { font-family: 'JetBrains Mono', monospace; }
+        #emoji-container { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .floating-emoji { position: absolute; bottom: -50px; font-size: 24px; opacity: 0; animation: float-upward linear forwards; }
+        
+        #speed-overlay { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(12px); z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.1s ease; overflow: hidden; }
+        #speed-overlay.active { opacity: 1; pointer-events: all; }
+        .speed-lines { position: absolute; inset: 0; background: repeating-linear-gradient( 90deg, transparent, transparent 50px, rgba(16, 185, 129, 0.1) 50px, rgba(16, 185, 129, 0.1) 52px ); animation: rush 0.1s linear infinite; }
+        .speedy-car { position: absolute; bottom: 20%; left: -300px; width: 300px; color: #10b981; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5)); opacity: 0; }
+        #speed-overlay.active .speedy-car { animation: drive-by 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        @keyframes rush { from { transform: translateX(0); } to { transform: translateX(-100px); } }
+        
+        #ai-widget { position: fixed; bottom: 30px; right: 30px; z-index: 9998; display: flex; flex-direction: column; align-items: flex-end; gap: 15px; }
+        
+        /* Social Media Widgets */
+        #social-widgets { position: fixed; bottom: 30px; left: 30px; z-index: 9998; display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
+        .widget-btn { position: relative; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); overflow: hidden; cursor: pointer; }
+        .widget-btn::before { content: ''; position: absolute; inset: 0; border-radius: 50%; opacity: 0; transition: opacity 0.3s ease; }
+        .widget-btn:hover { transform: scale(1.1) translateY(-3px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); }
+        .widget-btn:hover::before { opacity: 0.2; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); }
+        .widget-btn i { z-index: 1; transition: transform 0.3s ease; }
+        .widget-btn:hover i { transform: scale(1.15) rotate(5deg); }
+        
+        #blog-widget { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        #blog-widget:hover { box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6); }
+        
+        #facebook-widget { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        #facebook-widget:hover { box-shadow: 0 8px 30px rgba(24, 119, 242, 0.6); }
+        
+        .widget-tooltip { position: absolute; left: 70px; top: 50%; transform: translateY(-50%); background: rgba(15, 23, 42, 0.95); color: white; padding: 8px 16px; border-radius: 8px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; border: 1px solid rgba(16, 185, 129, 0.3); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+        .widget-btn:hover .widget-tooltip { opacity: 1; transform: translateY(-50%) translateX(5px); }
+        
+        @media (max-width: 768px) {
+            #social-widgets { bottom: 100px; left: 20px; }
+            .widget-btn { width: 48px; height: 48px; }
+            .widget-tooltip { display: none; }
+        }
+        #ai-chat-window { width: 350px; height: 500px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; overflow: hidden; transform: translateY(20px); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        #ai-chat-window.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+        .chat-message { margin-bottom: 10px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; padding: 10px 14px; border-radius: 12px; word-wrap: break-word; }
+        .chat-message.ai { background: rgba(16, 185, 129, 0.1); color: #e2e8f0; border-bottom-left-radius: 2px; align-self: flex-start; border-left: 2px solid #10b981; }
+        .chat-message.user { background: #10b981; color: #020617; border-bottom-right-radius: 2px; align-self: flex-end; font-weight: 500; }
+        .typing-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        
+        .sparkle-btn { position: relative; overflow: hidden; }
+        .sparkle-btn::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); transform: rotate(45deg); animation: shine 3s infinite; }
+        @keyframes shine { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
+        .btn-deep-gradient { background-image: linear-gradient(to right, #065f46, #34d399); transition: all 0.3s ease; }
+        .btn-deep-gradient:hover { background-image: linear-gradient(to right, #047857, #6ee7b7); }
+
+        .back-to-top-btn {
+            position: relative;
+            transition: all 0.3s ease;
+            animation: back-to-top-glow 3s ease-in-out infinite;
+        }
+        @keyframes back-to-top-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.6), 0 0 35px rgba(16, 185, 129, 0.4); }
+        }
+        .back-to-top-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.8), 0 0 50px rgba(16, 185, 129, 0.5);
+        }
+        .back-to-top-btn i {
+            transition: transform 0.3s ease;
+        }
+        .back-to-top-btn:hover i {
+            transform: translateY(-5px) rotate(15deg);
         }
 
-        /* --- BACKGROUND PARTICLES --- */
-        .emoji-particle {
-            position: fixed;
-            pointer-events: none;
-            z-index: -1;
-            font-size: 2rem;
-            filter: blur(4px);
-            opacity: 0.12;
-            user-select: none;
+        /* Marquee Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-
-        .ambient-glow {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--accent-glow) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -2;
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
-
-        .noise-overlay {
-            position: fixed;
-            inset: 0;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 999;
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            height: var(--nav-height);
-            width: 100%;
-            position: fixed;
-            top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            backdrop-filter: blur(25px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
-            background: rgba(2, 6, 23, 0.85);
-        }
-
-        .logo {
-            font-family: 'Outfit', sans-serif; /* Maintain English for Brand Name */
-            font-weight: 900;
-            font-size: 1.6rem;
-            letter-spacing: -1.5px;
-            color: var(--text-main);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo span { color: var(--accent); }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .btn-ui {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            padding: 10px 22px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
+        .marquee-content {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            animation: scroll 30s linear infinite;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
         }
 
-        .btn-ui:hover {
-            background: var(--glass-border);
-            transform: translateY(-2px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        /* ============================================
+           COMPREHENSIVE MOBILE & DESKTOP OPTIMIZATION
+           ============================================ */
+
+        /* 1. Enhanced Global Styles with Mobile Support */
+        body { 
+            cursor: default; 
+            overflow-x: hidden; 
+            background-color: #020617; 
+            font-family: 'Inter', sans-serif; 
+            color: #e2e8f0; 
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- HERO --- */
-        .container {
-            max-width: 1200px;
-            margin: calc(var(--nav-height) + 40px) auto 100px;
-            padding: 0 24px;
+        /* 2. Add NEW ANIMATIONS for more motion (keep all existing ones) */
+        @keyframes shimmer { 
+            0% { background-position: -1000px 0; } 
+            100% { background-position: 1000px 0; } 
         }
-
-        .hero-section {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 40px;
-            align-items: center;
-            margin-bottom: 100px;
+        @keyframes glow-pulse { 
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3)); } 
+            50% { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.7)); } 
         }
-
-        h1 {
-            font-family: 'Hind Siliguri', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-
-        .hero-illustration {
-            width: 100%;
-            max-width: 450px;
-            filter: drop-shadow(0 0 40px var(--accent-glow));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        /* --- BLOG GRID --- */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 30px;
-        }
-
-        .post-card {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .post-card:hover {
-            transform: translateY(-12px) scale(1.01);
-            border-color: var(--accent);
-            background: rgba(15, 23, 42, 0.9);
-            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6);
-        }
-
-        .card-image-wrap {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background: var(--bg-surface);
-        }
-
-        .card-image-wrap img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 0.85;
-        }
-
-        .post-card:hover .card-image-wrap img {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        .card-content { padding: 28px; flex-grow: 1; display: flex; flex-direction: column; }
-
-        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .tag {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent);
-            background: rgba(56, 189, 248, 0.1);
-            padding: 6px 14px;
-            border-radius: 99px;
-            font-weight: 700;
-        }
-
-        .post-card h3 {
-            font-family: 'Hind Siliguri', sans-serif;
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-            line-height: 1.3;
-            letter-spacing: 0;
-            font-weight: 600;
-        }
-
-        .post-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 24px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-footer {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        /* --- POST VIEW --- */
-        .hidden { display: none !important; }
-
-        #postView {
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
+        @keyframes slide-down {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .post-content-body {
-            font-size: 1.2rem;
-            line-height: 1.9;
-            color: var(--text-main);
+        @keyframes scale-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes rotate-center {
+            0% { transform: rotateZ(0deg); }
+            50% { transform: rotateZ(180deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+        @keyframes border-glow {
+            0%, 100% { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 5px rgba(16, 185, 129, 0.2); }
+            50% { border-color: rgba(16, 185, 129, 0.8); box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
         }
 
-        .post-content-body h2 {
-            font-family: 'Hind Siliguri', sans-serif;
-            margin: 40px 0 20px;
-            color: var(--accent);
-            font-weight: 700;
+        /* 3. Animation Classes */
+        .animate-shimmer { animation: shimmer 2s infinite; }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-slide-down { animation: slide-down 0.6s ease-out; }
+        .animate-scale-in { animation: scale-in 0.5s ease-out; }
+        .animate-rotate-center { animation: rotate-center 4s linear infinite; }
+        .animate-border-glow { animation: border-glow 2.5s ease-in-out infinite; }
+
+        /* 4. Mobile Optimizations */
+        @media (max-width: 768px) {
+            /* Disable heavy animations on mobile for performance */
+            .tilt-card { transform-style: flat !important; }
+            .uplift-on-hover:hover { transform: scale(1.02) !important; }
+            
+            /* Simplify animations on mobile */
+            .animate-float-medium { animation: float-medium 8s ease-in-out infinite; }
+            .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+            
+            /* Touch-friendly spacing */
+            button, a, .interactive { 
+                min-height: 44px; 
+                min-width: 44px;
+                padding: 12px 16px;
+            }
+            
+            /* Reduce navbar padding on mobile */
+            nav { padding: 12px 0 !important; }
+            nav .max-w-7xl { padding: 0 12px !important; }
+            
+            /* Mobile-friendly text sizes */
+            h1 { font-size: 2rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            
+            /* Disable complex transforms */
+            #hero-grid { opacity: 0.03 !important; }
+            .watermark-logo { opacity: 0.3 !important; z-index: -1 !important; pointer-events: none !important; }
+            
+            /* Hide mouse-only elements */
+            #cursor-gradient { display: none !important; }
+            
+            /* Improve scroll performance */
+            * { will-change: auto; }
+            [data-animate] { will-change: opacity; }
         }
 
-        .featured-image {
+        /* 5. Desktop Enhanced Animations and Interactions */
+        @media (min-width: 769px) {
+            /* Enable full animations on desktop */
+            .card { animation: scale-in 0.6s ease-out; }
+            .interactive:hover { animation: glow-pulse 0.6s ease-in-out; }
+            
+            /* Smooth transitions for desktop */
+            * { transition: background-color 0.3s ease; }
+            
+            /* Enhanced hover states */
+            a:hover, button:hover { transform: translateY(-2px); }
+        }
+
+        /* 6. Touch-Friendly Interactive Elements */
+        .interactive, [onclick], button, a {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
+            -webkit-user-select: none;
+            padding: min(0.5rem, 4vw);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .interactive:active {
+            transform: scale(0.98);
+            opacity: 0.8;
+        }
+
+        /* 7. Responsive Container Optimizations */
+        .container {
+            padding: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .container { padding: 24px; }
+        }
+
+        @media (min-width: 1024px) {
+            .container { padding: 32px; }
+        }
+
+        /* 8. Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* 9. Enhanced Loading Performance */
+        img {
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        video {
+            will-change: transform;
+        }
+
+        /* 10. Mobile Navigation Improvements */
+        @media (max-width: 768px) {
+            #mobile-menu {
+                max-height: 100vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            #mobile-menu a {
+                display: block;
+                padding: 16px;
+                min-height: 48px;
+                border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            }
+        }
+
+        /* 11. Improved Scrolling Behavior */
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* 12. Better Touch States for Buttons */
+        @media (hover: none) and (pointer: coarse) {
+            /* Mobile-specific touch states */
+            button:active, a:active, .interactive:active {
+                background-color: rgba(16, 185, 129, 0.2);
+                transform: scale(0.97);
+            }
+        }
+
+        /* 13. Viewport Meta Optimization */
+        @viewport {
+            width: device-width;
+            zoom: 1;
+        }
+
+        /* 14. Additional Motion Effects */
+        .slide-up {
+            animation: slide-down 0.5s ease-out reverse;
+        }
+
+        .fade-in-slow {
+            animation: fade-in-up 1.2s ease-out;
+        }
+
+        .bounce-on-load {
+            animation: bounce-soft 1s ease-out;
+        }
+
+        .glow-on-hover:hover {
+            animation: glow-pulse 1s ease-in-out infinite;
+        }
+
+        /* New Cool Animations */
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            border-radius: 35px;
-            margin-bottom: 60px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            margin-top: 150px;
-            padding: 80px 0;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
-            background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.03));
+        .counter {
+            font-variant-numeric: tabular-nums;
+            display: inline-block;
         }
 
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* Glitch Effect */
+        .type-me { position: relative; }
+        .type-me.glitch-active::before,
+        .type-me.glitch-active::after {
+            content: "TriChokro"; /* Fallback */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        .type-me.glitch-active::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .type-me.glitch-active::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
 
-        @media (max-width: 950px) {
-            .hero-section { grid-template-columns: 1fr; text-align: center; }
-            .hero-text p { margin: 0 auto 30px; }
-            .hero-illustration { margin: 0 auto; }
-            .nav-links { display: none; }
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(20px, 9999px, 10px, 0); }
+            20% { clip: rect(60px, 9999px, 80px, 0); }
+            40% { clip: rect(30px, 9999px, 10px, 0); }
+            60% { clip: rect(80px, 9999px, 20px, 0); }
+            80% { clip: rect(10px, 9999px, 90px, 0); }
+            100% { clip: rect(50px, 9999px, 60px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(80px, 9999px, 10px, 0); }
+            20% { clip: rect(10px, 9999px, 90px, 0); }
+            40% { clip: rect(50px, 9999px, 20px, 0); }
+            60% { clip: rect(20px, 9999px, 60px, 0); }
+            80% { clip: rect(90px, 9999px, 10px, 0); }
+            100% { clip: rect(30px, 9999px, 50px, 0); }
+        }
+
+        /* Magnetic Button Transition */
+        .magnetic-btn {
+            transition: transform 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+            display: inline-block;
         }
     </style>
 <link rel="stylesheet" href="css/site-mobile.css"/>
 <script src="js/site-mobile.js" defer></script>
-</head>
-<body>
+<link rel="stylesheet" href="css/site-content-revisions.css">
 
-    <div class="noise-overlay"></div>
-    <div id="particle-container"></div>
-    <div class="ambient-glow"></div>
 
-    <nav>
-        <a href="#" class="logo" onclick="closePost(event)">TriChokro<span>Blogs</span></a>
-        
-        <div class="nav-links">
-            <a href="#" onclick="closePost(event)">হোম</a>
-            <a href="#blogList">সর্বশেষ খবর</a>
-            <a href="https://trichokro.index.htm">মূল সাইট</a>
-        </div>
+<style id="trichokro-story-styles">
+.tc-story{font-family:Inter,Roboto,sans-serif;background:#071020;min-height:90vh;padding:130px 0 100px;color:#e5edf6;overflow:hidden}
+.tc-story *{box-sizing:border-box}.tc-story a{cursor:pointer}
+.tc-story-shell{width:min(100% - 48px,1120px);margin:auto}
+.tc-story-crumb{font:600 11px JetBrains Mono,monospace;color:#87a1b4;letter-spacing:.09em;display:flex;align-items:center;gap:11px;margin-bottom:53px}
+.tc-story-crumb a{color:#68e9c5;text-decoration:none}.tc-story-crumb a:hover{text-decoration:underline}
+.tc-story-titlearea{max-width:945px}.tc-story-eyebrow{font:700 11px JetBrains Mono,monospace;color:#67e8c1;letter-spacing:.18em;text-transform:uppercase;display:flex;gap:13px;align-items:center}
+.tc-story-dot{height:7px;width:7px;background:#3edbb0;border-radius:50%;display:inline-block}
+.tc-story h1{font:600 clamp(34px,5.3vw,70px)/1.19 Cinzel,serif;letter-spacing:-.04em;color:#f4f7ff;margin:25px 0 23px}
+.tc-story-lead{font-size:clamp(16px,2vw,19px);line-height:1.85;color:#aab9cc;max-width:750px;margin:0 0 31px}
+.tc-story-metadata{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:#9aacbf;margin-bottom:37px}.tc-story-metadata span+span:before{content:'•';margin-right:12px;color:#49778b}
+.tc-story-art{min-height:290px;position:relative;border:1px solid #2c4454;border-radius:15px;overflow:hidden;background:radial-gradient(ellipse at 25% 55%,rgba(23,181,151,.22),transparent 50%),linear-gradient(125deg,#10263c,#091626 65%,#0a2230);display:flex;align-items:flex-end;padding:38px}
+.tc-story-art::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(107,209,204,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(107,209,204,.08) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(90deg,black,transparent)}
+.tc-story-art-title{position:relative;font:500 clamp(35px,6vw,83px)/1.15 Cinzel,serif;color:#f2fffb;text-transform:uppercase;letter-spacing:-.04em;max-width:850px;word-break:break-word;text-shadow:0 10px 50px #051323}
+.tc-story-art small{position:absolute;right:24px;top:24px;font:700 10px JetBrains Mono,monospace;letter-spacing:.16em;color:#92c1bb}
+.tc-story-content{display:grid;grid-template-columns:minmax(0,700px) minmax(230px,1fr);gap:clamp(30px,7vw,100px);margin-top:57px}
+.tc-story-copy{min-width:0}.tc-story-copy h2{font:600 24px Cinzel,serif;color:#f3f8ff;margin:0 0 23px}
+.tc-story-copy>p{color:#aebed1;font-size:15px;line-height:1.98;margin:0 0 25px}
+.tc-story-callout{border-left:3px solid #39d3a8;padding:16px 21px;background:#102b32;margin:34px 0;color:#cde6df;font-size:13px;line-height:1.8}
+.tc-story-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}.tc-story-tags span{font-size:11px;color:#aad6cd;background:#10302f;border:1px solid #2b5b55;border-radius:100px;padding:6px 12px}
+.tc-story-side{min-width:0}.tc-story-side-inner{position:sticky;top:100px}.tc-story-source-card{background:#101e30;border:1px solid #304459;border-radius:13px;padding:22px;margin-bottom:20px}
+.tc-story-side-label{font:700 10px JetBrains Mono,monospace;letter-spacing:.19em;color:#6ee3c1;text-transform:uppercase}
+.tc-story-source-name{color:#eef7ff;font:600 19px Cinzel,serif;margin:14px 0 7px;overflow-wrap:anywhere}
+.tc-story-source-note{font-size:12px;line-height:1.7;color:#90a6ba;margin:0 0 22px}
+.tc-story-open{display:flex;align-items:center;justify-content:space-between;gap:15px;text-decoration:none!important;color:#051c23!important;background:#54d9b4;border-radius:7px;padding:13px 14px;font-size:12px;font-weight:700}
+.tc-story-open:hover{background:#99f3d9}
+.tc-story-source-card .tc-story-open.tc-no-source{background:#213548;color:#b7c8d8!important;cursor:default}
+.tc-story-actions{display:flex;gap:10px;margin:18px 0 0}.tc-story-actions button{background:#0e2030;color:#cbe1e8;border:1px solid #30505a;border-radius:7px;padding:10px 14px;font-size:11px;cursor:pointer}.tc-story-actions button:hover{border-color:#69dcc2}
+.tc-story-rel{border-top:1px solid #274154;margin-top:65px;padding-top:35px}.tc-story-rel h2{font:600 27px Cinzel,serif;color:#f3f8ff;margin:0 0 23px}.tc-story-relgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.tc-story-relgrid a{padding:18px;border-radius:10px;border:1px solid #34485d;background:#101d2c;color:#ebf6ff;text-decoration:none;line-height:1.6;font-size:14px;font-weight:600;transition:border-color .25s}.tc-story-relgrid a:hover{border-color:#5fe1bc}.tc-story-relgrid small{display:block;color:#65dab8;text-transform:uppercase;font:600 9px JetBrains Mono,monospace;letter-spacing:.14em;margin-bottom:9px}
+.tc-story-notfound{max-width:760px;padding:90px 0}.tc-story-notfound h1{font-size:42px}.tc-story-notfound a{color:#61e6c0}
+@media(max-width:750px){.tc-story{padding:98px 0 60px}.tc-story-shell{width:calc(100% - 34px)}.tc-story-crumb{margin-bottom:28px}.tc-story-art{min-height:215px;padding:24px}.tc-story-content{grid-template-columns:1fr;margin-top:35px}.tc-story-side-inner{position:static}.tc-story-relgrid{grid-template-columns:1fr}.tc-story-rel{margin-top:30px}}
+</style>
+<style id="tc-article-v2-style">
+.tc-spacer{flex:1}.tc-story-language{margin-left:auto;display:inline-flex;align-items:center;padding:8px 13px;border-radius:8px;background:#2cbb98;color:#061923!important;font-size:12px;white-space:nowrap;text-decoration:none!important;letter-spacing:0}.tc-story-review{border-left:3px solid #d7a665;color:#d8c0a3;padding:15px 16px;background:#192536;margin:18px 0;font-size:13px;line-height:1.75}
+.tc-article-video{margin:27px 0}.tc-article-video p{font-size:12px;color:#98acbb;margin:10px 0}.tc-youtube-load{display:block;position:relative;width:100%;aspect-ratio:16/9;background:#05121b;border:1px solid #294151;overflow:hidden;border-radius:11px;cursor:pointer;padding:0}.tc-youtube-load img{width:100%;height:100%;object-fit:cover;opacity:.62}.tc-youtube-load span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#16bc91;color:#061b1b;white-space:nowrap;border-radius:999px;padding:14px 22px;font-size:13px;font-weight:700}.tc-video-frame{position:relative;width:100%;aspect-ratio:16/9}.tc-video-frame iframe{width:100%;height:100%;border:0;border-radius:10px}
+html[lang="bn"] .tc-story h1,html[lang="bn"] .tc-story h2,html[lang="bn"] .tc-story h3, html[lang="bn"] .tc-story-copy,html[lang="bn"] .tc-story-lead{font-family:Inter,"Noto Sans Bengali",sans-serif;letter-spacing:normal}.tc-story-copy p{overflow-wrap:anywhere}
+@media(max-width:570px){.tc-story-crumb{flex-wrap:wrap;gap:8px}.tc-story-language{margin-left:0}}
+</style></head>
+<body class="selection-emerald" style="background:#020617">
+<div class="main-theme-bg" id="main-view">
+<nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5" id="navbar">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+<img alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" src="src/assets/logo_icon.webp" decoding="async" width="1600" height="1600">
+<span class="tc-brand-wordmark"><span class="tc-brand-main">Tri<span class="text-emerald-400">Chokro</span></span><span class="tc-brand-sub"> Automotives</span></span>
+</div>
+<div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;"><a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#home" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#about" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#products" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="blogs_bn.html#blogs" style="animation-delay: 0.45s">NEWS</a>
+<a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="blogs.html" style="animation-delay: 0.55s"><i class="fas fa-globe"></i> EN</a> <a class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" href="contact.html?id=rownak" style="animation-delay: 0.6s"> CONTACTS </a></div>
+<div class="md:hidden">
+<button class="text-white hover:text-emerald-400 interactive" id="mobile-menu-btn"><i class="w-7 h-7" data-lucide="menu"></i></button>
+</div>
+</div>
+</div>
+<div class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate" id="mobile-menu">
+<div class="px-4 py-4 space-y-3 flex flex-col">
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#home">HOME</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#about">ABOUT US</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="blogs_bn.html#blogs">NEWS</a>
+<a class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="trambulance.html">TRAMBULANCE</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#products">PRODUCTS</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="contact.html?id=rownak">CONTACTS</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="blogs_bn.html">EN</a>
+</div>
+</div>
+</nav>
+<main id="story-page" class="tc-story"><div class="tc-story-shell" id="story-view"><div class="tc-story-notfound"><p>Loading story…</p></div></div></main>
+<footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start justify-between">
+<div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 md:mb-0">
+<!-- Updated Footer Logo -->
+<div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
+<img alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]" src="src/assets/logo_new.webp" decoding="async" loading="lazy" width="1600" height="1600">
+<span class="text-xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+</div>
+<div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
+<div class="relative">
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer float-link-1" href="#" onclick="toggleProductsMenu()">Products</a>
+<div class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg" id="products-menu">
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="trambulance.html">Trambulance</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="pathfinder.html">Pathfinder</a>
+</div>
+</div>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-2" href="founder.html">Contacts</a>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-3" href="privacy.html">Privacy</a>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-4" href="metadata.html">Meta Data</a>
+</div>
+</div>
+<div class="flex flex-col items-end space-y-4 mt-4 md:mt-0">
+<div class="flex space-x-4">
+<a aria-label="Connect with us on LinkedIn" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.linkedin.com/in/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.27 20.45H3.66V9h3.61v11.45zM5.46 7.42c-1.18 0-2.14-.95-2.14-2.13s.96-2.13 2.14-2.13 2.14.95 2.14 2.13-.96 2.13-2.14 2.13zM20.47 20.45h-3.61v-5.63c0-1.34-.48-2.26-1.68-2.26-1.12 0-1.78.75-2.07 1.48-.11.26-.14.63-.14 1v6.41h-3.61s.05-10.4 0-11.45h3.61v1.65c.48-.75 1.34-1.82 3.25-1.82 2.37 0 4.15 1.55 4.15 4.9v6.72z"></path>
+</svg>
+</a>
+<a aria-label="Follow us on Facebook" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.facebook.com/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
 
-        <div style="display: flex; gap: 12px;">
-            <button class="btn-ui" onclick="toggleTheme()" title="থিম পরিবর্তন">🌓</button>
-            <a href="https://trichokro.com/index_bn.html" class="btn-ui" style="background:var(--accent); color:var(--bg-deep); border:none;">হোম পেজ</a>
-             <a href="https://trichokro.com/blog.html" class="btn-ui" style="background:var(--accent); color:var(--bg-deep); border:none;">ইংরেজি</a>
-        </div>
-    </nav>
 
-    <div class="container">
-        
-        <!-- BLOG LIST VIEW -->
-        <div id="listView">
-            <section class="hero-section">
-                <div class="hero-text reveal">
-                    <div class="tag" style="display:inline-block; margin-bottom: 25px;">ত্রিচক্র ব্লগ</div>
-                    <h1>ব্লুপ্রিন্টের <span style="color:var(--accent)">বাইরে</span>।</h1>
-                    <p>গ্লোবাল ইঞ্জিনিয়ারিংয়ের বিজয়, আরবান মোবিলিটির নতুন উদ্ভাবন এবং বুয়েটে আমাদের যাত্রার দলিল।</p>
-                    <div style="display:flex; gap: 15px;">
-                        <button class="btn-ui" style="background:var(--accent); color:var(--bg-deep); border:none;">সাম্প্রতিক জয়</button>
-                        <button class="btn-ui">আমাদের পার্টনাররা</button>
-                    </div>
-                </div>
-                <div class="hero-illustration reveal" style="transition-delay: 0.2s">
-                    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M100 350 Q250 100 400 350" stroke="url(#grad1)" stroke-width="4" fill="none" opacity="0.6"/>
-                        <rect x="150" y="200" width="200" height="150" rx="30" fill="url(#grad1)" opacity="0.15" stroke="var(--accent)" stroke-width="2"/>
-                        <circle cx="250" cy="275" r="40" fill="url(#grad1)" />
-                        <rect x="235" y="210" width="30" height="130" rx="15" fill="#fff" opacity="0.2" />
-                        <!-- Cartoon Win Icon -->
-                        <path d="M220 180 L250 150 L280 180" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="220" cy="260" r="6" fill="#fff" />
-                        <circle cx="280" cy="260" r="6" fill="#fff" />
-                    </svg>
-                </div>
-            </section>
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+<p class="text-slate-600 text-sm">Developed by Ruhan &amp; Jules; All right reserved, TriChokro 2026</p>
+</div>
+</footer>
+</div>
 
-            <div class="blog-grid" id="blogList"></div>
-        </div>
+<script>
+  if(window.lucide?.createIcons) lucide.createIcons();
+  const nav=document.getElementById('navbar');
+  function updateNavbar(){ if (!nav) return; const scrolled=window.scrollY>20;nav.classList.toggle('bg-slate-900/90',scrolled);nav.classList.toggle('backdrop-blur-md',scrolled);nav.classList.toggle('shadow-lg',scrolled);nav.classList.toggle('bg-transparent',!scrolled); }
+  addEventListener('scroll',updateNavbar,{passive:true}); updateNavbar();
+  const menu=document.getElementById('mobile-menu');const menuBtn=document.getElementById('mobile-menu-btn');
+  menuBtn?.setAttribute('aria-expanded','false');
+  menuBtn?.addEventListener('click',()=>{const open=menu.classList.contains('max-h-0');menu.classList.toggle('max-h-0',!open);menu.classList.toggle('opacity-0',!open);menu.classList.toggle('max-h-96',open);menu.classList.toggle('opacity-100',open);menuBtn.setAttribute('aria-expanded',String(open));});
+  function toggleProductsMenu(){document.getElementById('products-menu')?.classList.toggle('hidden');}
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduced){const io=new IntersectionObserver((entries,obs)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');obs.unobserve(entry.target);}}),{threshold:.06});document.querySelectorAll('.reveal-on-scroll').forEach(el=>io.observe(el));}
+  else document.querySelectorAll('.reveal-on-scroll').forEach(el=>el.classList.add('revealed'));
+</script>
 
-        <!-- POST VIEW -->
-        <div id="postView" class="hidden">
-            <div id="postContent"></div>
-            <div style="margin-top: 80px; text-align: center;">
-                <button class="btn-ui" onclick="closePost(event)">← সব খবরে ফিরে যান</button>
-            </div>
-        </div>
 
-    </div>
-
-    <footer>
-        <div class="tag" style="margin-bottom: 20px;">অ্যাফিলিয়েশন</div>
-        <h2 style="font-family:'Outfit'; font-size: 1.8rem; margin-bottom: 20px;">CSTPD-এর সদস্য</h2>
-        <p style="color:var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-left:auto; margin-right:auto;">সেন্টার ফর সায়েন্স টেক পলিসি ডিপ্লোম্যাসিতে অবদান রাখছি</p>
-        <p>&copy; ২০২৬ ত্রিচক্র ইঞ্জিনিয়ারিং। হাই সায়েন্স • হাই ইমপ্যাক্ট</p>
-    </footer>
-
-    <script>
-        const posts = {
-            muspana: {
-                title: "এনার্জি কোম্পানি মুসপানার স্পন্সরশিপ পেল ত্রিচক্র",
-                excerpt: "প্রোটোটাইপ এবং বাস্তবতার ব্যবধান ঘুচিয়ে, ২০২৬ সালের মার্চে মালদ্বীপে অনুষ্ঠিতব্য SofE প্রতিযোগিতা এবং ব্র্যান্ডিং ত্বরান্বিত করতে মুসপানার স্পন্সরশিপ নিশ্চিত করেছে ত্রিচক্র।",
-                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=1200",
-                tags: ["পার্টনারশিপ", "সোলার", "ম্যানুফ্যাকচারিং"],
-                date: "১৮ ফেব্রুয়ারি, ২০২৬",
-                content: `
-                    <h2>২০২৬ সালের জন্য প্রস্তুতি</h2>
-                    <p>প্রোটোটাইপ এবং বাস্তবতার ব্যবধান ঘুচিয়ে, <strong>ত্রিচক্র</strong> আনুষ্ঠানিকভাবে <strong>মুসপানা</strong>-র স্পন্সরশিপ নিশ্চিত করেছে, যারা সোলার এবং ইলেকট্রিক ইন্ডাস্ট্রির এক অনন্য নাম।</p>
-                    <p>এই কৌশলগত সহযোগিতার মূল লক্ষ্য হলো মুসপানার গভীর ইন্ডাস্ট্রিয়াল অভিজ্ঞতা কাজে লাগিয়ে আমাদের সোলার ইন্টিগ্রেশন সিস্টেমগুলো অপ্টিমাইজ করা। তাদের ম্যানুফ্যাকচারিং পাইপলাইন ব্যবহারের মাধ্যমে, আমরা ২০২৬ সালে মাস প্রোডাকশনের টাইমলাইন উল্লেখযোগ্যভাবে এগিয়ে নিতে পারবো।</p>
-                    <p>একসাথে, আমরা ল্যাব-বেঞ্চ প্রোটোটাইপ থেকে রাস্তার উপযোগী সলিউশনের দিকে এগিয়ে যাচ্ছি।</p>
-                `
-            },
-            sofe: {
-                title: "বুয়েট থেকে ত্রিচক্রের SOfE ফাইনাল ২০২৫ জয়",
-                excerpt: "এ.এ.এম. রওনক শাহরিয়ার রুহান চ্যাম্পিয়নশিপ টাইটেল জিতেছেন এবং SOfE সাউথ এশিয়ান রিজিওন ২০২৫-এ বাংলাদেশের প্রতিনিধিত্ব করবেন।",
-                image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=1200",
-                tags: ["চ্যাম্পিয়ন", "SOfE", "বুয়েট"],
-                date: "৮ নভেম্বর, ২০২৫",
-                content: `
-                    <p>IMechE বাংলাদেশ আয়োজিত <strong>স্পিক আউট ফর ইঞ্জিনিয়ারিং (SOfE) বাংলাদেশ ফাইনাল ২০২৫</strong>-এ বুয়েটের শিক্ষার্থীদের অসামান্য ইঞ্জিনিয়ারিং প্রতিভা প্রদর্শিত হয়েছে।</p>
-                    <p>এ.এ.এম. রওনক শাহরিয়ার রুহান চ্যাম্পিয়নশিপ টাইটেল জিতেছেন এবং <strong>ত্রিচক্র</strong>-এর পক্ষে SOfE সাউথ এশিয়ান রিজিওন (SAR) ২০২৫-এ বাংলাদেশের প্রতিনিধিত্ব করবেন।</p>
-                    <h2>শ্রেষ্ঠত্বের ঐতিহ্য</h2>
-                    <p>এই অসাধারণ অর্জন অসামান্য ইঞ্জিনিয়ারিং কমিউনিকেটর তৈরিতে বুয়েটের ধারাবাহিক ঐতিহ্যেরই প্রতিফলন এবং বাংলাদেশে প্রযুক্তিগত উৎকর্ষের শীর্ষে প্রতিষ্ঠানটির অবস্থানকে আরও সুদৃঢ় করে।</p>
-                    <p>রওনকের প্রেজেন্টেশনে গভীর টেকনিক্যাল বিশ্লেষণের সাথে ছিল চমৎকার কমিউনিকেশন দক্ষতা—যা আধুনিক ইঞ্জিনিয়ারের জন্য অপরিহার্য, বিশেষ করে যখন আমরা ত্রিচক্রের ইমপ্যাক্ট বাড়াতে কাজ করছি।</p>
-                `
-            },
-            uihp: {
-                title: "UIHP-তে বিজয়: ৮০,০০০ টাকার গ্রান্ট নিশ্চিত",
-                excerpt: "ত্রিচক্র তাদের বিজয়ের ধারা অব্যাহত রেখেছে এবং ইলেকট্রিক ভেহিকেল আর-এন্ড-ডি এর জন্য আরও একটি বড় ফান্ডিং অ্যাওয়ার্ড জিতেছে।",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
-                tags: ["বিজয়", "গ্রান্ট", "UIHP"],
-                date: "১০ জানুয়ারি, ২০২৬",
-                content: `
-                    <h2>প্রোটোটাইপের শক্তিবৃদ্ধি</h2>
-                    <p>আমরা অত্যন্ত আনন্দের সাথে জানাচ্ছি যে <strong>ত্রিচক্র</strong> আবারও একটি গুরুত্বপূর্ণ মাইলফলক স্পর্শ করেছে—UIHP প্রতিযোগিতায় ৮০,০০০ টাকা জিতেছে।</p>
-                    <p>এই গ্রান্ট সরাসরি আমাদের সাস্টেইনেবল আরবান মোবিলিটি গবেষণায় কাজে লাগানো হবে। বিশেষ করে, আমরা আমাদের ব্যাটারি প্যাকের এনার্জি ডেনসিটি বাড়ানো এবং আমাদের ৩-চাকার প্ল্যাটফর্মগুলোর জন্য আরও ভালো স্ট্রাকচারাল সেফটি ইমপ্লিমেন্ট করার দিকে নজর দিচ্ছি।</p>
-                    <p>প্রতিটি বিজয় আমাদের একটি পরিচ্ছন্ন এবং আরও দক্ষ বাংলাদেশের কাছাকাছি নিয়ে যাচ্ছে।</p>
-                `
-            },
-            cstpd: {
-                title: "অফিসিয়াল মেম্বারশিপ: CSTPD ইন্ডাকশন",
-                excerpt: "ত্রিচক্র এখন সেন্টার ফর সাস্টেইনেবল টেকনোলজিস অ্যান্ড প্রফেশনাল ডেভেলপমেন্ট-এর সদস্য।",
-                image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
-                tags: ["সদস্য", "সাস্টেইনেবিলিটি", "CSTPD"],
-                date: "১৫ ডিসেম্বর, ২০২৫",
-                content: `
-                    <h2>প্রফেশনাল ডেভেলপমেন্ট</h2>
-                    <p><strong>সেন্টার ফর সাস্টেইনেবল টেকনোলজিস অ্যান্ড প্রফেশনাল ডেভেলপমেন্ট (CSTPD)</strong>-এ যোগদান আমাদের পেশাগত যাত্রায় একটি নতুন অধ্যায়।</p>
-                    <p>সদস্য হিসেবে, ত্রিচক্র পলিসি রিসার্চ এবং সাস্টেইনেবল ইনফ্রাস্ট্রাকচার ফ্রেমওয়ার্ক নিয়ে সহযোগিতা করবে। এই পার্টনারশিপ নিশ্চিত করে যে আমাদের ইঞ্জিনিয়ারিং সলিউশনগুলো সর্বোচ্চ প্রফেশনাল স্ট্যান্ডার্ড এবং দীর্ঘমেয়াদী পরিবেশগত লক্ষ্যের সাথে সামঞ্জস্যপূর্ণ।</p>
-                `
-            },
-            ffvc: {
-                title: "ফার্স্ট ফ্লাইট ভেঞ্চার থেকে ৩৫০০ ইউএসডি",
-                excerpt: "ত্রিচক্র নর্থ ক্যারোলিনার প্রিমিয়ার ইনকিউবেটর, ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার থেকে স্ট্র্যাটেজিক ফান্ডিং পেয়েছে।",
-                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
-                tags: ["গ্রান্ট", "গ্লোবাল"],
-                date: "১০ ফেব্রুয়ারি, ২০২৬",
-                content: `<h2>ইঞ্জিনিয়ারিং অ্যাট স্কেল</h2><p><strong>ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার (FFVC)</strong> থেকে ৩,৫০০ ডলারের গ্রান্ট নিশ্চিত করা আমাদের "হাই সায়েন্স" অ্যাপ্রোচের একটি স্বীকৃতি। এই ফান্ডিং প্রোডাকশন-রেডি পেলোডের জন্য আমাদের নিজস্ব BMS অপ্টিমাইজেশনে সহায়তা করবে।</p>`
-            }
-        };
-
-        // --- PARTICLE SYSTEM ---
-        const emojis = ['⚡', '🤖', '⚙️', '🔋', '🏆', '📈', '🚀'];
-        const container = document.getElementById('particle-container');
-        
-        function createParticle() {
-            const p = document.createElement('div');
-            p.className = 'emoji-particle';
-            p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.top = '110vh';
-            container.appendChild(p);
-
-            const duration = 18000 + Math.random() * 20000;
-            p.animate([
-                { transform: `translateY(0) rotate(0deg) scale(0.8)`, opacity: 0 },
-                { transform: `translateY(-60vh) rotate(180deg) scale(1.1)`, opacity: 0.12 },
-                { transform: `translateY(-120vh) rotate(360deg) scale(1)`, opacity: 0 }
-            ], { duration: duration, easing: 'linear' });
-
-            setTimeout(() => p.remove(), duration);
-        }
-        setInterval(createParticle, 4000);
-
-        // --- CORE UI LOGIC ---
-        function toggleTheme() {
-            document.body.dataset.theme = document.body.dataset.theme === 'light' ? '' : 'light';
-        }
-
-        document.addEventListener('mousemove', e => {
-            document.body.style.setProperty('--mx', e.clientX + 'px');
-            document.body.style.setProperty('--my', e.clientY + 'px');
-        });
-
-        const listContainer = document.getElementById('blogList');
-        // Sort posts or just render in order - here we ensure SOfE is prominent
-        Object.keys(posts).forEach((k, i) => {
-            const p = posts[k];
-            const card = document.createElement('div');
-            card.className = 'post-card reveal';
-            card.style.transitionDelay = `${i * 0.1}s`;
-            card.onclick = () => openPost(k);
-            card.innerHTML = `
-                <div class="card-image-wrap"><img src="${p.image}" decoding="async"></div>
-                <div class="card-content">
-                    <div class="tag-list">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-                    <h3>${p.title}</h3>
-                    <p>${p.excerpt}</p>
-                    <div class="card-footer"><span>${p.date}</span> <span style="color:var(--accent)">বিস্তারিত পড়ুন →</span></div>
-                </div>
-            `;
-            listContainer.appendChild(card);
-        });
-
-        function openPost(key) {
-            const post = posts[key];
-            const listView = document.getElementById('listView');
-            const postView = document.getElementById('postView');
-            listView.style.opacity = '0';
-            setTimeout(() => {
-                listView.classList.add('hidden');
-                postView.classList.remove('hidden');
-                window.scrollTo(0, 0);
-                document.getElementById('postContent').innerHTML = `
-                    <div style="text-align:center; margin-bottom:50px;">
-                        <span class="tag">${post.tags[0]}</span>
-                        <h1 style="margin-top:20px;">${post.title}</h1>
-                        <p style="color:var(--text-muted)">প্রজেক্ট মাইলফলক • প্রকাশিত ${post.date}</p>
-                    </div>
-                    <img src="${post.image}" class="featured-image" decoding="async">
-                    <div class="post-content-body">${post.content}</div>
-                `;
-            }, 400);
-            history.pushState({post: key}, '', `?post=${key}`);
-        }
-
-        function closePost(e) {
-            if(e) e.preventDefault();
-            const lv = document.getElementById('listView');
-            const pv = document.getElementById('postView');
-            pv.style.opacity = '0';
-            setTimeout(() => {
-                pv.classList.add('hidden'); pv.style.opacity = '1';
-                lv.classList.remove('hidden'); lv.style.opacity = '1';
-                window.scrollTo(0,0);
-            }, 300);
-            history.pushState({}, '', window.location.pathname);
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Check for URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        const postKey = urlParams.get('post');
-        if (postKey && posts[postKey]) {
-            openPost(postKey);
-        }
-    </script>
+<script src="news-data.js"></script>
+<script src="news-data-bn.js"></script>
+<script src="news-category-bn.js"></script>
+<script id="trichokro-news-article-render">
+(()=>{
+ const raw=window.TC_NEWS||[], translations=window.TC_NEWS_BN||{}, cats=window.TC_CATEGORIES_BN||{};
+ const bn=true, query=new URLSearchParams(location.search), id=query.get('post');
+ const record=raw.find(x=>x.id===id), root=document.getElementById('story-view'); if(!root)return;
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const localized=x=>bn&&translations[x.id]?{...x,...translations[x.id]}:x;
+ const category=c=>bn?(cats[c]||c):c;
+ const other=bn?'blog.html':'blog_bn.html', archive=bn?'blogs_bn.html':'blogs.html';
+ const lang=bn?'EN':'বাংলা', title=bn?'খবর খুঁজে পাওয়া যায়নি':'Story not found', shareLabel=bn?'শেয়ার':'Share', copyLabel=bn?'লিংক কপি':'Copy link';
+ if(!record){root.innerHTML=`<div class="tc-story-notfound"><p class="tc-story-eyebrow">TRICHOKRO / JOURNAL</p><h1>${title}</h1><a href="${archive}">${bn?'← সব খবর দেখুন':'← Browse all stories'}</a></div>`;return;}
+ const item=localized(record);
+ const related=[...new Set([...(record.related||[]),...raw.filter(x=>x.category===record.category&&x.id!==id).map(x=>x.id)])].map(i=>raw.find(x=>x.id===i)).filter(Boolean).slice(0,3).map(localized);
+ const flagged=record.category==='Source Review'||record.external;
+ const status=record.sourceStatus?(bn?'উৎস যাচাইয়ের অবস্থা: ':'Source status: ')+record.sourceStatus:'';
+ const sourceKind=record.category==='Archive'?(bn?'পূর্বপ্রকাশিত ওয়েবসাইটের খবর':'Earlier company website announcement'):(flagged?(bn?'ট্রাইচক্রোর নিশ্চিত তৃতীয় পক্ষের প্রচার নয়':'Not verified TriChokro coverage'):(bn?'উৎস-উল্লেখসহ সম্পাদকীয় সারসংক্ষেপ':'Source-attributed editorial summary'));
+ document.title=item.title+' | TriChokro Automotives';document.querySelector('meta[name="description"]')?.setAttribute('content',item.excerpt);
+ const languageLink=`<a class="tc-story-language" href="${other}?post=${encodeURIComponent(id)}" lang="${bn?'en':'bn'}" aria-label="${bn?'Read in English':'বাংলায় পড়ুন'}">${lang} ↔</a>`;
+ const playVideo=record.videoId?`<div class="tc-article-video"><button class="tc-youtube-load" type="button" data-video="${esc(record.videoId)}" aria-label="${bn?'ভিডিও চালু করুন':'Play YouTube interview'}"><img alt="" loading="lazy" src="https://i.ytimg.com/vi/${encodeURIComponent(record.videoId)}/hqdefault.jpg"><span>▶ ${bn?'সাক্ষাৎকার দেখুন':'Watch the interview'}</span></button><p>${bn?'ইউটিউবে ভিডিওটি এমবেড করার অনুমতি না থাকলে মূল উৎস লিংক ব্যবহার করুন।':'If the owner restricts embedding, open the original video using the source link.'}</p></div>`:'';
+ root.innerHTML=`<div class="tc-story-crumb"><a href="index.html">${bn?'হোম':'Home'}</a><span>／</span><a href="${archive}">${bn?'সংবাদ':'Newsroom'}</a><span>／</span><span>${esc(category(record.category))}</span><span class="tc-spacer"></span>${languageLink}</div>
+ <div class="tc-story-titlearea"><div class="tc-story-eyebrow"><span class="tc-story-dot"></span>${esc(category(record.category))} <span style="opacity:.5">/</span> ${esc(record.date)}</div><h1>${esc(item.title)}</h1><p class="tc-story-lead">${esc(item.excerpt)}</p><div class="tc-story-metadata"><span>${esc(record.date)}</span><span>${bn?'উৎস':'Source'}: ${esc(record.source)}</span><span>${bn?'ট্রাইচক্রো সম্পাদকীয়':'TriChokro editorial'}</span></div></div>
+ <div class="tc-story-art"><small>TC / JOURNAL • ${esc(record.category.toUpperCase())}</small><div class="tc-story-art-title">${esc(category(record.category))}<span style="color:#6ce5c0">.</span></div></div>
+ <div class="tc-story-content"><article class="tc-story-copy"><h2>${bn?'মূল প্রতিবেদন':'The story'}</h2>${item.body.map(p=>`<p>${esc(p)}</p>`).join('')}${playVideo}${flagged?`<div class="tc-story-callout"><strong>${bn?'সম্পাদকীয় নোট':'Editorial note'}:</strong> ${bn?'এই লিংককে ট্রাইচক্রোর নিশ্চিত তৃতীয় পক্ষের প্রচার হিসেবে উপস্থাপন করা হচ্ছে না।':'This source is not presented as confirmed TriChokro third-party coverage.'}</div>`:''}${status?`<div class="tc-story-review">${esc(status)}</div>`:''}<div class="tc-story-tags">${(record.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div></article>
+ <aside class="tc-story-side"><div class="tc-story-side-inner"><div class="tc-story-source-card"><div class="tc-story-side-label">${bn?'মূল উৎস':'ORIGINAL SOURCE'}</div><div class="tc-story-source-name">${esc(record.source)}</div><p class="tc-story-source-note">${esc(sourceKind)}. ${bn?'মূল লেখাটি হুবহু পুনঃপ্রকাশ করা হয়নি।':'This summary does not reproduce the source text in full.'}</p>${record.url?`<a class="tc-story-open" href="${esc(record.url)}" target="_blank" rel="noopener noreferrer">${bn?'মূল লিংক খুলুন':'Open original source'} <span aria-hidden="true">↗</span></a>`:`<span class="tc-story-open tc-no-source">${bn?'সাইটের পুরোনো সংবাদ':'Company archive item'}</span>`}</div>${record.metric?`<div class="tc-story-source-card"><div class="tc-story-side-label">${bn?'এক নজরে':'AT A GLANCE'}</div><div style="color:#5ee2be;font-size:27px;font-weight:600;margin:11px 0">${esc(record.metric)}</div><p class="tc-story-source-note">${esc(record.metricLabel||'')}</p></div>`:''}<div class="tc-story-actions"><button type="button" id="copy-story">${copyLabel} ↗</button><button type="button" id="share-story">${shareLabel} ↗</button></div></div></aside></div>
+ ${related.length?`<div class="tc-story-rel"><h2>${bn?'আরও পড়ুন':'Continue reading'}</h2><div class="tc-story-relgrid">${related.map(x=>`<a href="${bn?'blog_bn.html':'blog.html'}?post=${encodeURIComponent(x.id)}"><small>${esc(category(x.category))}</small>${esc(x.title)} <span aria-hidden="true">↗</span></a>`).join('')}</div></div>`:''}`;
+ document.querySelectorAll('.tc-youtube-load').forEach(btn=>btn.addEventListener('click',()=>{
+ const video=btn.dataset.video; if(!/^[A-Za-z0-9_-]{11}$/.test(video))return;
+ const box=document.createElement('div'); box.className='tc-video-frame';const iframe=document.createElement('iframe');iframe.src=`https://www.youtube-nocookie.com/embed/${video}?autoplay=1&rel=0`;iframe.title=bn?'ইউটিউব সাক্ষাৎকার':'YouTube interview';iframe.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';iframe.referrerPolicy='strict-origin-when-cross-origin';iframe.allowFullscreen=true;box.append(iframe);btn.replaceWith(box);
+ }));
+ document.getElementById('copy-story')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);document.getElementById('copy-story').textContent=bn?'লিংক কপি হয়েছে ✓':'Link copied ✓';}catch(e){window.prompt('Copy link',location.href)}});
+ document.getElementById('share-story')?.addEventListener('click',async()=>{if(navigator.share){try{await navigator.share({title:item.title,url:location.href});}catch(e){}}else{try{await navigator.clipboard.writeText(location.href);document.getElementById('share-story').textContent=bn?'লিংক কপি হয়েছে ✓':'Link copied ✓';}catch(e){window.prompt('Copy link',location.href)}}});
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="TriChokro newsroom: Bangkok Business Challenge award coverage, electric emergency mobility, university innovation and engineering stories, with linked original sources." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.trichokro.com/blogs.html" property="og:url"/>
+<meta content="TriChokro Automotives - Electric TriWheeler R&amp;D" property="og:title"/>
+<meta content="Latest TriChokro Automotives stories, recognitions, funding and engineering updates." property="og:description"/>
+<meta content="https://www.trichokro.com/src/assets/og-image.jpg" property="og:image"/>
+<meta content="summary_large_image" property="twitter:card"/>
+<meta content="https://www.trichokro.com/" property="twitter:url"/>
+<meta content="TriChokro Automotives - Electric TriWheeler R&amp;D" property="twitter:title"/>
+<meta content="Latest TriChokro Automotives stories, recognitions, funding and engineering updates." property="twitter:description"/>
+<meta content="https://www.trichokro.com/src/assets/og-image.jpg" property="twitter:image"/>
+<meta content="#020617" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<link href="src/assets/logo_icon.webp" rel="icon"/>
+<title>সংবাদ ও ব্লগ | ট্রাইচক্রো অটোমোটিভস</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons & Libraries -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="cool_animations.js"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a192f',       // Deep Navy for Pathfinder
+                            light: '#112240',      // Lighter Navy
+                            lighter: '#233554',    // Even lighter
+                            green: '#64ffda',      // Neon Green accent
+                            greenDim: 'rgba(100, 255, 218, 0.1)',
+                            text: '#ccd6f6',       // Light gray text
+                            heading: '#e6f1ff',    // White heading text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Roboto', 'sans-serif'],
+                        display: ['Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Cormorant Garamond', 'serif'], // Added for Founder Page
+                    },
+                    animation: {
+                        'spin-slow': 'spin 25s linear infinite',
+                        'float': 'float 8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* --- MAIN GLOBAL STYLES --- */
+        /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
+        body { 
+            cursor: default; 
+            overflow-x: hidden; 
+            background-color: #020617; 
+            font-family: 'Inter', sans-serif; 
+            color: #e2e8f0; 
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a, button, .interactive, input, .group { cursor: pointer; }
+        
+        .main-theme-bg {
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #022c22);
+            background-size: 400% 400%;
+            animation: gradient-flow 30s ease infinite;
+        }
+
+        body.loading { overflow: hidden; height: 100vh; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; }
+        a, button, .interactive, input, .group { cursor: pointer; }
+        ::-webkit-scrollbar { width: 14px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 7px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.6), inset 0 0 10px rgba(16, 185, 129, 0.3); }
+        ::-webkit-scrollbar-thumb:hover { box-shadow: 0 0 20px rgba(16, 185, 129, 0.9), inset 0 0 15px rgba(16, 185, 129, 0.5); }
+
+        /* Animations */
+        @keyframes gradient-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes float-subtle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        @keyframes float-slow { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(3deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+        @keyframes float-medium { 0% { transform: translate(0px, 0px) rotate(0deg); } 33% { transform: translate(20px, -30px) rotate(20deg); } 66% { transform: translate(-10px, 10px) rotate(-5deg); } 100% { transform: translate(0px, 0px) rotate(0deg); } }
+        @keyframes float-upward { 0% { transform: translateY(100vh) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-100px) scale(1); opacity: 0; } }
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spin-continuous { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes neon-pulse { 0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); } 50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; } }
+        @keyframes drive-by { 0% { transform: translateX(-100vw) skewX(-10deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(100vw) skewX(-10deg); opacity: 0; } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); } 50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); } }
+        @keyframes slide-in-left { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slide-in-right { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* Random Floating Animations for Footer Links */
+        @keyframes float-random-1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(3px, -5px) rotate(2deg); }
+            50% { transform: translate(-2px, -8px) rotate(-1deg); }
+            75% { transform: translate(4px, -3px) rotate(1deg); }
+        }
+        @keyframes float-random-2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-4px, -6px) rotate(-2deg); }
+            50% { transform: translate(5px, -4px) rotate(2deg); }
+            75% { transform: translate(-3px, -7px) rotate(-1deg); }
+        }
+        @keyframes float-random-3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(2px, -7px) rotate(1deg); }
+            50% { transform: translate(-5px, -3px) rotate(-2deg); }
+            75% { transform: translate(3px, -6px) rotate(1deg); }
+        }
+        @keyframes float-random-4 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-3px, -4px) rotate(-1deg); }
+            50% { transform: translate(4px, -8px) rotate(2deg); }
+            75% { transform: translate(-2px, -5px) rotate(-1deg); }
+        }
+        
+        .float-link-1 { animation: float-random-1 4s ease-in-out infinite; }
+        .float-link-2 { animation: float-random-2 5s ease-in-out infinite; }
+        .float-link-3 { animation: float-random-3 4.5s ease-in-out infinite; }
+        .float-link-4 { animation: float-random-4 5.5s ease-in-out infinite; }
+
+        .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
+        .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+        .animate-float-medium { animation: float-medium 10s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+        .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
+        .animate-neon-pulse { animation: neon-pulse 3s infinite ease-in-out; }
+        .animate-shimmer { animation: shimmer 2s infinite; }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-slide-down { animation: slide-down 0.6s ease-out; }
+        .animate-scale-in { animation: scale-in 0.5s ease-out; }
+        .animate-rotate-center { animation: rotate-center 4s linear infinite; }
+        .animate-border-glow { animation: border-glow 2.5s ease-in-out infinite; }
+
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
+
+        .bg-gradient-animate { background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8), rgba(6, 78, 59, 0.4)); background-size: 200% 200%; animation: gradient-flow 8s ease infinite; }
+        .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out, box-shadow 0.3s ease; }
+        .uplift-on-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .uplift-on-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px -5px rgba(16, 185, 129, 0.15); }
+        
+        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.webp'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
+        .watermark-logo { position: absolute; inset: 0; background-image: url('src/assets/logo_icon.webp'); background-repeat: no-repeat; background-position: center; background-size: 85%; opacity: 0.5; pointer-events: none; z-index: 1; mix-blend-mode: overlay; }
+
+        #loader { position: fixed; inset: 0; background: #020617; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-in-out; }
+        .loader-text { font-family: 'JetBrains Mono', monospace; }
+        #emoji-container { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .floating-emoji { position: absolute; bottom: -50px; font-size: 24px; opacity: 0; animation: float-upward linear forwards; }
+        
+        #speed-overlay { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(12px); z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.1s ease; overflow: hidden; }
+        #speed-overlay.active { opacity: 1; pointer-events: all; }
+        .speed-lines { position: absolute; inset: 0; background: repeating-linear-gradient( 90deg, transparent, transparent 50px, rgba(16, 185, 129, 0.1) 50px, rgba(16, 185, 129, 0.1) 52px ); animation: rush 0.1s linear infinite; }
+        .speedy-car { position: absolute; bottom: 20%; left: -300px; width: 300px; color: #10b981; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5)); opacity: 0; }
+        #speed-overlay.active .speedy-car { animation: drive-by 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        @keyframes rush { from { transform: translateX(0); } to { transform: translateX(-100px); } }
+        
+        #ai-widget { position: fixed; bottom: 30px; right: 30px; z-index: 9998; display: flex; flex-direction: column; align-items: flex-end; gap: 15px; }
+        
+        /* Social Media Widgets */
+        #social-widgets { position: fixed; bottom: 30px; left: 30px; z-index: 9998; display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
+        .widget-btn { position: relative; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); overflow: hidden; cursor: pointer; }
+        .widget-btn::before { content: ''; position: absolute; inset: 0; border-radius: 50%; opacity: 0; transition: opacity 0.3s ease; }
+        .widget-btn:hover { transform: scale(1.1) translateY(-3px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); }
+        .widget-btn:hover::before { opacity: 0.2; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); }
+        .widget-btn i { z-index: 1; transition: transform 0.3s ease; }
+        .widget-btn:hover i { transform: scale(1.15) rotate(5deg); }
+        
+        #blog-widget { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        #blog-widget:hover { box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6); }
+        
+        #facebook-widget { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        #facebook-widget:hover { box-shadow: 0 8px 30px rgba(24, 119, 242, 0.6); }
+        
+        .widget-tooltip { position: absolute; left: 70px; top: 50%; transform: translateY(-50%); background: rgba(15, 23, 42, 0.95); color: white; padding: 8px 16px; border-radius: 8px; font-size: 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; border: 1px solid rgba(16, 185, 129, 0.3); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+        .widget-btn:hover .widget-tooltip { opacity: 1; transform: translateY(-50%) translateX(5px); }
+        
+        @media (max-width: 768px) {
+            #social-widgets { bottom: 100px; left: 20px; }
+            .widget-btn { width: 48px; height: 48px; }
+            .widget-tooltip { display: none; }
+        }
+        #ai-chat-window { width: 350px; height: 500px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; overflow: hidden; transform: translateY(20px); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        #ai-chat-window.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+        .chat-message { margin-bottom: 10px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; padding: 10px 14px; border-radius: 12px; word-wrap: break-word; }
+        .chat-message.ai { background: rgba(16, 185, 129, 0.1); color: #e2e8f0; border-bottom-left-radius: 2px; align-self: flex-start; border-left: 2px solid #10b981; }
+        .chat-message.user { background: #10b981; color: #020617; border-bottom-right-radius: 2px; align-self: flex-end; font-weight: 500; }
+        .typing-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        
+        .sparkle-btn { position: relative; overflow: hidden; }
+        .sparkle-btn::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); transform: rotate(45deg); animation: shine 3s infinite; }
+        @keyframes shine { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
+        .btn-deep-gradient { background-image: linear-gradient(to right, #065f46, #34d399); transition: all 0.3s ease; }
+        .btn-deep-gradient:hover { background-image: linear-gradient(to right, #047857, #6ee7b7); }
+
+        .back-to-top-btn {
+            position: relative;
+            transition: all 0.3s ease;
+            animation: back-to-top-glow 3s ease-in-out infinite;
+        }
+        @keyframes back-to-top-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.6), 0 0 35px rgba(16, 185, 129, 0.4); }
+        }
+        .back-to-top-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.8), 0 0 50px rgba(16, 185, 129, 0.5);
+        }
+        .back-to-top-btn i {
+            transition: transform 0.3s ease;
+        }
+        .back-to-top-btn:hover i {
+            transform: translateY(-5px) rotate(15deg);
+        }
+
+        /* Marquee Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .marquee-content {
+            display: inline-flex;
+            align-items: center;
+            animation: scroll 30s linear infinite;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        /* ============================================
+           COMPREHENSIVE MOBILE & DESKTOP OPTIMIZATION
+           ============================================ */
+
+        /* 1. Enhanced Global Styles with Mobile Support */
+        body { 
+            cursor: default; 
+            overflow-x: hidden; 
+            background-color: #020617; 
+            font-family: 'Inter', sans-serif; 
+            color: #e2e8f0; 
+            touch-action: manipulation;
+            -webkit-overflow-scrolling: touch;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 2. Add NEW ANIMATIONS for more motion (keep all existing ones) */
+        @keyframes shimmer { 
+            0% { background-position: -1000px 0; } 
+            100% { background-position: 1000px 0; } 
+        }
+        @keyframes glow-pulse { 
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3)); } 
+            50% { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.7)); } 
+        }
+        @keyframes slide-down {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scale-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes rotate-center {
+            0% { transform: rotateZ(0deg); }
+            50% { transform: rotateZ(180deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+        @keyframes border-glow {
+            0%, 100% { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 5px rgba(16, 185, 129, 0.2); }
+            50% { border-color: rgba(16, 185, 129, 0.8); box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
+        }
+
+        /* 3. Animation Classes */
+        .animate-shimmer { animation: shimmer 2s infinite; }
+        .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-slide-down { animation: slide-down 0.6s ease-out; }
+        .animate-scale-in { animation: scale-in 0.5s ease-out; }
+        .animate-rotate-center { animation: rotate-center 4s linear infinite; }
+        .animate-border-glow { animation: border-glow 2.5s ease-in-out infinite; }
+
+        /* 4. Mobile Optimizations */
+        @media (max-width: 768px) {
+            /* Disable heavy animations on mobile for performance */
+            .tilt-card { transform-style: flat !important; }
+            .uplift-on-hover:hover { transform: scale(1.02) !important; }
+            
+            /* Simplify animations on mobile */
+            .animate-float-medium { animation: float-medium 8s ease-in-out infinite; }
+            .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+            
+            /* Touch-friendly spacing */
+            button, a, .interactive { 
+                min-height: 44px; 
+                min-width: 44px;
+                padding: 12px 16px;
+            }
+            
+            /* Reduce navbar padding on mobile */
+            nav { padding: 12px 0 !important; }
+            nav .max-w-7xl { padding: 0 12px !important; }
+            
+            /* Mobile-friendly text sizes */
+            h1 { font-size: 2rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            
+            /* Disable complex transforms */
+            #hero-grid { opacity: 0.03 !important; }
+            .watermark-logo { opacity: 0.3 !important; z-index: -1 !important; pointer-events: none !important; }
+            
+            /* Hide mouse-only elements */
+            #cursor-gradient { display: none !important; }
+            
+            /* Improve scroll performance */
+            * { will-change: auto; }
+            [data-animate] { will-change: opacity; }
+        }
+
+        /* 5. Desktop Enhanced Animations and Interactions */
+        @media (min-width: 769px) {
+            /* Enable full animations on desktop */
+            .card { animation: scale-in 0.6s ease-out; }
+            .interactive:hover { animation: glow-pulse 0.6s ease-in-out; }
+            
+            /* Smooth transitions for desktop */
+            * { transition: background-color 0.3s ease; }
+            
+            /* Enhanced hover states */
+            a:hover, button:hover { transform: translateY(-2px); }
+        }
+
+        /* 6. Touch-Friendly Interactive Elements */
+        .interactive, [onclick], button, a {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
+            -webkit-user-select: none;
+            padding: min(0.5rem, 4vw);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .interactive:active {
+            transform: scale(0.98);
+            opacity: 0.8;
+        }
+
+        /* 7. Responsive Container Optimizations */
+        .container {
+            padding: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .container { padding: 24px; }
+        }
+
+        @media (min-width: 1024px) {
+            .container { padding: 32px; }
+        }
+
+        /* 8. Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* 9. Enhanced Loading Performance */
+        img {
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        video {
+            will-change: transform;
+        }
+
+        /* 10. Mobile Navigation Improvements */
+        @media (max-width: 768px) {
+            #mobile-menu {
+                max-height: 100vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            #mobile-menu a {
+                display: block;
+                padding: 16px;
+                min-height: 48px;
+                border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            }
+        }
+
+        /* 11. Improved Scrolling Behavior */
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* 12. Better Touch States for Buttons */
+        @media (hover: none) and (pointer: coarse) {
+            /* Mobile-specific touch states */
+            button:active, a:active, .interactive:active {
+                background-color: rgba(16, 185, 129, 0.2);
+                transform: scale(0.97);
+            }
+        }
+
+        /* 13. Viewport Meta Optimization */
+        @viewport {
+            width: device-width;
+            zoom: 1;
+        }
+
+        /* 14. Additional Motion Effects */
+        .slide-up {
+            animation: slide-down 0.5s ease-out reverse;
+        }
+
+        .fade-in-slow {
+            animation: fade-in-up 1.2s ease-out;
+        }
+
+        .bounce-on-load {
+            animation: bounce-soft 1s ease-out;
+        }
+
+        .glow-on-hover:hover {
+            animation: glow-pulse 1s ease-in-out infinite;
+        }
+
+        /* New Cool Animations */
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .counter {
+            font-variant-numeric: tabular-nums;
+            display: inline-block;
+        }
+
+        /* Glitch Effect */
+        .type-me { position: relative; }
+        .type-me.glitch-active::before,
+        .type-me.glitch-active::after {
+            content: "TriChokro"; /* Fallback */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        .type-me.glitch-active::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .type-me.glitch-active::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(20px, 9999px, 10px, 0); }
+            20% { clip: rect(60px, 9999px, 80px, 0); }
+            40% { clip: rect(30px, 9999px, 10px, 0); }
+            60% { clip: rect(80px, 9999px, 20px, 0); }
+            80% { clip: rect(10px, 9999px, 90px, 0); }
+            100% { clip: rect(50px, 9999px, 60px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(80px, 9999px, 10px, 0); }
+            20% { clip: rect(10px, 9999px, 90px, 0); }
+            40% { clip: rect(50px, 9999px, 20px, 0); }
+            60% { clip: rect(20px, 9999px, 60px, 0); }
+            80% { clip: rect(90px, 9999px, 10px, 0); }
+            100% { clip: rect(30px, 9999px, 50px, 0); }
+        }
+
+        /* Magnetic Button Transition */
+        .magnetic-btn {
+            transition: transform 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+            display: inline-block;
+        }
+    </style>
+<link rel="stylesheet" href="css/site-mobile.css"/>
+<script src="js/site-mobile.js" defer></script>
+<link rel="stylesheet" href="css/site-content-revisions.css">
+
+
+<style id="trichokro-news-styles">
+.tc-news{font-family:Inter,Roboto,Arial,sans-serif;background:#020617;color:#e2e8f0;overflow:hidden;padding-top:100px;min-height:90vh}
+.tc-news *{box-sizing:border-box}
+.tc-news-wrap{max-width:1200px;margin:auto;padding:0 32px}
+.tc-news-hero{position:relative;padding:77px 0 77px;overflow:hidden;background:radial-gradient(ellipse at 79% 18%,rgba(16,185,129,.10),transparent 43%),linear-gradient(150deg,#071426,#050c1b 64%,#071a20)}
+.tc-news-wash{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(92,136,165,.036) 1px,transparent 1px),linear-gradient(90deg,rgba(92,136,165,.036) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 83%)}
+.tc-eyebrow{color:#62dfbd;letter-spacing:.24em;font:700 10px JetBrains Mono,monospace;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.tc-pulse{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.10)}
+.tc-slash{opacity:.35}
+.tc-news-intro{display:grid;grid-template-columns:minmax(0,1fr) 244px;gap:8%;align-items:end;margin:32px 0 59px}
+.tc-news h1{font-family:Cinzel,serif;font-weight:600;letter-spacing:-.055em;line-height:1.08;font-size:clamp(50px,6.7vw,96px);color:#f4f8ff;margin:0}
+.tc-news h1 em{color:#64ffda;font-weight:500;font-style:normal}
+.tc-period{color:#34d399}
+.tc-deck{color:#a8b7cd;font-size:16px;line-height:1.85;max-width:620px;margin:24px 0 0}
+.tc-news-side{border-left:1px solid #25405b;padding:14px 0 0 25px;display:grid;grid-template-columns:1fr 1fr;gap:26px 12px}
+.tc-side-stat b{display:block;color:#f2f9ff;font-size:35px;line-height:1;font-weight:600}
+.tc-side-stat span{display:block;font:600 9px JetBrains Mono,monospace;line-height:1.6;color:#8195b0;margin-top:9px}
+.tc-news-side>p{grid-column:1/-1;color:#7e91a8;line-height:1.75;font-size:12px;margin:0}
+.tc-news-featured{display:grid;grid-template-columns:1.06fr 1fr;position:relative;min-height:364px;background:#111d30;border:1px solid #2b4057;border-radius:17px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.19)}
+.tc-feature-visual{position:relative;min-height:364px;overflow:hidden;background:linear-gradient(130deg,rgba(7,57,49,.62),rgba(9,21,41,.92));display:flex;align-items:flex-end;padding:32px}
+.tc-feature-visual:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 35%,rgba(52,211,153,.27),transparent 54%),linear-gradient(90deg,transparent,rgba(9,17,35,.5))}
+.tc-feature-visual:after{content:'';position:absolute;inset:0;opacity:.16;background-image:linear-gradient(rgba(106,255,203,.17) 1px,transparent 1px),linear-gradient(90deg,rgba(106,255,203,.17) 1px,transparent 1px);background-size:31px 31px;pointer-events:none}
+.tc-feature-visual img{position:absolute;inset:0;height:100%;width:100%;object-fit:cover;opacity:.73;filter:saturate(.65);transition:transform .7s}
+.tc-news-featured:hover .tc-feature-visual img{transform:scale(1.045)}
+.tc-feature-monogram{position:relative;z-index:2;font:600 clamp(52px,7vw,110px) Cinzel,serif;color:#edfff9;line-height:.97;letter-spacing:-.06em;text-shadow:0 6px 28px #031015}
+.tc-feature-marker{position:absolute;z-index:3;top:24px;left:28px;font:600 10px JetBrains Mono,monospace;letter-spacing:.13em;background:#0b1c25e0;color:#7cf1cf;padding:10px 13px;border:1px solid #356d64;border-radius:6px}
+.tc-feature-body{display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,4vw,55px)}
+.tc-meta{display:flex;align-items:center;gap:11px;flex-wrap:wrap;color:#93a4b9;font-size:11px;font-weight:600;letter-spacing:.03em}
+.tc-meta i{width:4px;height:4px;background:#4a6781;border-radius:50%}
+.tc-category{color:#58e4bd!important;text-transform:uppercase;letter-spacing:.16em;font:700 10px JetBrains Mono,monospace!important}
+.tc-feature-body h2{font-family:Cinzel,serif;font-weight:600;font-size:clamp(23px,3vw,37px);line-height:1.27;color:#fff;margin:21px 0 16px}
+.tc-feature-body p{font-size:14px;line-height:1.9;color:#a9b9cd;margin:0 0 29px}
+.tc-story-link{display:inline-flex;align-items:center;gap:14px;color:#64ffda;font-size:12px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:gap .25s}
+.tc-story-link:hover{gap:23px;color:#b5ffed}
+.tc-news-body{background:#071020;padding:81px 0 110px;border-top:1px solid #233248}
+.tc-news-top{display:flex;align-items:end;justify-content:space-between;gap:24px;padding-bottom:24px;border-bottom:1px solid #24364c}
+.tc-news-top h2{font-family:Cinzel,serif;color:#f6f9ff;font-weight:550;font-size:clamp(27px,4vw,45px);margin:14px 0 0;letter-spacing:-.035em}
+.tc-news-top h2 span{color:#59deb7}
+.tc-news-top>p{max-width:260px;color:#899bb3;font-size:12px;line-height:1.75;margin:0 0 6px}
+.tc-news-controls{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:23px 0 22px}
+.tc-filters{display:flex;gap:7px;flex-wrap:wrap}
+.tc-filter{border:1px solid #293f55;border-radius:100px;background:#101e2e;color:#a1b5c9;cursor:pointer;padding:10px 15px;font:600 11px Inter,sans-serif;transition:.22s}
+.tc-filter:hover{border-color:#52caaa;color:#fff}
+.tc-filter[aria-pressed=true]{background:#24bb96;color:#04151b;border-color:#24bb96}
+.tc-search{display:flex;align-items:center;gap:10px;border:1px solid #314359;background:#111e2e;color:#7192ab;border-radius:9px;padding:0 14px;min-width:232px;height:43px}
+.tc-search input{border:0;outline:none;background:transparent;color:#edf8ff;width:100%;min-width:0;font-size:12px}
+.tc-search input::placeholder{color:#7690a7}
+.tc-news-count{font:600 10px JetBrains Mono,monospace;color:#7b90a9;letter-spacing:.12em;margin-bottom:17px;text-transform:uppercase}
+.tc-news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.tc-news-card{min-width:0;background:linear-gradient(145deg,#111f31,#101b2b);border:1px solid #2b3c52;border-radius:13px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s,box-shadow .3s}
+.tc-news-card:hover{transform:translateY(-5px);border-color:#4b887f;box-shadow:0 15px 38px rgba(0,0,0,.24)}
+.tc-news-art{height:185px;position:relative;overflow:hidden;padding:23px;background:linear-gradient(140deg,#14283c,#0a1627)}
+.tc-news-art:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,var(--news-glow,rgba(52,211,153,.15)),transparent 60%),repeating-linear-gradient(90deg,transparent 0,transparent 29px,rgba(135,171,203,.045) 30px)}
+.tc-news-art .art-letter{font:600 63px Cinzel,serif;color:#e3fff6;letter-spacing:-.065em;position:absolute;bottom:14px;left:23px;opacity:.83}
+.tc-news-art .art-cross{position:absolute;right:21px;top:20px;font:500 10px JetBrains Mono,monospace;color:#a2bfd0;letter-spacing:.14em}
+.tc-news-art .art-number{position:absolute;right:20px;bottom:18px;color:#416779;font:500 12px JetBrains Mono,monospace}
+.tc-news-card-body{padding:24px;display:flex;flex-direction:column;flex:1}
+.tc-news-card h3{font:600 17px/1.45 Cinzel,serif;letter-spacing:-.012em;color:#edf4ff;margin:15px 0 13px}
+.tc-news-card p{color:#9cabbe;font-size:12px;line-height:1.85;margin:0 0 21px;flex:1}
+.tc-news-card-foot{border-top:1px solid #263b4f;padding-top:19px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tc-news-card-foot a{font-size:11px;font-weight:700;color:#5ee7c1;text-decoration:none;display:inline-flex;gap:7px;align-items:center}
+.tc-news-card-foot a:hover{color:#fff}
+.tc-source-name{font-size:10px;color:#748aa3;max-width:53%;text-align:right;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.tc-news-empty{border:1px dashed #3b586f;border-radius:13px;text-align:center;padding:42px;color:#c1d0dd;display:flex;flex-direction:column;align-items:center;gap:12px}
+.tc-news-empty[hidden]{display:none}
+.tc-news-empty>span{color:#849ab0;font-size:13px}
+.tc-news-empty button{color:#7afbd5;border:1px solid #356a63;background:transparent;border-radius:100px;padding:9px 17px;cursor:pointer}
+.tc-editorial-note{display:flex;gap:15px;align-items:flex-start;padding:20px 23px;border:1px solid #263d52;background:#0c1b2b;border-radius:10px;margin-top:41px}
+.tc-note-symbol{display:grid;place-items:center;flex:none;border:1px solid #4a756d;border-radius:50%;width:22px;height:22px;color:#66ddbe;font:700 12px serif}
+.tc-editorial-note p{margin:0;color:#8ba0b6;font-size:12px;line-height:1.8}
+.tc-editorial-note b{color:#b9c8d8}
+@media(max-width:1000px){.tc-news-intro{grid-template-columns:1fr;gap:30px}.tc-news-side{display:flex;gap:20px;flex-wrap:wrap;padding-left:0;border-left:0;border-top:1px solid #294358;padding-top:17px;align-items:center}.tc-side-stat{max-width:150px}.tc-news-side>p{flex:1;min-width:190px}.tc-news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tc-news-controls{flex-wrap:wrap}}
+@media(max-width:700px){.tc-news{padding-top:75px}.tc-news-wrap{padding:0 18px}.tc-news-hero{padding:51px 0}.tc-news-intro{margin:26px 0 35px}.tc-news-featured{grid-template-columns:1fr}.tc-feature-visual{min-height:255px}.tc-feature-body{padding:27px}.tc-news-body{padding:55px 0 80px}.tc-news-top{align-items:start;flex-direction:column}.tc-news-top>p{max-width:none}.tc-news-grid{grid-template-columns:1fr}.tc-news-controls{flex-direction:column;align-items:stretch}.tc-search{width:100%}.tc-filter{padding:10px 12px}.tc-news-art{height:170px}}
+@media(prefers-reduced-motion:reduce){.tc-news *, .tc-news *::before{transition:none!important;animation:none!important}}
+</style>
+<style id="newsroom-v2-style">
+.tc-news-sorting{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:12px;color:#aabed1}.tc-news-sorting select{padding:11px 30px 11px 11px;background:#101e2e;color:#d9eee7;border:1px solid #2c4659;border-radius:8px;cursor:pointer}
+.tc-source-status{margin:9px 0 15px;padding:8px 10px;background:#152b37;border-left:2px solid #e4ac5d;font-size:11px;line-height:1.55;color:#e0c9a8}.tc-news-card[data-flag="true"]{border-color:#54463d}.tc-news-card[data-flag="true"] .tc-category{color:#ffc77a}
+.tc-lang-switch{display:inline-flex;align-items:center;padding:8px 12px;text-decoration:none;color:#071825;background:#78e6c4;border-radius:8px;font-size:12px;font-weight:750;white-space:nowrap}.tc-lang-switch:hover{background:#b1f7e0}.tc-editorial-note a{color:#78e6c4}
+@media(max-width:720px){.tc-news-controls{align-items:stretch}.tc-news-sorting{width:100%}.tc-news-sorting select{flex:1}.tc-news-top{gap:14px}}
+</style><style>html[lang="bn"] .tc-news h1,html[lang="bn"] .tc-news h2,html[lang="bn"] .tc-news h3{font-family:Inter,"Noto Sans Bengali",sans-serif;letter-spacing:normal;line-height:1.4}</style></head>
+<body class="selection-emerald" style="background:#020617">
+<div class="main-theme-bg" id="main-view">
+<nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5" id="navbar">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
+<img alt="TriChokro Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" src="src/assets/logo_icon.webp" decoding="async" width="1600" height="1600">
+<span class="tc-brand-wordmark"><span class="tc-brand-main">Tri<span class="text-emerald-400">Chokro</span></span><span class="tc-brand-sub"> Automotives</span></span>
+</div>
+<div class="hidden md:flex items-center space-x-8" style="font-family: 'Cinzel', serif;"><a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#home" style="animation-delay: 0.1s"> HOME <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#about" style="animation-delay: 0.2s"> ABOUT US <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="index.html#products" style="animation-delay: 0.4s"> PRODUCTS <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span> </a> <a class="interactive transition-trigger text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="blogs_bn.html#blogs" style="animation-delay: 0.45s">NEWS</a>
+<a class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse" href="blogs.html" style="animation-delay: 0.55s"><i class="fas fa-globe"></i> EN</a> <a class="interactive transition-trigger btn-deep-gradient text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20 animate-float-subtle" href="contact.html?id=rownak" style="animation-delay: 0.6s"> CONTACTS </a></div>
+<div class="md:hidden">
+<button class="text-white hover:text-emerald-400 interactive" id="mobile-menu-btn"><i class="w-7 h-7" data-lucide="menu"></i></button>
+</div>
+</div>
+</div>
+<div class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate" id="mobile-menu">
+<div class="px-4 py-4 space-y-3 flex flex-col">
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#home">HOME</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#about">ABOUT US</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="blogs_bn.html#blogs">NEWS</a>
+<a class="text-left w-full block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="trambulance.html">TRAMBULANCE</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#products">PRODUCTS</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="contact.html?id=rownak">CONTACTS</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="blogs.html">EN</a>
+</div>
+</div>
+</nav>
+<main class="tc-news" id="news-page">
+  <section class="tc-news-hero" id="blogs">
+    <div class="tc-news-wash" aria-hidden="true"></div>
+    <div class="tc-news-wrap">
+      <div class="tc-eyebrow"><span class="tc-pulse"></span> TRICHOKRO / সংবাদ ও প্রতিবেদন <span class="tc-slash">/</span> 2025—2026</div>
+      <div class="tc-news-intro">
+        <div><h1>উদ্ভাবনের <em>খবর</em><br/>আমাদের এগিয়ে নেয়<span class="tc-period">.</span></h1>
+        <p class="tc-deck">স্বতন্ত্র সংবাদ, প্রতিযোগিতার ফলাফল, প্রকৌশল সাফল্য এবং সহজলভ্য বৈদ্যুতিক যানবাহন তৈরির গল্প।</p></div>
+        <div class="tc-news-side"><div class="tc-side-stat"><b>22</b><span>সংবাদ ও উৎস রেকর্ড</span></div><div class="tc-side-stat"><b>17</b><span>মূল উৎসের লিংক</span></div><p>উৎস যাচাইয়ের নোট ও তৃতীয় পক্ষের স্বতন্ত্র প্রতিবেদন আলাদা চিহ্নিত করা হয়েছে।</p></div>
+      </div>
+      <div class="tc-news-featured" id="featured-story" aria-label="Featured story"></div>
+    </div>
+  </section>
+  <section class="tc-news-body" aria-labelledby="archive-title">
+    <div class="tc-news-wrap">
+      <div class="tc-news-top"><div><div class="tc-eyebrow">সংবাদ / বিস্তারিত</div><h2 id="archive-title">সংবাদ <span>আর্কাইভ</span></h2></div><p>শিরোনাম, উৎস বা বিভাগ দিয়ে খুঁজুন। প্রতিটি খবরের সঙ্গে মূল উৎসের লিংক রয়েছে।</p></div>
+      <div class="tc-news-controls"><div class="tc-filters" id="news-filters" role="group" aria-label="Filter stories"></div><label class="tc-search"><svg viewBox="0 0 24 24" width="17" height="17" stroke="currentColor" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="news-search" type="search" placeholder="খবর বা উৎস খুঁজুন…" autocomplete="off" aria-label="Search news"/></label><label class="tc-news-sorting">বাছাই করুন <select id="news-sort" aria-label="Sort news"><option value="newest">নতুন থেকে পুরোনো</option><option value="oldest">পুরোনো থেকে নতুন</option><option value="category">বিভাগ অনুসারে</option></select></label></div>
+      <div class="tc-news-count" id="news-count" aria-live="polite"></div>
+      <div class="tc-news-grid" id="news-grid"></div>
+      <div class="tc-news-empty" id="news-empty" hidden><strong>কোনো খবর পাওয়া যায়নি।</strong><span>অন্য বিভাগ বা শব্দ দিয়ে খুঁজুন।</span><button id="news-clear" type="button">ফিল্টার মুছুন ↗</button></div>
+      <div class="tc-editorial-note"><span class="tc-note-symbol">i</span><p><b>সম্পাদকীয় নোট।</b> তৃতীয় পক্ষের খবর উৎস উল্লেখ করে সংক্ষিপ্ত আকারে প্রকাশ করা হয়েছে। কিছু সরবরাহকৃত লিংক ট্রাইচক্রোকে নিয়ে নয়; এগুলো আলাদা উৎস যাচাই বিভাগে রয়েছে। পুরোনো ওয়েবসাইটের খবরও সংরক্ষিত।</p></div>
+    </div>
+  </section>
+</main>
+<footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-900">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start justify-between">
+<div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 md:mb-0">
+<!-- Updated Footer Logo -->
+<div class="flex items-center gap-3 group cursor-pointer interactive" onclick="window.scrollTo(0,0)">
+<img alt="TriChokro Logo" class="h-10 w-auto filter drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]" src="src/assets/logo_new.webp" decoding="async" loading="lazy" width="1600" height="1600">
+<span class="text-xl font-bold text-white tracking-tight font-sans">Tri<span class="text-emerald-400">Chokro</span></span>
+</div>
+<div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
+<div class="relative">
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer float-link-1" href="#" onclick="toggleProductsMenu()">Products</a>
+<div class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg" id="products-menu">
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="trambulance.html">Trambulance</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="pathfinder.html">Pathfinder</a>
+</div>
+</div>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-2" href="founder.html">Contacts</a>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-3" href="privacy.html">Privacy</a>
+<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-4" href="metadata.html">Meta Data</a>
+</div>
+</div>
+<div class="flex flex-col items-end space-y-4 mt-4 md:mt-0">
+<div class="flex space-x-4">
+<a aria-label="Connect with us on LinkedIn" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.linkedin.com/in/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.27 20.45H3.66V9h3.61v11.45zM5.46 7.42c-1.18 0-2.14-.95-2.14-2.13s.96-2.13 2.14-2.13 2.14.95 2.14 2.13-.96 2.13-2.14 2.13zM20.47 20.45h-3.61v-5.63c0-1.34-.48-2.26-1.68-2.26-1.12 0-1.78.75-2.07 1.48-.11.26-.14.63-.14 1v6.41h-3.61s.05-10.4 0-11.45h3.61v1.65c.48-.75 1.34-1.82 3.25-1.82 2.37 0 4.15 1.55 4.15 4.9v6.72z"></path>
+</svg>
+</a>
+<a aria-label="Follow us on Facebook" class="text-gray-400 hover:text-emerald-400 transition-colors duration-200" href="https://www.facebook.com/rownakshahriarruhan/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+<p class="text-slate-600 text-sm">Developed by Ruhan &amp; Jules; All right reserved, TriChokro 2026</p>
+</div>
+</footer>
+</div>
+
+<script>
+  if(window.lucide?.createIcons) lucide.createIcons();
+  const nav=document.getElementById('navbar');
+  function updateNavbar(){ if (!nav) return; const scrolled=window.scrollY>20;nav.classList.toggle('bg-slate-900/90',scrolled);nav.classList.toggle('backdrop-blur-md',scrolled);nav.classList.toggle('shadow-lg',scrolled);nav.classList.toggle('bg-transparent',!scrolled); }
+  addEventListener('scroll',updateNavbar,{passive:true}); updateNavbar();
+  const menu=document.getElementById('mobile-menu');const menuBtn=document.getElementById('mobile-menu-btn');
+  menuBtn?.setAttribute('aria-expanded','false');
+  menuBtn?.addEventListener('click',()=>{const open=menu.classList.contains('max-h-0');menu.classList.toggle('max-h-0',!open);menu.classList.toggle('opacity-0',!open);menu.classList.toggle('max-h-96',open);menu.classList.toggle('opacity-100',open);menuBtn.setAttribute('aria-expanded',String(open));});
+  function toggleProductsMenu(){document.getElementById('products-menu')?.classList.toggle('hidden');}
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduced){const io=new IntersectionObserver((entries,obs)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');obs.unobserve(entry.target);}}),{threshold:.06});document.querySelectorAll('.reveal-on-scroll').forEach(el=>io.observe(el));}
+  else document.querySelectorAll('.reveal-on-scroll').forEach(el=>el.classList.add('revealed'));
+</script>
+
+
+<script src="news-data.js"></script>
+<script src="news-data-bn.js"></script>
+<script src="news-category-bn.js"></script>
+<script id="trichokro-news-render">
+(()=>{
+ const all=window.TC_NEWS||[],bn=true,langs=window.TC_NEWS_BN||{},cat_bn=window.TC_CATEGORIES_BN||{},grid=document.getElementById('news-grid');if(!grid)return;
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const loc=x=>bn&&langs[x.id]?{...x,...langs[x.id]}:x;const cat=x=>bn?(cat_bn[x]||x):x;
+ const href=x=>(bn?'blog_bn.html':'blog.html')+'?post='+encodeURIComponent(x.id);
+ const featured=all.find(s=>s.id==='chulalongkorn-award')||all[0];
+ const glow={'Recognition':'rgba(34,210,169,.28)','In the Press':'rgba(81,144,239,.19)','Competition':'rgba(115,122,250,.21)','Partnership':'rgba(245,178,68,.21)','Ecosystem':'rgba(113,191,160,.18)','Wider Innovation':'rgba(176,146,245,.25)','Archive':'rgba(107,156,175,.14)','Video Interviews':'rgba(45,160,218,.23)','Facebook Posts':'rgba(58,127,245,.20)','Company Profiles':'rgba(120,191,182,.21)','Source Review':'rgba(217,151,71,.17)'};
+ const letters={'Recognition':'AW','In the Press':'PR','Competition':'BC','Partnership':'CO','Ecosystem':'EC','Wider Innovation':'IN','Archive':'TC','Video Interviews':'YT','Facebook Posts':'FB','Company Profiles':'ID','Source Review':'?'}, categories=['All','Recognition','In the Press','Competition','Video Interviews','Facebook Posts','Company Profiles','Partnership','Ecosystem','Wider Innovation','Archive','Source Review'];
+ if(featured){const x=loc(featured);document.getElementById('featured-story').innerHTML=`<div class="tc-feature-visual"><img src="src/assets/trambulance.webp" alt="TriChokro Trambulance" loading="eager" onerror="this.remove()"><span class="tc-feature-marker">${bn?'নির্ভরযোগ্য উৎস / নির্বাচিত':'EDITOR’S PICK / CONFIRMED SOURCE'}</span><div class="tc-feature-monogram">TRAM<br/>BULANCE.</div></div><div class="tc-feature-body"><div class="tc-meta"><span class="tc-category">${esc(cat(featured.category))}</span><i></i><span>${esc(featured.date)}</span><i></i><span>${esc(featured.source)}</span></div><h2>${esc(x.title)}</h2><p>${esc(x.excerpt)}</p><a class="tc-story-link" href="${href(featured)}">${bn?'সম্পূর্ণ পড়ুন':'Read the full story'} <span aria-hidden="true">↗</span></a></div>`;}
+ const filters=document.getElementById('news-filters'),search=document.getElementById('news-search'),count=document.getElementById('news-count'),empty=document.getElementById('news-empty'),sort=document.getElementById('news-sort');let selected='All';
+ filters.innerHTML=categories.map((x,i)=>`<button class="tc-filter" data-category="${esc(x)}" type="button" aria-pressed="${i===0}">${esc(cat(x))}</button>`).join('');
+ function rank(x){return x.dateSort||'0000-00-00'}
+ function draw(){const q=search.value.trim().toLocaleLowerCase();const sortval=sort.value;
+ let list=all.filter(x=>(selected==='All'||x.category===selected)&&(!q||[x.title,x.excerpt,x.source,x.category,...(x.tags||[]),...(langs[x.id]?[langs[x.id].title,langs[x.id].excerpt]:[])].join(' ').toLocaleLowerCase().includes(q)));
+ list.sort((a,b)=>sortval==='category'?a.category.localeCompare(b.category)||rank(b).localeCompare(rank(a)):sortval==='oldest'?rank(a).localeCompare(rank(b)):rank(b).localeCompare(rank(a)));
+ grid.innerHTML=list.map((item,i)=>{const s=loc(item),flag=item.category==='Source Review';return `<article class="tc-news-card" data-flag="${flag}"><div class="tc-news-art" style="--news-glow:${glow[item.category]||'rgba(52,211,153,.15)'}"><span class="art-cross">TRICHOKRO / ${esc(item.category.toUpperCase())}</span><span class="art-letter">${letters[item.category]||'TC'}</span><span class="art-number">${String(i+1).padStart(2,'0')} / ${String(list.length).padStart(2,'0')}</span></div><div class="tc-news-card-body"><div class="tc-meta"><span class="tc-category">${esc(cat(item.category))}</span><i></i><span>${esc(item.date)}</span></div><h3>${esc(s.title)}</h3><p>${esc(s.excerpt)}</p>${flag?`<div class="tc-source-status">${bn?'লিংক যাচাইাধীন: ট্রাইচক্রোর স্বীকৃত প্রচার নয়':'Source review: not confirmed TriChokro coverage'}</div>`:''}<div class="tc-news-card-foot"><a href="${href(item)}">${bn?'বিস্তারিত পড়ুন':'Read article'} <span aria-hidden="true">↗</span></a><span class="tc-source-name" title="${esc(item.source)}">${esc(item.source)}</span></div></div></article>`}).join('');
+ count.textContent=bn?`${list.length}টি খবর দেখা যাচ্ছে · ${all.filter(x=>x.url).length}টি মূল উৎস লিংক`:`${list.length} STORIES SHOWN · ${all.filter(x=>x.url).length} ORIGINAL SOURCE LINKS`;empty.hidden=list.length>0;
+ }
+ filters.addEventListener('click',e=>{const b=e.target.closest('button[data-category]');if(!b)return;selected=b.dataset.category;filters.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw()});
+ search.addEventListener('input',draw);sort.addEventListener('change',draw);document.getElementById('news-clear').addEventListener('click',()=>{selected='All';search.value='';sort.value='newest';filters.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.category==='All')));draw()});draw();
+})();
+</script>
+</body>
+</html>
