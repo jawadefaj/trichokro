@@ -530,6 +530,21 @@
 <link rel="stylesheet" href="css/site-mobile.css"/>
 <script src="js/site-mobile.js" defer></script>
 <link rel="stylesheet" href="css/site-content-revisions.css">
+<style id="integration-media-styles">
+/* Functional inline YouTube player and scrollable Facebook feed; only these sections are affected. */
+#videos .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+#videos .video-card{overflow:hidden;border:1px solid #334155;border-radius:18px;background:#0f172a}
+#videos .video-frame{position:relative;aspect-ratio:16/9;background:#020617;overflow:hidden}
+#videos .video-lite{display:block;position:relative;width:100%;height:100%;padding:0;border:0;border-radius:0;overflow:hidden;background:#020617;cursor:pointer}
+#videos .video-lite img{width:100%;height:100%;object-fit:cover;display:block}
+#videos .video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:#ed1c24;color:white;border-radius:16px;width:68px;height:48px;font-size:24px;box-shadow:0 8px 28px #0008;transition:background .2s}
+#videos .video-lite:hover .video-play{background:#ff3333}
+#videos .video-frame iframe{width:100%;height:100%;position:absolute;inset:0;border:0;display:block}
+#facebook .fb-feed-wrap{max-width:540px;margin:0 auto;border:1px solid #334155;border-radius:18px;overflow:hidden;background:#fff;padding:14px;box-shadow:0 22px 55px rgba(0,0,0,.24)}
+#facebook .fb-feed-wrap iframe{display:block;border:0;max-width:100%;width:500px;height:680px;overflow:auto;margin:0 auto;background:white}
+@media (max-width:1020px){#videos .video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){#videos .video-grid{grid-template-columns:1fr}#facebook .fb-feed-wrap{padding:6px}#facebook .fb-feed-wrap iframe{height:600px}}
+</style>
 </head>
 <body class="selection-emerald">
 <!-- Speedometer Overlay -->
@@ -830,6 +845,519 @@
 
 </div>
 </section>
+<!-- Integrated Research & Publications: original supplied section and interactions; scoped CSS prevents affecting the main site. -->
+<style id="research-integrated-styles">
+
+    
+/*
+      TriChokro Research & Publications — standalone and embeddable.
+      To use on trichokro.com, take the <section id="research">, this <style>
+      block and the final <script> block. No library or image dependencies.
+      Typeface intentionally uses local/system fonts for dependable loading.
+    */
+
+    
+.tc-research-embed {
+      color-scheme: dark;
+      --bg: #0e1729;
+      --card: #111d30;
+      --line: #2f4058;
+      --text: #f1f6ff;
+      --muted: #9aaac0;
+      --green: #17d3aa;
+      --cyan: #2ebcfa;
+      --font-ui: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    
+.tc-research-embed *, .tc-research-embed *::before, .tc-research-embed *::after { box-sizing: border-box; }
+
+    
+.tc-research-embed { scroll-behavior: smooth; }
+
+    
+.tc-research-embed { margin: 0; min-width: 320px; background: var(--bg); color: var(--text); font-family: var(--font-ui); -webkit-font-smoothing: antialiased; }
+
+    
+.tc-research-embed button, .tc-research-embed a { -webkit-tap-highlight-color: transparent; }
+
+    
+.tc-research-embed button { font: inherit; }
+
+    
+.tc-research-embed button:focus-visible, .tc-research-embed a:focus-visible { outline: 3px solid #83dfff; outline-offset: 4px; }
+
+    
+.tc-research-embed .page-glow { position: fixed; pointer-events: none; width: 55vw; height: 55vw; top: -36vw; right: -20vw; background: radial-gradient(circle, rgba(19, 112, 147, .13), transparent 68%); z-index: 0; }
+
+    
+.tc-research-embed .site-top { position: relative; z-index: 1; max-width: 1160px; padding: 23px 27px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(158, 186, 213, .12); }
+
+    
+.tc-research-embed .brand { display: inline-flex; gap: 10px; align-items: center; color: #eef6ff; text-decoration: none; }
+
+    
+.tc-research-embed .brand-mark { width: 31px; height: 31px; border: 1px solid rgba(20, 218, 174, .65); border-radius: 9px; display: grid; place-items: center; color: var(--green); font-size: 21px; line-height: 1; font-weight: 900; transform: rotate(-5deg); }
+
+    
+.tc-research-embed .brand-copy { font-size: 12px; font-weight: 830; letter-spacing: .08em; line-height: 1.15; }
+
+    
+.tc-research-embed .brand-copy small { font-size: 9px; display: block; letter-spacing: .19em; color: #8da0b8; font-weight: 600; margin-top: 4px; }
+
+    
+.tc-research-embed .back-link { text-decoration: none; display: inline-flex; align-items: center; gap: 9px; color: #b2c1d5; font-size: 12px; font-weight: 630; transition: color .2s; }
+
+    
+.tc-research-embed .back-link:hover { color: var(--green); }
+
+    
+.tc-research-embed .back-link svg { width: 16px; height: 16px; }
+
+    
+.tc-research-embed .research-section { position: relative; isolation: isolate; padding: 65px 24px 108px; }
+
+    
+.tc-research-embed .research-inner { max-width: 1100px; margin: 0 auto; }
+
+    
+.tc-research-embed .section-heading { text-align: center; margin-bottom: 39px; }
+
+    
+.tc-research-embed .eyebrow { margin: 0 0 13px; text-transform: uppercase; color: var(--green); font-size: 10px; font-weight: 750; letter-spacing: .25em; }
+
+    
+.tc-research-embed .section-heading h1 { font-family: Georgia, "Times New Roman", serif; font-variant: small-caps; letter-spacing: -.025em; font-size: clamp(31px, 3.4vw, 44px); line-height: 1.16; margin: 0; font-weight: 700; }
+
+    
+.tc-research-embed .gradient-rule { height: 4px; width: 55px; border-radius: 4px; margin: 16px auto 19px; background: linear-gradient(90deg, #05c9a3 0 60%, #a6f8e2 100%); }
+
+    
+.tc-research-embed .section-heading .intro { max-width: 640px; line-height: 1.65; font-size: 13.5px; margin: 0 auto; color: var(--muted); }
+
+    
+.tc-research-embed .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 19px; }
+
+    
+.tc-research-embed .project-count { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: #8c9db6; font-weight: 750; white-space: nowrap; }
+
+    
+.tc-research-embed .project-count::before { content: ""; background: #24d6b3; box-shadow: 0 0 11px #13d5a359; width: 7px; height: 7px; border-radius: 50%; }
+
+    
+.tc-research-embed .filters { display: inline-flex; flex-wrap: wrap; gap: 6px; padding: 4px; background: #0b1322; border: 1px solid #26354c; border-radius: 10px; }
+
+    
+.tc-research-embed .filter { border: 0; border-radius: 7px; padding: 8px 13px; color: #8fa1b8; background: none; font-size: 11px; cursor: pointer; font-weight: 680; transition: background .2s, color .2s; }
+
+    
+.tc-research-embed .filter:hover { color: #effaff; }
+
+    
+.tc-research-embed .filter[aria-pressed="true"] { background: #263951; color: #fff; box-shadow: 0 1px 4px #080f1c45; }
+
+    
+.tc-research-embed .research-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+
+    
+.tc-research-embed .research-card { --accent: #1dd7a9; --accent-rgb: 29,215,169; display: flex; flex-direction: column; min-width: 0; position: relative; border: 1px solid #314159; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #152036, #111b2e 75%); box-shadow: 0 8px 30px #04091410; transition: transform .35s cubic-bezier(.2,.75,.2,1), border-color .3s, box-shadow .3s; animation: riseIn .65s both; }
+
+    
+.tc-research-embed .research-card:nth-child(2) { animation-delay: .08s; }
+
+    
+.tc-research-embed .research-card:nth-child(3) { animation-delay: .15s; }
+
+    
+.tc-research-embed .research-card:nth-child(4) { animation-delay: .22s; }
+
+    
+.tc-research-embed .research-card:hover { transform: translateY(-5px); border-color: rgba(var(--accent-rgb),.6); box-shadow: 0 18px 46px #00000030, 0 0 0 1px rgba(var(--accent-rgb),.05); }
+
+    
+.tc-research-embed .research-card[hidden] { display: none !important; }
+
+    
+.tc-research-embed .tone-cyan { --accent: #35bdff; --accent-rgb: 53,189,255; }
+
+    
+.tc-research-embed .tone-violet { --accent: #b39aff; --accent-rgb: 179,154,255; }
+
+    
+.tc-research-embed .tone-gold { --accent: #f4c66e; --accent-rgb: 244,198,110; }
+
+    
+.tc-research-embed .card-visual { height: 211px; position: relative; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 40% 20%, rgba(var(--accent-rgb),.11), transparent 60%), #101c30; border-bottom: 1px solid #27374f; }
+
+    
+.tc-research-embed .card-visual::after { position: absolute; content: ""; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(13,22,38,.6), transparent 32%); z-index: 2; }
+
+    
+.tc-research-embed .art-grid { position: absolute; inset: 0; opacity: .36; background-image: linear-gradient(#89b4db1c 1px, transparent 1px), linear-gradient(90deg, #89b4db1c 1px, transparent 1px); background-size: 22px 22px; mask-image: linear-gradient(90deg, transparent, black 16% 85%, transparent); }
+
+    
+.tc-research-embed .visual-topline { position: absolute; top: 17px; left: 21px; z-index: 3; font-size: 10px; font-weight: 730; letter-spacing: .17em; color: #9cacc6; }
+
+    
+.tc-research-embed .category-badge { position: absolute; z-index: 4; right: 16px; top: 15px; padding: 8px 10px; border-radius: 20px; color: #051520; background: var(--accent); letter-spacing: .06em; text-transform: uppercase; font-size: 9px; font-weight: 830; box-shadow: 0 3px 18px rgba(var(--accent-rgb), .18); }
+
+    
+.tc-research-embed .art-svg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+
+    
+.tc-research-embed .research-card:hover .art-svg { transform: scale(1.045) translateY(-2px); }
+
+    
+.tc-research-embed .card-content { padding: 24px 26px 27px; flex: 1; display: flex; flex-direction: column; position: relative; }
+
+    
+.tc-research-embed .card-content::before { content: ""; position: absolute; bottom: 0; right: 0; height: 180px; width: 180px; pointer-events: none; border-radius: 50%; background: radial-gradient(circle at bottom right, rgba(var(--accent-rgb),.065), transparent 70%); }
+
+    
+.tc-research-embed .card-num { color: var(--accent); font-size: 10px; font-weight: 750; letter-spacing: .13em; margin: 0 0 8px; text-transform: uppercase; }
+
+    
+.tc-research-embed .card-title { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.017em; font-size: 23px; line-height: 1.2; margin: 0 0 10px; font-weight: 700; font-variant: small-caps; }
+
+    
+.tc-research-embed .card-desc { font-size: 13px; line-height: 1.66; color: #a0aec4; margin: 0 0 22px; min-height: 43px; }
+
+    
+.tc-research-embed .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: auto; margin-bottom: 20px; }
+
+    
+.tc-research-embed .stat { padding: 13px 14px 14px; min-width: 0; border: 1px solid #33445e; border-radius: 7px; background: #101a2bba; }
+
+    
+.tc-research-embed .stat-label { font-size: 9px; text-transform: uppercase; color: #788ca8; display: block; line-height: 1.3; margin-bottom: 6px; font-weight: 700; }
+
+    
+.tc-research-embed .stat-value { display: block; font-size: 13px; font-weight: 720; color: #eef6ff; line-height: 1.35; }
+
+    
+.tc-research-embed .stat:first-child .stat-value { color: var(--accent); }
+
+    
+.tc-research-embed .card-button { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px; border: 0; padding: 13px 15px; min-height: 43px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 770; color: #061723; background: linear-gradient(105deg, var(--btn-from), var(--btn-to)); transition: box-shadow .25s, filter .25s, transform .25s; }
+
+    
+.tc-research-embed .card-button:hover { filter: brightness(1.1); box-shadow: 0 7px 24px rgba(var(--accent-rgb), .18); }
+
+    
+.tc-research-embed .card-button:active { transform: scale(.99); }
+
+    
+.tc-research-embed .card-button svg { width: 15px; height: 15px; transition: transform .2s; }
+
+    
+.tc-research-embed .card-button:hover svg { transform: translateX(3px); }
+
+    
+.tc-research-embed .tone-green { --btn-from: #0b866b; --btn-to: #2ed4aa; }
+
+    
+.tc-research-embed .tone-cyan { --btn-from: #038cce; --btn-to: #39c3fa; }
+
+    
+.tc-research-embed .tone-violet { --btn-from: #8d70da; --btn-to: #beafff; }
+
+    
+.tc-research-embed .tone-gold { --btn-from: #d69a40; --btn-to: #facf80; }
+
+    
+.tc-research-embed .research-footnote { display: flex; justify-content: center; align-items: center; gap: 8px; color: #7487a3; font-size: 11px; margin: 24px auto 0; text-align: center; line-height: 1.6; }
+
+    
+.tc-research-embed .research-footnote svg { flex: none; width: 14px; height: 14px; }
+
+    
+.tc-research-embed .site-footer { max-width: 1100px; margin: auto; padding: 22px 24px 27px; color: #70849e; border-top: 1px solid #28364b; display: flex; justify-content: space-between; gap: 15px; font-size: 11px; }
+
+    
+.tc-research-embed .site-footer a { color: #9aabc3; text-decoration: none; }
+
+    
+.tc-research-embed .site-footer a:hover { color: var(--green); }
+
+    
+.tc-research-embed dialog { color: #ecf4fd; padding: 0; border: 1px solid #425570; background: #121e31; width: min(610px, calc(100% - 30px)); max-height: min(84dvh, 770px); overflow-y: auto; border-radius: 16px; box-shadow: 0 30px 100px #000a; }
+
+    
+.tc-research-embed dialog::backdrop { background: rgba(3,9,19,.8); backdrop-filter: blur(7px); }
+
+    
+.tc-research-embed .modal-head { padding: 29px 30px 24px; border-bottom: 1px solid #293d56; position: relative; background: radial-gradient(ellipse at top right, rgba(28,177,162,.12), transparent 67%); }
+
+    
+.tc-research-embed .modal-kicker { color: #21d5b0; text-transform: uppercase; letter-spacing: .2em; font-size: 10px; font-weight: 800; }
+
+    
+.tc-research-embed .modal-head h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(25px, 4vw, 34px); line-height: 1.2; font-variant: small-caps; margin: 12px 34px 0 0; }
+
+    
+.tc-research-embed .modal-close { position: absolute; right: 19px; top: 19px; background: #1e3046; border: 1px solid #40526a; border-radius: 9px; height: 33px; width: 33px; color: #d1e1f0; cursor: pointer; display: grid; place-items: center; }
+
+    
+.tc-research-embed .modal-close:hover { background: #2c405a; }
+
+    
+.tc-research-embed .modal-body { padding: 24px 30px 30px; }
+
+    
+.tc-research-embed .modal-body p { color: #acbed2; font-size: 13px; line-height: 1.8; margin: 0 0 24px; }
+
+    
+.tc-research-embed .modal-meta { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 20px; }
+
+    
+.tc-research-embed .meta-pill { display: inline-block; color: #c2d2e5; border: 1px solid #3b4d64; border-radius: 100px; padding: 7px 11px; font-size: 11px; }
+
+    
+.tc-research-embed .modal-body h3 { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 800; color: #eef7ff; margin: 0 0 14px; }
+
+    
+.tc-research-embed .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+
+    
+.tc-research-embed .topic { display: flex; align-items: flex-start; gap: 9px; font-size: 12px; line-height: 1.5; padding: 12px; border-radius: 8px; background: #0e1a2c; border: 1px solid #2c3e57; color: #b8c9dd; }
+
+    
+.tc-research-embed .topic::before { content: "↗"; color: #1dd5b2; font-weight: bold; }
+
+    
+.tc-research-embed .modal-note { font-size: 11px; color: #8295ad; border-top: 1px solid #2b3c55; padding-top: 17px; line-height: 1.65; }
+
+    
+@keyframes riseIn  { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+    
+@media (max-width: 760px)  { 
+.tc-research-embed .research-grid { grid-template-columns: 1fr; max-width: 550px; margin: auto; gap: 20px; }
+ 
+.tc-research-embed .research-section { padding: 54px 19px 80px; }
+ 
+.tc-research-embed .toolbar { max-width: 550px; margin-left: auto; margin-right: auto; }
+ 
+.tc-research-embed .card-visual { height: 220px; }
+ }
+
+    
+@media (max-width: 500px)  { 
+.tc-research-embed .site-top { padding: 17px 18px; }
+ 
+.tc-research-embed .brand-copy { font-size: 11px; }
+ 
+.tc-research-embed .back-link { font-size: 0; }
+ 
+.tc-research-embed .back-link svg { height: 19px; width: 19px; }
+ 
+.tc-research-embed .research-section { padding-inline: 14px; }
+ 
+.tc-research-embed .section-heading { margin-bottom: 30px; }
+ 
+.tc-research-embed .toolbar { flex-direction: column; align-items: flex-start; gap: 12px; }
+ 
+.tc-research-embed .filters { width: 100%; display: grid; grid-template-columns: repeat(3,1fr); }
+ 
+.tc-research-embed .filter { padding: 9px 7px; font-size: 10px; }
+ 
+.tc-research-embed .card-visual { height: 194px; }
+ 
+.tc-research-embed .card-content { padding: 21px 20px 23px; }
+ 
+.tc-research-embed .card-title { font-size: 21px; }
+ 
+.tc-research-embed .stat { padding: 11px; }
+ 
+.tc-research-embed .stat-row { gap: 9px; }
+ 
+.tc-research-embed .site-footer { flex-direction: column; }
+ 
+.tc-research-embed .modal-head { padding: 24px 22px 19px; }
+ 
+.tc-research-embed .modal-body { padding: 23px 22px; }
+ 
+.tc-research-embed .topic-grid { grid-template-columns: 1fr; }
+ }
+
+    
+@media (prefers-reduced-motion: reduce)  { 
+.tc-research-embed *, .tc-research-embed *::before, .tc-research-embed *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+ }
+
+  
+.tc-research-embed {position:relative;background:#0e1729;color:#f1f6ff;font-family:Inter,ui-sans-serif,system-ui,sans-serif;border-top:1px solid #22344a;border-bottom:1px solid #22344a;isolation:isolate}
+.tc-research-embed .research-section{padding-top:78px;padding-bottom:90px}
+.tc-research-embed .section-heading h1,.tc-research-embed .card-title,.tc-research-embed .modal-head h2{font-family:Georgia,'Times New Roman',serif}
+.tc-research-embed .filter{min-width:0;min-height:0}
+.tc-research-embed .card-button{font-family:Inter,Arial,sans-serif}
+.tc-research-embed .research-card[hidden]{display:none!important}
+</style>
+<div class="tc-research-embed" aria-label="Research and Publications">
+<section aria-labelledby="research-title" class="research-section" id="research">
+<div class="research-inner">
+<div class="section-heading">
+<p class="eyebrow">TriChokro / Engineering Knowledge</p>
+<h1 id="research-title">Research &amp; Publications</h1>
+<div aria-hidden="true" class="gradient-rule"></div>
+<p class="intro">From evidence-based policy to real-world engineering tests — advancing safer, smarter electric mobility for Bangladesh.</p>
+</div>
+<div class="toolbar">
+<div aria-live="polite" class="project-count" id="project-count">04 Research Initiatives</div>
+<div aria-label="Filter research projects" class="filters" role="group">
+<button aria-pressed="true" class="filter" data-filter="all" type="button">All research</button>
+<button aria-pressed="false" class="filter" data-filter="publication" type="button">Publications</button>
+<button aria-pressed="false" class="filter" data-filter="study" type="button">Field studies</button>
+</div>
+</div>
+<div class="research-grid" id="research-grid">
+<article class="research-card tone-green" data-type="publication">
+<div class="card-visual">
+<div aria-hidden="true" class="art-grid"></div>
+<div class="visual-topline">RESEARCH / 001</div>
+<span class="category-badge">POLICY RESEARCH</span>
+<svg aria-hidden="true" class="art-svg" preserveaspectratio="xMidYMid meet" viewbox="0 0 540 230">
+<defs><lineargradient id="bookCover" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#27566a"></stop><stop offset="1" stop-color="#102838"></stop></lineargradient><lineargradient id="bookPages" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#e8f4ef"></stop><stop offset="1" stop-color="#97bcb6"></stop></lineargradient><filter id="shadow1"><fegaussianblur stddeviation="15"></fegaussianblur></filter></defs>
+<ellipse cx="280" cy="209" fill="#000" filter="url(#shadow1)" opacity=".4" rx="155" ry="14"></ellipse>
+<path d="M166 52 307 35 390 80 251 102Z" fill="#3e7281" opacity=".55"></path>
+<path d="m165 62 85 47 0 114-85-49Z" fill="url(#bookCover)" stroke="#48d9bd" stroke-opacity=".65" stroke-width="1.8"></path>
+<path d="m250 109 141-29v114l-141 29Z" fill="#eef8ee" opacity=".1" stroke="#56e3bf" stroke-width="1.5"></path>
+<path d="m257 111 127-25v99l-127 28Z" fill="url(#bookPages)" opacity=".89"></path>
+<path d="m165 172 86 48 141-30" fill="none" stroke="#83e1d2" stroke-width="4"></path>
+<path d="m165 176 86 49 141-29" fill="none" stroke="#dafcf2" stroke-width="2"></path>
+<path d="m255 116 126-25" stroke="#194353" stroke-opacity=".4" stroke-width="1"></path>
+<g opacity=".6" stroke="#286b68" stroke-linecap="round" stroke-width="3"><path d="m274 132 76-15"></path><path d="m274 145 87-18"></path><path d="m274 158 61-12"></path><path d="m274 176 85-17"></path><path d="m274 189 68-14"></path></g>
+<g fill="none" stroke="#9ce7d5" stroke-width="1.7"><path d="m190 109 31 17 0 33-31-16z"></path><path d="m196 123 7 11 15-10"></path></g>
+<text fill="#62a899" font-family="Arial" font-size="10" letter-spacing="3" x="85" y="183">REGULATORY</text>
+<path d="M73 167h71" opacity=".5" stroke="#4f987f"></path>
+<circle cx="415" cy="131" fill="none" opacity=".35" r="55" stroke="#39c7ae" stroke-dasharray="3 8"></circle>
+<text fill="#6ce5c5" font-family="Georgia" font-size="29" opacity=".45" x="406" y="148">§</text>
+</svg>
+</div>
+<div class="card-content">
+<p class="card-num">Publication / 01</p>
+<h2 class="card-title">Auto-Rickshaw Policy for Bangladesh</h2>
+<p class="card-desc">A research-led policy recommendation book outlining a practical framework for electric auto-rickshaws in Bangladesh.</p>
+<div class="stat-row">
+<div class="stat"><span class="stat-label">Planned Length</span><span class="stat-value">170 Pages</span></div>
+<div class="stat"><span class="stat-label">For</span><span class="stat-value">Policymakers</span></div>
+</div>
+<button class="card-button" data-project="policy" style="--btn-from:#07725e; --btn-to:#2bcfa2" type="button">Explore Research <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></button>
+</div>
+</article>
+<article class="research-card tone-cyan" data-type="publication">
+<div class="card-visual">
+<div aria-hidden="true" class="art-grid"></div>
+<div class="visual-topline">RESEARCH / 002</div>
+<span class="category-badge">TESTING MANUAL</span>
+<svg aria-hidden="true" class="art-svg" preserveaspectratio="xMidYMid meet" viewbox="0 0 540 230">
+<defs><lineargradient id="blueprintFill" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#188cc5" stop-opacity=".2"></stop><stop offset="1" stop-color="#3d6ea9" stop-opacity=".02"></stop></lineargradient></defs>
+<g fill="none" stroke="#65c9f4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(62,29)">
+<rect fill="url(#blueprintFill)" height="145" rx="4" stroke-opacity=".2" width="255" x="71" y="20"></rect>
+<path d="M78 144h257" opacity=".2"></path><path d="M113 146h180M123 139h145" opacity=".2"></path>
+<circle cx="140" cy="136" r="32" stroke-width="3"></circle><circle cx="140" cy="136" r="22" stroke-opacity=".5"></circle><circle cx="140" cy="136" fill="#7bdeff" r="5"></circle>
+<circle cx="294" cy="136" r="32" stroke-width="3"></circle><circle cx="294" cy="136" r="22" stroke-opacity=".5"></circle><circle cx="294" cy="136" fill="#7bdeff" r="5"></circle>
+<path d="m141 136 22-74 126 1 22 73M164 62l-8 54 91-3 40-50M177 65l76 47M177 72l-6 43"></path>
+<path d="m160 62-18-13-18 2m165 13 26-18 30 2m-173 18 17-19h86l13 19"></path>
+<path d="m189 47 2-13h59l4 13m-62-13h-14"></path>
+<path d="m145 100 44 0 47-25" opacity=".6" stroke-dasharray="4 5"></path>
+<g opacity=".7" stroke-width="1"><path d="M114 137H53v-40h32M307 134h62v-48h20"></path><path d="M174 46V17h-52"></path><path d="M138 167v16m157-16v16M138 181h157"></path></g>
+<g fill="#a3e8ff" font-family="Arial" font-size="10" letter-spacing="1" stroke="none"><text x="26" y="95">BRAKE</text><text x="362" y="81">LOAD</text><text x="90" y="14">CHASSIS</text><text x="190" y="199">DIMENSIONS</text></g>
+<g fill="#a3e8ff" stroke="none"><circle cx="86" cy="97" r="3"></circle><circle cx="369" cy="134" r="3"></circle><circle cx="174" cy="46" r="3"></circle></g>
+</g>
+<path d="M35 203h470" opacity=".45" stroke="#3e82aa" stroke-dasharray="4 9" stroke-width="1"></path>
+</svg>
+</div>
+<div class="card-content">
+<p class="card-num">Publication / 02</p>
+<h2 class="card-title">Auto-Rickshaw Testing Manual</h2>
+<p class="card-desc">An illustrated, engineering-focused guide to what should be tested, how to test it, and how to document results.</p>
+<div class="stat-row">
+<div class="stat"><span class="stat-label">Planned Length</span><span class="stat-value">110 Pages</span></div>
+<div class="stat"><span class="stat-label">Focus</span><span class="stat-value">Safety &amp; Testing</span></div>
+</div>
+<button class="card-button" data-project="manual" type="button">Explore Research <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></button>
+</div>
+</article>
+<article class="research-card tone-violet" data-type="study">
+<div class="card-visual">
+<div aria-hidden="true" class="art-grid"></div>
+<div class="visual-topline">RESEARCH / 003</div>
+<span class="category-badge">URBAN ANALYTICS</span>
+<svg aria-hidden="true" class="art-svg" preserveaspectratio="xMidYMid meet" viewbox="0 0 540 230">
+<defs><lineargradient id="jamLine" x1="0" x2="1" y1="0" y2="0"><stop stop-color="#698ec8"></stop><stop offset=".6" stop-color="#bf93fa"></stop><stop offset="1" stop-color="#ffa76a"></stop></lineargradient></defs>
+<g transform="translate(72,48)">
+<g fill="none" opacity=".35" stroke="#4c6182" stroke-linecap="round" stroke-width="14"><path d="M5 104 80 104 108 54 240 54 270 18 377 18"></path><path d="M48 0 48 149M162 0 162 150M301 0 301 150M7 20h363M10 137h350"></path></g>
+<g fill="none" opacity=".35" stroke="#8397b6" stroke-dasharray="3 8" stroke-width="2"><path d="M5 104 80 104 108 54 240 54 270 18 377 18"></path><path d="M48 0 48 149M162 0 162 150M301 0 301 150M7 20h363M10 137h350"></path></g>
+<path d="M5 104 80 104 108 54 240 54 270 18 377 18" fill="none" stroke="url(#jamLine)" stroke-linecap="round" stroke-width="6"></path>
+<g fill="#d8a7ff" stroke="#fff" stroke-width="1.2"><circle cx="48" cy="104" r="6"></circle><circle cx="108" cy="54" r="7"></circle><circle cx="162" cy="54" r="6"></circle><circle cx="240" cy="54" r="7"></circle><circle cx="301" cy="18" r="6"></circle></g>
+<circle cx="301" cy="18" fill="none" opacity=".8" r="19" stroke="#ffa86b" stroke-dasharray="3 5" stroke-width="2"></circle>
+<g fill="#cbdeff" font-family="Arial" font-size="9" letter-spacing="1.3"><text x="-2" y="94">J-08</text><text x="168" y="43">J-42</text><text x="305" y="54">J-70</text></g>
+</g>
+<rect fill="#111e31" height="38" rx="5" stroke="#667398" stroke-opacity=".55" width="110" x="390" y="169"></rect>
+<g fill="#a5b7cf" font-family="Arial" font-size="8.5" letter-spacing="1"><text x="405" y="184">CONGESTION</text></g><rect fill="#5a89c5" height="5" rx="2" width="21" x="405" y="192"></rect><rect fill="#a387e0" height="5" rx="2" width="21" x="430" y="192"></rect><rect fill="#f0a66d" height="5" rx="2" width="29" x="455" y="192"></rect>
+</svg>
+</div>
+<div class="card-content">
+<p class="card-num">Data Study / 03</p>
+<h2 class="card-title">Dhaka Traffic: 30-Day Analysis</h2>
+<p class="card-desc">A junction-level study of Dhaka's traffic conditions, designed to identify congestion trends throughout October 2026.</p>
+<div class="stat-row">
+<div class="stat"><span class="stat-label">Study Coverage</span><span class="stat-value">70 Junctions</span></div>
+<div class="stat"><span class="stat-label">Study Period</span><span class="stat-value">30 Days</span></div>
+</div>
+<button class="card-button" data-project="traffic" type="button">Explore Research <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></button>
+</div>
+</article>
+<article class="research-card tone-gold" data-type="study">
+<div class="card-visual">
+<div aria-hidden="true" class="art-grid"></div>
+<div class="visual-topline">RESEARCH / 004</div>
+<span class="category-badge">RIDE DYNAMICS</span>
+<svg aria-hidden="true" class="art-svg" preserveaspectratio="xMidYMid meet" viewbox="0 0 540 230">
+<defs><lineargradient id="waveArea" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#f6bd69" stop-opacity=".25"></stop><stop offset="1" stop-color="#f6bd69" stop-opacity="0"></stop></lineargradient></defs>
+<g transform="translate(32,41)"><path d="M20 118H456M20 82H456M20 46H456M20 10H456" stroke="#64809b" stroke-dasharray="4 6" stroke-opacity=".28" stroke-width="1"></path><path d="M20 9v145M91 10v144M162 10v144M233 10v144M304 10v144M375 10v144M456 10v144" stroke="#64809b" stroke-dasharray="4 6" stroke-opacity=".24" stroke-width="1"></path>
+<path d="M20 83 C35 81 36 90 49 77 S63 58 76 101 S93 114 103 78 118 20 128 84 145 124 157 84 170 32 183 94 198 119 210 76 224 46 235 90 248 111 262 84 280 59 291 90 305 114 318 84 332 65 346 86 361 104 375 85 390 76 405 85 422 94 437 82 448 80 456 83L456 154H20Z" fill="url(#waveArea)"></path>
+<path d="M20 83 C35 81 36 90 49 77 S63 58 76 101 S93 114 103 78 118 20 128 84 145 124 157 84 170 32 183 94 198 119 210 76 224 46 235 90 248 111 262 84 280 59 291 90 305 114 318 84 332 65 346 86 361 104 375 85 390 76 405 85 422 94 437 82 448 80 456 83" fill="none" stroke="#f8c67a" stroke-linecap="round" stroke-width="3.5"></path>
+<path d="M20 85 C50 85 80 94 105 91 S145 81 168 78 220 88 246 86 299 82 318 81 372 84 390 82 427 83 456 83" fill="none" opacity=".8" stroke="#6bbbd1" stroke-dasharray="5 4" stroke-width="1.4"></path>
+<g fill="#b5a68e" font-family="Arial" font-size="8" letter-spacing="1"><text x="22" y="7">ACCELERATION SIGNAL</text><text x="359" y="165">TIME / SAMPLE →</text></g>
+<circle cx="128" cy="84" fill="#f8c67a" r="5" stroke="#142033" stroke-width="2"></circle><path d="M128 79V24M133 23h47" opacity=".65" stroke="#d9b278" stroke-dasharray="3 3"></path>
+</g>
+</svg>
+</div>
+<div class="card-content">
+<p class="card-num">Engineering Study / 04</p>
+<h2 class="card-title">Rickshaw Vibration Analysis</h2>
+<p class="card-desc">An engineering investigation into road-induced vibration, vehicle response and passenger ride comfort.</p>
+<div class="stat-row">
+<div class="stat"><span class="stat-label">Study Focus</span><span class="stat-value">Ride Comfort</span></div>
+<div class="stat"><span class="stat-label">Approach</span><span class="stat-value">Signal Analysis</span></div>
+</div>
+<button class="card-button" data-project="vibration" type="button">Explore Research <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></button>
+</div>
+</article>
+</div>
+<div class="research-footnote">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6m0-10h.01"></path></svg>
+        Research scopes shown here are project overviews. Publication and data links can be added upon release.
+      </div>
+</div>
+</section>
+<dialog aria-labelledby="modal-title" id="research-dialog">
+<div class="modal-head">
+<div class="modal-kicker" id="modal-kicker">TriChokro Research</div>
+<h2 id="modal-title"></h2>
+<button aria-label="Close project details" class="modal-close" id="modal-close" type="button">✕</button>
+</div>
+<div class="modal-body">
+<div class="modal-meta" id="modal-meta"></div>
+<p id="modal-overview"></p>
+<h3>Research Scope</h3>
+<div class="topic-grid" id="modal-topics"></div>
+<div class="modal-note" id="modal-note"></div>
+</div>
+</dialog>
+</div>
 <!-- PATHFINDER (TriChokro-3) PREVIEW SECTION -->
 <section class="py-24 bg-brand-dark relative overflow-hidden border-t border-slate-900" id="pathfinder-preview">
 <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#64ffda 1px, transparent 1px); background-size: 30px 30px;"></div>
@@ -1078,13 +1606,259 @@
 <button class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover" onclick="switchTab(1)">Advisory Board</button>
 <button class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover" onclick="switchTab(2)">Junior Associates</button>
 <button class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover" onclick="switchTab(3)">Mission &amp; Vision</button>
-<button class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover" onclick="switchTab(4)">Timeline</button>
-<button class="tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover" onclick="switchTab(5)">Achievements</button>
+
+<a class="w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium text-emerald-400 hover:bg-slate-800 interactive uplift-on-hover flex items-center justify-between border border-emerald-500/20" href="#achievements">Achievements &amp; Recognition <span aria-hidden="true">↗</span></a>
 </div>
 </div>
 <div class="md:w-2/3 bg-slate-900 p-8 rounded-3xl border border-slate-800 min-h-[400px] bg-gradient-animate" id="tab-content">
 <!-- Dynamic Content Loaded Here -->
 </div>
+</div>
+</div>
+</section>
+<!-- Integrated Achievements: original supplied HTML, styles and interaction logic. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..850&amp;display=swap" />
+<style id="achievements-integrated-styles">
+
+/* Everything is scoped under .tc-ach so the section can be pasted into trichokro.com. */
+.tc-ach{
+  --night:#020617; --surface:#0F172A; --surface-2:#131E35; --line:#22304A;
+  --ink:#E2E8F0; --muted:#94A3B8; --road:#1B2740; --lane:#FBBF24;
+  --siren:#F43F5E; --award:#FBBF24; --money:#34D399; --select:#60A5FA;
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+  background:var(--night); color:var(--ink); line-height:1.55;
+  padding:clamp(3.5rem,8vw,7rem) clamp(1.25rem,4vw,3rem) clamp(3rem,6vw,5rem);
+  color-scheme:dark; overflow:hidden;
+}
+.tc-ach *{box-sizing:border-box}
+.tc-ach img{max-width:100%;display:block}
+.tc-ach a{color:inherit}
+.tc-ach .wrap{max-width:1160px;margin:0 auto}
+.tc-ach :focus-visible{outline:3px solid var(--lane);outline-offset:3px;border-radius:6px}
+
+/* ---------- Heading ---------- */
+.tc-ach .head{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem 4rem;align-items:end;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.tc-ach h2{
+  margin:0;font-stretch:125%;font-weight:850;letter-spacing:-.025em;line-height:.88;
+  font-size:clamp(3rem,8.4vw,6.6rem);
+}
+.tc-ach h2 .outline{display:block;color:transparent;-webkit-text-stroke:1.5px var(--muted)}
+.tc-ach .lede{margin:0 0 1.5rem;font-size:1.12rem;color:var(--muted);max-width:46ch}
+.tc-ach .ledger{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tc-ach .ledger li{background:var(--surface);padding:1rem 1.1rem}
+.tc-ach .ledger b{display:block;font-stretch:112%;font-weight:800;font-size:clamp(1.5rem,2.6vw,2rem);font-variant-numeric:tabular-nums;line-height:1.1}
+.tc-ach .ledger span{font-size:.9rem;color:var(--muted)}
+.tc-ach .ledger li:nth-child(1) b{color:var(--money)}
+.tc-ach .ledger li:nth-child(4) b{color:var(--award)}
+
+/* ---------- Featured win ---------- */
+.tc-ach .feature{
+  position:relative;display:grid;grid-template-columns:1.2fr 1fr;text-decoration:none;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  margin-bottom:clamp(3.5rem,8vw,6rem);transition:border-color .2s
+}
+.tc-ach .feature:hover{border-color:#3B4C6B}
+.tc-ach .feature .pic{position:relative;min-height:320px}
+.tc-ach .feature .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.tc-ach .feature:hover .pic img{transform:scale(1.03)}
+.tc-ach .feature .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,var(--surface))}
+.tc-ach .feature .body{padding:clamp(1.5rem,4vw,3rem);display:flex;flex-direction:column;justify-content:center;gap:1rem}
+.tc-ach .feature .medal{display:flex;align-items:center;gap:.6rem;color:var(--money);font-weight:650}
+.tc-ach .feature .medal svg{flex:none}
+.tc-ach .feature h3{margin:0;font-stretch:112%;font-weight:780;font-size:clamp(1.55rem,3vw,2.3rem);line-height:1.08}
+.tc-ach .feature .ev{margin:0;color:var(--lane);font-weight:650}
+.tc-ach .feature p.sum{margin:0;color:var(--muted);max-width:44ch}
+.tc-ach .feature .go{align-self:flex-start;margin-top:.5rem;padding:.75rem 1.2rem;border-radius:999px;background:var(--ink);color:var(--night);font-weight:700;transition:background .2s}
+.tc-ach .feature:hover .go{background:var(--lane)}
+
+/* ---------- Filters ---------- */
+.tc-ach .tl-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:2.5rem}
+.tc-ach .tl-bar h3{margin:0;font-stretch:118%;font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1}
+.tc-ach .filters{display:flex;flex-wrap:wrap;gap:.5rem}
+.tc-ach .filters button{
+  font:inherit;font-size:.92rem;font-weight:600;color:var(--muted);cursor:pointer;
+  background:transparent;border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;
+  display:inline-flex;align-items:center;gap:.5rem;transition:color .15s,border-color .15s,background .15s
+}
+.tc-ach .filters button:hover{color:var(--ink);border-color:#3B4C6B}
+.tc-ach .filters button[aria-pressed="true"]{background:var(--ink);color:var(--night);border-color:var(--ink)}
+.tc-ach .filters .dot{width:8px;height:8px;border-radius:50%}
+.tc-ach .filters [data-f="win"] .dot{background:var(--award)}
+.tc-ach .filters [data-f="funding"] .dot{background:var(--money)}
+.tc-ach .filters [data-f="selection"] .dot{background:var(--select)}
+.tc-ach .filters .n{font-variant-numeric:tabular-nums;opacity:.7}
+
+/* ---------- Timeline road ---------- */
+.tc-ach .timeline{position:relative;list-style:none;margin:0;padding:4.5rem 0 2rem}
+.tc-ach .timeline::before{ /* asphalt */
+  content:"";position:absolute;top:0;bottom:0;left:50%;width:22px;transform:translateX(-50%);
+  background:var(--road);border-left:2px solid #2C3B58;border-right:2px solid #2C3B58;border-radius:4px
+}
+.tc-ach .timeline::after{ /* centre line */
+  content:"";position:absolute;top:8px;bottom:8px;left:50%;width:3px;transform:translateX(-50%);
+  background:repeating-linear-gradient(to bottom,var(--lane) 0 16px,transparent 16px 32px);opacity:.55
+}
+.tc-ach .year{position:relative;z-index:2;display:flex;justify-content:center;margin:1.25rem 0 2.25rem}
+.tc-ach .year span{
+  background:var(--lane);color:#1A1203;font-stretch:120%;font-weight:850;font-size:1.05rem;
+  padding:.35rem .9rem;border-radius:6px;box-shadow:0 0 0 6px var(--night)
+}
+.tc-ach .event{position:relative;display:grid;grid-template-columns:1fr 1fr;column-gap:5.5rem;margin-bottom:2.25rem}
+.tc-ach .event[hidden],.tc-ach .year[hidden],.tc-ach .empty-note[hidden]{display:none}
+.tc-ach .stamp{grid-column:1;justify-self:end;text-align:right;padding-top:1.15rem}
+.tc-ach .event .card{grid-column:2}
+.tc-ach .event.flip .stamp{grid-column:2;grid-row:1;justify-self:start;text-align:left}
+.tc-ach .event.flip .card{grid-column:1;grid-row:1}
+.tc-ach .stamp .d{display:block;font-stretch:115%;font-weight:780;font-size:1.2rem}
+.tc-ach .stamp .p{display:block;color:var(--muted);font-size:.92rem}
+.tc-ach .event.t-win{--c:var(--award)}
+.tc-ach .event.t-funding{--c:var(--money)}
+.tc-ach .event.t-selection{--c:var(--select)}
+
+.tc-ach .hub{ /* wheel hub on the road */
+  position:absolute;left:50%;top:1.2rem;z-index:2;width:28px;height:28px;transform:translateX(-50%);
+  border-radius:50%;background:var(--night);border:4px solid #3B4C6B;
+  transition:border-color .35s, box-shadow .35s
+}
+.tc-ach .hub::after{content:"";position:absolute;inset:5px;border-radius:50%;background:#3B4C6B;transition:background .35s}
+.tc-ach .event.passed .hub{border-color:var(--c);box-shadow:0 0 0 6px rgba(148,163,184,.12)}
+.tc-ach .event.passed .hub::after{background:var(--c)}
+
+.tc-ach .card{
+  position:relative;display:grid;grid-template-columns:120px 1fr;gap:1.1rem;align-items:start;text-decoration:none;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem;
+  transition:transform .2s ease,border-color .2s,background .2s
+}
+.tc-ach .card:hover{transform:translateY(-3px);border-color:var(--c);background:var(--surface-2)}
+.tc-ach .thumb{width:120px;height:92px;border-radius:8px;overflow:hidden;background:#fff;display:grid;place-items:center}
+.tc-ach .thumb img{width:100%;height:100%;object-fit:cover}
+.tc-ach .thumb.logo img{object-fit:contain;padding:10px}
+.tc-ach .thumb.tile{background:var(--surface-2);border:1px solid var(--line);color:var(--c);font-stretch:118%;font-weight:850;font-size:1.05rem;text-align:center;line-height:1.05;padding:8px}
+.tc-ach .kind{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700;color:var(--c);margin-bottom:.3rem}
+.tc-ach .kind::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+.tc-ach .card h4{margin:0 0 .3rem;font-stretch:104%;font-weight:720;font-size:1.08rem;line-height:1.25}
+.tc-ach .card .sum{margin:0;font-size:.93rem;color:var(--muted)}
+.tc-ach .card .foot{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem;margin-top:.7rem;font-size:.86rem}
+.tc-ach .card .prize{font-weight:750;color:var(--money);font-variant-numeric:tabular-nums}
+.tc-ach .card .more{font-weight:650;color:var(--ink);display:inline-flex;align-items:center;gap:.35rem}
+.tc-ach .card .more svg{transition:transform .2s}
+.tc-ach .card:hover .more svg{transform:translateX(3px)}
+
+/* The Trambulance driving down the road as you scroll */
+.tc-ach .rider{
+  position:absolute;left:50%;top:0;z-index:3;width:54px;height:54px;margin-left:-27px;
+  border-radius:50%;background:var(--ink);display:grid;place-items:center;
+  box-shadow:0 0 0 5px var(--night),0 8px 24px rgba(0,0,0,.5);will-change:transform;pointer-events:none
+}
+.tc-ach .rider .beacon{position:absolute;top:-3px;right:-1px;width:12px;height:12px;border-radius:50%;background:var(--siren);box-shadow:0 0 0 3px var(--night);animation:tc-blink 1.2s steps(2,end) infinite}
+@keyframes tc-blink{50%{background:#3B82F6}}
+
+.tc-ach .empty-note{text-align:center;color:var(--muted);margin:0 0 2rem;position:relative;z-index:2}
+.tc-ach .empty-note span{background:var(--night);padding:.25rem .75rem}
+
+/* ---------- Partners ---------- */
+.tc-ach .partners{margin-top:clamp(3rem,6vw,4.5rem);display:grid;grid-template-columns:auto 1fr;gap:1.5rem 3rem;align-items:center;padding-top:2rem;border-top:1px solid var(--line)}
+.tc-ach .partners p{margin:0;color:var(--muted);max-width:22ch}
+.tc-ach .partners ul{display:flex;flex-wrap:wrap;gap:.75rem;list-style:none;margin:0;padding:0}
+.tc-ach .partners li{background:#fff;border-radius:8px;height:60px;padding:.5rem .8rem;display:grid;place-items:center}
+.tc-ach .partners img{max-height:42px;width:auto}
+.tc-ach .outro{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.tc-ach .outro a{text-decoration:none;font-weight:650;padding:.65rem 1.1rem;border-radius:999px;border:1px solid var(--line);transition:border-color .15s}
+.tc-ach .outro a:hover{border-color:var(--ink)}
+
+/* ---------- Load sequence (the one orchestrated moment) ---------- */
+.tc-ach.js .head > *, .tc-ach.js .feature{opacity:0;transform:translateY(14px)}
+.tc-ach.ready .head > *, .tc-ach.ready .feature{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+.tc-ach.ready .head > :nth-child(2){transition-delay:.12s}
+.tc-ach.ready .feature{transition-delay:.25s}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .tc-ach .head{grid-template-columns:1fr}
+  .tc-ach .feature{grid-template-columns:1fr}
+  .tc-ach .feature .pic{min-height:240px}
+  .tc-ach .feature .pic::after{background:linear-gradient(180deg,transparent 55%,var(--surface))}
+  .tc-ach .partners{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .tc-ach .timeline::before,.tc-ach .timeline::after{left:17px}
+  .tc-ach .year{justify-content:flex-start}
+  .tc-ach .event,.tc-ach .event.flip{grid-template-columns:1fr;padding-left:54px;row-gap:.6rem}
+  .tc-ach .stamp,.tc-ach .event.flip .stamp{grid-column:1;grid-row:1;justify-self:start;text-align:left;padding-top:0}
+  .tc-ach .event .card,.tc-ach .event.flip .card{grid-column:1;grid-row:2}
+  .tc-ach .hub{left:17px;top:0}
+  .tc-ach .rider{left:17px;width:42px;height:42px;margin-left:-21px}
+  .tc-ach .rider svg{width:26px}
+  .tc-ach .card{grid-template-columns:1fr}
+  .tc-ach .thumb{width:100%;height:150px}
+  .tc-ach .thumb.tile{height:64px;font-size:1.2rem}
+}
+@media (prefers-reduced-motion: reduce){
+  .tc-ach *,.tc-ach *::before,.tc-ach *::after{transition:none!important;animation:none!important}
+  .tc-ach.js .head > *, .tc-ach.js .feature{opacity:1;transform:none}
+}
+
+/* The main page assigns Cinzel to all headings; retain the supplied achievements typography. */
+.tc-ach h2,.tc-ach h3,.tc-ach h4{font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+.tc-ach .card{animation:none}
+</style>
+<section aria-labelledby="tc-ach-title" class="tc-ach" id="achievements">
+<div class="wrap">
+<header class="head">
+<h2 id="tc-ach-title">Achieve<span class="outline">ments</span></h2>
+<div>
+<p class="lede">The Trambulance began as a student project at BUET. In just over a year it has been recognised in Dhaka, the Maldives, North Carolina, Bangkok and Lahore.</p>
+<ul aria-label="Funding and recognition" class="ledger">
+<li><b data-count="8500" data-prefix="$">$8,500</b><span>International grants and prizes</span></li>
+<li><b data-count="600" data-prefix="€">€600</b><span>IMechE prize money</span></li>
+<li><b data-count="20000" data-prefix="৳">৳20,000</b><span>BUET Alumni fund</span></li>
+<li><b data-count="12" id="tc-total">12</b><span>Recognitions since July 2025</span></li>
+</ul>
+</div>
+</header>
+<a class="feature" href="achievement-details.html#bangkok-business-challenge">
+<div class="pic"><img alt="TriChokro receiving the Sustainability Award at the Bangkok Business Challenge 2026 royal award ceremony" src="images/bangkok-business-challenge-2026.jpg"/></div>
+<div class="body">
+<span class="medal">
+<svg aria-hidden="true" fill="none" height="22" viewbox="0 0 24 24" width="22"><path d="M12 3c4 2 6 5.5 6 9.5A6 6 0 0 1 6 12.5C6 8.5 8 5 12 3Z" stroke="currentColor" stroke-width="2"></path><path d="M12 21V11" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
+          Sustainability Award, $5,000
+        </span>
+<h3>HRH Princess Maha Chakri Sirindhorn's Sustainability Award</h3>
+<p class="ev">Bangkok Business Challenge 2026, Thailand</p>
+<p class="sum">Chosen from 385 teams across 20 countries at Asia's longest-running student startup competition.</p>
+<span class="go">Read the coverage</span>
+</div>
+</a>
+<div class="tl-bar">
+<h3 id="timeline">The road so far</h3>
+<div aria-label="Filter achievements" class="filters" role="group"></div>
+</div>
+<ol class="timeline" id="tc-timeline">
+<li aria-hidden="true" class="rider">
+<span class="beacon"></span>
+<svg fill="none" viewbox="0 0 40 28" width="36">
+<path d="M3 19V9.5C3 7.6 4.6 6 6.5 6H22l5 6h6.5c1.4 0 2.5 1.1 2.5 2.5V19" fill="#F8FAFC" stroke="#020617" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M23 7.5 27 12h-4z" fill="#93C5FD" stroke="#020617" stroke-linejoin="round" stroke-width="1.5"></path>
+<path d="M11 9v6M8 12h6" stroke="#F43F5E" stroke-linecap="round" stroke-width="2.4"></path>
+<path d="M2 19h35" stroke="#020617" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="9" cy="21.5" fill="#020617" r="3.5"></circle><circle cx="31" cy="21.5" fill="#020617" r="3.5"></circle>
+<circle cx="9" cy="21.5" fill="#F8FAFC" r="1.2"></circle><circle cx="31" cy="21.5" fill="#F8FAFC" r="1.2"></circle>
+</svg>
+</li>
+</ol>
+<div class="partners">
+<p>Backed and recognised by</p>
+<ul>
+<li><img alt="ICT Division, Government of Bangladesh" loading="lazy" src="images/logo-ict-division.png"/></li>
+<li><img alt="University Innovation Hub Program" loading="lazy" src="images/logo-uihp.jpg"/></li>
+<li><img alt="RISE, BUET" loading="lazy" src="images/logo-rise-buet.png"/></li>
+<li><img alt="Institution of Mechanical Engineers" loading="lazy" src="images/logo-imeche.png"/></li>
+<li><img alt="First Flight Ventures" loading="lazy" src="images/logo-first-flight.png"/></li>
+</ul>
+</div>
+<div class="outro">
+<a href="https://www.youtube.com/@TriChokroAutomotives" rel="noopener" target="_blank">Watch the Trambulance pitch</a>
+<a href="https://trichokro.com/blog.html">Read all news</a>
 </div>
 </div>
 </section>
@@ -1297,7 +2071,7 @@ View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
             <p class="text-slate-400 mt-4">Latest updates, news and behind-the-scenes from TriChokro</p>
         </div>
         <div class="fb-feed-wrap">
-            <iframe data-fb-page="https://www.facebook.com/profile.php?id=61577812382585" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61577812382585&amp;tabs=timeline&amp;width=500&amp;height=800&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true" title="TriChokro Facebook feed" loading="lazy" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <iframe data-fb-page="https://www.facebook.com/profile.php?id=61577812382585" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61577812382585&amp;tabs=timeline&amp;width=500&amp;height=680&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false" title="Scrollable TriChokro Facebook page timeline" loading="lazy" scrolling="yes" width="500" height="680" style="border:none;overflow:auto" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
         </div>
         <div class="text-center mt-8">
             <a href="https://www.facebook.com/people/TriChokro/61577812382585/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-lg">
@@ -1472,58 +2246,11 @@ View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
     {title: "Cleaner Mobility for Everyone", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-5">Cleaner Mobility for Everyone</h3>
  <div class="mb-6 overflow-hidden rounded-xl"><img src="src/assets/TriChokro Main page.webp" alt="TriChokro electric three-wheeler concept" class="w-full max-h-64 object-cover" loading="lazy"></div>
  <p class="text-slate-300 leading-relaxed">Accelerating Bangladesh’s transition to cleaner urban mobility through durable, efficient electric-vehicle design. Our work focuses on solutions that can raise driver income and reduce city pollution, designed for real streets, real loads, and real economics.</p>
- <blockquote class="mt-6 border-l-4 border-emerald-400 bg-slate-800/70 rounded-r-lg px-5 py-4 text-slate-200 italic">“We focus on practical details, from frame geometry to charging routines.”</blockquote></div>`},
-    {title: "From Research to Development", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-5">From Research to Development</h3><ul class="pl-2"><li class="relative border-l border-slate-700 pl-6 pb-6"><span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-emerald-400"></span><span class="block font-semibold text-emerald-400">2022</span><p class="text-slate-300 mt-1 leading-relaxed">Early idea: lighter, safer three-wheelers.</p></li><li class="relative border-l border-slate-700 pl-6 pb-6"><span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-emerald-400"></span><span class="block font-semibold text-emerald-400">2023</span><p class="text-slate-300 mt-1 leading-relaxed">Pathfinder research and initial engineering development.</p></li><li class="relative border-l border-slate-700 pl-6 pb-6"><span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-emerald-400"></span><span class="block font-semibold text-emerald-400">2024</span><p class="text-slate-300 mt-1 leading-relaxed">Trade licence and company formation.</p></li><li class="relative border-l border-slate-700 pl-6 pb-6"><span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-emerald-400"></span><span class="block font-semibold text-emerald-400">2025</span><p class="text-slate-300 mt-1 leading-relaxed">Recognition through UIHP and SofE; manufacturing collaboration with Metrocem Automobiles.</p></li><li class="relative border-l border-slate-700 pl-6 pb-6"><span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-emerald-400"></span><span class="block font-semibold text-emerald-400">2026</span><p class="text-slate-300 mt-1 leading-relaxed">Recognition and support from First Flight Venture Center (FFVC).</p></li></ul></div>`},
-    {title: "Achievements", html: `
-            <div class="animate-fade-in-up">
-                <h3 class="text-2xl font-bold text-white mb-4">Achievements</h3>
-                <ul class="space-y-8 border-l border-slate-700 ml-2 pl-6">
-                    <li class="relative">
-                        <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-slate-900 animate-pulse"></span>
-                        <span class="text-emerald-400 font-bold text-sm block mb-1">Jan 2026</span>
-                        <h4 class="text-lg font-semibold text-white mb-1">$3,500 Grant | First Flight Venture Center (FFVC)</h4>
-                        <p class="text-slate-400 text-xs italic mb-2">North Carolina's Premier Science Incubator</p>
-                        <p class="text-slate-300 text-sm mb-2">
-                            <b>External Validation:</b> Secured grant from a recognized US-based scientific incubator supporting "High Science, High Impact" startups.
-                        </p>
-                    </li>
-                    <li class="relative">
-                        <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
-                        <span class="text-white font-bold text-sm block mb-1">Nov 2025</span>
-                        <h4 class="text-lg font-semibold text-white mb-1">Factory Collaboration | Metrocem Automobiles</h4>
-                        <p class="text-slate-300 text-sm mb-2">
-                            Established strategic manufacturing partnership for vehicle production.
-                        </p>
-                    </li>
-                    <li class="relative">
-                        <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
-                        <span class="text-white font-bold text-sm block mb-1">Nov 2025</span>
-                        <h4 class="text-lg font-semibold text-white mb-1">National Champion | SofE</h4>
-                        <p class="text-slate-400 text-xs italic mb-2">Speak Out for Engineers (IMechE)</p>
-                        <p class="text-slate-300 text-sm mb-2">
-                            <b>Project Trambulance:</b> Innovated an efficiently designed, affordable Tri-wheeled Battery-Powered Ambulance.
-                        </p>
-                        <ul class="list-disc list-inside text-slate-500 text-sm space-y-0.5">
-                            <li>Conducted 3D design in SolidWorks/SketchUp with Aerodynamic and Load Simulations in Ansys.</li>
-                            <li>Innovative Chassis and Aerodynamic Origami inspired Hood System earned appreciation.</li>
-                        </ul>
-                    </li>
-                    <li class="relative">
-                        <span class="absolute -left-[29px] top-1 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></span>
-                        <span class="text-white font-bold text-sm block mb-1">July 2025</span>
-                        <h4 class="text-lg font-semibold text-white mb-1">BUET Champion | UIHP</h4>
-                        <p class="text-slate-400 text-xs italic mb-2">University Innovation Hub Program (ICT Division)</p>
-                        <p class="text-slate-300 text-sm mb-2">
-                            <b>Project TriChokro:</b> Developed an improved and affordable Auto-Rickshaw Model.
-                        </p>
-                        <ul class="list-disc list-inside text-slate-500 text-sm space-y-0.5">
-                            <li>Prototype built; mass production deal in progress with Panna Group.</li>
-                            <li>Secured funding from BUET Alumni and Investors.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        `}
+ <div class="mt-7 grid sm:grid-cols-2 gap-4">
+  <div class="p-5 rounded-xl bg-slate-800/70 border border-slate-700"><h4 class="text-emerald-400 font-semibold text-lg mb-2">Our Mission</h4><p class="text-slate-300 leading-relaxed text-sm">To research, design and develop accessible electric mobility solutions that respond to the everyday realities of Bangladesh. We aim to combine engineering rigor with local manufacturing knowledge, practical vehicle safety and affordable operation, from early concepts to real-world testing.</p></div>
+  <div class="p-5 rounded-xl bg-slate-800/70 border border-slate-700"><h4 class="text-emerald-400 font-semibold text-lg mb-2">Our Vision</h4><p class="text-slate-300 leading-relaxed text-sm">To help build a future where cleaner, safer and more dependable transport is available to more people. Our long-term ambition is to advance locally relevant electric-vehicle innovation and strengthen the connection between research, manufacturing and sustainable mobility.</p></div>
+</div><blockquote class="mt-6 border-l-4 border-emerald-400 bg-slate-800/70 rounded-r-lg px-5 py-4 text-slate-200 italic">“We focus on practical details, from frame geometry to charging routines.”</blockquote></div>`}
+
 ];
 
         function switchTab(index) {
@@ -1533,12 +2260,7 @@ View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
                 if (i === index) { btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-emerald-500 text-slate-900 shadow-lg shadow-emerald-500/20 interactive uplift-on-hover"; }
                 else { btn.className = "tab-btn w-full text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium bg-transparent text-slate-400 hover:bg-slate-800 interactive uplift-on-hover"; }
             });
-            if (index === 3) { // Mission (Index 3 now)
-                contentDiv.innerHTML = `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-4">${tabsData[3].title}</h3>
-                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1472&auto=format&fit=crop" alt="Green Mobility" class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg shadow-emerald-500/10" decoding="async" loading="lazy">
-                <p class="text-slate-400 leading-relaxed mb-6">${tabsData[3].text}</p><div class="p-6 bg-slate-800/50 border-l-4 border-emerald-500 rounded-r-xl"><p class="text-emerald-100 italic">"${tabsData[3].quote}"</p></div></div>`; 
-            }
-            else { contentDiv.innerHTML = tabsData[index].html; }
+            contentDiv.innerHTML = tabsData[index].html;
         }
 
         const navbar = document.getElementById('navbar');
@@ -1743,5 +2465,217 @@ View All News <i class="w-5 h-5" data-lucide="arrow-right"></i>
             }
         });
     </script>
+<script src="achievements-data.js"></script>
+<script id="tri-new-integration">
+// Initialize the original Research & Publications interactions after the DOM is complete.
+
+    (() => {
+      const projectDetails = {
+        policy: {
+          kicker: 'Publication / 01 · Policy',
+          title: 'Auto-Rickshaw Policy for Bangladesh',
+          meta: ['Planned: 170-page book', 'Audience: Policymakers', 'Location: Bangladesh'],
+          overview: 'A research-based policy recommendation book intended as practical reading material for policymakers. The proposed publication examines how Bangladesh can govern and integrate auto-rickshaws with attention to road safety, engineering realities, transport operations and implementation.',
+          topics: ['Vehicle safety and construction criteria', 'Registration and regulatory options', 'Operating conditions and road integration', 'Feasible inspection and enforcement'],
+          note: 'The 170-page length is a planned publication scope, not a claim that the book has been published or adopted as policy.'
+        },
+        manual: {
+          kicker: 'Publication / 02 · Testing',
+          title: 'Auto-Rickshaw Testing Manual',
+          meta: ['Planned: 110-page manual', 'Format: Visual & graphical', 'Purpose: Engineering assessment'],
+          overview: 'A visual, engineering-oriented manual describing what to test and how to evaluate an electric auto-rickshaw. It is intended to make proposed inspection procedures and pass/fail documentation easier to understand, including in the context of engineering evaluations associated with BUET.',
+          topics: ['Braking and stopping performance', 'Stability, loading and structural checks', 'Electrical, battery and vehicle safety', 'Graphical test steps and result sheets'],
+          note: 'This is a proposed research manual; it is not presented as an official BUET test protocol, approved standard or certification document.'
+        },
+        traffic: {
+          kicker: 'Field Study / 03 · Transport Data',
+          title: 'Dhaka Traffic: 30-Day Analysis',
+          meta: ['Location: Dhaka', 'Coverage: 70 junctions', 'Study window: October 2026'],
+          overview: 'A planned research article using 30 days of traffic observations from 70 junctions in Dhaka. The study is designed to explore where and when congestion intensifies, describe recurring patterns and make the findings easier to interpret with spatial and time-series visualizations.',
+          topics: ['Junction-by-junction comparisons', 'Daily and hourly congestion changes', '30-day maps, charts and heatmaps', 'Implications for urban traffic management'],
+          note: 'The 30-day October 2026 study period has not yet fully elapsed as of 17 October 2026. No final findings are stated here.'
+        },
+        vibration: {
+          kicker: 'Engineering Study / 04 · Vehicle Dynamics',
+          title: 'Rickshaw Vibration Analysis',
+          meta: ['Focus: Ride comfort', 'Discipline: Vehicle dynamics', 'Approach: Signal analysis'],
+          overview: 'A vehicle-dynamics research initiative exploring how road surfaces and vehicle configuration affect vibration experienced by auto-rickshaw passengers. Findings could inform suspension tuning, vehicle design decisions and future ride-quality comparisons.',
+          topics: ['Vibration and acceleration measurement', 'Road-surface and speed comparisons', 'Frequency and time-domain analysis', 'Suspension response and passenger comfort'],
+          note: 'These are proposed lines of investigation. No measured vibration levels or research conclusions are asserted.'
+        }
+      };
+
+      const dialog = document.getElementById('research-dialog');
+      const close = document.getElementById('modal-close');
+      let lastTrigger = null;
+      document.querySelectorAll('[data-project]').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = projectDetails[button.dataset.project];
+          if (!item) return;
+          lastTrigger = button;
+          document.getElementById('modal-kicker').textContent = item.kicker;
+          document.getElementById('modal-title').textContent = item.title;
+          document.getElementById('modal-overview').textContent = item.overview;
+          document.getElementById('modal-note').textContent = item.note;
+          const meta = document.getElementById('modal-meta');
+          meta.replaceChildren(...item.meta.map(label => {
+            const el = document.createElement('span'); el.className = 'meta-pill'; el.textContent = label; return el;
+          }));
+          const topics = document.getElementById('modal-topics');
+          topics.replaceChildren(...item.topics.map(label => {
+            const el = document.createElement('div'); el.className = 'topic'; el.textContent = label; return el;
+          }));
+          if (typeof dialog.showModal === 'function') dialog.showModal();
+          else dialog.setAttribute('open', '');
+          close.focus();
+        });
+      });
+      close.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', e => {
+        if (e.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('close', () => lastTrigger?.focus());
+
+      const cards = [...document.querySelectorAll('.research-card')];
+      document.querySelectorAll('[data-filter]').forEach(filterButton => {
+        filterButton.addEventListener('click', () => {
+          const type = filterButton.dataset.filter;
+          document.querySelectorAll('[data-filter]').forEach(other => {
+            other.setAttribute('aria-pressed', String(other === filterButton));
+          });
+          let count = 0;
+          cards.forEach(card => {
+            const visible = type === 'all' || card.dataset.type === type;
+            card.hidden = !visible;
+            if (visible) count++;
+          });
+          document.getElementById('project-count').textContent = `${String(count).padStart(2,'0')} Research ${count === 1 ? 'Initiative' : 'Initiatives'}`;
+        });
+      });
+    })();
+  
+
+// Initialize the original Achievements timeline, reading shared achievements-data.js.
+
+(function(){
+  const root = document.querySelector(".tc-ach");
+  const data = window.TC_ACHIEVEMENTS || [];
+  const TYPES = window.TC_TYPES;
+  const KIND = { win:"Award", funding:"Grant", selection:"Selection" };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const arrow = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  /* Build the timeline from achievements-data.js */
+  const tl = document.getElementById("tc-timeline");
+  let lastYear = null, side = 0;
+  data.forEach(a => {
+    if (a.year !== lastYear){
+      tl.insertAdjacentHTML("beforeend", `<li class="year" aria-hidden="true"><span>${a.year}</span></li>`);
+      lastYear = a.year;
+    }
+    const thumb = a.image
+      ? `<div class="thumb ${a.imageFit==="logo"?"logo":""}"><img src="${esc(a.image)}" alt="" loading="lazy"></div>`
+      : `<div class="thumb tile">${esc(a.tile || a.org)}</div>`;
+    const heading = a.event ? `${a.event}: Sustainability Award` : a.title;
+    tl.insertAdjacentHTML("beforeend", `
+      <li class="event t-${a.type} ${side++ % 2 ? "flip" : ""}" data-type="${a.type}">
+        <span class="hub" aria-hidden="true"></span>
+        <div class="stamp"><span class="d">${esc(a.date)}</span><span class="p">${esc(a.place)}</span></div>
+        <a class="card" href="achievement-details.html#${esc(a.id)}">
+          ${thumb}
+          <div>
+            <span class="kind">${KIND[a.type]}</span>
+            <h4>${esc(heading)}</h4>
+            <p class="sum">${esc(a.short)}</p>
+            <div class="foot">${a.prize ? `<span class="prize">${esc(a.prize)}</span>` : ""}<span class="more">News and links ${arrow}</span></div>
+          </div>
+        </a>
+      </li>`);
+  });
+  tl.insertAdjacentHTML("beforeend", `<li class="empty-note" hidden><span>Nothing in this category yet.</span></li>`);
+  document.getElementById("tc-total").dataset.count = data.length;
+
+  /* Filters */
+  const bar = root.querySelector(".filters");
+  const counts = { all: data.length };
+  data.forEach(a => counts[a.type] = (counts[a.type] || 0) + 1);
+  const opts = [["all","All"], ...Object.entries(TYPES)];
+  bar.innerHTML = opts.map(([k,l],i) =>
+    `<button type="button" data-f="${k}" aria-pressed="${i===0}">${k!=="all"?'<span class="dot"></span>':""}${l} <span class="n">${counts[k]||0}</span></button>`).join("");
+  bar.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const f = b.dataset.f;
+    bar.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    let s = 0, shown = 0;
+    tl.querySelectorAll(".event").forEach(ev => {
+      const on = f === "all" || ev.dataset.type === f;
+      ev.hidden = !on;
+      if (on){ ev.classList.toggle("flip", s++ % 2 === 1); shown++; }
+    });
+    tl.querySelectorAll(".year").forEach(y => {
+      let n = y.nextElementSibling, any = false;
+      while (n && !n.classList.contains("year")){ if (n.classList.contains("event") && !n.hidden) any = true; n = n.nextElementSibling; }
+      y.hidden = !any;
+    });
+    tl.querySelector(".empty-note").hidden = shown > 0;
+    drive();
+  });
+
+  /* The Trambulance rides down the road as you scroll; hubs light up as it passes */
+  const rider = tl.querySelector(".rider");
+  let ticking = false;
+  function drive(){
+    const r = tl.getBoundingClientRect();
+    const max = tl.offsetHeight - 60;
+    const y = Math.max(0, Math.min(max, innerHeight * 0.55 - r.top));
+    rider.style.transform = `translateY(${y}px)`;
+    tl.querySelectorAll(".event").forEach(ev => ev.classList.toggle("passed", ev.offsetTop <= y + 10));
+    ticking = false;
+  }
+  addEventListener("scroll", () => { if (!ticking){ ticking = true; requestAnimationFrame(drive); } }, { passive:true });
+  addEventListener("resize", drive);
+  drive();
+
+  /* Count-up ledger, once, when the heading comes into view */
+  function countUp(el){
+    const end = +el.dataset.count, pre = el.dataset.prefix || "";
+    if (reduce){ el.textContent = pre + end.toLocaleString("en-US"); return; }
+    const t0 = performance.now(), dur = 1400;
+    (function step(t){
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(end * e).toLocaleString("en-US");
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  root.classList.add("js");
+  const io = new IntersectionObserver(entries => {
+    if (!entries.some(en => en.isIntersecting)) return;
+    root.classList.add("ready");
+    root.querySelectorAll("[data-count]").forEach(countUp);
+    io.disconnect();
+  }, { threshold: 0.15 });
+  io.observe(root.querySelector(".head"));
+})();
+
+
+// Play YouTube videos directly inside the corresponding video card.
+(function(){
+  document.querySelectorAll('#videos .video-lite[data-video-id]').forEach(button => {
+    button.addEventListener('click', () => {
+      const id=button.getAttribute('data-video-id');
+      if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+      const frame=document.createElement('iframe');
+      frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';
+      frame.title=button.getAttribute('data-video-title')||'TriChokro YouTube video';
+      frame.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      frame.setAttribute('allowfullscreen','');
+      frame.referrerPolicy='strict-origin-when-cross-origin';
+      frame.loading='eager';
+      button.replaceWith(frame);
+    });
+  });
+})();
+</script>
 </body>
 </html>
