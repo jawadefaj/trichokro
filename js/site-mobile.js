@@ -1,6 +1,11 @@
 // Site-wide helpers: in-page YouTube playback, responsive Facebook feed,
 // scroll progress bar, card spotlight and capability card entrance.
 (function () {
+    var navigationScript = document.createElement('script');
+    navigationScript.src = new URL('site-navigation.js', document.currentScript.src).href;
+    navigationScript.defer = true;
+    document.head.appendChild(navigationScript);
+
     var root = document.documentElement;
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
