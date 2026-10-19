@@ -364,31 +364,6 @@
 <script src="js/site-mobile.js" defer></script>
 </head>
 <body>
-    <!-- Hamburger Menu (Mobile Only) -->
-    <div class="fixed top-6 right-6 z-[60] md:hidden">
-        <button id="mobile-menu-btn" class="p-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg">
-            <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-    </div>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-[55] bg-slate-900/95 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none flex flex-col items-center justify-center space-y-8">
-        <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-emerald-400 transition-colors">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-        <a href="index.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">HOME</a>
-        <a href="index.html#about" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">ABOUT US</a>
-        <a href="trambulance.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">TRAMBULANCE</a>
-        <a href="index.html#products" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">PRODUCTS</a>
-        <a href="founder.html" class="text-2xl font-bold text-white hover:text-emerald-400 transition-colors">FOUNDERS</a>
-    </div>
-
-    <!-- Back Button (Replaces Navigation) -->
-    <a href="javascript:history.back()" class="fixed top-6 left-6 z-50 flex items-center gap-2 px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-700 hover:text-emerald-700 hover:bg-white/40 transition-all duration-300 shadow-lg group">
-        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
-        <span class="font-medium font-sans">Back</span>
-    </a>
-
     <!-- Floating Background Objects -->
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
         <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-900/10 rounded-full blur-[100px] animate-pulse" style="animation-duration: 8s;"></div>
@@ -435,10 +410,10 @@
             <div class="icon-box" title="Email">
                 <i class="fas fa-envelope icon-circle"></i>
             </div>
-            <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="icon-box" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="icon-box" title="LinkedIn" id="card-linkedin">
                 <i class="fab fa-linkedin icon-circle"></i>
             </a>
-            <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" class="icon-box" title="Facebook">
+            <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" class="icon-box" title="Facebook" id="card-facebook">
                 <i class="fab fa-facebook icon-circle"></i>
             </a>
             <div class="icon-box" title="Address">
@@ -458,14 +433,14 @@
                 <span class="info-text" id="card-email2">2010105@me.buet.ac.bd</span>
             </div>
 
-            <div class="info-group">
+            <div class="info-group" id="card-location-group">
                 <span class="info-text">Kazi Nazrul Islam Hall</span>
                 <span class="info-text">BUET, Palashi, Dhaka-1000</span>
             </div>
 
             <div class="info-group">
                 <span class="info-text" id="card-dept">Dept of Mechanical Engineering</span>
-                <span class="info-text buet-highlight">Bangladesh University of<br>Engineering & Technology (BUET)</span>
+                <span class="info-text buet-highlight" id="card-institution">Bangladesh University of<br>Engineering & Technology (BUET)</span>
             </div>
             <div class="info-group" id="card-extrainfo" style="display:none;"></div>
         </div>
@@ -536,6 +511,20 @@
                 email1: "rownakshahriarruhan@gmail.com",
                 email2: "2010105@me.buet.ac.bd",
                 image: "src/assets/founders/rownak.jpg"
+            },
+            omi: {
+                initials: "M N A O",
+                name: "Mallik Nadim Arman Omi",
+                title: "Managing Director, TriChokro Automotives",
+                phone1: "+880 1833-843283",
+                phone2: "",
+                email1: "mallikomi.04@gmail.com",
+                email2: "",
+                dept: "Education: Mechanical Engineering, BUET",
+                institution: "",
+                hideLocation: true,
+                hideSocial: true,
+                image: "src/assets/founders/omi.jpg.jpg"
             },
             abdul: {
                 initials: "Dr.",
@@ -674,6 +663,22 @@
             if (member.dept) {
                 document.getElementById('card-dept').innerText = member.dept;
             }
+            if (member.institution !== undefined) {
+                const institution = document.getElementById('card-institution');
+                institution.innerHTML = member.institution;
+                institution.style.display = member.institution ? '' : 'none';
+            }
+            if (member.hideLocation) {
+                document.getElementById('card-location-group').style.display = 'none';
+            }
+            if (member.hideSocial) {
+                document.getElementById('card-linkedin').style.display = 'none';
+                document.getElementById('card-facebook').style.display = 'none';
+            }
+            ['card-phone2', 'card-email2'].forEach(id => {
+                const detail = document.getElementById(id);
+                detail.parentElement.style.display = detail.innerText.trim() ? '' : 'none';
+            });
             const extraInfoContainer = document.getElementById('card-extrainfo');
             if (extraInfoContainer) {
                 if (member.extraInfo) {
@@ -702,19 +707,6 @@
                 if(logoContainer) logoContainer.style.display = 'block';
             }
 
-            // Mobile Menu Logic
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const closeMenuBtn = document.getElementById('close-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (menuBtn && mobileMenu && closeMenuBtn) {
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-                });
-                closeMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-                });
-            }
         });
     </script>
     <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
@@ -730,4 +722,3 @@
     </script>
 </body>
 </html>
-
