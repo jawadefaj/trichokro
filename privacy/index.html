@@ -1,1 +1,241 @@
-ruhan
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Trambulance | TriChokro Automotives</title>
+  <style>
+    :root {
+      --primary: #dc2626;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 20px;
+    }
+    .container {
+      max-width: 850px;
+      margin: 20px auto;
+      background: var(--card);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+    .brand h1 {
+      font-size: 1.75rem;
+      color: var(--primary);
+    }
+    .brand p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+    }
+    .lang-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+    p, li {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    ul {
+      padding-left: 22px;
+      margin-bottom: 15px;
+    }
+    .lang-section {
+      display: none;
+    }
+    .lang-section.active {
+      display: block;
+    }
+    .footer {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px 20px;
+      }
+      .brand h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="brand">
+      <h1>Trambulance Privacy Policy</h1>
+      <p>Operated by TriChokro Automotives | Effective Date: October 2026</p>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+      <button class="lang-btn" onclick="setLang('bn')" id="btn-bn">বাংলা</button>
+    </div>
+  </div>
+
+  <!-- ENGLISH VERSION -->
+  <div id="section-en" class="lang-section active">
+    <p>Welcome to <strong>Trambulance</strong> (package identifier: <code>com.trichokro.trambulance</code>), an emergency medical transport and ambulance booking platform provided by <strong>TriChokro Automotives</strong> ("we", "our", or "us"). This Privacy Policy explains how we collect, use, share, and protect your personal information when you use our mobile application and web portal at <a href="https://trichokro.com">trichokro.com</a>.</p>
+
+    <h2>1. Information We Collect</h2>
+    <ul>
+      <li><strong>Account & Profile Information:</strong> When you sign up or log in (via email or Google Sign-In), we collect your name, email address, phone number, and profile role (Patient/User or Driver).</li>
+      <li><strong>Location Data (Foreground & Background):</strong> 
+        <ul>
+          <li><em>For Patients:</em> We collect your precise or approximate location to set pickup points, locate nearby hospitals, and calculate ambulance routes.</li>
+          <li><em>For Drivers:</em> We collect real-time location data to match you with nearby ride requests and show live ambulance tracking to patients during an active trip.</li>
+        </ul>
+      </li>
+      <li><strong>Driver Verification Documents:</strong> If you register as a driver via <code>trichokro.com/driver</code>, we collect vehicle registration details, ambulance category, license numbers, and contact info for administrative verification.</li>
+      <li><strong>Trip & Transaction Data:</strong> Details of your bookings, pickup/drop-off addresses, fare offers/counter-offers, payment method references (e.g., bKash, Nagad, or cash), and trip ratings.</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <ul>
+      <li>To connect patients with ambulance drivers in real time and facilitate fare negotiation.</li>
+      <li>To calculate routes, distances, and estimated arrival times via our mapping server (<code>map.trichokro.com</code>).</li>
+      <li>To authenticate users securely using Google OAuth and send transactional emails via our SMTP service.</li>
+      <li>To verify driver credentials, maintain safety standards, and provide customer support.</li>
+    </ul>
+
+    <h2>3. Data Sharing & Third-Party Services</h2>
+    <p>We <strong>do not sell</strong> your personal data to third parties. Information is shared only as needed to fulfill your service request:</p>
+    <ul>
+      <li><strong>Between Patients & Drivers:</strong> During a booking, the patient's name, phone number, and pickup/drop-off locations are shared with the assigned driver, and the driver's name, phone, vehicle info, and live location are shared with the patient.</li>
+      <li><strong>Service Providers:</strong> We use trusted infrastructure partners including <strong>Supabase</strong> (database and authentication), <strong>Google Cloud</strong> (Google Sign-In), <strong>Brevo</strong> (transactional emails), and <strong>Oracle Cloud</strong> (dedicated map and routing server).</li>
+    </ul>
+
+    <h2>4. Data Security & Retention</h2>
+    <p>All data transmitted between the Trambulance app, our database, and map servers is encrypted using HTTPS/TLS. We retain your account and trip history as long as your account remains active or as needed for legal and safety audits.</p>
+
+    <h2>5. Account & Data Deletion</h2>
+    <p>You have the right to access, update, or request complete deletion of your account and personal data at any time. To delete your account and associated records, please email us at <a href="mailto:noreply@trichokro.com">noreply@trichokro.com</a> or contact our support helpline inside the app. Deletion requests are processed within 7 business days.</p>
+
+    <h2>6. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy or data practices, please contact us:</p>
+    <ul>
+      <li><strong>Organization:</strong> TriChokro Automotives</li>
+      <li><strong>Website:</strong> <a href="https://trichokro.com">https://trichokro.com</a></li>
+      <li><strong>Driver & Support Portal:</strong> <a href="https://trichokro.com/driver/">https://trichokro.com/driver/</a></li>
+      <li><strong>Location:</strong> Dhaka, Bangladesh</li>
+    </ul>
+  </div>
+
+  <!-- BENGALI VERSION -->
+  <div id="section-bn" class="lang-section">
+    <p><strong>Trambulance</strong> (প্যাকেজ নাম: <code>com.trichokro.trambulance</code>)-এ স্বাগতম। এটি <strong>TriChokro Automotives</strong> কর্তৃক পরিচালিত একটি জরুরি অ্যাম্বুলেন্স বুকিং ও মেডিকেল ট্রান্সপোর্ট প্ল্যাটফর্ম। আপনি যখন আমাদের মোবাইল অ্যাপ এবং ওয়েব পোর্টাল (<a href="https://trichokro.com">trichokro.com</a>) ব্যবহার করেন, তখন আমরা আপনার কী কী তথ্য সংগ্রহ করি এবং কীভাবে তা সুরক্ষিত রাখি, তা এই প্রাইভেসি পলিসিতে ব্যাখ্যা করা হয়েছে।</p>
+
+    <h2>১. আমরা কী কী তথ্য সংগ্রহ করি</h2>
+    <ul>
+      <li><strong>অ্যাকাউন্ট ও প্রোফাইল তথ্য:</strong> আপনি যখন অ্যাপে সাইন আপ বা Google দিয়ে লগইন করেন, তখন আপনার নাম, ইমেইল ঠিকানা, ফোন নম্বর এবং ইউজারের ধরন (রোগী বা ড্রাইভার) সংগ্রহ করা হয়।</li>
+      <li><strong>লোকেশন বা অবস্থান সংক্রান্ত তথ্য:</strong> 
+        <ul>
+          <li><em>রোগীদের জন্য:</em> পিকআপের স্থান নির্ধারণ, নিকটস্থ হাসপাতাল খোঁজা এবং রুট ম্যাপ দেখানোর জন্য আপনার ফোনের জিপিএস লোকেশন ব্যবহার করা হয়।</li>
+          <li><em>ড্রাইভারদের জন্য:</em> কাছাকাছি ট্রিপের রিকোয়েস্ট পাওয়া এবং ট্রিপ চলাকালীন রোগীকে অ্যাম্বুলেন্সের লাইভ অবস্থান দেখানোর জন্য রিয়েল-টাইম লোকেশন সংগ্রহ করা হয়।</li>
+        </ul>
+      </li>
+      <li><strong>ড্রাইভার ভেরিফিকেশন তথ্য:</strong> <code>trichokro.com/driver</code> পোর্টালে ড্রাইভার হিসেবে রেজিস্ট্রেশনের সময় গাড়ির নম্বর, অ্যাম্বুলেন্সের ধরন, লাইসেন্স ও যোগাযোগের তথ্য নেওয়া হয়।</li>
+      <li><strong>ট্রিপ ও পেমেন্ট তথ্য:</strong> পিকআপ ও গন্তব্যের ঠিকানা, ভাড়ার অফার ও কাউন্টার-অফার, পেমেন্ট মাধ্যম (বিকাশ, নগদ বা ক্যাশ) এবং ট্রিপ রেটিং সংরক্ষণ করা হয়।</li>
+    </ul>
+
+    <h2>২. তথ্যের ব্যবহার</h2>
+    <ul>
+      <li>রোগীর সাথে দ্রুত নিকটস্থ অ্যাম্বুলেন্স ড্রাইভারের সংযোগ স্থাপন এবং ভাড়া নির্ধারণ করা।</li>
+      <li>আমাদের নিজস্ব ম্যাপ সার্ভারের (<code>map.trichokro.com</code>) মাধ্যমে সঠিক রাস্তা ও দূরত্ব নির্ণয় করা।</li>
+      <li>Google লগইন এবং ইমেইল ভেরিফিকেশনের মাধ্যমে অ্যাকাউন্টের নিরাপত্তা নিশ্চিত করা।</li>
+      <li>ড্রাইভারের পরিচয় যাচাই এবং যেকোনো জরুরি প্রয়োজনে কাস্টমার সাপোর্ট প্রদান করা।</li>
+    </ul>
+
+    <h2>৩. তথ্য শেয়ারিং ও তৃতীয় পক্ষ</h2>
+    <p>আমরা আপনার ব্যক্তিগত তথ্য কোনো বিজ্ঞাপনদাতা বা তৃতীয় পক্ষের কাছে <strong>বিক্রি করি না</strong>। কেবলমাত্র সেবা প্রদানের প্রয়োজনে নিচের ক্ষেত্রে তথ্য শেয়ার হয়:</p>
+    <ul>
+      <li><strong>রোগী ও ড্রাইভারের মধ্যে:</strong> বুকিং কনফার্ম হলে রোগীর নাম, ফোন নম্বর ও পিকআপ লোকেশন ড্রাইভারকে দেখানো হয় এবং ড্রাইভারের নাম, ফোন নম্বর, গাড়ির তথ্য ও লাইভ লোকেশন রোগীকে দেখানো হয়।</li>
+      <li><strong>প্রযুক্তিগত সেবা:</strong> ডাটাবেস ও লগইনের জন্য <strong>Supabase</strong>, ওথেনটিকেশনের জন্য <strong>Google Cloud</strong>, ইমেইলের জন্য <strong>Brevo</strong> এবং ম্যাপ সার্ভিসের জন্য <strong>Oracle Cloud</strong> সার্ভার ব্যবহার করা হয়।</li>
+    </ul>
+
+    <h2>৪. তথ্যের নিরাপত্তা এবং অ্যাকাউন্ট মুছে ফেলা (Data Deletion)</h2>
+    <p>অ্যাপ এবং সার্ভারের মধ্যে আদান-প্রদান হওয়া সকল তথ্য HTTPS/TLS এনক্রিপশনের মাধ্যমে সুরক্ষিত থাকে। আপনি যেকোনো সময় আপনার অ্যাকাউন্ট ও সমস্ত ব্যক্তিগত তথ্য মুছে ফেলার (Delete) অনুরোধ করতে পারেন। অ্যাকাউন্ট ডিলিট করতে অ্যাপের সাপোর্ট নম্বরে যোগাযোগ করুন অথবা আমাদের ইমেইল করুন। ৭ কর্মদিবসের মধ্যে আপনার তথ্য সম্পূর্ণ মুছে ফেলা হবে।</p>
+
+    <h2>৫. যোগাযোগ</h2>
+    <p>এই প্রাইভেসি পলিসি সম্পর্কে আপনার কোনো প্রশ্ন থাকলে আমাদের সাথে যোগাযোগ করুন:</p>
+    <ul>
+      <li><strong>প্রতিষ্ঠান:</strong> TriChokro Automotives</li>
+      <li><strong>ওয়েবসাইট:</strong> <a href="https://trichokro.com">https://trichokro.com</a></li>
+      <li><strong>ড্রাইভার ও সাপোর্ট পোর্টাল:</strong> <a href="https://trichokro.com/driver/">https://trichokro.com/driver/</a></li>
+      <li><strong>ঠিকানা:</strong> ঢাকা, বাংলাদেশ</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    &copy; 2026 TriChokro Automotives. All rights reserved.
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.getElementById('section-en').classList.toggle('active', lang === 'en');
+    document.getElementById('section-bn').classList.toggle('active', lang === 'bn');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-bn').classList.toggle('active', lang === 'bn');
+  }
+</script>
+
+</body>
+</html>
