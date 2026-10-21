@@ -1,1 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12753E">
+<title>Drive with Trambulance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--green:#12753E;--green-d:#0B5A2E;--mint:#E6F4EB;--mint-2:#F3FAF5;--red:#E0262B;--red-soft:#FDECEC;--amber:#A86503;--amber-soft:#FFF4DC;--ink:#132A1E;--text:#2B3D33;--muted:#62736A;--line:#DCE7E0;--paper:#F5F8F6;--white:#fff;--blue:#2457C5;--blue-soft:#E8EFFD}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--text);font:16px/1.6 "Hind Siliguri",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--green)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #8FD3A8;outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--green-d);font-weight:700;font-size:22px;letter-spacing:-.02em}
+.brand small{display:block;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0;margin-top:-6px}
+.spacer{flex:1}
+.who{font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--green);background:var(--green);color:#fff;border-radius:12px;padding:11px 18px;font-weight:600;cursor:pointer;text-decoration:none;min-height:46px}
+.btn:hover{background:var(--green-d)}
+.btn[disabled]{opacity:.55;cursor:default}
+.btn.ghost{background:var(--white);color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--mint-2)}
+.btn.red{background:var(--red);border-color:var(--red)}
+.btn.small{min-height:36px;padding:6px 12px;border-radius:9px;font-size:14px}
+.btn.wide{width:100%}
+/* Landing */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:56px 0 40px}
+.hero h1{font-size:clamp(34px,5vw,54px);line-height:1.08;color:var(--ink);margin:0 0 6px;letter-spacing:-.025em;font-weight:700}
+.hero .bn{font-size:22px;color:var(--green);margin:0 0 18px;font-weight:600}
+.hero p.lead{font-size:18px;max-width:34em;margin:0 0 26px}
+.hero .ctas{display:flex;gap:10px;flex-wrap:wrap}
+.req{background:var(--white);border:2px solid var(--red);border-radius:22px;padding:20px;box-shadow:0 24px 60px rgba(19,42,30,.12);transform:rotate(-1.2deg);max-width:420px;justify-self:end}
+.req .tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 11px;font-size:13px;font-weight:600;background:var(--mint);color:var(--green-d)}
+.tag.red{background:var(--red-soft);color:#B51C21}.tag.amber{background:var(--amber-soft);color:var(--amber)}.tag.gray{background:#EDF1EE;color:var(--muted)}.tag.blue{background:var(--blue-soft);color:var(--blue)}
+.req .route{display:grid;grid-template-columns:1fr auto;gap:14px;margin:16px 0 12px}
+.req .k{font-size:12.5px;font-weight:600;color:var(--green)}
+.req .k.r{color:var(--red)}
+.req .v{color:var(--ink);font-weight:500;line-height:1.35}
+.req .offer{text-align:right}
+.req .offer b{display:block;font-size:30px;color:var(--ink);line-height:1.1}
+.req .offer span{font-size:12.5px;color:var(--muted)}
+.req .acts{display:grid;grid-template-columns:.8fr 1fr 1.3fr;gap:8px}
+.req .acts span{display:flex;align-items:center;justify-content:center;border-radius:10px;padding:9px 6px;font-size:14px;font-weight:600;border:1px solid var(--line)}
+.req .acts .c{background:var(--mint);border-color:var(--mint);color:var(--green-d)}
+.req .acts .a{background:var(--green);border-color:var(--green);color:#fff}
+.req-cap{font-size:13px;color:var(--muted);text-align:right;margin-top:10px;max-width:420px;justify-self:end}
+section.band{padding:36px 0;border-top:1px solid var(--line)}
+section.band h2{font-size:28px;color:var(--ink);margin:0 0 18px;letter-spacing:-.015em}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;margin-bottom:10px}
+.steps b{display:block;color:var(--ink);font-size:17px}
+.need{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.need ul{margin:0;padding-left:20px}
+.need li{margin:4px 0}
+.authcard{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px;max-width:460px}
+.seg{display:flex;background:#EAF1EC;border-radius:12px;padding:3px;margin-bottom:16px}
+.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px;font-weight:600;cursor:pointer}
+.seg button.on{background:var(--green);color:#fff}
+label.f{display:block;margin-bottom:12px;font-size:14px;font-weight:600;color:var(--text)}
+label.f input,label.f select,label.f textarea{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#fff;font-size:16px;font-weight:400}
+label.f textarea{min-height:80px;resize:vertical}
+.hint{font-size:13.5px;color:var(--muted)}
+.or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px;margin:16px 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.msg{border-radius:12px;padding:11px 14px;margin:12px 0;font-size:15px}
+.msg.err{background:var(--red-soft);color:#9B1B1F}.msg.ok{background:var(--mint);color:var(--green-d)}.msg.warn{background:var(--amber-soft);color:var(--amber)}
+/* Forms and panels */
+.page{padding:32px 0 60px}
+.page h1{font-size:32px;color:var(--ink);margin:0 0 4px;letter-spacing:-.02em}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:18px}
+.panel h3{margin:0 0 12px;color:var(--ink);font-size:19px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.types label{position:relative;border:2px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;display:block}
+.types input{position:absolute;opacity:0;pointer-events:none}
+.types label:has(input:checked){border-color:var(--green);background:var(--mint-2)}
+.types b{display:block;color:var(--ink)}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:14.5px;background:#fff}
+.checks label:has(input:checked){background:var(--green);border-color:var(--green);color:#fff}
+.checks input{accent-color:var(--green)}
+.files{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.files label{position:relative;border:1.5px dashed var(--green);background:var(--mint-2);border-radius:14px;padding:12px;text-align:center;font-size:14px;font-weight:600;color:var(--green-d);cursor:pointer;min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.files img{max-width:100%;max-height:70px;border-radius:8px}
+.files input{position:absolute;opacity:0;width:1px;height:1px}
+.status{display:flex;gap:16px;align-items:flex-start}
+.dot{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:24px}
+dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 18px;margin:12px 0 0}
+dl.kv dt{color:var(--muted)}dl.kv dd{margin:0;color:var(--ink)}
+/* Admin */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.stat b{display:block;font-size:30px;color:var(--ink);line-height:1.1}
+.stat span{color:var(--muted);font-size:14px}
+.tabs{display:flex;gap:6px;margin:22px 0 4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:none;padding:10px 14px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button.on{color:var(--green-d);border-bottom-color:var(--green)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.list{display:grid;gap:12px}
+.item{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px}
+.item .row{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.item h4{margin:0;color:var(--ink);font-size:17px}
+.avatar{width:54px;height:54px;border-radius:50%;object-fit:cover;background:var(--mint);flex:none;display:grid;place-items:center;color:var(--green-d);font-weight:700}
+.docs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.docs a{display:block;width:120px;height:84px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--paper);font-size:12px;color:var(--muted);text-align:center;text-decoration:none}
+.docs img{width:100%;height:100%;object-fit:cover}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.table-wrap{overflow-x:auto;background:var(--white);border:1px solid var(--line);border-radius:16px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;background:var(--mint-2)}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+.setup{max-width:640px}
+.setup code{background:#EDF1EE;padding:2px 6px;border-radius:6px}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:14px}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:32px;gap:32px}
+  .req,.req-cap{justify-self:start;transform:none}
+  .steps{grid-template-columns:1fr 1fr}
+  .need,.grid2{grid-template-columns:1fr}
+  .types{grid-template-columns:1fr}
+  .files{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .req .acts span{font-size:13px;white-space:nowrap;padding:9px 4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#" aria-label="Trambulance home">
+    <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="cx"><path d="M32 8h36a6 6 0 0 1 6 6v18h18a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6H74v18a6 6 0 0 1-6 6H32a6 6 0 0 1-6-6V68H8a6 6 0 0 1-6-6V38a6 6 0 0 1 6-6h18V14a6 6 0 0 1 6-6z"/></clipPath></defs><g clip-path="url(#cx)"><rect width="100" height="100" fill="#12753E"/><path d="M0 0h100L0 100z" fill="#E0262B"/><path d="M60 40L40 60" stroke="#fff" stroke-width="4"/></g></svg>
+    <span>Trambulance<small>Emergency Transport, Connected.</small></span>
+  </a>
+  <div class="spacer"></div>
+  <span class="who" id="who"></span>
+  <button class="btn ghost small" id="signout" hidden>Sign out</button>
+</div></header>
+<main id="app"><div class="wrap page"><p class="hint">Loading…</p></div></main>
+<footer><div class="wrap">Trambulance · সময়ের সাথে, মানুষের পাশে · In a life-threatening emergency, call 999.</div></footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+<script>
+/* ===== Configure these three values ===== */
+const CONFIG = {
+  SUPABASE_URL: 'https://YOUR-PROJECT.supabase.co',
+  SUPABASE_ANON_KEY: 'YOUR-ANON-KEY',
+  APK_URL: '',               // link to your APK download (EAS build link or GitHub release)
+  SUPPORT_PHONE: '09600000000'
+};
+/* ======================================== */
+
+const TYPES = {
+  basic: { name: 'Basic Transport', sub: 'Stretcher, wheelchair access, basic medical support' },
+  oxygen: { name: 'Oxygen Support', sub: 'Oxygen equipment, monitoring, basic life support' },
+  icu: { name: 'ICU Capable', sub: 'Advanced life support, ICU equipment, medical staff' }
+};
+const EQUIPMENT = ['Oxygen cylinder', 'Stretcher', 'Wheelchair', 'AED / defibrillator', 'Ventilator', 'Patient monitor', 'Suction', 'Paramedic on board', 'Doctor on board', 'Air conditioning'];
+const EMERGENCY = { road_accident: 'Road Accident', heart: 'Heart', stroke: 'Stroke', burn: 'Burn', icu: 'ICU Patient', eye: 'Eye', other: 'Other' };
+const STATUS = { searching: 'Finding driver', accepted: 'Driver en route', arrived: 'Arrived', picked_up: 'To hospital', completed: 'Completed', cancelled: 'Cancelled' };
+
+const app = document.getElementById('app');
+const configured = !CONFIG.SUPABASE_URL.includes('YOUR-PROJECT') && !CONFIG.SUPABASE_ANON_KEY.includes('YOUR-ANON');
+const sb = configured ? window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY, { auth: { flowType: 'pkce' } }) : null;
+let state = { session: null, profile: null, driver: null, docs: null, adminTab: 'drivers', driverFilter: 'pending', authMode: 'signup' };
+
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = (n) => n == null ? '—' : '৳ ' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const when = (iso) => iso ? new Date(iso).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+const phoneOk = (p) => /^(\+?88)?01[3-9]\d{8}$/.test(String(p).replace(/[\s-]/g, ''));
+const initials = (n) => String(n || '?').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('');
+const $ = (sel) => app.querySelector(sel);
+function note(el, text, kind = 'err') { el.innerHTML = text ? `<div class="msg ${kind}" role="status">${esc(text)}</div>` : ''; }
+function errText(e) { const m = (e && (e.message || e.error_description)) || String(e); return /Failed to fetch/i.test(m) ? 'No connection to the server. Check your internet and try again.' : m; }
+
+/* ---------- Routing ---------- */
+async function load() {
+  const { data } = await sb.auth.getSession();
+  state.session = data.session;
+  document.getElementById('signout').hidden = !state.session;
+  document.getElementById('who').textContent = state.session ? state.session.user.email : '';
+  if (!state.session) return renderLanding();
+  const uid = state.session.user.id;
+  const [{ data: profile }, { data: driver }] = await Promise.all([
+    sb.from('profiles').select('*').eq('id', uid).maybeSingle(),
+    sb.from('drivers').select('*').eq('id', uid).maybeSingle()
+  ]);
+  state.profile = profile; state.driver = driver;
+  if (profile && profile.role === 'admin') return renderAdmin();
+  if (driver) {
+    const { data: docs } = await sb.from('driver_documents').select('*').eq('driver_id', uid).maybeSingle();
+    state.docs = docs;
+    return renderStatus();
+  }
+  renderApply();
+}
+
+/* ---------- Landing + auth ---------- */
+function renderLanding() {
+  app.innerHTML = `
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Drive your ambulance with Trambulance</h1>
+        <p class="bn">সময়ের সাথে, মানুষের পাশে</p>
+        <p class="lead">Patients in Dhaka see your ambulance on the map and send you requests directly. You choose which trips to take, and you can accept their price or send your own.</p>
+        <div class="ctas">
+          <a class="btn" href="#join">Register as a driver</a>
+          ${CONFIG.APK_URL ? `<a class="btn ghost" href="${esc(CONFIG.APK_URL)}">Download the Android app</a>` : ''}
+        </div>
+      </div>
+      <div>
+        <article class="req" aria-label="Example trip request">
+          <div class="tags"><span class="tag red">Heart</span><span class="tag gray">ICU Capable</span><span class="tag red">Requested you</span></div>
+          <div class="route">
+            <div>
+              <div class="k">Pickup, 1.2 km away (about 6 min)</div>
+              <div class="v">House 12, Road 5, Dhanmondi</div>
+              <div class="k r" style="margin-top:8px">Hospital, 8.5 km trip</div>
+              <div class="v">United Hospital, Gulshan</div>
+            </div>
+            <div class="offer"><span>Patient offers</span><b>৳ 5,500</b><span>Suggested ৳ 5,630</span></div>
+          </div>
+          <div class="acts"><span>Decline</span><span class="c">Counter</span><span class="a">Accept ৳ 5,500</span></div>
+        </article>
+        <p class="req-cap">What a request looks like in the driver app</p>
+      </div>
+    </section>
+  </div>
+  <section class="band"><div class="wrap">
+    <h2>How joining works</h2>
+    <ol class="steps">
+      <li><b>Create your account</b>Use Google or your email.</li>
+      <li><b>Add your documents</b>Driving licence, NID and photos of your ambulance.</li>
+      <li><b>Get approved</b>Our team checks everything, usually within 24 hours.</li>
+      <li><b>Go online in the app</b>Sign in on Android with the same account and start receiving requests.</li>
+    </ol>
+  </div></section>
+  <section class="band"><div class="wrap need">
+    <div>
+      <h2>What you need</h2>
+      <ul>
+        <li>A valid driving licence and your NID</li>
+        <li>A registered ambulance (Basic, Oxygen or ICU)</li>
+        <li>An Android phone with mobile data and GPS</li>
+        <li>A bKash or Nagad number to receive digital payments</li>
+      </ul>
+      <p class="hint" style="margin-top:14px">Questions? Call ${esc(CONFIG.SUPPORT_PHONE)}.</p>
+    </div>
+    <div class="authcard" id="join">
+      <div class="seg" role="tablist">
+        <button class="${state.authMode === 'signup' ? 'on' : ''}" data-mode="signup" role="tab">Create account</button>
+        <button class="${state.authMode === 'signin' ? 'on' : ''}" data-mode="signin" role="tab">Sign in</button>
+      </div>
+      <button class="btn ghost wide" id="google" type="button">Continue with Google</button>
+      <div class="or">or with email</div>
+      <form id="authform" novalidate>
+        ${state.authMode === 'signup' ? '<label class="f">Full name<input name="name" autocomplete="name" required></label>' : ''}
+        <label class="f">Email<input name="email" type="email" autocomplete="email" required></label>
+        <label class="f">Password<input name="password" type="password" autocomplete="${state.authMode === 'signup' ? 'new-password' : 'current-password'}" minlength="8" required></label>
+        <button class="btn wide" type="submit">${state.authMode === 'signup' ? 'Create account' : 'Sign in'}</button>
+        <div id="authmsg"></div>
+      </form>
+    </div>
+  </div></section>`;
+  app.querySelectorAll('[data-mode]').forEach((b) => b.onclick = () => { state.authMode = b.dataset.mode; renderLanding(); document.getElementById('join').scrollIntoView(); });
+  $('#google').onclick = async () => {
+    const { error } = await sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } });
+    if (error) note($('#authmsg'), errText(error));
+  };
+  $('#authform').onsubmit = async (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target), m = $('#authmsg'), btn = e.target.querySelector('button');
+    const email = String(f.get('email') || '').trim().toLowerCase(), password = String(f.get('password') || '');
+    if (!/^\S+@\S+\.\S+$/.test(email)) return note(m, 'Enter a valid email address.');
+    if (password.length < 8) return note(m, 'Use at least 8 characters for your password.');
+    btn.disabled = true;
+    if (state.authMode === 'signup') {
+      const name = String(f.get('name') || '').trim();
+      if (!name) { btn.disabled = false; return note(m, 'Enter your full name.'); }
+      const { data, error } = await sb.auth.signUp({ email, password, options: { data: { full_name: name }, emailRedirectTo: location.origin + location.pathname } });
+      btn.disabled = false;
+      if (error) return note(m, errText(error));
+      if (!data.session) return note(m, `We sent a confirmation link to ${email}. Open it to continue.`, 'ok');
+    } else {
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+      btn.disabled = false;
+      if (error) return note(m, errText(error));
+    }
+  };
+}
+
+/* ---------- Driver application ---------- */
+function renderApply() {
+  const p = state.profile || {}, d = state.driver || {}, docs = state.docs || {};
+  const editing = !!state.driver;
+  app.innerHTML = `
+  <div class="wrap page">
+    <h1>${editing ? 'Update your application' : 'Register your ambulance'}</h1>
+    <p class="hint">Fields marked with * are required. Photos are only seen by the Trambulance team.</p>
+    <form id="apply" novalidate>
+      <div class="panel"><h3>About you</h3>
+        <div class="grid2">
+          <label class="f">Full name (as on licence) *<input name="full_name" value="${esc(d.full_name || p.full_name)}" required></label>
+          <label class="f">Mobile number *<input name="phone" inputmode="tel" placeholder="01712345678" value="${esc(d.phone || p.phone)}" required></label>
+          <label class="f">Driving licence number *<input name="license_number" value="${esc(docs.license_number)}" required></label>
+          <label class="f">NID number<input name="nid_number" inputmode="numeric" value="${esc(docs.nid_number)}"></label>
+        </div>
+      </div>
+      <div class="panel"><h3>Ambulance type *</h3>
+        <div class="types">${Object.entries(TYPES).map(([k, t]) => `
+          <label><input type="radio" name="vehicle_type" value="${k}" ${(d.vehicle_type || 'basic') === k ? 'checked' : ''}><b>${t.name}</b><span class="hint">${t.sub}</span></label>`).join('')}
+        </div>
+        <div class="grid2" style="margin-top:14px">
+          <label class="f">Registration number *<input name="vehicle_number" placeholder="Dhaka Metro-Cha 71-2345" value="${esc(d.vehicle_number)}" required></label>
+          <label class="f">Model<input name="vehicle_model" placeholder="Toyota HiAce" value="${esc(d.vehicle_model)}"></label>
+          <label class="f">Hospital or company<input name="organization" value="${esc(d.organization)}"></label>
+          <label class="f">Usual area<input name="base_area" placeholder="Dhanmondi" value="${esc(d.base_area)}"></label>
+        </div>
+        <p class="f" style="font-weight:600;margin:4px 0 8px">Equipment on board</p>
+        <div class="checks">${EQUIPMENT.map((e) => `<label><input type="checkbox" name="equipment" value="${esc(e)}" ${(d.equipment || []).includes(e) ? 'checked' : ''}>${esc(e)}</label>`).join('')}</div>
+      </div>
+      <div class="panel"><h3>Photos</h3>
+        <div class="files">
+          ${fileBox('photo', 'Your photo', d.photo_url || p.avatar_url)}
+          ${fileBox('license', 'Driving licence *', docs.license_photo_path ? 'saved' : '')}
+          ${fileBox('nid', 'NID card', docs.nid_photo_path ? 'saved' : '')}
+          ${fileBox('vehicle', 'Ambulance', d.vehicle_photo_url)}
+        </div>
+      </div>
+      <div id="applymsg"></div>
+      <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+        <button class="btn" type="submit">${editing ? 'Save and resubmit' : 'Submit for approval'}</button>
+        ${editing ? '<button class="btn ghost" type="button" id="cancelEdit">Cancel</button>' : ''}
+      </div>
+    </form>
+  </div>`;
+  app.querySelectorAll('.files input').forEach((inp) => inp.onchange = () => {
+    const file = inp.files[0], box = inp.closest('label');
+    if (!file) return;
+    box.querySelector('.pv').innerHTML = `<img alt="" src="${URL.createObjectURL(file)}">`;
+  });
+  if (editing) $('#cancelEdit').onclick = renderStatus;
+  $('#apply').onsubmit = submitApplication;
+}
+function fileBox(key, label, existing) {
+  const pv = existing && existing !== 'saved' ? `<img alt="" src="${esc(existing)}">` : existing === 'saved' ? '<span class="tag">Saved</span>' : '<span aria-hidden="true">+</span>';
+  return `<label>${esc(label)}<span class="pv">${pv}</span><input type="file" accept="image/*" name="${key}"></label>`;
+}
+async function upload(bucket, uid, name, file) {
+  if (!file || !file.size) return null;
+  if (file.size > 8 * 1024 * 1024) throw new Error(`${name} photo is larger than 8 MB. Choose a smaller image.`);
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+  const path = `${uid}/${name}-${Date.now()}.${ext}`;
+  const { error } = await sb.storage.from(bucket).upload(path, file, { contentType: file.type || 'image/jpeg', upsert: true });
+  if (error) throw error;
+  return bucket === 'avatars' ? sb.storage.from(bucket).getPublicUrl(path).data.publicUrl : path;
+}
+async function submitApplication(e) {
+  e.preventDefault();
+  const form = e.target, f = new FormData(form), m = $('#applymsg'), btn = form.querySelector('button[type=submit]');
+  const uid = state.session.user.id, d = state.driver, docs = state.docs || {};
+  const v = (k) => String(f.get(k) || '').trim();
+  const phone = v('phone').replace(/[\s-]/g, '');
+  if (!v('full_name')) return note(m, 'Enter your full name as on your licence.');
+  if (!phoneOk(phone)) return note(m, 'Enter a Bangladeshi mobile number, for example 01712345678.');
+  if (!v('license_number')) return note(m, 'Enter your driving licence number.');
+  if (!v('vehicle_number')) return note(m, 'Enter the ambulance registration number.');
+  if (!docs.license_photo_path && !(f.get('license') && f.get('license').size)) return note(m, 'Add a photo of your driving licence.');
+  btn.disabled = true; note(m, 'Uploading photos…', 'warn');
+  try {
+    const photo = await upload('avatars', uid, 'avatar', f.get('photo'));
+    const vehicle = await upload('avatars', uid, 'vehicle', f.get('vehicle'));
+    const license = await upload('driver-docs', uid, 'license', f.get('license'));
+    const nid = await upload('driver-docs', uid, 'nid', f.get('nid'));
+    const photoUrl = photo || (d && d.photo_url) || (state.profile && state.profile.avatar_url) || null;
+    const { error: pe } = await sb.from('profiles').upsert({ id: uid, email: state.session.user.email, full_name: v('full_name'), phone, avatar_url: photoUrl, profile_complete: true });
+    if (pe) throw pe;
+    const row = {
+      full_name: v('full_name'), phone, photo_url: photoUrl, vehicle_type: f.get('vehicle_type') || 'basic',
+      vehicle_number: v('vehicle_number'), vehicle_model: v('vehicle_model') || null, organization: v('organization') || null,
+      base_area: v('base_area') || null, equipment: f.getAll('equipment'), vehicle_photo_url: vehicle || (d && d.vehicle_photo_url) || null
+    };
+    if (d) {
+      if (d.status === 'rejected') row.status = 'pending';
+      const { error } = await sb.from('drivers').update(row).eq('id', uid); if (error) throw error;
+    } else {
+      const { error } = await sb.from('drivers').insert({ id: uid, ...row }); if (error) throw error;
+    }
+    const { error: de } = await sb.from('driver_documents').upsert({
+      driver_id: uid, license_number: v('license_number'), nid_number: v('nid_number') || null,
+      license_photo_path: license || docs.license_photo_path || null, nid_photo_path: nid || docs.nid_photo_path || null,
+      updated_at: new Date().toISOString()
+    });
+    if (de) throw de;
+    await load();
+  } catch (err) {
+    note(m, errText(err));
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+/* ---------- Application status ---------- */
+function renderStatus() {
+  const d = state.driver;
+  const look = {
+    pending: ['Application under review', 'We are checking your licence and vehicle. This usually takes less than 24 hours.', 'var(--amber-soft)', '⏳'],
+    approved: ['You are approved', 'Install the Trambulance app, sign in with this same account and tap Go online.', 'var(--mint)', '✓'],
+    rejected: ['Your application needs changes', d.rejection_reason || 'Update your details and submit again.', 'var(--red-soft)', '!'],
+    suspended: ['Account suspended', d.rejection_reason || `Call ${CONFIG.SUPPORT_PHONE} to talk to our team.`, 'var(--red-soft)', '!']
+  }[d.status];
+  app.innerHTML = `
+  <div class="wrap page" style="max-width:760px">
+    <h1>Driver account</h1>
+    <div class="panel status">
+      <div class="dot" style="background:${look[2]}" aria-hidden="true">${look[3]}</div>
+      <div><h3 style="margin:0">${esc(look[0])}</h3><p style="margin:4px 0 0">${esc(look[1])}</p></div>
+    </div>
+    <div class="panel">
+      <h3>Your details</h3>
+      <dl class="kv">
+        <dt>Name</dt><dd>${esc(d.full_name)}</dd>
+        <dt>Mobile</dt><dd>${esc(d.phone)}</dd>
+        <dt>Ambulance</dt><dd>${esc(TYPES[d.vehicle_type].name)}, ${esc(d.vehicle_number)}</dd>
+        ${d.organization ? `<dt>Company</dt><dd>${esc(d.organization)}</dd>` : ''}
+        ${d.status === 'approved' ? `<dt>Rating</dt><dd>★ ${Number(d.rating).toFixed(1)} from ${d.rating_count} ratings, ${d.trips_count} trips</dd>` : ''}
+      </dl>
+      <div class="actions">
+        ${d.status === 'approved' && CONFIG.APK_URL ? `<a class="btn" href="${esc(CONFIG.APK_URL)}">Download the Android app</a>` : ''}
+        <button class="btn ghost" id="edit">${d.status === 'rejected' ? 'Edit and resubmit' : 'Edit details'}</button>
+        <button class="btn ghost" id="refresh">Check status</button>
+      </div>
+    </div>
+  </div>`;
+  $('#edit').onclick = renderApply;
+  $('#refresh').onclick = load;
+}
+
+/* ---------- Admin ---------- */
+async function renderAdmin() {
+  const [pend, online, active, open] = await Promise.all([
+    sb.from('drivers').select('id', { count: 'exact', head: true }).eq('status', 'pending'),
+    sb.from('drivers').select('id', { count: 'exact', head: true }).eq('is_online', true),
+    sb.from('rides').select('id', { count: 'exact', head: true }).in('status', ['searching', 'accepted', 'arrived', 'picked_up']),
+    sb.from('support_tickets').select('id', { count: 'exact', head: true }).in('status', ['open', 'in_progress'])
+  ]);
+  const tabs = [['drivers', 'Drivers'], ['trips', 'Trips'], ['tickets', 'Support'], ['hospitals', 'Hospitals']];
+  app.innerHTML = `
+  <div class="wrap page">
+    <h1>Admin</h1>
+    <div class="stats">
+      <div class="stat"><b>${pend.count ?? 0}</b><span>drivers waiting for approval</span></div>
+      <div class="stat"><b>${online.count ?? 0}</b><span>ambulances online</span></div>
+      <div class="stat"><b>${active.count ?? 0}</b><span>trips in progress</span></div>
+      <div class="stat"><b>${open.count ?? 0}</b><span>open support reports</span></div>
+    </div>
+    <nav class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" data-tab="${k}" class="${state.adminTab === k ? 'on' : ''}">${l}</button>`).join('')}</nav>
+    <div id="tab"><p class="hint">Loading…</p></div>
+  </div>`;
+  app.querySelectorAll('[data-tab]').forEach((b) => b.onclick = () => { state.adminTab = b.dataset.tab; renderAdmin(); });
+  ({ drivers: adminDrivers, trips: adminTrips, tickets: adminTickets, hospitals: adminHospitals })[state.adminTab]();
+}
+
+async function adminDrivers() {
+  const box = $('#tab');
+  const filters = ['pending', 'approved', 'rejected', 'suspended'];
+  const { data: drivers, error } = await sb.from('drivers').select('*').eq('status', state.driverFilter).order('created_at', { ascending: false }).limit(100);
+  if (error) return note(box, errText(error));
+  const ids = (drivers || []).map((d) => d.id);
+  const { data: docs } = ids.length ? await sb.from('driver_documents').select('*').in('driver_id', ids) : { data: [] };
+  const docOf = Object.fromEntries((docs || []).map((x) => [x.driver_id, x]));
+  const signed = {};
+  await Promise.all((docs || []).flatMap((x) => [x.license_photo_path, x.nid_photo_path].filter(Boolean)).map(async (path) => {
+    const { data } = await sb.storage.from('driver-docs').createSignedUrl(path, 3600);
+    if (data) signed[path] = data.signedUrl;
+  }));
+  const docLink = (label, url) => url ? `<a href="${esc(url)}" target="_blank" rel="noopener"><img alt="${esc(label)}" src="${esc(url)}"></a>` : `<a aria-disabled="true"><span style="display:grid;place-items:center;height:100%">${esc(label)} photo missing</span></a>`;
+  box.innerHTML = `
+    <div class="filters">${filters.map((f) => `<button class="btn small ${state.driverFilter === f ? '' : 'ghost'}" data-f="${f}">${f[0].toUpperCase() + f.slice(1)}</button>`).join('')}</div>
+    <div class="list">${(drivers || []).map((d) => {
+      const x = docOf[d.id] || {};
+      return `<article class="item">
+        <div class="row">
+          ${d.photo_url ? `<img class="avatar" alt="" src="${esc(d.photo_url)}">` : `<div class="avatar">${esc(initials(d.full_name))}</div>`}
+          <div style="flex:1;min-width:220px">
+            <h4>${esc(d.full_name)} <span class="tag ${d.is_online ? '' : 'gray'}">${d.is_online ? 'Online' : 'Offline'}</span></h4>
+            <div class="hint">${esc(d.phone)}, registered ${esc(when(d.created_at))}</div>
+            <dl class="kv">
+              <dt>Ambulance</dt><dd>${esc(TYPES[d.vehicle_type].name)}, ${esc(d.vehicle_number)}${d.vehicle_model ? `, ${esc(d.vehicle_model)}` : ''}</dd>
+              <dt>Licence</dt><dd>${esc(x.license_number || 'not given')}</dd>
+              <dt>NID</dt><dd>${esc(x.nid_number || 'not given')}</dd>
+              ${d.organization ? `<dt>Company</dt><dd>${esc(d.organization)}</dd>` : ''}
+              ${d.base_area ? `<dt>Area</dt><dd>${esc(d.base_area)}</dd>` : ''}
+              ${(d.equipment || []).length ? `<dt>Equipment</dt><dd>${esc(d.equipment.join(', '))}</dd>` : ''}
+              ${d.rejection_reason ? `<dt>Reason given</dt><dd>${esc(d.rejection_reason)}</dd>` : ''}
+              ${d.status === 'approved' ? `<dt>Record</dt><dd>★ ${Number(d.rating).toFixed(1)} (${d.rating_count}), ${d.trips_count} trips</dd>` : ''}
+            </dl>
+          </div>
+        </div>
+        <div class="docs">${docLink('Licence', signed[x.license_photo_path])}${docLink('NID', signed[x.nid_photo_path])}${docLink('Ambulance', d.vehicle_photo_url)}</div>
+        <div class="actions">
+          ${d.status !== 'approved' ? `<button class="btn small" data-act="approved" data-id="${d.id}">Approve</button>` : ''}
+          ${d.status === 'pending' ? `<button class="btn small ghost" data-act="rejected" data-id="${d.id}">Reject</button>` : ''}
+          ${d.status === 'approved' ? `<button class="btn small red" data-act="suspended" data-id="${d.id}">Suspend</button>` : ''}
+          <a class="btn small ghost" href="tel:${esc(d.phone)}">Call driver</a>
+        </div>
+      </article>`;
+    }).join('') || `<div class="empty">No ${esc(state.driverFilter)} drivers.</div>`}</div>`;
+  box.querySelectorAll('[data-f]').forEach((b) => b.onclick = () => { state.driverFilter = b.dataset.f; adminDrivers(); });
+  box.querySelectorAll('[data-act]').forEach((b) => b.onclick = async () => {
+    const status = b.dataset.act;
+    let reason = null;
+    if (status !== 'approved') {
+      reason = prompt(status === 'rejected' ? 'What should the driver fix? They will see this message.' : 'Reason for suspension (shown to the driver):');
+      if (reason === null) return;
+    }
+    b.disabled = true;
+    const { error: e } = await sb.rpc('admin_set_driver_status', { p_driver: b.dataset.id, p_status: status, p_reason: reason });
+    if (e) { alert(errText(e)); b.disabled = false; return; }
+    renderAdmin();
+  });
+}
+
+async function adminTrips() {
+  const box = $('#tab');
+  const { data: rides, error } = await sb.from('rides')
+    .select('id, created_at, status, emergency_type, ambulance_type, patient_name, patient_phone, pickup_address, final_fare, offered_fare, payment_method, payment_status, cancel_reason, hospital:hospitals(name), driver:drivers!rides_driver_id_fkey(full_name, phone)')
+    .order('created_at', { ascending: false }).limit(80);
+  if (error) return note(box, errText(error));
+  box.innerHTML = `<div class="table-wrap" style="margin-top:14px"><table>
+    <thead><tr><th>Requested</th><th>Patient</th><th>Emergency</th><th>Route</th><th>Driver</th><th>Status</th><th>Fare</th><th>Payment</th></tr></thead>
+    <tbody>${(rides || []).map((r) => `<tr>
+      <td>${esc(when(r.created_at))}</td>
+      <td>${esc(r.patient_name || '')}<div class="hint">${esc(r.patient_phone || '')}</div></td>
+      <td>${esc(EMERGENCY[r.emergency_type] || r.emergency_type)}<div class="hint">${esc(TYPES[r.ambulance_type].name)}</div></td>
+      <td>${esc(r.pickup_address || '')}<div class="hint">to ${esc((r.hospital && r.hospital.name) || '')}</div></td>
+      <td>${r.driver ? `${esc(r.driver.full_name)}<div class="hint">${esc(r.driver.phone)}</div>` : '<span class="hint">None yet</span>'}</td>
+      <td><span class="tag ${r.status === 'completed' ? '' : r.status === 'cancelled' ? 'gray' : 'amber'}">${esc(STATUS[r.status])}</span>${r.cancel_reason ? `<div class="hint">${esc(r.cancel_reason)}</div>` : ''}</td>
+      <td>${money(r.final_fare || r.offered_fare)}</td>
+      <td>${esc(r.payment_method)} <span class="tag ${r.payment_status === 'paid' ? '' : 'amber'}">${esc(r.payment_status)}</span>
+        ${r.status === 'completed' && r.payment_status === 'pending' ? `<div style="margin-top:6px"><button class="btn small" data-paid="${r.id}">Mark paid</button></div>` : ''}</td>
+    </tr>`).join('') || '<tr><td colspan="8" class="empty">No trips yet.</td></tr>'}</tbody></table></div>`;
+  box.querySelectorAll('[data-paid]').forEach((b) => b.onclick = async () => {
+    if (!confirm('Confirm this payment was received?')) return;
+    const { error: e } = await sb.rpc('confirm_payment', { p_ride_id: b.dataset.paid });
+    if (e) return alert(errText(e));
+    adminTrips();
+  });
+}
+
+async function adminTickets() {
+  const box = $('#tab');
+  const { data: tickets, error } = await sb.from('support_tickets')
+    .select('*, user:profiles(full_name, phone, email, role)').order('created_at', { ascending: false }).limit(100);
+  if (error) return note(box, errText(error));
+  box.innerHTML = `<div class="list" style="margin-top:14px">${(tickets || []).map((t) => `
+    <article class="item">
+      <div class="row" style="justify-content:space-between">
+        <div><h4>${esc(t.category.replace(/_/g, ' '))}</h4>
+          <div class="hint">${esc(t.user ? `${t.user.full_name || t.user.email} (${t.user.role}), ${t.user.phone || ''}` : '')}, ${esc(when(t.created_at))}${t.ride_id ? `, trip ${esc(t.ride_id.slice(0, 8))}` : ''}</div></div>
+        <span class="tag ${['resolved', 'closed'].includes(t.status) ? '' : 'amber'}">${esc(t.status.replace('_', ' '))}</span>
+      </div>
+      <p style="margin:10px 0;white-space:pre-wrap">${esc(t.message)}</p>
+      <label class="f">Reply to the user<textarea data-reply="${t.id}">${esc(t.admin_reply || '')}</textarea></label>
+      <div class="actions">
+        <select data-status="${t.id}" aria-label="Ticket status" style="border:1px solid var(--line);border-radius:9px;padding:6px 10px">
+          ${['open', 'in_progress', 'resolved', 'closed'].map((s) => `<option value="${s}" ${t.status === s ? 'selected' : ''}>${s.replace('_', ' ')}</option>`).join('')}
+        </select>
+        <button class="btn small" data-save="${t.id}">Save reply</button>
+        ${t.user && t.user.phone ? `<a class="btn small ghost" href="tel:${esc(t.user.phone)}">Call</a>` : ''}
+      </div>
+    </article>`).join('') || '<div class="empty">No support reports.</div>'}</div>`;
+  box.querySelectorAll('[data-save]').forEach((b) => b.onclick = async () => {
+    const id = b.dataset.save;
+    b.disabled = true;
+    const { error: e } = await sb.from('support_tickets').update({
+      admin_reply: box.querySelector(`[data-reply="${id}"]`).value.trim() || null,
+      status: box.querySelector(`[data-status="${id}"]`).value, updated_at: new Date().toISOString()
+    }).eq('id', id);
+    b.disabled = false;
+    if (e) return alert(errText(e));
+    b.textContent = 'Saved';
+    setTimeout(() => { b.textContent = 'Save reply'; }, 1500);
+  });
+}
+
+async function adminHospitals() {
+  const box = $('#tab');
+  const { data: hs, error } = await sb.from('hospitals').select('id, name, area, phone, specialties, verified, lat, lng').order('name');
+  if (error) return note(box, errText(error));
+  box.innerHTML = `<p class="hint" style="margin-top:14px">Mark a hospital verified after you confirm its phone number, services and map pin. Patients see a Verified badge.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Hospital</th><th>Phone</th><th>Services</th><th>Map pin</th><th>Verified</th></tr></thead>
+    <tbody>${(hs || []).map((h) => `<tr>
+      <td><b>${esc(h.name)}</b><div class="hint">${esc(h.area || '')}</div></td>
+      <td>${esc(h.phone || '')}</td>
+      <td>${esc((h.specialties || []).slice(0, 5).join(', '))}</td>
+      <td>${h.lat != null ? `<a target="_blank" rel="noopener" href="https://www.google.com/maps?q=${h.lat},${h.lng}">Check pin</a>` : 'Missing'}</td>
+      <td><label style="display:inline-flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" data-h="${esc(h.id)}" ${h.verified ? 'checked' : ''} style="accent-color:var(--green);width:18px;height:18px">Verified</label></td>
+    </tr>`).join('')}</tbody></table></div>`;
+  box.querySelectorAll('[data-h]').forEach((c) => c.onchange = async () => {
+    const { error: e } = await sb.from('hospitals').update({ verified: c.checked, updated_at: new Date().toISOString() }).eq('id', c.dataset.h);
+    if (e) { alert(errText(e)); c.checked = !c.checked; }
+  });
+}
+
+/* ---------- Start ---------- */
+if (!configured) {
+  app.innerHTML = `<div class="wrap page setup"><h1>Connect the portal</h1>
+    <p>Open <code>portal/index.html</code> and set <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> in the CONFIG block near the bottom. Use the same values as the app (Supabase → Project Settings → API).</p>
+    <p>Then add this page’s address to Supabase → Authentication → URL Configuration → Redirect URLs so Google sign-in can return here.</p></div>`;
+} else {
+  document.getElementById('signout').onclick = async () => { await sb.auth.signOut(); state = { ...state, session: null, profile: null, driver: null, docs: null }; load(); };
+  sb.auth.onAuthStateChange((event) => { if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') setTimeout(load, 0); });
+  load().catch((e) => { app.innerHTML = `<div class="wrap page"><div class="msg err">${esc(errText(e))}</div></div>`; });
+}
+</script>
+</body>
+</html>
