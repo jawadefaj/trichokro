@@ -1,0 +1,355 @@
+[
+ {
+  "id": "a01",
+  "name": "Shikder Ambulance — Eskaton",
+  "area": "Eskaton / Moghbazar",
+  "zone": "Central",
+  "base": "Holy Family Hospital, New Eskaton Road",
+  "phone": "01710060020",
+  "alt_phone": null,
+  "description": "Published dispatch station. Ask for current crew, vehicle equipment and a quoted fare.",
+  "source_url": "https://shikderambulance.com/contact-us",
+  "source_grade": "Provider website",
+  "kinds": [
+   "Standard",
+   "ICU / life support",
+   "Freezer"
+  ]
+ },
+ {
+  "id": "a02",
+  "name": "Shikder Ambulance — Mohakhali",
+  "area": "Mohakhali",
+  "zone": "North",
+  "base": "Wireless Road, Mohakhali",
+  "phone": "01627669222",
+  "alt_phone": null,
+  "description": "Published Mohakhali station; call to confirm pickup time and equipment.",
+  "source_url": "https://shikderambulance.com/contact-us",
+  "source_grade": "Provider website",
+  "kinds": [
+   "Standard",
+   "ICU / life support",
+   "Freezer"
+  ]
+ },
+ {
+  "id": "a03",
+  "name": "Shikder Ambulance — Jatrabari",
+  "area": "Jatrabari",
+  "zone": "South / East",
+  "base": "Jatrabari Chowrasta",
+  "phone": "01713260042",
+  "alt_phone": null,
+  "description": "Published Jatrabari station; confirm ambulance category before booking.",
+  "source_url": "https://shikderambulance.com/contact-us",
+  "source_grade": "Provider website",
+  "kinds": [
+   "Standard",
+   "ICU / life support",
+   "Freezer"
+  ]
+ },
+ {
+  "id": "a04",
+  "name": "National Ambulance Service — Mirpur",
+  "area": "Mirpur 10",
+  "zone": "Northwest",
+  "base": "Mirpur 10 Roundabout",
+  "phone": "01791229290",
+  "alt_phone": "01815119933",
+  "description": "Provider advertises oxygen-equipped basic and ICU transport. Clinical staffing must be confirmed.",
+  "source_url": "https://www.mirpurambulance.com/index.html",
+  "source_grade": "Provider website",
+  "kinds": [
+   "Standard",
+   "ICU / life support"
+  ]
+ },
+ {
+  "id": "a05",
+  "name": "Mirpur Ambulance Service",
+  "area": "Mirpur 11",
+  "zone": "Northwest",
+  "base": "Mirpur 11, Dhaka 1216",
+  "phone": "01614985257",
+  "alt_phone": "01726496101",
+  "description": "Provider advertises ICU and freezer vehicles; verify dispatched vehicle and staff.",
+  "source_url": "https://mirpurambulanceservice.my.canva.site/",
+  "source_grade": "Provider website",
+  "kinds": [
+   "Standard",
+   "ICU / life support",
+   "Freezer"
+  ]
+ },
+ {
+  "id": "a06",
+  "name": "Abir Ambulance Service",
+  "area": "Mirpur",
+  "zone": "Northwest",
+  "base": "Block A, Road 4, Mirpur",
+  "phone": "01711286202",
+  "alt_phone": null,
+  "description": "Public business listing; equipment and staffing not independently checked.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard"
+  ]
+ },
+ {
+  "id": "a07",
+  "name": "Uttara Shihab Ambulance Service",
+  "area": "Uttara",
+  "zone": "North",
+  "base": "Sonargaon Janapath Road, Uttara",
+  "phone": "01615727979",
+  "alt_phone": null,
+  "description": "Uttara-based private dispatcher; confirm pickup coverage and care capability.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard",
+   "ICU / life support"
+  ]
+ },
+ {
+  "id": "a08",
+  "name": "Uttara Adil Ambulance Service",
+  "area": "Uttara Sector 9",
+  "zone": "North",
+  "base": "Sonargaon Janapath, Uttara",
+  "phone": "01779870800",
+  "alt_phone": null,
+  "description": "Uttara-based private dispatcher; ask whether advertised specialised transport is available.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard",
+   "ICU / life support",
+   "Freezer"
+  ]
+ },
+ {
+  "id": "a09",
+  "name": "BD Ambulance",
+  "area": "Dhanmondi",
+  "zone": "West / Central",
+  "base": "43 College Area, Dhanmondi 01",
+  "phone": "01926111155",
+  "alt_phone": "01623929292",
+  "description": "Provider offers basic, ICU/cardiac and freezer ambulance categories.",
+  "source_url": "https://www.bdambulance.com/contact-us/",
+  "source_grade": "Provider website",
+  "kinds": [
+   "Standard",
+   "ICU / life support",
+   "Freezer"
+  ]
+ },
+ {
+  "id": "a10",
+  "name": "Square Hospitals Ambulance",
+  "area": "Panthapath",
+  "zone": "Central",
+  "base": "West Panthapath, Dhaka",
+  "phone": "01713377775",
+  "alt_phone": "10616",
+  "description": "Hospital publishes a 24-hour emergency and ambulance phone line.",
+  "source_url": "https://squarehospital.com/",
+  "source_grade": "Hospital website",
+  "kinds": [
+   "Hospital ambulance",
+   "Standard"
+  ]
+ },
+ {
+  "id": "a11",
+  "name": "Asgar Ali Hospital Ambulance",
+  "area": "Gandaria",
+  "zone": "South",
+  "base": "111/1/A Distillery Road, Gandaria",
+  "phone": "10602",
+  "alt_phone": "01787683333",
+  "description": "Hospital publishes staffed cardiac and non-cardiac transport options.",
+  "source_url": "https://www.asgaralihospital.com/page/ambulance-service",
+  "source_grade": "Hospital website",
+  "kinds": [
+   "Hospital ambulance",
+   "Cardiac / staffed",
+   "Standard"
+  ]
+ },
+ {
+  "id": "a12",
+  "name": "MFSTC Ambulance",
+  "area": "Mohammadpur",
+  "zone": "West",
+  "base": "Shahjahan Road, Mohammadpur",
+  "phone": "01707686646",
+  "alt_phone": "029114851",
+  "description": "Government maternity centre publishes a dedicated ambulance contact.",
+  "source_url": "https://www.mfstc.gov.bd/services-details",
+  "source_grade": "Government website",
+  "kinds": [
+   "Hospital ambulance"
+  ]
+ },
+ {
+  "id": "a13",
+  "name": "Dhaka Ambulance",
+  "area": "Dhaka — citywide coordination",
+  "zone": "Citywide",
+  "base": "Dhaka (specific station not published)",
+  "phone": "01714325325",
+  "alt_phone": "01993800900",
+  "description": "Operator advertises AC, non-AC, ICU/CCU and freezer vehicles. Ask where vehicle is stationed.",
+  "source_url": "https://dhakaambulance.com.bd/",
+  "source_grade": "Provider website",
+  "kinds": [
+   "Standard",
+   "ICU / life support",
+   "Freezer"
+  ]
+ },
+ {
+  "id": "a14",
+  "name": "Alif Ambulance Service",
+  "area": "Panthapath",
+  "zone": "Central",
+  "base": "76/A Ahmed Plaza, West Panthapath",
+  "phone": "01713205555",
+  "alt_phone": null,
+  "description": "Panthapath-based dispatch; ICU equipment is advertised, not independently inspected.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard",
+   "ICU / life support"
+  ]
+ },
+ {
+  "id": "a15",
+  "name": "Mahim Ambulance Service",
+  "area": "Mohammadpur / Adabor",
+  "zone": "West",
+  "base": "Shahid Shahabuddin Road, Dhaka 1207",
+  "phone": "01774983692",
+  "alt_phone": null,
+  "description": "Public business listing; verify exact pickup base and capability.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard",
+   "ICU / life support"
+  ]
+ },
+ {
+  "id": "a16",
+  "name": "Tasfi Ambulance Service",
+  "area": "Moghbazar",
+  "zone": "Central",
+  "base": "Garden Road, Dhaka 1217",
+  "phone": "01740213242",
+  "alt_phone": null,
+  "description": "Public business listing; confirm staffed ICU transport if required.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard",
+   "ICU / life support"
+  ]
+ },
+ {
+  "id": "a17",
+  "name": "Munshi Ambulance Service",
+  "area": "Moghbazar",
+  "zone": "Central",
+  "base": "Moghbazar Road",
+  "phone": "01717770852",
+  "alt_phone": null,
+  "description": "Public business listing; ask for equipment, fee and ETA.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard"
+  ]
+ },
+ {
+  "id": "a18",
+  "name": "Surokkha Ambulance Service",
+  "area": "Bangla Motor",
+  "zone": "Central",
+  "base": "Bangla Motor foot overbridge area",
+  "phone": "01993700900",
+  "alt_phone": null,
+  "description": "Public business listing; confirm actual dispatch point and equipment.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard",
+   "ICU / life support"
+  ]
+ },
+ {
+  "id": "a19",
+  "name": "Rakib Ambulance Service",
+  "area": "Moghbazar / Central Dhaka",
+  "zone": "Central",
+  "base": "Dhaka 1217 (precise street not published)",
+  "phone": "01302869848",
+  "alt_phone": null,
+  "description": "Public business listing; call to confirm current location.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Public listing",
+  "kinds": [
+   "Standard"
+  ]
+ },
+ {
+  "id": "a20",
+  "name": "AMI Ambulance Service",
+  "area": "Shyamoli",
+  "zone": "West",
+  "base": "34 Babar Road, Shyamoli",
+  "phone": "01316111688",
+  "alt_phone": null,
+  "description": "Unverified public directory entry; confirm number and licensing.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Unverified directory",
+  "kinds": [
+   "Standard"
+  ]
+ },
+ {
+  "id": "a21",
+  "name": "Abdul Ahad Ambulance Service",
+  "area": "Adabor",
+  "zone": "West",
+  "base": "Adabor / Liberation Museum area",
+  "phone": "01715817201",
+  "alt_phone": null,
+  "description": "Unverified public directory entry; confirm number and base.",
+  "source_url": "https://healthindex.bd/en/ambulance/dhaka",
+  "source_grade": "Unverified directory",
+  "kinds": [
+   "Standard"
+  ]
+ },
+ {
+  "id": "a22",
+  "name": "Central Hospital Ambulance",
+  "area": "Dhanmondi",
+  "zone": "West / Central",
+  "base": "House 2, Road 5, Dhanmondi",
+  "phone": "10627",
+  "alt_phone": null,
+  "description": "Hospital advertises 24-hour ambulance support. Direct vehicle number on the site appears inconsistent, so use its main hotline.",
+  "source_url": "https://centralhospitalltdbd.com/ambulance-services/",
+  "source_grade": "Hospital website",
+  "kinds": [
+   "Hospital ambulance"
+  ]
+ }
+]

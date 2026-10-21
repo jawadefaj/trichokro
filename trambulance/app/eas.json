@@ -1,0 +1,50 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "base": {
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://YOUR-PROJECT.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "YOUR-ANON-KEY",
+        "EXPO_PUBLIC_BKASH_MODE": "manual",
+        "EXPO_PUBLIC_BKASH_NUMBER": "01XXXXXXXXX",
+        "EXPO_PUBLIC_NAGAD_NUMBER": "01XXXXXXXXX",
+        "EXPO_PUBLIC_SUPPORT_PHONE": "09600000000",
+        "EXPO_PUBLIC_OSRM_URL": "https://YOUR-MAP-DOMAIN.duckdns.org/osrm",
+        "EXPO_PUBLIC_NOMINATIM_URL": "https://YOUR-MAP-DOMAIN.duckdns.org/nominatim",
+        "EXPO_PUBLIC_PMTILES_URL": "https://YOUR-MAP-DOMAIN.duckdns.org/tiles/bangladesh.pmtiles",
+        "EXPO_PUBLIC_MAP_KEY": ""
+      }
+    },
+    "development": {
+      "extends": "base",
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview": {
+      "extends": "base",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "extends": "base",
+      "android": {
+        "buildType": "app-bundle"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "track": "internal"
+      }
+    }
+  }
+}

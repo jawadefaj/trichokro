@@ -1,0 +1,50 @@
+# HTTPS (free Let's Encrypt certificate), access key check and routing.
+#   https://DOMAIN/osrm/...       -> route calculation
+#   https://DOMAIN/nominatim/...  -> address search
+#   https://DOMAIN/tiles/...      -> bangladesh.pmtiles map file
+{
+	email {$EMAIL}
+}
+
+{$DOMAIN} {
+	header {
+		Access-Control-Allow-Origin "*"
+		Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
+		Access-Control-Allow-Headers "Range, If-Match, X-Trambulance-Key"
+		Access-Control-Expose-Headers "Content-Length, Content-Range, ETag"
+		-Server
+	}
+
+	route {
+		@preflight method OPTIONS
+		respond @preflight 204
+
+		respond /health "ok" 200
+
+		# Only the Trambulance app (which knows ACCESS_KEY) may use this server
+		@denied {
+			not header X-Trambulance-Key {$ACCESS_KEY}
+			not query key={$ACCESS_KEY}
+		}
+		respond @denied "Forbidden" 403
+
+		handle_path /osrm/* {
+			encode gzip
+			reverse_proxy {$OSRM_UPSTREAM:osrm:5000}
+		}
+		handle_path /nominatim/* {
+			encode gzip
+			reverse_proxy {$NOMINATIM_UPSTREAM:nominatim:8080}
+		}
+		handle_path /tiles/* {
+			root * {$TILES_DIR:/srv/tiles}
+			file_server
+		}
+		respond 404
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}

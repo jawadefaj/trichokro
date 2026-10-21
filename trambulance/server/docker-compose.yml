@@ -1,0 +1,54 @@
+# Trambulance map server: routing (OSRM), address search (Nominatim) and map tiles (PMTiles)
+# Runs on an Oracle Cloud Always Free Ampere (ARM) VM. Start it with setup.sh, not by hand.
+services:
+  osrm:
+    image: ghcr.io/project-osrm/osrm-backend:v26.10.0-debian
+    command: osrm-routed --algorithm mld --max-table-size 1000 /data/bangladesh.osrm
+    volumes:
+      - ./data/osrm:/data:ro
+    restart: unless-stopped
+
+  nominatim:
+    image: mediagis/nominatim:5.3
+    shm_size: 2gb
+    environment:
+      PBF_PATH: /nominatim/data/bangladesh-latest.osm.pbf
+      REPLICATION_URL: https://download.geofabrik.de/asia/bangladesh-updates/
+      UPDATE_MODE: continuous
+      IMPORT_STYLE: full
+      THREADS: "2"
+      NOMINATIM_PASSWORD: ${NOMINATIM_PASSWORD}
+      # Sized for the 2 OCPU / 12 GB Always Free shape
+      POSTGRES_SHARED_BUFFERS: 2GB
+      POSTGRES_MAINTENANCE_WORK_MEM: 1GB
+      POSTGRES_AUTOVACUUM_WORK_MEM: 512MB
+      POSTGRES_WORK_MEM: 32MB
+      POSTGRES_EFFECTIVE_CACHE_SIZE: 6GB
+    volumes:
+      - ./data/pbf:/nominatim/data:ro
+      - nominatim-db:/var/lib/postgresql/16/main
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2.11
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN}
+      EMAIL: ${EMAIL}
+      ACCESS_KEY: ${ACCESS_KEY}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./data/tiles:/srv/tiles:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - osrm
+    restart: unless-stopped
+
+volumes:
+  nominatim-db:
+  caddy-data:
+  caddy-config:
