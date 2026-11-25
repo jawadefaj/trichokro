@@ -19,49 +19,12 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <link href="src/assets/logo_icon.webp" rel="icon"/>
 <title>Blogs &amp; News | TriChokro Automotives</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
 <!-- Icons & Libraries -->
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@1.80.0/dist/umd/lucide.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="cool_animations.js"></script>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#0a192f',       // Deep Navy for Pathfinder
-                            light: '#112240',      // Lighter Navy
-                            lighter: '#233554',    // Even lighter
-                            green: '#64ffda',      // Neon Green accent
-                            greenDim: 'rgba(100, 255, 218, 0.1)',
-                            text: '#ccd6f6',       // Light gray text
-                            heading: '#e6f1ff',    // White heading text
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'Roboto', 'sans-serif'],
-                        display: ['Cinzel', 'serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        serif: ['Cormorant Garamond', 'serif'], // Added for Founder Page
-                    },
-                    animation: {
-                        'spin-slow': 'spin 25s linear infinite',
-                        'float': 'float 8s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 <style>
         /* --- MAIN GLOBAL STYLES --- */
         /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
@@ -613,6 +576,7 @@
 @media(max-width:720px){.tc-news-controls{align-items:stretch}.tc-news-sorting{width:100%}.tc-news-sorting select{flex:1}.tc-news-top{gap:14px}}
 </style><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style id="tc-blog-research-feature-style">.tc-research-feature{background:#081523;border-bottom:1px solid #274239;padding:37px 0 44px}.tc-research-feature .tc-research-wrap{width:min(1120px,calc(100% - 48px));margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:35px;align-items:center}.tc-research-feature-art{background:linear-gradient(135deg,#10392f,#0e1e30);border:1px solid #356358;border-radius:15px;min-height:245px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:24px}.tc-research-feature-art:after{content:"";position:absolute;inset:0;background-image:linear-gradient(#5ec9a50c 1px,transparent 1px),linear-gradient(90deg,#5ec9a50c 1px,transparent 1px);background-size:26px 26px;pointer-events:none}.tc-research-feature-art small{font:600 10px JetBrains Mono,monospace;letter-spacing:.15em;color:#98e2d0;position:relative;z-index:1}.tc-research-feature-art strong{font:600 clamp(30px,4.4vw,62px)/1 Cinzel,serif;color:#dffff4;letter-spacing:-.06em;position:relative;z-index:1}.tc-research-feature-art strong span{color:#5ce0b2}.tc-research-feature-info .label{font:700 10px JetBrains Mono,monospace;color:#75d9b7;letter-spacing:.17em}.tc-research-feature-info h2{font:700 clamp(24px,3vw,36px)/1.46 'Noto Sans Bengali',Inter,sans-serif;color:#eff7fa;margin:13px 0}.tc-research-feature-info p{font:400 14px/1.9 'Noto Sans Bengali',sans-serif;color:#a0b8c1;max-width:640px;margin:0 0 20px}.tc-research-feature-info a{display:inline-flex;gap:18px;align-items:center;text-decoration:none;color:#08271e;background:#54e1b0;padding:12px 18px;border-radius:8px;font-weight:700;font-size:13px;transition:transform .25s,background .25s}.tc-research-feature-info a:hover{transform:translateY(-3px);background:#83f5ce}.tc-research-feature-info .subline{font-size:11px;margin-top:15px;color:#718d96}@media(max-width:720px){.tc-research-feature .tc-research-wrap{grid-template-columns:1fr;gap:20px;width:calc(100% - 32px)}.tc-research-feature-art{min-height:170px}.tc-research-feature-info h2{font-size:24px}}</style>
+<link rel="stylesheet" href="css/tw/blogs.css"/>
 </head>
 <body class="selection-emerald" style="background:#020617">
 <div class="main-theme-bg" id="main-view">

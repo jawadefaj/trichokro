@@ -20,48 +20,11 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <link href="src/assets/logo_icon.webp" rel="icon"/>
 <title>Engineering Excellence - TriChokro</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
 <!-- Icons & Libraries -->
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@1.80.0/dist/umd/lucide.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#0a192f',       // Deep Navy for Pathfinder
-                            light: '#112240',      // Lighter Navy
-                            lighter: '#233554',    // Even lighter
-                            green: '#64ffda',      // Neon Green accent
-                            greenDim: 'rgba(100, 255, 218, 0.1)',
-                            text: '#ccd6f6',       // Light gray text
-                            heading: '#e6f1ff',    // White heading text
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'Roboto', 'sans-serif'],
-                        display: ['Cinzel', 'serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        serif: ['Cormorant Garamond', 'serif'], // Added for Founder Page
-                    },
-                    animation: {
-                        'spin-slow': 'spin 25s linear infinite',
-                        'float': 'float 8s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 <style>
         /* --- MAIN GLOBAL STYLES --- */
         /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
@@ -516,6 +479,7 @@
     </style>
 <link rel="stylesheet" href="css/site-mobile.css"/>
 <script src="js/site-mobile.js" defer></script>
+<link rel="stylesheet" href="css/tw/engineering_excellence.css"/>
 </head>
 <body class="selection-emerald">
 <!-- Speedometer Overlay -->
@@ -602,7 +566,7 @@
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="index.html#products">PRODUCTS</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="founder.html">FOUNDERS</a>
 <a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="contact.html?id=rownak">CONTACTS</a>
-<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="engineering_excellence_bn.html">à¦¬à¦¾à¦‚à¦²à¦¾</a>
+<a class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium" href="engineering_excellence_bn.html">বাংলা</a>
 </div>
 </div>
 </nav>
@@ -628,7 +592,7 @@
 <div class="container mx-auto px-4">
 <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
 <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Engineering Excellence</h2>
-<p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh ðŸ‡§ðŸ‡©</p>
+<p class="text-slate-400">We combined real-world driver benefits with robust product features. Every component is chosen for durability and efficiency tweaked for Bangladesh 🇧🇩</p>
 </div>
 <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
 <div class="reveal-on-scroll bg-slate-800/50 p-8 rounded-2xl hover:bg-slate-800 transition-colors border border-slate-700/50 hover:border-emerald-500/30 group hover:-translate-y-2 duration-300 interactive uplift-on-hover bg-gradient-animate">
@@ -1361,7 +1325,7 @@ updateScrollProgress();
     <!-- Top to Bottom Button (visible only at bottom) -->
 <div class="fixed bottom-10 right-10 z-[9990] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-10" id="scroll-to-bottom">
 <button class="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-emerald-500/40 group animate-bounce" onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})">
-<span class="text-xl">â¬‡ï¸</span>
+<span class="text-xl">⬇️</span>
 </button>
 </div>
 </body>

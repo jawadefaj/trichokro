@@ -19,49 +19,12 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <link href="src/assets/logo_icon.webp" rel="icon"/>
 <title>TriChokro News Story | TriChokro Automotives</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
 <!-- Icons & Libraries -->
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@1.80.0/dist/umd/lucide.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="cool_animations.js"></script>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#0a192f',       // Deep Navy for Pathfinder
-                            light: '#112240',      // Lighter Navy
-                            lighter: '#233554',    // Even lighter
-                            green: '#64ffda',      // Neon Green accent
-                            greenDim: 'rgba(100, 255, 218, 0.1)',
-                            text: '#ccd6f6',       // Light gray text
-                            heading: '#e6f1ff',    // White heading text
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'Roboto', 'sans-serif'],
-                        display: ['Cinzel', 'serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        serif: ['Cormorant Garamond', 'serif'], // Added for Founder Page
-                    },
-                    animation: {
-                        'spin-slow': 'spin 25s linear infinite',
-                        'float': 'float 8s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 <style>
         /* --- MAIN GLOBAL STYLES --- */
         /* body { cursor: none; overflow-x: hidden; background-color: #020617; font-family: 'Inter', sans-serif; color: #e2e8f0; } */
@@ -597,6 +560,7 @@ html.tc-policy-mode #story-page{display:none!important}html:not(.tc-policy-mode)
 @media(max-width:640px){.tc-policy{padding-top:68px}.tc-policy-container{width:calc(100% - 32px)}.tc-policy-hero-inner{padding-top:23px}.tc-policy-breadcrumb{flex-wrap:wrap;gap:8px;margin-bottom:52px}.tc-policy-overline{font-size:9px;letter-spacing:.08em}.tc-policy h1{font-size:37px;max-width:100%}.tc-policy-hero-side{grid-template-columns:1fr}.tc-policy-highlight{padding:11px 0}.tc-policy-highlight b{font-size:21px}.tc-policy-subheading{font-size:14px}.tc-policy-hero-bottom{margin-top:40px;font-size:8px}.tc-policy-main-layout{padding-top:39px;gap:38px}.tc-policy-document-label{font-size:9px;letter-spacing:.08em}.tc-policy-body p{font-size:14px;line-height:2.04;text-align:left}.tc-policy-body h2{font-size:23px}.tc-policy-body h3{font-size:18px}.tc-policy-editor-note{padding:15px 13px}.tc-policy-pdf-head{display:block}.tc-policy-pdf-actions{justify-content:flex-start;margin-top:18px}.tc-policy-pdf-toolbar{font-size:9px;letter-spacing:0}.tc-policy-pdf-frame-wrap iframe{height:66vh;min-height:380px}.tc-policy-endnote{gap:11px}.tc-policy-endmark{width:45px;height:45px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){.tc-policy *{scroll-behavior:auto!important;transition:none!important}}
 </style>
+<link rel="stylesheet" href="css/tw/blog.css"/>
 </head>
 <body class="selection-emerald" style="background:#020617">
 <div class="main-theme-bg" id="main-view">
