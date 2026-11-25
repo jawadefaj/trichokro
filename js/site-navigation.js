@@ -108,47 +108,7 @@
         document.querySelector('body > nav, body > header.top, body > header.site-top');
     if (navigation) {
         navigation.classList.add('tc-site-navigation');
-        fixPageMobileMenu();
         return;
-    }
-
-    // Pages with their own navbar (#mobile-menu + #mobile-menu-btn).
-    // The closed menu must never catch taps (see css/site-mobile.css; repeated
-    // here for pages that do not load that stylesheet), and the menu closes
-    // after a link is chosen or when the visitor taps elsewhere.
-    function fixPageMobileMenu() {
-        var menu = document.getElementById('mobile-menu');
-        var button = document.getElementById('mobile-menu-btn');
-        if (!menu || !button) return;
-
-        var menuStyle = document.createElement('style');
-        menuStyle.textContent =
-            '#mobile-menu.max-h-0{max-height:0!important;visibility:hidden;pointer-events:none}' +
-            '#mobile-menu.opacity-100{visibility:visible;pointer-events:auto;max-height:calc(100vh - 4rem);' +
-            'max-height:calc(100dvh - 4rem);overflow-y:auto;overscroll-behavior:contain}';
-        document.head.appendChild(menuStyle);
-
-        function isOpen() { return menu.classList.contains('opacity-100'); }
-        function syncExpanded() { button.setAttribute('aria-expanded', String(isOpen())); }
-
-        button.setAttribute('aria-controls', 'mobile-menu');
-        if (!button.getAttribute('aria-label')) button.setAttribute('aria-label', isBangla ? 'মেনু' : 'Menu');
-        syncExpanded();
-        new MutationObserver(syncExpanded).observe(menu, { attributes: true, attributeFilter: ['class'] });
-
-        // Close through the page's own toggle so its open/closed state stays in step.
-        function close() { if (isOpen()) button.click(); }
-        menu.addEventListener('click', function (e) {
-            if (e.target.closest && e.target.closest('a[href]')) close();
-        });
-        document.addEventListener('click', function (e) {
-            if (!isOpen()) return;
-            if (menu.contains(e.target) || button.contains(e.target)) return;
-            close();
-        });
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') close();
-        });
     }
 
     var header = document.createElement('header');
