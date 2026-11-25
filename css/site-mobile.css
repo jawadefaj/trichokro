@@ -1,0 +1,37 @@
+/*
+  TriChokro shared mobile fixes (loaded by most pages).
+
+  Mobile menu tap fix
+  -------------------
+  Several pages set `#mobile-menu { max-height: 100vh }` inside a mobile media
+  query. An id selector beats Tailwind's `.max-h-0`, so the CLOSED menu stayed
+  100vh tall: invisible (opacity 0) but still on top of the page, inside the
+  fixed navbar. Every tap in the top screen-height then landed on a hidden
+  menu link (HOME, ABOUT US, NEWS, PRODUCTS, CONTACTS, BN) instead of the
+  button the visitor actually touched.
+
+  The rules below make the closed menu zero-height, hidden and untappable,
+  and keep the open menu exactly as designed (scrollable if it is taller than
+  the screen).
+*/
+#mobile-menu.max-h-0 {
+    max-height: 0 !important;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#mobile-menu.opacity-100 {
+    visibility: visible;
+    pointer-events: auto;
+    max-height: calc(100vh - 4rem);
+    max-height: calc(100dvh - 4rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Taps respond immediately (no 300ms double-tap-zoom wait) without
+   disabling pinch zoom. */
+a, button, [role="button"], .interactive, summary, label {
+    touch-action: manipulation;
+}
