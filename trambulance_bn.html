@@ -1,516 +1,175 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="bn" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trambulance - TriChokro</title>
-    <link rel="icon" type="image/png" href="src/assets/trambulance.webp">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons & Libraries -->
-    <script src="https://unpkg.com/lucide@1.80.0/dist/umd/lucide.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ট্রাম্বুলেন্স — তিন চাকার বৈদ্যুতিক অ্যাম্বুলেন্স | ত্রিচক্র</title>
+<meta name="description" content="ঢাকার সরু গলি ও গ্রামের কাঁচা রাস্তার জন্য তৈরি তিন চাকার বৈদ্যুতিক অ্যাম্বুলেন্স। ১৫০ কিমি রেঞ্জ, শুরুর দাম ৳২.৫ লক্ষ। ব্যাংকক বিজনেস চ্যালেঞ্জ ২০২৬-এ সাসটেইনেবিলিটি অ্যাওয়ার্ড।">
+<meta name="theme-color" content="#04060b">
+<link rel="canonical" href="https://www.trichokro.com/trambulance_bn.html">
+<link rel="alternate" hreflang="bn" href="https://www.trichokro.com/trambulance_bn.html">
+<link rel="alternate" hreflang="en" href="https://www.trichokro.com/trambulance.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:site_name" content="TriChokro Automotives">
+<meta property="og:title" content="ট্রাম্বুলেন্স — তিন চাকার বৈদ্যুতিক অ্যাম্বুলেন্স | ত্রিচক্র">
+<meta property="og:description" content="ঢাকার সরু গলি ও গ্রামের কাঁচা রাস্তার জন্য তৈরি তিন চাকার বৈদ্যুতিক অ্যাম্বুলেন্স। ১৫০ কিমি রেঞ্জ, শুরুর দাম ৳২.৫ লক্ষ। ব্যাংকক বিজনেস চ্যালেঞ্জ ২০২৬-এ সাসটেইনেবিলিটি অ্যাওয়ার্ড।">
+<meta property="og:url" content="https://www.trichokro.com/trambulance_bn.html">
+<meta property="og:image" content="https://www.trichokro.com/images/bangkok-business-challenge-2026.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="src/assets/logo_mark_256.webp" type="image/webp">
+<link rel="apple-touch-icon" href="src/assets/logo_mark_512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wdth,wght@75..125,300..800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Cinzel:wght@700&display=swap">
+<link rel="stylesheet" href="css/bn/bn.css?v=20261127">
+<script>document.documentElement.classList.add('js')</script>
 
-    <style>
-        /* --- MAIN GLOBAL STYLES --- */
-        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Hind Siliguri', 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
-        a, button, .interactive, input, .group { cursor: pointer; }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
-
-        /* Animations */
-        @keyframes gradient-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        @keyframes float-subtle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-        @keyframes float-slow { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } 100% { transform: translateY(0px) rotate(0deg); } }
-        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes neon-pulse { 0%, 100% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3); } 50% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5); color: #fff; } }
-        
-        /* New Animations for Trambulance Page */
-        @keyframes blob { 0% { transform: translate(0px, 0px) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } 100% { transform: translate(0px, 0px) scale(1); } }
-        @keyframes pulse-slow { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.05); } }
-        
-        .animate-float-subtle { animation: float-subtle 3s ease-in-out infinite; }
-        .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
-        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
-        .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
-        .animate-neon-pulse { animation: neon-pulse 3s infinite ease-in-out; }
-        .animate-blob { animation: blob 10s infinite; }
-        .animate-pulse-slow { animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-
-        .btn-deep-gradient { background-image: linear-gradient(to right, #065f46, #34d399); transition: all 0.3s ease; }
-        .btn-deep-gradient:hover { background-image: linear-gradient(to right, #047857, #6ee7b7); }
-
-        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
-    </style>
-<link rel="stylesheet" href="css/site-mobile.css"/>
-<script src="js/site-mobile.js" defer></script>
-<link rel="stylesheet" href="css/tw/trambulance_bn.css"/>
 </head>
-<body class="min-h-screen bg-slate-950 font-sans text-slate-100 overflow-x-hidden selection:bg-purple-500 selection:text-white">
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></symbol><symbol id="i-battery-charging" viewBox="0 0 24 24"><path d="m11 7-3 5h4l-3 5"/><path d="M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935"/><path d="M22 14v-4"/><path d="M5.14 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.936"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-circle-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol><symbol id="i-frame" viewBox="0 0 24 24"><line x1="22" x2="2" y1="6" y2="6"/><line x1="22" x2="2" y1="18" y2="18"/><line x1="6" x2="6" y1="2" y2="22"/><line x1="18" x2="18" y1="2" y2="22"/></symbol><symbol id="i-hand-coins" viewBox="0 0 24 24"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></symbol><symbol id="i-heart-pulse" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></symbol><symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol><symbol id="i-medal" viewBox="0 0 24 24"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"/><path d="M11 12 5.12 2.2"/><path d="m13 12 5.88-9.8"/><path d="M8 7h8"/><circle cx="12" cy="17" r="5"/><path d="M12 18v-2h-.5"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol><symbol id="i-rotate-3d" viewBox="0 0 24 24"><path d="m15.194 13.707 3.814 1.86-1.86 3.814"/><path d="M16.47214 7.52786 A 5 10 0 1 0 13 21.79796"/><path d="M21.79796 11 A 10 5 0 1 0 19 15.57071"/></symbol><symbol id="i-route" viewBox="0 0 24 24"><path d="M9 5h8.5a1 1 0 010 7h-11a1 1 0 000 7H15"/><circle cx="18" cy="19" r="3"/><circle cx="6" cy="5" r="3"/></symbol><symbol id="i-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="i-tent" viewBox="0 0 24 24"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2"/><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2"/><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="i-brand-fb" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></symbol><symbol id="i-brand-in" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6.94 8.98H3.56V20h3.38zM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92M20.44 13.7c0-3.3-1.76-4.84-4.1-4.84-1.9 0-2.74 1.04-3.21 1.78V8.98H9.75c.04 1.1 0 11.02 0 11.02h3.38v-6.15c0-.33.02-.66.12-.9.27-.66.87-1.34 1.89-1.34 1.33 0 1.87 1.01 1.87 2.5V20h3.38z"/></symbol><symbol id="i-brand-yt" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8M10 15V9l5.2 3z"/></symbol></defs></svg>
+<a class="skip" href="#main">মূল লেখায় যান</a>
+<div class="atmo" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div><div id="progress" aria-hidden="true"></div>
+<header class="hdr">
+  <a class="brand" href="index_bn.html" aria-label="ত্রিচক্র অটোমোটিভস — হোম">
+    <img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40">
+    <span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span>
+  </a>
+  <nav class="nav" aria-label="প্রধান মেনু"><a href="index_bn.html">হোম</a><a href="index_bn.html#about">আমাদের সম্পর্কে</a><a href="index_bn.html#products">পণ্য</a><a href="pathfinder_bn.html">পাথফাইন্ডার</a><a href="trambulance_bn.html" aria-current="page">ট্রাম্বুলেন্স</a><a href="blogs_bn.html">খবর</a></nav>
+  <div class="hdr-tools">
+    <a class="lang" href="trambulance.html" hreflang="en" lang="en" aria-label="Read this page in English"><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg>EN</a>
+    <a class="btn btn-primary btn-cta" href="index_bn.html#contact" data-magnetic>যোগাযোগ</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="মেনু খুলুন"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="মোবাইল মেনু" aria-hidden="true">
+  <a class="m-link" href="index_bn.html">হোম<small>০১</small></a><a class="m-link" href="index_bn.html#about">আমাদের সম্পর্কে<small>০২</small></a><a class="m-link" href="index_bn.html#products">পণ্য<small>০৩</small></a><a class="m-link" href="pathfinder_bn.html">পাথফাইন্ডার<small>০৪</small></a><a class="m-link" href="trambulance_bn.html" aria-current="page">ট্রাম্বুলেন্স<small>০৫</small></a><a class="m-link" href="blogs_bn.html">খবর<small>০৬</small></a><a class="m-link" href="engineering_excellence_bn.html">প্রকৌশল<small>০৭</small></a><a class="m-link" href="founder_bn.html">প্রতিষ্ঠাতা<small>০৮</small></a><a class="m-link" href="resources_bn.html">ফাইল ও রিসোর্স<small>০৯</small></a><a class="m-link" href="index_bn.html#contact">যোগাযোগ<small>১০</small></a>
+  <div class="m-foot">
+    <a class="btn btn-primary" href="index_bn.html#contact">যোগাযোগ করুন <svg class="ic go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <a class="btn btn-ghost" href="trambulance.html" hreflang="en" lang="en">English</a>
+  </div>
+</nav>
+<main id="main">
+<section class="phero"><div class="ring" aria-hidden="true"></div><div class="wrap phero-grid"><div><nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>ট্রাম্বুলেন্স</span></nav><span class="eyebrow" data-reveal>তিন চাকার বৈদ্যুতিক অ্যাম্বুলেন্স</span><h1 class="split-words" style="margin-top:14px">জরুরি সেবা <span class="grad">সবার জন্য।</span></h1><p class="lead" data-reveal>একটি সাশ্রয়ী, তিন চাকার, এআই-সহায়িত বৈদ্যুতিক অ্যাম্বুলেন্স — ঢাকার সরু গলি আর গ্রামীণ বাংলাদেশের কাদামাটির রাস্তা জয় করার জন্য ডিজাইন করা।</p><div class="btn-row" data-reveal><a class="btn btn-primary" href="src/assets/pdf/SofE Trambulance.pdf" target="_blank" rel="noopener" data-magnetic><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>ব্রোশিওর ডাউনলোড</a><span class="chip chip-g" style="align-self:center">শুরুর দাম ৳২.৫ লক্ষ</span></div></div><div data-reveal="zoom"><div class="frame" data-tilt style="aspect-ratio:16/10"><video class="vid" src="src/assets/trambulance-rotate-optimized.mp4" poster="src/assets/trambulance-rotate-poster.jpg" autoplay muted loop playsinline aria-label="ট্রাম্বুলেন্সের ৩৬০° ডিজাইন ভিউ"></video><div class="cap-bar"><span>৩৬০° ডিজাইন ভিউ</span><svg class="ic" aria-hidden="true"><use href="#i-rotate-3d"/></svg></div></div></div></div></section>
+<section class="sec-tight"><div class="wrap">
+<article class="award" data-reveal="zoom">
+<button type="button" class="award-pic" data-lightbox="award" data-src="images/bangkok-business-challenge-2026.jpg" data-alt="ব্যাংকক বিজনেস চ্যালেঞ্জ ২০২৬-এ সাসটেইনেবিলিটি অ্যাওয়ার্ড গ্রহণ" aria-label="ছবিটি বড় করে দেখুন" style="padding:0;cursor:zoom-in"><img src="images/bangkok-business-challenge-2026.jpg" alt="ব্যাংকক বিজনেস চ্যালেঞ্জ ২০২৬-এ পুরস্কার গ্রহণ" loading="lazy" decoding="async"></button>
+<div class="award-body"><span class="chip chip-a"><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg>গর্বিত ও স্বীকৃত</span><h3>ব্যাংককে সাসটেইনেবিলিটি অ্যাওয়ার্ড</h3>
+<ul class="ticks"><li><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg><span>ব্যাংকক বিজনেস চ্যালেঞ্জ ২০২৬ — ২০ দেশের ৩৮৫ দলের মধ্যে সাসটেইনেবিলিটি অ্যাওয়ার্ড ($৫,০০০)</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-hand-coins"/></svg><span>ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার থেকে $৩,৫০০ অনুদান</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-medal"/></svg><span>IMechE SOfE-তে জাতীয় চ্যাম্পিয়ন ও দক্ষিণ এশিয়া রানার-আপ</span></li></ul>
+<a class="link-arrow" href="blog_bn.html?post=sasin-trambulance-award" style="margin-top:16px">পুরো খবর পড়ুন <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></div></article>
+</div></section>
 
-        <!-- Background FX -->
-        <div class="fixed inset-0 z-0 pointer-events-none">
-            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/40 rounded-full blur-[120px] animate-pulse-slow"></div>
-            <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-blue-900/30 rounded-full blur-[120px] animate-pulse-slow" style="animation-delay: 1s"></div>
-            <div class="absolute top-[40%] left-[40%] w-[30%] h-[30%] bg-fuchsia-900/30 rounded-full blur-[100px] animate-blob"></div>
-            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+<section class="sec"><div class="wrap split">
+<div><div class="sec-head"><span class="eyebrow" data-reveal>সংকট</span><h2 class="title split-words">কেন বর্তমান অ্যাম্বুলেন্স <span class="grad">ব্যর্থ হয়</span></h2><p class="lead" data-reveal>পুরান ঢাকায় যানজটে বড় ভ্যান অচল হয়ে যায়; গ্রামে কাদামাটির রাস্তা দুর্গম। প্রথাগত অ্যাম্বুলেন্সের দাম ৪০–৫০ লক্ষ টাকা, আর প্রায়ই পাওয়া যায় না।</p></div>
+<ul class="ticks"><li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-circle-alert"/></svg><span><b>উচ্চ খরচ:</b> গ্রামীণ জনগোষ্ঠীর জন্য অসহনীয়।</span></li><li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-circle-alert"/></svg><span><b>সীমিত প্রবেশাধিকার:</b> ৬ মিটার ব্যাসার্ধের সরু রাস্তায় ঢুকতে পারে না।</span></li><li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-circle-alert"/></svg><span><b>সমন্বয়হীনতা:</b> ছড়ানো-ছিটানো নম্বর, কোনো রিয়েল-টাইম তথ্য নেই।</span></li></ul></div>
+<div class="stats" data-reveal style="grid-template-columns:1fr 1fr">
+<div class="stat"><b>৫৬%</b><span>রোগী ২ ঘণ্টার বেশি দেরিতে পৌঁছান</span></div><div class="stat"><b>৩৩%</b><span>মৃত্যু সময়মতো না পৌঁছানোর কারণে</span></div><div class="stat"><b>১০%</b><span>রাস্তায় ভ্যানের প্রবেশাধিকার</span></div><div class="stat"><b>১০০%</b><span>রাস্তায় ট্রাম্বুলেন্সের প্রবেশাধিকার</span></div>
+</div></div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>সমাধান</span><h2 class="title split-words">ট্রাম্বুলেন্স কমায় <span class="grad">২০–৪৪%</span> প্রতিক্রিয়ার সময়</h2><p class="lead" data-reveal>বিকেন্দ্রীভূত আউটপোস্ট আর চটপটে ডিজাইনের জোরে রোগীর কাছে দ্রুত পৌঁছানো।</p></div>
+<div class="stats" data-reveal><div class="stat"><b>৳০.২৫ মি.</b><span>উৎপাদন খরচ<br><small class=muted>হাই-এসের ৪ মিলিয়নের বিপরীতে</small></span></div><div class="stat"><b>২ মি</b><span>টার্নিং রেডিয়াস<br><small class=muted>ভ্যানের ৬ মিটারের বিপরীতে</small></span></div><div class="stat"><b>১০%</b><span>অপারেশনাল খরচ<br><small class=muted>প্রথাগত ভ্যানের তুলনায়</small></span></div><div class="stat"><b>১৫০ কিমি</b><span>ইলেকট্রিক রেঞ্জ<br><small class=muted>Na-ion ব্যাটারি</small></span></div></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>প্রকৌশল উৎকর্ষ</span><h2 class="title split-words">স্থায়িত্ব ও নিরাপত্তার <span class="grad">জন্য তৈরি</span></h2><p class="lead" data-reveal>সলিডওয়ার্কসে ডিজাইন, আনসিসে সিমুলেশন, বুয়েটের প্রকৌশলীদের হাতে তৈরি।</p></div>
+<div class="grid g2">
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-frame"/></svg></div><h3>ট্রাস চ্যাসিস</h3><p>রৈখিক চ্যাসিসের বদলে ট্রাস কাঠামো: ৩৫% কম ওজন, ৮০% বেশি লোড ক্ষমতা (৭০০ কেজি পর্যন্ত)।</p><ul class="ticks" style="margin-top:14px"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>কমপ্যাক্ট মাত্রা (১০′ × ৪′)</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>সরু লেনের জন্য অপ্টিমাইজ করা</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>সলিডওয়ার্কস ডিজাইন</span></li></ul></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-tent"/></svg></div><h3>অরিগামি হুড</h3><p>এমএস বার আর ওয়াটারপ্রুফ পলিইউরেথেনে তৈরি ভাঁজযোগ্য, অরিগামি-অনুপ্রাণিত হুড। মুহূর্তেই অ্যাম্বুলেন্স থেকে মেডিকেল কার্গো ভ্যানে রূপান্তর।</p><div class="filters" style="margin-top:14px"><span class="chip">তাপ প্রতিফলিত করে</span><span class="chip">ওয়াটারপ্রুফ</span></div></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-sun"/></svg></div><h3>সোলার ইন্টিগ্রেশন</h3><p>মোট ৩০০ ওয়াট প্যানেল দিনে ১.৫–২ কিলোওয়াট-ঘণ্টা উৎপাদন করে — মোট শক্তির চাহিদার ১৫%, বিশেষ করে মেডিকেল যন্ত্রের জন্য।</p></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-battery-charging"/></svg></div><h3>সোডিয়াম-আয়ন শক্তি</h3><p>সাশ্রয়ী, সহজলভ্য ও নিরাপদ। এলএফপির সমান কর্মক্ষমতা, আর কম তাপমাত্রায় আরও ভালো কাজ করে।</p></div>
+</div></div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>উন্নত প্রকৌশল</span><h2 class="title split-words">মেকানিজম ও <span class="grad">থ্রিডি মডেল</span></h2><p class="lead" data-reveal>ট্রাম্বুলেন্সের জটিল মেকানিজম আর থ্রিডি মডেলিং কাছ থেকে দেখুন।</p></div>
+<div class="grid g2">
+<div class="card edge" style="padding:12px" data-reveal><div class="frame" style="aspect-ratio:16/10"><video class="vid" src="src/assets/trambulance-mechanism-optimized.mp4" poster="src/assets/slideshow/12.webp" controls playsinline preload="metadata" aria-label="স্মার্ট অ্যাক্সেস মেকানিজম"></video></div><h3 style="margin:14px 8px 6px">স্মার্ট অ্যাক্সেস মেকানিজম</h3></div>
+<div class="card edge" style="padding:12px" data-reveal><div class="frame" style="aspect-ratio:16/10"><video class="vid" src="src/assets/trambulance-model-optimized.mp4" poster="src/assets/trambulance-model-poster.jpg" controls playsinline preload="metadata" aria-label="থ্রিডি মডেল ভিজ্যুয়ালাইজেশন"></video></div><h3 style="margin:14px 8px 6px">থ্রিডি মডেল ভিজ্যুয়ালাইজেশন</h3></div>
+</div></div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>গ্যালারি</span><h2 class="title split-words">ছবিতে <span class="grad">ট্রাম্বুলেন্স</span></h2></div>
+<div class="grid g3"><button type="button" class="gal-tile" style="width:auto" data-lightbox="tramb" data-src="src/assets/2.webp" data-alt="ট্রাম্বুলেন্স — দৃশ্য ১" aria-label="বড় করে দেখুন: ট্রাম্বুলেন্স — দৃশ্য ১" data-reveal><img src="src/assets/2.webp" alt="" loading="lazy" decoding="async"><span>ট্রাম্বুলেন্স — দৃশ্য ১</span></button><button type="button" class="gal-tile" style="width:auto" data-lightbox="tramb" data-src="src/assets/3.webp" data-alt="ট্রাম্বুলেন্স — দৃশ্য ২" aria-label="বড় করে দেখুন: ট্রাম্বুলেন্স — দৃশ্য ২" data-reveal><img src="src/assets/3.webp" alt="" loading="lazy" decoding="async"><span>ট্রাম্বুলেন্স — দৃশ্য ২</span></button><button type="button" class="gal-tile" style="width:auto" data-lightbox="tramb" data-src="src/assets/Perspective_1.webp" data-alt="ট্রাম্বুলেন্স — পার্সপেক্টিভ" aria-label="বড় করে দেখুন: ট্রাম্বুলেন্স — পার্সপেক্টিভ" data-reveal><img src="src/assets/Perspective_1.webp" alt="" loading="lazy" decoding="async"><span>ট্রাম্বুলেন্স — পার্সপেক্টিভ</span></button><button type="button" class="gal-tile" style="width:auto" data-lightbox="tramb" data-src="src/assets/slideshow/9.webp" data-alt="ডিজাইন ড্রয়িং" aria-label="বড় করে দেখুন: ডিজাইন ড্রয়িং" data-reveal><img src="src/assets/slideshow/9.webp" alt="" loading="lazy" decoding="async"><span>ডিজাইন ড্রয়িং</span></button><button type="button" class="gal-tile" style="width:auto" data-lightbox="tramb" data-src="src/assets/slideshow/10.webp" data-alt="CAD মডেল" aria-label="বড় করে দেখুন: CAD মডেল" data-reveal><img src="src/assets/slideshow/10.webp" alt="" loading="lazy" decoding="async"><span>CAD মডেল</span></button><button type="button" class="gal-tile" style="width:auto" data-lightbox="tramb" data-src="src/assets/slideshow/11.webp" data-alt="CAD মডেল, পেছন থেকে" aria-label="বড় করে দেখুন: CAD মডেল, পেছন থেকে" data-reveal><img src="src/assets/slideshow/11.webp" alt="" loading="lazy" decoding="async"><span>CAD মডেল, পেছন থেকে</span></button></div></div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap split">
+<div><div class="sec-head"><span class="eyebrow" data-reveal>স্মার্ট সমন্বয়</span><h2 class="title split-words">হাসপাতাল নয়, <span class="grad">পাড়ায় পাড়ায়</span> আউটপোস্ট</h2><p class="lead" data-reveal>হাসপাতালভিত্তিক পার্কিং থেকে সরে এসে একটি বিকেন্দ্রীভূত আউটপোস্ট মডেল।</p></div>
+<div class="btn-row" data-reveal><a class="btn btn-ghost" href="trambulance_app.html"><svg class="ic" aria-hidden="true"><use href="#i-smartphone"/></svg>অ্যাপ ডেমো দেখুন</a></div></div>
+<div class="grid" style="gap:16px">
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></div><h3>এআই রুট অপ্টিমাইজেশন</h3><p>মেশিন লার্নিং ঢাকার ট্রাফিকের ধরন আগেই অনুমান করে দ্রুততম রুট খুঁজে বের করে।</p></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-heart-pulse"/></svg></div><h3>প্যারামেডিক চালক</h3><p>সিপিআর, রক্তপাত নিয়ন্ত্রণ ও অক্সিজেন দেওয়ায় প্রশিক্ষিত চালক (বিএনসিসি/রেড ক্রিসেন্টের সহযোগিতায়)।</p></div>
+</div></div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+<blockquote class="quote card edge" data-reveal>ট্রাম্বুলেন্স কেবল একটি যান নয়; এটি সেই ৯৯% মানুষের জীবনরেখা, যারা আনুষ্ঠানিক অ্যাম্বুলেন্স সেবা পান না।</blockquote>
+<div class="grid g2" style="margin-top:18px">
+<a class="card lift edge" href="founder_bn.html" data-reveal style="display:flex;gap:16px;align-items:center"><img src="src/assets/founders/rownak.jpg" alt="" width="64" height="64" style="width:64px;height:64px;border-radius:50%;object-fit:cover" loading="lazy"><span><small class="muted">ডেভেলপ করেছেন</small><h3 style="margin:2px 0">রওনক শাহরিয়ার রুহান</h3><p>যন্ত্রকৌশল বিভাগ, বুয়েট</p></span></a>
+<a class="card lift edge" href="contact_bn.html?id=rownak" data-reveal><small class="muted">যোগাযোগ</small><h3 style="margin:2px 0">+৮৮০ ১৭১৪ ৮৪৪৬৭৭</h3><p>rownakshahriarruhan@gmail.com</p></a>
+</div></div></section>
+<section class="sec" style="padding-top:0"><div class="wrap"><div class="cta-panel center" data-reveal="zoom">
+<span class="big-word" aria-hidden="true">ত্রিচক্র</span>
+<h2 class="title split-words">জীবন বাঁচানোর যাত্রায় <span class="grad">সঙ্গী হোন</span></h2><p class="lead">হাসপাতাল, এনজিও, স্থানীয় সরকার বা বিনিয়োগকারী — ট্রাম্বুলেন্স নিয়ে কথা বলুন।</p>
+<div class="btn-row"><a class="btn btn-primary" href="index_bn.html#contact" data-magnetic>যোগাযোগ করুন <svg class="ic go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a><a class="btn btn-ghost" href="pathfinder_bn.html">পাথফাইন্ডার দেখুন</a></div></div></div></section>
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-word" aria-hidden="true">ত্রিচক্র</div>
+    <div class="ftr-grid">
+      <div class="about">
+        <a class="brand" href="index_bn.html"><img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40" loading="lazy"><span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span></a>
+        <p style="margin-top:16px">বুয়েটের শিক্ষার্থী ও অ্যালামনাইদের হাতে গড়া ইলেকট্রিক যানবাহন গবেষণা ও উন্নয়ন প্রতিষ্ঠান — বাংলাদেশের রাস্তার জন্য, বাংলাদেশের মানুষের জন্য।</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/people/TriChokro/61577812382585/" target="_blank" rel="noopener" aria-label="ত্রিচক্র ফেসবুক পেজ"><svg class="ic"><use href="#i-brand-fb"/></svg></a>
+          <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" rel="noopener" aria-label="লিংকডইন"><svg class="ic"><use href="#i-brand-in"/></svg></a>
+          <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" rel="noopener" aria-label="ইউটিউব চ্যানেল"><svg class="ic"><use href="#i-brand-yt"/></svg></a>
+          <a href="https://trichokro.blogspot.com/" target="_blank" rel="noopener" aria-label="ব্লগ"><svg class="ic" aria-hidden="true"><use href="#i-rss"/></svg></a>
         </div>
-
-        <!-- Unified Nav -->
-        <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-slate-950/70 backdrop-blur-lg border-b border-white/5 py-3">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index_bn.html'">
-                        <img alt="TriChokro Logo" class="tc-brand-logo" src="src/assets/logo_icon.webp" decoding="async" width="1600" height="1600">
-<span class="tc-brand-wordmark"><span class="tc-brand-main">Tri<span class="text-emerald-400 tc-brand-accent">Chokro</span></span><span class="tc-brand-sub"> Automotives</span></span>
-                    </div>
-                    <div class="hidden md:flex items-center space-x-8" style="font-family: 'Hind Siliguri', 'Cinzel', serif;">
-<a href="index_bn.html#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">হোম<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_bn.html#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">যানবাহন<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_bn.html#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">প্রযুক্তি<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_bn.html#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">আমাদের সম্পর্কে<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="contact_bn.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">যোগাযোগ<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="trambulance_app.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">লাইভ ম্যাপ<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-
-
-    <div class="relative group z-[10002] inline-block ml-4">
-        <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none">
-            <i class="fas fa-globe"></i>
-            <span class="">BN</span>
-            <i class="fas fa-chevron-down text-xs ml-1"></i>
-        </button>
-        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
-            <div class="py-1">
-                <a href="trambulance.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">EN</a>
-<a href="trambulance_bn.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">BN</a>
-
-            </div>
-        </div>
+      </div>
+      <div>
+        <h4>পণ্য</h4>
+        <ul>
+          <li><a class="float-link" href="index_bn.html#products">সব পণ্য</a></li>
+          <li><a href="pathfinder_bn.html">পাথফাইন্ডার</a></li>
+          <li><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a></li>
+          <li><a href="arkgo.html">আর্কগো</a></li>
+          <li><a href="vesel_urbana.html">ভেসেল আরবানা</a></li>
+          <li><a href="fortunacargo.html">ফরচুনা কার্গো</a></li>
+          <li><a href="Bravostruck.html">ব্রাভোস ট্রাক</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>প্রতিষ্ঠান</h4>
+        <ul>
+          <li><a href="index_bn.html#about">আমাদের টিম</a></li>
+          <li><a href="founder_bn.html">প্রতিষ্ঠাতা</a></li>
+          <li><a href="engineering_excellence_bn.html">প্রকৌশল উৎকর্ষ</a></li>
+          <li><a href="blogs_bn.html">খবর ও ব্লগ</a></li>
+          <li><a href="triborigen_bn.html">TribOriGen</a></li>
+          <li><a href="trimateria_bn.html">TriMateria</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>যোগাযোগ</h4>
+        <ul>
+          <li><a class="float-link d2" href="index_bn.html#contact">যোগাযোগ</a></li>
+          <li><a href="resources_bn.html">ফাইল ও রিসোর্স</a></li>
+          <li><a href="privacy_bn.html">গোপনীয়তা</a></li>
+          <li><a href="metadata_bn.html">মেটা ডেটা</a></li>
+          <li><a href="mailto:trichokro.automotives@gmail.com">ইমেইল করুন</a></li>
+        </ul>
+      </div>
     </div>
-    
+    <div class="ftr-base">
+      <span>রওনক শাহরিয়ার রুহান, জুলস এবং ক্লড দ্বারা বিকশিত; সর্বস্বত্ব সংরক্ষিত, ত্রিচক্র <span data-year>২০২৬</span></span>
+      <span>কাজী নজরুল ইসলাম হল, বুয়েট, ঢাকা-১০০০</span>
+    </div>
+  </div>
+</footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="ছবি দেখুন" aria-hidden="true">
+  <figure><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="><figcaption></figcaption></figure>
+  <button class="lb-btn lb-close" type="button" aria-label="বন্ধ করুন"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+  <button class="lb-btn lb-prev" type="button" aria-label="আগের ছবি"><svg class="ic" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+  <button class="lb-btn lb-next" type="button" aria-label="পরের ছবি"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
 </div>
-                    <div class="md:hidden">
-                        <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
-                <div class="px-4 py-4 space-y-3 flex flex-col">
-<a href="index_bn.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">হোম</a>
-<a href="index_bn.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">যানবাহন</a>
-<a href="index_bn.html#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">প্রযুক্তি</a>
-<a href="index_bn.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">আমাদের সম্পর্কে</a>
-<a href="contact_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">যোগাযোগ</a>
-<a href="trambulance_app.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">লাইভ ম্যাপ</a>
-
-<div class="border-t border-slate-700 my-2"></div>
-<a href="trambulance.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
-<a href="trambulance_bn.html" class="block text-emerald-400 bg-slate-800 font-bold px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
-
-</div>
-            </div>
-        </nav>
-        <script>
-            // Mobile menu logic for subpages
-            document.addEventListener('DOMContentLoaded', () => {
-                const menuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
-                if(menuBtn && mobileMenu) {
-                    let isMenuOpen = false;
-                    menuBtn.addEventListener('click', () => {
-                        isMenuOpen = !isMenuOpen;
-                        if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
-                        else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
-                    });
-                }
-            });
-        </script>
-
-        <!-- Hero Section -->
-        <section id="tramb-home" class="relative min-h-screen pt-20 flex flex-col items-center justify-center px-4 overflow-hidden">
-            <div class="relative z-10 text-center max-w-5xl mx-auto space-y-6">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-widest animate-fade-in-up">
-                    <i data-lucide="heart-pulse" class="w-3 h-3"></i> বাংলাদেশের জন্য জীবনরেখা
-                </div>
-                <h1 class="text-5xl md:text-8xl font-black leading-tight tracking-tight animate-fade-in-up">
-                    জরুরী সেবা <br />
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-red-400">সবার জন্য।</span>
-                </h1>
-                <p class="text-lg md:text-2xl text-slate-400 max-w-2xl mx-auto font-light animate-fade-in-up leading-relaxed" style="animation-delay: 0.1s">
-                    একটি সাশ্রয়ী, তিন চাকার, এআই-চালিত বৈদ্যুতিক অ্যাম্বুলেন্স যা ঢাকার সরু গলি এবং গ্রামীণ বাংলাদেশের কর্দমাক্ত রাস্তা জয় করার জন্য ডিজাইন করা হয়েছে।
-                </p>
-                <div class="flex flex-wrap justify-center gap-4 pt-4 animate-fade-in-up" style="animation-delay: 0.2s">
-                    <button onclick="document.getElementById('tramb-tech').scrollIntoView({behavior: 'smooth'})" class="bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 rounded-full font-bold shadow-[0_0_30px_-5px_rgba(147,51,234,0.4)] transition-all hover:-translate-y-1 flex items-center gap-2">
-                        গাড়িটি দেখুন <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </button>
-                    <a href="src/assets/pdf/SofE Trambulance.pdf" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white border border-white/20 px-8 py-4 rounded-full font-bold transition-all hover:-translate-y-1 flex items-center gap-2">
-                        ব্রোশিওর ডাউনলোড <i data-lucide="download" class="w-4 h-4"></i>
-                    </a>
-                </div>
-            </div>
-
-        <!-- Awards Banner -->
-        <div class="max-w-7xl mx-auto px-6 mt-16 z-20 relative animate-fade-in-up" style="animation-delay: 0.3s">
-            <div class="bg-slate-900/80 backdrop-blur-md border border-purple-500/30 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-                <div class="flex-1">
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                        <i data-lucide="award" class="w-6 h-6 text-yellow-400"></i> গর্বিত ও স্বীকৃত
-                    </h3>
-                    <p class="text-slate-400">ফার্স্ট ফ্লাইট ভেঞ্চার সেন্টার থেকে <span class="text-emerald-400 font-bold">$3,500 অনুদান</span>। IMechE SOFE তে <span class="text-white font-bold">জাতীয় চ্যাম্পিয়ন</span> এবং <span class="text-purple-400 font-bold">সাউথ এশিয়া রানার-আপ</span> এর মুকুট অর্জন।</p>
-                </div>
-            </div>
-        </div>
-
-
-            <!-- Floating Objects for Trambulance -->
-            <div id="blob-1" class="absolute w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] top-0 left-0 animate-float-slow transition-transform duration-100 ease-out z-0"></div>
-            <div id="blob-2" class="absolute w-[400px] h-[400px] bg-red-600/10 rounded-full blur-[80px] bottom-0 right-0 animate-float-medium transition-transform duration-100 ease-out z-0"></div>
-            <div class="absolute top-20 left-10 w-24 h-24 border-2 border-purple-500/20 rounded-full animate-[spin_12s_linear_infinite] z-0"></div>
-            <div class="absolute bottom-40 right-10 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-b-[25px] border-b-purple-500/10 animate-float-slow z-0"></div>
-            <div class="absolute top-1/4 right-1/4 text-red-500/20 animate-float-medium interactive uplift-on-hover z-0"><i data-lucide="heart-pulse" class="w-16 h-16"></i></div>
-            <div class="absolute bottom-1/3 left-1/4 text-purple-500/20 animate-float-slow interactive uplift-on-hover z-0"><i data-lucide="activity" class="w-20 h-20"></i></div>
-
-            <!-- Animated Vehicle (SVG) -->
-            <div class="relative w-full max-w-3xl mt-12 md:mt-16 animate-float-slow group cursor-pointer z-10">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-purple-600/20 blur-[80px] rounded-full group-hover:bg-purple-600/30 transition-all duration-700"></div>
-                <svg viewBox="0 0 600 350" class="w-full h-auto drop-shadow-2xl relative z-10" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="hoodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#f8fafc" />
-                            <stop offset="100%" stop-color="#cbd5e1" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M180,240 L550,240 L550,260 L180,260 Z" fill="#1e293b" />
-                    <rect x="180" y="240" width="370" height="20" fill="#cbd5e1" />
-                    <rect x="180" y="255" width="370" height="5" fill="#ef4444" class="animate-pulse" />
-                    <text x="450" y="235" font-family="Arial" font-weight="bold" font-size="16" fill="#7f1d1d" text-anchor="middle" letter-spacing="1">TRAMBULANCE</text>
-                    <g class="group-hover:-translate-y-1 transition-transform duration-500">
-                        <path d="M220,130 L250,240 L220,240 Z" fill="url(#hoodGrad)" stroke="#94a3b8" />
-                        <path d="M250,130 L280,240 L250,240 Z" fill="#e2e8f0" stroke="#94a3b8" />
-                        <path d="M280,130 L310,240 L280,240 Z" fill="url(#hoodGrad)" stroke="#94a3b8" />
-                        <path d="M310,130 L340,240 L310,240 Z" fill="#e2e8f0" stroke="#94a3b8" />
-                        <path d="M340,130 L370,240 L340,240 Z" fill="url(#hoodGrad)" stroke="#94a3b8" />
-                        <path d="M370,130 L400,240 L370,240 Z" fill="#e2e8f0" stroke="#94a3b8" />
-                        <path d="M400,130 L430,240 L400,240 Z" fill="url(#hoodGrad)" stroke="#94a3b8" />
-                        <path d="M430,130 L460,240 L430,240 Z" fill="#e2e8f0" stroke="#94a3b8" />
-                        <path d="M460,130 L490,240 L460,240 Z" fill="url(#hoodGrad)" stroke="#94a3b8" />
-                        <path d="M490,130 L520,240 L490,240 Z" fill="#e2e8f0" stroke="#94a3b8" />
-                        <path d="M220,130 L520,130 L510,125 L230,125 Z" fill="#1e40af" opacity="0.8" />
-                    </g>
-                    <path d="M180,260 L100,260 L80,200 L120,160 L180,160 Z" fill="none" stroke="#ef4444" stroke-width="6" stroke-linejoin="round"/>
-                    <path d="M180,260 L180,130" stroke="#0f172a" stroke-width="12" />
-                    <path d="M140,220 L160,250 L120,250 Z" fill="#334155" />
-                    <g class="origin-[100px_260px] animate-spin-slow">
-                        <circle cx="100" cy="260" r="28" fill="#0f172a" stroke="#334155" stroke-width="2" />
-                        <circle cx="100" cy="260" r="15" fill="#334155" />
-                        <path d="M100,260 L100,232" stroke="#64748b" stroke-width="2"/>
-                        <path d="M100,260 L124,272" stroke="#64748b" stroke-width="2"/>
-                        <path d="M100,260 L76,272" stroke="#64748b" stroke-width="2"/>
-                    </g>
-                    <line x1="100" y1="260" x2="115" y2="200" stroke="#0f172a" stroke-width="4" />
-                    <g class="origin-[340px_260px] animate-spin-slow">
-                        <circle cx="340" cy="260" r="32" fill="#0f172a" stroke="#334155" stroke-width="2" />
-                        <circle cx="340" cy="260" r="20" fill="#eab308" stroke="#ca8a04" stroke-width="6" /> 
-                        <path d="M340,260 L340,228" stroke="#0f172a" stroke-width="2"/>
-                        <path d="M340,260 L368,274" stroke="#0f172a" stroke-width="2"/>
-                        <path d="M340,260 L312,274" stroke="#0f172a" stroke-width="2"/>
-                    </g>
-                    <path d="M115,200 L130,210" stroke="#0f172a" stroke-width="4" />
-                </svg>
-            </div>
-        </section>
-
-        <!-- Video Showcase Section -->
-        <section id="video-showcase" class="w-full bg-slate-950 relative overflow-hidden border-y border-white/10">
-            <div class="w-full h-[500px] md:h-[700px] relative">
-                 <video class="w-full h-full object-cover" loop muted playsinline data-play-when-visible="true" preload="none" poster="src/assets/trambulance-rotate-poster.jpg">
-                     <source src="src/assets/trambulance-rotate-optimized.mp4" media="(max-width: 767px)" type="video/mp4">
-                     <source src="src/assets/trambulance%20rotate.mp4" type="video/mp4">
-                     Your browser does not support the video tag.
-                 </video>
-                 <div class="absolute inset-0 bg-gradient-to-r from-slate-950/50 via-transparent to-slate-950/50 pointer-events-none"></div>
-                 <div class="absolute bottom-4 left-0 w-full text-center z-10 pointer-events-none">
-                    <p class="text-white/80 text-xs tracking-[0.5em] uppercase font-light">৩৬০° ডিজাইন ভিউ</p>
-                 </div>
-            </div>
-        </section>
-
-        <!-- Problem Section -->
-        <section id="tramb-problem" class="py-24 bg-slate-900 relative">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-16 items-center scroll-reveal">
-                    <div>
-                        <h2 class="text-sm font-bold text-red-400 uppercase tracking-widest mb-2">সংকট</h2>
-                        <h3 class="text-4xl md:text-5xl font-bold mb-6">কেন বর্তমান অ্যাম্বুলেন্সগুলি <br/><span class="text-slate-500">আমাদের ব্যর্থ করে।</span></h3>
-                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-                            পুরান ঢাকায়, ট্রাফিক বড় ভ্যানগুলোকে অচল করে দেয়। গ্রামাঞ্চলে, কর্দমাক্ত রাস্তা দুর্গম।
-                            ঐতিহ্যবাহী অ্যাম্বুলেন্সের দাম <span class="text-white font-bold">৪-৫ মিলিয়ন BDT</span> এবং প্রায়ই পাওয়া যায় না।
-                        </p>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                <div class="mt-1 min-w-[6px] h-[6px] rounded-full bg-red-500"></div>
-                                <p class="text-slate-300 text-sm">উচ্চ খরচ: গ্রামীণ সম্প্রদায়ের জন্য অসহনীয় উচ্চ।</p>
-                            </div>
-                            <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                <div class="mt-1 min-w-[6px] h-[6px] rounded-full bg-red-500"></div>
-                                <p class="text-slate-300 text-sm">সীমিত প্রবেশাধিকার: ৬ মি ব্যাসার্ধের সরু রাস্তায় প্রবেশ করতে পারে না।</p>
-                            </div>
-                            <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                <div class="mt-1 min-w-[6px] h-[6px] rounded-full bg-red-500"></div>
-                                <p class="text-slate-300 text-sm">সমন্বয়হীনতা: খণ্ডিত যোগাযোগ নম্বর, কোনো রিয়েল-টাইম ডেটা নেই।</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-red-500/10 rounded-3xl transform rotate-3"></div>
-                        <div class="relative bg-slate-800 p-8 rounded-3xl border border-white/5 shadow-2xl">
-                            <div class="grid grid-cols-2 gap-4 text-center">
-                                <div class="bg-slate-900/50 p-6 rounded-xl">
-                                    <div class="text-4xl font-black text-red-400 mb-1">৫৬%</div>
-                                    <div class="text-xs text-slate-500 font-bold uppercase">রোগী ২ ঘন্টার বেশি বিলম্বিত</div>
-                                </div>
-                                <div class="bg-slate-900/50 p-6 rounded-xl">
-                                    <div class="text-4xl font-black text-red-400 mb-1">৩৩%</div>
-                                    <div class="text-xs text-slate-500 font-bold uppercase">সময় বিলম্বের কারণে মৃত্যু</div>
-                                </div>
-                                <div class="col-span-2 bg-slate-900/50 p-6 rounded-xl flex items-center justify-between">
-                                    <div class="text-left">
-                                        <div class="text-2xl font-black text-white">১০%</div>
-                                        <div class="text-xs text-slate-500 font-bold uppercase">ভ্যানের জন্য রাস্তা প্রবেশাধিকার</div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="text-xs text-slate-500 mb-1">বনাম ট্রাম্বুলেন্স</div>
-                                        <div class="text-2xl font-black text-green-400">১০০%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Solution & Stats -->
-        <section id="tramb-solution" class="py-24 relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-900/20 to-transparent"></div>
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4"><span class="text-purple-400">ট্রাম্বুলেন্স</span> সমাধান</h2>
-                    <p class="text-xl text-slate-400 max-w-2xl mx-auto">
-                        বিকেন্দ্রীভূত আউটপোস্ট এবং চটপটে ডিজাইন প্রতিক্রিয়ার সময় <span class="text-white font-bold">২০-৪৪%</span> কমিয়ে দেয়।
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-purple-900/20 border-purple-500/50 shadow-lg shadow-purple-900/20">
-                        <div class="mb-4 bg-slate-950/50 w-fit p-3 rounded-xl"><i data-lucide="dollar-sign" class="text-green-400"></i></div>
-                        <div class="text-3xl font-black text-white mb-1">০.২৫ মি</div>
-                        <div class="text-sm font-bold text-slate-300 uppercase tracking-wide">উৎপাদন খরচ</div>
-                        <div class="text-xs text-slate-500 mt-1">বনাম ৪ মি হাই-এস এর জন্য</div>
-                    </div>
-                    <div class="p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-slate-800/50 border-white/5 hover:bg-slate-800">
-                        <div class="mb-4 bg-slate-950/50 w-fit p-3 rounded-xl"><i data-lucide="map-pin" class="text-blue-400"></i></div>
-                        <div class="text-3xl font-black text-white mb-1">২ মি</div>
-                        <div class="text-sm font-bold text-slate-300 uppercase tracking-wide">টার্নিং রেডিয়াস</div>
-                        <div class="text-xs text-slate-500 mt-1">বনাম ৬ মি ভ্যানের জন্য</div>
-                    </div>
-                    <div class="p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-slate-800/50 border-white/5 hover:bg-slate-800">
-                        <div class="mb-4 bg-slate-950/50 w-fit p-3 rounded-xl"><i data-lucide="activity" class="text-red-400"></i></div>
-                        <div class="text-3xl font-black text-white mb-1">১০%</div>
-                        <div class="text-sm font-bold text-slate-300 uppercase tracking-wide">অপারেশনাল খরচ</div>
-                        <div class="text-xs text-slate-500 mt-1">ঐতিহ্যবাহী ভ্যানের</div>
-                    </div>
-                    <div class="p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-2 bg-slate-800/50 border-white/5 hover:bg-slate-800">
-                        <div class="mb-4 bg-slate-950/50 w-fit p-3 rounded-xl"><i data-lucide="battery-charging" class="text-yellow-400"></i></div>
-                        <div class="text-3xl font-black text-white mb-1">১৫০ কিমি</div>
-                        <div class="text-sm font-bold text-slate-300 uppercase tracking-wide">ইলেকট্রিক রেঞ্জ</div>
-                        <div class="text-xs text-slate-500 mt-1">Na-ion ব্যাটারি</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Specs -->
-        <section id="tramb-tech" class="py-24 bg-slate-900/50 border-y border-white/5">
-            <div class="max-w-7xl mx-auto px-6 scroll-reveal">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-                    <div>
-                        <h2 class="text-sm font-bold text-purple-400 uppercase tracking-widest mb-2">প্রকৌশল উৎকর্ষ</h2>
-                        <h3 class="text-4xl font-bold">স্থায়িত্ব এবং নিরাপত্তার জন্য তৈরি</h3>
-                    </div>
-                    <p class="text-slate-400 text-sm max-w-md text-right">
-                        সলিডওয়ার্কস এ ডিজাইন করা। আনসিস এ সিমুলেটেড। <br/>বুয়েট ইঞ্জিনিয়ারদের দ্বারা তৈরি।
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[650px]">
-                    <div class="md:row-span-2 bg-slate-800 rounded-3xl p-8 border border-white/5 hover:border-purple-500/30 transition-all group relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
-                        <div class="h-12 w-12 bg-slate-700/50 rounded-xl flex items-center justify-center mb-6"><i data-lucide="shield-check" class="text-white"></i></div>
-                        <h4 class="text-2xl font-bold mb-4">ট্রাস চ্যাসিস</h4>
-                        <p class="text-slate-400 leading-relaxed mb-6">রৈখিক চ্যাসিসকে ট্রাস কাঠামো দিয়ে প্রতিস্থাপন করে ৩৫% কম ওজন এবং ৮০% বেশি লোড ক্ষমতা (৭০০ কেজি পর্যন্ত)।</p>
-                        <ul class="space-y-3 text-sm text-slate-300">
-                            <li class="flex gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-purple-400"></i> কমপ্যাক্ট মাত্রা (১০' x ৪')</li>
-                            <li class="flex gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-purple-400"></i> সরু লেনের জন্য অপ্টিমাইজ করা</li>
-                            <li class="flex gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-purple-400"></i> সলিডওয়ার্কস ডিজাইন</li>
-                        </ul>
-                    </div>
-                    <div class="md:col-span-2 bg-slate-800 rounded-3xl p-8 border border-white/5 flex flex-col md:flex-row gap-8 items-center hover:bg-slate-800/80 transition-all relative overflow-hidden">
-                        <div class="flex-1 z-10">
-                            <div class="flex items-center gap-3 mb-4"><i data-lucide="wind" class="text-blue-400"></i><h4 class="text-2xl font-bold">অরিগামি হুড</h4></div>
-                            <p class="text-slate-400 mb-4">এমএস বার এবং ওয়াটারপ্রুফ পলিইউরেথেন দিয়ে তৈরি একটি ভাঁজযোগ্য, অরিগামি-অনুপ্রাণিত হুড। অ্যাম্বুলেন্স থেকে মেডিকেল কার্গো ভ্যানে তাৎক্ষণিকভাবে রূপান্তরিত হয়।</p>
-                            <div class="flex gap-2">
-                                <span class="px-3 py-1 bg-slate-700 rounded-lg text-xs font-bold text-white">তাপ প্রতিফলিত করে</span>
-                                <span class="px-3 py-1 bg-slate-700 rounded-lg text-xs font-bold text-white">ওয়াটারপ্রুফ</span>
-                            </div>
-                        </div>
-                        <div class="w-full md:w-1/3 h-32 bg-slate-700/30 rounded-xl flex items-center justify-center border border-dashed border-white/20"><span class="text-xs text-slate-500 font-mono">ক্যাড মডেল ভিউ</span></div>
-                    </div>
-                    <div class="bg-slate-800 rounded-3xl p-8 border border-white/5 hover:border-yellow-500/30 transition-all group">
-                        <div class="flex justify-between items-start mb-4"><i data-lucide="sun" class="text-yellow-400 w-8 h-8"></i><span class="text-xs font-bold bg-yellow-400/10 text-yellow-400 px-2 py-1 rounded">ইকো</span></div>
-                        <h4 class="text-xl font-bold mb-2">সোলার ইন্টিগ্রেশন</h4>
-                        <p class="text-slate-400 text-sm">৩০০ ওয়াট মোট ক্ষমতা যা ১.৫-২ কিলোওয়াট/দিন উৎপাদন করে। মোট শক্তির চাহিদার ১৫% কভার করে, বিশেষ করে মেডিকেল সরঞ্জাম পাওয়ারিং।</p>
-                    </div>
-                    <div class="bg-slate-800 rounded-3xl p-8 border border-white/5 hover:border-green-500/30 transition-all group">
-                        <div class="flex justify-between items-start mb-4"><i data-lucide="battery-charging" class="text-green-400 w-8 h-8"></i><span class="text-xs font-bold bg-green-400/10 text-green-400 px-2 py-1 rounded">Na-ion</span></div>
-                        <h4 class="text-xl font-bold mb-2">উন্নত শক্তি</h4>
-                        <p class="text-slate-400 text-sm">সোডিয়াম-আয়ন ব্যাটারি সাশ্রয়ী, প্রচুর সম্পদ এবং নিরাপত্তা প্রদান করে। এলএফপি-র সাথে তুলনীয় কর্মক্ষমতা এবং কম তাপমাত্রায় ভালো কাজ করে।</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Engineering Showcase Section -->
-        <section id="tramb-engineering" class="py-24 bg-slate-950 relative border-b border-white/5">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">উন্নত <span class="text-purple-400">প্রকৌশল</span></h2>
-                    <p class="text-xl text-slate-400 max-w-2xl mx-auto">
-                        ট্রাম্বুলেন্সের জটিল মেকানিজম এবং থ্রিডি মডেলিং দেখুন।
-                    </p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <!-- GIF / Mechanism -->
-                    <div class="bg-slate-900/50 p-6 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-all group">
-                        <h3 class="text-2xl font-bold mb-4 text-white">স্মার্ট অ্যাক্সেস মেকানিজম</h3>
-                        <div class="rounded-2xl overflow-hidden shadow-lg aspect-video bg-slate-800 flex items-center justify-center">
-                            <video class="w-full h-full object-cover" muted loop playsinline data-play-when-visible="true" preload="none" poster="src/assets/trambulance-model-poster.jpg" aria-label="Trambulance mechanism animation"><source src="src/assets/trambulance-mechanism-optimized.mp4" type="video/mp4"></video>
-                        </div>
-                    </div>
-                    <!-- Video / Model -->
-                    <div class="bg-slate-900/50 p-6 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-all group">
-                        <h3 class="text-2xl font-bold mb-4 text-white">থ্রিডি মডেল ভিজ্যুয়ালাইজেশন</h3>
-                        <div class="rounded-2xl overflow-hidden shadow-lg relative group aspect-video bg-slate-800 flex items-center justify-center">
-                            <video class="w-full h-full object-cover" loop muted playsinline data-play-when-visible="true" preload="none" poster="src/assets/trambulance-model-poster.jpg">
-                                <source src="src/assets/trambulance-model-optimized.mp4" media="(max-width: 767px)" type="video/mp4">
-                                <source src="src/assets/Trambulance model1.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="tramb-gallery" class="py-24 bg-slate-900 relative border-b border-white/5">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">গ্যালারি</h2>
-                    <p class="text-xl text-slate-400 max-w-2xl mx-auto">অ্যাকশনে ট্রাম্বুলেন্সের ভিজ্যুয়াল।</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
-                        <img src="src/assets/2.webp" alt="Trambulance View 1" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" decoding="async" loading="lazy" width="1600" height="905">
-                    </div>
-                    <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
-                        <img src="src/assets/3.webp" alt="Trambulance View 2" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" decoding="async" loading="lazy" width="1600" height="905">
-                    </div>
-                    <div class="rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
-                        <img src="src/assets/Perspective_1.webp" alt="Trambulance Perspective" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" decoding="async" loading="lazy" width="1600" height="905">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- App & Coordination -->
-        <section id="tramb-app" class="py-24 relative">
-            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="order-2 md:order-1 relative">
-                    <div class="relative mx-auto border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[640px] w-[320px] shadow-xl overflow-hidden">
-                        <div class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute z-20 pointer-events-none"></div>
-                        <iframe src="trambulance_app.html" class="w-full h-full border-0 rounded-[2rem] bg-white" title="Trambulance App Demo"></iframe>
-                    </div>
-                </div>
-                <div class="order-1 md:order-2">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold uppercase mb-6"><i data-lucide="smartphone" class="w-4 h-4"></i> উবার-এর মতো মডেল</div>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">স্মার্ট বিকেন্দ্রীভূত সমন্বয়</h2>
-                    <p class="text-lg text-slate-400 mb-6">হাসপাতাল ভিত্তিক পার্কিং থেকে সরে এসে একটি <span class="text-white">বিকেন্দ্রীভূত আউটপোস্ট মডেল</span>।</p>
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="mt-1 bg-purple-900/50 p-2 rounded-lg h-fit"><i data-lucide="activity" class="text-purple-400 w-5 h-5"></i></div>
-                            <div><h4 class="font-bold text-xl">এআই রুট অপ্টিমাইজেশন</h4><p class="text-slate-400 text-sm">মেশিন লার্নিং অ্যালগরিদম ঢাকার ট্রাফিক প্যাটার্ন ভবিষ্যদ্বাণী করে দ্রুততম রুট খুঁজে বের করে।</p></div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="mt-1 bg-purple-900/50 p-2 rounded-lg h-fit"><i data-lucide="users" class="text-purple-400 w-5 h-5"></i></div>
-                            <div><h4 class="font-bold text-xl">প্যারামেডিক ড্রাইভার</h4><p class="text-slate-400 text-sm">সিপিআর, রক্তপাত নিয়ন্ত্রণ এবং অক্সিজেন প্রশাসনে প্রশিক্ষিত ড্রাইভার (বিএনসিসি/রেড ক্রিসেন্টের সাথে সহযোগিতা)।</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trambulance Footer -->
-        <section id="tramb-impact" class="py-24 bg-gradient-to-b from-slate-900 to-slate-950 text-center">
-            <div class="max-w-4xl mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-8">জাতিকে ক্ষমতায়ন</h2>
-                <p class="text-xl text-slate-400 mb-12">"ট্রাম্বুলেন্স কেবল একটি যান নয়; এটি ৯৯% মানুষের জন্য একটি জীবনরেখা যারা আনুষ্ঠানিক অ্যাম্বুলেন্স সেবা অ্যাক্সেস করতে পারে না।"</p>
-                <div class="bg-slate-800/50 border border-white/5 rounded-2xl p-8 mb-16 flex flex-col md:flex-row justify-around items-center gap-8">
-                    <div class="text-center">
-                        <div class="text-sm text-slate-500 uppercase font-bold mb-2">ডেভেলপ করেছেন</div>
-                        <div class="font-bold text-white text-lg">রওনক শাহরিয়ার রুহান</div>
-                        <div class="text-purple-400 text-sm">মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ, বুয়েট</div>
-                    </div>
-                    <div class="h-px w-full md:h-12 md:w-px bg-white/10"></div>
-                    <div class="text-center">
-                        <div class="text-sm text-slate-500 uppercase font-bold mb-2">যোগাযোগ</div>
-                        <div class="font-bold text-white text-lg">+৮৮০ ১৭১৪ ৮৪৪৬৭৭</div>
-                        <div class="text-purple-400 text-sm">rownakshahriarruhan@gmail.com</div>
-                    </div>
-                </div>
-                <div class="text-slate-600 text-sm">© ২০২৫ ট্রাম্বুলেন্স প্রজেক্ট। সর্বস্বত্ব সংরক্ষিত। <br/>ঢাকা, বাংলাদেশ।</div>
-            </div>
-        </section>
-
-    <script>
-        lucide.createIcons();
-        
-        // Scroll Reveal Animation
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-    </script>
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
-    <script> 
-        document.addEventListener("mousemove", e => { 
-            const gradient = document.getElementById("cursor-gradient"); 
-            if(gradient) { 
-                gradient.style.setProperty("--x", e.clientX + "px"); 
-                gradient.style.setProperty("--y", e.clientY + "px"); 
-            } 
-        }); 
-    </script>
+<script src="js/bn/bn.js?v=20261127" defer></script>
 </body>
 </html>

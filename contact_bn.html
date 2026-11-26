@@ -1,708 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Contact - TriChokro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Icons & Libraries -->
-    <script src="https://unpkg.com/lucide@1.80.0/dist/umd/lucide.min.js"></script>
-    
-    <style>
-        /* CONTACT CARD STYLES */
-        :root {
-            --card-text-white: #ffffff;
-            --card-text-dark: #333333;
-            --card-font-main: 'Hind Siliguri', 'Poppins', sans-serif;
-            --card-font-serif: 'Hind Siliguri', 'Playfair Display', serif;
-            --card-accent-color: #8da356;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>যোগাযোগ কার্ড — ত্রিচক্র অটোমোটিভস</title>
+<meta name="description" content="ত্রিচক্র টিমের সদস্য ও উপদেষ্টাদের যোগাযোগের তথ্য: ফোন, ইমেইল ও বিভাগ।">
+<meta name="theme-color" content="#04060b">
+<link rel="canonical" href="https://www.trichokro.com/contact_bn.html">
+<link rel="alternate" hreflang="bn" href="https://www.trichokro.com/contact_bn.html">
+<link rel="alternate" hreflang="en" href="https://www.trichokro.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:site_name" content="TriChokro Automotives">
+<meta property="og:title" content="যোগাযোগ কার্ড — ত্রিচক্র অটোমোটিভস">
+<meta property="og:description" content="ত্রিচক্র টিমের সদস্য ও উপদেষ্টাদের যোগাযোগের তথ্য: ফোন, ইমেইল ও বিভাগ।">
+<meta property="og:url" content="https://www.trichokro.com/contact_bn.html">
+<meta property="og:image" content="https://www.trichokro.com/src/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="src/assets/logo_mark_256.webp" type="image/webp">
+<link rel="apple-touch-icon" href="src/assets/logo_mark_512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wdth,wght@75..125,300..800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Cinzel:wght@700&display=swap">
+<link rel="stylesheet" href="css/bn/bn.css?v=20261127">
+<script>document.documentElement.classList.add('js')</script>
 
-        body {
-            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: var(--card-font-main);
-            overflow-x: hidden;
-            perspective: 1000px;
-            touch-action: manipulation;
-        }
-
-        .contact-card-container {
-            display: flex;
-            flex-direction: row;
-            background-color: white;
-            width: 90%;
-            max-width: 900px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border-radius: 16px;
-            overflow: hidden;
-            min-height: 480px;
-            opacity: 0;
-            animation: cardEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, floatCard 6s ease-in-out infinite 1s;
-            position: relative;
-        }
-
-        .card-left {
-            background: linear-gradient(-45deg, #0f2013, #1a3c22, #0d2e18, #264d2e);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--card-text-white);
-            flex: 4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            text-align: center;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .card-image-wrapper {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none; /* Hidden by default */
-            animation: zoomIn 0.8s backwards 0.2s;
-        }
-
-        .card-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-left::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
-            animation: slowRotate 20s linear infinite;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .card-left > * { z-index: 1; }
-
-        .header-initials {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-            color: rgba(255,255,255,0.8);
-            animation: fadeInDown 0.8s ease-out 0.2s backwards;
-        }
-
-        .profile-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            animation: fadeInDown 0.8s ease-out 0.3s backwards;
-        }
-
-        .profile-title {
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin: 10px 0 30px 0;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 5px;
-            animation: fadeInDown 0.8s ease-out 0.4s backwards;
-        }
-        
-        .profile-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background: #8da356;
-            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card-left:hover .profile-title::after { width: 120%; }
-
-        .logo-container {
-            width: 110px;
-            height: 110px;
-            margin-bottom: 20px;
-            position: relative;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: zoomIn 0.8s backwards 0.5s;
-        }
-        
-        .card-left:hover .logo-container { transform: scale(1.15) rotate(5deg); }
-
-        .logo-svg { width: 100%; height: 100%; overflow: visible; }
-
-        .ring-outer {
-            transform-origin: 50px 50px;
-            animation: spin 15s linear infinite;
-            stroke: #2ecc71;
-            stroke-width: 6;
-            stroke-linecap: round;
-            fill: none;
-            filter: drop-shadow(0 0 5px rgba(46, 204, 113, 0.4));
-        }
-
-        .ring-inner {
-            transform-origin: 50px 50px;
-            animation: spinReverse 10s linear infinite;
-            stroke: #27ae60;
-            stroke-width: 5;
-            stroke-linecap: round;
-            fill: none;
-            opacity: 0.7;
-        }
-
-        .lightning-bolt {
-            fill: #3498db;
-            filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.6));
-            animation: pulseBolt 3s ease-in-out infinite;
-            transform-origin: 50px 50px;
-        }
-
-        .company-name {
-            font-family: var(--card-font-serif);
-            font-size: 2rem;
-            color: #d4e1c6;
-            margin: 5px 0;
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
-        }
-
-        .company-contact {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            letter-spacing: 1px;
-            line-height: 1.6;
-            font-family: monospace;
-            animation: fadeInUp 0.8s ease-out 0.7s backwards;
-        }
-
-        .card-divider {
-            background: linear-gradient(to bottom, #7da340, #9dbf58, #b5d67a, #7da340);
-            background-size: 100% 300%;
-            animation: gradientBG 8s ease infinite;
-            width: 60px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            padding: 40px 0;
-            z-index: 2;
-            margin-left: -20px;
-            border-top-right-radius: 50% 10%;
-            border-bottom-right-radius: 50% 10%;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-        }
-        
-        .icon-box {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .icon-circle {
-            color: white;
-            font-size: 1.1rem;
-            transition: transform 0.4s ease;
-        }
-
-        .icon-box:hover {
-            background-color: rgba(255,255,255,0.3);
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(255,255,255,0.4);
-        }
-        
-        .icon-box:hover .icon-circle { transform: rotate(360deg); }
-
-        .card-right {
-            flex: 5;
-            background-color: white;
-            padding: 40px 40px 40px 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            color: var(--card-text-dark);
-        }
-
-        .info-group {
-            border-bottom: 1px solid #eee;
-            padding: 10px 10px 10px 0;
-            margin-bottom: 10px;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            opacity: 0;
-            border-left: 3px solid transparent;
-            border-radius: 0 8px 8px 0;
-            animation: slideInRight 0.6s ease-out forwards;
-            cursor: default;
-        }
-
-        .info-group:nth-child(1) { animation-delay: 0.8s; }
-        .info-group:nth-child(2) { animation-delay: 0.9s; }
-        .info-group:nth-child(3) { animation-delay: 1.0s; }
-        .info-group:nth-child(4) { border-bottom: none; animation-delay: 1.1s; }
-
-        .info-group:hover {
-            transform: translateX(15px);
-            background: linear-gradient(to right, rgba(141, 163, 86, 0.1), transparent);
-            padding-left: 15px;
-            border-left-color: var(--card-accent-color);
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .info-text {
-            font-size: 0.95rem;
-            margin: 5px 0;
-            display: block;
-            color: #555;
-            transition: color 0.3s ease;
-        }
-        
-        .info-group:hover .info-text { color: #000; }
-
-        .buet-highlight {
-            font-weight: 700;
-            color: #1a3c22;
-        }
-
-        /* Card Animations */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes floatCard {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes spinReverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-        }
-        @keyframes pulseBolt {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(52, 152, 219, 0.4)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(52, 152, 219, 0.8)); }
-        }
-        @keyframes slowRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 768px) {
-            .contact-card-container {
-                flex-direction: column;
-                width: 95%;
-                height: auto;
-                min-height: auto;
-                animation: cardEntrance 1s ease-out forwards;
-            }
-            .card-left { padding: 40px 20px; border-radius: 16px 16px 0 0; }
-            .card-divider { width: 100%; height: 60px; flex-direction: row; margin-left: 0; border-radius: 0; padding: 5px 0; background-size: 300% 100%; }
-            .icon-box { margin: 0 5px; }
-            .card-right { padding: 30px 20px; text-align: center; }
-            .info-group { align-items: center; display: flex; flex-direction: column; border-left: none; padding-left: 0; }
-            .info-group:hover { transform: translateY(-5px); padding-left: 0; background: rgba(141, 163, 86, 0.05); border-radius: 8px; }
-        }
-    </style>
-<link rel="stylesheet" href="css/site-mobile.css"/>
-<script src="js/site-mobile.js" defer></script>
-<link rel="stylesheet" href="css/tw/contact_bn.css"/>
 </head>
 <body>
-    <!-- Floating Background Objects -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-900/10 rounded-full blur-[100px] animate-pulse" style="animation-duration: 8s;"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-emerald-900/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s; animation-duration: 10s;"></div>
-        <div class="absolute top-[40%] left-[40%] w-[30%] h-[30%] bg-lime-900/10 rounded-full blur-[80px] animate-pulse" style="animation-delay: 4s; animation-duration: 12s;"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol><symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol><symbol id="i-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="i-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="i-brand-fb" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></symbol><symbol id="i-brand-in" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6.94 8.98H3.56V20h3.38zM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92M20.44 13.7c0-3.3-1.76-4.84-4.1-4.84-1.9 0-2.74 1.04-3.21 1.78V8.98H9.75c.04 1.1 0 11.02 0 11.02h3.38v-6.15c0-.33.02-.66.12-.9.27-.66.87-1.34 1.89-1.34 1.33 0 1.87 1.01 1.87 2.5V20h3.38z"/></symbol><symbol id="i-brand-yt" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8M10 15V9l5.2 3z"/></symbol></defs></svg>
+<a class="skip" href="#main">মূল লেখায় যান</a>
+<div class="atmo" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div><div id="progress" aria-hidden="true"></div>
+<header class="hdr">
+  <a class="brand" href="index_bn.html" aria-label="ত্রিচক্র অটোমোটিভস — হোম">
+    <img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40">
+    <span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span>
+  </a>
+  <nav class="nav" aria-label="প্রধান মেনু"><a href="index_bn.html">হোম</a><a href="index_bn.html#about">আমাদের সম্পর্কে</a><a href="index_bn.html#products">পণ্য</a><a href="pathfinder_bn.html">পাথফাইন্ডার</a><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a><a href="blogs_bn.html">খবর</a></nav>
+  <div class="hdr-tools">
+    <a class="lang" href="contact.html" hreflang="en" lang="en" aria-label="Read this page in English"><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg>EN</a>
+    <a class="btn btn-primary btn-cta" href="index_bn.html#contact" data-magnetic>যোগাযোগ</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="মেনু খুলুন"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="মোবাইল মেনু" aria-hidden="true">
+  <a class="m-link" href="index_bn.html">হোম<small>০১</small></a><a class="m-link" href="index_bn.html#about">আমাদের সম্পর্কে<small>০২</small></a><a class="m-link" href="index_bn.html#products">পণ্য<small>০৩</small></a><a class="m-link" href="pathfinder_bn.html">পাথফাইন্ডার<small>০৪</small></a><a class="m-link" href="trambulance_bn.html">ট্রাম্বুলেন্স<small>০৫</small></a><a class="m-link" href="blogs_bn.html">খবর<small>০৬</small></a><a class="m-link" href="engineering_excellence_bn.html">প্রকৌশল<small>০৭</small></a><a class="m-link" href="founder_bn.html">প্রতিষ্ঠাতা<small>০৮</small></a><a class="m-link" href="resources_bn.html">ফাইল ও রিসোর্স<small>০৯</small></a><a class="m-link" href="index_bn.html#contact">যোগাযোগ<small>১০</small></a>
+  <div class="m-foot">
+    <a class="btn btn-primary" href="index_bn.html#contact">যোগাযোগ করুন <svg class="ic go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <a class="btn btn-ghost" href="contact.html" hreflang="en" lang="en">English</a>
+  </div>
+</nav>
+<main id="main">
+<section class="phero" style="padding-bottom:30px"><div class="ring" aria-hidden="true"></div><div class="wrap">
+<nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><a href="index_bn.html#about">টিম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>যোগাযোগ কার্ড</span></nav>
+<article class="pcard edge" id="pcard" data-reveal="zoom">
+<div class="pc-left"><div class="pc-ph"><img id="pc-img" alt="" hidden><span id="pc-ini" class="ini"></span></div><img class="pc-logo" src="src/assets/logo_mark_256.webp" alt="" width="34" height="34"></div>
+<div class="pc-right">
+<span class="eyebrow">ত্রিচক্র অটোমোটিভস</span>
+<h1 id="pc-name" class="title-sm" style="margin-top:12px">…</h1>
+<p id="pc-title" class="pc-title"></p>
+<ul class="pc-rows" id="pc-rows"></ul>
+<div id="pc-extra" class="prose" style="margin-top:12px" hidden></div>
+<div class="btn-row" style="margin-top:22px"><button class="btn btn-primary" type="button" id="pc-save" data-magnetic><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>কন্টাক্ট সেভ করুন</button><button class="btn btn-ghost" type="button" id="pc-share"><svg class="ic" aria-hidden="true"><use href="#i-share-2"/></svg>শেয়ার</button></div>
+</div></article>
+<h2 class="title-sm" style="margin:clamp(40px,6vw,70px) 0 16px" data-reveal>টিমের অন্যরা</h2>
+<div class="filters" id="pc-others" data-reveal></div>
+</div></section>
+<script>
+(function(){
+var D={"abrar":{"initials":"A F","name":"Abrar Faiaz","title":"CMO / Head of Software & AI Systems","phone1":"+8801795095833","email1":"abrarfaiaz20@gmail.com","dept":"Civil Engineering, BUET","image":"src/assets/founders/abrar.webp"},"arefien":{"initials":"A R","name":"Arefien Razi","title":"Sustainability Analyst / Executive Director","phone1":"+8801714205386","email1":"arefien.razi@gmail.com","dept":"Civil Engineering, BUET | Logistics Expert","image":"src/assets/founders/yaad.jpg"},"alphy":{"initials":"A S","name":"Alphy Shaharin","title":"Head of Sustainability & Impact Strategy / Transportation Eng. Analyst","phone1":"+8801567812916","email1":"alphytamim16687@gmail.com","dept":"Civil Engineering, BUET","image":"src/assets/founders/aphy.webp"},"mafizur":{"initials":"Dr.","name":"Md. Mafizur Rahman","title":"Advisor, Biz-comp.","email1":"mafizur@gmail.com","dept":"Professor, Department of Civil Engineering, BUET","image":"https://ui-avatars.com/api/?name=Md+Mafizur+Rahman&background=10b981&color=fff&size=128","extraInfo":"\n                    <div class=\"mt-4 text-sm text-slate-300\">\n                        <p class=\"font-bold text-emerald-400 mb-1\">Specialization:</p>\n                        <p class=\"mb-3\">Environmental Engineering</p>\n                        <p class=\"font-bold text-emerald-400 mb-1\">Education:</p>\n                        <ul class=\"list-disc list-inside\">\n                            <li>B.Sc. in Civil Engineering, BUET, Dhaka, 1992</li>\n                            <li>M.Sc. in Civil and Environmental Engineering, BUET, Dhaka, 1994</li>\n                            <li>Ph.D. in Civil and Environmental Engineering, The University of Tokyo, Japan, 1997</li>\n                        </ul>\n                    </div>\n                "},"hasanul":{"initials":"Dr.","name":"Hasanul Banna","title":"Surgeon & Medical officer","dept":"BUET Medical Centre","image":"https://ui-avatars.com/api/?name=Hasanul+Banna&background=10b981&color=fff&size=128"},"rownak":{"initials":"A A M","name":"রওনক শাহরিয়ার রুহান","title":"প্রতিষ্ঠাতা ও সিইও","phone1":"+৮৮০ ১৭১৪ ৮৪৪৬৭৭","phone2":"+৮৮০ ১৪০২ ৬৬৭৪৭৭","email1":"rownakshahriarruhan@gmail.com","email2":"2010105@me.buet.ac.bd","image":"src/assets/founders/rownak.jpg","hall":"কাজী নজরুল ইসলাম হল, বুয়েট, পলাশী, ঢাকা-১০০০","dept":"যন্ত্রকৌশল বিভাগ, বুয়েট"},"abdul":{"initials":"ড.","name":"আব্দুল জাওয়াদ","title":"যানবাহন উপদেষ্টা","email1":"jawadefaj006@gmail.com","image":"src/assets/founders/jawad.jpg"},"ishraq":{"initials":"I R","name":"ইশরাক রাফিদ","title":"স্থাপত্য উপদেষ্টা","email1":"ishraq.rafid@gmail.com","image":"src/assets/founders/ishraq.jpg"},"hasan":{"initials":"H M","name":"হাসান মাহমুদ","title":"অপারেশন এক্সিকিউটিভ","phone1":"+৮৮০ ১৭২৬ ৮৫৫৭৬৭","phone2":"+৮৮০ ১৮৬৭ ১১৪৮৮৩","email1":"mhmhasanmahmud2@gmail.com","email2":"2010061@me.buet.ac.bd","image":"src/assets/founders/Omor.webp"},"mijanur":{"initials":"M R","name":"মিজানুর রহমান","title":"সিনিয়র উপদেষ্টা","phone1":"+৮৮০ ১৭২০ ৯১৭৫৭২","phone2":"+৮৮০ ১৮৬৮ ২৩৩৯৬৫","email1":"mijankutubi65@gmail.com","email2":"1910109@me.buet.ac.bd","image":"src/assets/founders/mijan.jpg"},"tomal":{"initials":"T K","name":"তমাল কীর্তনীয়া","title":"ডিজাইন প্রধান","phone1":"+৮৮০ ১৬২৪ ৭৬২৯৫২","email1":"kirttoniatomal@gmail.com","email2":"2010110@me.buet.ac.bd","image":"src/assets/founders/Tomal.jpg"},"tahsif":{"initials":"T I T","name":"তাওহিদুল ইসলাম তাহসিফ","title":"লিড ডিজাইনার","phone1":"+৮৮০ ১৪০৫ ৪৯২৯৬০","phone2":"","email1":"tawhidul.tahsif@gmail.com","email2":"2110153@me.buet.ac.bd","image":"src/assets/founders/tahsif.jpg"},"shwadhin":{"initials":"D S","name":"দীপ্ত মজুমদার স্বাধীন","title":"অপারেশন এক্সিকিউটিভ","phone1":"+৮৮০ ১৮৬৭ ১৪৫৬৪২","phone2":"+৮৮০ ১৫২১ ৫৫৭৯২০","email1":"diptoswadhin0026@gmail.com","email2":"2010073@me.buet.ac.bd","image":"src/assets/founders/Swadhin.jpg"},"maxud":{"initials":"M R C","name":"মাকসুদুর রহমান চৌধুরী","title":"জনসংযোগ প্রধান","phone1":"+৮৮০ ১৬৭৬ ৭৯৩৯৮২","phone2":"","email1":"m.rahman.chw@gmail.com","email2":"2310132@me.buet.ac.bd","image":"src/assets/founders/Samee.jpg"},"rakibul":{"initials":"R H S","name":"রাকিবুল হাসান শান্ত","title":"অপারেশন অ্যাসোসিয়েট","phone1":"+৮৮০ ১৯৩৯ ১৩৪২০১","phone2":"+৮৮০ ১৬০৮ ৭৮৩৯০১","email1":"2010125@me.buet.ac.bd","email2":""},"farhan":{"initials":"F S","name":"ফারহান সাদিক","title":"জুনিয়র অ্যাসোসিয়েট","phone1":"+৮৮০ ১৫৭৭ ০৩৭৩৫৭","phone2":"","email1":"farhan.bme027@gmail.com","email2":"","dept":"বায়োমেডিকেল ইঞ্জিনিয়ারিং বিভাগ"},"sifat":{"initials":"S R","name":"সিফাত রানা","title":"চিফ এক্সিকিউটিভ","phone1":"+৮৮০ ১৬১০ ৭২৭৮৬৪","phone2":"+৮৮০ ১৫৮১ ৯৩০২৪৪","email1":"sifatrana20041@gmail.com","email2":"","dept":"ইন্ডাস্ট্রিয়াল অ্যান্ড প্রোডাকশন ইঞ্জিনিয়ারিং বিভাগ","hideSocial":true,"image":"src/assets/founders/sifat.jpg","hall":"কাজী নজরুল ইসলাম হল, বুয়েট"},"ehsanSir":{"initials":"ড.","name":"অধ্যাপক মোঃ এহসান","title":"উপদেষ্টা ও পরামর্শদাতা","phone1":"+৮৮০ ১৭১১ ৪৪৬৫৬৪","phone2":"৮৮০-২-৮৬১৩০৪৬ (ফ্যাক্স)","email1":"ehsan@me.buet.ac.bd","email2":"","image":"src/assets/founders/ehsan.jpg"},"omi":{"initials":"M O","name":"মল্লিক নাদিম আরমান অমি","title":"ব্যবস্থাপনা পরিচালক","phone1":"+৮৮০ ১৮৩৩-৮৪৩২৮৩","email1":"mallikomi.04@gmail.com","image":"src/assets/founders/omi.jpg.jpg"}};
+var order=['rownak','omi','hasan','shwadhin','tomal','sifat','ehsanSir','abdul','ishraq','mijanur'];
+var q=new URLSearchParams(location.search).get('id')||'rownak', m=D[q]||D.rownak, key=D[q]?q:'rownak';
+var en='০১২৩৪৫৬৭৮৯', ascii=function(s){return String(s).replace(/[০-৯]/g,function(c){return en.indexOf(c)}).replace(/[^+\d]/g,'')};
+var $=function(i){return document.getElementById(i)}, esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+document.title=m.name+' — যোগাযোগ | ত্রিচক্র';
+$('pc-name').textContent=m.name; $('pc-title').textContent=m.title||'';
+if(m.image){var im=$('pc-img');im.src=m.image;im.alt=m.name+'-এর ছবি';im.hidden=false;$('pc-ini').hidden=true;im.onerror=function(){im.hidden=true;$('pc-ini').hidden=false}}
+$('pc-ini').textContent=(m.initials||m.name.slice(0,2)).replace(/\s+/g,'');
+var rows=[], icon=function(n){return '<svg class="ic" aria-hidden="true"><use href="#i-'+n+'"/></svg>'};
+['phone1','phone2'].forEach(function(k){if(m[k]){var tel=ascii(m[k]);rows.push('<li>'+icon('phone')+(tel.length>6&&!/ফ্যাক্স/.test(m[k])?'<a href="tel:'+tel+'">'+esc(m[k])+'</a>':'<span>'+esc(m[k])+'</span>')+'</li>')}});
+['email1','email2'].forEach(function(k){if(m[k])rows.push('<li>'+icon('mail')+'<a href="mailto:'+esc(m[k])+'">'+esc(m[k])+'</a></li>')});
+if(m.dept)rows.push('<li>'+icon('graduation-cap')+'<span>'+esc(m.dept)+'</span></li>');
+if(m.hall)rows.push('<li>'+icon('map-pin')+'<span>'+esc(m.hall)+'</span></li>');
+$('pc-rows').innerHTML=rows.join('');
+if(m.extraInfo){var x=$('pc-extra');x.innerHTML=m.extraInfo;x.hidden=false}
+$('pc-save').addEventListener('click',function(){
+ var v=['BEGIN:VCARD','VERSION:3.0','FN:'+m.name,'ORG:TriChokro Automotives','TITLE:'+(m.title||'')];
+ ['phone1','phone2'].forEach(function(k){if(m[k]&&!/ফ্যাক্স/.test(m[k]))v.push('TEL;TYPE=CELL:'+ascii(m[k]))});
+ ['email1','email2'].forEach(function(k){if(m[k])v.push('EMAIL:'+m[k])}); v.push('URL:'+location.href,'END:VCARD');
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([v.join('\r\n')],{type:'text/vcard'}));a.download=key+'.vcf';document.body.appendChild(a);a.click();a.remove();
+});
+$('pc-share').addEventListener('click',function(){var b=this;if(navigator.share){navigator.share({title:m.name,url:location.href}).catch(function(){})}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(function(){b.lastChild.textContent='লিংক কপি হয়েছে'})}});
+$('pc-others').innerHTML=order.filter(function(k){return k!==key&&D[k]}).map(function(k){return '<a class="filter" href="contact_bn.html?id='+k+'">'+esc(D[k].name)+'</a>'}).join('');
+})();
+</script>
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-word" aria-hidden="true">ত্রিচক্র</div>
+    <div class="ftr-grid">
+      <div class="about">
+        <a class="brand" href="index_bn.html"><img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40" loading="lazy"><span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span></a>
+        <p style="margin-top:16px">বুয়েটের শিক্ষার্থী ও অ্যালামনাইদের হাতে গড়া ইলেকট্রিক যানবাহন গবেষণা ও উন্নয়ন প্রতিষ্ঠান — বাংলাদেশের রাস্তার জন্য, বাংলাদেশের মানুষের জন্য।</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/people/TriChokro/61577812382585/" target="_blank" rel="noopener" aria-label="ত্রিচক্র ফেসবুক পেজ"><svg class="ic"><use href="#i-brand-fb"/></svg></a>
+          <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" rel="noopener" aria-label="লিংকডইন"><svg class="ic"><use href="#i-brand-in"/></svg></a>
+          <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" rel="noopener" aria-label="ইউটিউব চ্যানেল"><svg class="ic"><use href="#i-brand-yt"/></svg></a>
+          <a href="https://trichokro.blogspot.com/" target="_blank" rel="noopener" aria-label="ব্লগ"><svg class="ic" aria-hidden="true"><use href="#i-rss"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>পণ্য</h4>
+        <ul>
+          <li><a class="float-link" href="index_bn.html#products">সব পণ্য</a></li>
+          <li><a href="pathfinder_bn.html">পাথফাইন্ডার</a></li>
+          <li><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a></li>
+          <li><a href="arkgo.html">আর্কগো</a></li>
+          <li><a href="vesel_urbana.html">ভেসেল আরবানা</a></li>
+          <li><a href="fortunacargo.html">ফরচুনা কার্গো</a></li>
+          <li><a href="Bravostruck.html">ব্রাভোস ট্রাক</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>প্রতিষ্ঠান</h4>
+        <ul>
+          <li><a href="index_bn.html#about">আমাদের টিম</a></li>
+          <li><a href="founder_bn.html">প্রতিষ্ঠাতা</a></li>
+          <li><a href="engineering_excellence_bn.html">প্রকৌশল উৎকর্ষ</a></li>
+          <li><a href="blogs_bn.html">খবর ও ব্লগ</a></li>
+          <li><a href="triborigen_bn.html">TribOriGen</a></li>
+          <li><a href="trimateria_bn.html">TriMateria</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>যোগাযোগ</h4>
+        <ul>
+          <li><a class="float-link d2" href="index_bn.html#contact">যোগাযোগ</a></li>
+          <li><a href="resources_bn.html">ফাইল ও রিসোর্স</a></li>
+          <li><a href="privacy_bn.html">গোপনীয়তা</a></li>
+          <li><a href="metadata_bn.html">মেটা ডেটা</a></li>
+          <li><a href="mailto:trichokro.automotives@gmail.com">ইমেইল করুন</a></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="contact-card-container">
-        <!-- Left Panel: Identity -->
-        <div class="card-left">
-            <div class="card-image-wrapper" id="card-image-container">
-                <img id="card-image" src="" alt="প্রোফাইল ছবি" decoding="async">
-            </div>
-            <div class="header-initials" id="card-initials">A A M</div>
-            <h1 class="profile-name" id="card-name">Rownak Shahriar Ruhan</h1>
-            <div class="profile-title" id="card-title">Founder</div>
-
-            <!-- Animated SVG Logo -->
-            <div class="logo-container">
-                <svg class="logo-svg" viewBox="0 0 100 100">
-                    <!-- Outer Rotating Ring -->
-                    <path class="ring-outer" d="M 85 50 A 35 35 0 1 1 50 15" />
-                    
-                    <!-- Inner Rotating Ring (Reverse) -->
-                    <path class="ring-inner" d="M 50 85 A 35 35 0 0 0 85 50" />
-                    
-                    <!-- Pulsing Lightning Bolt -->
-                    <polygon class="lightning-bolt" points="55,25 35,55 50,55 40,80 65,45 50,45" />
-                </svg>
-            </div>
-
-            <div class="company-name">ত্রিচক্র</div>
-            <div class="company-contact">
-                trichokro.automotives@gmail.com<br>
-                www.trichokro.com
-            </div>
-        </div>
-
-        <!-- Middle Divider with Icons -->
-        <div class="card-divider">
-            <div class="icon-box" title="Phone">
-                <i class="fas fa-phone icon-circle"></i>
-            </div>
-            <div class="icon-box" title="Email">
-                <i class="fas fa-envelope icon-circle"></i>
-            </div>
-            <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" class="icon-box" title="LinkedIn">
-                <i class="fab fa-linkedin icon-circle"></i>
-            </a>
-            <a href="https://www.facebook.com/rownakshahriarruhan/" target="_blank" class="icon-box" title="Facebook">
-                <i class="fab fa-facebook icon-circle"></i>
-            </a>
-            <div class="icon-box" title="Address">
-                <i class="fas fa-home icon-circle"></i>
-            </div>
-        </div>
-
-        <!-- Right Panel: Details -->
-        <div class="card-right">
-            <div class="info-group">
-                <span class="info-text" id="card-phone1">+8801714844677</span>
-                <span class="info-text" id="card-phone2">+8801402667477</span>
-            </div>
-
-            <div class="info-group">
-                <span class="info-text" id="card-email1">rownakshahriarruhan@gmail.com</span>
-                <span class="info-text" id="card-email2">2010105@me.buet.ac.bd</span>
-            </div>
-
-            <div class="info-group">
-                <span class="info-text">কাজী নজরুল ইসলাম হল</span>
-                <span class="info-text">বুয়েট, পলাশী, ঢাকা-১০০০</span>
-            </div>
-
-            <div class="info-group">
-                <span class="info-text" id="card-dept">মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ</span>
-                <span class="info-text buet-highlight">বাংলাদেশ প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়<br>(বুয়েট)</span>
-            </div>
-        </div>
+    <div class="ftr-base">
+      <span>রওনক শাহরিয়ার রুহান, জুলস এবং ক্লড দ্বারা বিকশিত; সর্বস্বত্ব সংরক্ষিত, ত্রিচক্র <span data-year>২০২৬</span></span>
+      <span>কাজী নজরুল ইসলাম হল, বুয়েট, ঢাকা-১০০০</span>
     </div>
+  </div>
+</footer>
 
-    <script>
-        const teamData = {
-            abrar: {
-                initials: "A F",
-                name: "Abrar Faiaz",
-                title: "CMO / Head of Software & AI Systems",
-                phone1: "+8801795095833",
-                email1: "abrarfaiaz20@gmail.com",
-                dept: "Civil Engineering, BUET",
-                image: "src/assets/founders/abrar.webp"
-            },
-            arefien: {
-                initials: "A R",
-                name: "Arefien Razi",
-                title: "Sustainability Analyst / Executive Director",
-                phone1: "+8801714205386",
-                email1: "arefien.razi@gmail.com",
-                dept: "Civil Engineering, BUET | Logistics Expert",
-                image: "src/assets/founders/yaad.jpg"
-            },
-            alphy: {
-                initials: "A S",
-                name: "Alphy Shaharin",
-                title: "Head of Sustainability & Impact Strategy / Transportation Eng. Analyst",
-                phone1: "+8801567812916",
-                email1: "alphytamim16687@gmail.com",
-                dept: "Civil Engineering, BUET",
-                image: "src/assets/founders/aphy.webp"
-            },
-            mafizur: {
-                initials: "Dr.",
-                name: "Md. Mafizur Rahman",
-                title: "Advisor, Biz-comp.",
-                email1: "mafizur@gmail.com",
-                dept: "Professor, Department of Civil Engineering, BUET",
-                image: "https://ui-avatars.com/api/?name=Md+Mafizur+Rahman&background=10b981&color=fff&size=128",
-                extraInfo: `
-                    <div class="mt-4 text-sm text-slate-300">
-                        <p class="font-bold text-emerald-400 mb-1">Specialization:</p>
-                        <p class="mb-3">Environmental Engineering</p>
-                        <p class="font-bold text-emerald-400 mb-1">Education:</p>
-                        <ul class="list-disc list-inside">
-                            <li>B.Sc. in Civil Engineering, BUET, Dhaka, 1992</li>
-                            <li>M.Sc. in Civil and Environmental Engineering, BUET, Dhaka, 1994</li>
-                            <li>Ph.D. in Civil and Environmental Engineering, The University of Tokyo, Japan, 1997</li>
-                        </ul>
-                    </div>
-                `
-            },
-            hasanul: {
-                initials: "Dr.",
-                name: "Hasanul Banna",
-                title: "Surgeon & Medical officer",
-                dept: "BUET Medical Centre",
-                image: "https://ui-avatars.com/api/?name=Hasanul+Banna&background=10b981&color=fff&size=128"
-            },
-            rownak: {
-                initials: "A A M",
-                name: "রওনক শাহরিয়ার রুহান",
-                title: "প্রতিষ্ঠাতা ও সিইও",
-                phone1: "+৮৮০ ১৭১৪ ৮৪৪৬৭৭",
-                phone2: "+৮৮০ ১৪০২ ৬৬৭৪৭৭",
-                email1: "rownakshahriarruhan@gmail.com",
-                email2: "2010105@me.buet.ac.bd",
-                image: "src/assets/founders/rownak.jpg"
-            },
-            abdul: {
-                initials: "ড.",
-                name: "আব্দুল জাওয়াদ",
-                title: "যানবাহন উপদেষ্টা",
-                email1: "jawadefaj006@gmail.com",
-                image: "src/assets/founders/jawad.jpg"
-            },
-            ishraq: {
-                initials: "I R",
-                name: "ইশরাক রাফিদ",
-                title: "স্থাপত্য উপদেষ্টা",
-                email1: "ishraq.rafid@gmail.com",
-                image: "src/assets/founders/ishraq.jpg"
-            },
-            hasan: {
-                initials: "H M",
-                name: "হাসান মাহমুদ",
-                title: "অপারেশন এক্সিকিউটিভ",
-                phone1: "+৮৮০ ১৭২৬ ৮৫৫৭৬৭",
-                phone2: "+৮৮০ ১৮৬৭ ১১৪৮৮৩",
-                email1: "mhmhasanmahmud2@gmail.com",
-                email2: "2010061@me.buet.ac.bd",
-                image: "src/assets/founders/Omor.webp"
-            },
-            mijanur: {
-                initials: "M R",
-                name: "মিজানুর রহমান",
-                title: "সিনিয়র উপদেষ্টা",
-                phone1: "+৮৮০ ১৭২০ ৯১৭৫৭২",
-                phone2: "+৮৮০ ১৮৬৮ ২৩৩৯৬৫",
-                email1: "mijankutubi65@gmail.com",
-                email2: "1910109@me.buet.ac.bd",
-                image: "src/assets/founders/mijan.jpg"
-            },
-            tomal: {
-                initials: "T K",
-                name: "তমাল কীর্তনীয়া",
-                title: "ডিজাইন প্রধান",
-                phone1: "+৮৮০ ১৬২৪ ৭৬২৯৫২",
-                email1: "kirttoniatomal@gmail.com",
-                email2: "2010110@me.buet.ac.bd",
-                image: "src/assets/founders/Tomal.jpg"
-            },
-            tahsif: {
-                initials: "T I T", 
-                name: "তাওহিদুল ইসলাম তাহসিফ",
-                title: "লিড ডিজাইনার",
-                phone1: "+৮৮০ ১৪০৫ ৪৯২৯৬০",
-                phone2: "",
-                email1: "tawhidul.tahsif@gmail.com",
-                email2: "2110153@me.buet.ac.bd",
-                image: "src/assets/founders/tahsif.jpg"
-            },
-            shwadhin: {
-                initials: "D S", 
-                name: "দীপ্ত মজুমদার স্বাধীন",
-                title: "অপারেশন এক্সিকিউটিভ",
-                phone1: "+৮৮০ ১৮৬৭ ১৪৫৬৪২",
-                phone2: "+৮৮০ ১৫২১ ৫৫৭৯২০",
-                email1: "diptoswadhin0026@gmail.com",
-                email2: "2010073@me.buet.ac.bd",
-                image: "src/assets/founders/Swadhin.jpg"
-            },
-            maxud: {
-                initials: "M R C", 
-                name: "মাকসুদুর রহমান চৌধুরী",
-                title: "জনসংযোগ প্রধান",
-                phone1: "+৮৮০ ১৬৭৬ ৭৯৩৯৮২",
-                phone2: "",
-                email1: "m.rahman.chw@gmail.com",
-                email2: "2310132@me.buet.ac.bd",
-                image: "src/assets/founders/Samee.jpg"
-            },
-            rakibul: {
-                initials: "R H S", 
-                name: "রাকিবুল হাসান শান্ত",
-                title: "অপারেশন অ্যাসোসিয়েট",
-                phone1: "+৮৮০ ১৯৩৯ ১৩৪২০১",
-                phone2: "+৮৮০ ১৬০৮ ৭৮৩৯০১",
-                email1: "2010125@me.buet.ac.bd",
-                email2: "",
-            },
-            farhan: {
-                initials: "F S",
-                name: "ফারহান সাদিক",
-                title: "জুনিয়র অ্যাসোসিয়েট",
-                phone1: "+৮৮০ ১৫৭৭ ০৩৭৩৫৭",
-                phone2: "",
-                email1: "farhan.bme027@gmail.com",
-                email2: "",
-                dept: "বায়োমেডিকেল ইঞ্জিনিয়ারিং বিভাগ"
-            },
-            sifat: {
-                initials: "S R",
-                name: "সিফাত রানা",
-                title: "চিফ এক্সিকিউটিভ",
-                phone1: "+৮৮০ ১৬১০ ৭২৭৮৬৪",
-                phone2: "+৮৮০ ১৫৮১ ৯৩০২৪৪",
-                email1: "sifatrana20041@gmail.com",
-                email2: "",
-                dept: "ইন্ডাস্ট্রিয়াল অ্যান্ড প্রোডাকশন ইঞ্জিনিয়ারিং বিভাগ",
-                hideSocial: true,
-                image: "src/assets/founders/sifat.jpg"
-            },
-            ehsanSir: {
-                initials: "ড.",
-                name: "অধ্যাপক মোঃ এহসান",
-                title: "উপদেষ্টা ও পরামর্শদাতা",
-                phone1: "+৮৮০ ১৭১১ ৪৪৬৫৬৪",
-                phone2: "৮৮০-২-৮৬১৩০৪৬ (ফ্যাক্স)",
-                email1: "ehsan@me.buet.ac.bd",
-                email2: "",
-                image: "src/assets/founders/ehsan.jpg"
-            },
-        };
-
-        function getParameterByName(name, url = window.location.href) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            const memberKey = getParameterByName('id') || 'rownak';
-            const member = teamData[memberKey] || teamData['rownak'];
-            
-            document.getElementById('card-initials').innerText = member.initials;
-            document.getElementById('card-name').innerText = member.name;
-            document.getElementById('card-title').innerText = member.title;
-            document.getElementById('card-phone1').innerText = member.phone1;
-            document.getElementById('card-phone2').innerText = member.phone2;
-            document.getElementById('card-email1').innerText = member.email1;
-            document.getElementById('card-email2').innerText = member.email2;
-            if (member.dept) {
-                document.getElementById('card-dept').innerText = member.dept;
-            }
-            const extraInfoContainer = document.getElementById('card-extrainfo');
-            if (extraInfoContainer) {
-                if (member.extraInfo) {
-                    extraInfoContainer.innerHTML = member.extraInfo;
-                    extraInfoContainer.style.display = 'block';
-                } else {
-                    extraInfoContainer.innerHTML = '';
-                    extraInfoContainer.style.display = 'none';
-                }
-            }
-
-            // Image Logic
-            const imageContainer = document.getElementById('card-image-container');
-            const imageElement = document.getElementById('card-image');
-            const initialsElement = document.getElementById('card-initials');
-            const logoContainer = document.querySelector('.logo-container');
-
-            if (member.image) {
-                imageElement.src = member.image;
-                imageContainer.style.display = 'block';
-                initialsElement.style.display = 'none';
-                if(logoContainer) logoContainer.style.display = 'none';
-            } else {
-                imageContainer.style.display = 'none';
-                initialsElement.style.display = 'block';
-                if(logoContainer) logoContainer.style.display = 'block';
-            }
-
-            // Mobile Menu Logic
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const closeMenuBtn = document.getElementById('close-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (menuBtn && mobileMenu && closeMenuBtn) {
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-                });
-                closeMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-                });
-            }
-        });
-    </script>
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
-    <div class="watermark-overlay" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.webp'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: multiply;"></div>
-    <script> 
-        document.addEventListener("mousemove", e => { 
-            const gradient = document.getElementById("cursor-gradient"); 
-            if(gradient) { 
-                gradient.style.setProperty("--x", e.clientX + "px"); 
-                gradient.style.setProperty("--y", e.clientY + "px"); 
-            } 
-        }); 
-    </script>
+<script src="js/bn/bn.js?v=20261127" defer></script>
 </body>
 </html>

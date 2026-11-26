@@ -1,457 +1,164 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="bn" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathfinder - TriChokro</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons & Libraries -->
-    <script src="https://unpkg.com/lucide@1.80.0/dist/umd/lucide.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ত্রিচক্র পাথফাইন্ডার — নিরাপদ যাত্রীবাহী বৈদ্যুতিক থ্রি-হুইলার</title>
+<meta name="description" content="বুয়েটের ডিজাইন অনুযায়ী তৈরি পাথফাইন্ডার: ১২০ কিমি রেঞ্জ, হাইড্রোলিক ডিস্ক ব্রেক, ম্যাকফারসন সাসপেনশন। দাম ৳১.৮ লক্ষ থেকে।">
+<meta name="theme-color" content="#04060b">
+<link rel="canonical" href="https://www.trichokro.com/pathfinder_bn.html">
+<link rel="alternate" hreflang="bn" href="https://www.trichokro.com/pathfinder_bn.html">
+<link rel="alternate" hreflang="en" href="https://www.trichokro.com/pathfinder.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:site_name" content="TriChokro Automotives">
+<meta property="og:title" content="ত্রিচক্র পাথফাইন্ডার — নিরাপদ যাত্রীবাহী বৈদ্যুতিক থ্রি-হুইলার">
+<meta property="og:description" content="বুয়েটের ডিজাইন অনুযায়ী তৈরি পাথফাইন্ডার: ১২০ কিমি রেঞ্জ, হাইড্রোলিক ডিস্ক ব্রেক, ম্যাকফারসন সাসপেনশন। দাম ৳১.৮ লক্ষ থেকে।">
+<meta property="og:url" content="https://www.trichokro.com/pathfinder_bn.html">
+<meta property="og:image" content="https://www.trichokro.com/src/assets/pathfinder_visual.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="src/assets/logo_mark_256.webp" type="image/webp">
+<link rel="apple-touch-icon" href="src/assets/logo_mark_512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wdth,wght@75..125,300..800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Cinzel:wght@700&display=swap">
+<link rel="stylesheet" href="css/bn/bn.css?v=20261127">
+<script>document.documentElement.classList.add('js')</script>
 
-    <style>
-        /* --- MAIN GLOBAL STYLES --- */
-        body { cursor: default; overflow-x: hidden; background-color: #020617; font-family: 'Hind Siliguri', 'Inter', sans-serif; color: #e2e8f0; touch-action: manipulation; }
-        a, button, .interactive, input, .group { cursor: pointer; }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
-        
-        /* Glassmorphism for Pathfinder Subpage Cards */
-        .glass-card {
-            background: rgba(17, 34, 64, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .glass-card:hover {
-            border-color: #64ffda;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
-        }
-
-        .watermark-overlay { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background-image: url('src/assets/watermark.webp'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.03; pointer-events: none; z-index: 0; mix-blend-mode: overlay; }
-    </style>
-<link rel="stylesheet" href="css/site-mobile.css"/>
-<script src="js/site-mobile.js" defer></script>
-<link rel="stylesheet" href="css/tw/pathfinder_bn.css"/>
 </head>
-<body class="font-sans antialiased selection:bg-brand-green selection:text-brand-dark" style="background-color: #0a192f; color: #8892b0;">
-    
-        <div class="watermark-overlay"></div>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-disc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol><symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol><symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20"/><path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13"/></symbol><symbol id="i-move-vertical" viewBox="0 0 24 24"><path d="M12 2v20"/><path d="m8 18 4 4 4-4"/><path d="m8 6 4-4 4 4"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol><symbol id="i-recycle" viewBox="0 0 24 24"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 7.196 9.5 3.1 10.598"/><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"/><path d="m13.378 9.633 4.096 1.098 1.097-4.096"/></symbol><symbol id="i-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="i-shield-alert" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol><symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></symbol><symbol id="i-wind" viewBox="0 0 24 24"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></symbol><symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></symbol><symbol id="i-brand-fb" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></symbol><symbol id="i-brand-in" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6.94 8.98H3.56V20h3.38zM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92M20.44 13.7c0-3.3-1.76-4.84-4.1-4.84-1.9 0-2.74 1.04-3.21 1.78V8.98H9.75c.04 1.1 0 11.02 0 11.02h3.38v-6.15c0-.33.02-.66.12-.9.27-.66.87-1.34 1.89-1.34 1.33 0 1.87 1.01 1.87 2.5V20h3.38z"/></symbol><symbol id="i-brand-yt" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8M10 15V9l5.2 3z"/></symbol></defs></svg>
+<a class="skip" href="#main">মূল লেখায় যান</a>
+<div class="atmo" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div><div id="progress" aria-hidden="true"></div>
+<header class="hdr">
+  <a class="brand" href="index_bn.html" aria-label="ত্রিচক্র অটোমোটিভস — হোম">
+    <img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40">
+    <span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span>
+  </a>
+  <nav class="nav" aria-label="প্রধান মেনু"><a href="index_bn.html">হোম</a><a href="index_bn.html#about">আমাদের সম্পর্কে</a><a href="index_bn.html#products">পণ্য</a><a href="pathfinder_bn.html" aria-current="page">পাথফাইন্ডার</a><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a><a href="blogs_bn.html">খবর</a></nav>
+  <div class="hdr-tools">
+    <a class="lang" href="pathfinder.html" hreflang="en" lang="en" aria-label="Read this page in English"><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg>EN</a>
+    <a class="btn btn-primary btn-cta" href="index_bn.html#contact" data-magnetic>যোগাযোগ</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="মেনু খুলুন"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="মোবাইল মেনু" aria-hidden="true">
+  <a class="m-link" href="index_bn.html">হোম<small>০১</small></a><a class="m-link" href="index_bn.html#about">আমাদের সম্পর্কে<small>০২</small></a><a class="m-link" href="index_bn.html#products">পণ্য<small>০৩</small></a><a class="m-link" href="pathfinder_bn.html" aria-current="page">পাথফাইন্ডার<small>০৪</small></a><a class="m-link" href="trambulance_bn.html">ট্রাম্বুলেন্স<small>০৫</small></a><a class="m-link" href="blogs_bn.html">খবর<small>০৬</small></a><a class="m-link" href="engineering_excellence_bn.html">প্রকৌশল<small>০৭</small></a><a class="m-link" href="founder_bn.html">প্রতিষ্ঠাতা<small>০৮</small></a><a class="m-link" href="resources_bn.html">ফাইল ও রিসোর্স<small>০৯</small></a><a class="m-link" href="index_bn.html#contact">যোগাযোগ<small>১০</small></a>
+  <div class="m-foot">
+    <a class="btn btn-primary" href="index_bn.html#contact">যোগাযোগ করুন <svg class="ic go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <a class="btn btn-ghost" href="pathfinder.html" hreflang="en" lang="en">English</a>
+  </div>
+</nav>
+<main id="main">
+<section class="phero"><div class="ring" aria-hidden="true"></div><div class="wrap phero-grid"><div><nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>পাথফাইন্ডার</span></nav><span class="eyebrow" data-reveal>যন্ত্রকৌশল বিভাগ, বুয়েট</span><h1 class="split-words" style="margin-top:14px">বাংলাদেশের জন্য <span class="grad">তৈরি।</span></h1><p class="lead" data-reveal>বুয়েটের ডিজাইন অনুযায়ী তৈরি যাত্রীবাহী বৈদ্যুতিক থ্রি-হুইলার। লক্ষ্য দেশের প্রথম সম্পূর্ণ স্থানীয়ভাবে উৎপাদিত বৈদ্যুতিক অটো-রিকশা শিল্প — নিরাপত্তা, প্রকৌশল ও পরিবেশগত চ্যালেঞ্জের সমাধানসহ।</p><div class="btn-row" data-reveal><a class="btn btn-primary" href="src/assets/pdf/UIHP Pathfinder-1.pdf" target="_blank" rel="noopener" data-magnetic><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>স্পেসিফিকেশন ডাউনলোড</a><a class="btn btn-ghost" href="#models">মডেল ও দাম</a></div></div><div data-reveal="zoom"><div class="frame contain" data-tilt style="aspect-ratio:1/1"><img src="src/assets/pathfinder_visual.webp" alt="ত্রিচক্র পাথফাইন্ডার" width="1600" height="1600" fetchpriority="high">
+<div class="cap-bar"><span>শুরুর দাম</span><span class="chip chip-g">৳১.৮ লক্ষ থেকে</span></div></div></div></div></section>
+<section class="sec-tight"><div class="wrap"><div class="stats" data-reveal>
+<div class="stat"><b>১২০ কিমি</b><span>এক চার্জে রেঞ্জ</span></div><div class="stat"><b>৫০ কিমি/ঘ</b><span>সর্বোচ্চ গতি</span></div><div class="stat"><b>৩·৬·৮</b><span>যাত্রীর ভ্যারিয়েন্ট</span></div><div class="stat"><b>৳১.৮ লক্ষ</b><span>থেকে শুরু</span></div>
+</div></div></section>
 
-        <!-- Floating Background Objects -->
-        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-            <div class="absolute top-[10%] right-[10%] w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-[100px] animate-pulse" style="animation-duration: 8s;"></div>
-            <div class="absolute bottom-[10%] left-[10%] w-[500px] h-[500px] bg-brand-light/20 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s; animation-duration: 10s;"></div>
+<section class="sec"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>০১ · বর্তমান সংকট</span><h2 class="title split-words">ঢাকার রাস্তায় <span class="grad">অনিরাপদ</span> রিকশা</h2><p class="lead" data-reveal>অনিরাপদ বৈদ্যুতিক রিকশায় ঢাকার রাস্তা ছেয়ে গেছে — বাড়ছে দুর্ঘটনা আর পরিবেশের ক্ষতি। আমরা তিনটি বড় দুর্বলতা চিহ্নিত করেছি।</p></div>
+<div class="grid g3">
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-shield-alert"/></svg></div><h3>নিরাপত্তা ঝুঁকি</h3><ul class="ticks" style="margin-top:14px"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>অকার্যকর ব্রেকিং সিস্টেম</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>উঁচু ভারকেন্দ্র (উল্টে যাওয়ার ঝুঁকি)</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>দুর্বল সাসপেনশন, যা আঘাতের কারণ</span></li></ul></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></div><h3>প্রকৌশলগত ত্রুটি</h3><ul class="ticks" style="margin-top:14px"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>উচ্চ অ্যারোডাইনামিক ড্র্যাগ</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>কম লোড ক্ষমতার চাকা</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>নিম্নমানের কাঠামোগত উপাদান</span></li></ul></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></div><h3>পরিবেশগত প্রভাব</h3><ul class="ticks" style="margin-top:14px"><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>রিসাইকেল-অযোগ্য বিষাক্ত ব্যাটারি</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>আমদানিকৃত যন্ত্রাংশ থেকে শিল্প বর্জ্য</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>পুরোনো ইঞ্জিনের শব্দ দূষণ</span></li></ul></div>
+</div></div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>০২ · সমাধান</span><h2 class="title split-words">প্রকৌশল উৎকর্ষ, <span class="grad">স্থানীয় উদ্ভাবন</span></h2><p class="lead" data-reveal><span class="chip chip-g">বুয়েট উদ্ভাবিত</span></p></div>
+<div class="grid g4">
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-move-vertical"/></svg></div><h3>ম্যাকফারসন সাসপেনশন</h3><p>প্রথাগত লিফ স্প্রিংয়ের তুলনায় অনেক বেশি আরামদায়ক ও স্থিতিশীল যাত্রা।</p></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-disc"/></svg></div><h3>হাইড্রোলিক ডিস্ক ব্রেক</h3><p>বিপজ্জনক রাবার প্যাড ব্রেকের বদলে আধুনিক হাইড্রোলিক ডিস্ক ব্রেক।</p></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-wind"/></svg></div><h3>অ্যারোডাইনামিক ডিজাইন</h3><p>ড্র্যাগ কমাতে ও ব্যাটারির দক্ষতা বাড়াতে অপ্টিমাইজ করা বডি।</p></div>
+<div class="card lift edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg></div><h3>পরিবেশ-টেকসই</h3><p>রিসাইকেলযোগ্য উপাদান আর পরিবেশের ক্ষতি না করা ব্যাটারি প্রযুক্তি।</p></div>
+</div>
+<h3 class="title-sm" style="margin:clamp(40px,6vw,70px) 0 18px" data-reveal>বাজারের সাথে তুলনা</h3>
+<div class="table-wrap" data-reveal><table class="t"><thead><tr><th>বৈশিষ্ট্য</th><th class="hl">ত্রিচক্র পাথফাইন্ডার</th><th>সাধারণ অটো রিকশা</th><th>সিএনজি</th></tr></thead><tbody><tr><td><b>খরচ (টাকা)</b></td><td class="hl">১.৮ লক্ষ থেকে</td><td>১.২ – ১.৫ লক্ষ</td><td>২.৫ – ৩.০ লক্ষ</td></tr><tr><td><b>ব্রেকিং</b></td><td class="hl">হাইড্রোলিক ডিস্ক ব্রেক (নিরাপদ)</td><td>রাবার/ড্রাম (অনিরাপদ)</td><td>ডিস্ক ব্রেক</td></tr><tr><td><b>নিরাপত্তা স্তর</b></td><td class="hl">উচ্চ নিরাপত্তা</td><td>মাঝারি ঝুঁকি</td><td>মাঝারি ঝুঁকি</td></tr><tr><td><b>সিট ক্ষমতা</b></td><td class="hl">৫</td><td>৩</td><td>৩</td></tr><tr><td><b>রেঞ্জ (কিমি)</b></td><td class="hl">১২০</td><td>৫০ – ৭০</td><td>২৫০ – ৩০০</td></tr><tr><td><b>নির্গমন</b></td><td class="hl">শূন্য (পরিচ্ছন্ন)</td><td>শূন্য (বৈদ্যুতিক)</td><td>বেশি (গ্যাস)</td></tr></tbody></table></div>
+</div></section>
+
+<section class="sec" id="models" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>০৩ · পণ্যের লাইনআপ</span><h2 class="title split-words">প্রতিটি রাস্তা, <span class="grad">প্রতিটি প্রয়োজন</span></h2><p class="lead" data-reveal>চারটি ভ্যারিয়েন্ট — শহরের প্রতিদিনের যাত্রা থেকে কাদামাটির পথ পর্যন্ত।</p></div>
+<div class="grid g4"><div class="card lift edge price-card feat" data-reveal><span class="tier">বেস</span><h3 style="margin-top:8px">বেস মডেল</h3><div class="price">৳১.৮ লক্ষ</div><ul><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>স্ট্যান্ডার্ড সাসপেনশন</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>শহুরে যাতায়াতের জন্য প্রস্তুত</span></li></ul><span class="chip chip-g" style="margin-top:auto;align-self:flex-start">সবচেয়ে জনপ্রিয়</span></div><div class="card lift edge price-card" data-reveal><span class="tier">সিলড</span><h3 style="margin-top:8px">ওয়েদার সিলড</h3><div class="price">৳২.০ লক্ষ</div><ul><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>IP69 রেটেড সুরক্ষা</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>বর্ষায় নির্ভরযোগ্য</span></li></ul></div><div class="card lift edge price-card" data-reveal><span class="tier">প্রো</span><h3 style="margin-top:8px">সিএনজি বিকল্প</h3><div class="price">৳২.৫ লক্ষ</div><ul><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>উচ্চ গতির রেঞ্জ</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>বর্ধিত ব্যাটারি</span></li></ul></div><div class="card lift edge price-card" data-reveal><span class="tier">রাগড</span><h3 style="margin-top:8px">অল টেরেইন</h3><div class="price">৳৩.০ লক্ষ</div><ul><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>শক্তিশালী ফ্রেম</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>হেভি ডিউটি সাসপেনশন</span></li></ul></div></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap split">
+<div>
+<div class="sec-head"><span class="eyebrow" data-reveal>০৪ · বাজার সম্ভাবনা</span><h2 class="title split-words">বড় বাজার, <span class="grad">স্পষ্ট লক্ষ্য</span></h2></div>
+<div class="stats" data-reveal style="grid-template-columns:1fr 1fr">
+<div class="stat"><b>২,৪০০ কোটি</b><span>মোট সম্ভাব্য বাজার (ঢাকা, টাকা)</span></div><div class="stat"><b>১০%</b><span>লক্ষ্য শেয়ার (২ বছরে)</span></div><div class="stat"><b>১.৫ লক্ষ</b><span>ঢাকায় যানবাহন</span></div><div class="stat"><b>১.২৯ লক্ষ</b><span>উৎপাদন খরচ (টাকা)</span></div>
+</div></div>
+<div class="card edge" data-reveal>
+<div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-trending-up"/></svg></div><h3>৫ বছরের মুনাফার পূর্বাভাস</h3>
+<p>৫ম বছরে নিট মুনাফার মার্জিন <b style="color:var(--mint)">১৫–২০%</b> হবে বলে প্রক্ষেপণ।</p>
+<dl class="kv" style="margin-top:18px"><dt>বিনিয়োগ ফেরত</dt><dd>২.৫ বছর</dd><dt>ব্রেক-ইভেন</dt><dd>১৮তম মাস</dd><dt>প্রবৃদ্ধি</dt><dd>বছরে ৪৫%</dd></dl>
+</div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+<div class="sec-head"><span class="eyebrow" data-reveal>০৫ · উদ্ভাবকগণ</span><h2 class="title split-words">পরিবর্তনের পেছনের <span class="grad">মানুষেরা</span></h2><p class="lead" data-reveal>বুয়েটের প্রকৌশল শিক্ষার্থীরা বাংলাদেশের জন্য টেকসই উদ্ভাবনে নেতৃত্ব দিচ্ছেন।</p></div>
+<div class="people"><a class="card lift person edge" href="contact_bn.html?id=rownak" data-reveal><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><div class="ph"><img src="src/assets/founders/rownak.jpg" alt="Rownak Shahriar Ruhan-এর ছবি" loading="lazy" decoding="async"></div><h4>Rownak Shahriar Ruhan</h4><p>প্রতিষ্ঠাতা ও সিইও</p></a><a class="card lift person edge" href="contact_bn.html?id=omi" data-reveal><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><div class="ph"><img src="src/assets/founders/omi.jpg.jpg" alt="Mallik Nadim Arman Omi-এর ছবি" loading="lazy" decoding="async"></div><h4>Mallik Nadim Arman Omi</h4><p>ব্যবস্থাপনা পরিচালক</p></a><a class="card lift person edge" href="contact_bn.html?id=hasan" data-reveal><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><div class="ph"><img src="src/assets/founders/Omor.webp" alt="Omor Faruk Hasan-এর ছবি" loading="lazy" decoding="async"></div><h4>Omor Faruk Hasan</h4><p>চিফ অপারেটিং অফিসার</p></a><a class="card lift person edge" href="contact_bn.html?id=shwadhin" data-reveal><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><div class="ph"><img src="src/assets/founders/Swadhin.jpg" alt="Dipto Muzumder Swadhin-এর ছবি" loading="lazy" decoding="async"></div><h4>Dipto Muzumder Swadhin</h4><p>নির্বাহী পরিচালক</p></a><a class="card lift person edge" href="contact_bn.html?id=tomal" data-reveal><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><div class="ph"><img src="src/assets/founders/Tomal.jpg" alt="Tomal Kirtonia-এর ছবি" loading="lazy" decoding="async"></div><h4>Tomal Kirtonia</h4><p>ডিজাইন প্রধান</p></a><a class="card lift person edge" href="contact_bn.html?id=sifat" data-reveal><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span><div class="ph"><img src="src/assets/founders/sifat.jpg" alt="Sifat Rana-এর ছবি" loading="lazy" decoding="async"></div><h4>Sifat Rana</h4><p>চিফ এক্সিকিউটিভ</p></a></div>
+<div class="btn-row"><a class="btn btn-ghost" href="index_bn.html#about">সম্পূর্ণ টিম দেখুন <svg class="ic go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+</div></section>
+<section class="sec" style="padding-top:0"><div class="wrap"><div class="cta-panel center" data-reveal="zoom">
+<span class="big-word" aria-hidden="true">ত্রিচক্র</span>
+<h2 class="title split-words">নগর যাতায়াত বদলাতে <span class="grad">প্রস্তুত?</span></h2><p class="lead">অংশীদারত্ব, প্রি-অর্ডার বা বিনিয়োগ — টেকসই যাতায়াতের ভবিষ্যৎ একসাথে গড়ি।</p>
+<div class="btn-row"><a class="btn btn-primary" href="index_bn.html#contact" data-magnetic>যোগাযোগ করুন <svg class="ic go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a><a class="btn btn-ghost" href="trambulance_bn.html">ট্রাম্বুলেন্স দেখুন</a></div></div></div></section>
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-word" aria-hidden="true">ত্রিচক্র</div>
+    <div class="ftr-grid">
+      <div class="about">
+        <a class="brand" href="index_bn.html"><img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40" loading="lazy"><span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span></a>
+        <p style="margin-top:16px">বুয়েটের শিক্ষার্থী ও অ্যালামনাইদের হাতে গড়া ইলেকট্রিক যানবাহন গবেষণা ও উন্নয়ন প্রতিষ্ঠান — বাংলাদেশের রাস্তার জন্য, বাংলাদেশের মানুষের জন্য।</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/people/TriChokro/61577812382585/" target="_blank" rel="noopener" aria-label="ত্রিচক্র ফেসবুক পেজ"><svg class="ic"><use href="#i-brand-fb"/></svg></a>
+          <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" rel="noopener" aria-label="লিংকডইন"><svg class="ic"><use href="#i-brand-in"/></svg></a>
+          <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" rel="noopener" aria-label="ইউটিউব চ্যানেল"><svg class="ic"><use href="#i-brand-yt"/></svg></a>
+          <a href="https://trichokro.blogspot.com/" target="_blank" rel="noopener" aria-label="ব্লগ"><svg class="ic" aria-hidden="true"><use href="#i-rss"/></svg></a>
         </div>
-
-        <!-- Unified Nav -->
-        <nav id="navbar" class="fixed w-full z-[10001] transition-all duration-300 bg-brand-dark/90 backdrop-blur-lg border-b border-white/5 py-3">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index_bn.html'">
-                        <img alt="TriChokro Logo" class="tc-brand-logo" src="src/assets/logo_icon.webp" decoding="async" width="1600" height="1600">
-<span class="tc-brand-wordmark"><span class="tc-brand-main">Tri<span class="text-emerald-400 tc-brand-accent">Chokro</span></span><span class="tc-brand-sub"> Automotives</span></span>
-                    </div>
-                    <div class="hidden md:flex items-center space-x-8" style="font-family: 'Hind Siliguri', 'Cinzel', serif;">
-<a href="index_bn.html#home" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">হোম<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_bn.html#products" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">যানবাহন<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_bn.html#features" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">প্রযুক্তি<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="index_bn.html#about" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">আমাদের সম্পর্কে<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-<a href="contact_bn.html" class="interactive text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors relative group animate-neon-pulse">যোগাযোগ<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span></a>
-
-
-    <div class="relative group z-[10002] inline-block ml-4">
-        <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none">
-            <i class="fas fa-globe"></i>
-            <span class="">BN</span>
-            <i class="fas fa-chevron-down text-xs ml-1"></i>
-        </button>
-        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
-            <div class="py-1">
-                <a href="pathfinder.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">EN</a>
-<a href="pathfinder_bn.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">BN</a>
-
-            </div>
-        </div>
+      </div>
+      <div>
+        <h4>পণ্য</h4>
+        <ul>
+          <li><a class="float-link" href="index_bn.html#products">সব পণ্য</a></li>
+          <li><a href="pathfinder_bn.html">পাথফাইন্ডার</a></li>
+          <li><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a></li>
+          <li><a href="arkgo.html">আর্কগো</a></li>
+          <li><a href="vesel_urbana.html">ভেসেল আরবানা</a></li>
+          <li><a href="fortunacargo.html">ফরচুনা কার্গো</a></li>
+          <li><a href="Bravostruck.html">ব্রাভোস ট্রাক</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>প্রতিষ্ঠান</h4>
+        <ul>
+          <li><a href="index_bn.html#about">আমাদের টিম</a></li>
+          <li><a href="founder_bn.html">প্রতিষ্ঠাতা</a></li>
+          <li><a href="engineering_excellence_bn.html">প্রকৌশল উৎকর্ষ</a></li>
+          <li><a href="blogs_bn.html">খবর ও ব্লগ</a></li>
+          <li><a href="triborigen_bn.html">TribOriGen</a></li>
+          <li><a href="trimateria_bn.html">TriMateria</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>যোগাযোগ</h4>
+        <ul>
+          <li><a class="float-link d2" href="index_bn.html#contact">যোগাযোগ</a></li>
+          <li><a href="resources_bn.html">ফাইল ও রিসোর্স</a></li>
+          <li><a href="privacy_bn.html">গোপনীয়তা</a></li>
+          <li><a href="metadata_bn.html">মেটা ডেটা</a></li>
+          <li><a href="mailto:trichokro.automotives@gmail.com">ইমেইল করুন</a></li>
+        </ul>
+      </div>
     </div>
-    
-</div>
-                    <div class="md:hidden">
-                        <button id="mobile-menu-btn" class="text-white hover:text-emerald-400 interactive"><i data-lucide="menu" class="w-7 h-7"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 bg-gradient-animate">
-                <div class="px-4 py-4 space-y-3 flex flex-col">
-<a href="index_bn.html#home" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">হোম</a>
-<a href="index_bn.html#products" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">যানবাহন</a>
-<a href="index_bn.html#features" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">প্রযুক্তি</a>
-<a href="index_bn.html#about" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">আমাদের সম্পর্কে</a>
-<a href="contact_bn.html" class="block text-slate-300 hover:text-emerald-400 hover:bg-slate-800 px-4 py-3 rounded-lg transition-colors font-medium">যোগাযোগ</a>
+    <div class="ftr-base">
+      <span>রওনক শাহরিয়ার রুহান, জুলস এবং ক্লড দ্বারা বিকশিত; সর্বস্বত্ব সংরক্ষিত, ত্রিচক্র <span data-year>২০২৬</span></span>
+      <span>কাজী নজরুল ইসলাম হল, বুয়েট, ঢাকা-১০০০</span>
+    </div>
+  </div>
+</footer>
 
-<div class="border-t border-slate-700 my-2"></div>
-<a href="pathfinder.html" class="block text-slate-300 hover:bg-slate-800 hover:text-emerald-400 px-4 py-3 rounded-lg transition-colors font-medium">ENGLISH</a>
-<a href="pathfinder_bn.html" class="block text-emerald-400 bg-slate-800 font-bold px-4 py-3 rounded-lg transition-colors font-medium">BN</a>
-
-</div>
-            </div>
-        </nav>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const menuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
-                if(menuBtn && mobileMenu) {
-                    let isMenuOpen = false;
-                    menuBtn.addEventListener('click', () => {
-                        isMenuOpen = !isMenuOpen;
-                        if (isMenuOpen) { mobileMenu.classList.remove('max-h-0', 'opacity-0'); mobileMenu.classList.add('max-h-96', 'opacity-100'); }
-                        else { mobileMenu.classList.add('max-h-0', 'opacity-0'); mobileMenu.classList.remove('max-h-96', 'opacity-100'); }
-                    });
-                }
-            });
-        </script>
-
-        <!-- Hero Section -->
-        <section class="hero-bg min-h-screen flex items-center pt-20" style="background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%); position: relative; overflow: hidden;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center relative z-10 w-full">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="inline-block text-brand-green font-mono text-sm mb-4 tracking-wider" style="color: #64ffda">
-                        মেকানিক্যাল ইঞ্জিনিয়ারিং বিভাগ, বুয়েট
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-display font-bold text-brand-heading leading-none mb-6" style="color: #e6f1ff">
-                        বাংলাদেশের জন্য <br> <span class="text-brand-green text-shadow-glow" style="color: #64ffda">তৈরি।</span>
-                    </h1>
-                    <p class="text-xl text-brand-text mb-10 max-w-lg leading-relaxed" style="color: #ccd6f6">
-                        দেশের প্রথম সম্পূর্ণ স্থানীয়ভাবে উৎপাদিত বৈদ্যুতিক অটো-রিকশা শিল্প। নিরাপত্তা, প্রকৌশল এবং পরিবেশগত চ্যালেঞ্জ সমাধান করা।
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#pathfinder-models" class="bg-brand-green text-brand-dark text-center px-8 py-4 rounded font-bold hover:bg-opacity-90 transition shadow-[0_0_15px_rgba(100,255,218,0.4)]" style="background-color: #64ffda; color: #0a192f;">মডেল দেখুন</a>
-                        <a href="#pathfinder-solution" class="border border-brand-text text-brand-text text-center px-8 py-4 rounded font-bold hover:border-brand-green hover:text-brand-green transition" style="border-color: #ccd6f6; color: #ccd6f6;">কেন ত্রিচক্র?</a>
-                        <a href="src/assets/pdf/UIHP Pathfinder-1.pdf" target="_blank" class="flex items-center justify-center gap-2 text-brand-green font-bold hover:text-white transition" style="color: #64ffda;">স্পেসিফিকেশন ডাউনলোড <i data-lucide="download" class="w-4 h-4"></i></a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center relative animate-float">
-                    <!-- Abstract Rickshaw Icon Representation -->
-                    <div class="relative w-80 h-80 flex items-center justify-center">
-                         <div class="absolute inset-0 rounded-full border border-dashed border-brand-green/30 animate-spin-slow" style="border-color: rgba(100, 255, 218, 0.3);"></div>
-                         <img src="src/assets/pathfinder_visual.webp" alt="Pathfinder Visual" class="relative z-10 w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(100,255,218,0.3)]" decoding="async" width="1600" height="1600">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- The Problem Section -->
-        <section id="pathfinder-problem" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center mb-12">
-                    <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">০১.</span>
-                    <h2 class="text-3xl md:text-4xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">বর্তমান সংকট ⚠️</h2>
-                    <div class="h-[1px] bg-brand-light flex-grow ml-6" style="background-color: #112240;"></div>
-                </div>
-                <p class="text-brand-text max-w-2xl mb-16 text-lg" style="color: #ccd6f6;">
-                    অনিরাপদ বৈদ্যুতিক রিকশা ঢাকার রাস্তায় প্লাবিত হয়েছে, যা দুর্ঘটনা এবং পরিবেশগত বিপত্তি ঘটাচ্ছে। আমরা তিনটি গুরুত্বপূর্ণ ব্যর্থতার পয়েন্ট চিহ্নিত করেছি 📉।
-                </p>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Card 1: Safety -->
-                    <div class="glass-card p-8 rounded hover:-translate-y-2 transition duration-300">
-                        <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
-                            <i class="fas fa-exclamation-triangle text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">নিরাপত্তা ঝুঁকি</h3>
-                        <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
-                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>অকার্যকর ব্রেকিং সিস্টেম</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>উচ্চ ভারকেন্দ্র (উল্টে যাওয়ার ঝুঁকি)</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-3"></i><span>দুর্বল সাসপেনশন যা আঘাতের কারণ</span></li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 2: Engineering -->
-                    <div class="glass-card p-8 rounded hover:-translate-y-2 transition duration-300">
-                        <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
-                            <i class="fas fa-wrench text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">প্রকৌশলগত ত্রুটি</h3>
-                        <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
-                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>উচ্চ অ্যারোডাইনামিক ড্র্যাগ</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>কম লোড ক্ষমতা সম্পন্ন চাকা</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-gray-500 mt-1 mr-3"></i><span>নিকৃষ্ট কাঠামোগত উপাদান</span></li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 3: Environment -->
-                    <div class="glass-card p-8 rounded hover:-translate-y-2 transition duration-300">
-                        <div class="w-12 h-12 flex items-center justify-center mb-6 text-brand-green" style="color: #64ffda;">
-                            <i class="fas fa-leaf text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-brand-heading mb-4 font-display" style="color: #e6f1ff;">পরিবেশগত প্রভাব</h3>
-                        <ul class="space-y-3 text-brand-text text-sm" style="color: #ccd6f6;">
-                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>নন-রিসাইকেলেবল বিষাক্ত ব্যাটারি</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>আমদানি থেকে শিল্প বর্জ্য</span></li>
-                            <li class="flex items-start"><i class="fas fa-times text-orange-400 mt-1 mr-3"></i><span>পুরানো ইঞ্জিন থেকে শব্দ দূষণ</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- The Solution Section -->
-        <section id="pathfinder-solution" class="py-24 bg-[#020c1b] relative overflow-hidden" style="background-color: #020c1b;">
-            <!-- Background Gradient Mesh -->
-            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-brand-dark opacity-80 z-0" style="background-image: linear-gradient(to bottom, transparent, #0a192f);"></div>
-            <div class="absolute -right-40 top-20 w-96 h-96 bg-brand-green opacity-5 rounded-full blur-3xl" style="background-color: #64ffda;"></div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
-                    <div>
-                         <div class="flex items-center mb-4">
-                            <span class="text-2xl font-mono text-brand-green mr-4" style="color: #64ffda;">০২.</span>
-                            <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-heading" style="color: #e6f1ff;">সমাধান 💡</h2>
-                        </div>
-                        <p class="text-brand-green font-mono" style="color: #64ffda;">প্রকৌশল উৎকর্ষ স্থানীয় উদ্ভাবনের সাথে মিলিত হয়েছে 🛠️।</p>
-                    </div>
-                    <div class="mt-4 md:mt-0">
-                         <span class="bg-brand-green/10 border border-brand-green text-brand-green px-4 py-2 rounded font-mono text-sm" style="background-color: rgba(100, 255, 218, 0.1); border-color: #64ffda; color: #64ffda;">বুয়েট উদ্ভাবিত</span>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
-                        <i class="fas fa-tachometer-alt text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">ম্যাকফারসন সাসপেনশন</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">প্রথাগত লিফ স্প্রিংয়ের তুলনায় উন্নত রাইড আরাম এবং স্থিতিশীলতা।</p>
-                    </div>
-                    
-                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
-                        <i class="fas fa-stop-circle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">ডিস্ক ব্রেক</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">বিপজ্জনক রাবার প্যাড ব্রেক প্রতিস্থাপন করে আধুনিক হাইড্রোলিক ডিস্ক ব্রেক।</p>
-                    </div>
-
-                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
-                        <i class="fas fa-wind text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">অ্যারোডাইনামিক ডিজাইন</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">ড্র্যাগ কমাতে এবং ব্যাটারি দক্ষতা বাড়াতে অপ্টিমাইজ করা হুড এবং বডি।</p>
-                    </div>
-
-                    <div class="p-6 bg-brand-light rounded border border-brand-light hover:border-brand-green transition group" style="background-color: #112240; border-color: #112240;">
-                        <i class="fas fa-recycle text-3xl text-brand-text group-hover:text-brand-green mb-4 transition-colors" style="color: #ccd6f6;"></i>
-                        <h4 class="text-lg font-bold text-brand-heading mb-2" style="color: #e6f1ff;">পরিবেশ-টেকসই</h4>
-                        <p class="text-brand-text text-sm" style="color: #ccd6f6;">রিসাইকেলেবল উপাদান এবং ব্যাটারি প্রযুক্তি যা পরিবেশের জন্য ক্ষতিকর নয়।</p>
-                    </div>
-                </div>
-
-                <!-- Comparison Table -->
-                <div class="mt-16 bg-brand-light/20 rounded border border-brand-light/30 p-8 backdrop-blur-sm overflow-x-auto" style="background-color: rgba(17, 34, 64, 0.2); border-color: rgba(17, 34, 64, 0.3);">
-                    <h3 class="text-2xl font-bold mb-8 text-center text-brand-heading font-display" style="color: #e6f1ff;">বাজার তুলনা</h3>
-                    <table class="w-full text-left min-w-[600px] border-collapse">
-                        <thead>
-                            <tr class="border-b border-brand-light text-brand-green font-mono text-sm uppercase" style="border-color: #112240; color: #64ffda;">
-                                <th class="pb-4 pl-4">বৈশিষ্ট্য</th>
-                                <th class="pb-4">সাধারণ অটো রিকশা</th>
-                                <th class="pb-4">সিএনজি</th>
-                                <th class="pb-4 text-brand-heading font-bold bg-brand-green/10 rounded-t p-2" style="color: #e6f1ff; background-color: rgba(100, 255, 218, 0.1);">ত্রিচক্র</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-brand-light text-sm text-brand-text" style="border-color: #112240; color: #ccd6f6;">
-                            <tr class="hover:bg-brand-light/30 transition">
-                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">খরচ (BDT)</td>
-                                <td class="py-4">১.২ লক্ষ - ১.৫ লক্ষ</td>
-                                <td class="py-4">২.৫ লক্ষ - ৩.০ লক্ষ</td>
-                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">১.৮ লক্ষ থেকে</td>
-                            </tr>
-                            <tr class="hover:bg-brand-light/30 transition">
-                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">ব্রেকিং</td>
-                                <td class="py-4 text-red-400">রাবার/ড্রাম (অনিরাপদ)</td>
-                                <td class="py-4">ডিস্ক ব্রেক</td>
-                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">ডিস্ক ব্রেক (নিরাপদ)</td>
-                            </tr>
-                            <tr class="hover:bg-brand-light/30 transition">
-                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">নিরাপত্তা স্তর</td>
-                                <td class="py-4 text-red-400">মাঝারি ঝুঁকি</td>
-                                <td class="py-4">মাঝারি ঝুঁকি</td>
-                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">উচ্চ নিরাপত্তা</td>
-                            </tr>
-                            <tr class="hover:bg-brand-light/30 transition">
-                                <td class="py-4 pl-4 font-bold text-brand-heading" style="color: #e6f1ff;">সিট ক্ষমতা</td>
-                                <td class="py-4">৩</td>
-                                <td class="py-4">৩</td>
-                                <td class="py-4 text-brand-green font-bold bg-brand-green/5 p-2" style="color: #64ffda; background-color: rgba(100, 255, 218, 0.05);">৫</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Product Models -->
-        <section id="pathfinder-models" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                     <span class="text-brand-green font-mono text-xl block mb-2" style="color: #64ffda;">০৩.</span>
-                    <h2 class="text-3xl md:text-5xl font-display font-bold text-brand-heading mb-4" style="color: #e6f1ff;">পণ্যের লাইনআপ</h2>
-                    <p class="text-brand-text" style="color: #ccd6f6;">প্রতিটি রাস্তা এবং প্রতিটি প্রয়োজনের জন্য ডিজাইন করা।</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Model 1 -->
-                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
-                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                            <i class="fas fa-bicycle text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">বেস</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">বেস মডেল</h3>
-                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">১.৮ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>স্ট্যান্ডার্ড সাসপেনশন</li>
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>শহুরে যাতায়াতের জন্য প্রস্তুত</li>
-                            </ul>
-                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
-                        </div>
-                    </div>
-
-                    <!-- Model 2 -->
-                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
-                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                            <i class="fas fa-cloud-rain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">সিলড</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">ওয়েদার সিলড</h3>
-                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">২.০ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>IP69 রেটেড সুরক্ষা</li>
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>বর্ষায় নির্ভরযোগ্য</li>
-                            </ul>
-                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
-                        </div>
-                    </div>
-
-                    <!-- Model 3 -->
-                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
-                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                            <i class="fas fa-bolt text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">প্রো</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">সিএনজি বিকল্প</h3>
-                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">২.৫ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>উচ্চ গতির রেঞ্জ</li>
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>বর্ধিত ব্যাটারি</li>
-                            </ul>
-                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
-                        </div>
-                    </div>
-
-                    <!-- Model 4 -->
-                    <div class="glass-card rounded overflow-hidden group border border-transparent hover:border-brand-green transition duration-500">
-                        <div class="h-40 bg-brand-light flex items-center justify-center relative group-hover:bg-brand-lighter transition" style="background-color: #112240;">
-                            <i class="fas fa-mountain text-6xl text-brand-text opacity-50 group-hover:opacity-100 group-hover:text-brand-green transition duration-300 transform group-hover:scale-110" style="color: #ccd6f6;"></i>
-                            <div class="absolute top-4 right-4 bg-brand-dark text-brand-green border border-brand-green text-xs font-mono px-2 py-1 rounded" style="background-color: #0a192f; color: #64ffda; border-color: #64ffda;">রাগড</div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-brand-heading mb-2 font-display" style="color: #e6f1ff;">অল টেরেইন</h3>
-                            <p class="text-2xl font-mono font-bold text-brand-green mb-4" style="color: #64ffda;">৩.০ লক্ষ <span class="text-sm text-brand-text font-sans font-normal" style="color: #ccd6f6;">BDT</span></p>
-                            <ul class="text-sm text-brand-text space-y-2 mb-6" style="color: #ccd6f6;">
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>শক্তিশালী ফ্রেম</li>
-                                <li><i class="fas fa-check text-brand-green mr-2" style="color: #64ffda;"></i>হেভি ডিউটি সাসপেনশন</li>
-                            </ul>
-                            <button class="w-full border border-brand-green text-brand-green py-2 rounded font-mono text-sm hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">বিস্তারিত দেখুন</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Business Stats -->
-        <section id="pathfinder-business" class="py-24 bg-[#112240] clip-slant-top relative" style="background-color: #112240;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col lg:flex-row gap-12">
-                    <!-- Market Size -->
-                    <div class="lg:w-1/2">
-                        <div class="flex items-center mb-6">
-                            <span class="text-xl font-mono text-brand-green mr-4" style="color: #64ffda;">০৪.</span>
-                            <h3 class="text-2xl font-bold font-display text-brand-heading" style="color: #e6f1ff;">বাজার সম্ভাবনা</h3>
-                        </div>
-                        
-                        <div class="bg-brand-dark p-8 rounded-xl border border-brand-light shadow-xl" style="background-color: #0a192f; border-color: #112240;">
-                            <div class="mb-8">
-                                <div class="flex justify-between items-end mb-2">
-                                    <span class="text-brand-text text-sm font-mono" style="color: #ccd6f6;">মোট সম্ভাব্য বাজার (ঢাকা)</span>
-                                    <span class="font-bold text-xl text-brand-heading" style="color: #e6f1ff;">২,৪০০ কোটি BDT</span>
-                                </div>
-                                <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #112240;">
-                                    <div class="bg-brand-heading h-2 rounded-full" style="width: 100%; background-color: #e6f1ff;"></div>
-                                </div>
-                            </div>
-                            <div class="mb-8">
-                                <div class="flex justify-between items-end mb-2">
-                                    <span class="text-brand-text text-sm font-mono" style="color: #ccd6f6;">লক্ষ্য শেয়ার (২ বছর)</span>
-                                    <span class="font-bold text-xl text-brand-green" style="color: #64ffda;">১০%</span>
-                                </div>
-                                <div class="w-full bg-brand-light rounded-full h-2" style="background-color: #112240;">
-                                    <div class="bg-brand-green h-2 rounded-full shadow-[0_0_10px_#64ffda]" style="width: 10%; background-color: #64ffda;"></div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 mt-6">
-                                <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #112240;">
-                                    <span class="block text-3xl font-bold text-brand-heading" style="color: #e6f1ff;">১.৫ লক্ষ</span>
-                                    <span class="text-xs text-brand-green uppercase font-mono mt-1" style="color: #64ffda;">ঢাকায় যানবাহন</span>
-                                </div>
-                                <div class="text-center p-4 bg-brand-light/30 rounded border border-brand-light" style="background-color: rgba(17, 34, 64, 0.3); border-color: #112240;">
-                                    <span class="block text-3xl font-bold text-brand-heading" style="color: #e6f1ff;">১.২৯ লক্ষ</span>
-                                    <span class="text-xs text-brand-green uppercase font-mono mt-1" style="color: #64ffda;">উৎপাদন খরচ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Financial Projection -->
-                    <div class="lg:w-1/2">
-                        <h3 class="text-2xl font-bold font-display text-brand-heading mb-6 pl-2" style="color: #e6f1ff;">৫ বছরের লাভের পূর্বাভাস 📈</h3>
-                        <div class="flex items-end justify-center h-72 bg-brand-dark p-6 rounded-xl border border-brand-light relative overflow-hidden" style="background-color: #0a192f; border-color: #112240;">
-                            <!-- Inserted Graph Visual -->
-                            <img src="src/assets/pathfinder_visual.webp" alt="Financial Graph" class="max-w-full max-h-full object-contain filter drop-shadow-[0_0_15px_rgba(100,255,218,0.2)]" decoding="async" loading="lazy" width="1600" height="1600">
-                        </div>
-                        <p class="text-xs font-mono text-brand-green mt-4 text-center" style="color: #64ffda;"> > নিট লাভের মার্জিন পূর্বাভাস: ৫ম বছরে ১৫-২০%</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section - Pathfinder version (Removed or simplified since main site handles team) -->
-        <section id="pathfinder-team" class="py-24 bg-brand-dark" style="background-color: #0a192f;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                     <span class="text-brand-green font-mono text-xl block mb-2" style="color: #64ffda;">০৫.</span>
-                    <h2 class="text-3xl font-display font-bold mb-4 text-brand-heading" style="color: #e6f1ff;">উদ্ভাবকগণ</h2>
-                    <div class="w-20 h-1 bg-brand-green mx-auto rounded" style="background-color: #64ffda;"></div>
-                </div>
-                 <!-- Reusing main team card logic but styled for this theme -->
-                 <!-- Simplified display for subpage -->
-                 <div class="text-center">
-                    <p class="text-brand-text mb-4" style="color: #ccd6f6;">বিপ্লবের পেছনের দলের সাথে পরিচিত হন।</p>
-                    <a href="index_bn.html#about" class="border border-brand-green text-brand-green px-6 py-2 rounded text-sm font-mono hover:bg-brand-greenDim transition" style="border-color: #64ffda; color: #64ffda;">সম্পূর্ণ টিম দেখুন</a>
-                 </div>
-            </div>
-        </section>
-
-    <div id="cursor-gradient" class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300" style="background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), rgba(29, 78, 216, 0.15), transparent 80%); mix-blend-mode: screen;"></div> 
-    <script> 
-        document.addEventListener("mousemove", e => { 
-            const gradient = document.getElementById("cursor-gradient"); 
-            if(gradient) { 
-                gradient.style.setProperty("--x", e.clientX + "px"); 
-                gradient.style.setProperty("--y", e.clientY + "px"); 
-            } 
-        }); 
-    </script>
+<script src="js/bn/bn.js?v=20261127" defer></script>
 </body>
 </html>

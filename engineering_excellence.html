@@ -542,7 +542,7 @@
 
 <!-- ########################### MAIN VIEW ########################### -->
 <div class="main-theme-bg" id="main-view">
-<nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5" id="navbar">
+<nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-3" id="navbar">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
@@ -1024,8 +1024,8 @@
 
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) { navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.remove('py-5', 'bg-transparent'); }
-            else { navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.add('py-5', 'bg-transparent'); }
+            if (window.scrollY > 20) { navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.remove('bg-transparent'); }
+            else { navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg'); navbar.classList.add('py-3', 'bg-transparent'); }
         });
 
         const menuBtn = document.getElementById('mobile-menu-btn');

@@ -1,233 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<title>গোপনীয়তা নীতি | ত্রিচক্র</title>
-    <link rel="icon" href="src/assets/logo_icon.webp">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>গোপনীয়তা নীতি — ত্রিচক্র</title>
+<meta name="description" content="ত্রিচক্র ডট কমের গোপনীয়তা নীতি।">
+<meta name="theme-color" content="#04060b">
+<link rel="canonical" href="https://www.trichokro.com/privacy_bn.html">
+<link rel="alternate" hreflang="bn" href="https://www.trichokro.com/privacy_bn.html">
+<link rel="alternate" hreflang="en" href="https://www.trichokro.com/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:site_name" content="TriChokro Automotives">
+<meta property="og:title" content="গোপনীয়তা নীতি — ত্রিচক্র">
+<meta property="og:description" content="ত্রিচক্র ডট কমের গোপনীয়তা নীতি।">
+<meta property="og:url" content="https://www.trichokro.com/privacy_bn.html">
+<meta property="og:image" content="https://www.trichokro.com/src/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="src/assets/logo_mark_256.webp" type="image/webp">
+<link rel="apple-touch-icon" href="src/assets/logo_mark_512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wdth,wght@75..125,300..800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Cinzel:wght@700&display=swap">
+<link rel="stylesheet" href="css/bn/bn.css?v=20261127">
+<script>document.documentElement.classList.add('js')</script>
 
-<meta name="description" content="ত্রিচক্র ডট কমের গোপনীয়তা নীতি — রওনক শাহরিয়ার রুহান এবং এআই দ্বারা তৈরি।" />
-<meta name="author" content="রওনক শাহরিয়ার রুহান এবং এআই" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --navy:#050b1a;
-  --navy2:#0a1633;
-  --blue:#38bdf8;
-  --glass:rgba(255,255,255,.08);
-}
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri', system-ui,'Segoe UI',sans-serif}
-
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at var(--mx,50%) var(--my,50%),
-      rgba(56,189,248,.18), transparent 38%),
-    linear-gradient(135deg,var(--navy),var(--navy2),var(--navy));
-  color:#eaf2ff;
-  overflow-x:hidden;
-  overflow-y:auto;
-}
-
-/* UI */
-.back-btn{
-  position:fixed;top:26px;left:26px;
-  padding:12px 20px;border-radius:999px;
-  background:rgba(255,255,255,.12);
-  color:#fff;text-decoration:none;
-  backdrop-filter:blur(12px);z-index:10;
-}
-
-.cursor-light{
-  position:fixed;
-  width:130px;height:130px;border-radius:50%;
-  background:radial-gradient(circle,
-    rgba(56,189,248,.22),
-    rgba(56,189,248,.1),
-    transparent 70%);
-  filter:blur(26px);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:9;
-}
-
-/* Floating glow */
-.glow{
-  position:fixed;
-  width:480px;height:480px;
-  background:radial-gradient(circle,#38bdf8,#1e3a8a);
-  filter:blur(160px);
-  opacity:.45;
-  animation:float 16s ease-in-out infinite;
-  z-index:-1;
-}
-.glow.alt{top:55%;left:60%;animation-delay:-8s}
-@keyframes float{50%{transform:translateY(-140px)}}
-
-/* 🔥 ENHANCED FLOATING EMOJIS */
-.emoji{
-  position:fixed;
-  font-size:1.6rem;
-  opacity:.35;
-  animation:energyFloat linear infinite;
-  z-index:-1;
-  filter:drop-shadow(0 0 8px rgba(56,189,248,.4));
-}
-
-@keyframes energyFloat{
-  from{
-    transform:translateY(120vh) translateX(0) rotate(0deg);
-  }
-  to{
-    transform:translateY(-30vh) translateX(80px) rotate(360deg);
-  }
-}
-
-/* Parallax */
-.parallax-wrap{perspective:1200px}
-.parallax-layer{
-  transform-style:preserve-3d;
-  transition:transform .18s cubic-bezier(.25,.46,.45,.94);
-}
-
-/* Scroll reveal */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:.8s ease;
-}
-.reveal.visible{opacity:1;transform:none}
-
-/* Content */
-.container{
-  max-width:960px;
-  margin:140px auto 160px;
-  padding:70px;
-  background:var(--glass);
-  backdrop-filter:blur(28px);
-  border-radius:28px;
-  box-shadow:0 40px 120px rgba(0,0,0,.7);
-}
-
-h1{
-  font-size:3rem;
-  background:linear-gradient(90deg,#eaf2ff,#7dd3fc);
-  -webkit-background-clip:text;
-  color:transparent;
-  margin-bottom:30px;
-}
-
-h2{color:#9ddcff;margin:40px 0 16px}
-p{line-height:1.9;color:#dce8ff;margin-bottom:18px}
-
-.founder{
-  margin-top:40px;
-  padding:28px;
-  background:rgba(5,11,26,.7);
-  border-radius:20px;
-}
-
-footer{margin-top:40px;font-size:.9rem;opacity:.75}
-
-/* Home link + language switch, placed under the site header */
-.page-tools{max-width:960px;margin:1.5rem auto 0;padding:0 1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;position:relative;z-index:20}
-.page-tools .back-btn{position:static}
-.lang-switch{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-.lang-switch a{padding:8px 16px;border-radius:999px;color:#cbd5e1;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.04em;line-height:1.2}
-.lang-switch a:hover{color:#fff}
-.lang-switch a.is-active{background:#34d399;color:#04121a}
-.parallax-wrap > .card,.parallax-wrap > .container{margin-top:2.5rem}
-@media (max-width:640px){.parallax-wrap > .card,.parallax-wrap > .container{padding:36px 22px}}
-</style>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#020617">
-<link rel="stylesheet" href="css/site-mobile.css"/>
-<script src="js/site-mobile.js" defer></script>
 </head>
-
 <body>
-
-<div class="page-tools">
-  <a href="index_bn.html" class="back-btn">← হোম</a>
-  <nav class="lang-switch" aria-label="Language">
-    <a href="privacy.html" lang="en">EN</a>
-    <a href="privacy_bn.html" class="is-active" aria-current="page" lang="bn">বাংলা</a>
-  </nav>
-</div>
-<div class="cursor-light"></div>
-
-<div class="glow"></div>
-<div class="glow alt"></div>
-
-<!-- ⚡ ENERGY / TECH / EV EMOJIS -->
-<div class="emoji" style="left:5%;animation-duration:14s">⚡</div>
-<div class="emoji" style="left:12%;animation-duration:16s">🔋</div>
-<div class="emoji" style="left:20%;animation-duration:15s">🚗</div>
-<div class="emoji" style="left:28%;animation-duration:17s">🤖</div>
-<div class="emoji" style="left:36%;animation-duration:14s">🧠</div>
-<div class="emoji" style="left:44%;animation-duration:16s">🔌</div>
-<div class="emoji" style="left:52%;animation-duration:15s">🌐</div>
-<div class="emoji" style="left:60%;animation-duration:17s">🚀</div>
-<div class="emoji" style="left:68%;animation-duration:14s">📡</div>
-<div class="emoji" style="left:76%;animation-duration:16s">⚙️</div>
-<div class="emoji" style="left:84%;animation-duration:15s">🔬</div>
-<div class="emoji" style="left:92%;animation-duration:17s">🛰️</div>
-
-<div class="parallax-wrap">
-  <div class="container parallax-layer">
-    <h1 class="reveal">গোপনীয়তা নীতি</h1>
-
-    <p class="reveal">
-      Trichokro.com ডিজিটাল সৃজনশীলতার মূল নীতি হিসেবে গোপনীয়তাকে সম্মান করে।
-      আমরা স্পষ্টভাবে প্রদান না করা পর্যন্ত ব্যক্তিগত তথ্য সংগ্রহ করি না।
-    </p>
-
-    <p class="reveal">
-      বেনামী প্রযুক্তিগত ডেটা শুধুমাত্র কর্মক্ষমতা,
-      অ্যাক্সেসযোগ্যতা এবং মিথস্ক্রিয়া গুণমান উন্নত করতে ব্যবহার করা যেতে পারে।
-    </p>
-
-    <div class="founder reveal">
-      <h2>প্রতিষ্ঠাতা সম্পর্কে</h2>
-      <p>
-        <strong>রওনক শাহরিয়ার রুহান</strong> ত্রিচক্রের স্রষ্টা এবং স্বপ্নদ্রষ্টা,
-        যিনি প্রযুক্তি, গতি এবং এআই-চালিত ডিজাইনকে একত্রিত করেছেন।
-      </p>
-    </div>
-
-    <footer class="reveal">
-      কৃত্রিম বুদ্ধিমত্তার সাথে রওনক শাহরিয়ার রুহান দ্বারা তৈরি।
-    </footer>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol><symbol id="i-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-user-round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol><symbol id="i-brand-fb" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></symbol><symbol id="i-brand-in" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6.94 8.98H3.56V20h3.38zM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92M20.44 13.7c0-3.3-1.76-4.84-4.1-4.84-1.9 0-2.74 1.04-3.21 1.78V8.98H9.75c.04 1.1 0 11.02 0 11.02h3.38v-6.15c0-.33.02-.66.12-.9.27-.66.87-1.34 1.89-1.34 1.33 0 1.87 1.01 1.87 2.5V20h3.38z"/></symbol><symbol id="i-brand-yt" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8M10 15V9l5.2 3z"/></symbol></defs></svg>
+<a class="skip" href="#main">মূল লেখায় যান</a>
+<div class="atmo" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div><div id="progress" aria-hidden="true"></div>
+<header class="hdr">
+  <a class="brand" href="index_bn.html" aria-label="ত্রিচক্র অটোমোটিভস — হোম">
+    <img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40">
+    <span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span>
+  </a>
+  <nav class="nav" aria-label="প্রধান মেনু"><a href="index_bn.html">হোম</a><a href="index_bn.html#about">আমাদের সম্পর্কে</a><a href="index_bn.html#products">পণ্য</a><a href="pathfinder_bn.html">পাথফাইন্ডার</a><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a><a href="blogs_bn.html">খবর</a></nav>
+  <div class="hdr-tools">
+    <a class="lang" href="privacy.html" hreflang="en" lang="en" aria-label="Read this page in English"><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg>EN</a>
+    <a class="btn btn-primary btn-cta" href="index_bn.html#contact" data-magnetic>যোগাযোগ</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="মেনু খুলুন"><span></span><span></span><span></span></button>
   </div>
-</div>
+</header>
+<nav class="mnav" id="mnav" aria-label="মোবাইল মেনু" aria-hidden="true">
+  <a class="m-link" href="index_bn.html">হোম<small>০১</small></a><a class="m-link" href="index_bn.html#about">আমাদের সম্পর্কে<small>০২</small></a><a class="m-link" href="index_bn.html#products">পণ্য<small>০৩</small></a><a class="m-link" href="pathfinder_bn.html">পাথফাইন্ডার<small>০৪</small></a><a class="m-link" href="trambulance_bn.html">ট্রাম্বুলেন্স<small>০৫</small></a><a class="m-link" href="blogs_bn.html">খবর<small>০৬</small></a><a class="m-link" href="engineering_excellence_bn.html">প্রকৌশল<small>০৭</small></a><a class="m-link" href="founder_bn.html">প্রতিষ্ঠাতা<small>০৮</small></a><a class="m-link" href="resources_bn.html">ফাইল ও রিসোর্স<small>০৯</small></a><a class="m-link" href="index_bn.html#contact">যোগাযোগ<small>১০</small></a>
+  <div class="m-foot">
+    <a class="btn btn-primary" href="index_bn.html#contact">যোগাযোগ করুন <svg class="ic go" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <a class="btn btn-ghost" href="privacy.html" hreflang="en" lang="en">English</a>
+  </div>
+</nav>
+<main id="main">
+<section class="phero"><div class="ring" aria-hidden="true"></div><div class="wrap"><div><nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>গোপনীয়তা</span></nav><span class="eyebrow" data-reveal>Privacy</span><h1 class="split-words" style="margin-top:14px">গোপনীয়তা <span class="grad">নীতি</span></h1><p class="lead" data-reveal>আপনার তথ্য আপনারই। আমরা কী সংগ্রহ করি আর কী করি না।</p><div class="seg" data-reveal style="margin-top:22px" role="group" aria-label="ভাষা"><a href="privacy.html" hreflang="en" lang="en">EN</a><a class="on" href="privacy_bn.html" aria-current="page">বাংলা</a></div></div></div></section>
+<section class="sec" style="padding-top:0"><div class="wrap"><div class="grid g2">
+<div class="card edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></div><h3>আমরা যা করি</h3><p>Trichokro.com ডিজিটাল সৃজনশীলতার মূল নীতি হিসেবে গোপনীয়তাকে সম্মান করে। আপনি নিজে স্পষ্টভাবে না দিলে আমরা কোনো ব্যক্তিগত তথ্য সংগ্রহ করি না।</p><p style="margin-top:10px">বেনামি প্রযুক্তিগত তথ্য শুধু কর্মক্ষমতা, অ্যাক্সেসযোগ্যতা আর ব্যবহারের মান উন্নত করতে ব্যবহার করা হতে পারে।</p></div>
+<div class="card edge" data-reveal><div class="ic-badge"><svg class="ic" aria-hidden="true"><use href="#i-user-round"/></svg></div><h3>প্রতিষ্ঠাতা সম্পর্কে</h3><p>রওনক শাহরিয়ার রুহান ত্রিচক্রের স্রষ্টা ও স্বপ্নদ্রষ্টা — প্রযুক্তি, গতি আর এআই-চালিত ডিজাইনকে যিনি এক করেছেন।</p><a class="link-arrow" style="margin-top:14px" href="mailto:trichokro.automotives@gmail.com">প্রশ্ন থাকলে ইমেইল করুন <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></div>
+</div></div></section>
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-word" aria-hidden="true">ত্রিচক্র</div>
+    <div class="ftr-grid">
+      <div class="about">
+        <a class="brand" href="index_bn.html"><img src="src/assets/logo_mark_256.webp" alt="" width="40" height="40" loading="lazy"><span class="brand-word"><b>Tri<span>Chokro</span></b><small>AUTOMOTIVES</small></span></a>
+        <p style="margin-top:16px">বুয়েটের শিক্ষার্থী ও অ্যালামনাইদের হাতে গড়া ইলেকট্রিক যানবাহন গবেষণা ও উন্নয়ন প্রতিষ্ঠান — বাংলাদেশের রাস্তার জন্য, বাংলাদেশের মানুষের জন্য।</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/people/TriChokro/61577812382585/" target="_blank" rel="noopener" aria-label="ত্রিচক্র ফেসবুক পেজ"><svg class="ic"><use href="#i-brand-fb"/></svg></a>
+          <a href="https://www.linkedin.com/in/rownakshahriarruhan/" target="_blank" rel="noopener" aria-label="লিংকডইন"><svg class="ic"><use href="#i-brand-in"/></svg></a>
+          <a href="https://www.youtube.com/@TriChokroAutomotives" target="_blank" rel="noopener" aria-label="ইউটিউব চ্যানেল"><svg class="ic"><use href="#i-brand-yt"/></svg></a>
+          <a href="https://trichokro.blogspot.com/" target="_blank" rel="noopener" aria-label="ব্লগ"><svg class="ic" aria-hidden="true"><use href="#i-rss"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>পণ্য</h4>
+        <ul>
+          <li><a class="float-link" href="index_bn.html#products">সব পণ্য</a></li>
+          <li><a href="pathfinder_bn.html">পাথফাইন্ডার</a></li>
+          <li><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a></li>
+          <li><a href="arkgo.html">আর্কগো</a></li>
+          <li><a href="vesel_urbana.html">ভেসেল আরবানা</a></li>
+          <li><a href="fortunacargo.html">ফরচুনা কার্গো</a></li>
+          <li><a href="Bravostruck.html">ব্রাভোস ট্রাক</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>প্রতিষ্ঠান</h4>
+        <ul>
+          <li><a href="index_bn.html#about">আমাদের টিম</a></li>
+          <li><a href="founder_bn.html">প্রতিষ্ঠাতা</a></li>
+          <li><a href="engineering_excellence_bn.html">প্রকৌশল উৎকর্ষ</a></li>
+          <li><a href="blogs_bn.html">খবর ও ব্লগ</a></li>
+          <li><a href="triborigen_bn.html">TribOriGen</a></li>
+          <li><a href="trimateria_bn.html">TriMateria</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>যোগাযোগ</h4>
+        <ul>
+          <li><a class="float-link d2" href="index_bn.html#contact">যোগাযোগ</a></li>
+          <li><a href="resources_bn.html">ফাইল ও রিসোর্স</a></li>
+          <li><a href="privacy_bn.html">গোপনীয়তা</a></li>
+          <li><a href="metadata_bn.html">মেটা ডেটা</a></li>
+          <li><a href="mailto:trichokro.automotives@gmail.com">ইমেইল করুন</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-base">
+      <span>রওনক শাহরিয়ার রুহান, জুলস এবং ক্লড দ্বারা বিকশিত; সর্বস্বত্ব সংরক্ষিত, ত্রিচক্র <span data-year>২০২৬</span></span>
+      <span>কাজী নজরুল ইসলাম হল, বুয়েট, ঢাকা-১০০০</span>
+    </div>
+  </div>
+</footer>
 
-<script>
-const body=document.body;
-const cursor=document.querySelector('.cursor-light');
-const card=document.querySelector('.parallax-layer');
-const reveals=document.querySelectorAll('.reveal');
-
-document.addEventListener('mousemove',e=>{
-  body.style.setProperty('--mx',e.clientX+'px');
-  body.style.setProperty('--my',e.clientY+'px');
-  cursor.style.left=e.clientX+'px';
-  cursor.style.top=e.clientY+'px';
-
-  const x=(e.clientX/window.innerWidth-.5)*10;
-  const y=(e.clientY/window.innerHeight-.5)*-10;
-  card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
-});
-
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting) entry.target.classList.add('visible');
-  });
-},{threshold:.15});
-reveals.forEach(el=>observer.observe(el));
-</script>
-
+<script src="js/bn/bn.js?v=20261127" defer></script>
 </body>
 </html>

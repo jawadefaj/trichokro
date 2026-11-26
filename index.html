@@ -668,7 +668,7 @@
 
 <!-- ########################### MAIN VIEW ########################### -->
 <div class="main-theme-bg" id="main-view">
-<nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-5" id="navbar">
+<nav class="fixed w-full z-[10001] transition-all duration-300 bg-transparent py-3" id="navbar">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-3 group cursor-pointer interactive animate-float-subtle transition-trigger" onclick="window.location.href='index.html'">
@@ -2260,10 +2260,7 @@
  <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><img src="src/assets/founders/sifat.jpg" alt="Portrait of Sifat Rana" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
  <h4 class="text-white font-bold text-sm leading-snug mb-1">Sifat Rana</h4>
  <p class="text-emerald-400 text-xs leading-relaxed">Chief Executive</p></a></div></div>`},
-    {title: "Our Expert Counsel", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3">Our Expert Counsel</h3><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"><a href="contact.html?id=mijanur" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
- <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><img src="src/assets/founders/mijan.jpg" alt="Portrait of Mijanur Rahman" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
- <h4 class="text-white font-bold text-sm leading-snug mb-1">Mijanur Rahman</h4>
- <p class="text-emerald-400 text-xs leading-relaxed">Senior Advisor</p></a><a href="contact.html?id=ehsanSir" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
+    {title: "Our Expert Counsel", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3">Our Expert Counsel</h3><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"><a href="contact.html?id=ehsanSir" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
  <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><img src="src/assets/founders/ehsan.jpg" alt="Portrait of Dr. Md. Ehsan" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
  <h4 class="text-white font-bold text-sm leading-snug mb-1">Dr. Md. Ehsan</h4>
  <p class="text-emerald-400 text-xs leading-relaxed">Professor, Mechanical Engineering, BUET</p></a><a href="contact.html?id=abdul" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
@@ -2272,7 +2269,10 @@
  <p class="text-emerald-400 text-xs leading-relaxed">Autonomous Vehicle Engineer · California, USA</p></a><a href="contact.html?id=ishraq" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
  <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><img src="src/assets/founders/ishraq.jpg" alt="Portrait of Ishraq H. Rafid" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
  <h4 class="text-white font-bold text-sm leading-snug mb-1">Ishraq H. Rafid</h4>
- <p class="text-emerald-400 text-xs leading-relaxed">Micromobility Planner &amp; Designer · Hamburg, Germany</p></a></div></div>`},
+ <p class="text-emerald-400 text-xs leading-relaxed">Micromobility Planner &amp; Designer · Hamburg, Germany</p></a><a href="contact.html?id=mijanur" class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
+ <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><img src="src/assets/founders/mijan.jpg" alt="Portrait of Mijanur Rahman" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+ <h4 class="text-white font-bold text-sm leading-snug mb-1">Mijanur Rahman</h4>
+ <p class="text-emerald-400 text-xs leading-relaxed">Senior Advisor</p></a></div></div>`},
     {title: "Junior Associates", html: `<div class="animate-fade-in-up"><h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3">Junior Associates</h3><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"><div class="tc-profile-card text-center p-4 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-emerald-500/40 transition-colors block">
  <div class="w-20 h-20 mx-auto bg-slate-700 rounded-full mb-3 overflow-hidden flex items-center justify-center ring-2 ring-emerald-500/20"><span aria-hidden="true" class="text-lg font-bold text-emerald-300">SR</span></div>
  <h4 class="text-white font-bold text-sm leading-snug mb-1">Sifat Rana</h4>
@@ -2299,8 +2299,8 @@
 
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) { navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.remove('py-5', 'bg-transparent'); }
-            else { navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.add('py-5', 'bg-transparent'); }
+            if (window.scrollY > 20) { navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-3'); navbar.classList.remove('bg-transparent'); }
+            else { navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg'); navbar.classList.add('py-3', 'bg-transparent'); }
         });
 
         const menuBtn = document.getElementById('mobile-menu-btn');
