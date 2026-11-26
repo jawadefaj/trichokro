@@ -35,3 +35,40 @@
 a, button, [role="button"], .interactive, summary, label {
     touch-action: manipulation;
 }
+
+/* TriChokro brand lockup: the same banner logo + wordmark on every page. */
+.tc-brand-lockup { display: inline-flex; align-items: center; gap: 0.75rem; color: #fff; text-decoration: none; }
+.tc-brand-logo { height: 3rem; width: auto; filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.5)); }
+.tc-brand-wordmark { display: inline-flex; flex-direction: column; line-height: 1.05; text-align: left; }
+.tc-brand-main, .tc-brand-main * { font-family: 'Cinzel', serif !important; }
+.tc-brand-main {
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #fff;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+.tc-brand-accent { color: #34d399; }
+.tc-brand-sub {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #6ee7b7;
+}
+@media (max-width: 380px) {
+    .tc-brand-sub { display: none; }
+}
+
+/* Footer links float gently; the Products link is inline-block so it moves too. */
+@keyframes float-random-1 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(3px, -5px) rotate(2deg); } 50% { transform: translate(-2px, -8px) rotate(-1deg); } 75% { transform: translate(4px, -3px) rotate(1deg); } }
+@keyframes float-random-2 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(-4px, -6px) rotate(-2deg); } 50% { transform: translate(5px, -4px) rotate(2deg); } 75% { transform: translate(-3px, -7px) rotate(-1deg); } }
+@keyframes float-random-3 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(2px, -7px) rotate(1deg); } 50% { transform: translate(-5px, -3px) rotate(-2deg); } 75% { transform: translate(3px, -6px) rotate(1deg); } }
+@keyframes float-random-4 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(-3px, -4px) rotate(-1deg); } 50% { transform: translate(4px, -8px) rotate(2deg); } 75% { transform: translate(-2px, -5px) rotate(-1deg); } }
+footer .float-link-1 { display: inline-block; animation: float-random-1 4s ease-in-out infinite; }
+footer .float-link-2 { display: inline-block; animation: float-random-2 5s ease-in-out infinite; }
+footer .float-link-3 { display: inline-block; animation: float-random-3 4.5s ease-in-out infinite; }
+footer .float-link-4 { display: inline-block; animation: float-random-4 5.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+    footer .float-link-1, footer .float-link-2, footer .float-link-3, footer .float-link-4 { animation: none; }
+}
