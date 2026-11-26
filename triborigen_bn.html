@@ -24,7 +24,29 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wdth,wght@75..125,300..800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Cinzel:wght@700&display=swap">
 <link rel="stylesheet" href="css/bn/bn.css?v=20261127">
 <script>document.documentElement.classList.add('js')</script>
-
+<style>
+.bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:.3;pointer-events:none}
+.vhero{position:relative;isolation:isolate;min-height:100svh;display:flex;align-items:center;text-align:center;overflow:hidden;padding:calc(var(--hdr) + 60px) 0 70px}
+.vhero .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3;z-index:-2;pointer-events:none}
+.vhero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,.5) 50%,var(--bg))}
+.vhero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.4;background:repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px)}
+.vhero .crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-family:var(--display);font-size:.9rem;color:var(--dim);margin-bottom:18px}
+.vhero .crumbs a:hover{color:var(--mint)}
+.vhero .crumbs .ic{width:14px;height:14px}
+.vhero h1{font-size:clamp(2.4rem,6.4vw + .2rem,5.4rem);font-weight:800;font-stretch:116%;line-height:1.06;letter-spacing:-.015em;margin-top:16px}
+.vhero .lead{margin-inline:auto}
+.vhero .btn-row{justify-content:center}
+.vhero .vlogo{width:84px;height:84px;border-radius:20px;margin:0 auto 18px;box-shadow:0 0 0 1px rgba(255,255,255,.15),0 20px 50px -20px rgba(52,224,161,.6)}
+</style>
+<script>
+/* respect "reduce motion": keep the video still for those visitors */
+(function(){var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function vs(){return [].slice.call(document.querySelectorAll('video[autoplay]'))}
+function go(){if(still)return;vs().forEach(function(v){if(v.paused){var p=v.play();if(p&&p.catch)p.catch(function(){})}})}
+document.addEventListener('DOMContentLoaded',function(){if(still)vs().forEach(function(v){v.pause()});else go()});
+/* if the phone blocked autoplay (e.g. iPhone Low Power Mode), start on the first tap or scroll */
+['touchstart','pointerdown','scroll','keydown'].forEach(function(e){window.addEventListener(e,go,{once:true,passive:true})});})();
+</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-circle-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="12" r="10"/></symbol><symbol id="i-cloud-fog" viewBox="0 0 24 24"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 17H7"/><path d="M17 21H9"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol><symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol><symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20"/><path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13"/></symbol><symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol><symbol id="i-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="i-waves" viewBox="0 0 24 24"><path d="M2 12q2.5 2 5 0t5 0 5 0 5 0"/><path d="M2 19q2.5 2 5 0t5 0 5 0 5 0"/><path d="M2 5q2.5 2 5 0t5 0 5 0 5 0"/></symbol><symbol id="i-brand-fb" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></symbol><symbol id="i-brand-in" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6.94 8.98H3.56V20h3.38zM5.25 3.5a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92M20.44 13.7c0-3.3-1.76-4.84-4.1-4.84-1.9 0-2.74 1.04-3.21 1.78V8.98H9.75c.04 1.1 0 11.02 0 11.02h3.38v-6.15c0-.33.02-.66.12-.9.27-.66.87-1.34 1.89-1.34 1.33 0 1.87 1.01 1.87 2.5V20h3.38z"/></symbol><symbol id="i-brand-yt" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8M10 15V9l5.2 3z"/></symbol></defs></svg>
@@ -50,7 +72,15 @@
   </div>
 </nav>
 <main id="main">
-<section class="phero"><div class="ring" aria-hidden="true"></div><div class="wrap phero-grid"><div><nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>TribOriGen</span></nav><span class="eyebrow" data-reveal>অবকাঠামোতে নতুন বিপ্লব</span><h1 class="split-words" style="margin-top:14px">বর্জ্য টায়ারকে <span class="grad">সম্পদে রূপান্তর</span></h1><p class="lead" data-reveal>পরিবেশের দায়কে বৃত্তাকার ও উচ্চ-ক্ষমতাসম্পন্ন অবকাঠামো-সম্পদে রূপান্তরের একটি অগ্রণী উদ্যোগ।</p><div class="btn-row" data-reveal><a class="btn btn-primary" href="src/assets/pdf/TriOboriGen 2026.pdf" target="_blank" rel="noopener" data-magnetic><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>রিপোর্ট ডাউনলোড</a><a class="btn btn-ghost" href="#simulator">গ্রিন ক্যালকুলেটর</a></div></div><div data-reveal="zoom"><div class="frame" style="aspect-ratio:1/1"><video class="vid" src="src/assets/Trioborigengif.MP4" autoplay muted loop playsinline aria-label="TribOriGen প্রক্রিয়ার ভিডিও"></video><div class="cap-bar"><img src="src/assets/triborigen_logo.jpg" alt="TribOriGen" width="34" height="34" style="width:34px;height:34px;border-radius:8px"><span>TribOriGen · ত্রিচক্র উদ্যোগ</span></div></div></div></div></section>
+<section class="vhero">
+<video class="hero-video" autoplay loop muted playsinline aria-hidden="true"><source src="src/assets/Trioborigengif.MP4" type="video/mp4"></video>
+<div class="wrap"><nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>TribOriGen</span></nav>
+<img class="vlogo" src="src/assets/triborigen_logo.jpg" alt="TribOriGen লোগো" width="84" height="84" data-reveal="zoom">
+<span class="eyebrow" data-reveal>অবকাঠামোতে নতুন বিপ্লব</span>
+<h1 class="split-words">বর্জ্য টায়ারকে <span class="grad">সম্পদে রূপান্তর</span></h1>
+<p class="lead" data-reveal>পরিবেশের দায়কে বৃত্তাকার ও উচ্চ-ক্ষমতাসম্পন্ন অবকাঠামো-সম্পদে রূপান্তরের একটি অগ্রণী উদ্যোগ।</p>
+<div class="btn-row" data-reveal><a class="btn btn-primary" href="src/assets/pdf/TriOboriGen 2026.pdf" target="_blank" rel="noopener" data-magnetic><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>রিপোর্ট ডাউনলোড</a><a class="btn btn-ghost" href="#simulator">গ্রিন ক্যালকুলেটর</a></div>
+</div></section>
 <section class="sec" id="problem"><div class="wrap">
 <div class="sec-head"><span class="eyebrow" data-reveal>একটি বৈশ্বিক জরুরি অবস্থা</span><h2 class="title split-words">পোড়ানো টায়ার, <span class="grad">বিষাক্ত পৃথিবী</span></h2></div>
 <div class="grid g3">

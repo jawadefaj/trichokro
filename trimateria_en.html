@@ -120,7 +120,7 @@
 <link rel="stylesheet" href="css/tw/trimateria_en.css"/>
 </head>
 <body class="antialiased selection:bg-lime-500 selection:text-black">
-    <video loop muted playsinline class="fixed inset-0 w-full h-full object-cover z-[-1] opacity-30" data-play-when-visible="true" preload="none">
+    <video autoplay loop muted playsinline class="fixed inset-0 w-full h-full object-cover z-[-1] opacity-30">
         <source src="src/assets/TriMateria%20vid.mp4" type="video/mp4">
     </video>
 
@@ -525,5 +525,11 @@
             }
         });
     </script>
+<script>
+/* Background video: if the phone blocked autoplay (e.g. iPhone Low Power Mode), start it on the first tap or scroll */
+(function(){var vs=[].slice.call(document.querySelectorAll('video[autoplay]'));if(!vs.length)return;
+function go(){vs.forEach(function(v){if(v.paused){var p=v.play();if(p&&p.catch)p.catch(function(){})}})}
+document.addEventListener('DOMContentLoaded',go);['touchstart','pointerdown','scroll','keydown'].forEach(function(e){window.addEventListener(e,go,{once:true,passive:true})});})();
+</script>
 </body>
 </html>
