@@ -72,3 +72,11 @@ footer .float-link-4 { display: inline-block; animation: float-random-4 5.5s eas
 @media (prefers-reduced-motion: reduce) {
     footer .float-link-1, footer .float-link-2, footer .float-link-3, footer .float-link-4 { animation: none; }
 }
+
+/* Slimmer top banner: the logo block was picking up the generic 44px
+   touch-target padding, which made the header taller than on other pages. */
+#navbar .group.cursor-pointer.interactive {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 0 !important;
+}
