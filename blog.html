@@ -824,10 +824,14 @@ html.tc-policy-mode #story-page{display:none!important}html:not(.tc-policy-mode)
 </div>
 <div class="flex flex-col items-center gap-4 text-slate-400 text-sm md:flex-row md:gap-8 md:items-start">
 <div class="relative">
-<a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer float-link-1" href="#" onclick="toggleProductsMenu()">Products</a>
+<a class="inline-block hover:text-emerald-400 transition-colors interactive uplift-on-hover cursor-pointer float-link-1" href="#products-menu" onclick="toggleProductsMenu(event)">Products</a>
 <div class="absolute bottom-full left-0 bg-slate-800 rounded p-2 hidden flex flex-col gap-2 mt-2 shadow-lg" id="products-menu">
 <a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="trambulance.html">Trambulance</a>
 <a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="pathfinder.html">Pathfinder</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="arkgo.html">Arkgo Amphibian</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="vesel_urbana.html">Vesel Urbana</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="fortunacargo.html">Fortuna Cargo</a>
+<a class="hover:text-emerald-400 transition-colors px-3 py-1 rounded" href="Bravostruck.html">Bravos Truck</a>
 </div>
 </div>
 <a class="hover:text-emerald-400 transition-colors interactive uplift-on-hover float-link-2" href="founder.html">Contacts</a>
@@ -853,7 +857,7 @@ html.tc-policy-mode #story-page{display:none!important}html:not(.tc-policy-mode)
 
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-slate-900 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-<p class="text-slate-600 text-sm">Developed by Ruhan &amp; Jules; All right reserved, TriChokro 2026</p>
+<p class="text-slate-600 text-sm">Developed by Rownak Shahriar Ruhan, Jules and Claude; All rights reserved, TriChokro 2026</p>
 </div>
 </footer>
 </div>
@@ -866,7 +870,7 @@ html.tc-policy-mode #story-page{display:none!important}html:not(.tc-policy-mode)
   const menu=document.getElementById('mobile-menu');const menuBtn=document.getElementById('mobile-menu-btn');
   menuBtn?.setAttribute('aria-expanded','false');
   menuBtn?.addEventListener('click',()=>{const open=menu.classList.contains('max-h-0');menu.classList.toggle('max-h-0',!open);menu.classList.toggle('opacity-0',!open);menu.classList.toggle('max-h-96',open);menu.classList.toggle('opacity-100',open);menuBtn.setAttribute('aria-expanded',String(open));});
-  function toggleProductsMenu(){document.getElementById('products-menu')?.classList.toggle('hidden');}
+  function toggleProductsMenu(e){if(e)e.preventDefault();document.getElementById('products-menu')?.classList.toggle('hidden');}
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !reduced){const io=new IntersectionObserver((entries,obs)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');obs.unobserve(entry.target);}}),{threshold:.06});document.querySelectorAll('.reveal-on-scroll').forEach(el=>io.observe(el));}
   else document.querySelectorAll('.reveal-on-scroll').forEach(el=>el.classList.add('revealed'));

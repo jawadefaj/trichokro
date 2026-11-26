@@ -165,6 +165,16 @@ p{
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }
+
+/* Home link + language switch, placed under the site header */
+.page-tools{max-width:960px;margin:1.5rem auto 0;padding:0 1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;position:relative;z-index:20}
+.page-tools .back-btn{position:static}
+.lang-switch{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.lang-switch a{padding:8px 16px;border-radius:999px;color:#cbd5e1;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.04em;line-height:1.2}
+.lang-switch a:hover{color:#fff}
+.lang-switch a.is-active{background:#34d399;color:#04121a}
+.parallax-wrap > .card,.parallax-wrap > .container{margin-top:2.5rem}
+@media (max-width:640px){.parallax-wrap > .card,.parallax-wrap > .container{padding:36px 22px}}
 </style>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -175,21 +185,13 @@ p{
 
 <body>
 
-<a href="index.html" class="back-btn">← Home</a>
-
-    <div class="fixed top-[26px] left-[140px] z-[10002] group">
-        <button class="flex items-center gap-1 text-slate-300 hover:text-emerald-400 font-medium text-sm uppercase tracking-wide transition-colors focus:outline-none" style="color: #cbd5e1;">
-            <i class="fas fa-globe"></i>
-            <span class="">EN</span>
-            <i class="fas fa-chevron-down text-xs ml-1"></i>
-        </button>
-        <div class="absolute right-0 mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-[10002]">
-            <div class="py-1">
-                <a href="metadata.html" class="block px-4 py-2 text-sm text-emerald-400 bg-slate-800 font-bold">EN</a>
-                <a href="metadata_bn.html" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-emerald-400">BN</a>
-            </div>
-        </div>
-    </div>
+<div class="page-tools">
+  <a href="index.html" class="back-btn">← Home</a>
+  <nav class="lang-switch" aria-label="Language">
+    <a href="metadata.html" class="is-active" aria-current="page" lang="en">EN</a>
+    <a href="metadata_bn.html" lang="bn">বাংলা</a>
+  </nav>
+</div>
 
 <div class="cursor-light"></div>
 
