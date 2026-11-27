@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wdth,wght@75..125,300..800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Cinzel:wght@700&display=swap">
-<link rel="stylesheet" href="css/bn/bn.css?v=20261127">
+<link rel="stylesheet" href="css/bn/bn.css?v=20261127b">
 <script>document.documentElement.classList.add('js')</script>
 
 </head>
@@ -50,9 +50,11 @@
   </div>
 </nav>
 <main id="main">
-<section class="phero"><div class="ring" aria-hidden="true"></div><div class="wrap"><div><nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>খবর</span></nav><span class="eyebrow" data-reveal>সংবাদ আর্কাইভ</span><h1 class="split-words" style="margin-top:14px">উদ্ভাবনের খবর <span class="grad">আমাদের এগিয়ে নেয়</span></h1><p class="lead" data-reveal>পুরস্কার, গণমাধ্যম, প্রতিযোগিতা আর অংশীদারত্ব — ত্রিচক্রের সব খবর এক জায়গায়। মূল উৎসের সারাংশ, উৎস-উল্লেখসহ।</p></div></div></section>
+<section class="phero"><div class="ring" aria-hidden="true"></div><div class="wrap"><div><nav class="crumbs" aria-label="অবস্থান"><a href="index_bn.html">হোম</a><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg><span>খবর</span></nav><span class="eyebrow bn" data-reveal>সংবাদ আর্কাইভ</span><h1 class="split-words" style="margin-top:14px">উদ্ভাবনের খবর <span class="grad">আমাদের এগিয়ে নেয়</span></h1><p class="lead" data-reveal>পুরস্কার, গণমাধ্যম, প্রতিযোগিতা আর অংশীদারত্ব — ত্রিচক্রের সব খবর এক জায়গায়। মূল উৎসের সারাংশ, উৎস-উল্লেখসহ।</p></div></div></section>
 <section class="sec" style="padding-top:0" id="blogs"><div class="wrap">
+<div class="stats" id="news-stats" style="grid-template-columns:repeat(2,1fr);max-width:520px;margin-bottom:22px"></div>
 <div id="news-featured"></div>
+<a class="card lift edge featured-news" href="blog_bn.html?post=buet-easybike-policy" style="margin-top:18px" data-reveal><div class="fn-art" style="background:radial-gradient(90% 120% at 100% 0%,rgba(52,224,161,.35),transparent 60%),radial-gradient(80% 80% at 0% 100%,rgba(69,160,224,.3),transparent 60%),linear-gradient(135deg,#0f182c,#070b14)"><span class="chip chip-g">গবেষণা · মৌলিক প্রবন্ধ</span><b>গবেষণা ও নীতি</b><span class="metric" style="color:var(--mint);font-size:1rem">বুয়েট — বিইপিআরসি / ২০২১—২০২৬</span></div><div class="fn-body"><span class="mono muted bnx">নতুন দীর্ঘ লেখা · পিডিএফ নথিসহ</span><h2 class="title-sm">বুয়েট–বিইপিআরসি ইজিবাইক প্রকল্প: জন্ম থেকে পাইলট</h2><p class="muted">নকশা, নিরাপত্তা-মান, নিষেধাজ্ঞা, সরকারি উদ্যোগ এবং ২০২৬ সালের পাইলট কর্মসূচি — পাশাপাশি দেখুন বুয়েটের প্রস্তাবিত টাইপ-অনুমোদন নথি।</p><p class="muted" style="font-size:.88rem">গবেষণা ও নীতি · বাংলা দীর্ঘ লেখা · সঙ্গে ২৩ পৃষ্ঠার সহায়ক নথি</p><span class="link-arrow">প্রবন্ধ পড়ুন ও পিডিএফ দেখুন <svg class="ic"><use href="#i-arrow-up-right"/></svg></span></div></a>
 <div class="sec-head" style="margin-top:clamp(36px,5vw,60px)"><div class="row"><div class="filters" id="news-filters" role="group" aria-label="বিভাগ অনুযায়ী ছাঁকুন"></div>
 <label class="search"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg><span class="sr-only">খবর খুঁজুন</span><input id="news-q" type="search" placeholder="খবর খুঁজুন…" autocomplete="off"></label></div></div>
 <div class="grid g3" id="news-grid" aria-live="polite"><noscript><p class="empty">খবরের তালিকা দেখতে জাভাস্ক্রিপ্ট চালু করুন।</p></noscript></div>
@@ -61,9 +63,10 @@
 document.addEventListener('DOMContentLoaded',function(){
 var T=window.TCBN; if(!T||!window.TC_NEWS)return;
 var all=T.newsItems().sort(function(a,b){return String(b.dateSort||'').localeCompare(String(a.dateSort||''))});
-var feat=all.filter(function(x){return x.featured})[0]||all[0];
+var feat=all.filter(function(x){return x.id==='chulalongkorn-award'})[0]||all[0];
+document.getElementById('news-stats').innerHTML='<div class="stat"><b>'+T.toBn(all.length)+'</b><span>খবর ও উৎস-রেকর্ড</span></div><div class="stat"><b>'+T.toBn(all.filter(function(x){return x.url}).length)+'</b><span>মূল উৎসের লিংক</span></div>';
 var f=document.getElementById('news-featured');
-f.innerHTML='<a class="card lift edge featured-news" href="blog_bn.html?post='+encodeURIComponent(feat.id)+'" data-reveal><div class="fn-art"><span class="chip chip-a">নির্বাচিত খবর</span><b>'+T.esc(T.catName(feat._cat))+'</b>'+(feat.metric?'<span class="metric">'+T.esc(T.toBn(feat.metric))+'</span>':'')+'</div><div class="fn-body"><time class="mono muted">'+T.esc(T.bnDate(feat.date))+' · '+T.esc(feat.source||'')+'</time><h2 class="title-sm">'+T.esc(feat.title)+'</h2><p class="muted">'+T.esc(feat.excerpt)+'</p><span class="link-arrow">পুরো খবর পড়ুন <svg class="ic"><use href="#i-arrow-up-right"/></svg></span></div></a>';
+f.innerHTML='<a class="card lift edge featured-news" href="blog_bn.html?post='+encodeURIComponent(feat.id)+'" data-reveal><div class="fn-art"><span class="chip chip-a">সম্পাদকের পছন্দ · নিশ্চিত উৎস</span><b>'+T.esc(T.catName(feat._cat))+'</b>'+(feat.metric?'<span class="metric">'+T.esc(T.toBn(feat.metric))+'</span>':'')+'</div><div class="fn-body"><time class="mono muted">'+T.esc(T.bnDate(feat.date))+' · '+T.esc(feat.source||'')+'</time><h2 class="title-sm">'+T.esc(feat.title)+'</h2><p class="muted">'+T.esc(feat.excerpt)+'</p><span class="link-arrow">পুরো খবর পড়ুন <svg class="ic"><use href="#i-arrow-up-right"/></svg></span></div></a>';
 f.firstChild.classList.add('is-in');
 var cats=['All'];all.forEach(function(x){if(cats.indexOf(x._cat)<0)cats.push(x._cat)});
 var cur='All',q='',fl=document.getElementById('news-filters'),grid=document.getElementById('news-grid');
@@ -98,10 +101,10 @@ draw();
           <li><a class="float-link" href="index_bn.html#products">সব পণ্য</a></li>
           <li><a href="pathfinder_bn.html">পাথফাইন্ডার</a></li>
           <li><a href="trambulance_bn.html">ট্রাম্বুলেন্স</a></li>
-          <li><a href="arkgo.html">আর্কগো</a></li>
-          <li><a href="vesel_urbana.html">ভেসেল আরবানা</a></li>
-          <li><a href="fortunacargo.html">ফরচুনা কার্গো</a></li>
-          <li><a href="Bravostruck.html">ব্রাভোস ট্রাক</a></li>
+          <li><a href="arkgo_bn.html">আর্কগো</a></li>
+          <li><a href="vesel_urbana_bn.html">ভেসেল আরবানা</a></li>
+          <li><a href="fortunacargo_bn.html">ফরচুনা কার্গো</a></li>
+          <li><a href="Bravostruck_bn.html">ব্রাভোস ট্রাক</a></li>
         </ul>
       </div>
       <div>
@@ -133,6 +136,6 @@ draw();
   </div>
 </footer>
 
-<script src="news-data.js" defer></script><script src="news-data-bn.js" defer></script><script src="news-category-bn.js" defer></script><script src="js/bn/bn.js?v=20261127" defer></script>
+<script src="news-data.js?v=20261127b" defer></script><script src="news-data-bn.js?v=20261127b" defer></script><script src="news-category-bn.js?v=20261127b" defer></script><script src="js/bn/bn.js?v=20261127b" defer></script>
 </body>
 </html>
