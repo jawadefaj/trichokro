@@ -5,7 +5,7 @@
 
     // Pages that exist in both languages: the language link opens the same page in the other language.
     var bilingual = ['index', 'blog', 'blogs', 'contact', 'engineering_excellence', 'founder', 'metadata',
-        'pathfinder', 'privacy', 'resources', 'trambulance'];
+        'pathfinder', 'privacy', 'resources', 'trambulance', 'arkgo', 'vesel_urbana', 'fortunacargo', 'Bravostruck'];
     function otherLanguageHref() {
         var base = file.replace(/\.html$/i, '').replace(/_bn$/i, '');
         if (bilingual.indexOf(base) === -1) return isBangla ? 'index.html' : 'index_bn.html';
