@@ -45,11 +45,12 @@
   function countUp(el) {
     var target = parseFloat(el.getAttribute('data-count')), dec = (el.getAttribute('data-count').split('.')[1] || '').length;
     var pre = el.getAttribute('data-pre') || '', suf = el.getAttribute('data-suf') || '', t0 = null, dur = 1600;
-    if (reduce) { el.textContent = pre + toBn(target.toFixed(dec)) + suf; return; }
+    function fmt(v) { return toBn(v >= 1000 ? Math.round(v).toLocaleString('en-IN') : v.toFixed(dec)); }
+    if (reduce) { el.textContent = pre + fmt(target) + suf; return; }
     function step(t) {
       if (!t0) t0 = t;
       var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 4);
-      el.textContent = pre + toBn((target * e).toFixed(dec)) + suf;
+      el.textContent = pre + fmt(target * e) + suf;
       if (k < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
